@@ -1,0 +1,26 @@
+# Configurações locais do programa
+VBRecorder.ini
+
+# Arquivos pessoais que não vão para o repositório
+compilar.bat
+compilarnuitka.bat
+divulgação.txt
+
+# Saída das compilações
+dist/
+build/
+*.spec
+*.build/
+*.dist/
+*.onefile-build/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Windows
+Thumbs.db
+desktop.ini
