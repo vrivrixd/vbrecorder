@@ -19,6 +19,7 @@ import os
 import sys
 import ctypes
 from datetime import datetime
+from i18n import _, ngettext
 from config import ConfigManager
 from audio_engine import AudioEngine
 from process_audio import get_audio_sessions, get_process_name, PROCESS_LOOPBACK_AVAILABLE
@@ -85,14 +86,14 @@ class HotkeyInputCtrl(wx.TextCtrl):
 
 class HotkeysDialog(wx.Dialog):
     def __init__(self, parent, config):
-        super().__init__(parent, title="Configurar Teclas")
+        super().__init__(parent, title=_("Configurar Teclas"))
         self.config = config
         self.setup_ui()
 
     def setup_ui(self):
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        help_txt = wx.StaticText(self, label=(
+        help_txt = wx.StaticText(self, label=_(
             "Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
             "Para limpar, pressione Backspace ou Delete.\nPressione Esc para cancelar."
         ))
@@ -102,12 +103,12 @@ class HotkeysDialog(wx.Dialog):
         grid = wx.FlexGridSizer(cols=2, vgap=8, hgap=8)
         grid.AddGrowableCol(1, 1)
         self.ctrls = {}
-        for key, label in [('gravar', 'Gravar:'), ('pausar', 'Pausar / Continuar:'),
-                            ('parar', 'Parar Gravação:'), ('mostrar', 'Mostrar Janela Principal:'),
-                            ('fechar', 'Fechar Programa:')]:
+        for key, label in [('gravar', _('Gravar:')), ('pausar', _('Pausar / Continuar:')),
+                            ('parar', _('Parar Gravação:')), ('mostrar', _('Mostrar Janela Principal:')),
+                            ('fechar', _('Fechar Programa:'))]:
             lbl  = wx.StaticText(self, label=label)
             ctrl = HotkeyInputCtrl(self, self.config.get_key(key) or '')
-            ctrl.SetToolTip(label.replace(':', ''))
+            ctrl.SetToolTip(label.replace(':', '').strip())
             grid.Add(lbl,  0, wx.ALIGN_CENTER_VERTICAL)
             grid.Add(ctrl, 1, wx.EXPAND)
             self.ctrls[key] = ctrl
@@ -115,9 +116,9 @@ class HotkeysDialog(wx.Dialog):
         vbox.Add(grid, 0, wx.ALL | wx.EXPAND, 10)
 
         hb = wx.BoxSizer(wx.HORIZONTAL)
-        btn_s = wx.Button(self, label="&Ok")
+        btn_s = wx.Button(self, label=_("&Ok"))
         btn_s.Bind(wx.EVT_BUTTON, self.on_save)
-        btn_c = wx.Button(self, label="&Cancelar")
+        btn_c = wx.Button(self, label=_("&Cancelar"))
         btn_c.Bind(wx.EVT_BUTTON, lambda e: self.EndModal(wx.ID_CANCEL))
         hb.Add(btn_s, 0, wx.RIGHT, 10); hb.Add(btn_c)
         vbox.Add(hb, 0, wx.ALIGN_CENTER | wx.ALL, 15)
@@ -132,7 +133,8 @@ class HotkeysDialog(wx.Dialog):
 
 class AddSourceDialog(wx.Dialog):
     def __init__(self, parent, audio_engine, existing_sources, edit_source=None):
-        title = "Editar Fonte de Gravação" if edit_source else "Adicionar Fonte de Gravação"
+        title = (_("Editar Fonte de Gravação") if edit_source
+                 else _("Adicionar Fonte de Gravação"))
         super().__init__(parent, title=title)
         self.selected = None
         self.audio    = audio_engine
@@ -157,22 +159,22 @@ class AddSourceDialog(wx.Dialog):
 
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        self._rb = wx.RadioBox(self, label="Filtrar Fontes Por:",
-                               choices=["Dispositivos de Áudio", "Processos em Execução"],
+        self._rb = wx.RadioBox(self, label=_("Filtrar Fontes Por:"),
+                               choices=[_("Dispositivos de Áudio"), _("Processos em Execução")],
                                majorDimension=1, style=wx.RA_SPECIFY_ROWS)
         if not PROCESS_LOOPBACK_AVAILABLE:
             self._rb.EnableItem(1, False)
         self._rb.Bind(wx.EVT_RADIOBOX, self._on_filter_change)
         vbox.Add(self._rb, 0, wx.ALL | wx.EXPAND, 10)
 
-        lbl_src = wx.StaticText(self, label="Selecionar Fonte:")
+        lbl_src = wx.StaticText(self, label=_("Selecionar Fonte:"))
         self._cmb = wx.ComboBox(self, choices=[], style=wx.CB_READONLY)
         vbox.Add(lbl_src,   0, wx.LEFT | wx.RIGHT, 10)
         vbox.Add(self._cmb, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM | wx.EXPAND, 10)
         self._cmb.Bind(wx.EVT_COMBOBOX, self._on_source_change)
 
         vol_box = wx.BoxSizer(wx.HORIZONTAL)
-        lbl_vol      = wx.StaticText(self, label="Volume:")
+        lbl_vol      = wx.StaticText(self, label=_("Volume:"))
         self._sld    = wx.Slider(self, value=50, minValue=0, maxValue=100,
                                  style=wx.SL_HORIZONTAL)
         self._lbl_db = wx.StaticText(self, label="  0.0 dB", size=(70, -1))
@@ -183,22 +185,22 @@ class AddSourceDialog(wx.Dialog):
         self._sld.Bind(wx.EVT_SLIDER,   self._on_slider)
         self._sld.Bind(wx.EVT_KEY_DOWN, self._on_slider_key)
 
-        self.btn_test = wx.Button(self, label="&Testar")
-        self.btn_test.SetToolTip("Ouvir o dispositivo selecionado com o volume ajustado")
+        self.btn_test = wx.Button(self, label=_("&Testar"))
+        self.btn_test.SetToolTip(_("Ouvir o dispositivo selecionado com o volume ajustado"))
         self.btn_test.Bind(wx.EVT_BUTTON, self._on_test)
         vbox.Add(self.btn_test, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
 
         self.Bind(wx.EVT_CHAR_HOOK, self._on_char_hook)
 
         if not PROCESS_LOOPBACK_AVAILABLE:
-            note = wx.StaticText(self, label=(
+            note = wx.StaticText(self, label=_(
                 "Nota: captura por processo requer Windows 10 v2004 ou superior."))
             note.SetForegroundColour(wx.Colour(120, 120, 120))
             vbox.Add(note, 0, wx.LEFT | wx.BOTTOM, 10)
 
         hb = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_ok  = wx.Button(self, wx.ID_OK,     label="&Ok")
-        btn_cancel   = wx.Button(self, wx.ID_CANCEL, label="&Cancelar")
+        self.btn_ok  = wx.Button(self, wx.ID_OK,     label=_("&Ok"))
+        btn_cancel   = wx.Button(self, wx.ID_CANCEL, label=_("&Cancelar"))
         self.btn_ok.Bind(wx.EVT_BUTTON, self.on_ok)
         hb.Add(self.btn_ok, 0, wx.RIGHT, 5); hb.Add(btn_cancel)
         vbox.Add(hb, 0, wx.ALIGN_CENTER | wx.ALL, 15)
@@ -268,18 +270,19 @@ class AddSourceDialog(wx.Dialog):
         rate, channels = self._output_format()
         ok, err = self.audio.start_monitor(dev_idx, self._volume(), rate, channels)
         if not ok:
-            wx.MessageBox(f"Não foi possível testar este dispositivo (erro BASS {err}).",
-                          "Erro", wx.ICON_ERROR | wx.OK, self)
+            wx.MessageBox(
+                _("Não foi possível testar este dispositivo (erro BASS {erro}).").format(erro=err),
+                _("Erro"), wx.ICON_ERROR | wx.OK, self)
             return
         self._testing = True
-        self.btn_test.SetLabel("&Parar")
+        self.btn_test.SetLabel(_("&Parar"))
 
     def _stop_test(self):
         if not self._testing:
             return
         self.audio.stop_monitor()
         self._testing = False
-        self.btn_test.SetLabel("&Testar")
+        self.btn_test.SetLabel(_("&Testar"))
 
     def _output_format(self):
         """Taxa e canais da janela principal, para o teste soar como a gravação."""
@@ -349,40 +352,40 @@ class VBTrayIcon(wx.adv.TaskBarIcon):
     def CreatePopupMenu(self):
         menu = wx.Menu()
         if not self.frame.audio.is_recording:
-            item_rec = menu.Append(wx.ID_ANY, "Gravar")
+            item_rec = menu.Append(wx.ID_ANY, _("Gravar"))
             self.Bind(wx.EVT_MENU, self.frame.on_record_toggle, item_rec)
             if self.frame.has_recording():
-                label_play = ("Parar Reprodução" if self.frame.audio.is_playing
-                              else "Reproduzir Gravação")
+                label_play = (_("Parar Reprodução") if self.frame.audio.is_playing
+                              else _("Reproduzir Gravação"))
                 item_play = menu.Append(wx.ID_ANY, label_play)
                 self.Bind(wx.EVT_MENU, self.frame.on_play_toggle, item_play)
-                item_del = menu.Append(wx.ID_ANY, "Excluir Gravação")
+                item_del = menu.Append(wx.ID_ANY, _("Excluir Gravação"))
                 self.Bind(wx.EVT_MENU, self.frame.on_delete_recording, item_del)
             menu.AppendSeparator()
-            self._add_submenu(menu, "Formato de Saída", self.frame.cmb_format)
+            self._add_submenu(menu, _("Formato de Saída"), self.frame.cmb_format)
             if self.frame.cmb_format.GetValue() in ['mp3', 'ogg', 'opus']:
-                self._add_submenu(menu, "Bitrate", self.frame.cmb_bitrate)
+                self._add_submenu(menu, _("Bitrate"), self.frame.cmb_bitrate)
             if self.frame.cmb_format.GetValue() == 'flac':
-                self._add_submenu(menu, "Compressão FLAC", self.frame.cmb_flac_level)
-            self._add_submenu(menu, "Taxa de Amostragem", self.frame.cmb_rate)
-            self._add_submenu(menu, "Canais", self.frame.cmb_channels)
+                self._add_submenu(menu, _("Compressão FLAC"), self.frame.cmb_flac_level)
+            self._add_submenu(menu, _("Taxa de Amostragem"), self.frame.cmb_rate)
+            self._add_submenu(menu, _("Canais"), self.frame.cmb_channels)
             if len(self.frame.sources) >= 2:
-                item_sep = menu.AppendCheckItem(wx.ID_ANY, "Gravar fontes em arquivos separados")
+                item_sep = menu.AppendCheckItem(wx.ID_ANY, _("Gravar fontes em arquivos separados"))
                 item_sep.Check(self.frame.chk_separate.GetValue())
                 self.Bind(wx.EVT_MENU, self.on_toggle_separate, item_sep)
-            item_tones = menu.AppendCheckItem(wx.ID_ANY, "Reproduzir tons ao iniciar ou parar gravação")
+            item_tones = menu.AppendCheckItem(wx.ID_ANY, _("Reproduzir tons ao iniciar ou parar gravação"))
             item_tones.Check(self.frame.chk_tones.GetValue())
             self.Bind(wx.EVT_MENU, self.on_toggle_tones, item_tones)
         else:
-            label_pause = "Continuar" if self.frame.audio.is_paused else "Pausar"
+            label_pause = _("Continuar") if self.frame.audio.is_paused else _("Pausar")
             item_pause = menu.Append(wx.ID_ANY, label_pause)
             self.Bind(wx.EVT_MENU, self.frame.on_pause_toggle, item_pause)
-            item_stop = menu.Append(wx.ID_ANY, "Parar")
+            item_stop = menu.Append(wx.ID_ANY, _("Parar"))
             self.Bind(wx.EVT_MENU, self.frame.on_record_toggle, item_stop)
         menu.AppendSeparator()
-        item_show = menu.Append(wx.ID_ANY, "Mostrar janela principal")
+        item_show = menu.Append(wx.ID_ANY, _("Mostrar janela principal"))
         self.Bind(wx.EVT_MENU, self.on_show, item_show)
-        item_exit = menu.Append(wx.ID_ANY, "Sair")
+        item_exit = menu.Append(wx.ID_ANY, _("Sair"))
         self.Bind(wx.EVT_MENU, self.on_exit, item_exit)
         return menu
 
@@ -418,7 +421,8 @@ class MainFrame(wx.Frame):
     def __init__(self):
         self.mutex = ctypes.windll.kernel32.CreateMutexW(None, False, "VBRecorder_Mutex")
         if ctypes.windll.kernel32.GetLastError() == 183:
-            wx.MessageBox("O VB Recorder já está em execução.", "Aviso", wx.ICON_WARNING | wx.OK)
+            wx.MessageBox(_("O VB Recorder já está em execução."), _("Aviso"),
+                          wx.ICON_WARNING | wx.OK)
             sys.exit(0)
 
         super().__init__(parent=None, title='VB Recorder', size=(600, 850))
@@ -488,15 +492,15 @@ class MainFrame(wx.Frame):
         self.vbox = wx.BoxSizer(wx.VERTICAL)
 
         hbox_ctrl = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_record = wx.Button(self.panel, label='&Gravar')
+        self.btn_record = wx.Button(self.panel, label=_('&Gravar'))
         self.btn_record.Bind(wx.EVT_BUTTON, self.on_record_toggle)
-        self.btn_pause = wx.Button(self.panel, label='&Pausar')
+        self.btn_pause = wx.Button(self.panel, label=_('&Pausar'))
         self.btn_pause.Bind(wx.EVT_BUTTON, self.on_pause_toggle)
         self.btn_pause.Disable()
-        self.btn_play = wx.Button(self.panel, label='Reprod&uzir Gravação')
+        self.btn_play = wx.Button(self.panel, label=_('Reprod&uzir Gravação'))
         self.btn_play.Bind(wx.EVT_BUTTON, self.on_play_toggle)
         self.btn_play.Disable()
-        self.btn_delete = wx.Button(self.panel, label='E&xcluir Gravação')
+        self.btn_delete = wx.Button(self.panel, label=_('E&xcluir Gravação'))
         self.btn_delete.Bind(wx.EVT_BUTTON, self.on_delete_recording)
         self.btn_delete.Disable()
         hbox_ctrl.Add(self.btn_record, 0, wx.ALL, 5)
@@ -505,11 +509,11 @@ class MainFrame(wx.Frame):
         hbox_ctrl.Add(self.btn_delete, 0, wx.ALL, 5)
         self.vbox.Add(hbox_ctrl, 0, wx.ALIGN_CENTER | wx.ALL, 10)
 
-        self.cmb_format = self.create_labeled_combo(self.vbox, '&Formato de Saída:',
+        self.cmb_format = self.create_labeled_combo(self.vbox, _('&Formato de Saída:'),
                                                     ['mp3', 'wav', 'aiff', 'ogg', 'opus', 'flac'])
         self.cmb_format.Bind(wx.EVT_COMBOBOX, self.on_format_change)
 
-        self.lbl_bitrate = wx.StaticText(self.panel, label='&Bitrate:')
+        self.lbl_bitrate = wx.StaticText(self.panel, label=_('&Bitrate:'))
         self.cmb_bitrate = wx.ComboBox(self.panel, style=wx.CB_READONLY,
             choices=['8 KBPS', '16 KBPS', '32 KBPS', '64 KBPS', '96 KBPS',
                      '128 KBPS', '160 KBPS', '192 KBPS', '256 KBPS', '320 KBPS'])
@@ -518,7 +522,7 @@ class MainFrame(wx.Frame):
         hbox_bitrate.Add(self.cmb_bitrate, 1, wx.EXPAND)
         self.vbox.Add(hbox_bitrate, 0, wx.ALL | wx.EXPAND, 5)
 
-        self.lbl_flac_level = wx.StaticText(self.panel, label='Compressão F&LAC:')
+        self.lbl_flac_level = wx.StaticText(self.panel, label=_('Compressão F&LAC:'))
         self.cmb_flac_level = wx.ComboBox(self.panel, style=wx.CB_READONLY,
             choices=[str(i) for i in range(9)])
         hbox_flac = wx.BoxSizer(wx.HORIZONTAL)
@@ -526,11 +530,11 @@ class MainFrame(wx.Frame):
         hbox_flac.Add(self.cmb_flac_level, 1, wx.EXPAND)
         self.vbox.Add(hbox_flac, 0, wx.ALL | wx.EXPAND, 5)
 
-        self.cmb_rate     = self.create_labeled_combo(self.vbox, '&Taxa de Amostragem:',
+        self.cmb_rate     = self.create_labeled_combo(self.vbox, _('&Taxa de Amostragem:'),
                                                       ['8000', '11025', '22050', '32000', '44100', '48000'])
-        self.cmb_channels = self.create_labeled_combo(self.vbox, '&Canais:', ['mono', 'stereo'])
+        self.cmb_channels = self.create_labeled_combo(self.vbox, _('&Canais:'), ['mono', 'stereo'])
 
-        self.vbox.Add(wx.StaticText(self.panel, label='Fontes de &Gravação:'),
+        self.vbox.Add(wx.StaticText(self.panel, label=_('Fontes de &Gravação:')),
                       0, wx.LEFT | wx.TOP, 10)
         self.lst_fontes = wx.ListCtrl(self.panel,
                                       style=wx.LC_REPORT | wx.LC_NO_HEADER | wx.LC_HRULES)
@@ -539,9 +543,9 @@ class MainFrame(wx.Frame):
         self.vbox.Add(self.lst_fontes, 1, wx.ALL | wx.EXPAND, 5)
 
         hb_src = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_add  = wx.Button(self.panel, label='&Adicionar')
-        self.btn_edit = wx.Button(self.panel, label='&Editar')
-        self.btn_rem  = wx.Button(self.panel, label='&Remover')
+        self.btn_add  = wx.Button(self.panel, label=_('&Adicionar'))
+        self.btn_edit = wx.Button(self.panel, label=_('&Editar'))
+        self.btn_rem  = wx.Button(self.panel, label=_('&Remover'))
         self.btn_add.Bind(wx.EVT_BUTTON,  self.on_add_source)
         self.btn_edit.Bind(wx.EVT_BUTTON, self.on_edit_source)
         self.btn_rem.Bind(wx.EVT_BUTTON,  self.on_remove_source)
@@ -550,20 +554,20 @@ class MainFrame(wx.Frame):
         hb_src.Add(self.btn_rem)
         self.vbox.Add(hb_src, 0, wx.LEFT | wx.BOTTOM, 10)
 
-        self.chk_separate = wx.CheckBox(self.panel, label='Gravar fontes em arquivos se&parados')
+        self.chk_separate = wx.CheckBox(self.panel, label=_('Gravar fontes em arquivos se&parados'))
         self.vbox.Add(self.chk_separate, 0, wx.ALL, 10)
 
-        self.chk_tones = wx.CheckBox(self.panel, label='Reproduzir &tons ao iniciar ou parar gravação')
+        self.chk_tones = wx.CheckBox(self.panel, label=_('Reproduzir &tons ao iniciar ou parar gravação'))
         self.vbox.Add(self.chk_tones, 0, wx.ALL, 10)
 
-        self.txt_filename = self.create_labeled_input(self.vbox, '&Nome do Arquivo:')
+        self.txt_filename = self.create_labeled_input(self.vbox, _('&Nome do Arquivo:'))
 
         hbox_dir = wx.BoxSizer(wx.HORIZONTAL)
-        lbl_dir = wx.StaticText(self.panel, label='&Diretório de Saída:')
+        lbl_dir = wx.StaticText(self.panel, label=_('&Diretório de Saída:'))
         self.txt_dir    = wx.TextCtrl(self.panel)
-        self.btn_browse = wx.Button(self.panel, label='P&rocurar...')
+        self.btn_browse = wx.Button(self.panel, label=_('P&rocurar...'))
         self.btn_browse.Bind(wx.EVT_BUTTON, self.on_browse)
-        self.btn_open_dir = wx.Button(self.panel, label='Abr&ir Pasta de Gravações')
+        self.btn_open_dir = wx.Button(self.panel, label=_('Abr&ir Pasta de Gravações'))
         self.btn_open_dir.Bind(wx.EVT_BUTTON, self.on_open_dir)
         hbox_dir.Add(lbl_dir, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
         hbox_dir.Add(self.txt_dir, 1, wx.EXPAND | wx.RIGHT, 5)
@@ -572,13 +576,13 @@ class MainFrame(wx.Frame):
         self.vbox.Add(hbox_dir, 0, wx.ALL | wx.EXPAND, 10)
 
         hbox_bottom = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_keys = wx.Button(self.panel, label='Configurar &Teclas...')
+        self.btn_keys = wx.Button(self.panel, label=_('Configurar &Teclas...'))
         self.btn_keys.Bind(wx.EVT_BUTTON, self.on_config_keys)
-        self.btn_about = wx.Button(self.panel, label='S&obre')
+        self.btn_about = wx.Button(self.panel, label=_('S&obre'))
         self.btn_about.Bind(wx.EVT_BUTTON, self.on_about)
-        self.btn_min = wx.Button(self.panel, label='&Minimizar')
+        self.btn_min = wx.Button(self.panel, label=_('&Minimizar'))
         self.btn_min.Bind(wx.EVT_BUTTON, lambda e: self.Iconize(True))
-        self.btn_close = wx.Button(self.panel, label='&Fechar')
+        self.btn_close = wx.Button(self.panel, label=_('&Fechar'))
         self.btn_close.Bind(wx.EVT_BUTTON, self.on_close)
         hbox_bottom.Add(self.btn_keys,  0, wx.RIGHT, 5)
         hbox_bottom.Add(self.btn_about, 0, wx.RIGHT, 5)
@@ -746,8 +750,8 @@ class MainFrame(wx.Frame):
         if not self.audio.is_recording:
             self.audio.stop_monitor()
             if not self.sources:
-                wx.MessageBox("Adicione ao menos uma fonte de gravação antes de iniciar.",
-                              "Aviso", wx.ICON_WARNING | wx.OK)
+                wx.MessageBox(_("Adicione ao menos uma fonte de gravação antes de iniciar."),
+                              _("Aviso"), wx.ICON_WARNING | wx.OK)
                 return
             self.audio.stop_playback()
             self._update_play_button()
@@ -770,17 +774,18 @@ class MainFrame(wx.Frame):
                 int(self.cmb_flac_level.GetValue())
             )
             if ok:
-                self.btn_record.SetLabel('Para&r')
+                self.btn_record.SetLabel(_('Para&r'))
                 self.btn_pause.Enable()
                 self._toggle_ui(False)
                 self._update_recording_buttons()
             else:
-                wx.MessageBox(f"Erro BASS {err} ao iniciar a gravação.", "Erro", wx.ICON_ERROR)
+                wx.MessageBox(_("Erro BASS {erro} ao iniciar a gravação.").format(erro=err),
+                              _("Erro"), wx.ICON_ERROR)
         else:
             self.audio.stop_recording()
             if self.chk_tones.GetValue(): self.audio.play_tone(440, 150)
-            self.btn_record.SetLabel('&Gravar')
-            self.btn_pause.SetLabel('&Pausar')
+            self.btn_record.SetLabel(_('&Gravar'))
+            self.btn_pause.SetLabel(_('&Pausar'))
             self.btn_pause.Disable()
             self._toggle_ui(True)
             self.last_recording = [p for p in self.audio.output_files if os.path.exists(p)]
@@ -790,20 +795,20 @@ class MainFrame(wx.Frame):
         if not self.audio.is_paused:
             self.audio.pause_recording()
             if self.chk_tones.GetValue(): self.audio.play_tone(659, 150)
-            self.btn_pause.SetLabel('C&ontinuar')
+            self.btn_pause.SetLabel(_('C&ontinuar'))
         else:
             self.audio.resume_recording()
             if self.chk_tones.GetValue(): self.audio.play_tone(880, 150)
-            self.btn_pause.SetLabel('&Pausar')
+            self.btn_pause.SetLabel(_('&Pausar'))
 
     def on_browse(self, event):
-        dlg = wx.DirDialog(self, "Selecionar Pasta", style=wx.DD_DEFAULT_STYLE)
+        dlg = wx.DirDialog(self, _("Selecionar Pasta"), style=wx.DD_DEFAULT_STYLE)
         if dlg.ShowModal() == wx.ID_OK: self.txt_dir.SetValue(dlg.GetPath())
         dlg.Destroy()
 
     def current_output_dir(self):
         """Pasta em uso: a do campo de edição, ou a padrão se ele estiver vazio."""
-        return self.txt_dir.GetValue().strip() or os.path.join(os.getcwd(), 'Gravações')
+        return self.txt_dir.GetValue().strip() or os.path.join(os.getcwd(), _('Gravações'))
 
     def on_open_dir(self, event):
         out_dir = self.current_output_dir()
@@ -812,8 +817,9 @@ class MainFrame(wx.Frame):
                 os.makedirs(out_dir)
             os.startfile(out_dir)
         except OSError as e:
-            wx.MessageBox(f"Não foi possível abrir a pasta:\n{out_dir}\n\n{e}",
-                          "Erro", wx.ICON_ERROR | wx.OK)
+            wx.MessageBox(
+                _("Não foi possível abrir a pasta:\n{pasta}\n\n{erro}").format(pasta=out_dir, erro=e),
+                _("Erro"), wx.ICON_ERROR | wx.OK)
 
     def _existing_recording_files(self):
         return [p for p in self.last_recording if os.path.exists(p)]
@@ -839,7 +845,7 @@ class MainFrame(wx.Frame):
 
     def _update_play_button(self):
         playing = self.audio.is_playing
-        self.btn_play.SetLabel('Parar Reprod&ução' if playing else 'Reprod&uzir Gravação')
+        self.btn_play.SetLabel(_('Parar Reprod&ução') if playing else _('Reprod&uzir Gravação'))
         if playing and not self.play_timer.IsRunning():
             self.play_timer.Start(300)
         elif not playing and self.play_timer.IsRunning():
@@ -863,8 +869,8 @@ class MainFrame(wx.Frame):
         if len(files) > 1:
             parent = self._dialog_parent()
             estilo = wx.CHOICEDLG_STYLE | (wx.STAY_ON_TOP if parent is None else 0)
-            dlg = wx.SingleChoiceDialog(parent, "Escolha o arquivo a reproduzir:",
-                                        "Reproduzir Gravação",
+            dlg = wx.SingleChoiceDialog(parent, _("Escolha o arquivo a reproduzir:"),
+                                        _("Reproduzir Gravação"),
                                         [os.path.basename(p) for p in files], estilo)
             dlg.Raise()
             escolhido = dlg.ShowModal() == wx.ID_OK
@@ -874,12 +880,14 @@ class MainFrame(wx.Frame):
         dll = self.audio.missing_playback_plugin(path)
         if dll:
             self._aviso(
-                f"Para reproduzir arquivos {os.path.splitext(path)[1]} dentro do programa, "
-                f"coloque {dll} na pasta lib do VB Recorder.", "Aviso")
+                _("Para reproduzir arquivos {extensao} dentro do programa, "
+                  "coloque {dll} na pasta lib do VB Recorder.").format(
+                      extensao=os.path.splitext(path)[1], dll=dll), _("Aviso"))
             return
         ok, err = self.audio.play_file(path)
         if not ok:
-            self._aviso(f"Erro BASS {err} ao reproduzir:\n{path}", "Erro", wx.ICON_ERROR)
+            self._aviso(_("Erro BASS {erro} ao reproduzir:\n{arquivo}").format(erro=err, arquivo=path),
+                        _("Erro"), wx.ICON_ERROR)
             return
         self._update_play_button()
 
@@ -889,12 +897,11 @@ class MainFrame(wx.Frame):
             self.last_recording = []
             self._update_recording_buttons()
             return
-        if len(files) == 1:
-            msg = f"Excluir a gravação?\n\n{os.path.basename(files[0])}"
-        else:
-            lista = "\n".join(os.path.basename(p) for p in files)
-            msg   = f"Excluir os {len(files)} arquivos da última gravação?\n\n{lista}"
-        if not confirmar_sim_nao(self._dialog_hwnd(), msg, "Confirmar Exclusão"):
+        lista = "\n".join(os.path.basename(p) for p in files)
+        msg = ngettext("Excluir a gravação?\n\n{lista}",
+                       "Excluir os {n} arquivos da última gravação?\n\n{lista}",
+                       len(files)).format(n=len(files), lista=lista)
+        if not confirmar_sim_nao(self._dialog_hwnd(), msg, _("Confirmar Exclusão")):
             return
         self.audio.stop_playback()
         falhas = []
@@ -906,11 +913,11 @@ class MainFrame(wx.Frame):
         self.last_recording = []
         self._update_recording_buttons()
         if falhas:
-            self._aviso("Não foi possível excluir:\n" + "\n".join(falhas),
-                        "Erro", wx.ICON_ERROR)
+            self._aviso(_("Não foi possível excluir:\n") + "\n".join(falhas),
+                        _("Erro"), wx.ICON_ERROR)
 
     def on_about(self, event):
-        wx.MessageBox("VB Recorder v1.1\nAutor: Vitor Bruski", "Sobre", wx.OK)
+        wx.MessageBox(_("VB Recorder v1.2\nAutor: Vitor Bruski"), _("Sobre"), wx.OK)
 
     def _toggle_ui(self, enable):
         for ctrl in [self.cmb_format, self.cmb_bitrate, self.cmb_flac_level, self.cmb_rate,

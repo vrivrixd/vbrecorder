@@ -18,6 +18,8 @@ import re
 import sys
 import threading
 
+from i18n import _
+
 from process_audio import ProcessLoopbackCapture
 
 BASS_DEVICE_ENABLED    = 1
@@ -54,7 +56,7 @@ RECORDPROC = ctypes.WINFUNCTYPE(ctypes.c_int, ctypes.c_uint32, ctypes.c_void_p,
 def _source_safe_name(name):
     name = re.sub(r'\s*\(PID \d+\)', '', name).strip()
     name = re.sub(r'[\\/:*?"<>|]', '', name)
-    return name.strip() or 'fonte'
+    return name.strip() or _('fonte')
 
 
 class AudioEngine:
@@ -235,7 +237,7 @@ class AudioEngine:
         while self.bass.BASS_RecordGetDeviceInfo(i, ctypes.byref(info)):
             if info.flags & BASS_DEVICE_ENABLED:
                 name = info.name.decode('mbcs', errors='ignore')
-                if name == 'Default': name = 'Dispositivo de Entrada Padrão'
+                if name == 'Default': name = _('Dispositivo de Entrada Padrão')
                 if info.flags & BASS_DEVICE_LOOPBACK: name += ' (Loopback)'
                 devices.append((i, name))
             i += 1

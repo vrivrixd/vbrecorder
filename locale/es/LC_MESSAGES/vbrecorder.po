@@ -1,0 +1,296 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-02 18:39\n"
+"PO-Revision-Date: 2026-08-02 18:39\n"
+"Last-Translator: Vitor Bruski\n"
+"Language-Team: Español\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Editar fuente de grabación"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Añadir fuente de grabación"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Escuchar el dispositivo seleccionado con el volumen ajustado"
+
+msgid "&Parar"
+msgstr "&Detener"
+
+msgid "&Testar"
+msgstr "&Probar"
+
+msgid "Mostrar janela principal"
+msgstr "Mostrar ventana principal"
+
+msgid "Sair"
+msgstr "Salir"
+
+msgid "&Formato de Saída:"
+msgstr "&Formato de salida:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "Frecuencia de &muestreo:"
+
+msgid "&Canais:"
+msgstr "&Canales:"
+
+msgid "&Nome do Arquivo:"
+msgstr "&Nombre del archivo:"
+
+msgid "Selecionar Pasta"
+msgstr "Seleccionar carpeta"
+
+msgid ""
+"VB Recorder v1.2\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v1.2\n"
+"Autor: Vitor Bruski"
+
+msgid "Sobre"
+msgstr "Acerca de"
+
+msgid "Configurar Teclas"
+msgstr "Configurar teclas"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Pulse la combinación de teclas (p. ej.: Ctrl+Alt+R) en los campos de abajo.\n"
+"Para borrar, pulse Retroceso o Suprimir.\n"
+"Pulse Esc para cancelar."
+
+msgid "Gravar:"
+msgstr "Grabar:"
+
+msgid "Pausar / Continuar:"
+msgstr "Pausar / Continuar:"
+
+msgid "Parar Gravação:"
+msgstr "Detener grabación:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Mostrar ventana principal:"
+
+msgid "Fechar Programa:"
+msgstr "Cerrar programa:"
+
+msgid "&Ok"
+msgstr "&Aceptar"
+
+msgid "&Cancelar"
+msgstr "&Cancelar"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Filtrar fuentes por:"
+
+msgid "Selecionar Fonte:"
+msgstr "Seleccionar fuente:"
+
+msgid "Volume:"
+msgstr "Volumen:"
+
+msgid "Erro"
+msgstr "Error"
+
+msgid "Gravar"
+msgstr "Grabar"
+
+msgid "Formato de Saída"
+msgstr "Formato de salida"
+
+msgid "Taxa de Amostragem"
+msgstr "Frecuencia de muestreo"
+
+msgid "Canais"
+msgstr "Canales"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Reproducir tonos al iniciar o detener la grabación"
+
+msgid "Continuar"
+msgstr "Continuar"
+
+msgid "Pausar"
+msgstr "Pausar"
+
+msgid "Parar"
+msgstr "Detener"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder ya se está ejecutando."
+
+msgid "Aviso"
+msgstr "Aviso"
+
+msgid "&Gravar"
+msgstr "&Grabar"
+
+msgid "&Pausar"
+msgstr "&Pausar"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Rep&roducir grabación"
+
+msgid "E&xcluir Gravação"
+msgstr "&Eliminar grabación"
+
+msgid "&Bitrate:"
+msgstr "Tasa de &bits:"
+
+msgid "Compressão F&LAC:"
+msgstr "Compresión F&LAC:"
+
+msgid "&Adicionar"
+msgstr "&Añadir"
+
+msgid "&Editar"
+msgstr "Edi&tar"
+
+msgid "&Remover"
+msgstr "&Quitar"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Grabar fuentes en archivos separa&dos"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Reproducir t&onos al iniciar o detener la grabación"
+
+msgid "&Diretório de Saída:"
+msgstr "Director&io de salida:"
+
+msgid "P&rocurar..."
+msgstr "E&xaminar..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Abrir carpeta de grabacione&s"
+
+msgid "Configurar &Teclas..."
+msgstr "Configurar &teclas..."
+
+msgid "S&obre"
+msgstr "&Acerca de"
+
+msgid "&Minimizar"
+msgstr "Minimi&zar"
+
+msgid "&Fechar"
+msgstr "Cerra&r"
+
+msgid "C&ontinuar"
+msgstr "C&ontinuar"
+
+msgid "Gravações"
+msgstr "Grabaciones"
+
+msgid "Parar Reprod&ução"
+msgstr "Detener re&producción"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Elija el archivo que desea reproducir:"
+
+msgid "Reproduzir Gravação"
+msgstr "Reproducir grabación"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"¿Eliminar la grabación?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"¿Eliminar los {n} archivos de la última grabación?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Confirmar eliminación"
+
+msgid "Dispositivos de Áudio"
+msgstr "Dispositivos de audio"
+
+msgid "Processos em Execução"
+msgstr "Procesos en ejecución"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Nota: la captura por proceso requiere Windows 10 v2004 o superior."
+
+msgid "Parar Reprodução"
+msgstr "Detener reproducción"
+
+msgid "Excluir Gravação"
+msgstr "Eliminar grabación"
+
+msgid "Bitrate"
+msgstr "Tasa de bits"
+
+msgid "Compressão FLAC"
+msgstr "Compresión FLAC"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Grabar fuentes en archivos separados"
+
+msgid "Fontes de &Gravação:"
+msgstr "F&uentes de grabación:"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Añada al menos una fuente de grabación antes de empezar."
+
+msgid "Para&r"
+msgstr "&Detener"
+
+msgid "Não foi possível excluir:\n"
+msgstr "No se pudo eliminar:\n"
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "No se pudo probar este dispositivo (error BASS {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Para reproducir archivos {extensao} dentro del programa, coloque {dll} en la"
+" carpeta lib de VB Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"Error BASS {erro} al reproducir:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "Error BASS {erro} al iniciar la grabación."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"No se pudo abrir la carpeta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "fuente"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Dispositivo de entrada predeterminado"

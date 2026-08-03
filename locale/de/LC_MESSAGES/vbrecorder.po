@@ -1,0 +1,296 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-02 18:39\n"
+"PO-Revision-Date: 2026-08-02 18:39\n"
+"Last-Translator: Vitor Bruski\n"
+"Language-Team: Deutsch\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Aufnahmequelle bearbeiten"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Aufnahmequelle hinzufügen"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Das ausgewählte Gerät mit der eingestellten Lautstärke abhören"
+
+msgid "&Parar"
+msgstr "&Stopp"
+
+msgid "&Testar"
+msgstr "&Testen"
+
+msgid "Mostrar janela principal"
+msgstr "Hauptfenster anzeigen"
+
+msgid "Sair"
+msgstr "Beenden"
+
+msgid "&Formato de Saída:"
+msgstr "Ausgabe&format:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "Ab&tastrate:"
+
+msgid "&Canais:"
+msgstr "K&anäle:"
+
+msgid "&Nome do Arquivo:"
+msgstr "Datei&name:"
+
+msgid "Selecionar Pasta"
+msgstr "Ordner auswählen"
+
+msgid ""
+"VB Recorder v1.2\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v1.2\n"
+"Autor: Vitor Bruski"
+
+msgid "Sobre"
+msgstr "Über"
+
+msgid "Configurar Teclas"
+msgstr "Tasten konfigurieren"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Drücken Sie die Tastenkombination (z. B. Strg+Alt+R) in den Feldern unten.\n"
+"Zum Löschen drücken Sie Rücktaste oder Entf.\n"
+"Drücken Sie Esc zum Abbrechen."
+
+msgid "Gravar:"
+msgstr "Aufnehmen:"
+
+msgid "Pausar / Continuar:"
+msgstr "Pause / Fortsetzen:"
+
+msgid "Parar Gravação:"
+msgstr "Aufnahme stoppen:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Hauptfenster anzeigen:"
+
+msgid "Fechar Programa:"
+msgstr "Programm schließen:"
+
+msgid "&Ok"
+msgstr "&OK"
+
+msgid "&Cancelar"
+msgstr "&Abbrechen"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Quellen filtern nach:"
+
+msgid "Selecionar Fonte:"
+msgstr "Quelle auswählen:"
+
+msgid "Volume:"
+msgstr "Lautstärke:"
+
+msgid "Erro"
+msgstr "Fehler"
+
+msgid "Gravar"
+msgstr "Aufnehmen"
+
+msgid "Formato de Saída"
+msgstr "Ausgabeformat"
+
+msgid "Taxa de Amostragem"
+msgstr "Abtastrate"
+
+msgid "Canais"
+msgstr "Kanäle"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Töne beim Starten und Stoppen der Aufnahme abspielen"
+
+msgid "Continuar"
+msgstr "Fortsetzen"
+
+msgid "Pausar"
+msgstr "Pause"
+
+msgid "Parar"
+msgstr "Stopp"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder läuft bereits."
+
+msgid "Aviso"
+msgstr "Warnung"
+
+msgid "&Gravar"
+msgstr "&Aufnehmen"
+
+msgid "&Pausar"
+msgstr "&Pause"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Aufnahme &wiedergeben"
+
+msgid "E&xcluir Gravação"
+msgstr "Aufnahme &löschen"
+
+msgid "&Bitrate:"
+msgstr "&Bitrate:"
+
+msgid "Compressão F&LAC:"
+msgstr "FLAC-&Kompression:"
+
+msgid "&Adicionar"
+msgstr "&Hinzufügen"
+
+msgid "&Editar"
+msgstr "Bear&beiten"
+
+msgid "&Remover"
+msgstr "&Entfernen"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Quellen in getrennte &Dateien aufnehmen"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Töne beim &Starten und Stoppen der Aufnahme abspielen"
+
+msgid "&Diretório de Saída:"
+msgstr "&Zielordner:"
+
+msgid "P&rocurar..."
+msgstr "&Durchsuchen..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Aufnahmeordner ö&ffnen"
+
+msgid "Configurar &Teclas..."
+msgstr "Tasten konfi&gurieren..."
+
+msgid "S&obre"
+msgstr "Übe&r"
+
+msgid "&Minimizar"
+msgstr "&Minimieren"
+
+msgid "&Fechar"
+msgstr "Schl&ießen"
+
+msgid "C&ontinuar"
+msgstr "&Fortsetzen"
+
+msgid "Gravações"
+msgstr "Aufnahmen"
+
+msgid "Parar Reprod&ução"
+msgstr "&Wiedergabe stoppen"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Wählen Sie die Datei zum Abspielen:"
+
+msgid "Reproduzir Gravação"
+msgstr "Aufnahme wiedergeben"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Die Aufnahme löschen?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Die {n} Dateien der letzten Aufnahme löschen?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Löschen bestätigen"
+
+msgid "Dispositivos de Áudio"
+msgstr "Audiogeräte"
+
+msgid "Processos em Execução"
+msgstr "Laufende Prozesse"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Hinweis: Die Prozessaufnahme erfordert Windows 10 v2004 oder neuer."
+
+msgid "Parar Reprodução"
+msgstr "Wiedergabe stoppen"
+
+msgid "Excluir Gravação"
+msgstr "Aufnahme löschen"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Compressão FLAC"
+msgstr "FLAC-Kompression"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Quellen in getrennte Dateien aufnehmen"
+
+msgid "Fontes de &Gravação:"
+msgstr "Aufnahme&quellen:"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Fügen Sie vor dem Start mindestens eine Aufnahmequelle hinzu."
+
+msgid "Para&r"
+msgstr "Sto&pp"
+
+msgid "Não foi possível excluir:\n"
+msgstr "Konnte nicht gelöscht werden:\n"
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Dieses Gerät konnte nicht getestet werden (BASS-Fehler {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Um {extensao}-Dateien im Programm abzuspielen, legen Sie {dll} in den Ordner"
+" lib von VB Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"BASS-Fehler {erro} bei der Wiedergabe:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "BASS-Fehler {erro} beim Starten der Aufnahme."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Der Ordner konnte nicht geöffnet werden:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "Quelle"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Standard-Eingabegerät"

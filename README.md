@@ -43,6 +43,23 @@ O programa é leve, portátil e roda na bandeja do sistema.
 
 Taxa de amostragem de 8000 Hz a 48000 Hz, mono ou estéreo.
 
+## Idiomas
+
+O VB Recorder inicia no idioma da interface do Windows. Estão disponíveis:
+
+português do Brasil, português de Portugal, inglês, espanhol, francês, alemão,
+italiano, russo e vietnamita.
+
+Se o Windows estiver em um idioma sem tradução, o programa aparece em português
+do Brasil.
+
+**Quer traduzir para o seu idioma?** Copie `locale/vbrecorder.pot` para
+`locale/<código>/LC_MESSAGES/vbrecorder.po`, preencha os textos, rode o
+`language_compiler.py` e pronto: nenhuma alteração no código é necessária. O que
+ficar sem tradução continua aparecendo em português, então dá para traduzir aos
+poucos. Contribuições são bem-vindas por [Pull
+Request](https://github.com/vrivrixd/vbrecorder/pulls).
+
 ## Requisitos
 
 - Windows 10 ou superior.
@@ -73,6 +90,9 @@ Estrutura:
 - `audio_engine.py` — gravação, mixagem, codificação e reprodução via BASS.
 - `process_audio.py` — captura de áudio por processo (WASAPI).
 - `config.py` — leitura e gravação do `VBRecorder.ini`.
+- `i18n.py` — escolha do idioma e carregamento das traduções.
+- `locale/` — catálogos de tradução, um por idioma.
+- `language_compiler.py` — compila os `.po` em `.mo`.
 
 ## Licença
 
@@ -86,6 +106,10 @@ seguem os termos próprios do BASS, que é gratuito para uso não comercial.
 ## Autor
 
 VB Recorder foi desenvolvido por **Vitor Bruski**.
+
+### Traduções
+
+- Vietnamita: **nguyenninhhoang**
 
 Dúvidas, sugestões e relatos de problemas são bem-vindos na aba
 [Issues](https://github.com/vrivrixd/vbrecorder/issues).

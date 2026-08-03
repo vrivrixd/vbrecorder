@@ -1,0 +1,297 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-02 18:39\n"
+"PO-Revision-Date: 2026-08-03 08:12+0700\n"
+"Last-Translator: nguyenninhhoang <nguyenninhhoang2005@gmail.com>\n"
+"Language-Team: vietnamese\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "chỉnh sửa nguồn ghi âm"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "thêm nguồn ghi âm"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Nghe thiết bị đã chọn với âm lượng đã điều chỉnh"
+
+msgid "&Parar"
+msgstr "&dừng"
+
+msgid "&Testar"
+msgstr "&thử"
+
+msgid "Mostrar janela principal"
+msgstr "Hiện cửa sổ chính"
+
+msgid "Sair"
+msgstr "thoát"
+
+msgid "&Formato de Saída:"
+msgstr "Định dạng &đầu ra:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "&Tỷ lệ mẫu:"
+
+msgid "&Canais:"
+msgstr "&Kênh:"
+
+msgid "&Nome do Arquivo:"
+msgstr "&tên file:"
+
+msgid "Selecionar Pasta"
+msgstr "chọn thư mục"
+
+msgid ""
+"VB Recorder v1.2\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v1.2\n"
+"tác giả: Vitor Bruski"
+
+msgid "Sobre"
+msgstr "giới thiệu"
+
+msgid "Configurar Teclas"
+msgstr "Cấu hình phím tắt"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Nhấn tổ hợp phím (ví dụ: Ctrl+Alt+R) trong các trường bên dưới.\n"
+"Để xóa, nhấn Backspace hoặc Delete.\n"
+"Nhấn Esc để hủy bỏ."
+
+msgid "Gravar:"
+msgstr "ghi âm:"
+
+msgid "Pausar / Continuar:"
+msgstr "Tạm dừng / Tiếp tục:"
+
+msgid "Parar Gravação:"
+msgstr "dừng ghi âm:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Hiện cửa sổ chính:"
+
+msgid "Fechar Programa:"
+msgstr "Đóng chương trình:"
+
+msgid "&Ok"
+msgstr "&Đồng ý"
+
+msgid "&Cancelar"
+msgstr "&Hủy bỏ"
+
+msgid "Filtrar Fontes Por:"
+msgstr "bộ lọc âm thanh bởi:"
+
+msgid "Selecionar Fonte:"
+msgstr "Chọn nguồn:"
+
+msgid "Volume:"
+msgstr "Âm lượng:"
+
+msgid "Erro"
+msgstr "Lỗi"
+
+msgid "Gravar"
+msgstr "ghi âm"
+
+msgid "Formato de Saída"
+msgstr "Định dạng đầu ra"
+
+msgid "Taxa de Amostragem"
+msgstr "Tỷ lệ mẫu"
+
+msgid "Canais"
+msgstr "Kênh"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Phát âm thanh khi bắt đầu hoặc dừng ghi"
+
+msgid "Continuar"
+msgstr "tiếp tục"
+
+msgid "Pausar"
+msgstr "Tạm dừng"
+
+msgid "Parar"
+msgstr "Dừng"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder đang chạy."
+
+msgid "Aviso"
+msgstr "Cảnh báo"
+
+msgid "&Gravar"
+msgstr "&ghi âm"
+
+msgid "&Pausar"
+msgstr "&Tạm dừng"
+
+msgid "Reprod&uzir Gravação"
+msgstr "&Phát ghi âm"
+
+msgid "E&xcluir Gravação"
+msgstr "&Xóa ghi âm"
+
+msgid "&Bitrate:"
+msgstr "&Bitrate:"
+
+msgid "Compressão F&LAC:"
+msgstr "&Nén FLAC:"
+
+msgid "&Adicionar"
+msgstr "&thêm"
+
+msgid "&Editar"
+msgstr "&Chỉnh sửa"
+
+msgid "&Remover"
+msgstr "&xóa"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "&Ghi nguồn vào các tập tin riêng biệt"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Phát âm thanh &khi bắt đầu hoặc dừng ghi"
+
+msgid "&Diretório de Saída:"
+msgstr "&Thư mục đầu ra:"
+
+msgid "P&rocurar..."
+msgstr "&Thay đổi"
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "&Mở thư mục ghi âm"
+
+msgid "Configurar &Teclas..."
+msgstr "&Cấu hình phím tắt"
+
+msgid "S&obre"
+msgstr "&Giới thiệu"
+
+msgid "&Minimizar"
+msgstr "&thu nhỏ"
+
+msgid "&Fechar"
+msgstr "&Tắt"
+
+msgid "C&ontinuar"
+msgstr "&Tiếp tục"
+
+msgid "Gravações"
+msgstr "Đang ghi âm"
+
+msgid "Parar Reprod&ução"
+msgstr "&Dừng phát lại"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "chọn file để phát:"
+
+msgid "Reproduzir Gravação"
+msgstr "Phát ghi âm"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Xóa bản ghi âm?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Xóa {n} các file từ bản ghi cuối cùng?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Xác nhận xóa"
+
+msgid "Dispositivos de Áudio"
+msgstr "Thiết bị audio"
+
+msgid "Processos em Execução"
+msgstr "Đang chạy tiến trình"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Lưu ý: quá trình chụp yêu cầu Windows 10 v2004 trở lên."
+
+msgid "Parar Reprodução"
+msgstr "dừng Phát lại"
+
+msgid "Excluir Gravação"
+msgstr "Xóa ghi âm"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Compressão FLAC"
+msgstr "Nén FLAC"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Ghi nguồn vào các tập tin riêng biệt"
+
+msgid "Fontes de &Gravação:"
+msgstr "&Nguồn ghi:"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Thêm ít nhất một nguồn ghi trước khi bắt đầu."
+
+msgid "Para&r"
+msgstr "&dừng"
+
+msgid "Não foi possível excluir:\n"
+msgstr "Không thể xóa:\n"
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Không thể thử thiết bị này (lỗi BASS {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Để phát {extensao} files bên trong chương trình, hãy đặt {dll} vào thư "
+"mục lib của VB Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"Lỗi BASS {erro} trong khi phát:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "Lỗi BASS {erro} trong khi bắt đầu ghi âm."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Không thể mở thư mục:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "nguồn"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Thiết bị đầu vào mặc định"
