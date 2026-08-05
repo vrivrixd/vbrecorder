@@ -19,8 +19,9 @@ import os
 import sys
 import ctypes
 from datetime import datetime
-from i18n import _, ngettext
-from config import ConfigManager
+from i18n import (_, available_languages, language_name, ngettext, set_language)
+from config import (BUFFER_MAXIMO, BUFFER_MINIMO, BUFFER_PADRAO, VERSION,
+                    ConfigManager)
 from audio_engine import AudioEngine
 from process_audio import get_audio_sessions, get_process_name, PROCESS_LOOPBACK_AVAILABLE
 
@@ -128,6 +129,114 @@ class HotkeysDialog(wx.Dialog):
         for key, ctrl in self.ctrls.items():
             self.config.set_key(key, ctrl.GetValue())
         self.config.save()
+        self.EndModal(wx.ID_OK)
+
+
+class SettingsDialog(wx.Dialog):
+    """Configurações do programa. As teclas de atalho ficam num diálogo à parte,
+    aberto pelo botão daqui."""
+
+    def __init__(self, parent, config):
+        super().__init__(parent, title=_("Configurações"))
+        self.config = config
+        self.setup_ui()
+
+    def setup_ui(self):
+        vbox = wx.BoxSizer(wx.VERTICAL)
+
+        # A lista traz os idiomas escritos neles mesmos, e o primeiro item deixa
+        # o programa seguir o Windows, como antes de existir esta opção.
+        self._codigos = [''] + available_languages()
+        escolhas = [_("Padrão do sistema")] + [language_name(c) for c in self._codigos[1:]]
+        grid = wx.FlexGridSizer(cols=2, vgap=8, hgap=8)
+        grid.AddGrowableCol(1, 1)
+        grid.Add(wx.StaticText(self, label=_("&Idioma:")), 0, wx.ALIGN_CENTER_VERTICAL)
+        self.cmb_lang = wx.ComboBox(self, choices=escolhas, style=wx.CB_READONLY)
+        atual = self.config.get('idioma') or ''
+        self.cmb_lang.SetSelection(self._codigos.index(atual) if atual in self._codigos else 0)
+        grid.Add(self.cmb_lang, 1, wx.EXPAND)
+        vbox.Add(grid, 0, wx.ALL | wx.EXPAND, 10)
+
+        self.chk_start_min = wx.CheckBox(self, label=_("Iniciar &Minimizado"))
+        self.chk_start_min.SetValue(self.config.getboolean('iniciar_minimizado'))
+        vbox.Add(self.chk_start_min, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+
+        self.chk_tray = wx.CheckBox(self, label=_("Minimizar Para a &Bandeja do Sistema"))
+        self.chk_tray.SetValue(self.config.getboolean('minimizar_bandeja'))
+        vbox.Add(self.chk_tray, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+
+        self.chk_on_top = wx.CheckBox(self, label=_("Janela Sempre no &Topo"))
+        self.chk_on_top.SetValue(self.config.getboolean('sempre_no_topo', True))
+        vbox.Add(self.chk_on_top, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+
+        hb_buf = wx.BoxSizer(wx.HORIZONTAL)
+        hb_buf.Add(wx.StaticText(self, label=_("Tamanho do B&uffer (ms):")),
+                   0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
+        self.txt_buffer = wx.TextCtrl(self, value=str(self.config.get_buffer()),
+                                      size=(80, -1))
+        # A explicação vai na dica do campo, e não num texto solto no diálogo:
+        # texto solto é lido pelo leitor de tela na abertura, antes de tudo.
+        self.txt_buffer.SetToolTip(_(
+            "Aumente o buffer se o áudio estalar em um computador ocupado. "
+            "De {minimo} a {maximo} ms; o padrão é {padrao}.").format(
+                minimo=BUFFER_MINIMO, maximo=BUFFER_MAXIMO, padrao=BUFFER_PADRAO))
+        hb_buf.Add(self.txt_buffer, 0, wx.ALIGN_CENTER_VERTICAL)
+        vbox.Add(hb_buf, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+
+        self.btn_keys = wx.Button(self, label=_("Configurar Teclas de &Atalho..."))
+        self.btn_keys.Bind(wx.EVT_BUTTON, self.on_config_keys)
+        vbox.Add(self.btn_keys, 0, wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+
+        hb = wx.BoxSizer(wx.HORIZONTAL)
+        self.btn_ok = wx.Button(self, wx.ID_OK, label=_("&Ok"))
+        self.btn_ok.Bind(wx.EVT_BUTTON, self.on_ok)
+        self.btn_cancel = wx.Button(self, wx.ID_CANCEL, label=_("&Cancelar"))
+        hb.Add(self.btn_ok, 0, wx.RIGHT, 10)
+        hb.Add(self.btn_cancel)
+        vbox.Add(hb, 0, wx.ALIGN_CENTER | wx.ALL, 15)
+
+        self.Bind(wx.EVT_CHAR_HOOK, self._on_char_hook)
+        self.SetSizerAndFit(vbox)
+
+    def _on_char_hook(self, event):
+        """Enter confirma, venha de onde vier — menos de cima de um botão, onde
+        ele faz o que aquele botão faz."""
+        if (event.GetKeyCode() in (wx.WXK_RETURN, wx.WXK_NUMPAD_ENTER)
+                and self.FindFocus() not in (self.btn_ok, self.btn_cancel,
+                                             self.btn_keys)):
+            self.on_ok(None)
+        else:
+            event.Skip()
+
+    def on_config_keys(self, event):
+        dlg = HotkeysDialog(self, self.config)
+        salvou = dlg.ShowModal() == wx.ID_OK
+        dlg.Destroy()
+        if salvou:
+            self.GetParent().register_all_hotkeys()
+
+    def buffer_value(self):
+        """Buffer digitado, ou None se não for um número válido na faixa."""
+        try:
+            valor = int(self.txt_buffer.GetValue().strip())
+        except ValueError:
+            return None
+        return valor if BUFFER_MINIMO <= valor <= BUFFER_MAXIMO else None
+
+    def language_code(self):
+        sel = self.cmb_lang.GetSelection()
+        return self._codigos[sel] if sel != wx.NOT_FOUND else ''
+
+    def on_ok(self, event):
+        if self.buffer_value() is None:
+            wx.MessageBox(
+                _("O tamanho do buffer deve ser um número entre {minimo} e "
+                  "{maximo} milissegundos.").format(minimo=BUFFER_MINIMO,
+                                                    maximo=BUFFER_MAXIMO),
+                _("Aviso"), wx.ICON_WARNING | wx.OK, self)
+            self.txt_buffer.SetFocus()
+            self.txt_buffer.SelectAll()
+            return
         self.EndModal(wx.ID_OK)
 
 
@@ -419,6 +528,11 @@ class VBTrayIcon(wx.adv.TaskBarIcon):
 
 class MainFrame(wx.Frame):
     def __init__(self):
+        # A configuração vem antes de tudo: é dela que sai o idioma das
+        # mensagens, inclusive a de que o programa já está aberto.
+        self.config = ConfigManager()
+        set_language(self.config.get('idioma'))
+
         self.mutex = ctypes.windll.kernel32.CreateMutexW(None, False, "VBRecorder_Mutex")
         if ctypes.windll.kernel32.GetLastError() == 183:
             wx.MessageBox(_("O VB Recorder já está em execução."), _("Aviso"),
@@ -427,8 +541,8 @@ class MainFrame(wx.Frame):
 
         super().__init__(parent=None, title='VB Recorder', size=(600, 850))
         self.panel   = wx.Panel(self)
-        self.config  = ConfigManager()
         self.audio   = AudioEngine()
+        self.audio.set_buffer(self.config.get_buffer())
         self.sources = []
 
         self.last_recording = []
@@ -439,6 +553,8 @@ class MainFrame(wx.Frame):
         self.setup_ui()
         self.load_settings()
 
+        self.apply_always_on_top()
+
         self.tray_icon = VBTrayIcon(self)
         self.Bind(wx.EVT_ICONIZE,   self.on_minimize)
         self.Bind(wx.EVT_CLOSE,     self.on_close)
@@ -446,9 +562,24 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_CHAR_HOOK, self.on_char_hook)
         self.register_all_hotkeys()
 
+    def minimiza_para_bandeja(self):
+        return self.config.getboolean('minimizar_bandeja')
+
+    def apply_always_on_top(self):
+        no_topo = self.config.getboolean('sempre_no_topo', True)
+        estilo  = self.GetWindowStyleFlag()
+        self.SetWindowStyleFlag(estilo | wx.STAY_ON_TOP if no_topo
+                                else estilo & ~wx.STAY_ON_TOP)
+
     def on_char_hook(self, event):
-        if event.GetKeyCode() == wx.WXK_ESCAPE: self.Iconize(True)
-        else: event.Skip()
+        """Esc minimiza, ou fecha o programa quando a bandeja está desativada."""
+        if event.GetKeyCode() == wx.WXK_ESCAPE:
+            if self.minimiza_para_bandeja():
+                self.Iconize(True)
+            else:
+                self.Close()
+        else:
+            event.Skip()
 
     def setup_hotkey_ids(self):
         self.HK_REC   = wx.NewIdRef().GetId() if hasattr(wx, 'NewIdRef') else wx.NewId()
@@ -489,18 +620,19 @@ class MainFrame(wx.Frame):
         elif hid == self.HK_EXIT: self.Close()
 
     def setup_ui(self):
+        """Monta os controles. Os textos ficam todos em _retranslate()."""
         self.vbox = wx.BoxSizer(wx.VERTICAL)
 
         hbox_ctrl = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_record = wx.Button(self.panel, label=_('&Gravar'))
+        self.btn_record = wx.Button(self.panel)
         self.btn_record.Bind(wx.EVT_BUTTON, self.on_record_toggle)
-        self.btn_pause = wx.Button(self.panel, label=_('&Pausar'))
+        self.btn_pause = wx.Button(self.panel)
         self.btn_pause.Bind(wx.EVT_BUTTON, self.on_pause_toggle)
         self.btn_pause.Disable()
-        self.btn_play = wx.Button(self.panel, label=_('Reprod&uzir Gravação'))
+        self.btn_play = wx.Button(self.panel)
         self.btn_play.Bind(wx.EVT_BUTTON, self.on_play_toggle)
         self.btn_play.Disable()
-        self.btn_delete = wx.Button(self.panel, label=_('E&xcluir Gravação'))
+        self.btn_delete = wx.Button(self.panel)
         self.btn_delete.Bind(wx.EVT_BUTTON, self.on_delete_recording)
         self.btn_delete.Disable()
         hbox_ctrl.Add(self.btn_record, 0, wx.ALL, 5)
@@ -509,11 +641,11 @@ class MainFrame(wx.Frame):
         hbox_ctrl.Add(self.btn_delete, 0, wx.ALL, 5)
         self.vbox.Add(hbox_ctrl, 0, wx.ALIGN_CENTER | wx.ALL, 10)
 
-        self.cmb_format = self.create_labeled_combo(self.vbox, _('&Formato de Saída:'),
-                                                    ['mp3', 'wav', 'aiff', 'ogg', 'opus', 'flac'])
+        self.lbl_format, self.cmb_format = self.create_labeled_combo(
+            self.vbox, ['mp3', 'wav', 'aiff', 'ogg', 'opus', 'flac'])
         self.cmb_format.Bind(wx.EVT_COMBOBOX, self.on_format_change)
 
-        self.lbl_bitrate = wx.StaticText(self.panel, label=_('&Bitrate:'))
+        self.lbl_bitrate = wx.StaticText(self.panel)
         self.cmb_bitrate = wx.ComboBox(self.panel, style=wx.CB_READONLY,
             choices=['8 KBPS', '16 KBPS', '32 KBPS', '64 KBPS', '96 KBPS',
                      '128 KBPS', '160 KBPS', '192 KBPS', '256 KBPS', '320 KBPS'])
@@ -522,7 +654,7 @@ class MainFrame(wx.Frame):
         hbox_bitrate.Add(self.cmb_bitrate, 1, wx.EXPAND)
         self.vbox.Add(hbox_bitrate, 0, wx.ALL | wx.EXPAND, 5)
 
-        self.lbl_flac_level = wx.StaticText(self.panel, label=_('Compressão F&LAC:'))
+        self.lbl_flac_level = wx.StaticText(self.panel)
         self.cmb_flac_level = wx.ComboBox(self.panel, style=wx.CB_READONLY,
             choices=[str(i) for i in range(9)])
         hbox_flac = wx.BoxSizer(wx.HORIZONTAL)
@@ -530,12 +662,13 @@ class MainFrame(wx.Frame):
         hbox_flac.Add(self.cmb_flac_level, 1, wx.EXPAND)
         self.vbox.Add(hbox_flac, 0, wx.ALL | wx.EXPAND, 5)
 
-        self.cmb_rate     = self.create_labeled_combo(self.vbox, _('&Taxa de Amostragem:'),
-                                                      ['8000', '11025', '22050', '32000', '44100', '48000'])
-        self.cmb_channels = self.create_labeled_combo(self.vbox, _('&Canais:'), ['mono', 'stereo'])
+        self.lbl_rate, self.cmb_rate = self.create_labeled_combo(
+            self.vbox, ['8000', '11025', '22050', '32000', '44100', '48000'])
+        self.lbl_channels, self.cmb_channels = self.create_labeled_combo(
+            self.vbox, ['mono', 'stereo'])
 
-        self.vbox.Add(wx.StaticText(self.panel, label=_('Fontes de &Gravação:')),
-                      0, wx.LEFT | wx.TOP, 10)
+        self.lbl_sources = wx.StaticText(self.panel)
+        self.vbox.Add(self.lbl_sources, 0, wx.LEFT | wx.TOP, 10)
         self.lst_fontes = wx.ListCtrl(self.panel,
                                       style=wx.LC_REPORT | wx.LC_NO_HEADER | wx.LC_HRULES)
         self.lst_fontes.AppendColumn('', width=wx.LIST_AUTOSIZE_USEHEADER)
@@ -543,9 +676,9 @@ class MainFrame(wx.Frame):
         self.vbox.Add(self.lst_fontes, 1, wx.ALL | wx.EXPAND, 5)
 
         hb_src = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_add  = wx.Button(self.panel, label=_('&Adicionar'))
-        self.btn_edit = wx.Button(self.panel, label=_('&Editar'))
-        self.btn_rem  = wx.Button(self.panel, label=_('&Remover'))
+        self.btn_add  = wx.Button(self.panel)
+        self.btn_edit = wx.Button(self.panel)
+        self.btn_rem  = wx.Button(self.panel)
         self.btn_add.Bind(wx.EVT_BUTTON,  self.on_add_source)
         self.btn_edit.Bind(wx.EVT_BUTTON, self.on_edit_source)
         self.btn_rem.Bind(wx.EVT_BUTTON,  self.on_remove_source)
@@ -554,61 +687,114 @@ class MainFrame(wx.Frame):
         hb_src.Add(self.btn_rem)
         self.vbox.Add(hb_src, 0, wx.LEFT | wx.BOTTOM, 10)
 
-        self.chk_separate = wx.CheckBox(self.panel, label=_('Gravar fontes em arquivos se&parados'))
+        self.chk_separate = wx.CheckBox(self.panel)
         self.vbox.Add(self.chk_separate, 0, wx.ALL, 10)
 
-        self.chk_tones = wx.CheckBox(self.panel, label=_('Reproduzir &tons ao iniciar ou parar gravação'))
+        self.chk_tones = wx.CheckBox(self.panel)
         self.vbox.Add(self.chk_tones, 0, wx.ALL, 10)
 
-        self.txt_filename = self.create_labeled_input(self.vbox, _('&Nome do Arquivo:'))
+        self.lbl_filename, self.txt_filename = self.create_labeled_input(self.vbox)
 
         hbox_dir = wx.BoxSizer(wx.HORIZONTAL)
-        lbl_dir = wx.StaticText(self.panel, label=_('&Diretório de Saída:'))
+        self.lbl_dir    = wx.StaticText(self.panel)
         self.txt_dir    = wx.TextCtrl(self.panel)
-        self.btn_browse = wx.Button(self.panel, label=_('P&rocurar...'))
+        self.btn_browse = wx.Button(self.panel)
         self.btn_browse.Bind(wx.EVT_BUTTON, self.on_browse)
-        self.btn_open_dir = wx.Button(self.panel, label=_('Abr&ir Pasta de Gravações'))
+        self.btn_open_dir = wx.Button(self.panel)
         self.btn_open_dir.Bind(wx.EVT_BUTTON, self.on_open_dir)
-        hbox_dir.Add(lbl_dir, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
+        hbox_dir.Add(self.lbl_dir, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
         hbox_dir.Add(self.txt_dir, 1, wx.EXPAND | wx.RIGHT, 5)
         hbox_dir.Add(self.btn_browse, 0, wx.RIGHT, 5)
         hbox_dir.Add(self.btn_open_dir, 0)
         self.vbox.Add(hbox_dir, 0, wx.ALL | wx.EXPAND, 10)
 
         hbox_bottom = wx.BoxSizer(wx.HORIZONTAL)
-        self.btn_keys = wx.Button(self.panel, label=_('Configurar &Teclas...'))
-        self.btn_keys.Bind(wx.EVT_BUTTON, self.on_config_keys)
-        self.btn_about = wx.Button(self.panel, label=_('S&obre'))
+        self.btn_settings = wx.Button(self.panel)
+        self.btn_settings.Bind(wx.EVT_BUTTON, self.on_settings)
+        self.btn_about = wx.Button(self.panel)
         self.btn_about.Bind(wx.EVT_BUTTON, self.on_about)
-        self.btn_min = wx.Button(self.panel, label=_('&Minimizar'))
+        self.btn_min = wx.Button(self.panel)
         self.btn_min.Bind(wx.EVT_BUTTON, lambda e: self.Iconize(True))
-        self.btn_close = wx.Button(self.panel, label=_('&Fechar'))
+        self.btn_close = wx.Button(self.panel)
         self.btn_close.Bind(wx.EVT_BUTTON, self.on_close)
-        hbox_bottom.Add(self.btn_keys,  0, wx.RIGHT, 5)
-        hbox_bottom.Add(self.btn_about, 0, wx.RIGHT, 5)
-        hbox_bottom.Add(self.btn_min,   0, wx.RIGHT, 5)
-        hbox_bottom.Add(self.btn_close, 0)
+        hbox_bottom.Add(self.btn_settings, 0, wx.RIGHT, 5)
+        hbox_bottom.Add(self.btn_about,    0, wx.RIGHT, 5)
+        hbox_bottom.Add(self.btn_min,      0, wx.RIGHT, 5)
+        hbox_bottom.Add(self.btn_close,    0)
         self.vbox.Add(hbox_bottom, 0, wx.ALIGN_RIGHT | wx.ALL, 10)
 
         self.panel.SetSizer(self.vbox)
+        self._retranslate()
 
-    def create_labeled_combo(self, sizer, label_text, choices):
+    def _retranslate(self):
+        """Escreve todos os textos da janela no idioma atual.
+
+        É o único lugar onde eles aparecem, então trocar de idioma não deixa
+        nada para trás. Os botões que mudam de nome conforme o que o programa
+        está fazendo continuam refletindo o estado.
+        """
+        self.lbl_format.SetLabel(_('&Formato de Saída:'))
+        self.lbl_bitrate.SetLabel(_('&Bitrate:'))
+        self.lbl_flac_level.SetLabel(_('Compressão F&LAC:'))
+        self.lbl_rate.SetLabel(_('&Taxa de Amostragem:'))
+        self.lbl_channels.SetLabel(_('&Canais:'))
+        self.lbl_sources.SetLabel(_('Fontes de &Gravação:'))
+        self.lbl_filename.SetLabel(_('&Nome do Arquivo:'))
+        self.lbl_dir.SetLabel(_('&Diretório de Saída:'))
+
+        self.btn_add.SetLabel(_('&Adicionar'))
+        self.btn_edit.SetLabel(_('&Editar'))
+        self.btn_rem.SetLabel(_('&Remover'))
+        self.btn_browse.SetLabel(_('P&rocurar...'))
+        self.btn_open_dir.SetLabel(_('Abr&ir Pasta de Gravações'))
+        self.btn_settings.SetLabel(_('Config&urações...'))
+        self.btn_about.SetLabel(_('S&obre'))
+        self.btn_min.SetLabel(_('&Minimizar'))
+        self.btn_close.SetLabel(_('&Fechar'))
+        self.btn_delete.SetLabel(_('E&xcluir Gravação'))
+
+        self.chk_separate.SetLabel(_('Gravar fontes em arquivos se&parados'))
+        self.chk_tones.SetLabel(_('Reproduzir &tons ao iniciar ou parar gravação'))
+
+        self.btn_record.SetLabel(_('Para&r') if self.audio.is_recording else _('&Gravar'))
+        self.btn_pause.SetLabel(_('C&ontinuar') if self.audio.is_paused else _('&Pausar'))
+        self._update_play_button()
+
+        self._refresh_device_names()
+        self.panel.Layout()
+
+    def _refresh_device_names(self):
+        """Renomeia as fontes que são dispositivos, para o caso do idioma ter
+        mudado: o nome do dispositivo padrão vem traduzido."""
+        if not self.sources:
+            return
+        nomes = dict(self.audio.get_input_devices())
+        mudou = False
+        for src in self.sources:
+            if src['type'] == 'device' and src['id'] in nomes:
+                if src['name'] != nomes[src['id']]:
+                    src['name'] = nomes[src['id']]
+                    mudou = True
+        if mudou:
+            self._refresh_list()
+
+    def create_labeled_combo(self, sizer, choices):
         hb  = wx.BoxSizer(wx.HORIZONTAL)
-        lbl = wx.StaticText(self.panel, label=label_text)
+        lbl = wx.StaticText(self.panel)
         cmb = wx.ComboBox(self.panel, choices=choices, style=wx.CB_READONLY)
         hb.Add(lbl, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
         hb.Add(cmb, 1, wx.EXPAND)
         sizer.Add(hb, 0, wx.ALL | wx.EXPAND, 5)
-        return cmb
+        return lbl, cmb
 
-    def create_labeled_input(self, sizer, label_text):
+    def create_labeled_input(self, sizer):
         hb  = wx.BoxSizer(wx.HORIZONTAL)
-        lbl = wx.StaticText(self.panel, label=label_text)
+        lbl = wx.StaticText(self.panel)
         txt = wx.TextCtrl(self.panel)
         hb.Add(lbl, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
         hb.Add(txt, 1, wx.EXPAND)
         sizer.Add(hb, 0, wx.ALL | wx.EXPAND, 5)
-        return txt
+        return lbl, txt
 
     def _refresh_list(self):
         self.lst_fontes.DeleteAllItems()
@@ -672,10 +858,24 @@ class MainFrame(wx.Frame):
                 return
         event.Skip()
 
-    def on_config_keys(self, event):
-        dlg = HotkeysDialog(self, self.config)
+    def on_settings(self, event):
+        dlg = SettingsDialog(self, self.config)
         if dlg.ShowModal() == wx.ID_OK:
-            self.register_all_hotkeys()
+            idioma_antes = self.config.get('idioma') or ''
+            idioma_agora = dlg.language_code()
+            self.config.set_config('idioma',             idioma_agora)
+            self.config.set_config('iniciar_minimizado', dlg.chk_start_min.GetValue())
+            self.config.set_config('minimizar_bandeja',  dlg.chk_tray.GetValue())
+            self.config.set_config('sempre_no_topo',     dlg.chk_on_top.GetValue())
+            self.config.set_config('buffer',             dlg.buffer_value())
+            self.config.save()
+
+            self.audio.set_buffer(dlg.buffer_value())
+            self.apply_always_on_top()
+            if idioma_agora != idioma_antes:
+                set_language(idioma_agora)
+                self._retranslate()
+        dlg.Destroy()
         dlg.Destroy()
 
     def on_format_change(self, event=None):
@@ -917,20 +1117,32 @@ class MainFrame(wx.Frame):
                         _("Erro"), wx.ICON_ERROR)
 
     def on_about(self, event):
-        wx.MessageBox(_("VB Recorder v1.2\nAutor: Vitor Bruski"), _("Sobre"), wx.OK)
+        wx.MessageBox(_("VB Recorder v{versao}\nAutor: Vitor Bruski").format(versao=VERSION),
+                      _("Sobre"), wx.OK)
 
     def _toggle_ui(self, enable):
         for ctrl in [self.cmb_format, self.cmb_bitrate, self.cmb_flac_level, self.cmb_rate,
                      self.cmb_channels, self.lst_fontes, self.btn_add, self.btn_edit, self.btn_rem,
                      self.chk_separate, self.txt_dir, self.btn_browse, self.txt_filename,
-                     self.btn_keys]:
+                     self.btn_settings]:
             ctrl.Enable(enable)
 
     def on_minimize(self, event):
-        if self.IsIconized(): self.Hide()
-        else: event.Skip()
+        """Some para a bandeja só se a opção estiver ligada; senão, minimiza
+        para a barra de tarefas como qualquer outra janela."""
+        if self.IsIconized() and self.minimiza_para_bandeja():
+            self.Hide()
+        else:
+            event.Skip()
 
     def on_close(self, event):
+        if self.audio.is_recording and not confirmar_sim_nao(
+                self._dialog_hwnd(),
+                _("Há uma gravação em andamento.\n\nDeseja mesmo fechar o VB Recorder?"),
+                _("Confirmar Saída")):
+            if hasattr(event, 'Veto') and event.CanVeto():
+                event.Veto()
+            return
         self.play_timer.Stop()
         self.audio.stop_recording()
         self.save_settings()

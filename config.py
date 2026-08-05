@@ -17,6 +17,16 @@ import os
 
 CONFIG_FILE = 'VBRecorder.ini'
 
+# Versão do programa, num lugar só. Fica fora dos textos traduzíveis de
+# propósito: assim, subir a versão não invalida nenhuma tradução.
+VERSION = '1.3'
+
+# Buffer de gravação do BASS, em milissegundos. Quem tem o computador ocupado
+# pode aumentar para o áudio não estalar.
+BUFFER_PADRAO = 500
+BUFFER_MINIMO = 100
+BUFFER_MAXIMO = 5000
+
 
 class ConfigManager:
     def __init__(self):
@@ -32,12 +42,23 @@ class ConfigManager:
                 'formato': 'mp3', 'bitrate': '128 KBPS', 'flac_nivel': '4', 'taxa': '44100',
                 'canais': 'stereo', 'fontes': 'device:0:1.0',
                 'reproduzir_tons': 'False', 'arquivos_separados': 'False',
-                'arquivo': '', 'diretorio': ''
+                'arquivo': '', 'diretorio': '',
+                'idioma': '', 'iniciar_minimizado': 'False',
+                'minimizar_bandeja': 'False', 'sempre_no_topo': 'True',
+                'buffer': str(BUFFER_PADRAO)
             }
         else:
             if 'fontes' not in self.config['CONFIG']:
                 d1 = self.config['CONFIG'].get('dispositivo1', '0')
                 self.config['CONFIG']['fontes'] = f'device:{d1}:1.0'
+            # Chaves criadas em versões novas: quem vem de um .ini antigo
+            # recebe o valor padrão em vez de nada.
+            for chave, padrao in (('idioma', ''), ('iniciar_minimizado', 'False'),
+                                  ('minimizar_bandeja', 'False'),
+                                  ('sempre_no_topo', 'True'),
+                                  ('buffer', str(BUFFER_PADRAO))):
+                if chave not in self.config['CONFIG']:
+                    self.config['CONFIG'][chave] = padrao
 
         if 'KEYS' not in self.config:
             self.config['KEYS'] = {
@@ -47,7 +68,9 @@ class ConfigManager:
     def save(self):
         current = dict(self.config['CONFIG']) if 'CONFIG' in self.config else {}
         ordered = ['formato', 'bitrate', 'flac_nivel', 'taxa', 'canais', 'fontes',
-                   'reproduzir_tons', 'arquivos_separados', 'arquivo', 'diretorio']
+                   'reproduzir_tons', 'arquivos_separados', 'arquivo', 'diretorio',
+                   'idioma', 'iniciar_minimizado', 'minimizar_bandeja',
+                   'sempre_no_topo', 'buffer']
         self.config['CONFIG'] = {}
         for k in ordered:
             if k in current:
@@ -70,8 +93,16 @@ class ConfigManager:
     def get_key(self, key):
         return self.config['KEYS'].get(key)
 
-    def getboolean(self, key):
-        return self.config['CONFIG'].getboolean(key, fallback=False)
+    def getboolean(self, key, fallback=False):
+        return self.config['CONFIG'].getboolean(key, fallback=fallback)
+
+    def get_buffer(self):
+        """Buffer em milissegundos, sempre dentro da faixa aceita."""
+        try:
+            valor = int(self.config['CONFIG'].get('buffer', BUFFER_PADRAO))
+        except (TypeError, ValueError):
+            return BUFFER_PADRAO
+        return max(BUFFER_MINIMO, min(BUFFER_MAXIMO, valor))
 
     def get_fontes(self):
         raw = self.config['CONFIG'].get('fontes', 'device:0')

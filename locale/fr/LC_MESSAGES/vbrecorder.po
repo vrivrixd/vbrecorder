@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VB Recorder 1.2\n"
-"POT-Creation-Date: 2026-08-02 18:39\n"
-"PO-Revision-Date: 2026-08-02 18:39\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-08-05 16:09\n"
 "Last-Translator: Vitor Bruski\n"
 "Language-Team: Français\n"
 "Language: fr\n"
@@ -36,24 +36,65 @@ msgstr "Quitter"
 msgid "&Formato de Saída:"
 msgstr "&Format de sortie :"
 
+msgid "&Bitrate:"
+msgstr "&Débit binaire :"
+
+msgid "Compressão F&LAC:"
+msgstr "Compression F&LAC :"
+
 msgid "&Taxa de Amostragem:"
 msgstr "Fréquence d'é&chantillonnage :"
 
 msgid "&Canais:"
 msgstr "Cana&ux :"
 
+msgid "Fontes de &Gravação:"
+msgstr "Sources d'e&nregistrement :"
+
 msgid "&Nome do Arquivo:"
 msgstr "&Nom du fichier :"
 
+msgid "&Diretório de Saída:"
+msgstr "Dossier de s&ortie :"
+
+msgid "&Adicionar"
+msgstr "&Ajouter"
+
+msgid "&Editar"
+msgstr "&Modifier"
+
+msgid "&Remover"
+msgstr "&Retirer"
+
+msgid "P&rocurar..."
+msgstr "&Parcourir..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Ouvr&ir le dossier des enregistrements"
+
+msgid "Config&urações..."
+msgstr "&Paramètres..."
+
+msgid "S&obre"
+msgstr "À pro&pos"
+
+msgid "&Minimizar"
+msgstr "Réd&uire"
+
+msgid "&Fechar"
+msgstr "&Quitter"
+
+msgid "E&xcluir Gravação"
+msgstr "&Supprimer l'enregistrement"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Enregistrer les sources dans des fichiers sé&parés"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Jouer des &bips au démarrage et à l'arrêt de l'enregistrement"
+
 msgid "Selecionar Pasta"
 msgstr "Sélectionner le dossier"
-
-msgid ""
-"VB Recorder v1.2\n"
-"Autor: Vitor Bruski"
-msgstr ""
-"VB Recorder v1.2\n"
-"Auteur : Vitor Bruski"
 
 msgid "Sobre"
 msgstr "À propos"
@@ -90,6 +131,27 @@ msgstr "&OK"
 
 msgid "&Cancelar"
 msgstr "A&nnuler"
+
+msgid "Configurações"
+msgstr "Paramètres"
+
+msgid "Padrão do sistema"
+msgstr "Par défaut du système"
+
+msgid "Iniciar &Minimizado"
+msgstr "Démarrer &minimisé"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Réduire dans la &zone de notification"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Fenêtre toujours au &premier plan"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Configurer les &raccourcis clavier..."
+
+msgid "Aviso"
+msgstr "Avertissement"
 
 msgid "Filtrar Fontes Por:"
 msgstr "Filtrer les sources par :"
@@ -130,71 +192,26 @@ msgstr "Arrêter"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder est déjà en cours d'exécution."
 
-msgid "Aviso"
-msgstr "Avertissement"
+msgid "Para&r"
+msgstr "A&rrêter"
 
 msgid "&Gravar"
 msgstr "&Enregistrer"
 
-msgid "&Pausar"
-msgstr "&Pause"
-
-msgid "Reprod&uzir Gravação"
-msgstr "&Lire l'enregistrement"
-
-msgid "E&xcluir Gravação"
-msgstr "&Supprimer l'enregistrement"
-
-msgid "&Bitrate:"
-msgstr "&Débit binaire :"
-
-msgid "Compressão F&LAC:"
-msgstr "Compression F&LAC :"
-
-msgid "&Adicionar"
-msgstr "&Ajouter"
-
-msgid "&Editar"
-msgstr "&Modifier"
-
-msgid "&Remover"
-msgstr "&Retirer"
-
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Enregistrer les sources dans des fichiers sé&parés"
-
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Jouer des &bips au démarrage et à l'arrêt de l'enregistrement"
-
-msgid "&Diretório de Saída:"
-msgstr "Dossier de s&ortie :"
-
-msgid "P&rocurar..."
-msgstr "&Parcourir..."
-
-msgid "Abr&ir Pasta de Gravações"
-msgstr "Ouvr&ir le dossier des enregistrements"
-
-msgid "Configurar &Teclas..."
-msgstr "Configurer les &touches..."
-
-msgid "S&obre"
-msgstr "À pro&pos"
-
-msgid "&Minimizar"
-msgstr "Réd&uire"
-
-msgid "&Fechar"
-msgstr "&Quitter"
-
 msgid "C&ontinuar"
 msgstr "Re&prendre"
+
+msgid "&Pausar"
+msgstr "&Pause"
 
 msgid "Gravações"
 msgstr "Enregistrements"
 
 msgid "Parar Reprod&ução"
 msgstr "Arrêter la &lecture"
+
+msgid "Reprod&uzir Gravação"
+msgstr "&Lire l'enregistrement"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Choisissez le fichier à lire :"
@@ -222,6 +239,12 @@ msgstr[1] ""
 msgid "Confirmar Exclusão"
 msgstr "Confirmer la suppression"
 
+msgid "&Idioma:"
+msgstr "&Langue :"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "&Taille du tampon (ms) :"
+
 msgid "Dispositivos de Áudio"
 msgstr "Périphériques audio"
 
@@ -247,17 +270,44 @@ msgstr "Compression FLAC"
 msgid "Gravar fontes em arquivos separados"
 msgstr "Enregistrer les sources dans des fichiers séparés"
 
-msgid "Fontes de &Gravação:"
-msgstr "Sources d'e&nregistrement :"
-
 msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
 msgstr "Ajoutez au moins une source d'enregistrement avant de commencer."
 
-msgid "Para&r"
-msgstr "A&rrêter"
-
 msgid "Não foi possível excluir:\n"
 msgstr "Impossible de supprimer :\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Auteur : Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Un enregistrement est en cours.\n"
+"\n"
+"Voulez-vous vraiment fermer VB Recorder ?"
+
+msgid "Confirmar Saída"
+msgstr "Confirmer la fermeture"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Augmentez le tampon si le son grésille sur un ordinateur chargé. De {minimo}"
+" à {maximo} ms ; la valeur par défaut est {padrao}."
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"La taille du tampon doit être un nombre entre {minimo} et {maximo} "
+"millisecondes."
 
 msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
 msgstr "Impossible de tester ce périphérique (erreur BASS {erro})."

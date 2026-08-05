@@ -29,6 +29,8 @@ O programa é leve, portátil e roda na bandeja do sistema.
   boa, pelo próprio programa ou pelo menu da bandeja.
 - **Teclas de atalho globais**, configuráveis, que funcionam com a janela
   minimizada ou oculta.
+- **Janela de configurações** com idioma, iniciar minimizado, minimizar para a
+  bandeja, janela sempre no topo e tamanho do buffer, além das teclas de atalho.
 
 ## Formatos
 
@@ -45,7 +47,8 @@ Taxa de amostragem de 8000 Hz a 48000 Hz, mono ou estéreo.
 
 ## Idiomas
 
-O VB Recorder inicia no idioma da interface do Windows. Estão disponíveis:
+O VB Recorder inicia no idioma da interface do Windows, e você pode escolher
+outro em Configurações. Estão disponíveis:
 
 português do Brasil, português de Portugal, inglês, espanhol, francês, alemão,
 italiano, russo e vietnamita.

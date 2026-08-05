@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VB Recorder 1.2\n"
-"POT-Creation-Date: 2026-08-02 18:39\n"
-"PO-Revision-Date: 2026-08-02 18:39\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-08-05 16:09\n"
 "Last-Translator: Vitor Bruski\n"
 "Language-Team: English\n"
 "Language: en\n"
@@ -36,24 +36,65 @@ msgstr "Exit"
 msgid "&Formato de Saída:"
 msgstr "Output &Format:"
 
+msgid "&Bitrate:"
+msgstr "&Bitrate:"
+
+msgid "Compressão F&LAC:"
+msgstr "FLAC Co&mpression:"
+
 msgid "&Taxa de Amostragem:"
 msgstr "&Sample Rate:"
 
 msgid "&Canais:"
 msgstr "&Channels:"
 
+msgid "Fontes de &Gravação:"
+msgstr "Recordin&g Sources:"
+
 msgid "&Nome do Arquivo:"
 msgstr "File &Name:"
 
+msgid "&Diretório de Saída:"
+msgstr "&Output Directory:"
+
+msgid "&Adicionar"
+msgstr "&Add"
+
+msgid "&Editar"
+msgstr "&Edit"
+
+msgid "&Remover"
+msgstr "Remo&ve"
+
+msgid "P&rocurar..."
+msgstr "Bro&wse..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Open Record&ings Folder"
+
+msgid "Config&urações..."
+msgstr "&Settings..."
+
+msgid "S&obre"
+msgstr "Abo&ut"
+
+msgid "&Minimizar"
+msgstr "Minimi&ze"
+
+msgid "&Fechar"
+msgstr "&Quit"
+
+msgid "E&xcluir Gravação"
+msgstr "&Delete Recording"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Record sources to separate fi&les"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Play &tones when starting or stopping recording"
+
 msgid "Selecionar Pasta"
 msgstr "Select Folder"
-
-msgid ""
-"VB Recorder v1.2\n"
-"Autor: Vitor Bruski"
-msgstr ""
-"VB Recorder v1.2\n"
-"Author: Vitor Bruski"
 
 msgid "Sobre"
 msgstr "About"
@@ -90,6 +131,27 @@ msgstr "&OK"
 
 msgid "&Cancelar"
 msgstr "&Cancel"
+
+msgid "Configurações"
+msgstr "Settings"
+
+msgid "Padrão do sistema"
+msgstr "System default"
+
+msgid "Iniciar &Minimizado"
+msgstr "Start &Minimized"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Minimize to System &Tray"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Always on To&p"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Configure &Hotkeys..."
+
+msgid "Aviso"
+msgstr "Warning"
 
 msgid "Filtrar Fontes Por:"
 msgstr "Filter Sources By:"
@@ -130,71 +192,26 @@ msgstr "Stop"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder is already running."
 
-msgid "Aviso"
-msgstr "Warning"
+msgid "Para&r"
+msgstr "Sto&p"
 
 msgid "&Gravar"
 msgstr "&Record"
 
-msgid "&Pausar"
-msgstr "&Pause"
-
-msgid "Reprod&uzir Gravação"
-msgstr "Pla&y Recording"
-
-msgid "E&xcluir Gravação"
-msgstr "&Delete Recording"
-
-msgid "&Bitrate:"
-msgstr "&Bitrate:"
-
-msgid "Compressão F&LAC:"
-msgstr "FLAC Co&mpression:"
-
-msgid "&Adicionar"
-msgstr "&Add"
-
-msgid "&Editar"
-msgstr "&Edit"
-
-msgid "&Remover"
-msgstr "Remo&ve"
-
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Record sources to separate fi&les"
-
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Play &tones when starting or stopping recording"
-
-msgid "&Diretório de Saída:"
-msgstr "&Output Directory:"
-
-msgid "P&rocurar..."
-msgstr "Bro&wse..."
-
-msgid "Abr&ir Pasta de Gravações"
-msgstr "Open Record&ings Folder"
-
-msgid "Configurar &Teclas..."
-msgstr "Configure &Hotkeys..."
-
-msgid "S&obre"
-msgstr "Abo&ut"
-
-msgid "&Minimizar"
-msgstr "Minimi&ze"
-
-msgid "&Fechar"
-msgstr "&Quit"
-
 msgid "C&ontinuar"
 msgstr "&Resume"
+
+msgid "&Pausar"
+msgstr "&Pause"
 
 msgid "Gravações"
 msgstr "Recordings"
 
 msgid "Parar Reprod&ução"
 msgstr "Stop Pla&yback"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Pla&y Recording"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Choose the file to play:"
@@ -222,6 +239,12 @@ msgstr[1] ""
 msgid "Confirmar Exclusão"
 msgstr "Confirm Deletion"
 
+msgid "&Idioma:"
+msgstr "&Language:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "&Buffer Size (ms):"
+
 msgid "Dispositivos de Áudio"
 msgstr "Audio Devices"
 
@@ -246,17 +269,43 @@ msgstr "FLAC Compression"
 msgid "Gravar fontes em arquivos separados"
 msgstr "Record sources to separate files"
 
-msgid "Fontes de &Gravação:"
-msgstr "Recordin&g Sources:"
-
 msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
 msgstr "Add at least one recording source before starting."
 
-msgid "Para&r"
-msgstr "Sto&p"
-
 msgid "Não foi possível excluir:\n"
 msgstr "Could not delete:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Author: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"A recording is in progress.\n"
+"\n"
+"Do you really want to close VB Recorder?"
+
+msgid "Confirmar Saída"
+msgstr "Confirm Exit"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Increase the buffer if the audio crackles on a busy computer. From {minimo} "
+"to {maximo} ms; the default is {padrao}."
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"The buffer size must be a number between {minimo} and {maximo} milliseconds."
 
 msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
 msgstr "Could not test this device (BASS error {erro})."

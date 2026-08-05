@@ -18,5 +18,7 @@ from gui import MainFrame
 if __name__ == '__main__':
     app = wx.App(False)
     frame = MainFrame()
-    frame.Show()
+    # Iniciando minimizado, o programa fica só na bandeja, sem abrir a janela.
+    if not frame.config.getboolean('iniciar_minimizado'):
+        frame.Show()
     app.MainLoop()

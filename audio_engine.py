@@ -18,6 +18,7 @@ import re
 import sys
 import threading
 
+from config import BUFFER_MAXIMO, BUFFER_MINIMO, BUFFER_PADRAO
 from i18n import _
 
 from process_audio import ProcessLoopbackCapture
@@ -32,6 +33,7 @@ BASS_ERROR_ALREADY     = 14
 BASS_STREAM_DECODE     = 0x200000
 BASS_SAMPLE_FLOAT      = 256
 BASS_RECORD_PAUSE      = 0x8000
+BASS_CONFIG_BUFFER     = 0
 BASS_CONFIG_REC_BUFFER = 19
 BASS_ATTRIB_VOL        = 2
 BASS_UNICODE           = 0x80000000
@@ -103,9 +105,33 @@ class AudioEngine:
             sys.exit(1)
 
         self._setup_ctypes()
-        self.bass.BASS_SetConfig(BASS_CONFIG_REC_BUFFER, 500)
+        # Guarda o buffer de reprodução de fábrica do BASS antes de mexer nele:
+        # ele é o piso usado em set_buffer.
+        self._buffer_reproducao_padrao = self.bass.BASS_GetConfig(BASS_CONFIG_BUFFER)
+        self.set_buffer(BUFFER_PADRAO)
         self.bass.BASS_Init(-1, 44100, 0, 0, None)
         self._load_playback_plugins()
+
+    def set_buffer(self, milissegundos):
+        """Tamanho do buffer, em milissegundos.
+
+        Vale para a captura e para a reprodução ao vivo do botão Testar. O BASS
+        lê esses valores ao criar cada canal, então a mudança pega na próxima
+        gravação ou no próximo teste, não no que já está em andamento.
+
+        Não é um atraso: o BASS mantém esses buffers o mais vazios possível e
+        toca o áudio assim que ele chega. O tamanho é a folga que existe para
+        absorver um engasgo do computador, e não uma fila a ser preenchida.
+        """
+        ms = max(BUFFER_MINIMO, min(BUFFER_MAXIMO, int(milissegundos)))
+        self.buffer_ms = ms
+        self.bass.BASS_SetConfig(BASS_CONFIG_REC_BUFFER, ms)
+        # O buffer de reprodução nunca desce abaixo do padrão do BASS. Ele tem
+        # de ser maior que o período de atualização (100 ms), senão o som do
+        # teste falha, que é justamente o contrário do que se quer aqui.
+        self.bass.BASS_SetConfig(BASS_CONFIG_BUFFER,
+                                 max(ms, self._buffer_reproducao_padrao))
+        return ms
 
     def _load_playback_plugins(self):
         """Carrega os plugins opcionais de reprodução (flac/opus), se estiverem na pasta."""
@@ -119,6 +145,8 @@ class AudioEngine:
     def _setup_ctypes(self):
         self.bass.BASS_SetConfig.argtypes = [ctypes.c_uint32, ctypes.c_uint32]
         self.bass.BASS_SetConfig.restype  = ctypes.c_int
+        self.bass.BASS_GetConfig.argtypes = [ctypes.c_uint32]
+        self.bass.BASS_GetConfig.restype  = ctypes.c_uint32
         self.bass.BASS_ErrorGetCode.restype = ctypes.c_int
         self.bass.BASS_RecordInit.argtypes  = [ctypes.c_int]
         self.bass.BASS_RecordInit.restype   = ctypes.c_int

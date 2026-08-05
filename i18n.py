@@ -32,6 +32,24 @@ import sys
 DOMAIN     = 'vbrecorder'
 LOCALE_DIR = 'locale'
 
+# Idioma em que o programa foi escrito: não tem catálogo, é o texto original.
+SOURCE_LANGUAGE = 'pt_BR'
+
+# Cada idioma aparece na lista escrito nele mesmo, para que a pessoa reconheça
+# o próprio idioma mesmo com o programa aberto numa língua que ela não lê. Um
+# idioma novo que não esteja aqui aparece pelo código da pasta, e funciona igual.
+NATIVE_NAMES = {
+    'de':    'Deutsch',
+    'en':    'English',
+    'es':    'Español',
+    'fr':    'Français',
+    'it':    'Italiano',
+    'pt_BR': 'Português (Brasil)',
+    'pt_PT': 'Português (Portugal)',
+    'ru':    'Русский',
+    'vi':    'Tiếng Việt',
+}
+
 
 def _locale_path():
     """Pasta locale: a de dentro do executável, ou a que está ao lado dele."""
@@ -82,8 +100,29 @@ def system_languages():
     return langs
 
 
-def _load_translation():
-    """Procura o catálogo do idioma, do mais específico para o mais genérico.
+def available_languages():
+    """Códigos com catálogo instalado, mais o idioma original do programa.
+
+    Vêm em ordem alfabética pelo nome que aparece na tela, com o idioma
+    original no meio dos outros, e não em primeiro lugar: quem escolhe procura
+    pelo nome. Lê a pasta locale, então um idioma novo entra sem mexer no código.
+    """
+    encontrados = [SOURCE_LANGUAGE]
+    localedir = _locale_path()
+    if os.path.isdir(localedir):
+        for nome in os.listdir(localedir):
+            if os.path.isfile(os.path.join(localedir, nome, 'LC_MESSAGES', DOMAIN + '.mo')):
+                encontrados.append(nome)
+    return sorted(encontrados, key=lambda c: language_name(c).lower())
+
+
+def language_name(code):
+    """Nome do idioma escrito nele mesmo; sem cadastro, mostra o próprio código."""
+    return NATIVE_NAMES.get(code, code)
+
+
+def _load_catalog(languages):
+    """Procura o catálogo, do nome mais específico para o mais genérico.
 
     A busca é feita à mão, e não com gettext.translation, porque o gettext
     normaliza os nomes: ele transforma 'pt' em 'pt_PT' e, com isso, entregaria
@@ -91,7 +130,7 @@ def _load_translation():
     quem não tem catálogo próprio simplesmente vê os textos originais.
     """
     localedir = _locale_path()
-    for lang in system_languages():
+    for lang in languages:
         caminho = os.path.join(localedir, lang, 'LC_MESSAGES', DOMAIN + '.mo')
         if os.path.isfile(caminho):
             with open(caminho, 'rb') as f:
@@ -99,7 +138,30 @@ def _load_translation():
     return gettext.NullTranslations(), None
 
 
-translation, language = _load_translation()
+def set_language(code=None):
+    """Passa a usar outro idioma. Sem código, segue o idioma do Windows.
 
-_        = translation.gettext
-ngettext = translation.ngettext
+    Vale imediatamente para todo mundo: os módulos importam as funções _ e
+    ngettext daqui, e elas consultam o catálogo atual a cada chamada.
+    """
+    global translation, language
+    if code:
+        candidatos = [code]
+        raiz = code.split('_')[0]
+        if raiz != code:
+            candidatos.append(raiz)
+    else:
+        candidatos = system_languages()
+    translation, language = _load_catalog(candidatos)
+    return language
+
+
+def _(message):
+    return translation.gettext(message)
+
+
+def ngettext(singular, plural, n):
+    return translation.ngettext(singular, plural, n)
+
+
+translation, language = _load_catalog(system_languages())

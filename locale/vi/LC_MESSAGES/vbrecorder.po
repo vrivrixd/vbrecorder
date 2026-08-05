@@ -49,13 +49,6 @@ msgstr "&tên file:"
 msgid "Selecionar Pasta"
 msgstr "chọn thư mục"
 
-msgid ""
-"VB Recorder v1.2\n"
-"Autor: Vitor Bruski"
-msgstr ""
-"VB Recorder v1.2\n"
-"tác giả: Vitor Bruski"
-
 msgid "Sobre"
 msgstr "giới thiệu"
 
@@ -176,9 +169,6 @@ msgstr "&Thay đổi"
 msgid "Abr&ir Pasta de Gravações"
 msgstr "&Mở thư mục ghi âm"
 
-msgid "Configurar &Teclas..."
-msgstr "&Cấu hình phím tắt"
-
 msgid "S&obre"
 msgstr "&Giới thiệu"
 
@@ -266,8 +256,8 @@ msgid ""
 "Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
 "pasta lib do VB Recorder."
 msgstr ""
-"Để phát {extensao} files bên trong chương trình, hãy đặt {dll} vào thư "
-"mục lib của VB Recorder."
+"Để phát {extensao} files bên trong chương trình, hãy đặt {dll} vào thư mục "
+"lib của VB Recorder."
 
 msgid ""
 "Erro BASS {erro} ao reproduzir:\n"
@@ -295,3 +285,61 @@ msgstr "nguồn"
 
 msgid "Dispositivo de Entrada Padrão"
 msgstr "Thiết bị đầu vào mặc định"
+
+msgid "Config&urações..."
+msgstr "&Cài đặt..."
+
+msgid "Configurações"
+msgstr "Cài đặt"
+
+msgid "Padrão do sistema"
+msgstr "Mặc định của hệ thống"
+
+msgid "Iniciar &Minimizado"
+msgstr "Khởi độn&g thu nhỏ"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Thu nhỏ xuống &khay hệ thống"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Cửa sổ luôn ở &trên cùng"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Cấu hình &phím tắt..."
+
+msgid "&Idioma:"
+msgstr "&Ngôn ngữ:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "Kích thước &bộ đệm (ms):"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Đang có một bản ghi âm chưa kết thúc.\n"
+"\n"
+"Bạn có chắc chắn muốn đóng VB Recorder không?"
+
+msgid "Confirmar Saída"
+msgstr "Xác nhận thoát"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Tăng bộ đệm nếu âm thanh bị rè trên máy tính đang bận. Từ {minimo} đến "
+"{maximo} ms; mặc định là {padrao}."
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr "Kích thước bộ đệm phải là một số từ {minimo} đến {maximo} mili giây."
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"tác giả: Vitor Bruski"
