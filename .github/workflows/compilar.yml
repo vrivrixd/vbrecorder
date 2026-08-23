@@ -1,0 +1,80 @@
+name: Compilar
+
+# Compila o VB Recorder numa máquina limpa do GitHub, para que o executável
+# publicado não dependa do computador de ninguém. Rode pela aba Actions,
+# escolhendo a tag da versão desejada.
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Tag ou commit a compilar (ex: v1.3)"
+        required: true
+        default: v1.3
+
+jobs:
+  compilar:
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar o código da versão pedida
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Preparar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar as dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install wxPython nuitka
+
+      - name: Montar o número da versão
+        id: versao
+        shell: pwsh
+        run: |
+          $num = "${{ inputs.ref }}" -replace '^v', ''
+          if ($num -notmatch '^\d+(\.\d+)*$') { $num = '0.0' }
+          $partes = @($num.Split('.'))
+          while ($partes.Count -lt 4) { $partes += '0' }
+          "numero=$($partes[0..3] -join '.')" >> $env:GITHUB_OUTPUT
+
+      - name: Compilar com o Nuitka
+        shell: pwsh
+        run: |
+          # A pasta locale só existe da versão 1.2 em diante.
+          $extras = @()
+          if (Test-Path locale) { $extras += '--include-data-dir=locale=locale' }
+          python -m nuitka --onefile --windows-console-mode=disable `
+            --assume-yes-for-downloads `
+            --include-data-files=lib/*.dll=lib/ `
+            @extras `
+            --company-name="Vitor Bruski" `
+            --product-name="VB Recorder" `
+            --file-description="VB Recorder" `
+            --file-version=${{ steps.versao.outputs.numero }} `
+            --product-version=${{ steps.versao.outputs.numero }} `
+            --copyright="© 2026 Vitor Bruski" `
+            --output-filename=VBRecorder.exe --output-dir=dist main.py
+
+      - name: Conferir o que saiu
+        shell: pwsh
+        run: |
+          $exe = Get-Item dist\VBRecorder.exe
+          $v = $exe.VersionInfo
+          "tamanho   : $($exe.Length) bytes"
+          "versao    : $($v.FileVersion)"
+          "empresa   : $($v.CompanyName)"
+          "descricao : $($v.FileDescription)"
+          "direitos  : $($v.LegalCopyright)"
+          "sha256    : $((Get-FileHash $exe.FullName -Algorithm SHA256).Hash.ToLower())"
+
+      - name: Guardar o executável
+        uses: actions/upload-artifact@v4
+        with:
+          name: VBRecorder-${{ inputs.ref }}
+          path: dist/VBRecorder.exe
+          if-no-files-found: error
