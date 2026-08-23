@@ -72,6 +72,25 @@ jobs:
           "direitos  : $($v.LegalCopyright)"
           "sha256    : $((Get-FileHash $exe.FullName -Algorithm SHA256).Hash.ToLower())"
 
+      - name: Testar se o executável abre
+        shell: pwsh
+        run: |
+          # O compilador da nuvem não é o mesmo usado localmente, então vale
+          # conferir que o programa realmente sobe antes de publicar.
+          Start-Process dist\VBRecorder.exe | Out-Null
+          Start-Sleep -Seconds 25
+          # No modo onefile, o programa de verdade roda num processo filho.
+          $vivos = @(Get-Process VBRecorder -ErrorAction SilentlyContinue)
+          if ($vivos.Count -eq 0) {
+            throw "O executável não ficou em execução: saiu sozinho em menos de 25 segundos."
+          }
+          "processos em execução: $($vivos.Count)"
+          foreach ($p in $vivos) { "  PID $($p.Id)  janela: '$($p.MainWindowTitle)'" }
+          $comJanela = @($vivos | Where-Object { $_.MainWindowTitle -eq 'VB Recorder' })
+          if ($comJanela.Count -gt 0) { "janela principal encontrada" }
+          else { "aviso: nenhuma janela visível (pode ser limitação da máquina de compilação)" }
+          $vivos | Stop-Process -Force
+
       - name: Guardar o executável
         uses: actions/upload-artifact@v4
         with:
