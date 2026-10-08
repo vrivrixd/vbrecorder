@@ -1,25 +1,17 @@
-# Configurações locais do programa
-VBRecorder.ini
+# Build output
+build/
+dist/
+*.o
 
-# Arquivos pessoais que não vão para o repositório
+# Local settings and recordings of the program
+VBRecorder.ini
+Gravações/
+Recordings/
+
+# Personal files that do not go into the repository
 compilar.bat
 compilarnuitka.bat
 divulgação.txt
-
-# Saída das compilações
-dist/
-build/
-*.spec
-*.build/
-*.dist/
-*.onefile-build/
-
-# Python
-__pycache__/
-*.py[cod]
-*.egg-info/
-.venv/
-venv/
 
 # Windows
 Thumbs.db

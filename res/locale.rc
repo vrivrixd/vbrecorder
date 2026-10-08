@@ -1,0 +1,10 @@
+// Translation catalogs embedded in the executable: one RCDATA resource per
+// language, named after its code. A new language only needs a line here.
+de RCDATA "locale/de/LC_MESSAGES/vbrecorder.mo"
+en RCDATA "locale/en/LC_MESSAGES/vbrecorder.mo"
+es RCDATA "locale/es/LC_MESSAGES/vbrecorder.mo"
+fr RCDATA "locale/fr/LC_MESSAGES/vbrecorder.mo"
+it RCDATA "locale/it/LC_MESSAGES/vbrecorder.mo"
+pt_PT RCDATA "locale/pt_PT/LC_MESSAGES/vbrecorder.mo"
+ru RCDATA "locale/ru/LC_MESSAGES/vbrecorder.mo"
+vi RCDATA "locale/vi/LC_MESSAGES/vbrecorder.mo"

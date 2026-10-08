@@ -1,118 +1,162 @@
 # VB Recorder
 
-Grave qualquer áudio do Windows, de múltiplas fontes ao mesmo tempo, sem cabos
-virtuais, drivers extras ou configurações complicadas de roteamento.
+Record any audio on Windows, from several sources at once, without virtual
+cables, extra drivers or complicated routing setups.
 
-O VB Recorder captura áudio de microfones, teclados, mesas e placas de som, e
-também de processos em execução, como navegadores, players de música e
-aplicativos de chamada. Tudo junto, com controle de volume individual para cada
-fonte, e com pouquíssimo atraso: dá para gravar sua performance por cima de um
-playback.
+VB Recorder captures audio from microphones, keyboards, mixers and sound cards,
+and also from running processes, such as browsers, music players and calling
+apps. All together, with individual volume control for each source, and with
+very little latency: you can record your performance over a playback.
 
-O programa é leve, portátil e roda na bandeja do sistema.
+The program is light, portable and runs in the system tray.
 
-## Recursos
+Starting with version 1.4, VB Recorder is written in C++: the program got much
+smaller and records without stutters. The windows, dialogs, hotkeys and
+`VBRecorder.ini` are the same as before. The Python versions remain available
+in the earlier releases and in the repository history.
 
-- **Múltiplas fontes simultâneas.** Adicione quantas fontes quiser à lista de
-  gravação, misturando dispositivos de áudio e processos.
-- **Captura por processo.** Usando a API de captura por processo do Windows
-  (WASAPI), o áudio de um programa específico é capturado direto, sem cabo
-  virtual.
-- **Volume por fonte.** Ajuste de -20 dB a +20 dB em cada fonte, para equilibrar
-  microfones fracos sem afetar as demais.
-- **Teste antes de gravar.** O botão Testar deixa você ouvir o dispositivo com o
-  volume já configurado.
-- **Arquivos separados.** Com duas ou mais fontes, cada uma pode ir para o seu
-  próprio arquivo, nomeado pela fonte: `gravação (Microfone).wav`,
-  `gravação (chrome.exe).wav`.
-- **Reproduzir e excluir.** Ouça a última gravação e apague se não tiver ficado
-  boa, pelo próprio programa ou pelo menu da bandeja.
-- **Teclas de atalho globais**, configuráveis, que funcionam com a janela
-  minimizada ou oculta.
-- **Janela de configurações** com idioma, iniciar minimizado, minimizar para a
-  bandeja, janela sempre no topo e tamanho do buffer, além das teclas de atalho.
+## Features
 
-## Formatos
+- **Multiple simultaneous sources.** Add as many sources as you like to the
+  recording list, mixing audio devices and processes.
+- **Per-process capture.** Using the Windows per-process capture API (WASAPI),
+  the audio of a specific program is captured directly, without a virtual
+  cable.
+- **Per-source volume.** Adjust each source from -20 dB to +20 dB, to balance
+  weak microphones without affecting the others.
+- **Test before recording.** The Test button lets you hear the device with the
+  volume already set.
+- **Separate files.** With two or more sources, each one can go to its own
+  file, named after the source: `recording (Microphone).wav`,
+  `recording (chrome.exe).wav`.
+- **Play and delete.** Listen to the last recording and delete it if it did not
+  turn out well, from the program itself or from the tray menu.
+- **Global hotkeys**, configurable, that work with the window minimized or
+  hidden.
+- **Settings window** with language, start minimized, minimize to tray, window
+  always on top and buffer size, besides the hotkeys.
 
-| Formato | Observações                                  |
-|---------|----------------------------------------------|
-| MP3     | bitrate de 8 a 320 kbps                      |
-| WAV     | sem compressão, 16 bits                      |
-| AIFF    | sem compressão, 16 bits                      |
-| OGG     | bitrate ajustável até 500 kbps               |
-| OPUS    | codec moderno de alta eficiência, ideal para voz |
-| FLAC    | sem perdas, nível de compressão de 0 a 8     |
+## Formats
 
-Taxa de amostragem de 8000 Hz a 48000 Hz, mono ou estéreo.
+| Format | Notes                                          |
+|--------|------------------------------------------------|
+| MP3    | bitrate from 8 to 320 kbps                     |
+| WAV    | uncompressed, 16-bit                           |
+| AIFF   | uncompressed, 16-bit                           |
+| OGG    | adjustable bitrate up to 500 kbps              |
+| OPUS   | modern, highly efficient codec, ideal for voice |
+| FLAC   | lossless, compression level from 0 to 8        |
 
-## Idiomas
+Sample rate from 8000 Hz to 48000 Hz, mono or stereo.
 
-O VB Recorder inicia no idioma da interface do Windows, e você pode escolher
-outro em Configurações. Estão disponíveis:
+## Stutter-free audio
 
-português do Brasil, português de Portugal, inglês, espanhol, francês, alemão,
-italiano, russo e vietnamita.
+Recording goes through a real buffer: each source delivers its audio into a
+queue of its own, and mixing and encoding happen on a separate thread, at the
+pace of the computer clock, with a delay equal to the buffer size chosen in the
+settings. A source that is late by less than the buffer loses nothing, and a
+source that is later than that is waited for instead of leaving a hole in the
+recording. Differences between sound card clocks are compensated gradually,
+without cuts, and encoding and disk writes never hold up the capture.
 
-Se o Windows estiver em um idioma sem tradução, o programa aparece em português
-do Brasil.
+While recording, the program asks Windows not to slow it down (EcoQoS), runs
+its audio threads in the system audio scheduler (MMCSS) and keeps the computer
+from going to sleep. When you stop, everything that was still in the buffer
+goes to the file.
 
-**Quer traduzir para o seu idioma?** Copie `locale/vbrecorder.pot` para
-`locale/<código>/LC_MESSAGES/vbrecorder.po`, preencha os textos, rode o
-`language_compiler.py` e pronto: nenhuma alteração no código é necessária. O que
-ficar sem tradução continua aparecendo em português, então dá para traduzir aos
-poucos. Contribuições são bem-vindas por [Pull
+## Languages
+
+VB Recorder starts in the language of the Windows interface, and you can choose
+another one in Settings. Available languages:
+
+Brazilian Portuguese, European Portuguese, English, Spanish, French, German,
+Italian, Russian and Vietnamese.
+
+If Windows is in a language without a translation, the program shows up in
+Brazilian Portuguese, its original language.
+
+**Want to translate it into your language?** Copy `locale/vbrecorder.pot` to
+`locale/<code>/LC_MESSAGES/vbrecorder.po`, fill in the texts and run
+`tools/language_compiler.py` (it needs `polib`: `pip install polib`). Anything
+left untranslated keeps showing in Portuguese, so you can translate a little at
+a time. Then add a line for the new language to `res/locale.rc`, so it is
+embedded in the executable. Contributions are welcome through [Pull
 Request](https://github.com/vrivrixd/vbrecorder/pulls).
 
-## Requisitos
+To test a translation without compiling, put the `locale` folder next to
+`VBRecorder.exe`: what is in it takes precedence over the embedded catalogs.
 
-- Windows 10 ou superior.
-- Para captura de processos, Windows 10 versão 2004 (maio de 2020) ou superior.
-- Não requer drivers adicionais nem cabos virtuais.
+## Requirements
 
-## Instalação
+- Windows 10 or later, 64-bit.
+- For process capture, Windows 10 version 2004 (May 2020) or later.
+- No additional drivers or virtual cables required.
 
-Baixe o `VBRecorder.exe` na página de
-[Releases](https://github.com/vrivrixd/vbrecorder/releases) e execute. Não há
-instalador: o programa é um único arquivo e cria o `VBRecorder.ini` com as suas
-configurações ao lado dele.
+## Installation
 
-## Rodando a partir do código
+Download `VBRecorder.zip` from the
+[Releases](https://github.com/vrivrixd/vbrecorder/releases) page, extract it
+wherever you like and run `VBRecorder.exe`. There is no installer: the program
+creates `VBRecorder.ini` with your settings in the folder it is started from.
+
+The `lib` folder holds the BASS libraries and must stay next to the executable.
+
+## Building from source
+
+The program builds with the GCC from [WinLibs](https://winlibs.com/):
 
 ```
-pip install wxPython
-python main.py
+winget install BrechtSanders.WinLibs.POSIX.UCRT
 ```
 
-As bibliotecas do BASS já acompanham o repositório, na pasta `lib`. O programa
-procura as DLLs ali e, se não encontrar, procura ao lado do próprio programa.
+Then, from the project folder:
 
-Estrutura:
+```
+mkdir build
+windres -I res -i res\app.rc -o build\app.o
+windres -i res\locale.rc -o build\locale.o
+type nul > build\empty.c
+gcc -c build\empty.c -o build\default-manifest.o
+g++ -std=c++17 -O2 -DUNICODE -D_UNICODE -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0A00 -municode -mwindows src\*.cpp build\app.o build\locale.o -lole32 -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -luuid -static -s -Bbuild\ -o build\VBRecorder.exe
+```
 
-- `main.py` — ponto de entrada.
-- `gui.py` — interface, bandeja do sistema e atalhos globais.
-- `audio_engine.py` — gravação, mixagem, codificação e reprodução via BASS.
-- `process_audio.py` — captura de áudio por processo (WASAPI).
-- `config.py` — leitura e gravação do `VBRecorder.ini`.
-- `i18n.py` — escolha do idioma e carregamento das traduções.
-- `locale/` — catálogos de tradução, um por idioma.
-- `language_compiler.py` — compila os `.po` em `.mo`.
+The empty `default-manifest.o` takes the place of the manifest GCC adds to
+every executable, which would clash with the program's own manifest
+(`res/app.manifest`).
 
-## Licença
+To run it, put the `lib` folder next to `VBRecorder.exe`.
 
-O código do VB Recorder é distribuído sob a
+Structure:
+
+- `src/main.cpp` — main window, system tray and global hotkeys.
+- `src/dialogs.cpp` — settings, hotkeys and recording sources.
+- `src/audio_engine.cpp` — recording, mixing, encoding and playback through BASS.
+- `src/process_audio.cpp` — per-process audio capture (WASAPI).
+- `src/config.cpp` — reading and writing `VBRecorder.ini`.
+- `src/i18n.cpp` — language choice and reading of the translation catalogs.
+- `src/hotkeys.cpp` — hotkeys written as text.
+- `src/ui.cpp` — interface foundation: native controls and window layout.
+- `res/` — manifest, version information and the list of embedded translations.
+- `locale/` — translation catalogs, one per language.
+- `lib/` — BASS libraries.
+- `tools/language_compiler.py` — compiles the `.po` files into `.mo`.
+
+## License
+
+The VB Recorder source code is distributed under the
 [GNU General Public License v3.0](LICENSE).
 
-As bibliotecas da pasta `lib` (BASS e seus complementos) **não** fazem parte
-dessa licença. Elas são da [un4seen Developments](https://www.un4seen.com/) e
-seguem os termos próprios do BASS, que é gratuito para uso não comercial.
+The libraries in the `lib` folder (BASS and its add-ons) are **not** covered by
+that license. They belong to [un4seen Developments](https://www.un4seen.com/)
+and follow the BASS terms, which make it free for non-commercial use.
 
-## Autor
+## Author
 
-VB Recorder foi desenvolvido por **Vitor Bruski**.
+VB Recorder was developed by **Vitor Bruski**.
 
-### Traduções
+### Translations
 
-- Vietnamita: **nguyenninhhoang**
+- Vietnamese: **nguyenninhhoang**
 
-Dúvidas, sugestões e relatos de problemas são bem-vindos na aba
-[Issues](https://github.com/vrivrixd/vbrecorder/issues).
+Questions, suggestions and bug reports are welcome in the
+[Issues](https://github.com/vrivrixd/vbrecorder/issues) tab.

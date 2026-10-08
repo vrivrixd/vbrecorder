@@ -1,0 +1,36 @@
+// VB Recorder - executable resources: manifest and version information.
+#include <windows.h>
+
+#define VB_VERSION_NUM 1,4,0,0
+#define VB_VERSION_STR "1.4.0.0"
+
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "app.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION VB_VERSION_NUM
+PRODUCTVERSION VB_VERSION_NUM
+FILEFLAGSMASK 0x3fL
+FILEFLAGS 0x0L
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041604b0"
+        BEGIN
+            VALUE "CompanyName", "Vitor Bruski"
+            VALUE "FileDescription", "VB Recorder"
+            VALUE "FileVersion", VB_VERSION_STR
+            VALUE "InternalName", "VBRecorder"
+            VALUE "LegalCopyright", "\251 2026 Vitor Bruski"
+            VALUE "OriginalFilename", "VBRecorder.exe"
+            VALUE "ProductName", "VB Recorder"
+            VALUE "ProductVersion", VB_VERSION_STR
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0416, 1200
+    END
+END
