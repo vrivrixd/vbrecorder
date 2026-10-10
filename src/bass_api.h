@@ -44,6 +44,9 @@ const DWORD BASS_ATTRIB_FREQ = 1;
 const DWORD BASS_ATTRIB_VOL = 2;
 const DWORD BASS_UNICODE = 0x80000000;
 const DWORD BASS_ACTIVE_STOPPED = 0;
+const DWORD BASS_ACTIVE_PLAYING = 1;
+const DWORD BASS_STREAMPROC_END = 0x80000000;
+const DWORD BASS_ENCODE_COUNT_QUEUE = 3;
 const DWORD BASS_MIXER_NONSTOP = 0x20000;
 const DWORD BASS_MIXER_CHAN_DOWNMIX = 0x400000;
 const DWORD BASS_MIXER_CHAN_NORAMPIN = 0x800000;
@@ -65,6 +68,7 @@ struct BassApi {
     BOOL(WINAPI* Init)(int, DWORD, DWORD, HWND, const void*);
     BOOL(WINAPI* Free)();
     BOOL(WINAPI* RecordInit)(int);
+    BOOL(WINAPI* RecordFree)();
     BOOL(WINAPI* RecordSetDevice)(DWORD);
     BOOL(WINAPI* RecordGetDeviceInfo)(DWORD, BASS_DEVICEINFO*);
     DWORD(WINAPI* RecordStart)(DWORD, DWORD, DWORD, RECORDPROC, void*);
@@ -83,6 +87,7 @@ struct BassApi {
     DWORD(WINAPI* EncodeStartPCMFile)(DWORD, DWORD, const void*);
     BOOL(WINAPI* EncodeStop)(DWORD);
     BOOL(WINAPI* EncodeStopEx)(DWORD, DWORD);  // may be missing in old versions
+    QWORD(WINAPI* EncodeGetCount)(DWORD, DWORD);  // may be missing in old versions
     DWORD(WINAPI* EncodeMP3StartFile)(DWORD, const void*, DWORD, const void*);
     DWORD(WINAPI* EncodeOGGStartFile)(DWORD, const void*, DWORD, const void*);
     DWORD(WINAPI* EncodeFLACStartFile)(DWORD, const void*, DWORD, const void*);
@@ -90,4 +95,5 @@ struct BassApi {
 
     DWORD(WINAPI* MixerStreamCreate)(DWORD, DWORD, DWORD);
     BOOL(WINAPI* MixerStreamAddChannel)(DWORD, DWORD, DWORD);
+    BOOL(WINAPI* MixerChannelRemove)(DWORD);
 };

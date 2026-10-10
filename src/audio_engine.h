@@ -64,6 +64,12 @@ public:
                         const std::wstring& bitrate, int sample_rate,
                         const std::wstring& channels, const std::vector<Source>& sources,
                         bool separate_files, int flac_nivel, int* error);
+    /* Sources added, removed or changed while recording. A new source joins
+       in sync; a removed one first records what is already in its queue. */
+    bool AddLiveSource(const Source& src, int* error);
+    void RemoveLiveSource(const std::wstring& type, int id);
+    void SetSourceVolume(const std::wstring& type, int id, double volume);
+
     void PauseRecording();
     void ResumeRecording();
     void StopRecording();
@@ -81,14 +87,26 @@ private:
     void LoadPlaybackPlugins();
     DWORD ApplyEncoder(DWORD handle, const std::wstring& path);
     void Teardown(bool flush);
+    std::unique_ptr<Input> MakeInput(const Source& src, int* error);
+    bool StartDevice(Input* in, bool play);
+    void AttachLive(Input* in, Output* out, double now);
+    void DropInput(Input* in);
+    Output* MakeOutput(const std::wstring& path, const std::wstring& key);
+    std::wstring SeparatePath(const std::wstring& key) const;
+    Input* FindInput(const std::wstring& type, int id);
+    void SetRecordingPower(bool on);
 
     static BOOL CALLBACK RecordProc(DWORD handle, const void* buffer, DWORD length, void* user);
     static BOOL CALLBACK MonitorProc(DWORD handle, const void* buffer, DWORD length, void* user);
     static DWORD WINAPI PumpThread(void* self);
     void Pump();
     double RecordingSeconds();
-    void Advance(Output& out, long long due, bool final_flush);
-    bool Feed(Output& out, DWORD frames, bool final_flush, bool may_wait);
+    void Watchdog(double wall);
+    void CollectEnded();
+    void CatchUp(Output& out);
+    void FeedSilent(Output& out, DWORD frames);
+    void Advance(Output& out, long long due, bool final_flush, double now);
+    bool Feed(Output& out, DWORD frames, bool final_flush, bool may_wait, double now);
 
     BassApi b_ = {};
     std::wstring lib_path_;
@@ -107,7 +125,15 @@ private:
     std::vector<std::unique_ptr<Input>> inputs_;
     std::vector<std::unique_ptr<Output>> outputs_;
     std::wstring format_, options_;
+    std::wstring base_path_, ext_;
+    int sample_rate_ = 44100;
+    int chans_ = 2;
+    bool separate_ = false;
     int rec_buffer_ms_ = BUFFER_DEFAULT;
+    // Guards the lists of sources and files, shared by the pump and the
+    // window (sources added or removed while recording).
+    std::mutex graph_mutex_;
+    HANDLE power_request_ = nullptr;
     HANDLE pump_thread_ = nullptr;
     HANDLE pump_stop_ = nullptr;
     std::mutex clock_mutex_;

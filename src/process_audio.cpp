@@ -257,8 +257,8 @@ void ProcessLoopbackCapture::Capture() {
     // in the requested format. 32-bit float, 48 kHz, stereo.
     WAVEFORMATEX fmt = {};
     fmt.wFormatTag = WAVE_FORMAT_IEEE_FLOAT;
-    fmt.nChannels = 2;
-    fmt.nSamplesPerSec = 48000;
+    fmt.nChannels = CHANNELS;
+    fmt.nSamplesPerSec = RATE;
     fmt.wBitsPerSample = 32;
     fmt.nBlockAlign = fmt.nChannels * 4;
     fmt.nAvgBytesPerSec = fmt.nSamplesPerSec * fmt.nBlockAlign;

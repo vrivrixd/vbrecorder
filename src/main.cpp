@@ -121,6 +121,7 @@ private:
     void OnHotkey(int id);
 
     void OnAddSource();
+    bool AddToRecording(const Source& src);
     void OnEditSource();
     void OnRemoveSource();
     void OnSettings();
@@ -531,11 +532,23 @@ void MainFrame::OnAddSource() {
     int result = dlg.ShowModal(hwnd_);
     audio.StopMonitor();
     if (result == IDOK && dlg.has_selected) {
-        sources_.push_back(dlg.selected);
         if (dlg.selected.type == L"device") audio.InitDevice(dlg.selected.id);
+        // While recording, the source joins the recording right away.
+        if (audio.is_recording() && !AddToRecording(dlg.selected)) return;
+        sources_.push_back(dlg.selected);
         RefreshList();
         SaveSettings();
     }
+}
+
+bool MainFrame::AddToRecording(const Source& src) {
+    int err = 0;
+    if (audio.AddLiveSource(src, &err)) return true;
+    ui::MsgBox(DialogParent(),
+               Format(tr("Erro BASS {erro} ao adicionar a fonte de gravação."),
+                      {{L"erro", std::to_wstring(err)}}),
+               tr("Erro"), MB_ICONERROR | MB_OK);
+    return false;
 }
 
 void MainFrame::OnEditSource() {
@@ -546,8 +559,18 @@ void MainFrame::OnEditSource() {
     int result = dlg.ShowModal(hwnd_);
     audio.StopMonitor();
     if (result == IDOK && dlg.has_selected) {
-        sources_[sel] = dlg.selected;
-        if (dlg.selected.type == L"device") audio.InitDevice(dlg.selected.id);
+        const Source& now = dlg.selected;
+        if (now.type == L"device") audio.InitDevice(now.id);
+        if (audio.is_recording()) {
+            if (now.type == src.type && now.id == src.id) {
+                // Same source: only the volume changes, right away.
+                audio.SetSourceVolume(now.type, now.id, now.volume);
+            } else {
+                if (!AddToRecording(now)) return;
+                audio.RemoveLiveSource(src.type, src.id);
+            }
+        }
+        sources_[sel] = now;
         RefreshList();
         SaveSettings();
     }
@@ -562,7 +585,12 @@ void MainFrame::OnRemoveSource() {
     }
     if (to_remove.empty()) return;
     std::sort(to_remove.rbegin(), to_remove.rend());
-    for (int i : to_remove) sources_.erase(sources_.begin() + i);
+    for (int i : to_remove) {
+        // While recording, the source leaves the recording; with separate
+        // files, its file goes on in silence until the end.
+        if (audio.is_recording()) audio.RemoveLiveSource(sources_[i].type, sources_[i].id);
+        sources_.erase(sources_.begin() + i);
+    }
     RefreshList();
     SaveSettings();
 }
@@ -877,9 +905,10 @@ void MainFrame::OnAbout() {
 
 void MainFrame::ToggleUi(bool enable) {
     HWND focus = GetFocus();
+    // The sources stay available: they can be added, edited and removed while
+    // recording.
     for (HWND ctrl : {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_channels_,
-                      lst_fontes_, btn_add_, btn_edit_, btn_rem_, chk_separate_, txt_dir_,
-                      btn_browse_, txt_filename_, btn_settings_})
+                      chk_separate_, txt_dir_, btn_browse_, txt_filename_, btn_settings_})
         EnableWindow(ctrl, enable);
     // Focus cannot stay on a disabled control: it goes to the record button.
     if (focus && IsChild(hwnd_, focus) && !IsWindowEnabled(focus)) SetFocus(btn_record_);

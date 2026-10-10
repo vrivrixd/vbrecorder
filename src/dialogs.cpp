@@ -468,7 +468,10 @@ int AddSourceDialog::SelectedDevice() const {
     return std::get<1>((*current_items_)[sel]);
 }
 
-void AddSourceDialog::UpdateTestState() { EnableWindow(btn_test_, SelectedDevice() >= 0); }
+void AddSourceDialog::UpdateTestState() {
+    // While recording, the test would compete with the recording for the device.
+    EnableWindow(btn_test_, SelectedDevice() >= 0 && !audio_.is_recording());
+}
 
 void AddSourceDialog::OnTest() {
     if (testing_) {

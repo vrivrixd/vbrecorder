@@ -240,7 +240,8 @@ msgid "Tamanho do B&uffer (ms):"
 msgstr ""
 
 msgid ""
-"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a {maximo} ms; o padrão é {padrao}."
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
 msgstr ""
 
 msgid "Dispositivos de Áudio"
@@ -288,14 +289,16 @@ msgid "Confirmar Saída"
 msgstr ""
 
 msgid ""
-"O tamanho do buffer deve ser um número entre {minimo} e {maximo} milissegundos."
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
 msgstr ""
 
 msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
 msgstr ""
 
 msgid ""
-"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na pasta lib do VB Recorder."
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
 msgstr ""
 
 msgid ""
@@ -319,3 +322,5 @@ msgstr ""
 msgid "Dispositivo de Entrada Padrão"
 msgstr ""
 
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr ""

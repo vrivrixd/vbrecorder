@@ -46,11 +46,18 @@ public:
     ProcessLoopbackCapture(DWORD pid, int buffer_ms);
     ~ProcessLoopbackCapture();
 
+    /* The capture always delivers this format; Windows converts to it. */
+    static const int RATE = 48000;
+    static const int CHANNELS = 2;
+
     bool Start();
     /* Waits for the capture to start; returns false if it did not start in time. */
     bool WaitReady(DWORD timeout_ms);
     void SetSink(CaptureSink* sink) { sink_.store(sink); }
     void Stop();
+    /* The capture ended on its own (the process exited, or its audio device
+       went away) or never started. */
+    bool Finished() const { return !thread_ || WaitForSingleObject(thread_, 0) == WAIT_OBJECT_0; }
 
     int sample_rate() const { return sample_rate_; }
     int channels() const { return channels_; }

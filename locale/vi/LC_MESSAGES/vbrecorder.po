@@ -343,3 +343,6 @@ msgid ""
 msgstr ""
 "VB Recorder v{versao}\n"
 "tác giả: Vitor Bruski"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "Lỗi BASS {erro} trong khi thêm nguồn ghi âm."

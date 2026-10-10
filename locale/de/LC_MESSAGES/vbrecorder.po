@@ -344,3 +344,6 @@ msgstr "Quelle"
 
 msgid "Dispositivo de Entrada Padrão"
 msgstr "Standard-Eingabegerät"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "BASS-Fehler {erro} beim Hinzufügen der Aufnahmequelle."

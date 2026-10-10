@@ -344,3 +344,6 @@ msgstr "fuente"
 
 msgid "Dispositivo de Entrada Padrão"
 msgstr "Dispositivo de entrada predeterminado"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "Error BASS {erro} al añadir la fuente de grabación."

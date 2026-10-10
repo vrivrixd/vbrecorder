@@ -346,3 +346,6 @@ msgstr "источник"
 
 msgid "Dispositivo de Entrada Padrão"
 msgstr "Устройство ввода по умолчанию"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "Ошибка BASS {erro} при добавлении источника записи."

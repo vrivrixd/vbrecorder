@@ -20,6 +20,12 @@ history.
 
 - **Multiple simultaneous sources.** Add as many sources as you like to the
   recording list, mixing audio devices and processes.
+- **Change sources while recording.** Add, edit or remove sources without
+  stopping: a new source joins in sync, a removed one first records what it
+  already had, and editing a source changes its volume right away. With
+  separate files, a source added midway gets a file that starts with silence
+  from the beginning, and the file of a removed source goes on in silence (and
+  takes the source back if you add it again), so every file stays in sync.
 - **Per-process capture.** Using the Windows per-process capture API (WASAPI),
   the audio of a specific program is captured directly, without a virtual
   cable.
@@ -57,12 +63,16 @@ queue of its own, and mixing and encoding happen on a separate thread, at the
 pace of the computer clock, with a delay equal to the buffer size chosen in the
 settings. A source that is late by less than the buffer loses nothing, and a
 source that is later than that is waited for instead of leaving a hole in the
-recording. Differences between sound card clocks are compensated gradually,
-without cuts, and encoding and disk writes never hold up the capture.
+recording. When a source really stops delivering (a loopback with nothing
+playing, a sound card that went to sleep, a program that went quiet), the time
+it was gone becomes silence and its audio comes back exactly in time. A device
+or process capture that drops out is opened again by itself. Differences
+between sound card clocks are compensated gradually, without cuts, and encoding
+and disk writes never hold up the capture.
 
 While recording, the program asks Windows not to slow it down (EcoQoS), runs
 its audio threads in the system audio scheduler (MMCSS) and keeps the computer
-from going to sleep. When you stop, everything that was still in the buffer
+from going to sleep, also on computers with Modern Standby. When you stop, everything that was still in the buffer
 goes to the file.
 
 ## Languages
