@@ -29,6 +29,10 @@ history.
 - **Per-process capture.** Using the Windows per-process capture API (WASAPI),
   the audio of a specific program is captured directly, without a virtual
   cable.
+- **Capture by executable.** Add a program by its executable name (`game.exe`),
+  even before it is open: it is recorded whenever it runs, however many times
+  it is opened and closed, and however many copies are open. With separate
+  files, it goes to `recording (game.exe).wav`.
 - **Per-source volume.** Adjust each source from -20 dB to +20 dB, to balance
   weak microphones without affecting the others.
 - **Test before recording.** The Test button lets you hear the device with the
@@ -38,10 +42,20 @@ history.
   `recording (chrome.exe).wav`.
 - **Play and delete.** Listen to the last recording and delete it if it did not
   turn out well, from the program itself or from the tray menu.
+- **Continue the last recording.** After stopping, the files are ready to be
+  played or opened in any editor, and Continue Last Recording goes on
+  recording in the same files, as if the recording had only been paused. The
+  Pause / Continue hotkey does the same when nothing is recording. With MP3,
+  OGG and OPUS, the part already recorded is encoded again.
 - **Global hotkeys**, configurable, that work with the window minimized or
   hidden.
-- **Settings window** with language, start minimized, minimize to tray, window
-  always on top and buffer size, besides the hotkeys.
+- **Settings window** with language, automatic update checks, start
+  minimized, minimize to tray, window always on top and buffer size, besides
+  the hotkeys.
+- **Automatic updates.** When it starts, the program checks GitHub for a new
+  version and, if you want, downloads the right one for your Windows (32 or 64
+  bits), installs it and opens it again. The check can also be done from the
+  settings, and turned off.
 
 ## Formats
 
@@ -134,7 +148,7 @@ windres -I res -i res\app.rc -o build\app.o
 windres -i res\locale.rc -o build\locale.o
 type nul > build\empty.c
 gcc -c build\empty.c -o build\default-manifest.o
-g++ -std=c++17 -O2 -DUNICODE -D_UNICODE -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0A00 -municode -mwindows src\*.cpp build\app.o build\locale.o -lole32 -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -luuid -static -s -Bbuild\ -o build\VBRecorder.exe
+g++ -std=c++17 -O2 -DUNICODE -D_UNICODE -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0A00 -municode -mwindows src\*.cpp build\app.o build\locale.o -lole32 -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -luuid -lwinhttp -lbcrypt -static -s -Bbuild\ -o build\VBRecorder.exe
 ```
 
 The empty `default-manifest.o` takes the place of the manifest GCC adds to

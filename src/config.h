@@ -37,17 +37,23 @@ const int BUFFER_MIN = 100;
 const int BUFFER_MAX = 5000;
 
 struct SourceEntry {
-    std::wstring type;  // "device" or "process"
-    int id = 0;
+    std::wstring type;  // "device", "process" or "exe"
+    int id = 0;         // device index or process id
+    std::wstring exe;   // executable name, for "exe"
     double volume = 1.0;
 };
 
+/* A recording source. An "exe" source is every process with that executable
+   name, whenever it runs; its name is the executable name (jogo.exe). */
 struct Source {
     std::wstring type;
     int id = 0;
     std::wstring name;
     double volume = 1.0;
 };
+
+/* Whether two sources are the same device, process or executable. */
+bool SameSource(const Source& a, const Source& b);
 
 class ConfigManager {
 public:

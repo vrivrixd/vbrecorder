@@ -26,6 +26,7 @@
 #include "audio_engine.h"
 #include "config.h"
 #include "ui.h"
+#include "updater.h"
 
 class HotkeysDialog : public ui::Dialog {
 public:
@@ -42,7 +43,11 @@ private:
 
 class SettingsDialog : public ui::Dialog {
 public:
-    SettingsDialog(ConfigManager& config, std::function<void()> on_keys_saved);
+    /* check_update runs the "Check for update" button; it returns true when
+       the program is about to be replaced by the new version, which closes
+       the dialog. */
+    SettingsDialog(ConfigManager& config, std::function<void()> on_keys_saved,
+                   std::function<bool(HWND)> check_update);
 
     /* Typed buffer, or -1 if it is not a valid number in range. */
     int BufferValue() const;
@@ -50,6 +55,8 @@ public:
     bool start_minimized = false;
     bool tray = false;
     bool on_top = true;
+    bool check_updates = true;
+    bool updating = false;  // closed because the update is being installed
 
 protected:
     void OnInit() override;
@@ -61,12 +68,35 @@ private:
 
     ConfigManager& config_;
     std::function<void()> on_keys_saved_;
+    std::function<bool(HWND)> check_update_;
     std::vector<std::wstring> codes_;
     std::wstring language_;
     std::wstring buffer_text_;
     HWND cmb_lang_ = nullptr, chk_start_min_ = nullptr, chk_tray_ = nullptr,
          chk_on_top_ = nullptr, txt_buffer_ = nullptr, btn_keys_ = nullptr, btn_ok_ = nullptr,
-         btn_cancel_ = nullptr;
+         btn_cancel_ = nullptr, chk_updates_ = nullptr, btn_check_ = nullptr;
+};
+
+/* Downloads an update, with a progress bar and a Cancel button. */
+class DownloadDialog : public ui::Dialog {
+public:
+    DownloadDialog(const UpdateInfo& info, const std::wstring& file);
+    ~DownloadDialog();
+    bool ok = false;         // downloaded
+    bool cancelled = false;  // the user gave up
+
+protected:
+    void OnInit() override;
+    bool OnCommand(int id, int code, HWND control) override;
+    INT_PTR OnMessage(UINT msg, WPARAM wp, LPARAM lp, bool* handled) override;
+
+private:
+    static DWORD WINAPI Worker(void* self);
+    UpdateInfo info_;
+    std::wstring file_;
+    std::atomic<bool> cancel_{false};
+    HANDLE thread_ = nullptr;
+    HWND bar_ = nullptr;
 };
 
 class AddSourceDialog : public ui::Dialog {
@@ -91,6 +121,8 @@ private:
     void PopulateFilter(int sel);
     void OnFilterChange();
     int SelectedDevice() const;  // -1 if the source is not a device
+    int CheckedFilter() const;
+    void UpdateOkState();
     void UpdateTestState();
     void OnTest();
     void StopTest();
@@ -107,7 +139,9 @@ private:
     bool testing_ = false;
     int filter_ = 0;
     std::vector<SourceItem> device_items_, process_items_;
+    std::vector<SourceItem> exe_items_;  // always empty: the name is typed
     const std::vector<SourceItem>* current_items_ = nullptr;
+    HWND rb_exe_ = nullptr, lbl_src_ = nullptr, lbl_exe_ = nullptr, txt_exe_ = nullptr;
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,
          sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, note_ = nullptr;

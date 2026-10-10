@@ -324,3 +324,58 @@ msgstr ""
 
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr ""
+
+msgid "Continuar Última Gra&vação"
+msgstr ""
+
+msgid "Continuar Última Gravação"
+msgstr ""
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+
+msgid "Arquivo Executável"
+msgstr ""
+
+msgid "Nome do Executável:"
+msgstr ""
+
+msgid "Nova atualização disponível!"
+msgstr ""
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+
+msgid "Baixando Atualização"
+msgstr ""
+
+msgid "Por favor aguarde..."
+msgstr ""
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr ""
+
+msgid "Verificar Atuali&zação..."
+msgstr ""
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr ""
+
+msgid "Verificar Atualização"
+msgstr ""
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr ""
+
+msgid "Não foi possível baixar a atualização."
+msgstr ""
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""

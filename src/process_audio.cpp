@@ -20,7 +20,9 @@
 #include <audiopolicy.h>
 #include <mmdeviceapi.h>
 #include <mmreg.h>
+#include <tlhelp32.h>
 
+#include <map>
 #include <set>
 
 #include "util.h"
@@ -141,6 +143,26 @@ std::wstring GetProcessName(DWORD pid) {
     if (QueryFullProcessImageNameW(h, 0, buf, &size)) name = BaseName(std::wstring(buf, size));
     CloseHandle(h);
     return name;
+}
+
+std::vector<DWORD> FindMainProcesses(const std::wstring& exe_name) {
+    std::vector<DWORD> result;
+    HANDLE snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (snap == INVALID_HANDLE_VALUE) return result;
+    std::wstring target = ToLower(exe_name);
+    std::map<DWORD, std::pair<std::wstring, DWORD>> procs;  // pid -> (name, parent)
+    PROCESSENTRY32W pe = {sizeof(pe)};
+    for (BOOL ok = Process32FirstW(snap, &pe); ok; ok = Process32NextW(snap, &pe))
+        procs[pe.th32ProcessID] = {ToLower(pe.szExeFile), pe.th32ParentProcessID};
+    CloseHandle(snap);
+    DWORD self = GetCurrentProcessId();
+    for (auto& p : procs) {
+        if (p.first == self || p.second.first != target) continue;
+        auto parent = procs.find(p.second.second);
+        if (parent != procs.end() && parent->second.first == target) continue;
+        result.push_back(p.first);
+    }
+    return result;
 }
 
 std::vector<std::pair<DWORD, std::wstring>> GetAudioSessions() {

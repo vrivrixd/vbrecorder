@@ -155,10 +155,16 @@ enum {
     IDC_ST_ON_TOP,
     IDC_ST_BUFFER,
     IDC_ST_KEYS,
+    IDC_ST_UPDATES,
+    IDC_ST_CHECK,
 };
 
-SettingsDialog::SettingsDialog(ConfigManager& config, std::function<void()> on_keys_saved)
-    : ui::Dialog(tr("Configurações")), config_(config), on_keys_saved_(on_keys_saved) {}
+SettingsDialog::SettingsDialog(ConfigManager& config, std::function<void()> on_keys_saved,
+                               std::function<bool(HWND)> check_update)
+    : ui::Dialog(tr("Configurações")),
+      config_(config),
+      on_keys_saved_(on_keys_saved),
+      check_update_(check_update) {}
 
 void SettingsDialog::OnInit() {
     auto vbox = VBox();
@@ -181,6 +187,13 @@ void SettingsDialog::OnInit() {
     grid->Add(lbl_lang, ui::CENTER_V);
     grid->Add(cmb_lang_, ui::EXPAND);
     vbox->Add(std::move(grid), 0, ui::ALL | ui::EXPAND, S(10));
+
+    chk_updates_ = Add(WC_BUTTONW, tr("&Verificar Atualizações Automaticamente"), CHECK,
+                       IDC_ST_UPDATES);
+    Button_SetCheck(chk_updates_, config_.GetBoolean(L"verificar_atualizacoes", true));
+    vbox->Add(chk_updates_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    btn_check_ = Add(WC_BUTTONW, tr("Verificar Atuali&zação..."), BUTTON, IDC_ST_CHECK);
+    vbox->Add(btn_check_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     chk_start_min_ = Add(WC_BUTTONW, tr("Iniciar &Minimizado"), CHECK, IDC_ST_START_MIN);
     Button_SetCheck(chk_start_min_, config_.GetBoolean(L"iniciar_minimizado"));
@@ -227,7 +240,8 @@ bool SettingsDialog::OnCharHook(const MSG& msg) {
     // Enter confirms from anywhere, except on a button, where it does what
     // that button does.
     HWND focus = GetFocus();
-    if (IsEnter(msg) && focus != btn_ok_ && focus != btn_cancel_ && focus != btn_keys_) {
+    if (IsEnter(msg) && focus != btn_ok_ && focus != btn_cancel_ && focus != btn_keys_ &&
+        focus != btn_check_) {
         OnOk();
         return true;
     }
@@ -237,6 +251,13 @@ bool SettingsDialog::OnCharHook(const MSG& msg) {
 bool SettingsDialog::OnCommand(int id, int code, HWND) {
     if (id == IDOK) {
         OnOk();
+        return true;
+    }
+    if (id == IDC_ST_CHECK && code == BN_CLICKED) {
+        if (check_update_ && check_update_(hwnd_)) {
+            updating = true;
+            EndModal(IDCANCEL);
+        }
         return true;
     }
     if (id == IDC_ST_KEYS && code == BN_CLICKED) {
@@ -273,6 +294,7 @@ void SettingsDialog::OnOk() {
     int sel = (int)SendMessageW(cmb_lang_, CB_GETCURSEL, 0, 0);
     language_ = (sel >= 0 && sel < (int)codes_.size()) ? codes_[sel] : L"";
     start_minimized = Button_GetCheck(chk_start_min_) == BST_CHECKED;
+    check_updates = Button_GetCheck(chk_updates_) == BST_CHECKED;
     tray = Button_GetCheck(chk_tray_) == BST_CHECKED;
     on_top = Button_GetCheck(chk_on_top_) == BST_CHECKED;
     EndModal(IDOK);
@@ -286,6 +308,8 @@ enum {
     IDC_AS_SOURCE,
     IDC_AS_VOLUME,
     IDC_AS_TEST,
+    IDC_AS_EXE,
+    IDC_AS_EXE_NAME,
 };
 
 AddSourceDialog::AddSourceDialog(AudioEngine& audio, const std::vector<Source>& existing,
@@ -325,15 +349,26 @@ void AddSourceDialog::OnInit() {
                       WS_TABSTOP | WS_GROUP | BS_AUTORADIOBUTTON, IDC_AS_DEVICES);
     rb_processes_ = Add(WC_BUTTONW, tr("Processos em Execução"), BS_AUTORADIOBUTTON,
                         IDC_AS_PROCESSES);
+    rb_exe_ = Add(WC_BUTTONW, tr("Arquivo Executável"), BS_AUTORADIOBUTTON, IDC_AS_EXE);
     Button_SetCheck(rb_devices_, BST_CHECKED);
-    if (!available) EnableWindow(rb_processes_, FALSE);
-    vbox->Add(std::unique_ptr<ui::Item>(new RadioBoxItem(grp_, {rb_devices_, rb_processes_})), 0,
-              ui::ALL | ui::EXPAND, S(10));
+    if (!available) {
+        EnableWindow(rb_processes_, FALSE);
+        EnableWindow(rb_exe_, FALSE);
+    }
+    vbox->Add(std::unique_ptr<ui::Item>(
+                  new RadioBoxItem(grp_, {rb_devices_, rb_processes_, rb_exe_})),
+              0, ui::ALL | ui::EXPAND, S(10));
 
-    HWND lbl_src = Add(WC_STATICW, tr("Selecionar Fonte:"), WS_GROUP);
+    lbl_src_ = Add(WC_STATICW, tr("Selecionar Fonte:"), WS_GROUP);
     cmb_ = Add(WC_COMBOBOXW, L"", COMBO, IDC_AS_SOURCE);
-    vbox->Add(lbl_src, 0, ui::LEFT | ui::RIGHT, S(10));
+    vbox->Add(lbl_src_, 0, ui::LEFT | ui::RIGHT, S(10));
     vbox->Add(cmb_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    // An executable is typed by name: it does not need to be running.
+    lbl_exe_ = ui::Create(hwnd_, WC_STATICW, tr("Nome do Executável:"), 0, 0);
+    txt_exe_ = ui::Create(hwnd_, WC_EDITW, L"", WS_TABSTOP | ES_AUTOHSCROLL, IDC_AS_EXE_NAME,
+                          WS_EX_CLIENTEDGE);
+    vbox->Add(lbl_exe_, 0, ui::LEFT | ui::RIGHT, S(10));
+    vbox->Add(txt_exe_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
 
     auto vol_box = HBox();
     HWND lbl_vol = Add(WC_STATICW, tr("Volume:"), 0);
@@ -370,6 +405,12 @@ void AddSourceDialog::OnInit() {
         Button_SetCheck(rb_devices_, BST_UNCHECKED);
         Button_SetCheck(rb_processes_, BST_CHECKED);
         PopulateFilter(1);
+    } else if (editing_ && edit_source_.type == L"exe") {
+        Button_SetCheck(rb_devices_, BST_UNCHECKED);
+        Button_SetCheck(rb_exe_, BST_CHECKED);
+        PopulateFilter(2);
+        // Only now: typing in the field updates the dialog, which must be ready.
+        SetWindowTextW(txt_exe_, edit_source_.name.c_str());
     } else {
         PopulateFilter(0);
     }
@@ -421,10 +462,11 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
     switch (id) {
         case IDC_AS_DEVICES:
         case IDC_AS_PROCESSES:
-            if (code == BN_CLICKED) {
-                int sel = Button_GetCheck(rb_processes_) == BST_CHECKED ? 1 : 0;
-                if (sel != filter_) OnFilterChange();
-            }
+        case IDC_AS_EXE:
+            if (code == BN_CLICKED && CheckedFilter() != filter_) OnFilterChange();
+            return true;
+        case IDC_AS_EXE_NAME:
+            if (code == EN_CHANGE) UpdateOkState();
             return true;
         case IDC_AS_SOURCE:
             if (code == CBN_SELCHANGE) {
@@ -442,24 +484,37 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
     return false;
 }
 
+int AddSourceDialog::CheckedFilter() const {
+    if (Button_GetCheck(rb_exe_) == BST_CHECKED) return 2;
+    return Button_GetCheck(rb_processes_) == BST_CHECKED ? 1 : 0;
+}
+
+void AddSourceDialog::UpdateOkState() {
+    if (!current_items_) return;  // the dialog is still being built
+    bool ok = filter_ == 2 ? !Trim(ui::GetText(txt_exe_)).empty() : !current_items_->empty();
+    EnableWindow(btn_ok_, ok);
+}
+
 void AddSourceDialog::PopulateFilter(int sel) {
     filter_ = sel;
-    current_items_ = sel == 0 ? &device_items_ : &process_items_;
+    bool exe = sel == 2;
+    ui::Show(lbl_src_, !exe);
+    ui::Show(cmb_, !exe);
+    ui::Show(lbl_exe_, exe);
+    ui::Show(txt_exe_, exe);
+    Relayout();
+    current_items_ = sel == 0 ? &device_items_ : sel == 1 ? &process_items_ : &exe_items_;
     std::vector<std::wstring> choices;
     for (auto& item : *current_items_) choices.push_back(std::get<2>(item));
     ui::ComboSetItems(cmb_, choices);
-    if (!choices.empty()) {
-        SendMessageW(cmb_, CB_SETCURSEL, 0, 0);
-        EnableWindow(btn_ok_, TRUE);
-    } else {
-        EnableWindow(btn_ok_, FALSE);
-    }
+    if (!choices.empty()) SendMessageW(cmb_, CB_SETCURSEL, 0, 0);
+    UpdateOkState();
     UpdateTestState();
 }
 
 void AddSourceDialog::OnFilterChange() {
     StopTest();
-    PopulateFilter(Button_GetCheck(rb_processes_) == BST_CHECKED ? 1 : 0);
+    PopulateFilter(CheckedFilter());
 }
 
 int AddSourceDialog::SelectedDevice() const {
@@ -543,6 +598,19 @@ LRESULT CALLBACK AddSourceDialog::SliderProc(HWND hwnd, UINT msg, WPARAM wp, LPA
 
 void AddSourceDialog::OnOk() {
     StopTest();
+    if (filter_ == 2) {
+        // Only the file name counts, and ".exe" is added when missing.
+        std::wstring name = BaseName(Trim(ui::GetText(txt_exe_)));
+        if (name.empty()) return;
+        if (name.size() < 4 || ToLower(name.substr(name.size() - 4)) != L".exe") name += L".exe";
+        selected.type = L"exe";
+        selected.id = 0;
+        selected.name = name;
+        selected.volume = Volume();
+        has_selected = true;
+        EndModal(IDOK);
+        return;
+    }
     int sel = (int)SendMessageW(cmb_, CB_GETCURSEL, 0, 0);
     if (sel == CB_ERR || current_items_->empty()) {
         EndModal(IDCANCEL);
@@ -646,4 +714,77 @@ bool PickFolder(HWND parent, const std::wstring& title, std::wstring* path) {
 bool ConfirmYesNo(HWND parent, const std::wstring& message, const std::wstring& title) {
     return MessageBoxW(parent, message.c_str(), title.c_str(),
                        MB_YESNO | MB_ICONEXCLAMATION | MB_DEFBUTTON1 | MB_SETFOREGROUND) == IDYES;
+}
+
+/* ---- Update download ---- */
+
+namespace {
+const UINT WM_DOWNLOAD_PROGRESS = WM_APP + 20;
+const UINT WM_DOWNLOAD_DONE = WM_APP + 21;
+}  // namespace
+
+DownloadDialog::DownloadDialog(const UpdateInfo& info, const std::wstring& file)
+    : ui::Dialog(tr("Baixando Atualização")), info_(info), file_(file) {}
+
+DownloadDialog::~DownloadDialog() {
+    if (thread_) {
+        cancel_ = true;
+        WaitForSingleObject(thread_, INFINITE);
+        CloseHandle(thread_);
+    }
+}
+
+void DownloadDialog::OnInit() {
+    auto vbox = VBox();
+    HWND text = Add(WC_STATICW, tr("Por favor aguarde..."), SS_NOPREFIX);
+    bar_ = Add(PROGRESS_CLASSW, L"", 0);
+    SendMessageW(bar_, PBM_SETRANGE32, 0, 1000);
+    HWND cancel = Add(WC_BUTTONW, tr("&Cancelar"), BUTTON, IDCANCEL);
+    vbox->Add(text, 0, ui::ALL, S(10));
+    vbox->Add(bar_, 0, ui::LEFT | ui::RIGHT | ui::EXPAND, S(10), SIZE{S(300), S(18)});
+    vbox->Add(cancel, 0, ui::CENTER | ui::ALL, S(15));
+    root_ = std::move(vbox);
+    Fit();
+    SetFocus(cancel);
+    thread_ = CreateThread(nullptr, 0, Worker, this, 0, nullptr);
+}
+
+DWORD WINAPI DownloadDialog::Worker(void* param) {
+    DownloadDialog* self = static_cast<DownloadDialog*>(param);
+    HWND hwnd = self->hwnd_;
+    int last = -1;
+    bool ok = DownloadUpdate(self->info_, self->file_, self->cancel_,
+                             [&](unsigned long long done, unsigned long long total) {
+                                 int permille = total ? (int)(done * 1000 / total) : 0;
+                                 if (permille != last) {
+                                     last = permille;
+                                     PostMessageW(hwnd, WM_DOWNLOAD_PROGRESS, permille, 0);
+                                 }
+                             });
+    PostMessageW(hwnd, WM_DOWNLOAD_DONE, ok, 0);
+    return 0;
+}
+
+INT_PTR DownloadDialog::OnMessage(UINT msg, WPARAM wp, LPARAM, bool* handled) {
+    *handled = false;
+    if (msg == WM_DOWNLOAD_PROGRESS) {
+        SendMessageW(bar_, PBM_SETPOS, wp, 0);
+        *handled = true;
+    } else if (msg == WM_DOWNLOAD_DONE) {
+        ok = wp != 0;
+        *handled = true;
+        EndModal(ok ? IDOK : IDCANCEL);
+    }
+    return 0;
+}
+
+bool DownloadDialog::OnCommand(int id, int code, HWND) {
+    if (id == IDCANCEL) {
+        // The download stops at its next piece; the dialog closes right away.
+        cancelled = true;
+        cancel_ = true;
+        EndModal(IDCANCEL);
+        return true;
+    }
+    return id == IDOK;  // Enter outside the button does nothing
 }

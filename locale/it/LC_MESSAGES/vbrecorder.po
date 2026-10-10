@@ -348,3 +348,65 @@ msgstr "Dispositivo di ingresso predefinito"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr ""
 "Errore BASS {erro} durante l'aggiunta della sorgente di registrazione."
+
+msgid "Continuar Última Gra&vação"
+msgstr "C&ontinua l'ultima registrazione"
+
+msgid "Continuar Última Gravação"
+msgstr "Continua l'ultima registrazione"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Impossibile continuare la registrazione. Verifica che il file non sia aperto in un altro programma:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "File eseguibile"
+
+msgid "Nome do Executável:"
+msgstr "Nome dell'eseguibile:"
+
+msgid "Nova atualização disponível!"
+msgstr "Nuovo aggiornamento disponibile!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"La tua versione: {atual};\n"
+"Versione più recente: {nova}.\n"
+"Vuoi aggiornare ora?"
+
+msgid "Baixando Atualização"
+msgstr "Download dell'aggiornamento"
+
+msgid "Por favor aguarde..."
+msgstr "Attendere prego..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "&Verifica aggiornamenti automaticamente"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Cerca a&ggiornamenti..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Stai già usando la versione più recente di VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Cerca aggiornamenti"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Impossibile verificare la presenza di aggiornamenti."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Impossibile scaricare l'aggiornamento."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Impossibile installare l'aggiornamento:\n"
+"{erro}"

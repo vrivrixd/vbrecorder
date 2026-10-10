@@ -348,3 +348,65 @@ msgstr "Périphérique d'entrée par défaut"
 
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Erreur BASS {erro} lors de l'ajout de la source d'enregistrement."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Continuer le dernier enre&gistrement"
+
+msgid "Continuar Última Gravação"
+msgstr "Continuer le dernier enregistrement"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Impossible de poursuivre l'enregistrement. Vérifiez que le fichier n'est pas ouvert dans un autre programme :\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Fichier exécutable"
+
+msgid "Nome do Executável:"
+msgstr "Nom de l'exécutable :"
+
+msgid "Nova atualização disponível!"
+msgstr "Nouvelle mise à jour disponible !"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Votre version : {atual} ;\n"
+"Version la plus récente : {nova}.\n"
+"Voulez-vous mettre à jour maintenant ?"
+
+msgid "Baixando Atualização"
+msgstr "Téléchargement de la mise à jour"
+
+msgid "Por favor aguarde..."
+msgstr "Veuillez patienter..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "&Vérifier automatiquement les mises à jour"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Rechercher une mise à jo&ur..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Vous utilisez déjà la version la plus récente de VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Rechercher une mise à jour"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Impossible de rechercher les mises à jour."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Impossible de télécharger la mise à jour."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Impossible d'installer la mise à jour :\n"
+"{erro}"

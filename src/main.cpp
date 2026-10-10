@@ -35,6 +35,7 @@
 #include "i18n.h"
 #include "process_audio.h"
 #include "ui.h"
+#include "updater.h"
 #include "util.h"
 
 using ui::S;
@@ -46,6 +47,7 @@ enum {
     IDC_PAUSE,
     IDC_PLAY,
     IDC_DELETE,
+    IDC_CONTINUE,
     IDC_FORMAT,
     IDC_BITRATE,
     IDC_FLAC,
@@ -71,6 +73,7 @@ enum { HK_REC = 1, HK_PAUSE, HK_STOP, HK_SHOW, HK_EXIT };
 
 enum {
     MENU_RECORD = 2001,
+    MENU_CONTINUE,
     MENU_PLAY,
     MENU_DELETE,
     MENU_PAUSE,
@@ -82,7 +85,12 @@ enum {
     MENU_COMBO = 3000,  // + 100 * combo box + item
 };
 
+/* Marks the running instance; a second one only warns and quits. */
+const wchar_t* const INSTANCE_MUTEX = L"VBRecorder_Mutex";
+HANDLE g_instance_mutex = nullptr;
+
 const UINT WM_TRAY = WM_APP + 1;
+const UINT WM_UPDATE_FOUND = WM_APP + 3;  // lParam: an UpdateInfo to delete
 const UINT_PTR TIMER_PLAY = 1;
 
 const std::vector<std::wstring> BITRATES = {L"8 KBPS",   L"16 KBPS",  L"32 KBPS",  L"64 KBPS",
@@ -98,6 +106,7 @@ public:
 
     bool Create();
     void ShowAtStart();
+    void StartUpdateCheck();
     bool OnCharHook(const MSG& msg);
     HWND hwnd() const { return hwnd_; }
 
@@ -125,11 +134,17 @@ private:
     void OnEditSource();
     void OnRemoveSource();
     void OnSettings();
+    bool OfferUpdate(const UpdateInfo& info, HWND parent);
+    bool CheckUpdateNow(HWND parent);
+    static DWORD WINAPI UpdateCheckThread(void* window);
     void OnFormatChange();
     void LoadSettings();
     void SaveSettings();
     void OnRecordToggle();
     void OnPauseToggle();
+    void RecordingStarted();
+    bool CanContinue();
+    void OnContinueLast();
     void OnBrowse();
     std::wstring CurrentOutputDir();
     void OnOpenDir();
@@ -162,7 +177,7 @@ private:
     HICON tray_icon_ = nullptr;
     std::vector<HWND> menu_combos_;
 
-    HWND btn_record_, btn_pause_, btn_play_, btn_delete_;
+    HWND btn_record_, btn_pause_, btn_continue_, btn_play_, btn_delete_;
     HWND lbl_format_, cmb_format_, lbl_bitrate_, cmb_bitrate_, lbl_flac_level_, cmb_flac_level_;
     HWND lbl_rate_, cmb_rate_, lbl_channels_, cmb_channels_;
     HWND lbl_sources_, lst_fontes_, btn_add_, btn_edit_, btn_rem_;
@@ -237,6 +252,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
                     case IDC_PAUSE: OnPauseToggle(); return TRUE;
                     case IDC_PLAY: OnPlayToggle(); return TRUE;
                     case IDC_DELETE: OnDeleteRecording(); return TRUE;
+                    case IDC_CONTINUE: OnContinueLast(); return TRUE;
                     case IDC_ADD: OnAddSource(); return TRUE;
                     case IDC_EDIT: OnEditSource(); return TRUE;
                     case IDC_REMOVE: OnRemoveSource(); return TRUE;
@@ -273,6 +289,12 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
             if (LOWORD(lp) == WM_LBUTTONDBLCLK) ShowMain();
             else if (LOWORD(lp) == WM_RBUTTONUP) ShowTrayMenu();
             return TRUE;
+        case WM_UPDATE_FOUND: {
+            // Found when the program started; the window is already open.
+            std::unique_ptr<UpdateInfo> info((UpdateInfo*)lp);
+            if (!audio.is_recording() && OfferUpdate(*info, DialogParent())) OnClose();
+            return TRUE;
+        }
         case WM_ENDSESSION:
             // Windows is shutting down: the file being recorded is closed properly.
             if (wp) {
@@ -305,7 +327,12 @@ void MainFrame::SetupUi() {
     EnableWindow(btn_play_, FALSE);
     btn_delete_ = Add(WC_BUTTONW, BUTTON, IDC_DELETE);
     EnableWindow(btn_delete_, FALSE);
-    for (HWND b : {btn_record_, btn_pause_, btn_play_, btn_delete_}) hbox_ctrl->Add(b, 0, ui::ALL, S(5));
+    btn_continue_ = Add(WC_BUTTONW, BUTTON, IDC_CONTINUE);
+    EnableWindow(btn_continue_, FALSE);
+    // The continue button sits next to Pause, which is what it resembles.
+    SetWindowPos(btn_continue_, btn_pause_, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+    for (HWND b : {btn_record_, btn_pause_, btn_continue_, btn_play_, btn_delete_})
+        hbox_ctrl->Add(b, 0, ui::ALL, S(5));
     vbox->Add(std::move(hbox_ctrl), 0, ui::CENTER | ui::ALL, S(10));
 
     auto labeled_combo = [&](HWND* lbl, HWND* cmb, int id, const std::vector<std::wstring>& choices) {
@@ -408,6 +435,7 @@ void MainFrame::Retranslate() {
     ui::SetText(btn_min_, tr("&Minimizar"));
     ui::SetText(btn_close_, tr("&Fechar"));
     ui::SetText(btn_delete_, tr("E&xcluir Gravação"));
+    ui::SetText(btn_continue_, tr("Continuar Última Gra&vação"));
 
     ui::SetText(chk_separate_, tr("Gravar fontes em arquivos se&parados"));
     ui::SetText(chk_tones_, tr("Reproduzir &tons ao iniciar ou parar gravação"));
@@ -515,6 +543,8 @@ void MainFrame::RegisterAllHotkeys() {
 void MainFrame::OnHotkey(int id) {
     if (id == HK_REC && !audio.is_recording()) OnRecordToggle();
     else if (id == HK_PAUSE && audio.is_recording()) OnPauseToggle();
+    // Stopped, the same hotkey continues the last recording.
+    else if (id == HK_PAUSE && CanContinue()) OnContinueLast();
     else if (id == HK_STOP && audio.is_recording()) OnRecordToggle();
     else if (id == HK_SHOW) ShowMain();
     else if (id == HK_EXIT) OnClose();
@@ -532,6 +562,9 @@ void MainFrame::OnAddSource() {
     int result = dlg.ShowModal(hwnd_);
     audio.StopMonitor();
     if (result == IDOK && dlg.has_selected) {
+        // The same executable twice would be recorded twice.
+        for (auto& s : sources_)
+            if (SameSource(s, dlg.selected)) return;
         if (dlg.selected.type == L"device") audio.InitDevice(dlg.selected.id);
         // While recording, the source joins the recording right away.
         if (audio.is_recording() && !AddToRecording(dlg.selected)) return;
@@ -562,12 +595,12 @@ void MainFrame::OnEditSource() {
         const Source& now = dlg.selected;
         if (now.type == L"device") audio.InitDevice(now.id);
         if (audio.is_recording()) {
-            if (now.type == src.type && now.id == src.id) {
+            if (SameSource(now, src)) {
                 // Same source: only the volume changes, right away.
-                audio.SetSourceVolume(now.type, now.id, now.volume);
+                audio.SetSourceVolume(now, now.volume);
             } else {
                 if (!AddToRecording(now)) return;
-                audio.RemoveLiveSource(src.type, src.id);
+                audio.RemoveLiveSource(src);
             }
         }
         sources_[sel] = now;
@@ -588,22 +621,106 @@ void MainFrame::OnRemoveSource() {
     for (int i : to_remove) {
         // While recording, the source leaves the recording; with separate
         // files, its file goes on in silence until the end.
-        if (audio.is_recording()) audio.RemoveLiveSource(sources_[i].type, sources_[i].id);
+        if (audio.is_recording()) audio.RemoveLiveSource(sources_[i]);
         sources_.erase(sources_.begin() + i);
     }
     RefreshList();
     SaveSettings();
 }
 
+/* ---- Updates ---- */
+
+DWORD WINAPI MainFrame::UpdateCheckThread(void* window) {
+    auto info = std::make_unique<UpdateInfo>();
+    if (CheckForUpdate(info.get()) == UpdateCheck::Available &&
+        PostMessageW((HWND)window, WM_UPDATE_FOUND, 0, (LPARAM)info.get()))
+        info.release();
+    return 0;
+}
+
+void MainFrame::StartUpdateCheck() {
+    // In the background: the window opens normally meanwhile.
+    HANDLE thread = CreateThread(nullptr, 0, UpdateCheckThread, hwnd_, 0, nullptr);
+    if (thread) CloseHandle(thread);
+}
+
+/* Asks, downloads and installs. True when the new version is starting and this
+   one must close. */
+bool MainFrame::OfferUpdate(const UpdateInfo& info, HWND parent) {
+    std::wstring text = Format(tr("Sua versão: {atual};\nVersão mais recente: {nova}.\nDeseja atualizar agora?"),
+                               {{L"atual", VB_VERSION}, {L"nova", info.version}});
+    if (ui::MsgBox(parent, text, tr("Nova atualização disponível!"),
+                   MB_YESNO | MB_ICONINFORMATION) != IDYES)
+        return false;
+    wchar_t temp[MAX_PATH];
+    GetTempPathW(MAX_PATH, temp);
+    std::wstring zip = JoinPath(temp, L"VBRecorder-update.zip");
+    bool downloaded, cancelled;
+    {
+        DownloadDialog dlg(info, zip);
+        dlg.ShowModal(parent);
+        downloaded = dlg.ok;
+        cancelled = dlg.cancelled;
+    }
+    if (!downloaded) {
+        if (!cancelled)
+            ui::MsgBox(parent, tr("Não foi possível baixar a atualização."), tr("Erro"),
+                       MB_ICONERROR | MB_OK);
+        return false;
+    }
+    std::wstring error;
+    bool installed = InstallUpdate(zip, info, &error);
+    // The new version must not find this one still marked as running.
+    if (installed && g_instance_mutex) {
+        CloseHandle(g_instance_mutex);
+        g_instance_mutex = nullptr;
+    }
+    if (!installed || !StartUpdatedProgram()) {
+        if (!g_instance_mutex) g_instance_mutex = CreateMutexW(nullptr, FALSE, INSTANCE_MUTEX);
+        DeleteFileW(zip.c_str());
+        ui::MsgBox(parent, Format(tr("Não foi possível instalar a atualização:\n{erro}"), {{L"erro", error}}),
+                   tr("Erro"), MB_ICONERROR | MB_OK);
+        return false;
+    }
+    return true;
+}
+
+/* The "Check for update" button of the settings. */
+bool MainFrame::CheckUpdateNow(HWND parent) {
+    HCURSOR old = SetCursor(LoadCursorW(nullptr, IDC_WAIT));
+    UpdateInfo info;
+    UpdateCheck result = CheckForUpdate(&info);
+    SetCursor(old);
+    if (result == UpdateCheck::Failed) {
+        ui::MsgBox(parent, tr("Não foi possível verificar se há atualizações."), tr("Erro"),
+                   MB_ICONERROR | MB_OK);
+        return false;
+    }
+    if (result == UpdateCheck::UpToDate) {
+        ui::MsgBox(parent, tr("Você já está usando a versão mais recente do VB Recorder."),
+                   tr("Verificar Atualização"), MB_ICONINFORMATION | MB_OK);
+        return false;
+    }
+    return OfferUpdate(info, parent);
+}
+
 void MainFrame::OnSettings() {
-    SettingsDialog dlg(config, [this] { RegisterAllHotkeys(); });
-    if (dlg.ShowModal(hwnd_) != IDOK) return;
+    SettingsDialog dlg(config, [this] { RegisterAllHotkeys(); },
+                       [this](HWND parent) { return CheckUpdateNow(parent); });
+    int result = dlg.ShowModal(hwnd_);
+    if (dlg.updating) {
+        // The new version is starting: this one closes.
+        OnClose();
+        return;
+    }
+    if (result != IDOK) return;
     std::wstring old_language = config.Get(L"idioma");
     std::wstring new_language = dlg.LanguageCode();
     config.SetConfig(L"idioma", new_language);
     config.SetConfig(L"iniciar_minimizado", dlg.start_minimized);
     config.SetConfig(L"minimizar_bandeja", dlg.tray);
     config.SetConfig(L"sempre_no_topo", dlg.on_top);
+    config.SetConfig(L"verificar_atualizacoes", dlg.check_updates);
     config.SetConfig(L"buffer", dlg.BufferValue());
     config.Save();
 
@@ -659,6 +776,9 @@ void MainFrame::LoadSettings() {
                 audio.InitDevice(entry.id);
                 break;
             }
+        } else if (entry.type == L"exe") {
+            // Kept even with the program closed: it is recorded whenever it runs.
+            sources_.push_back(Source{L"exe", 0, entry.exe, entry.volume});
         } else {
             std::wstring resolved = GetProcessName((DWORD)entry.id);
             if (!resolved.empty()) {
@@ -726,10 +846,7 @@ void MainFrame::OnRecordToggle() {
                                        ui::ComboValue(cmb_channels_), sources_, Checked(chk_separate_),
                                        _wtoi(ui::ComboValue(cmb_flac_level_).c_str()), &err);
         if (ok) {
-            ui::SetText(btn_record_, tr("Para&r"));
-            EnableWindow(btn_pause_, TRUE);
-            ToggleUi(false);
-            UpdateRecordingButtons();
+            RecordingStarted();
         } else {
             ui::MsgBox(DialogParent(),
                            Format(tr("Erro BASS {erro} ao iniciar a gravação."),
@@ -749,6 +866,44 @@ void MainFrame::OnRecordToggle() {
         for (auto& p : audio.output_files())
             if (FileExists(p)) last_recording_.push_back(p);
         UpdateRecordingButtons();
+    }
+}
+
+void MainFrame::RecordingStarted() {
+    ui::SetText(btn_record_, tr("Para&r"));
+    EnableWindow(btn_pause_, TRUE);
+    ToggleUi(false);
+    UpdateRecordingButtons();
+}
+
+bool MainFrame::CanContinue() { return HasRecording() && audio.CanContinue(); }
+
+/* Goes on with the last recording, in the same files, as if it had only been
+   paused. */
+void MainFrame::OnContinueLast() {
+    if (audio.is_recording() || !CanContinue()) return;
+    audio.StopMonitor();
+    audio.StopPlayback();  // the file being played is the one to continue
+    UpdatePlayButton();
+    if (Checked(chk_tones_)) audio.PlayTone(880, 150);
+    bool continue_had_focus = GetFocus() == btn_continue_;
+    int err = 0;
+    std::wstring failed;
+    if (audio.ContinueRecording(sources_, &err, &failed)) {
+        RecordingStarted();
+        if (continue_had_focus) SetFocus(btn_record_);
+        return;
+    }
+    if (!failed.empty()) {
+        ui::MsgBox(DialogParent(),
+                   Format(tr("Não foi possível continuar a gravação. Verifique se o arquivo não "
+                             "está aberto em outro programa:\n{arquivo}"),
+                          {{L"arquivo", failed}}),
+                   tr("Erro"), MB_ICONERROR | MB_OK);
+    } else {
+        ui::MsgBox(DialogParent(),
+                   Format(tr("Erro BASS {erro} ao iniciar a gravação."), {{L"erro", std::to_wstring(err)}}),
+                   tr("Erro"), MB_ICONERROR | MB_OK);
     }
 }
 
@@ -810,6 +965,7 @@ void MainFrame::UpdateRecordingButtons() {
     bool available = HasRecording();
     EnableWindow(btn_play_, available);
     EnableWindow(btn_delete_, available);
+    EnableWindow(btn_continue_, CanContinue());
     UpdatePlayButton();
 }
 
@@ -882,6 +1038,7 @@ void MainFrame::OnDeleteRecording() {
                               {{L"n", std::to_wstring(files.size())}, {L"lista", list_text}});
     if (!ConfirmYesNo(DialogParent(), msg, tr("Confirmar Exclusão"))) return;
     audio.StopPlayback();
+    audio.ForgetLastRecording();
     std::vector<std::wstring> failures;
     for (auto& path : files) {
         if (!DeleteFileW(path.c_str()))
@@ -980,6 +1137,8 @@ void MainFrame::ShowTrayMenu() {
     menu_combos_ = {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_channels_};
     if (!audio.is_recording()) {
         AppendMenuW(menu, MF_STRING, MENU_RECORD, tr("Gravar").c_str());
+        if (CanContinue())
+            AppendMenuW(menu, MF_STRING, MENU_CONTINUE, tr("Continuar Última Gravação").c_str());
         if (HasRecording()) {
             std::wstring label_play = audio.IsPlaying() ? tr("Parar Reprodução") : tr("Reproduzir Gravação");
             AppendMenuW(menu, MF_STRING, MENU_PLAY, label_play.c_str());
@@ -1023,6 +1182,7 @@ void MainFrame::OnTrayCommand(UINT cmd) {
         case MENU_RECORD:
         case MENU_STOP: OnRecordToggle(); return;
         case MENU_PLAY: OnPlayToggle(); return;
+        case MENU_CONTINUE: OnContinueLast(); return;
         case MENU_DELETE: OnDeleteRecording(); return;
         case MENU_PAUSE: OnPauseToggle(); return;
         case MENU_SHOW: ShowMain(); return;
@@ -1057,13 +1217,16 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
                                     ICC_WIN95_CLASSES};
     InitCommonControlsEx(&icc);
     ui::Init(instance);
+    // Right after an update: waits for the old version to close, and removes
+    // what it left behind.
+    FinishUpdate(GetCommandLineW());
 
     // Settings come first: they define the language of the messages,
     // including the one saying the program is already running.
     std::unique_ptr<MainFrame> frame(new MainFrame());
     i18n::SetLanguage(frame->config.Get(L"idioma"));
 
-    HANDLE mutex = CreateMutexW(nullptr, FALSE, L"VBRecorder_Mutex");
+    g_instance_mutex = CreateMutexW(nullptr, FALSE, INSTANCE_MUTEX);
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
         ui::MsgBox(nullptr, tr("O VB Recorder já está em execução."), tr("Aviso"),
                        MB_ICONWARNING | MB_OK);
@@ -1074,6 +1237,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
     frame->audio.SetBuffer(frame->config.GetBuffer());
     if (!frame->Create()) return 1;
     frame->ShowAtStart();
+    if (frame->config.GetBoolean(L"verificar_atualizacoes", true)) frame->StartUpdateCheck();
 
     MSG msg;
     while (GetMessageW(&msg, nullptr, 0, 0) > 0) {
@@ -1085,7 +1249,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
         TranslateMessage(&msg);
         DispatchMessageW(&msg);
     }
-    if (mutex) CloseHandle(mutex);
+    if (g_instance_mutex) CloseHandle(g_instance_mutex);
     CoUninitialize();
     return (int)msg.wParam;
 }

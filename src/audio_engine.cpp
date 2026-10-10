@@ -109,8 +109,9 @@ std::wstring SourceSafeName(const std::wstring& original) {
    The queue keeps track of where its end sits on the recording timeline
    (tail). When audio arrives much later than the tail says it should, the
    stretch in between never happened (a loopback with nothing playing, a device
-   that slept, a process that went quiet): it becomes silence, so the new audio
-   lands where it belongs in time and the queue keeps its slack. */
+   that slept, a process that went quiet, or a capture that was still starting):
+   it becomes silence, so the new audio lands where it belongs in time and the
+   queue keeps its slack. */
 struct AudioEngine::Input : public CaptureSink {
     AudioEngine* engine = nullptr;
     Source src;
@@ -122,10 +123,10 @@ struct AudioEngine::Input : public CaptureSink {
     int chans = 0;
     std::atomic<float> volume{1.0f};
     double gap_threshold = 0;  // seconds; later than this means audio was lost
+    Watch* watch = nullptr;    // the executable this process instance belongs to
 
     // Changed under the engine's graph lock.
     Output* out = nullptr;
-    bool attached = false;  // added to the mixer of its output
     std::atomic<bool> ending{false};  // removed: its queue drains, then it leaves
 
     // The queue timeline, guarded by queue_mutex.
@@ -133,7 +134,7 @@ struct AudioEngine::Input : public CaptureSink {
     double base_sec = 0;             // recording time at the start of the queue
     unsigned long long pushed = 0;   // frames pushed since then
     double lateness_avg = 0;
-    bool have_lateness = false;
+    bool started = false;
     std::vector<float> scratch;
     std::vector<float> zeros;
 
@@ -184,9 +185,11 @@ struct AudioEngine::Input : public CaptureSink {
         std::lock_guard<std::mutex> lock(queue_mutex);
         double now = engine->RecordingSeconds();
         double lateness = now - (TailSeconds() + (double)frames / rate);
-        if (!have_lateness) {
-            lateness_avg = lateness;
-            have_lateness = true;
+        if (!started) {
+            // The first audio takes its place on the timeline: whatever came
+            // before it (a capture still starting) is silence.
+            if (lateness > 0.03) SilenceLocked((unsigned long long)(lateness * rate));
+            started = true;
         } else if (lateness - lateness_avg > gap_threshold) {
             // More late than any buffer could hold: that audio does not exist.
             SilenceLocked((unsigned long long)((lateness - lateness_avg) * rate));
@@ -210,6 +213,7 @@ struct AudioEngine::Output {
     DWORD encoder = 0;
     int rate = 0;
     int chans = 0;
+    std::wstring path;
     std::vector<Input*> inputs;
     long long frames_done = 0;
 
@@ -218,11 +222,22 @@ struct AudioEngine::Output {
     // back to it.
     std::wstring key;
 
-    // A file created in the middle of the recording first fills itself with
-    // silence up to that moment, so it stays in sync with the others; only
-    // then does its source join.
+    // A file that joins in the middle of the recording first fills itself up
+    // to that moment, so it stays in sync with the others: with silence, or,
+    // when a recording is continued, with what the file already had. Only then
+    // do its sources join.
     long long join_at = 0;
-    Input* pending = nullptr;
+    std::vector<Input*> pending;
+    DWORD old_stream = 0;        // the earlier recording, decoded
+    std::wstring old_path;       // where it was set aside meanwhile
+};
+
+/* A source by executable name: every main process of that executable, from
+   the moment it starts until it exits, as many times as it runs. */
+struct AudioEngine::Watch {
+    Source src;
+    Output* out = nullptr;
+    std::map<DWORD, Input*> instances;
 };
 
 AudioEngine::AudioEngine() {
@@ -486,9 +501,10 @@ std::unique_ptr<AudioEngine::Input> AudioEngine::MakeInput(const Source& src, in
         in->rate = sample_rate_;
         in->chans = chans_;
     } else {
+        // The capture starts activating now; its first audio finds its place
+        // on the timeline by itself.
         in->cap = std::make_unique<ProcessLoopbackCapture>((DWORD)src.id, rec_buffer_ms_);
         in->cap->Start();
-        in->cap->WaitReady(3000);
         in->rate = ProcessLoopbackCapture::RATE;
         in->chans = ProcessLoopbackCapture::CHANNELS;
     }
@@ -510,6 +526,17 @@ bool AudioEngine::StartDevice(Input* in, bool play) {
     return in->rec != 0;
 }
 
+void AudioEngine::StopCapture(Input* in) {
+    if (in->rec) {
+        b_.ChannelStop(in->rec);
+        in->rec = 0;
+    }
+    if (in->cap) {
+        in->cap->SetSink(nullptr);
+        in->cap->Stop();
+    }
+}
+
 void AudioEngine::AttachLive(Input* in, Output* out, double now) {
     // The queue starts where the file is now, and silence fills it up to the
     // present: the source joins exactly in time with the others.
@@ -519,14 +546,41 @@ void AudioEngine::AttachLive(Input* in, Output* out, double now) {
                              BASS_MIXER_CHAN_DOWNMIX | BASS_MIXER_CHAN_NORAMPIN);
     out->inputs.push_back(in);
     in->out = out;
-    in->attached = true;
 }
 
-AudioEngine::Output* AudioEngine::MakeOutput(const std::wstring& path, const std::wstring& key) {
+void AudioEngine::Place(Input* in, Output* out, double now) {
+    if (out->frames_done >= out->join_at) {
+        AttachLive(in, out, now);
+    } else {
+        // The file is still filling its start: the source waits, with its
+        // queue starting exactly where the file will join the recording.
+        in->base_sec = (double)out->join_at / out->rate;
+        in->out = out;
+        out->pending.push_back(in);
+    }
+}
+
+void AudioEngine::Join(Output& out) {
+    if (out.old_stream) {
+        b_.MixerChannelRemove(out.old_stream);
+        b_.StreamFree(out.old_stream);
+        out.old_stream = 0;
+    }
+    for (Input* in : out.pending) {
+        b_.MixerStreamAddChannel(out.mixer, in->push,
+                                 BASS_MIXER_CHAN_DOWNMIX | BASS_MIXER_CHAN_NORAMPIN);
+        out.inputs.push_back(in);
+    }
+    out.pending.clear();
+}
+
+AudioEngine::Output* AudioEngine::MakeOutput(const std::wstring& path, const std::wstring& key,
+                                             bool add_to_files) {
     auto out = std::make_unique<Output>();
     out->rate = sample_rate_;
     out->chans = chans_;
     out->key = key;
+    out->path = path;
     out->mixer = b_.MixerStreamCreate(sample_rate_, chans_,
                                       BASS_SAMPLE_FLOAT | BASS_STREAM_DECODE | BASS_MIXER_NONSTOP);
     if (!out->mixer) return nullptr;
@@ -535,7 +589,7 @@ AudioEngine::Output* AudioEngine::MakeOutput(const std::wstring& path, const std
         b_.StreamFree(out->mixer);
         return nullptr;
     }
-    output_files_.push_back(path);
+    if (add_to_files) output_files_.push_back(path);
     outputs_.push_back(std::move(out));
     return outputs_.back().get();
 }
@@ -544,149 +598,70 @@ std::wstring AudioEngine::SeparatePath(const std::wstring& key) const {
     return base_path_ + L" (" + key + L")" + ext_;
 }
 
-AudioEngine::Input* AudioEngine::FindInput(const std::wstring& type, int id) {
+bool AudioEngine::IsLive(const Output* out) const {
+    if (!out->pending.empty()) return true;
+    for (Input* in : out->inputs)
+        if (!in->ending) return true;
+    for (auto& w : watches_)
+        if (w->out == out) return true;
+    return false;
+}
+
+AudioEngine::Output* AudioEngine::OutputFor(const Source& src, double now) {
+    if (!separate_) return outputs_.empty() ? nullptr : outputs_[0].get();
+    // Back to the file of this same source, if it was removed before;
+    // otherwise a new file, which starts with silence up to now.
+    std::wstring name = src.type == L"exe" ? src.name : SourceSafeName(src.name), key = name;
+    for (int n = 2;; ++n) {
+        auto it = std::find_if(outputs_.begin(), outputs_.end(),
+                               [&](const std::unique_ptr<Output>& o) { return o->key == key; });
+        if (it == outputs_.end()) break;
+        if (!IsLive(it->get())) return it->get();
+        key = name + L" " + std::to_wstring(n);
+    }
+    Output* out = MakeOutput(SeparatePath(key), key, true);
+    if (out) out->join_at = (long long)(now * out->rate);
+    return out;
+}
+
+AudioEngine::Input* AudioEngine::FindInput(const Source& src) {
     for (auto& in : inputs_)
-        if (!in->ending && in->src.type == type && in->src.id == id) return in.get();
+        if (!in->ending && !in->watch && SameSource(in->src, src)) return in.get();
     return nullptr;
 }
 
-bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstring& format_type,
-                                 const std::wstring& bitrate, int sample_rate,
-                                 const std::wstring& channels, const std::vector<Source>& sources,
-                                 bool separate_files, int flac_nivel, int* error) {
-    *error = 0;
-    if (recording_) return false;
-    if (sources.empty()) {
-        *error = -1;
-        return false;
-    }
-
-    Teardown(false);
-    output_files_.clear();
-    sample_rate_ = sample_rate;
-    chans_ = channels == L"mono" ? 1 : 2;
-    rec_buffer_ms_ = buffer_ms_;
-    format_ = format_type;
-    options_.clear();
-    if (format_type == L"mp3" || format_type == L"ogg") options_ = L"-b " + bitrate;
-    else if (format_type == L"opus") options_ = L"--bitrate " + bitrate;
-    else if (format_type == L"flac") options_ = L"-" + std::to_wstring(flac_nivel);
-    // The mode is chosen when recording starts; sources added later follow it.
-    separate_ = separate_files && sources.size() > 1;
-    SplitExt(file_path, &base_path_, &ext_);
-
-    auto fail = [&](int code) {
-        Teardown(false);
-        *error = code;
-        return false;
-    };
-
-    // Processes first: activating the capture takes a moment.
-    std::vector<Input*> created;
-    for (auto& src : sources) {
-        int code = 0;
-        auto in = MakeInput(src, &code);
-        if (!in) return fail(code);
-        created.push_back(in.get());
-        inputs_.push_back(std::move(in));
-    }
-
-    std::vector<Output*> targets;
-    if (separate_) {
-        for (Input* in : created) {
-            std::wstring key = SourceSafeName(in->src.name);
-            for (int n = 2; std::any_of(outputs_.begin(), outputs_.end(),
-                                        [&](const std::unique_ptr<Output>& o) { return o->key == key; });
-                 ++n)
-                key = SourceSafeName(in->src.name) + L" " + std::to_wstring(n);
-            Output* out = MakeOutput(SeparatePath(key), key);
-            if (!out) return fail(b_.ErrorGetCode());
-            targets.push_back(out);
-        }
-    } else {
-        Output* out = MakeOutput(file_path, L"");
-        if (!out) return fail(b_.ErrorGetCode());
-        targets.assign(created.size(), out);
-    }
-
-    paused_ = false;
-    LARGE_INTEGER now;
-    QueryPerformanceCounter(&now);
-    start_ticks_ = now.QuadPart;
-    paused_ticks_ = 0;
-    for (size_t i = 0; i < created.size(); ++i) AttachLive(created[i], targets[i], 0.0);
-
-    for (Input* in : created) {
-        if (in->is_device && !StartDevice(in, false)) return fail(b_.ErrorGetCode());
-    }
-    for (Input* in : created)
-        if (in->cap) in->cap->SetSink(in);
-
-    recording_ = true;
-    SetRecordingPower(true);
-    ResetEvent(pump_stop_);
-    pump_thread_ = CreateThread(nullptr, 0, PumpThread, this, 0, nullptr);
-    for (Input* in : created)
-        if (in->rec) b_.ChannelPlay(in->rec, FALSE);
-    return true;
+AudioEngine::Watch* AudioEngine::FindWatch(const Source& src) {
+    for (auto& w : watches_)
+        if (SameSource(w->src, src)) return w.get();
+    return nullptr;
 }
 
-bool AudioEngine::AddLiveSource(const Source& src, int* error) {
-    *error = 0;
-    if (!recording_) return false;
-    {
-        std::lock_guard<std::mutex> lock(graph_mutex_);
-        if (FindInput(src.type, src.id)) return true;
+bool AudioEngine::PlaceSource(const Source& src, double now, int* error) {
+    Output* out = nullptr;
+    if (src.type == L"exe") {
+        out = OutputFor(src, now);
+        if (!out) {
+            *error = b_.ErrorGetCode();
+            return false;
+        }
+        // Its processes join as they are found running.
+        auto w = std::make_unique<Watch>();
+        w->src = src;
+        w->out = out;
+        watches_.push_back(std::move(w));
+        return true;
     }
-    // Outside the lock: activating a process capture takes a moment, and the
-    // recording goes on meanwhile.
     auto made = MakeInput(src, error);
     if (!made) return false;
     Input* in = made.get();
-
-    std::lock_guard<std::mutex> lock(graph_mutex_);
-    double now = RecordingSeconds();
-    Output* out = nullptr;
-    if (!separate_) {
-        out = outputs_[0].get();
-        AttachLive(in, out, now);
-    } else {
-        // Back to the file of this same source, if it was removed before;
-        // otherwise a new file.
-        std::wstring name = SourceSafeName(src.name), key = name;
-        for (int n = 2;; ++n) {
-            auto it = std::find_if(outputs_.begin(), outputs_.end(),
-                                   [&](const std::unique_ptr<Output>& o) { return o->key == key; });
-            if (it == outputs_.end()) break;
-            Output* o = it->get();
-            bool live = o->pending ||
-                        std::any_of(o->inputs.begin(), o->inputs.end(),
-                                    [](Input* i) { return !i->ending; });
-            if (!live) {
-                out = o;
-                break;
-            }
-            key = name + L" " + std::to_wstring(n);
-        }
-        if (out) {
-            AttachLive(in, out, now);
-        } else {
-            out = MakeOutput(SeparatePath(key), key);
-            if (!out) {
-                *error = b_.ErrorGetCode();
-                b_.StreamFree(in->push);
-                if (in->cap) in->cap->Stop();
-                return false;
-            }
-            // The new file first gets silence from the start of the recording
-            // up to now; the pump writes it, and then the source joins.
-            out->join_at = (long long)(now * out->rate);
-            out->pending = in;
-            in->out = out;
-            in->base_sec = (double)out->join_at / out->rate;
-        }
+    out = OutputFor(src, now);
+    if (!out) {
+        *error = b_.ErrorGetCode();
+        StopCapture(in);
+        b_.StreamFree(in->push);
+        return false;
     }
-
+    Place(in, out, now);
     if (in->is_device) {
         if (!StartDevice(in, true)) {
             *error = b_.ErrorGetCode();
@@ -702,51 +677,193 @@ bool AudioEngine::AddLiveSource(const Source& src, int* error) {
 
 void AudioEngine::DropInput(Input* in) {
     // Only for a source that never started: it has nothing to drain.
-    Output* out = in->out;
-    if (out) {
-        if (out->pending == in) out->pending = nullptr;
+    if (Output* out = in->out) {
+        auto p = std::find(out->pending.begin(), out->pending.end(), in);
+        if (p != out->pending.end()) out->pending.erase(p);
         auto it = std::find(out->inputs.begin(), out->inputs.end(), in);
         if (it != out->inputs.end()) {
             b_.MixerChannelRemove(in->push);
             out->inputs.erase(it);
         }
     }
-    if (in->cap) in->cap->Stop();
+    StopCapture(in);
     b_.StreamFree(in->push);
 }
 
-void AudioEngine::RemoveLiveSource(const std::wstring& type, int id) {
+void AudioEngine::EndInput(Input* in) {
+    // What is already in its queue is still recorded; then it leaves.
+    StopCapture(in);
+    {
+        std::lock_guard<std::mutex> lock(in->queue_mutex);
+        b_.StreamPutData(in->push, nullptr, BASS_STREAMPROC_END);
+    }
+    in->ending = true;
+    if (in->watch) {
+        in->watch->instances.erase((DWORD)in->src.id);
+        in->watch = nullptr;
+    }
+}
+
+void AudioEngine::ResetRecording(int sample_rate, const std::wstring& channels) {
+    Teardown(false);
+    sample_rate_ = sample_rate;
+    chans_ = channels == L"mono" ? 1 : 2;
+    rec_buffer_ms_ = buffer_ms_;
+}
+
+bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstring& format_type,
+                                 const std::wstring& bitrate, int sample_rate,
+                                 const std::wstring& channels, const std::vector<Source>& sources,
+                                 bool separate_files, int flac_nivel, int* error) {
+    *error = 0;
+    if (recording_) return false;
+    if (sources.empty()) {
+        *error = -1;
+        return false;
+    }
+
+    ResetRecording(sample_rate, channels);
+    output_files_.clear();
+    last_outputs_.clear();
+    format_ = format_type;
+    options_.clear();
+    if (format_type == L"mp3" || format_type == L"ogg") options_ = L"-b " + bitrate;
+    else if (format_type == L"opus") options_ = L"--bitrate " + bitrate;
+    else if (format_type == L"flac") options_ = L"-" + std::to_wstring(flac_nivel);
+    // The mode is chosen when recording starts; sources added later follow it.
+    separate_ = separate_files && sources.size() > 1;
+    SplitExt(file_path, &base_path_, &ext_);
+
+    auto fail = [&](int code) {
+        Teardown(false);
+        *error = code;
+        return false;
+    };
+
+    paused_ = false;
+    LARGE_INTEGER now;
+    QueryPerformanceCounter(&now);
+    start_ticks_ = now.QuadPart;
+    paused_ticks_ = 0;
+    if (!separate_ && !MakeOutput(file_path, L"", true)) return fail(b_.ErrorGetCode());
+    for (auto& src : sources) {
+        int code = 0;
+        if (!PlaceSource(src, 0.0, &code)) return fail(code);
+    }
+
+    recording_ = true;
+    SetRecordingPower(true);
+    ResetEvent(pump_stop_);
+    pump_thread_ = CreateThread(nullptr, 0, PumpThread, this, 0, nullptr);
+    return true;
+}
+
+bool AudioEngine::ContinueRecording(const std::vector<Source>& sources, int* error,
+                                    std::wstring* failed_file) {
+    *error = 0;
+    failed_file->clear();
+    if (recording_ || last_outputs_.empty()) return false;
+    std::vector<std::pair<std::wstring, std::wstring>> prev = last_outputs_;
+    const double t0 = last_end_sec_;
+    rec_buffer_ms_ = buffer_ms_;
+
+    // Each file is set aside while it is rewritten: first with what it already
+    // had, decoded, and then with the new audio. If anything fails, the files
+    // go back as they were.
+    std::vector<std::pair<std::wstring, std::wstring>> moved;  // (file, set aside as)
+    auto fail = [&](int code, const std::wstring& file) {
+        Teardown(false);
+        for (auto& m : moved) {
+            DeleteFileW(m.first.c_str());
+            MoveFileExW(m.second.c_str(), m.first.c_str(), MOVEFILE_REPLACE_EXISTING);
+        }
+        *error = code;
+        *failed_file = file;
+        return false;
+    };
+    const long long join = (long long)(t0 * sample_rate_);
+    for (auto& p : prev) {
+        const std::wstring& path = p.first;
+        std::wstring old = path + L".vbpart";
+        bool had = FileExists(path);
+        if (had) {
+            DeleteFileW(old.c_str());
+            if (!MoveFileExW(path.c_str(), old.c_str(), MOVEFILE_REPLACE_EXISTING))
+                return fail((int)GetLastError(), path);
+            moved.emplace_back(path, old);
+        }
+        Output* out = MakeOutput(path, p.second, false);
+        if (!out) return fail(b_.ErrorGetCode(), path);
+        out->join_at = join;
+        if (had) {
+            DWORD s = b_.StreamCreateFile(FALSE, old.c_str(), 0, 0,
+                                          BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_UNICODE);
+            if (!s) return fail(b_.ErrorGetCode(), path);
+            b_.MixerStreamAddChannel(out->mixer, s,
+                                     BASS_MIXER_CHAN_DOWNMIX | BASS_MIXER_CHAN_NORAMPIN);
+            out->old_stream = s;
+            out->old_path = old;
+        }
+    }
+
+    // The recording goes on from where it stopped.
+    paused_ = false;
+    LARGE_INTEGER now;
+    QueryPerformanceCounter(&now);
+    start_ticks_ = now.QuadPart - (LONGLONG)(t0 * (double)qpc_freq_);
+    paused_ticks_ = 0;
+    for (auto& src : sources) {
+        int code = 0;
+        if (!PlaceSource(src, t0, &code)) return fail(code, L"");
+    }
+
+    recording_ = true;
+    SetRecordingPower(true);
+    ResetEvent(pump_stop_);
+    pump_thread_ = CreateThread(nullptr, 0, PumpThread, this, 0, nullptr);
+    return true;
+}
+
+bool AudioEngine::AddLiveSource(const Source& src, int* error) {
+    *error = 0;
+    if (!recording_) return false;
+    std::lock_guard<std::mutex> lock(graph_mutex_);
+    if (FindInput(src) || FindWatch(src)) return true;
+    return PlaceSource(src, RecordingSeconds(), error);
+}
+
+void AudioEngine::RemoveLiveSource(const Source& src) {
     if (!recording_) return;
     std::lock_guard<std::mutex> lock(graph_mutex_);
-    Input* in = FindInput(type, id);
+    if (Watch* w = FindWatch(src)) {
+        std::vector<Input*> instances;
+        for (auto& i : w->instances) instances.push_back(i.second);
+        for (Input* in : instances) EndInput(in);
+        watches_.erase(std::find_if(watches_.begin(), watches_.end(),
+                                    [&](const std::unique_ptr<Watch>& x) { return x.get() == w; }));
+        return;
+    }
+    Input* in = FindInput(src);
     if (!in) return;
-    if (in->rec) {
-        b_.ChannelStop(in->rec);
-        in->rec = 0;
-    }
-    if (in->cap) {
-        in->cap->SetSink(nullptr);
-        in->cap->Stop();
-    }
-    if (in->out && in->out->pending == in) {
-        // It had not joined its file yet; the file goes on in silence.
-        in->out->pending = nullptr;
-        b_.StreamFree(in->push);
+    Output* out = in->out;
+    if (out && std::find(out->pending.begin(), out->pending.end(), in) != out->pending.end()) {
+        // It had not joined its file yet; the file goes on without it.
+        DropInput(in);
         inputs_.erase(std::find_if(inputs_.begin(), inputs_.end(),
                                    [&](const std::unique_ptr<Input>& i) { return i.get() == in; }));
         return;
     }
-    // What is already in its queue is still recorded; then it leaves.
-    {
-        std::lock_guard<std::mutex> qlock(in->queue_mutex);
-        b_.StreamPutData(in->push, nullptr, BASS_STREAMPROC_END);
-    }
-    in->ending = true;
+    EndInput(in);
 }
 
-void AudioEngine::SetSourceVolume(const std::wstring& type, int id, double volume) {
+void AudioEngine::SetSourceVolume(const Source& src, double volume) {
     std::lock_guard<std::mutex> lock(graph_mutex_);
-    if (Input* in = FindInput(type, id)) in->volume = (float)volume;
+    if (Watch* w = FindWatch(src)) {
+        w->src.volume = volume;
+        for (auto& i : w->instances) i.second->volume = (float)volume;
+    } else if (Input* in = FindInput(src)) {
+        in->volume = (float)volume;
+    }
 }
 
 void AudioEngine::PauseRecording() {
@@ -815,13 +932,17 @@ void AudioEngine::Pump() {
     // A recording in progress keeps the computer from going to sleep.
     SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
     const double delay = rec_buffer_ms_ / 1000.0;
-    ULONGLONG last_watch = GetTickCount64();
+    ULONGLONG last_watch = 0, last_scan = 0;
     while (WaitForSingleObject(pump_stop_, 10) == WAIT_TIMEOUT) {
         std::lock_guard<std::mutex> lock(graph_mutex_);
         ULONGLONG tick = GetTickCount64();
         if (tick - last_watch >= 500) {
             Watchdog(tick / 1000.0);
             last_watch = tick;
+        }
+        if (tick - last_scan >= 1000) {
+            ScanWatches();
+            last_scan = tick;
         }
         CollectEnded();
         if (paused_) continue;
@@ -832,13 +953,7 @@ void AudioEngine::Pump() {
                 CatchUp(*out);
                 continue;
             }
-            if (Input* in = out->pending) {
-                b_.MixerStreamAddChannel(out->mixer, in->push,
-                                         BASS_MIXER_CHAN_DOWNMIX | BASS_MIXER_CHAN_NORAMPIN);
-                out->inputs.push_back(in);
-                in->attached = true;
-                out->pending = nullptr;
-            }
+            if (out->old_stream || !out->pending.empty()) Join(*out);
             if (t <= 0) continue;
             long long due = (long long)(t * out->rate);
             if (due > out->frames_done) Advance(*out, due, false, now);
@@ -889,6 +1004,36 @@ void AudioEngine::Watchdog(double wall) {
     }
 }
 
+void AudioEngine::ScanWatches() {
+    if (watches_.empty() || !ProcessLoopbackAvailable()) return;
+    double now = RecordingSeconds();
+    for (auto& w : watches_) {
+        // Until its file has caught up, the executable waits too.
+        if (w->out->frames_done < w->out->join_at) continue;
+        std::vector<DWORD> running = FindMainProcesses(w->src.name);
+        // Instances that exited leave, after recording what they had.
+        std::vector<Input*> gone;
+        for (auto& i : w->instances)
+            if (std::find(running.begin(), running.end(), i.first) == running.end())
+                gone.push_back(i.second);
+        for (Input* in : gone) EndInput(in);
+        // New ones join right away.
+        for (DWORD pid : running) {
+            if (w->instances.count(pid)) continue;
+            Source s{L"process", (int)pid, w->src.name, w->src.volume};
+            int code = 0;
+            auto made = MakeInput(s, &code);
+            if (!made) continue;
+            Input* in = made.get();
+            in->watch = w.get();
+            AttachLive(in, w->out, now);
+            in->cap->SetSink(in);
+            w->instances[pid] = in;
+            inputs_.push_back(std::move(made));
+        }
+    }
+}
+
 void AudioEngine::CollectEnded() {
     // A removed source leaves once its queue has been recorded.
     for (size_t i = 0; i < inputs_.size();) {
@@ -909,8 +1054,9 @@ void AudioEngine::CollectEnded() {
 }
 
 void AudioEngine::CatchUp(Output& out) {
-    // Silence for the start of a file created in the middle of the recording,
-    // a little at a time, so the encoder's queue never piles up in memory.
+    // The start of a file that joins in the middle (silence, or what it
+    // already had when a recording is continued), a little at a time, so the
+    // encoder's queue never piles up in memory.
     const double bytes_per_sec = (double)out.rate * out.chans * sizeof(float);
     QWORD queued = b_.EncodeGetCount ? b_.EncodeGetCount(out.encoder, BASS_ENCODE_COUNT_QUEUE) : 0;
     if (queued == (QWORD)-1) queued = 0;
@@ -1017,29 +1163,15 @@ void AudioEngine::Teardown(bool flush) {
         CloseHandle(pump_thread_);
         pump_thread_ = nullptr;
     }
-    for (auto& in : inputs_) {
-        if (in->rec) {
-            b_.ChannelStop(in->rec);
-            in->rec = 0;
-        }
-        if (in->cap) {
-            in->cap->SetSink(nullptr);
-            in->cap->Stop();
-        }
-    }
+    for (auto& in : inputs_) StopCapture(in.get());
     if (flush) {
         double now = RecordingSeconds();
-        // Files created in the middle of the recording finish their silent
-        // start, and their sources join.
+        // Files that join in the middle finish their start, and their sources
+        // join.
         for (auto& out : outputs_) {
             while (out->frames_done < out->join_at)
                 FeedSilent(*out, (DWORD)std::min<long long>(out->join_at - out->frames_done, out->rate));
-            if (Input* in = out->pending) {
-                b_.MixerStreamAddChannel(out->mixer, in->push,
-                                         BASS_MIXER_CHAN_DOWNMIX | BASS_MIXER_CHAN_NORAMPIN);
-                out->inputs.push_back(in);
-                out->pending = nullptr;
-            }
+            Join(*out);
         }
         // What was still in the slack is recorded too: nothing captured up to
         // the moment of stopping is lost.
@@ -1054,18 +1186,26 @@ void AudioEngine::Teardown(bool flush) {
             Advance(*out, out->frames_done + (long long)(seconds * out->rate), true, now);
             end = std::max(end, out->frames_done);
         }
-        // Every file ends at the same point, so they stay in sync.
+        // Every file ends at the same point, so they stay in sync, and the
+        // recording can be continued from there.
         for (auto& out : outputs_) Advance(*out, end, true, now);
+        last_outputs_.clear();
+        for (auto& out : outputs_) last_outputs_.emplace_back(out->path, out->key);
+        last_end_sec_ = (double)end / sample_rate_;
     }
     for (auto& out : outputs_) {
         if (out->encoder) {
             if (b_.EncodeStopEx) b_.EncodeStopEx(out->encoder, BASS_ENCODE_STOP_WAIT);
             else b_.EncodeStop(out->encoder);
         }
+        if (out->old_stream) b_.StreamFree(out->old_stream);
         if (out->mixer) b_.StreamFree(out->mixer);
+        // A continued file is complete: the copy set aside is no longer needed.
+        if (flush && !out->old_path.empty()) DeleteFileW(out->old_path.c_str());
     }
     for (auto& in : inputs_)
         if (in->push) b_.StreamFree(in->push);
+    watches_.clear();
     outputs_.clear();
     inputs_.clear();
     if (recording_) SetRecordingPower(false);

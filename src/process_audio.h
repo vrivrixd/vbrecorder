@@ -34,6 +34,11 @@ std::vector<std::pair<DWORD, std::wstring>> GetAudioSessions();
 /* Executable name of the process, or empty if it no longer exists. */
 std::wstring GetProcessName(DWORD pid);
 
+/* Running processes of an executable (name compared without case), leaving out
+   those started by another process of the same executable: capturing a
+   process already includes its children, so they would be heard twice. */
+std::vector<DWORD> FindMainProcesses(const std::wstring& exe_name);
+
 /* Receives the captured audio, always as interleaved 32-bit float. */
 class CaptureSink {
 public:

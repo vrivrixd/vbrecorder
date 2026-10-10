@@ -64,11 +64,20 @@ public:
                         const std::wstring& bitrate, int sample_rate,
                         const std::wstring& channels, const std::vector<Source>& sources,
                         bool separate_files, int flac_nivel, int* error);
+    /* Goes on with the last recording, in the same files, from where it
+       stopped. On failure, failed_file names the file that could not be
+       reopened (in use by another program, for example), if that was it. */
+    bool ContinueRecording(const std::vector<Source>& sources, int* error,
+                           std::wstring* failed_file);
+    bool CanContinue() const { return !recording_ && !last_outputs_.empty(); }
+    /* The last recording was deleted: there is nothing to continue. */
+    void ForgetLastRecording() { last_outputs_.clear(); }
+
     /* Sources added, removed or changed while recording. A new source joins
        in sync; a removed one first records what is already in its queue. */
     bool AddLiveSource(const Source& src, int* error);
-    void RemoveLiveSource(const std::wstring& type, int id);
-    void SetSourceVolume(const std::wstring& type, int id, double volume);
+    void RemoveLiveSource(const Source& src);
+    void SetSourceVolume(const Source& src, double volume);
 
     void PauseRecording();
     void ResumeRecording();
@@ -82,18 +91,28 @@ public:
 private:
     struct Input;
     struct Output;
+    struct Watch;
 
     bool LoadDlls();
     void LoadPlaybackPlugins();
     DWORD ApplyEncoder(DWORD handle, const std::wstring& path);
     void Teardown(bool flush);
+    void ResetRecording(int sample_rate, const std::wstring& channels);
     std::unique_ptr<Input> MakeInput(const Source& src, int* error);
     bool StartDevice(Input* in, bool play);
+    void StopCapture(Input* in);
     void AttachLive(Input* in, Output* out, double now);
+    void Place(Input* in, Output* out, double now);
+    void Join(Output& out);
+    bool PlaceSource(const Source& src, double now, int* error);
     void DropInput(Input* in);
-    Output* MakeOutput(const std::wstring& path, const std::wstring& key);
+    void EndInput(Input* in);
+    Output* MakeOutput(const std::wstring& path, const std::wstring& key, bool add_to_files);
+    Output* OutputFor(const Source& src, double now);
+    bool IsLive(const Output* out) const;
     std::wstring SeparatePath(const std::wstring& key) const;
-    Input* FindInput(const std::wstring& type, int id);
+    Input* FindInput(const Source& src);
+    Watch* FindWatch(const Source& src);
     void SetRecordingPower(bool on);
 
     static BOOL CALLBACK RecordProc(DWORD handle, const void* buffer, DWORD length, void* user);
@@ -102,6 +121,7 @@ private:
     void Pump();
     double RecordingSeconds();
     void Watchdog(double wall);
+    void ScanWatches();
     void CollectEnded();
     void CatchUp(Output& out);
     void FeedSilent(Output& out, DWORD frames);
@@ -124,6 +144,10 @@ private:
     std::vector<std::wstring> output_files_;
     std::vector<std::unique_ptr<Input>> inputs_;
     std::vector<std::unique_ptr<Output>> outputs_;
+    std::vector<std::unique_ptr<Watch>> watches_;
+    // The files of the last recording and where it stopped, to continue it.
+    std::vector<std::pair<std::wstring, std::wstring>> last_outputs_;  // (path, key)
+    double last_end_sec_ = 0;
     std::wstring format_, options_;
     std::wstring base_path_, ext_;
     int sample_rate_ = 44100;

@@ -141,7 +141,8 @@ void ConfigManager::Load() {
                    {L"iniciar_minimizado", L"False"},
                    {L"minimizar_bandeja", L"False"},
                    {L"sempre_no_topo", L"True"},
-                   {L"buffer", std::to_wstring(BUFFER_DEFAULT)}};
+                   {L"buffer", std::to_wstring(BUFFER_DEFAULT)},
+                   {L"verificar_atualizacoes", L"True"}};
     } else {
         if (!Lookup(cfg->items, L"fontes")) {
             const std::wstring* d1 = Lookup(cfg->items, L"dispositivo1");
@@ -154,7 +155,8 @@ void ConfigManager::Load() {
             {L"iniciar_minimizado", L"False"},
             {L"minimizar_bandeja", L"False"},
             {L"sempre_no_topo", L"True"},
-            {L"buffer", std::to_wstring(BUFFER_DEFAULT)}};
+            {L"buffer", std::to_wstring(BUFFER_DEFAULT)},
+            {L"verificar_atualizacoes", L"True"}};
         for (auto& p : defaults)
             if (!Lookup(cfg->items, p.first)) Put(cfg->items, p.first, p.second);
     }
@@ -172,7 +174,7 @@ void ConfigManager::Save() {
         L"formato",  L"bitrate",          L"flac_nivel",        L"taxa",
         L"canais",   L"fontes",           L"reproduzir_tons",   L"arquivos_separados",
         L"arquivo",  L"diretorio",        L"idioma",            L"iniciar_minimizado",
-        L"minimizar_bandeja", L"sempre_no_topo", L"buffer"};
+        L"minimizar_bandeja", L"sempre_no_topo", L"buffer", L"verificar_atualizacoes"};
     Items sorted;
     for (const wchar_t* k : ordered)
         if (const std::wstring* v = Lookup(cfg.items, k)) sorted.emplace_back(k, *v);
@@ -260,6 +262,19 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
             t = c + 1;
         }
         if (tokens.size() < 2) continue;
+        if (tokens[0] == L"exe") {
+            // A source by executable name: "exe:jogo.exe:1.0000".
+            SourceEntry e;
+            e.type = tokens[0];
+            e.exe = Trim(tokens[1]);
+            if (tokens.size() >= 3) {
+                wchar_t* vend = nullptr;
+                double v = wcstod(tokens[2].c_str(), &vend);
+                if (vend && vend != tokens[2].c_str()) e.volume = v;
+            }
+            if (!e.exe.empty()) result.push_back(e);
+            continue;
+        }
         const std::wstring& id_str = tokens[1];
         size_t digits = id_str.find_first_not_of(L'-');
         // A single sign only: "-1" is valid, "--1" is not a number.
@@ -276,7 +291,7 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
         }
         result.push_back(e);
     }
-    if (result.empty()) result.push_back(SourceEntry{L"device", 0, 1.0});
+    if (result.empty()) result.push_back(SourceEntry{L"device", 0, L"", 1.0});
     return result;
 }
 
@@ -286,7 +301,14 @@ void ConfigManager::SetSources(const std::vector<Source>& sources) {
         wchar_t vol[64];
         swprintf(vol, 64, L"%.4f", sources[i].volume);
         if (i) value += L",";
-        value += sources[i].type + L":" + std::to_wstring(sources[i].id) + L":" + vol;
+        const Source& s = sources[i];
+        value += s.type + L":" + (s.type == L"exe" ? s.name : std::to_wstring(s.id)) + L":" + vol;
     }
     SetConfig(L"fontes", value);
+}
+
+bool SameSource(const Source& a, const Source& b) {
+    if (a.type != b.type) return false;
+    if (a.type == L"exe") return ToLower(a.name) == ToLower(b.name);
+    return a.id == b.id;
 }

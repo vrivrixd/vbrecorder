@@ -346,3 +346,65 @@ msgstr ""
 
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Lỗi BASS {erro} trong khi thêm nguồn ghi âm."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Tiếp tục bản g&hi cuối"
+
+msgid "Continuar Última Gravação"
+msgstr "Tiếp tục bản ghi cuối"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Không thể tiếp tục ghi âm. Hãy kiểm tra xem tệp có đang được mở trong chương trình khác không:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Tệp thực thi"
+
+msgid "Nome do Executável:"
+msgstr "Tên tệp thực thi:"
+
+msgid "Nova atualização disponível!"
+msgstr "Đã có bản cập nhật mới!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Phiên bản của bạn: {atual};\n"
+"Phiên bản mới nhất: {nova}.\n"
+"Bạn có muốn cập nhật ngay không?"
+
+msgid "Baixando Atualização"
+msgstr "Đang tải bản cập nhật"
+
+msgid "Por favor aguarde..."
+msgstr "Vui lòng chờ..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "Tự động kiểm t&ra cập nhật"
+
+msgid "Verificar Atuali&zação..."
+msgstr "K&iểm tra cập nhật..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Bạn đang dùng phiên bản mới nhất của VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Kiểm tra cập nhật"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Không thể kiểm tra cập nhật."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Không thể tải bản cập nhật."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Không thể cài đặt bản cập nhật:\n"
+"{erro}"
