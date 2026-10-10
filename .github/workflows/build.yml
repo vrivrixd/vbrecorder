@@ -1,0 +1,122 @@
+name: Build
+
+# Builds VB Recorder for 64-bit and 32-bit Windows with GCC from WinLibs (the
+# same compiler as the local build) and packs one zip for each. Pushing a
+# version tag (v1.5, for example) publishes the zips in that tag's release; a
+# new release is created as a draft, so its notes can be written before it goes
+# out. It can also be run by hand from the Actions tab for an existing tag.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to build and publish (e.g. v1.4)"
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  # Pinned so a new compiler release never changes a build by surprise.
+  WINLIBS_TAG: 16.2.0posix-14.0.0-ucrt-r2
+  WINLIBS_VERSION: gcc-16.2.0-mingw-w64ucrt-14.0.0-r2
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        include:
+          - arch: x64
+            winlibs: x86_64-posix-seh
+            bin: mingw64
+            machine: 0x8664
+          - arch: x86
+            winlibs: i686-posix-dwarf
+            bin: mingw32
+            machine: 0x14c
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+
+      - name: Install WinLibs
+        shell: pwsh
+        run: |
+          $zip = "winlibs-${{ matrix.winlibs }}-$env:WINLIBS_VERSION.zip"
+          Invoke-WebRequest "https://github.com/brechtsanders/winlibs_mingw/releases/download/$env:WINLIBS_TAG/$zip" -OutFile $zip
+          7z x $zip -oC:\winlibs -y | Out-Null
+          "C:\winlibs\${{ matrix.bin }}\bin" >> $env:GITHUB_PATH
+
+      - name: Build
+        shell: cmd
+        run: |
+          g++ --version | findstr /r "^g++"
+          mkdir build
+          windres -I res -i res\app.rc -o build\app.o || exit /b 1
+          windres -i res\locale.rc -o build\locale.o || exit /b 1
+          type nul > build\empty.c
+          gcc -c build\empty.c -o build\default-manifest.o || exit /b 1
+          g++ -std=c++17 -O2 -DUNICODE -D_UNICODE -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0A00 -municode -mwindows src\*.cpp build\app.o build\locale.o -lole32 -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -luuid -static -s -Bbuild\ -o build\VBRecorder.exe || exit /b 1
+
+      - name: Pack
+        shell: pwsh
+        run: |
+          $dir = "VBRecorder-${{ matrix.arch }}"
+          New-Item -ItemType Directory "$dir\lib" | Out-Null
+          Copy-Item build\VBRecorder.exe $dir
+          Copy-Item "lib\${{ matrix.arch }}\*.dll" "$dir\lib"
+          Copy-Item LICENSE $dir
+
+          # The executable and every DLL must be of this architecture.
+          foreach ($file in Get-ChildItem $dir -Recurse -Include *.exe, *.dll) {
+            $bytes = [IO.File]::ReadAllBytes($file.FullName)
+            $pe = [BitConverter]::ToInt32($bytes, 0x3C)
+            $machine = [BitConverter]::ToUInt16($bytes, $pe + 4)
+            if ($machine -ne ${{ matrix.machine }}) { throw "$($file.Name) is not ${{ matrix.arch }}." }
+          }
+
+          # Windows tar writes standard zip paths (lib/bass.dll).
+          tar -a -c -f "$dir.zip" -C $dir VBRecorder.exe lib LICENSE
+          Get-Item "$dir.zip" | ForEach-Object { "{0}  {1} bytes" -f $_.Name, $_.Length }
+
+      - name: Check that it starts
+        shell: pwsh
+        run: |
+          $dir = Resolve-Path "VBRecorder-${{ matrix.arch }}"
+          $app = Start-Process "$dir\VBRecorder.exe" -WorkingDirectory $dir -PassThru
+          Start-Sleep -Seconds 8
+          if ($app.HasExited) { throw "VBRecorder.exe exited on its own (code $($app.ExitCode))." }
+          "Running, window: '$((Get-Process -Id $app.Id).MainWindowTitle)'"
+          $app | Stop-Process -Force
+
+      - name: Keep the zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: VBRecorder-${{ matrix.arch }}
+          path: VBRecorder-${{ matrix.arch }}.zip
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the zips
+        uses: actions/download-artifact@v4
+        with:
+          path: out
+          merge-multiple: true
+
+      - name: Publish in the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          if ! gh release view "$TAG" -R "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release create "$TAG" -R "$GITHUB_REPOSITORY" --draft --title "VB Recorder ${TAG#v}" --notes ""
+          fi
+          gh release upload "$TAG" out/*.zip -R "$GITHUB_REPOSITORY" --clobber

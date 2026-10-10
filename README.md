@@ -11,9 +11,10 @@ very little latency: you can record your performance over a playback.
 The program is light, portable and runs in the system tray.
 
 Starting with version 1.4, VB Recorder is written in C++: the program got much
-smaller and records without stutters. The windows, dialogs, hotkeys and
-`VBRecorder.ini` are the same as before. The Python versions remain available
-in the earlier releases and in the repository history.
+smaller, runs on 32-bit and 64-bit Windows and records without stutters. The
+windows, dialogs, hotkeys and `VBRecorder.ini` are the same as before. The
+Python versions remain available in the earlier releases and in the repository
+history.
 
 ## Features
 
@@ -88,22 +89,28 @@ To test a translation without compiling, put the `locale` folder next to
 
 ## Requirements
 
-- Windows 10 or later, 64-bit.
+- Windows 10 or later, 32-bit or 64-bit.
 - For process capture, Windows 10 version 2004 (May 2020) or later.
 - No additional drivers or virtual cables required.
 
 ## Installation
 
-Download `VBRecorder.zip` from the
-[Releases](https://github.com/vrivrixd/vbrecorder/releases) page, extract it
-wherever you like and run `VBRecorder.exe`. There is no installer: the program
+Download the zip for your Windows from the
+[Releases](https://github.com/vrivrixd/vbrecorder/releases) page:
+`VBRecorder-x64.zip` for 64-bit Windows (most computers) or `VBRecorder-x86.zip`
+for 32-bit Windows (it also runs on 64-bit Windows). Extract it wherever you
+like and run `VBRecorder.exe`. There is no installer: the program
 creates `VBRecorder.ini` with your settings in the folder it is started from.
 
 The `lib` folder holds the BASS libraries and must stay next to the executable.
 
 ## Building from source
 
-The program builds with the GCC from [WinLibs](https://winlibs.com/):
+The release zips are built by GitHub Actions
+(`.github/workflows/build.yml`), for both architectures: pushing a version tag
+builds them and publishes them in that tag's release.
+
+To build on your own computer, use the GCC from [WinLibs](https://winlibs.com/):
 
 ```
 winget install BrechtSanders.WinLibs.POSIX.UCRT
@@ -124,7 +131,10 @@ The empty `default-manifest.o` takes the place of the manifest GCC adds to
 every executable, which would clash with the program's own manifest
 (`res/app.manifest`).
 
-To run it, put the `lib` folder next to `VBRecorder.exe`.
+This builds the 64-bit program. For the 32-bit one, use the i686 build of
+WinLibs (from the [WinLibs](https://winlibs.com/) page) with the same commands.
+To run it, copy the DLLs of the matching architecture, from `libd` or
+`lib`, to a `lib` folder next to `VBRecorder.exe`.
 
 Structure:
 
@@ -138,7 +148,8 @@ Structure:
 - `src/ui.cpp` — interface foundation: native controls and window layout.
 - `res/` — manifest, version information and the list of embedded translations.
 - `locale/` — translation catalogs, one per language.
-- `lib/` — BASS libraries.
+- `lib/x64`, `lib/x86` — BASS libraries for each architecture.
+- `.github/workflows/build.yml` — builds and publishes the release zips.
 - `tools/language_compiler.py` — compiles the `.po` files into `.mo`.
 
 ## License
