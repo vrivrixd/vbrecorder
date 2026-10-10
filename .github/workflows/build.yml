@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: Check out the code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref }}
 
@@ -95,7 +95,7 @@ jobs:
           $app | Stop-Process -Force
 
       - name: Keep the zip
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: VBRecorder-${{ matrix.arch }}
           path: VBRecorder-${{ matrix.arch }}.zip
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get the zips
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: out
           merge-multiple: true
