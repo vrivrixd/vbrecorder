@@ -2,9 +2,10 @@ name: Build
 
 # Builds VB Recorder for 64-bit and 32-bit Windows with GCC from WinLibs (the
 # same compiler as the local build) and packs one zip for each. Pushing a
-# version tag (v1.5, for example) publishes the zips in that tag's release; a
-# new release is created as a draft, so its notes can be written before it goes
-# out. It can also be run by hand from the Actions tab for an existing tag.
+# version tag (v1.5, for example) builds them, and they are attached to that
+# tag's release if it already exists; otherwise they stay as artifacts of the
+# run, and the release is created by hand, in the author's name. It can also be
+# run by hand from the Actions tab for an existing tag.
 
 on:
   push:
@@ -111,12 +112,14 @@ jobs:
           path: out
           merge-multiple: true
 
-      - name: Publish in the release
+      - name: Attach to the release
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ inputs.tag || github.ref_name }}
         run: |
-          if ! gh release view "$TAG" -R "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
-            gh release create "$TAG" -R "$GITHUB_REPOSITORY" --draft --title "VB Recorder ${TAG#v}" --notes ""
+          # Releases are created by hand, so they carry the author's name.
+          if gh release view "$TAG" -R "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release upload "$TAG" out/*.zip -R "$GITHUB_REPOSITORY" --clobber
+          else
+            echo "No release for $TAG yet: the zips are kept as artifacts of this run."
           fi
-          gh release upload "$TAG" out/*.zip -R "$GITHUB_REPOSITORY" --clobber
