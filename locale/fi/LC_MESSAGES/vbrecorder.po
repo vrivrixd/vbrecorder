@@ -1,0 +1,409 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: fi\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Muokkaa tallennuslähdettä"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Lisää tallennuslähde"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Kuuntele valittua laitetta säädetyllä äänenvoimakkuudella"
+
+msgid "&Parar"
+msgstr "Py&säytä"
+
+msgid "&Testar"
+msgstr "&Testaa"
+
+msgid "Mostrar janela principal"
+msgstr "Näytä pääikkuna"
+
+msgid "Sair"
+msgstr "Poistu"
+
+msgid "&Formato de Saída:"
+msgstr "Tulostus&muoto:"
+
+msgid "&Bitrate:"
+msgstr "&Bittinopeus:"
+
+msgid "Compressão F&LAC:"
+msgstr "F&LAC-pakkaus:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "&Näytetaajuus:"
+
+msgid "&Canais:"
+msgstr "&Kanavat:"
+
+msgid "Fontes de &Gravação:"
+msgstr "Tallennus&lähteet:"
+
+msgid "&Nome do Arquivo:"
+msgstr "Tiedoston &nimi:"
+
+msgid "&Diretório de Saída:"
+msgstr "Tulostus&hakemisto:"
+
+msgid "&Adicionar"
+msgstr "L&isää"
+
+msgid "&Editar"
+msgstr "&Muokkaa"
+
+msgid "&Remover"
+msgstr "P&oista"
+
+msgid "P&rocurar..."
+msgstr "S&elaa..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Avaa ta&llennuskansio"
+
+msgid "Config&urações..."
+msgstr "Aset&ukset..."
+
+msgid "S&obre"
+msgstr "Tiet&oja"
+
+msgid "&Minimizar"
+msgstr "P&ienennä"
+
+msgid "&Fechar"
+msgstr "&Sulje"
+
+msgid "E&xcluir Gravação"
+msgstr "P&oista tallenne"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Tallenna lähteet &erillisiin tiedostoihin"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Soita &äänimerkit, kun tallennus alkaa tai päättyy"
+
+msgid "Selecionar Pasta"
+msgstr "Valitse kansio"
+
+msgid "Sobre"
+msgstr "Tietoja"
+
+msgid "Configurar Teclas"
+msgstr "Määritä pikanäppäimet"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Paina näppäinyhdistelmää (esim. Ctrl+Alt+R) alla oleviin kenttiin.\n"
+"Tyhjennä painamalla Backspace tai Delete.\n"
+"Peruuta painamalla Esc."
+
+msgid "Gravar:"
+msgstr "Tallenna:"
+
+msgid "Pausar / Continuar:"
+msgstr "Tauko / Jatka:"
+
+msgid "Parar Gravação:"
+msgstr "Lopeta tallennus:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Näytä pääikkuna:"
+
+msgid "Fechar Programa:"
+msgstr "Sulje ohjelma:"
+
+msgid "&Ok"
+msgstr "&OK"
+
+msgid "&Cancelar"
+msgstr "&Peruuta"
+
+msgid "Configurações"
+msgstr "Asetukset"
+
+msgid "Padrão do sistema"
+msgstr "Järjestelmän oletus"
+
+msgid "Iniciar &Minimizado"
+msgstr "Käynnistä &pienennettynä"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Pienennä &ilmaisinalueelle"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Ikkuna aina &päällimmäisenä"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Määritä pika&näppäimet..."
+
+msgid "Aviso"
+msgstr "Varoitus"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Suodata lähteet:"
+
+msgid "Selecionar Fonte:"
+msgstr "Valitse lähde:"
+
+msgid "Volume:"
+msgstr "Äänenvoimakkuus:"
+
+msgid "Erro"
+msgstr "Virhe"
+
+msgid "Gravar"
+msgstr "Tallenna"
+
+msgid "Formato de Saída"
+msgstr "Tulostusmuoto"
+
+msgid "Taxa de Amostragem"
+msgstr "Näytetaajuus"
+
+msgid "Canais"
+msgstr "Kanavat"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Soita äänimerkit, kun tallennus alkaa tai päättyy"
+
+msgid "Continuar"
+msgstr "Jatka"
+
+msgid "Pausar"
+msgstr "Tauko"
+
+msgid "Parar"
+msgstr "Pysäytä"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder on jo käynnissä."
+
+msgid "Para&r"
+msgstr "&Pysäytä"
+
+msgid "&Gravar"
+msgstr "&Tallenna"
+
+msgid "C&ontinuar"
+msgstr "J&atka"
+
+msgid "&Pausar"
+msgstr "&Tauko"
+
+msgid "Gravações"
+msgstr "Tallenteet"
+
+msgid "Parar Reprod&ução"
+msgstr "Pysäytä t&oisto"
+
+msgid "Reprod&uzir Gravação"
+msgstr "T&oista tallenne"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Valitse toistettava tiedosto:"
+
+msgid "Reproduzir Gravação"
+msgstr "Toista tallenne"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Poistetaanko tallenne?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Poistetaanko {n} tiedostoa viimeisimmästä tallenteesta?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Vahvista poisto"
+
+msgid "&Idioma:"
+msgstr "&Kieli:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "P&uskurin koko (ms):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Suurenna puskuria, jos ääni rätisee varatussa tietokoneessa. {minimo} - "
+"{maximo} ms; oletus on {padrao}."
+
+msgid "Dispositivos de Áudio"
+msgstr "Äänilaitteet"
+
+msgid "Processos em Execução"
+msgstr "Käynnissä olevat prosessit"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Huomautus: prosessin kaappaus vaatii Windows 10 v2004:n tai uudemman."
+
+msgid "Parar Reprodução"
+msgstr "Pysäytä toisto"
+
+msgid "Excluir Gravação"
+msgstr "Poista tallenne"
+
+msgid "Bitrate"
+msgstr "Bittinopeus"
+
+msgid "Compressão FLAC"
+msgstr "FLAC-pakkaus"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Tallenna lähteet erillisiin tiedostoihin"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Lisää vähintään yksi tallennuslähde ennen aloittamista."
+
+msgid "Não foi possível excluir:\n"
+msgstr "Ei voitu poistaa:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Tekijä: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Tallennus on käynnissä.\n"
+"\n"
+"Haluatko varmasti sulkea VB Recorderin?"
+
+msgid "Confirmar Saída"
+msgstr "Vahvista poistuminen"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr "Puskurin koon on oltava luku väliltä {minimo}–{maximo} millisekuntia."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Tätä laitetta ei voitu testata (BASS-virhe {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Jos haluat toistaa {extensao}-tiedostoja ohjelmassa, sijoita {dll} VB "
+"Recorderin lib-kansioon."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"BASS-virhe {erro} toistettaessa:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "BASS-virhe {erro} tallennuksen alkaessa."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Kansiota ei voitu avata:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "lähde"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Oletus syöttölaite"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "BASS-virhe {erro} tallennuslähdettä lisättäessä."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Jatka &viimeisintä tallennetta"
+
+msgid "Continuar Última Gravação"
+msgstr "Jatka viimeisintä tallennetta"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Tallennusta ei voitu jatkaa. Tarkista, ettei tiedosto ole auki toisessa ohjelmassa:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Suoritettava tiedosto"
+
+msgid "Nome do Executável:"
+msgstr "Suoritettavan tiedoston nimi:"
+
+msgid "Nova atualização disponível!"
+msgstr "Uusi päivitys saatavilla!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Versiosi: {atual};\n"
+"Uusin versio: {nova}.\n"
+"Haluatko päivittää nyt?"
+
+msgid "Baixando Atualização"
+msgstr "Ladataan päivitystä"
+
+msgid "Por favor aguarde..."
+msgstr "Odota..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "Tarkista päivitykset &automaattisesti"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Tarkista päivi&tys..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Käytät jo VB Recorderin uusinta versiota."
+
+msgid "Verificar Atualização"
+msgstr "Tarkista päivitys"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Päivityksiä ei voitu tarkistaa."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Päivitystä ei voitu ladata."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Päivitystä ei voitu asentaa:\n"
+"{erro}"

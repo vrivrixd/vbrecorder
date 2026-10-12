@@ -1,0 +1,410 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: Esperanto\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Redakti registran fonton"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Aldoni registran fonton"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Aŭskulti la elektitan aparaton kun la agordita laŭteco"
+
+msgid "&Parar"
+msgstr "&Halti"
+
+msgid "&Testar"
+msgstr "&Testi"
+
+msgid "Mostrar janela principal"
+msgstr "Montri ĉefan fenestron"
+
+msgid "Sair"
+msgstr "Eliri"
+
+msgid "&Formato de Saída:"
+msgstr "Eliga &formato:"
+
+msgid "&Bitrate:"
+msgstr "&Bitrapido:"
+
+msgid "Compressão F&LAC:"
+msgstr "FLAC-den&sigo:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "Spe&cimena rapido:"
+
+msgid "&Canais:"
+msgstr "&Kanaloj:"
+
+msgid "Fontes de &Gravação:"
+msgstr "Re&gistraj fontoj:"
+
+msgid "&Nome do Arquivo:"
+msgstr "&Dosiernomo:"
+
+msgid "&Diretório de Saída:"
+msgstr "Eliga dosier&ujo:"
+
+msgid "&Adicionar"
+msgstr "&Aldoni"
+
+msgid "&Editar"
+msgstr "R&edakti"
+
+msgid "&Remover"
+msgstr "Fo&rigi"
+
+msgid "P&rocurar..."
+msgstr "Folium&i..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Malfermi registraĵan dosieru&jon"
+
+msgid "Config&urações..."
+msgstr "Agord&oj..."
+
+msgid "S&obre"
+msgstr "Pr&i"
+
+msgid "&Minimizar"
+msgstr "Mi&nimumigi"
+
+msgid "&Fechar"
+msgstr "Fer&mi"
+
+msgid "E&xcluir Gravação"
+msgstr "Forigi re&gistraĵon"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Registri fontojn en a&partaj dosieroj"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Ludi &tonojn ĉe komenco aŭ halto de registrado"
+
+msgid "Selecionar Pasta"
+msgstr "Elekti dosierujon"
+
+msgid "Sobre"
+msgstr "Pri"
+
+msgid "Configurar Teclas"
+msgstr "Agordi klavojn"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Premu la klavkombinon (ekz. Ctrl+Alt+R) en la subaj kampoj.\n"
+"Por viŝi, premu Backspace aŭ Delete.\n"
+"Premu Esc por nuligi."
+
+msgid "Gravar:"
+msgstr "Registri:"
+
+msgid "Pausar / Continuar:"
+msgstr "Paŭzi / Daŭrigi:"
+
+msgid "Parar Gravação:"
+msgstr "Haltigi registradon:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Montri ĉefan fenestron:"
+
+msgid "Fechar Programa:"
+msgstr "Fermi programon:"
+
+msgid "&Ok"
+msgstr "&Bone"
+
+msgid "&Cancelar"
+msgstr "&Nuligi"
+
+msgid "Configurações"
+msgstr "Agordoj"
+
+msgid "Padrão do sistema"
+msgstr "Sistema defaŭlto"
+
+msgid "Iniciar &Minimizado"
+msgstr "Starti &minimumigite"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Minimumigi al la sistema &pleto"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Fenestro ĉiam &supre"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Agordi &fulmklavojn..."
+
+msgid "Aviso"
+msgstr "Averto"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Filtri fontojn laŭ:"
+
+msgid "Selecionar Fonte:"
+msgstr "Elekti fonton:"
+
+msgid "Volume:"
+msgstr "Laŭteco:"
+
+msgid "Erro"
+msgstr "Eraro"
+
+msgid "Gravar"
+msgstr "Registri"
+
+msgid "Formato de Saída"
+msgstr "Eliga formato"
+
+msgid "Taxa de Amostragem"
+msgstr "Specimena rapido"
+
+msgid "Canais"
+msgstr "Kanaloj"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Ludi tonojn ĉe komenco aŭ halto de registrado"
+
+msgid "Continuar"
+msgstr "Daŭrigi"
+
+msgid "Pausar"
+msgstr "Paŭzi"
+
+msgid "Parar"
+msgstr "Halti"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder jam funkcias."
+
+msgid "Para&r"
+msgstr "Hal&ti"
+
+msgid "&Gravar"
+msgstr "&Registri"
+
+msgid "C&ontinuar"
+msgstr "&Daŭrigi"
+
+msgid "&Pausar"
+msgstr "&Paŭzi"
+
+msgid "Gravações"
+msgstr "Registraĵoj"
+
+msgid "Parar Reprod&ução"
+msgstr "Halti &ludadon"
+
+msgid "Reprod&uzir Gravação"
+msgstr "&Ludi registraĵon"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Elektu la dosieron por ludi:"
+
+msgid "Reproduzir Gravação"
+msgstr "Ludi registraĵon"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Ĉu forigi la registraĵon?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Ĉu forigi la {n} dosierojn de la lasta registraĵo?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Konfirmi forigon"
+
+msgid "&Idioma:"
+msgstr "&Lingvo:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "&Bufrogrando (ms):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Pligrandigu la bufron, se la sono kraketas en okupata komputilo. De {minimo}"
+" ĝis {maximo} ms; la defaŭlto estas {padrao}."
+
+msgid "Dispositivos de Áudio"
+msgstr "Sonaparatoj"
+
+msgid "Processos em Execução"
+msgstr "Rulantaj procezoj"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Noto: kapti procezojn postulas Windows 10 v2004 aŭ pli novan."
+
+msgid "Parar Reprodução"
+msgstr "Halti ludadon"
+
+msgid "Excluir Gravação"
+msgstr "Forigi registraĵon"
+
+msgid "Bitrate"
+msgstr "Bitrapido"
+
+msgid "Compressão FLAC"
+msgstr "FLAC-densigo"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Registri fontojn en apartaj dosieroj"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Aldonu almenaŭ unu registran fonton antaŭ ol komenci."
+
+msgid "Não foi possível excluir:\n"
+msgstr "Ne eblis forigi:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Aŭtoro: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Registrado estas farata.\n"
+"\n"
+"Ĉu vi vere volas fermi VB Recorder?"
+
+msgid "Confirmar Saída"
+msgstr "Konfirmi eliron"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"La bufrogrando devas esti nombro inter {minimo} kaj {maximo} milisekundoj."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Ne eblis testi ĉi tiun aparaton (BASS-eraro {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Por ludi {extensao}-dosierojn ene de la programo, metu {dll} en la "
+"dosierujon lib de VB Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"BASS-eraro {erro} dum ludado:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "BASS-eraro {erro} dum komenco de la registrado."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Ne eblis malfermi la dosierujon:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "fonto"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Defaŭlta enigaparato"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "BASS-eraro {erro} dum aldono de la registra fonto."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Daŭrigi la lastan regis&traĵon"
+
+msgid "Continuar Última Gravação"
+msgstr "Daŭrigi la lastan registraĵon"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Ne eblis daŭrigi la registradon. Kontrolu, ke la dosiero ne estas malfermita en alia programo:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Plenumebla dosiero"
+
+msgid "Nome do Executável:"
+msgstr "Nomo de la plenumebla dosiero:"
+
+msgid "Nova atualização disponível!"
+msgstr "Nova ĝisdatigo disponeblas!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Via versio: {atual};\n"
+"Plej nova versio: {nova}.\n"
+"Ĉu vi volas ĝisdatigi nun?"
+
+msgid "Baixando Atualização"
+msgstr "Elŝutado de ĝisdatigo"
+
+msgid "Por favor aguarde..."
+msgstr "Bonvolu atendi..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "&Aŭtomate kontroli ĝisdatigojn"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Kontroli ĝisdati&gon..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Vi jam uzas la plej novan version de VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Kontroli ĝisdatigon"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Ne eblis kontroli ĝisdatigojn."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Ne eblis elŝuti la ĝisdatigon."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Ne eblis instali la ĝisdatigon:\n"
+"{erro}"

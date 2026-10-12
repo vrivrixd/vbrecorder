@@ -18,8 +18,8 @@
  * Program translation.
  *
  * The language is the one of the Windows interface, or the one chosen in the
- * settings. The original texts are in Brazilian Portuguese: when there is no
- * translation for the language, they are what shows up.
+ * settings. The original texts are in Brazilian Portuguese; when Windows is in
+ * a language without a translation, the program shows up in English.
  *
  * The catalogs are the same gettext .mo files as in the Python version. They
  * are embedded in the executable, and a locale folder next to it, if present,

@@ -1,0 +1,401 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: zh_TW\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "編輯錄製來源"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "新增錄製來源"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "以調整後的音量聆聽選取裝置"
+
+msgid "&Parar"
+msgstr "停止(&S)"
+
+msgid "&Testar"
+msgstr "測試(&T)"
+
+msgid "Mostrar janela principal"
+msgstr "顯示主視窗"
+
+msgid "Sair"
+msgstr "退出"
+
+msgid "&Formato de Saída:"
+msgstr "輸出格式(&F):"
+
+msgid "&Bitrate:"
+msgstr "位元率(&B):"
+
+msgid "Compressão F&LAC:"
+msgstr "FLAC 壓縮(&L):"
+
+msgid "&Taxa de Amostragem:"
+msgstr "取樣率(&T):"
+
+msgid "&Canais:"
+msgstr "聲道(&C):"
+
+msgid "Fontes de &Gravação:"
+msgstr "錄製來源(&G):"
+
+msgid "&Nome do Arquivo:"
+msgstr "檔案名稱(&N):"
+
+msgid "&Diretório de Saída:"
+msgstr "輸出目錄(&D):"
+
+msgid "&Adicionar"
+msgstr "新增(&A)"
+
+msgid "&Editar"
+msgstr "編輯(&E)"
+
+msgid "&Remover"
+msgstr "移除(&R)"
+
+msgid "P&rocurar..."
+msgstr "瀏覽(&R)..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "開啟錄音資料夾(&I)"
+
+msgid "Config&urações..."
+msgstr "設定(&U)..."
+
+msgid "S&obre"
+msgstr "關於(&O)"
+
+msgid "&Minimizar"
+msgstr "最小化(&M)"
+
+msgid "&Fechar"
+msgstr "關閉(&F)"
+
+msgid "E&xcluir Gravação"
+msgstr "刪除錄音(&X)"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "將來源錄製到單獨的檔案中(&P)"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "開始或停止錄製時播放提示音(&T)"
+
+msgid "Selecionar Pasta"
+msgstr "選取資料夾"
+
+msgid "Sobre"
+msgstr "關於"
+
+msgid "Configurar Teclas"
+msgstr "設定快捷鍵"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"在下方的欄位中按下組合鍵（例如 Ctrl+Alt+R）。\n"
+"要清除，請按 Backspace 或 Delete。\n"
+"按 Esc 取消。"
+
+msgid "Gravar:"
+msgstr "錄製:"
+
+msgid "Pausar / Continuar:"
+msgstr "暫停 / 繼續:"
+
+msgid "Parar Gravação:"
+msgstr "停止錄製:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "顯示主視窗:"
+
+msgid "Fechar Programa:"
+msgstr "關閉程式:"
+
+msgid "&Ok"
+msgstr "確定(&O)"
+
+msgid "&Cancelar"
+msgstr "取消(&C)"
+
+msgid "Configurações"
+msgstr "設定"
+
+msgid "Padrão do sistema"
+msgstr "系統預設"
+
+msgid "Iniciar &Minimizado"
+msgstr "啟動時最小化(&M)"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "最小化至系統匣(&B)"
+
+msgid "Janela Sempre no &Topo"
+msgstr "視窗總在最前(&T)"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "設定快速鍵(&A)..."
+
+msgid "Aviso"
+msgstr "警告"
+
+msgid "Filtrar Fontes Por:"
+msgstr "過濾來源按:"
+
+msgid "Selecionar Fonte:"
+msgstr "選取來源:"
+
+msgid "Volume:"
+msgstr "音量:"
+
+msgid "Erro"
+msgstr "錯誤"
+
+msgid "Gravar"
+msgstr "錄製"
+
+msgid "Formato de Saída"
+msgstr "輸出格式"
+
+msgid "Taxa de Amostragem"
+msgstr "取樣率"
+
+msgid "Canais"
+msgstr "聲道"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "開始或停止錄製時播放提示音"
+
+msgid "Continuar"
+msgstr "繼續"
+
+msgid "Pausar"
+msgstr "暫停"
+
+msgid "Parar"
+msgstr "停止"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder 已經在執行。"
+
+msgid "Para&r"
+msgstr "停止(&R)"
+
+msgid "&Gravar"
+msgstr "錄製(&G)"
+
+msgid "C&ontinuar"
+msgstr "繼續(&O)"
+
+msgid "&Pausar"
+msgstr "暫停(&P)"
+
+msgid "Gravações"
+msgstr "錄音"
+
+msgid "Parar Reprod&ução"
+msgstr "停止播放(&U)"
+
+msgid "Reprod&uzir Gravação"
+msgstr "播放錄音(&U)"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "選擇要播放的檔案:"
+
+msgid "Reproduzir Gravação"
+msgstr "播放錄音"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"是否刪除錄音？\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "確認刪除"
+
+msgid "&Idioma:"
+msgstr "語言(&I):"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "緩衝區大小(ms)(&U):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr "如果在繁忙的電腦上音訊出現爆音，請增加緩衝區。從 {minimo} 到 {maximo} 毫秒；預設為 {padrao}。"
+
+msgid "Dispositivos de Áudio"
+msgstr "音訊裝置"
+
+msgid "Processos em Execução"
+msgstr "執行中的處理程序"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "注意：處理程序擷取需要 Windows 10 v2004 或更高版本。"
+
+msgid "Parar Reprodução"
+msgstr "停止播放"
+
+msgid "Excluir Gravação"
+msgstr "刪除錄音"
+
+msgid "Bitrate"
+msgstr "位元率"
+
+msgid "Compressão FLAC"
+msgstr "FLAC 壓縮"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "將來源錄製到單獨的檔案中"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "開始前請至少新增一個錄製來源。"
+
+msgid "Não foi possível excluir:\n"
+msgstr "無法刪除：\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"作者：Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"正在錄音。\n"
+"\n"
+"真的要關閉 VB Recorder 嗎？"
+
+msgid "Confirmar Saída"
+msgstr "確認退出"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr "緩衝區大小必須是 {minimo} 到 {maximo} 毫秒之間的數字。"
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "無法測試此裝置（BASS 錯誤 {erro}）。"
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr "若要在程式內播放 {extensao} 檔案，請將 {dll} 放入 VB Recorder 的 lib 資料夾。"
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"播放時 BASS 錯誤 {erro}：\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "開始錄製時 BASS 錯誤 {erro}。"
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"無法開啟資料夾：\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "來源"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "預設輸入裝置"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "新增錄製來源時 BASS 錯誤 {erro}。"
+
+msgid "Continuar Última Gra&vação"
+msgstr "繼續上次錄製(&V)"
+
+msgid "Continuar Última Gravação"
+msgstr "繼續上次錄製"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"無法繼續錄製。請檢查該檔案是否在其他程式中開啟：\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "執行檔"
+
+msgid "Nome do Executável:"
+msgstr "執行檔名稱:"
+
+msgid "Nova atualização disponível!"
+msgstr "有新更新可用！"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"您的版本：{atual}；\n"
+"最新版本：{nova}。\n"
+"是否立即更新？"
+
+msgid "Baixando Atualização"
+msgstr "正在下載更新"
+
+msgid "Por favor aguarde..."
+msgstr "請稍候..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "自動檢查更新(&V)"
+
+msgid "Verificar Atuali&zação..."
+msgstr "檢查更新(&Z)..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "您已在使用最新版本的 VB Recorder。"
+
+msgid "Verificar Atualização"
+msgstr "檢查更新"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "無法檢查更新。"
+
+msgid "Não foi possível baixar a atualização."
+msgstr "無法下載更新。"
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"無法安裝更新：\n"
+"{erro}"

@@ -1,0 +1,411 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: tr\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n>1);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Kayıt Kaynağını Düzenle"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Kayıt Kaynağı Ekle"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Ayarlanmış ses düzeyiyle seçilen cihazı dinle"
+
+msgid "&Parar"
+msgstr "&Durdur"
+
+msgid "&Testar"
+msgstr "&Test Et"
+
+msgid "Mostrar janela principal"
+msgstr "Ana pencereyi göster"
+
+msgid "Sair"
+msgstr "Çıkış"
+
+msgid "&Formato de Saída:"
+msgstr "Çıktı &Formatı:"
+
+msgid "&Bitrate:"
+msgstr "&Bit Hızı:"
+
+msgid "Compressão F&LAC:"
+msgstr "F&LAC Sıkıştırma:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "Örnekleme &Hızı:"
+
+msgid "&Canais:"
+msgstr "&Kanallar:"
+
+msgid "Fontes de &Gravação:"
+msgstr "Kayıt Ka&ynakları:"
+
+msgid "&Nome do Arquivo:"
+msgstr "Dosya &Adı:"
+
+msgid "&Diretório de Saída:"
+msgstr "Çıktı &Dizini:"
+
+msgid "&Adicionar"
+msgstr "&Ekle"
+
+msgid "&Editar"
+msgstr "&Düzenle"
+
+msgid "&Remover"
+msgstr "&Kaldır"
+
+msgid "P&rocurar..."
+msgstr "Göz&at..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Kayıtlar Klasörünü &Aç"
+
+msgid "Config&urações..."
+msgstr "Ay&arlar..."
+
+msgid "S&obre"
+msgstr "Hakkınd&a"
+
+msgid "&Minimizar"
+msgstr "S&imge Durumuna Küçült"
+
+msgid "&Fechar"
+msgstr "&Kapat"
+
+msgid "E&xcluir Gravação"
+msgstr "Kaydı &Sil"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Kaynakları ayrı dosyalara &kaydet"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Kayıt başlarken veya dururken &ses çal"
+
+msgid "Selecionar Pasta"
+msgstr "Klasör Seç"
+
+msgid "Sobre"
+msgstr "Hakkında"
+
+msgid "Configurar Teclas"
+msgstr "Kısayolları Yapılandır"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Aşağıdaki alanlara tuş kombinasyonuna (örn. Ctrl+Alt+R) basın.\n"
+"Temizlemek için Backspace veya Delete tuşuna basın.\n"
+"İptal etmek için Esc tuşuna basın."
+
+msgid "Gravar:"
+msgstr "Kaydet:"
+
+msgid "Pausar / Continuar:"
+msgstr "Duraklat / Devam Et:"
+
+msgid "Parar Gravação:"
+msgstr "Kaydı Durdur:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Ana Pencereyi Göster:"
+
+msgid "Fechar Programa:"
+msgstr "Programı Kapat:"
+
+msgid "&Ok"
+msgstr "&Tamam"
+
+msgid "&Cancelar"
+msgstr "&İptal"
+
+msgid "Configurações"
+msgstr "Ayarlar"
+
+msgid "Padrão do sistema"
+msgstr "Sistem varsayılanı"
+
+msgid "Iniciar &Minimizado"
+msgstr "Simg&e Durumunda Başlat"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Sistem &Tepsisine Küçült"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Pencere Her Zaman &Üstte"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "&Kısayol Tuşlarını Yapılandır..."
+
+msgid "Aviso"
+msgstr "Uyarı"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Kaynakları Şuna Göre Filtrele:"
+
+msgid "Selecionar Fonte:"
+msgstr "Kaynak Seç:"
+
+msgid "Volume:"
+msgstr "Ses Düzeyi:"
+
+msgid "Erro"
+msgstr "Hata"
+
+msgid "Gravar"
+msgstr "Kaydet"
+
+msgid "Formato de Saída"
+msgstr "Çıktı Formatı"
+
+msgid "Taxa de Amostragem"
+msgstr "Örnekleme Hızı"
+
+msgid "Canais"
+msgstr "Kanallar"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Kayıt başlarken veya dururken ses çal"
+
+msgid "Continuar"
+msgstr "Devam Et"
+
+msgid "Pausar"
+msgstr "Duraklat"
+
+msgid "Parar"
+msgstr "Durdur"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder zaten çalışıyor."
+
+msgid "Para&r"
+msgstr "D&urdur"
+
+msgid "&Gravar"
+msgstr "&Kaydet"
+
+msgid "C&ontinuar"
+msgstr "Deva&m Et"
+
+msgid "&Pausar"
+msgstr "&Duraklat"
+
+msgid "Gravações"
+msgstr "Kayıtlar"
+
+msgid "Parar Reprod&ução"
+msgstr "Oynatmayı &Durdur"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Kaydı Oyn&at"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Oynatılacak dosyayı seçin:"
+
+msgid "Reproduzir Gravação"
+msgstr "Kaydı Oynat"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Kayıt silinsin mi?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Son kayıttaki {n} dosya silinsin mi?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Silmeyi Onayla"
+
+msgid "&Idioma:"
+msgstr "&Dil:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "A&rabellek Boyutu (ms):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Meşgul bir bilgisayarda ses çatırdıyorsa arabelleği artırın. {minimo} ile "
+"{maximo} ms arası; varsayılan {padrao}'dır."
+
+msgid "Dispositivos de Áudio"
+msgstr "Ses Cihazları"
+
+msgid "Processos em Execução"
+msgstr "Çalışan İşlemler"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Not: işlem yakalama, Windows 10 v2004 veya üstü gerektirir."
+
+msgid "Parar Reprodução"
+msgstr "Oynatmayı Durdur"
+
+msgid "Excluir Gravação"
+msgstr "Kaydı Sil"
+
+msgid "Bitrate"
+msgstr "Bit Hızı"
+
+msgid "Compressão FLAC"
+msgstr "FLAC Sıkıştırma"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Kaynakları ayrı dosyalara kaydet"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Başlamadan önce en az bir kayıt kaynağı ekleyin."
+
+msgid "Não foi possível excluir:\n"
+msgstr "Silinemedi:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Yazar: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Devam eden bir kayıt var.\n"
+"\n"
+"VB Recorder'ı gerçekten kapatmak istiyor musunuz?"
+
+msgid "Confirmar Saída"
+msgstr "Çıkışı Onayla"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"Arabellek boyutu {minimo} ile {maximo} milisaniye arasında bir sayı "
+"olmalıdır."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Bu cihaz test edilemedi (BASS hatası {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"{extensao} dosyalarını program içinde oynatmak için {dll} dosyasını VB "
+"Recorder'ın lib klasörüne koyun."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"Oynatılırken BASS hatası {erro}:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "Kayıt başlatılırken BASS hatası {erro}."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Klasör açılamadı:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "kaynak"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Varsayılan Giriş Cihazı"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "Kayıt kaynağı eklenirken BASS hatası {erro}."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Son Kayda De&vam Et"
+
+msgid "Continuar Última Gravação"
+msgstr "Son Kayda Devam Et"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Kayda devam edilemedi. Dosyanın başka bir programda açık olmadığından emin olun:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Yürütülebilir Dosya"
+
+msgid "Nome do Executável:"
+msgstr "Yürütülebilir Dosya Adı:"
+
+msgid "Nova atualização disponível!"
+msgstr "Yeni güncelleme mevcut!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Sürümünüz: {atual};\n"
+"En son sürüm: {nova}.\n"
+"Şimdi güncellemek istiyor musunuz?"
+
+msgid "Baixando Atualização"
+msgstr "Güncelleme İndiriliyor"
+
+msgid "Por favor aguarde..."
+msgstr "Lütfen bekleyin..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "Güncellemeleri &Otomatik Denetle"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Güncellemeleri Denet&le..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Zaten VB Recorder'ın en son sürümünü kullanıyorsunuz."
+
+msgid "Verificar Atualização"
+msgstr "Güncelleme Denetimi"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Güncellemeler denetlenemedi."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Güncelleme indirilemedi."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Güncelleme yüklenemedi:\n"
+"{erro}"

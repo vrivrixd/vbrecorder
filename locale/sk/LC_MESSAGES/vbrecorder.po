@@ -1,0 +1,413 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: sk\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Upraviť zdroj záznamu"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Pridať zdroj záznamu"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Počúvať vybrané zariadenie s upravenou hlasitosťou"
+
+msgid "&Parar"
+msgstr "&Zastaviť"
+
+msgid "&Testar"
+msgstr "&Testovať"
+
+msgid "Mostrar janela principal"
+msgstr "Zobraziť hlavné okno"
+
+msgid "Sair"
+msgstr "Ukončiť"
+
+msgid "&Formato de Saída:"
+msgstr "&Formát výstupu:"
+
+msgid "&Bitrate:"
+msgstr "&Bitrate:"
+
+msgid "Compressão F&LAC:"
+msgstr "Kompresia F&LAC:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "&Vzorkovacia frekvencia:"
+
+msgid "&Canais:"
+msgstr "&Kanály:"
+
+msgid "Fontes de &Gravação:"
+msgstr "Zdroje &záznamu:"
+
+msgid "&Nome do Arquivo:"
+msgstr "&Názov súboru:"
+
+msgid "&Diretório de Saída:"
+msgstr "&Výstupný adresár:"
+
+msgid "&Adicionar"
+msgstr "Pri&dať"
+
+msgid "&Editar"
+msgstr "&Upraviť"
+
+msgid "&Remover"
+msgstr "&Odstrániť"
+
+msgid "P&rocurar..."
+msgstr "P&rehľadávať..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Otvor&iť priečinok záznamov"
+
+msgid "Config&urações..."
+msgstr "Nastaveni&a..."
+
+msgid "S&obre"
+msgstr "&O aplikácii"
+
+msgid "&Minimizar"
+msgstr "&Minimalizovať"
+
+msgid "&Fechar"
+msgstr "&Zavrieť"
+
+msgid "E&xcluir Gravação"
+msgstr "O&dstrániť záznam"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Zaznamenávať zdroje do &samostatných súborov"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Prehrať &tón pri spustení alebo zastavení záznamu"
+
+msgid "Selecionar Pasta"
+msgstr "Vybrať priečinok"
+
+msgid "Sobre"
+msgstr "O aplikácii"
+
+msgid "Configurar Teclas"
+msgstr "Konfigurovať klávesové skratky"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Stlačte kombináciu klávesov (napr. Ctrl+Alt+R) v poliach nižšie.\n"
+"Pre vymazanie stlačte Backspace alebo Delete.\n"
+"Pre zrušenie stlačte Esc."
+
+msgid "Gravar:"
+msgstr "Nahrávať:"
+
+msgid "Pausar / Continuar:"
+msgstr "Pozastaviť / Pokračovať:"
+
+msgid "Parar Gravação:"
+msgstr "Zastaviť záznam:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Zobraziť hlavné okno:"
+
+msgid "Fechar Programa:"
+msgstr "Zavrieť program:"
+
+msgid "&Ok"
+msgstr "&OK"
+
+msgid "&Cancelar"
+msgstr "&Zrušiť"
+
+msgid "Configurações"
+msgstr "Nastavenia"
+
+msgid "Padrão do sistema"
+msgstr "Predvolené systémom"
+
+msgid "Iniciar &Minimizado"
+msgstr "Spustiť &minimalizovane"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Minimalizovať do &systémovej lišty"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Okno vždy &navrchu"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Konfigurovať &klávesové skratky..."
+
+msgid "Aviso"
+msgstr "Varovanie"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Filtrovať zdroje podľa:"
+
+msgid "Selecionar Fonte:"
+msgstr "Vybrať zdroj:"
+
+msgid "Volume:"
+msgstr "Hlasitosť:"
+
+msgid "Erro"
+msgstr "Chyba"
+
+msgid "Gravar"
+msgstr "Nahrávať"
+
+msgid "Formato de Saída"
+msgstr "Formát výstupu"
+
+msgid "Taxa de Amostragem"
+msgstr "Vzorkovacia frekvencia"
+
+msgid "Canais"
+msgstr "Kanály"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Prehrať tón pri spustení alebo zastavení záznamu"
+
+msgid "Continuar"
+msgstr "Pokračovať"
+
+msgid "Pausar"
+msgstr "Pozastaviť"
+
+msgid "Parar"
+msgstr "Zastaviť"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder je už spustený."
+
+msgid "Para&r"
+msgstr "Zas&taviť"
+
+msgid "&Gravar"
+msgstr "&Nahrávať"
+
+msgid "C&ontinuar"
+msgstr "P&okračovať"
+
+msgid "&Pausar"
+msgstr "&Pozastaviť"
+
+msgid "Gravações"
+msgstr "Záznamy"
+
+msgid "Parar Reprod&ução"
+msgstr "Zastaviť pre&hrávanie"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Prehrať zázna&m"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Vyberte súbor na prehrávanie:"
+
+msgid "Reproduzir Gravação"
+msgstr "Prehrať záznam"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Odstrániť záznam?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Odstrániť {n} súbory z posledného záznamu?\n"
+"\n"
+"{lista}"
+msgstr[2] ""
+"Odstrániť {n} súborov z posledného záznamu?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Potvrdiť odstránenie"
+
+msgid "&Idioma:"
+msgstr "&Jazyk:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "Veľkosť b&uffera (ms):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Zvýšte buffer, ak na zaneprázdnenom počítači praská zvuk. Od {minimo} do "
+"{maximo} ms; predvolené je {padrao}."
+
+msgid "Dispositivos de Áudio"
+msgstr "Zvukové zariadenia"
+
+msgid "Processos em Execução"
+msgstr "Spustené procesy"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Poznámka: snímanie procesu vyžaduje Windows 10 v2004 alebo novší."
+
+msgid "Parar Reprodução"
+msgstr "Zastaviť prehrávanie"
+
+msgid "Excluir Gravação"
+msgstr "Odstrániť záznam"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Compressão FLAC"
+msgstr "Kompresia FLAC"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Zaznamenávať zdroje do samostatných súborov"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Pred spustením pridajte aspoň jeden zdroj záznamu."
+
+msgid "Não foi possível excluir:\n"
+msgstr "Nepodarilo sa odstrániť:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Prebieha záznam.\n"
+"\n"
+"Naozaj chcete VB Recorder zatvoriť?"
+
+msgid "Confirmar Saída"
+msgstr "Potvrdiť ukončenie"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr "Veľkosť buffera musí byť číslo od {minimo} do {maximo} milisekúnd."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Toto zariadenie nebolo možné otestovať (chyba BASS {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Ak chcete v programe prehrávať súbory {extensao}, umiestnite {dll} do "
+"priečinka lib programu VB Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"Chyba BASS {erro} pri prehrávaní:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "Chyba BASS {erro} pri spustení záznamu."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Priečinok sa nepodarilo otvoriť:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "zdroj"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Predvolené vstupné zariadenie"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "Chyba BASS {erro} pri pridávaní zdroja záznamu."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Pokračovať v &poslednom zázname"
+
+msgid "Continuar Última Gravação"
+msgstr "Pokračovať v poslednom zázname"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"V zázname nebolo možné pokračovať. Skontrolujte, či súbor nie je otvorený v inom programe:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Spustiteľný súbor"
+
+msgid "Nome do Executável:"
+msgstr "Názov spustiteľného súboru:"
+
+msgid "Nova atualização disponível!"
+msgstr "K dispozícii je nová aktualizácia!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Vaša verzia: {atual};\n"
+"Najnovšia verzia: {nova}.\n"
+"Chcete aktualizovať teraz?"
+
+msgid "Baixando Atualização"
+msgstr "Sťahovanie aktualizácie"
+
+msgid "Por favor aguarde..."
+msgstr "Prosím čakajte..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "&Automaticky kontrolovať aktualizácie"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Skontrolovať aktuali&záciu..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Už používate najnovšiu verziu VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Kontrola aktualizácie"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Aktualizácie sa nepodarilo skontrolovať."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Aktualizáciu sa nepodarilo stiahnuť."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Aktualizáciu sa nepodarilo nainštalovať:\n"
+"{erro}"

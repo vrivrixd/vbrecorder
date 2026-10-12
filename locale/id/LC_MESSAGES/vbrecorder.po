@@ -1,0 +1,407 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: id\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Edit Sumber Rekaman"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Tambah Sumber Rekaman"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Dengarkan perangkat yang dipilih dengan volume yang disesuaikan"
+
+msgid "&Parar"
+msgstr "&Berhenti"
+
+msgid "&Testar"
+msgstr "&Uji"
+
+msgid "Mostrar janela principal"
+msgstr "Tampilkan jendela utama"
+
+msgid "Sair"
+msgstr "Keluar"
+
+msgid "&Formato de Saída:"
+msgstr "&Format Output:"
+
+msgid "&Bitrate:"
+msgstr "&Bitrate:"
+
+msgid "Compressão F&LAC:"
+msgstr "Komp&resi FLAC:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "Tingkat &Sampel:"
+
+msgid "&Canais:"
+msgstr "&Kanal:"
+
+msgid "Fontes de &Gravação:"
+msgstr "Sumber &Rekaman:"
+
+msgid "&Nome do Arquivo:"
+msgstr "&Nama File:"
+
+msgid "&Diretório de Saída:"
+msgstr "&Direktori Output:"
+
+msgid "&Adicionar"
+msgstr "T&ambah"
+
+msgid "&Editar"
+msgstr "&Edit"
+
+msgid "&Remover"
+msgstr "&Hapus"
+
+msgid "P&rocurar..."
+msgstr "T&elusuri..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Buka Folder Rekaman(&I)"
+
+msgid "Config&urações..."
+msgstr "Pengat&uran..."
+
+msgid "S&obre"
+msgstr "Tentang(&O)"
+
+msgid "&Minimizar"
+msgstr "&Minimalkan"
+
+msgid "&Fechar"
+msgstr "&Tutup"
+
+msgid "E&xcluir Gravação"
+msgstr "Ha&pus Rekaman"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Rekam sumber ke file ter&pisah"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Putarkan &nada saat memulai atau menghentikan rekaman"
+
+msgid "Selecionar Pasta"
+msgstr "Pilih Folder"
+
+msgid "Sobre"
+msgstr "Tentang"
+
+msgid "Configurar Teclas"
+msgstr "Konfigurasi Tombol"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Tekan kombinasi tombol (mis. Ctrl+Alt+R) pada kolom di bawah.\n"
+"Untuk menghapus, tekan Backspace atau Delete.\n"
+"Tekan Esc untuk membatalkan."
+
+msgid "Gravar:"
+msgstr "Rekam:"
+
+msgid "Pausar / Continuar:"
+msgstr "Jeda / Lanjutkan:"
+
+msgid "Parar Gravação:"
+msgstr "Hentikan Rekaman:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Tampilkan Jendela Utama:"
+
+msgid "Fechar Programa:"
+msgstr "Tutup Program:"
+
+msgid "&Ok"
+msgstr "&OK"
+
+msgid "&Cancelar"
+msgstr "&Batal"
+
+msgid "Configurações"
+msgstr "Pengaturan"
+
+msgid "Padrão do sistema"
+msgstr "Standar sistem"
+
+msgid "Iniciar &Minimizado"
+msgstr "Mulai &Minimalkan"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Minimalkan ke &System Tray"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Jendela Selalu di &Atas"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Konfigurasi Tombol &Pintasan..."
+
+msgid "Aviso"
+msgstr "Peringatan"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Saring Sumber Berdasarkan:"
+
+msgid "Selecionar Fonte:"
+msgstr "Pilih Sumber:"
+
+msgid "Volume:"
+msgstr "Volume:"
+
+msgid "Erro"
+msgstr "Kesalahan"
+
+msgid "Gravar"
+msgstr "Rekam"
+
+msgid "Formato de Saída"
+msgstr "Format Output"
+
+msgid "Taxa de Amostragem"
+msgstr "Tingkat Sampel"
+
+msgid "Canais"
+msgstr "Kanal"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Putarkan nada saat memulai atau menghentikan rekaman"
+
+msgid "Continuar"
+msgstr "Lanjutkan"
+
+msgid "Pausar"
+msgstr "Jeda"
+
+msgid "Parar"
+msgstr "Berhenti"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder sudah berjalan."
+
+msgid "Para&r"
+msgstr "&Berhenti"
+
+msgid "&Gravar"
+msgstr "Re&kam"
+
+msgid "C&ontinuar"
+msgstr "L&anjutkan"
+
+msgid "&Pausar"
+msgstr "Je&da"
+
+msgid "Gravações"
+msgstr "Rekaman"
+
+msgid "Parar Reprod&ução"
+msgstr "Hentikan Pemutaran(&U)"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Putar Rekaman(&U)"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Pilih file untuk diputar:"
+
+msgid "Reproduzir Gravação"
+msgstr "Putar Rekaman"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Hapus rekaman?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Konfirmasi Penghapusan"
+
+msgid "&Idioma:"
+msgstr "&Bahasa:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "Ukuran B&uffer (ms):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Tingkatkan buffer jika audio retak pada komputer yang sibuk. Dari {minimo} "
+"hingga {maximo} md; standarnya adalah {padrao}."
+
+msgid "Dispositivos de Áudio"
+msgstr "Perangkat Audio"
+
+msgid "Processos em Execução"
+msgstr "Proses Berjalan"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr ""
+"Catatan: tangkapan proses memerlukan Windows 10 v2004 atau lebih baru."
+
+msgid "Parar Reprodução"
+msgstr "Hentikan Pemutaran"
+
+msgid "Excluir Gravação"
+msgstr "Hapus Rekaman"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Compressão FLAC"
+msgstr "Kompresi FLAC"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Rekam sumber ke file terpisah"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Tambahkan setidaknya satu sumber rekaman sebelum memulai."
+
+msgid "Não foi possível excluir:\n"
+msgstr "Tidak dapat menghapus:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Penulis: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Perekaman sedang berlangsung.\n"
+"\n"
+"Apakah Anda benar-benar ingin menutup VB Recorder?"
+
+msgid "Confirmar Saída"
+msgstr "Konfirmasi Keluar"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"Ukuran buffer harus berupa angka antara {minimo} dan {maximo} milidetik."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Tidak dapat menguji perangkat ini (kesalahan BASS {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Untuk memutar file {extensao} di dalam program, letakkan {dll} di folder lib"
+" VB Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"Kesalahan BASS {erro} saat memutar:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "Kesalahan BASS {erro} saat memulai rekaman."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Tidak dapat membuka folder:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "sumber"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Perangkat Input Standar"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "Kesalahan BASS {erro} saat menambahkan sumber rekaman."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Lanjutkan Rekaman &Terakhir"
+
+msgid "Continuar Última Gravação"
+msgstr "Lanjutkan Rekaman Terakhir"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Tidak dapat melanjutkan rekaman. Pastikan file tidak sedang dibuka di program lain:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "File Eksekusi"
+
+msgid "Nome do Executável:"
+msgstr "Nama File Eksekusi:"
+
+msgid "Nova atualização disponível!"
+msgstr "Pembaruan baru tersedia!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Versi Anda: {atual};\n"
+"Versi terbaru: {nova}.\n"
+"Apakah Anda ingin memperbarui sekarang?"
+
+msgid "Baixando Atualização"
+msgstr "Mengunduh Pembaruan"
+
+msgid "Por favor aguarde..."
+msgstr "Harap tunggu..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "Periksa Pembaruan Secara &Otomatis"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Periksa Pem&baruan..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Anda sudah menggunakan versi terbaru VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Periksa Pembaruan"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Tidak dapat memeriksa pembaruan."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Tidak dapat mengunduh pembaruan."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Tidak dapat memasang pembaruan:\n"
+"{erro}"

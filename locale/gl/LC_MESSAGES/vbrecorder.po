@@ -1,0 +1,411 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: gl\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Editar fonte de gravación"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Engadir fonte de gravación"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Escoitar o dispositivo seleccionado co volume axustado"
+
+msgid "&Parar"
+msgstr "&Deter"
+
+msgid "&Testar"
+msgstr "&Probar"
+
+msgid "Mostrar janela principal"
+msgstr "Mostrar xanela principal"
+
+msgid "Sair"
+msgstr "Saír"
+
+msgid "&Formato de Saída:"
+msgstr "&Formato de saída:"
+
+msgid "&Bitrate:"
+msgstr "&Bitrate:"
+
+msgid "Compressão F&LAC:"
+msgstr "Compresión F&LAC:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "&Taxa de mostraxe:"
+
+msgid "&Canais:"
+msgstr "&Canais:"
+
+msgid "Fontes de &Gravação:"
+msgstr "Fontes de &gravación:"
+
+msgid "&Nome do Arquivo:"
+msgstr "&Nome do ficheiro:"
+
+msgid "&Diretório de Saída:"
+msgstr "&Cartafol de saída:"
+
+msgid "&Adicionar"
+msgstr "&Engadir"
+
+msgid "&Editar"
+msgstr "&Editar"
+
+msgid "&Remover"
+msgstr "&Eliminar"
+
+msgid "P&rocurar..."
+msgstr "P&rocurar..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Abr&ir cartafol de gravacións"
+
+msgid "Config&urações..."
+msgstr "Config&uracións..."
+
+msgid "S&obre"
+msgstr "S&obre"
+
+msgid "&Minimizar"
+msgstr "&Minimizar"
+
+msgid "&Fechar"
+msgstr "&Pechar"
+
+msgid "E&xcluir Gravação"
+msgstr "E&xcluir gravación"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Gravar fontes en ficheiros se&parados"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Reproducir &tons ao iniciar ou parar a gravación"
+
+msgid "Selecionar Pasta"
+msgstr "Seleccionar cartafol"
+
+msgid "Sobre"
+msgstr "Sobre"
+
+msgid "Configurar Teclas"
+msgstr "Configurar teclas"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Preme a combinación de teclas (ex: Ctrl+Alt+R) nos campos de abaixo.\n"
+"Para limpar, preme Backspace ou Delete.\n"
+"Preme Esc para cancelar."
+
+msgid "Gravar:"
+msgstr "Gravar:"
+
+msgid "Pausar / Continuar:"
+msgstr "Pausar / Continuar:"
+
+msgid "Parar Gravação:"
+msgstr "Parar gravación:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Mostrar xanela principal:"
+
+msgid "Fechar Programa:"
+msgstr "Pechar programa:"
+
+msgid "&Ok"
+msgstr "&Ok"
+
+msgid "&Cancelar"
+msgstr "&Cancelar"
+
+msgid "Configurações"
+msgstr "Configuracións"
+
+msgid "Padrão do sistema"
+msgstr "Estándar do sistema"
+
+msgid "Iniciar &Minimizado"
+msgstr "Iniciar &minimizado"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Minimizar á &bandexa do sistema"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Xanela sempre no &topo"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Configurar teclas de &atallo..."
+
+msgid "Aviso"
+msgstr "Aviso"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Filtrar fontes por:"
+
+msgid "Selecionar Fonte:"
+msgstr "Seleccionar fonte:"
+
+msgid "Volume:"
+msgstr "Volume:"
+
+msgid "Erro"
+msgstr "Erro"
+
+msgid "Gravar"
+msgstr "Gravar"
+
+msgid "Formato de Saída"
+msgstr "Formato de saída"
+
+msgid "Taxa de Amostragem"
+msgstr "Taxa de mostraxe"
+
+msgid "Canais"
+msgstr "Canais"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Reproducir tons ao iniciar ou parar a gravación"
+
+msgid "Continuar"
+msgstr "Continuar"
+
+msgid "Pausar"
+msgstr "Pausar"
+
+msgid "Parar"
+msgstr "Deter"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder xa está en execución."
+
+msgid "Para&r"
+msgstr "De&ter"
+
+msgid "&Gravar"
+msgstr "&Gravar"
+
+msgid "C&ontinuar"
+msgstr "C&ontinuar"
+
+msgid "&Pausar"
+msgstr "&Pausar"
+
+msgid "Gravações"
+msgstr "Gravacións"
+
+msgid "Parar Reprod&ução"
+msgstr "Parar reprod&ución"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Reprod&ucir gravación"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Escolle o ficheiro para reproducir:"
+
+msgid "Reproduzir Gravação"
+msgstr "Reproducir gravación"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Eliminar a gravación?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Eliminar os {n} ficheiros da última gravación?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Confirmar exclusión"
+
+msgid "&Idioma:"
+msgstr "&Idioma:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "Tamaño do b&uffer (ms):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Aumente o buffer se o son estrala nun ordenador ocupado. De {minimo} a "
+"{maximo} ms; o estándar é {padrao}."
+
+msgid "Dispositivos de Áudio"
+msgstr "Dispositivos de audio"
+
+msgid "Processos em Execução"
+msgstr "Procesos en execución"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Nota: a captura por proceso require Windows 10 v2004 ou superior."
+
+msgid "Parar Reprodução"
+msgstr "Parar reprodución"
+
+msgid "Excluir Gravação"
+msgstr "Excluir gravación"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Compressão FLAC"
+msgstr "Compresión FLAC"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Gravar fontes en ficheiros separados"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Engade polo menos unha fonte de gravación antes de iniciar."
+
+msgid "Não foi possível excluir:\n"
+msgstr "Non se puido eliminar:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Hai unha gravación en curso.\n"
+"\n"
+"De verdade desexa pechar o VB Recorder?"
+
+msgid "Confirmar Saída"
+msgstr "Confirmar saída"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"O tamaño do buffer debe ser un número entre {minimo} e {maximo} "
+"milisegundos."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Non se puido probar este dispositivo (erro BASS {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Para reproducir ficheiros {extensao} dentro do programa, coloque {dll} no "
+"cartafol lib do VB Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"Erro BASS {erro} ao reproducir:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "Erro BASS {erro} ao iniciar a gravación."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Non se puido abrir o cartafol:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "fonte"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Dispositivo de entrada predeterminado"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "Erro BASS {erro} ao engadir a fonte de gravación."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Continuar a última gra&vación"
+
+msgid "Continuar Última Gravação"
+msgstr "Continuar a última gravación"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Non se puido continuar a gravación. Comprobe que o ficheiro non estea aberto noutro programa:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Ficheiro executable"
+
+msgid "Nome do Executável:"
+msgstr "Nome do executable:"
+
+msgid "Nova atualização disponível!"
+msgstr "Nova actualización dispoñible!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"A súa versión: {atual};\n"
+"Versión máis recente: {nova}.\n"
+"Quere actualizar agora?"
+
+msgid "Baixando Atualização"
+msgstr "Descargando actualización"
+
+msgid "Por favor aguarde..."
+msgstr "Por favor agarde..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "&Comprobar actualizacións automaticamente"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Comprobar actuali&zación..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Xa está a usar a versión máis recente do VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Comprobar actualización"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Non se puido comprobar se hai actualizacións."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Non se puido descargar a actualización."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Non se puido instalar a actualización:\n"
+"{erro}"

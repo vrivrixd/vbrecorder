@@ -1,0 +1,414 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: pl\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Edytuj źródło nagrywania"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Dodaj źródło nagrywania"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Słuchaj wybranego urządzenia z dostosowaną głośnością"
+
+msgid "&Parar"
+msgstr "&Zatrzymaj"
+
+msgid "&Testar"
+msgstr "&Testuj"
+
+msgid "Mostrar janela principal"
+msgstr "Pokaż główne okno"
+
+msgid "Sair"
+msgstr "Zakończ"
+
+msgid "&Formato de Saída:"
+msgstr "&Format wyjściowy:"
+
+msgid "&Bitrate:"
+msgstr "&Bitrate:"
+
+msgid "Compressão F&LAC:"
+msgstr "Kompresja F&LAC:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "&Częstotliwość próbkowania:"
+
+msgid "&Canais:"
+msgstr "&Kanały:"
+
+msgid "Fontes de &Gravação:"
+msgstr "Źródła na&grywania:"
+
+msgid "&Nome do Arquivo:"
+msgstr "&Nazwa pliku:"
+
+msgid "&Diretório de Saída:"
+msgstr "Katalog w&yjściowy:"
+
+msgid "&Adicionar"
+msgstr "Dod&aj"
+
+msgid "&Editar"
+msgstr "&Edytuj"
+
+msgid "&Remover"
+msgstr "&Usuń"
+
+msgid "P&rocurar..."
+msgstr "P&rzeglądaj..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Otwór&z folder nagrań"
+
+msgid "Config&urações..."
+msgstr "Ustawieni&a..."
+
+msgid "S&obre"
+msgstr "&O programie"
+
+msgid "&Minimizar"
+msgstr "&Minimalizuj"
+
+msgid "&Fechar"
+msgstr "&Zamknij"
+
+msgid "E&xcluir Gravação"
+msgstr "U&suń nagranie"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Nagrywaj źródła do oddzielnych &plików"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Odtwarzaj &dźwięki podczas rozpoczynania lub zatrzymywania nagrywania"
+
+msgid "Selecionar Pasta"
+msgstr "Wybierz folder"
+
+msgid "Sobre"
+msgstr "O programie"
+
+msgid "Configurar Teclas"
+msgstr "Konfiguruj klawisze"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Naciśnij kombinację klawiszy (np. Ctrl+Alt+R) w polach poniżej.\n"
+"Aby wyczyścić, naciśnij Backspace lub Delete.\n"
+"Naciśnij Esc, aby anulować."
+
+msgid "Gravar:"
+msgstr "Nagrywaj:"
+
+msgid "Pausar / Continuar:"
+msgstr "Wstrzymaj / Wznów:"
+
+msgid "Parar Gravação:"
+msgstr "Zatrzymaj nagrywanie:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Pokaż główne okno:"
+
+msgid "Fechar Programa:"
+msgstr "Zamknij program:"
+
+msgid "&Ok"
+msgstr "&OK"
+
+msgid "&Cancelar"
+msgstr "&Anuluj"
+
+msgid "Configurações"
+msgstr "Ustawienia"
+
+msgid "Padrão do sistema"
+msgstr "Domyślne systemowe"
+
+msgid "Iniciar &Minimizado"
+msgstr "Uruchom z&minimalizowany"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Minimalizuj do &zasobnika"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Okno zawsze na &wierzchu"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Konfiguruj skróty &klawiszowe..."
+
+msgid "Aviso"
+msgstr "Ostrzeżenie"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Filtruj źródła po:"
+
+msgid "Selecionar Fonte:"
+msgstr "Wybierz źródło:"
+
+msgid "Volume:"
+msgstr "Głośność:"
+
+msgid "Erro"
+msgstr "Błąd"
+
+msgid "Gravar"
+msgstr "Nagrywaj"
+
+msgid "Formato de Saída"
+msgstr "Format wyjściowy"
+
+msgid "Taxa de Amostragem"
+msgstr "Częstotliwość próbkowania"
+
+msgid "Canais"
+msgstr "Kanały"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Odtwarzaj dźwięki podczas rozpoczynania lub zatrzymywania nagrywania"
+
+msgid "Continuar"
+msgstr "Wznów"
+
+msgid "Pausar"
+msgstr "Wstrzymaj"
+
+msgid "Parar"
+msgstr "Zatrzymaj"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder jest już uruchomiony."
+
+msgid "Para&r"
+msgstr "Za&trzymaj"
+
+msgid "&Gravar"
+msgstr "&Nagrywaj"
+
+msgid "C&ontinuar"
+msgstr "Wz&nów"
+
+msgid "&Pausar"
+msgstr "&Wstrzymaj"
+
+msgid "Gravações"
+msgstr "Nagrania"
+
+msgid "Parar Reprod&ução"
+msgstr "Zatrzymaj odtwar&zanie"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Odtwórz nagranie(&U)"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Wybierz plik do odtworzenia:"
+
+msgid "Reproduzir Gravação"
+msgstr "Odtwórz nagranie"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Usunąć nagranie?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Usunąć {n} pliki z ostatniego nagrania?\n"
+"\n"
+"{lista}"
+msgstr[2] ""
+"Usunąć {n} plików z ostatniego nagrania?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Potwierdź usunięcie"
+
+msgid "&Idioma:"
+msgstr "&Język:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "Rozmiar b&ufora (ms):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Zwiększ bufor, jeśli dźwięk trzeszczy na obciążonym komputerze. Od {minimo} "
+"do {maximo} ms; domyślnie to {padrao}."
+
+msgid "Dispositivos de Áudio"
+msgstr "Urządzenia audio"
+
+msgid "Processos em Execução"
+msgstr "Uruchomione procesy"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr ""
+"Uwaga: przechwytywanie procesu wymaga systemu Windows 10 v2004 lub nowszego."
+
+msgid "Parar Reprodução"
+msgstr "Zatrzymaj odtwarzanie"
+
+msgid "Excluir Gravação"
+msgstr "Usuń nagranie"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Compressão FLAC"
+msgstr "Kompresja FLAC"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Nagrywaj źródła do oddzielnych plików"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Dodaj co najmniej jedno źródło nagrywania przed rozpoczęciem."
+
+msgid "Não foi possível excluir:\n"
+msgstr "Nie można usunąć:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Trwa nagrywanie.\n"
+"\n"
+"Czy na pewno chcesz zamknąć VB Recorder?"
+
+msgid "Confirmar Saída"
+msgstr "Potwierdź wyjście"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr "Rozmiar bufora musi być liczbą od {minimo} do {maximo} milisekund."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Nie można przetestować tego urządzenia (błąd BASS {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Aby odtwarzać pliki {extensao} w programie, umieść {dll} w folderze lib "
+"programu VB Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"Błąd BASS {erro} podczas odtwarzania:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "Błąd BASS {erro} podczas rozpoczynania nagrywania."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Nie można otworzyć folderu:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "źródło"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Domyślne urządzenie wejściowe"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "Błąd BASS {erro} podczas dodawania źródła nagrywania."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Kontynuuj &ostatnie nagranie"
+
+msgid "Continuar Última Gravação"
+msgstr "Kontynuuj ostatnie nagranie"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Nie można kontynuować nagrywania. Sprawdź, czy plik nie jest otwarty w innym programie:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Plik wykonywalny"
+
+msgid "Nome do Executável:"
+msgstr "Nazwa pliku wykonywalnego:"
+
+msgid "Nova atualização disponível!"
+msgstr "Dostępna nowa aktualizacja!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Twoja wersja: {atual};\n"
+"Najnowsza wersja: {nova}.\n"
+"Czy chcesz zaktualizować teraz?"
+
+msgid "Baixando Atualização"
+msgstr "Pobieranie aktualizacji"
+
+msgid "Por favor aguarde..."
+msgstr "Proszę czekać..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "&Automatycznie sprawdzaj aktualizacje"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Sprawdź aktuali&zację..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Używasz już najnowszej wersji VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Sprawdzanie aktualizacji"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Nie można sprawdzić aktualizacji."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Nie można pobrać aktualizacji."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Nie można zainstalować aktualizacji:\n"
+"{erro}"

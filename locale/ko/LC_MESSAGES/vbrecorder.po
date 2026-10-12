@@ -1,0 +1,402 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: ko\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "녹음 소스 편집"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "녹음 소스 추가"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "조정된 볼륨으로 선택한 장치 듣기"
+
+msgid "&Parar"
+msgstr "중지(&P)"
+
+msgid "&Testar"
+msgstr "테스트(&T)"
+
+msgid "Mostrar janela principal"
+msgstr "메인 창 표시"
+
+msgid "Sair"
+msgstr "종료"
+
+msgid "&Formato de Saída:"
+msgstr "출력 형식(&F):"
+
+msgid "&Bitrate:"
+msgstr "비트레이트(&B):"
+
+msgid "Compressão F&LAC:"
+msgstr "FLAC 압축(&L):"
+
+msgid "&Taxa de Amostragem:"
+msgstr "샘플링 속도(&T):"
+
+msgid "&Canais:"
+msgstr "채널(&C):"
+
+msgid "Fontes de &Gravação:"
+msgstr "녹음 소스(&G):"
+
+msgid "&Nome do Arquivo:"
+msgstr "파일 이름(&N):"
+
+msgid "&Diretório de Saída:"
+msgstr "출력 디렉토리(&D):"
+
+msgid "&Adicionar"
+msgstr "추가(&A)"
+
+msgid "&Editar"
+msgstr "편집(&E)"
+
+msgid "&Remover"
+msgstr "제거(&R)"
+
+msgid "P&rocurar..."
+msgstr "찾아보기(&R)..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "녹음 폴더 열기(&I)"
+
+msgid "Config&urações..."
+msgstr "설정(&U)..."
+
+msgid "S&obre"
+msgstr "정보(&O)"
+
+msgid "&Minimizar"
+msgstr "최소화(&M)"
+
+msgid "&Fechar"
+msgstr "닫기(&F)"
+
+msgid "E&xcluir Gravação"
+msgstr "녹음 삭제(&X)"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "소스를 개별 파일로 녹음(&P)"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "녹음 시작 또는 중지 시 신호음 재생(&T)"
+
+msgid "Selecionar Pasta"
+msgstr "폴더 선택"
+
+msgid "Sobre"
+msgstr "정보"
+
+msgid "Configurar Teclas"
+msgstr "단축키 설정"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"아래 필드에서 키 조합(예: Ctrl+Alt+R)을 누르십시오.\n"
+"지우려면 Backspace 또는 Delete를 누르십시오.\n"
+"취소하려면 Esc를 누르십시오."
+
+msgid "Gravar:"
+msgstr "녹음:"
+
+msgid "Pausar / Continuar:"
+msgstr "일시 정지 / 계속:"
+
+msgid "Parar Gravação:"
+msgstr "녹음 중지:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "메인 창 표시:"
+
+msgid "Fechar Programa:"
+msgstr "프로그램 닫기:"
+
+msgid "&Ok"
+msgstr "확인(&O)"
+
+msgid "&Cancelar"
+msgstr "취소(&C)"
+
+msgid "Configurações"
+msgstr "설정"
+
+msgid "Padrão do sistema"
+msgstr "시스템 기본값"
+
+msgid "Iniciar &Minimizado"
+msgstr "최소화된 상태로 시작(&M)"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "시스템 트레이로 최소화(&B)"
+
+msgid "Janela Sempre no &Topo"
+msgstr "창을 항상 위에 표시(&T)"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "단축키 설정(&A)..."
+
+msgid "Aviso"
+msgstr "경고"
+
+msgid "Filtrar Fontes Por:"
+msgstr "소스 필터링 기준:"
+
+msgid "Selecionar Fonte:"
+msgstr "소스 선택:"
+
+msgid "Volume:"
+msgstr "볼륨:"
+
+msgid "Erro"
+msgstr "오류"
+
+msgid "Gravar"
+msgstr "녹음"
+
+msgid "Formato de Saída"
+msgstr "출력 형식"
+
+msgid "Taxa de Amostragem"
+msgstr "샘플링 속도"
+
+msgid "Canais"
+msgstr "채널"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "녹음 시작 또는 중지 시 신호음 재생"
+
+msgid "Continuar"
+msgstr "계속"
+
+msgid "Pausar"
+msgstr "일시 정지"
+
+msgid "Parar"
+msgstr "중지"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder가 이미 실행 중입니다."
+
+msgid "Para&r"
+msgstr "중지(&R)"
+
+msgid "&Gravar"
+msgstr "녹음(&G)"
+
+msgid "C&ontinuar"
+msgstr "계속(&O)"
+
+msgid "&Pausar"
+msgstr "일시 정지(&P)"
+
+msgid "Gravações"
+msgstr "녹음 파일"
+
+msgid "Parar Reprod&ução"
+msgstr "재생 중지(&U)"
+
+msgid "Reprod&uzir Gravação"
+msgstr "녹음 재생(&U)"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "재생할 파일을 선택하세요:"
+
+msgid "Reproduzir Gravação"
+msgstr "녹음 재생"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"녹음을 삭제하시겠습니까?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "삭제 확인"
+
+msgid "&Idioma:"
+msgstr "언어(&I):"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "버퍼 크기(ms)(&U):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"컴퓨터가 바쁠 때 오디오가 끊기면 버퍼를 늘리십시오. {minimo}에서 {maximo} ms까지; 기본값은 {padrao}입니다."
+
+msgid "Dispositivos de Áudio"
+msgstr "오디오 장치"
+
+msgid "Processos em Execução"
+msgstr "실행 중인 프로세스"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "참고: 프로세스 캡처에는 Windows 10 v2004 이상이 필요합니다."
+
+msgid "Parar Reprodução"
+msgstr "재생 중지"
+
+msgid "Excluir Gravação"
+msgstr "녹음 삭제"
+
+msgid "Bitrate"
+msgstr "비트레이트"
+
+msgid "Compressão FLAC"
+msgstr "FLAC 압축"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "소스를 개별 파일로 녹음"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "시작하기 전에 녹음 소스를 하나 이상 추가하십시오."
+
+msgid "Não foi possível excluir:\n"
+msgstr "삭제할 수 없습니다:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"작성자: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"녹음이 진행 중입니다.\n"
+"\n"
+"정말로 VB Recorder를 닫으시겠습니까?"
+
+msgid "Confirmar Saída"
+msgstr "종료 확인"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr "버퍼 크기는 {minimo}에서 {maximo} 밀리초 사이의 숫자여야 합니다."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "이 장치를 테스트할 수 없습니다(BASS 오류 {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr "프로그램 안에서 {extensao} 파일을 재생하려면 VB Recorder의 lib 폴더에 {dll}을(를) 넣으십시오."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"재생 중 BASS 오류 {erro}:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "녹음 시작 중 BASS 오류 {erro}."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"폴더를 열 수 없습니다:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "소스"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "기본 입력 장치"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "녹음 소스 추가 중 BASS 오류 {erro}."
+
+msgid "Continuar Última Gra&vação"
+msgstr "마지막 녹음 계속(&V)"
+
+msgid "Continuar Última Gravação"
+msgstr "마지막 녹음 계속"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"녹음을 계속할 수 없습니다. 파일이 다른 프로그램에서 열려 있지 않은지 확인하십시오:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "실행 파일"
+
+msgid "Nome do Executável:"
+msgstr "실행 파일 이름:"
+
+msgid "Nova atualização disponível!"
+msgstr "새로운 업데이트가 있습니다!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"현재 버전: {atual};\n"
+"최신 버전: {nova}.\n"
+"지금 업데이트하시겠습니까?"
+
+msgid "Baixando Atualização"
+msgstr "업데이트 다운로드 중"
+
+msgid "Por favor aguarde..."
+msgstr "잠시 기다려주세요..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "자동으로 업데이트 확인(&V)"
+
+msgid "Verificar Atuali&zação..."
+msgstr "업데이트 확인(&Z)..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "이미 최신 버전의 VB Recorder를 사용하고 있습니다."
+
+msgid "Verificar Atualização"
+msgstr "업데이트 확인"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "업데이트를 확인할 수 없습니다."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "업데이트를 다운로드할 수 없습니다."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"업데이트를 설치할 수 없습니다:\n"
+"{erro}"

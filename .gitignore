@@ -16,3 +16,6 @@ divulgação.txt
 # Windows
 Thumbs.db
 desktop.ini
+
+# Translations received, before they are checked and moved to locale
+novas traduções/

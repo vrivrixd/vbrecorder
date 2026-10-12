@@ -1,0 +1,410 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: da\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Rediger optagelseskilde"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Tilføj optagelseskilde"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Lyt til den valgte enhed med den justerede lydstyrke"
+
+msgid "&Parar"
+msgstr "&Stop"
+
+msgid "&Testar"
+msgstr "&Test"
+
+msgid "Mostrar janela principal"
+msgstr "Vis hovedvindue"
+
+msgid "Sair"
+msgstr "Afslut"
+
+msgid "&Formato de Saída:"
+msgstr "Output &format:"
+
+msgid "&Bitrate:"
+msgstr "&Bitrate:"
+
+msgid "Compressão F&LAC:"
+msgstr "F&LAC-komprimering:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "&Sample rate:"
+
+msgid "&Canais:"
+msgstr "&Kanaler:"
+
+msgid "Fontes de &Gravação:"
+msgstr "Optagelses&kilder:"
+
+msgid "&Nome do Arquivo:"
+msgstr "Fil&navn:"
+
+msgid "&Diretório de Saída:"
+msgstr "Output&mappe:"
+
+msgid "&Adicionar"
+msgstr "&Tilføj"
+
+msgid "&Editar"
+msgstr "&Rediger"
+
+msgid "&Remover"
+msgstr "F&jern"
+
+msgid "P&rocurar..."
+msgstr "Gen&nemse..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Åb&n optagelsesmappe"
+
+msgid "Config&urações..."
+msgstr "Indstillinge&r..."
+
+msgid "S&obre"
+msgstr "&Om"
+
+msgid "&Minimizar"
+msgstr "&Minimer"
+
+msgid "&Fechar"
+msgstr "&Luk"
+
+msgid "E&xcluir Gravação"
+msgstr "Sl&et optagelse"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Optag kilder til se&parate filer"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Afspil &toner ved start eller stop af optagelse"
+
+msgid "Selecionar Pasta"
+msgstr "Vælg mappe"
+
+msgid "Sobre"
+msgstr "Om"
+
+msgid "Configurar Teclas"
+msgstr "Konfigurer genveje"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"Tryk på tastekombinationen (f.eks. Ctrl+Alt+R) i felterne nedenfor.\n"
+"For at rydde, tryk på Backspace eller Delete.\n"
+"Tryk på Esc for at annullere."
+
+msgid "Gravar:"
+msgstr "Optag:"
+
+msgid "Pausar / Continuar:"
+msgstr "Pause / Genoptag:"
+
+msgid "Parar Gravação:"
+msgstr "Stop optagelse:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Vis hovedvindue:"
+
+msgid "Fechar Programa:"
+msgstr "Luk program:"
+
+msgid "&Ok"
+msgstr "&OK"
+
+msgid "&Cancelar"
+msgstr "&Annuller"
+
+msgid "Configurações"
+msgstr "Indstillinger"
+
+msgid "Padrão do sistema"
+msgstr "Systemstandard"
+
+msgid "Iniciar &Minimizado"
+msgstr "Start &minimeret"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Minimer til &systembakke"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Vindue altid &øverst"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Konfigurer genve&je..."
+
+msgid "Aviso"
+msgstr "Advarsel"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Filtrer kilder efter:"
+
+msgid "Selecionar Fonte:"
+msgstr "Vælg kilde:"
+
+msgid "Volume:"
+msgstr "Lydstyrke:"
+
+msgid "Erro"
+msgstr "Fejl"
+
+msgid "Gravar"
+msgstr "Optag"
+
+msgid "Formato de Saída"
+msgstr "Outputformat"
+
+msgid "Taxa de Amostragem"
+msgstr "Sample rate"
+
+msgid "Canais"
+msgstr "Kanaler"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Afspil toner ved start eller stop af optagelse"
+
+msgid "Continuar"
+msgstr "Genoptag"
+
+msgid "Pausar"
+msgstr "Pause"
+
+msgid "Parar"
+msgstr "Stop"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder kører allerede."
+
+msgid "Para&r"
+msgstr "S&top"
+
+msgid "&Gravar"
+msgstr "&Optag"
+
+msgid "C&ontinuar"
+msgstr "F&ortsæt"
+
+msgid "&Pausar"
+msgstr "&Pause"
+
+msgid "Gravações"
+msgstr "Optagelser"
+
+msgid "Parar Reprod&ução"
+msgstr "Stop afspilnin&g"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Afsp&il optagelse"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Vælg filen der skal afspilles:"
+
+msgid "Reproduzir Gravação"
+msgstr "Afspil optagelse"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Slet optagelsen?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Slet de {n} filer fra den sidste optagelse?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Bekræft sletning"
+
+msgid "&Idioma:"
+msgstr "Spro&g:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "B&ufferstørrelse (ms):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Forøg bufferen, hvis lyden knaser på en travl computer. Fra {minimo} til "
+"{maximo} ms; standard er {padrao}."
+
+msgid "Dispositivos de Áudio"
+msgstr "Lydenheder"
+
+msgid "Processos em Execução"
+msgstr "Kørende processer"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Bemærk: procesoptagelse kræver Windows 10 v2004 eller nyere."
+
+msgid "Parar Reprodução"
+msgstr "Stop afspilning"
+
+msgid "Excluir Gravação"
+msgstr "Slet optagelse"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Compressão FLAC"
+msgstr "FLAC-komprimering"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Optag kilder til separate filer"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Tilføj mindst én optagelseskilde, før du starter."
+
+msgid "Não foi possível excluir:\n"
+msgstr "Kunne ikke slette:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Forfatter: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"En optagelse er i gang.\n"
+"\n"
+"Vil du virkelig lukke VB Recorder?"
+
+msgid "Confirmar Saída"
+msgstr "Bekræft afslutning"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"Bufferstørrelsen skal være et tal mellem {minimo} og {maximo} millisekunder."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Kunne ikke teste denne enhed (BASS fejl {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"For at afspille {extensao}-filer i programmet skal du lægge {dll} i VB "
+"Recorders lib-mappe."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"BASS fejl {erro} ved afspilning:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "BASS fejl {erro} ved start af optagelsen."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Kunne ikke åbne mappen:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "kilde"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Standard inputenhed"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "BASS fejl {erro} ved tilføjelse af optagelseskilden."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Fortsæt &sidste optagelse"
+
+msgid "Continuar Última Gravação"
+msgstr "Fortsæt sidste optagelse"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Kunne ikke fortsætte optagelsen. Kontroller, at filen ikke er åben i et andet program:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Eksekverbar fil"
+
+msgid "Nome do Executável:"
+msgstr "Navn på eksekverbar fil:"
+
+msgid "Nova atualização disponível!"
+msgstr "Ny opdatering tilgængelig!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Din version: {atual};\n"
+"Nyeste version: {nova}.\n"
+"Vil du opdatere nu?"
+
+msgid "Baixando Atualização"
+msgstr "Henter opdatering"
+
+msgid "Por favor aguarde..."
+msgstr "Vent venligst..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "Søg automatisk efter &opdateringer"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Søg efter opdat&ering..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Du bruger allerede den nyeste version af VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Søg efter opdatering"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Kunne ikke søge efter opdateringer."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Kunne ikke hente opdateringen."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Kunne ikke installere opdateringen:\n"
+"{erro}"

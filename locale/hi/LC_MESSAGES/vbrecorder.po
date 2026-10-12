@@ -1,0 +1,412 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: hi\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "रिकॉर्डिंग स्रोत संपादित करें"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "रिकॉर्डिंग स्रोत जोड़ें"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "समायोजित वॉल्यूम के साथ चयनित डिवाइस सुनें"
+
+msgid "&Parar"
+msgstr "रोकें(&P)"
+
+msgid "&Testar"
+msgstr "परीक्षण करें(&T)"
+
+msgid "Mostrar janela principal"
+msgstr "मुख्य विंडो दिखाएं"
+
+msgid "Sair"
+msgstr "बाहर निकलें"
+
+msgid "&Formato de Saída:"
+msgstr "आउटपुट स्वरूप(&F):"
+
+msgid "&Bitrate:"
+msgstr "बिटरेट(&B):"
+
+msgid "Compressão F&LAC:"
+msgstr "FLAC संपीड़न(&L):"
+
+msgid "&Taxa de Amostragem:"
+msgstr "नमूना दर(&T):"
+
+msgid "&Canais:"
+msgstr "चैनल(&C):"
+
+msgid "Fontes de &Gravação:"
+msgstr "रिकॉर्डिंग स्रोत(&G):"
+
+msgid "&Nome do Arquivo:"
+msgstr "फ़ाइल का नाम(&N):"
+
+msgid "&Diretório de Saída:"
+msgstr "आउटपुट निर्देशिका(&D):"
+
+msgid "&Adicionar"
+msgstr "जोड़ें(&A)"
+
+msgid "&Editar"
+msgstr "संपादित करें(&E)"
+
+msgid "&Remover"
+msgstr "हटाएं(&R)"
+
+msgid "P&rocurar..."
+msgstr "ब्राउज़ करें(&R)..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "रिकॉर्डिंग फ़ोल्डर खोलें(&I)"
+
+msgid "Config&urações..."
+msgstr "सेटिंग्स(&U)..."
+
+msgid "S&obre"
+msgstr "के बारे में(&O)"
+
+msgid "&Minimizar"
+msgstr "छोटा करें(&M)"
+
+msgid "&Fechar"
+msgstr "बंद करें(&F)"
+
+msgid "E&xcluir Gravação"
+msgstr "रिकॉर्डिंग हटाएं(&X)"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "स्रोतों को अलग-अलग फ़ाइलों में रिकॉर्ड करें(&P)"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "रिकॉर्डिंग शुरू या बंद करते समय टोन बजाएं(&T)"
+
+msgid "Selecionar Pasta"
+msgstr "फ़ोल्डर चुनें"
+
+msgid "Sobre"
+msgstr "के बारे में"
+
+msgid "Configurar Teclas"
+msgstr "हॉटकी कॉन्फ़िगर करें"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"नीचे दिए गए फ़ील्ड में कुंजी संयोजन (उदा. Ctrl+Alt+R) दबाएं।\n"
+"साफ़ करने के लिए, Backspace या Delete दबाएं।\n"
+"रद्द करने के लिए Esc दबाएं।"
+
+msgid "Gravar:"
+msgstr "रिकॉर्ड:"
+
+msgid "Pausar / Continuar:"
+msgstr "रोकें / जारी रखें:"
+
+msgid "Parar Gravação:"
+msgstr "रिकॉर्डिंग रोकें:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "मुख्य विंडो दिखाएं:"
+
+msgid "Fechar Programa:"
+msgstr "प्रोग्राम बंद करें:"
+
+msgid "&Ok"
+msgstr "ठीक है(&O)"
+
+msgid "&Cancelar"
+msgstr "रद्द करें(&C)"
+
+msgid "Configurações"
+msgstr "सेटिंग्स"
+
+msgid "Padrão do sistema"
+msgstr "सिस्टम डिफ़ॉल्ट"
+
+msgid "Iniciar &Minimizado"
+msgstr "छोटा करके शुरू करें(&M)"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "सिस्टम ट्रे में छोटा करें(&B)"
+
+msgid "Janela Sempre no &Topo"
+msgstr "विंडो हमेशा सबसे ऊपर(&T)"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "हॉटकी कॉन्फ़िगर करें(&A)..."
+
+msgid "Aviso"
+msgstr "चेतावनी"
+
+msgid "Filtrar Fontes Por:"
+msgstr "इसके द्वारा स्रोत फ़िल्टर करें:"
+
+msgid "Selecionar Fonte:"
+msgstr "स्रोत चुनें:"
+
+msgid "Volume:"
+msgstr "वॉल्यूम:"
+
+msgid "Erro"
+msgstr "त्रुटि"
+
+msgid "Gravar"
+msgstr "रिकॉर्ड"
+
+msgid "Formato de Saída"
+msgstr "आउटपुट स्वरूप"
+
+msgid "Taxa de Amostragem"
+msgstr "नमूना दर"
+
+msgid "Canais"
+msgstr "चैनल"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "रिकॉर्डिंग शुरू या बंद करते समय टोन बजाएं"
+
+msgid "Continuar"
+msgstr "जारी रखें"
+
+msgid "Pausar"
+msgstr "रोकें"
+
+msgid "Parar"
+msgstr "रोकें"
+
+msgid "O VB Recorder já está em execução."
+msgstr "वीबी रिकॉर्डर पहले से ही चल रहा है।"
+
+msgid "Para&r"
+msgstr "रोकें(&R)"
+
+msgid "&Gravar"
+msgstr "रिकॉर्ड(&G)"
+
+msgid "C&ontinuar"
+msgstr "जारी रखें(&O)"
+
+msgid "&Pausar"
+msgstr "रोकें(&P)"
+
+msgid "Gravações"
+msgstr "रिकॉर्डिंग"
+
+msgid "Parar Reprod&ução"
+msgstr "प्लेबैक रोकें(&U)"
+
+msgid "Reprod&uzir Gravação"
+msgstr "रिकॉर्डिंग चलाएं(&U)"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "चलाने के लिए फ़ाइल चुनें:"
+
+msgid "Reproduzir Gravação"
+msgstr "रिकॉर्डिंग चलाएं"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"क्या रिकॉर्डिंग हटा दें?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"क्या पिछली रिकॉर्डिंग की {n} फ़ाइलें हटा दें?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "हटाने की पुष्टि करें"
+
+msgid "&Idioma:"
+msgstr "भाषा(&I):"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "बफ़र का आकार (ms)(&U):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"यदि व्यस्त कंप्यूटर पर ऑडियो क्रैकल करता है तो बफ़र बढ़ाएँ। {minimo} से "
+"{maximo} ms तक; डिफ़ॉल्ट {padrao} है।"
+
+msgid "Dispositivos de Áudio"
+msgstr "ऑडियो डिवाइस"
+
+msgid "Processos em Execução"
+msgstr "चल रही प्रक्रियाएं"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr ""
+"नोट: प्रक्रिया कैप्चर के लिए Windows 10 v2004 या बाद के संस्करण की आवश्यकता "
+"है।"
+
+msgid "Parar Reprodução"
+msgstr "प्लेबैक रोकें"
+
+msgid "Excluir Gravação"
+msgstr "रिकॉर्डिंग हटाएं"
+
+msgid "Bitrate"
+msgstr "बिटरेट"
+
+msgid "Compressão FLAC"
+msgstr "FLAC संपीड़न"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "स्रोतों को अलग-अलग फ़ाइलों में रिकॉर्ड करें"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "शुरू करने से पहले कम से कम एक रिकॉर्डिंग स्रोत जोड़ें।"
+
+msgid "Não foi possível excluir:\n"
+msgstr "हटाया नहीं जा सका:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"वीबी रिकॉर्डर v{versao}\n"
+"लेखक: विटोर ब्रुस्की"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"एक रिकॉर्डिंग प्रगति पर है।\n"
+"\n"
+"क्या आप वास्तव में VB रिकॉर्डर को बंद करना चाहते हैं?"
+
+msgid "Confirmar Saída"
+msgstr "बाहर निकलने की पुष्टि करें"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"बफ़र का आकार {minimo} और {maximo} मिलीसेकंड के बीच की संख्या होना चाहिए।"
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "इस डिवाइस का परीक्षण नहीं किया जा सका (BASS त्रुटि {erro})।"
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"प्रोग्राम के भीतर {extensao} फ़ाइलें चलाने के लिए, {dll} को VB Recorder के "
+"lib फ़ोल्डर में रखें।"
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"चलाते समय BASS त्रुटि {erro}:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "रिकॉर्डिंग शुरू करते समय BASS त्रुटि {erro}।"
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"फ़ोल्डर नहीं खोला जा सका:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "स्रोत"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "डिफ़ॉल्ट इनपुट डिवाइस"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "रिकॉर्डिंग स्रोत जोड़ते समय BASS त्रुटि {erro}।"
+
+msgid "Continuar Última Gra&vação"
+msgstr "पिछली रिकॉर्डिंग जारी रखें(&V)"
+
+msgid "Continuar Última Gravação"
+msgstr "पिछली रिकॉर्डिंग जारी रखें"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"रिकॉर्डिंग जारी नहीं रखी जा सकी। जाँचें कि फ़ाइल किसी अन्य प्रोग्राम में खुली तो नहीं है:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "निष्पादन योग्य फ़ाइल"
+
+msgid "Nome do Executável:"
+msgstr "निष्पादन योग्य फ़ाइल का नाम:"
+
+msgid "Nova atualização disponível!"
+msgstr "नया अपडेट उपलब्ध है!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"आपका संस्करण: {atual};\n"
+"नवीनतम संस्करण: {nova}।\n"
+"क्या आप अभी अपडेट करना चाहते हैं?"
+
+msgid "Baixando Atualização"
+msgstr "अपडेट डाउनलोड हो रहा है"
+
+msgid "Por favor aguarde..."
+msgstr "कृपया प्रतीक्षा करें..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "अपडेट स्वचालित रूप से जाँचें(&V)"
+
+msgid "Verificar Atuali&zação..."
+msgstr "अपडेट जाँचें(&Z)..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "आप पहले से ही VB Recorder का नवीनतम संस्करण उपयोग कर रहे हैं।"
+
+msgid "Verificar Atualização"
+msgstr "अपडेट जाँचें"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "अपडेट की जाँच नहीं की जा सकी।"
+
+msgid "Não foi possível baixar a atualização."
+msgstr "अपडेट डाउनलोड नहीं किया जा सका।"
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"अपडेट इंस्टॉल नहीं किया जा सका:\n"
+"{erro}"

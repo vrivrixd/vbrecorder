@@ -1,0 +1,403 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: ja\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "録音ソースを編集"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "録音ソースを追加"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "調整された音量で選択したデバイスを聴く"
+
+msgid "&Parar"
+msgstr "停止(&P)"
+
+msgid "&Testar"
+msgstr "テスト(&T)"
+
+msgid "Mostrar janela principal"
+msgstr "メインウィンドウを表示"
+
+msgid "Sair"
+msgstr "終了"
+
+msgid "&Formato de Saída:"
+msgstr "出力フォーマット(&F):"
+
+msgid "&Bitrate:"
+msgstr "ビットレート(&B):"
+
+msgid "Compressão F&LAC:"
+msgstr "FLAC圧縮(&L):"
+
+msgid "&Taxa de Amostragem:"
+msgstr "サンプリングレート(&T):"
+
+msgid "&Canais:"
+msgstr "チャンネル(&C):"
+
+msgid "Fontes de &Gravação:"
+msgstr "録音ソース(&G):"
+
+msgid "&Nome do Arquivo:"
+msgstr "ファイル名(&N):"
+
+msgid "&Diretório de Saída:"
+msgstr "出力ディレクトリ(&D):"
+
+msgid "&Adicionar"
+msgstr "追加(&A)"
+
+msgid "&Editar"
+msgstr "編集(&E)"
+
+msgid "&Remover"
+msgstr "削除(&R)"
+
+msgid "P&rocurar..."
+msgstr "参照(&R)..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "録音フォルダを開く(&I)"
+
+msgid "Config&urações..."
+msgstr "設定(&U)..."
+
+msgid "S&obre"
+msgstr "情報(&O)"
+
+msgid "&Minimizar"
+msgstr "最小化(&M)"
+
+msgid "&Fechar"
+msgstr "閉じる(&F)"
+
+msgid "E&xcluir Gravação"
+msgstr "録音を削除(&X)"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "ソースを個別のファイルに録音(&P)"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "録音の開始または停止時にトーンを再生(&T)"
+
+msgid "Selecionar Pasta"
+msgstr "フォルダを選択"
+
+msgid "Sobre"
+msgstr "情報"
+
+msgid "Configurar Teclas"
+msgstr "ホットキーを設定"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"以下のフィールドでキーの組み合わせ（例：Ctrl+Alt+R）を押してください。\n"
+"クリアするには、BackspaceまたはDeleteを押します。\n"
+"キャンセルするにはEscを押します。"
+
+msgid "Gravar:"
+msgstr "録音:"
+
+msgid "Pausar / Continuar:"
+msgstr "一時停止 / 再開:"
+
+msgid "Parar Gravação:"
+msgstr "録音停止:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "メインウィンドウの表示:"
+
+msgid "Fechar Programa:"
+msgstr "プログラムを終了:"
+
+msgid "&Ok"
+msgstr "OK(&O)"
+
+msgid "&Cancelar"
+msgstr "キャンセル(&C)"
+
+msgid "Configurações"
+msgstr "設定"
+
+msgid "Padrão do sistema"
+msgstr "システムデフォルト"
+
+msgid "Iniciar &Minimizado"
+msgstr "最小化して起動(&M)"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "システムトレイに最小化(&B)"
+
+msgid "Janela Sempre no &Topo"
+msgstr "常に手前に表示(&T)"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "ショートカットキーを設定(&A)..."
+
+msgid "Aviso"
+msgstr "警告"
+
+msgid "Filtrar Fontes Por:"
+msgstr "ソースのフィルター:"
+
+msgid "Selecionar Fonte:"
+msgstr "ソースを選択:"
+
+msgid "Volume:"
+msgstr "音量:"
+
+msgid "Erro"
+msgstr "エラー"
+
+msgid "Gravar"
+msgstr "録音"
+
+msgid "Formato de Saída"
+msgstr "出力フォーマット"
+
+msgid "Taxa de Amostragem"
+msgstr "サンプリングレート"
+
+msgid "Canais"
+msgstr "チャンネル"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "録音の開始または停止時にトーンを再生"
+
+msgid "Continuar"
+msgstr "再開"
+
+msgid "Pausar"
+msgstr "一時停止"
+
+msgid "Parar"
+msgstr "停止"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorderはすでに実行中です。"
+
+msgid "Para&r"
+msgstr "停止(&R)"
+
+msgid "&Gravar"
+msgstr "録音(&G)"
+
+msgid "C&ontinuar"
+msgstr "再開(&O)"
+
+msgid "&Pausar"
+msgstr "一時停止(&P)"
+
+msgid "Gravações"
+msgstr "録音"
+
+msgid "Parar Reprod&ução"
+msgstr "再生停止(&U)"
+
+msgid "Reprod&uzir Gravação"
+msgstr "録音を再生(&U)"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "再生するファイルを選択してください:"
+
+msgid "Reproduzir Gravação"
+msgstr "録音を再生"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"録音を削除しますか？\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "削除の確認"
+
+msgid "&Idioma:"
+msgstr "言語(&I):"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "バッファサイズ(ms)(&U):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"コンピューターの負荷が高く音声が途切れる場合はバッファを増やしてください。{minimo} から {maximo} ms。デフォルトは {padrao}"
+" です。"
+
+msgid "Dispositivos de Áudio"
+msgstr "オーディオデバイス"
+
+msgid "Processos em Execução"
+msgstr "実行中のプロセス"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "注: プロセスキャプチャには Windows 10 v2004 以降が必要です。"
+
+msgid "Parar Reprodução"
+msgstr "再生停止"
+
+msgid "Excluir Gravação"
+msgstr "録音を削除"
+
+msgid "Bitrate"
+msgstr "ビットレート"
+
+msgid "Compressão FLAC"
+msgstr "FLAC圧縮"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "ソースを個別のファイルに録音"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "開始する前に、少なくとも1つの録音ソースを追加してください。"
+
+msgid "Não foi possível excluir:\n"
+msgstr "削除できませんでした:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"作成者: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"録音が進行中です。\n"
+"\n"
+"本当にVB Recorderを終了しますか？"
+
+msgid "Confirmar Saída"
+msgstr "終了の確認"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr "バッファサイズは {minimo} から {maximo} ミリ秒の間の数値でなければなりません。"
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "このデバイスをテストできませんでした（BASSエラー {erro}）。"
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr "{extensao} ファイルをプログラム内で再生するには、VB Recorder の lib フォルダに {dll} を置いてください。"
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"再生時のBASSエラー {erro}:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "録音開始時のBASSエラー {erro}。"
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"フォルダを開けませんでした:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "ソース"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "デフォルトの入力デバイス"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "録音ソースの追加時のBASSエラー {erro}。"
+
+msgid "Continuar Última Gra&vação"
+msgstr "最後の録音を続ける(&V)"
+
+msgid "Continuar Última Gravação"
+msgstr "最後の録音を続ける"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"録音を続けられませんでした。ファイルが他のプログラムで開かれていないか確認してください:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "実行ファイル"
+
+msgid "Nome do Executável:"
+msgstr "実行ファイル名:"
+
+msgid "Nova atualização disponível!"
+msgstr "新しいアップデートが利用可能です！"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"お使いのバージョン: {atual};\n"
+"最新バージョン: {nova}。\n"
+"今すぐアップデートしますか？"
+
+msgid "Baixando Atualização"
+msgstr "アップデートをダウンロード中"
+
+msgid "Por favor aguarde..."
+msgstr "お待ちください..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "アップデートを自動的に確認する(&V)"
+
+msgid "Verificar Atuali&zação..."
+msgstr "アップデートを確認(&Z)..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "すでに最新バージョンの VB Recorder を使用しています。"
+
+msgid "Verificar Atualização"
+msgstr "アップデートの確認"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "アップデートを確認できませんでした。"
+
+msgid "Não foi possível baixar a atualização."
+msgstr "アップデートをダウンロードできませんでした。"
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"アップデートをインストールできませんでした:\n"
+"{erro}"

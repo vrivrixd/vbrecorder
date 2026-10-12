@@ -1,0 +1,426 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: ar\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "تحرير مصدر التسجيل"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "إضافة مصدر تسجيل"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "الاستماع إلى الجهاز المحدد بحجم صوت مضبوط"
+
+msgid "&Parar"
+msgstr "إيقاف(&P)"
+
+msgid "&Testar"
+msgstr "اختبار(&T)"
+
+msgid "Mostrar janela principal"
+msgstr "إظهار النافذة الرئيسية"
+
+msgid "Sair"
+msgstr "خروج"
+
+msgid "&Formato de Saída:"
+msgstr "تنسيق الإخراج(&F):"
+
+msgid "&Bitrate:"
+msgstr "معدل البت(&B):"
+
+msgid "Compressão F&LAC:"
+msgstr "ضغط FLAC(&L):"
+
+msgid "&Taxa de Amostragem:"
+msgstr "معدل العينة(&T):"
+
+msgid "&Canais:"
+msgstr "القنوات(&C):"
+
+msgid "Fontes de &Gravação:"
+msgstr "مصادر التسجيل(&G):"
+
+msgid "&Nome do Arquivo:"
+msgstr "اسم الملف(&N):"
+
+msgid "&Diretório de Saída:"
+msgstr "دليل الإخراج(&D):"
+
+msgid "&Adicionar"
+msgstr "إضافة(&A)"
+
+msgid "&Editar"
+msgstr "تحرير(&E)"
+
+msgid "&Remover"
+msgstr "إزالة(&R)"
+
+msgid "P&rocurar..."
+msgstr "تصفح(&R)..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "فتح مجلد التسجيلات(&I)"
+
+msgid "Config&urações..."
+msgstr "الإعدادات(&U)..."
+
+msgid "S&obre"
+msgstr "حول(&O)"
+
+msgid "&Minimizar"
+msgstr "تصغير(&M)"
+
+msgid "&Fechar"
+msgstr "إغلاق(&F)"
+
+msgid "E&xcluir Gravação"
+msgstr "حذف التسجيل(&X)"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "تسجيل المصادر في ملفات منفصلة(&P)"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "تشغيل نغمات عند بدء أو إيقاف التسجيل(&T)"
+
+msgid "Selecionar Pasta"
+msgstr "تحديد مجلد"
+
+msgid "Sobre"
+msgstr "حول"
+
+msgid "Configurar Teclas"
+msgstr "تكوين مفاتيح الاختصار"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"اضغط على مجموعة المفاتيح (مثل Ctrl+Alt+R) في الحقول أدناه.\n"
+"للمسح، اضغط على Backspace أو Delete.\n"
+"اضغط على Esc للإلغاء."
+
+msgid "Gravar:"
+msgstr "تسجيل:"
+
+msgid "Pausar / Continuar:"
+msgstr "إيقاف مؤقت / استئناف:"
+
+msgid "Parar Gravação:"
+msgstr "إيقاف التسجيل:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "إظهار النافذة الرئيسية:"
+
+msgid "Fechar Programa:"
+msgstr "إغلاق البرنامج:"
+
+msgid "&Ok"
+msgstr "موافق(&O)"
+
+msgid "&Cancelar"
+msgstr "إلغاء(&C)"
+
+msgid "Configurações"
+msgstr "الإعدادات"
+
+msgid "Padrão do sistema"
+msgstr "الافتراضي للنظام"
+
+msgid "Iniciar &Minimizado"
+msgstr "بدء مصغراً(&M)"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "تصغير إلى علبة النظام(&B)"
+
+msgid "Janela Sempre no &Topo"
+msgstr "النافذة دائماً في المقدمة(&T)"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "تكوين مفاتيح الاختصار(&A)..."
+
+msgid "Aviso"
+msgstr "تحذير"
+
+msgid "Filtrar Fontes Por:"
+msgstr "تصفية المصادر حسب:"
+
+msgid "Selecionar Fonte:"
+msgstr "تحديد المصدر:"
+
+msgid "Volume:"
+msgstr "مستوى الصوت:"
+
+msgid "Erro"
+msgstr "خطأ"
+
+msgid "Gravar"
+msgstr "تسجيل"
+
+msgid "Formato de Saída"
+msgstr "تنسيق الإخراج"
+
+msgid "Taxa de Amostragem"
+msgstr "معدل العينة"
+
+msgid "Canais"
+msgstr "القنوات"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "تشغيل نغمات عند بدء أو إيقاف التسجيل"
+
+msgid "Continuar"
+msgstr "استئناف"
+
+msgid "Pausar"
+msgstr "إيقاف مؤقت"
+
+msgid "Parar"
+msgstr "إيقاف"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder قيد التشغيل بالفعل."
+
+msgid "Para&r"
+msgstr "إيقاف(&R)"
+
+msgid "&Gravar"
+msgstr "تسجيل(&G)"
+
+msgid "C&ontinuar"
+msgstr "استئناف(&O)"
+
+msgid "&Pausar"
+msgstr "إيقاف مؤقت(&P)"
+
+msgid "Gravações"
+msgstr "تسجيلات"
+
+msgid "Parar Reprod&ução"
+msgstr "إيقاف التشغيل(&U)"
+
+msgid "Reprod&uzir Gravação"
+msgstr "تشغيل التسجيل(&U)"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "اختر الملف لتشغيله:"
+
+msgid "Reproduzir Gravação"
+msgstr "تشغيل التسجيل"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"هل تريد حذف التسجيل؟\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"هل تريد حذف التسجيل؟\n"
+"\n"
+"{lista}"
+msgstr[2] ""
+"هل تريد حذف التسجيلين؟\n"
+"\n"
+"{lista}"
+msgstr[3] ""
+"هل تريد حذف {n} ملفات من التسجيل الأخير؟\n"
+"\n"
+"{lista}"
+msgstr[4] ""
+"هل تريد حذف {n} ملفًا من التسجيل الأخير؟\n"
+"\n"
+"{lista}"
+msgstr[5] ""
+"هل تريد حذف {n} ملف من التسجيل الأخير؟\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "تأكيد الحذف"
+
+msgid "&Idioma:"
+msgstr "اللغة(&I):"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "حجم المخزن المؤقت (مللي ثانية)(&U):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"قم بزيادة المخزن المؤقت إذا تشقق الصوت على كمبيوتر مشغول. من {minimo} إلى "
+"{maximo} مللي ثانية ؛ الافتراضي هو {padrao}."
+
+msgid "Dispositivos de Áudio"
+msgstr "أجهزة الصوت"
+
+msgid "Processos em Execução"
+msgstr "العمليات الجارية"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "ملاحظة: التقاط العملية يتطلب Windows 10 الإصدار v2004 أو أحدث."
+
+msgid "Parar Reprodução"
+msgstr "إيقاف التشغيل"
+
+msgid "Excluir Gravação"
+msgstr "حذف التسجيل"
+
+msgid "Bitrate"
+msgstr "معدل البت"
+
+msgid "Compressão FLAC"
+msgstr "ضغط FLAC"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "تسجيل المصادر في ملفات منفصلة"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "أضف مصدر تسجيل واحدًا على الأقل قبل البدء."
+
+msgid "Não foi possível excluir:\n"
+msgstr "تعذر الحذف:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"مسجل VB الإصدار {versao}\n"
+"المؤلف: فيتور بروسكي"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"هناك تسجيل قيد التقدم.\n"
+"\n"
+"هل تريد حقًا إغلاق مسجل VB؟"
+
+msgid "Confirmar Saída"
+msgstr "تأكيد الخروج"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"يجب أن يكون حجم المخزن المؤقت رقمًا بين {minimo} و {maximo} مللي ثانية."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "تعذر اختبار هذا الجهاز (خطأ BASS {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"لتشغيل ملفات {extensao} داخل البرنامج، ضع {dll} في مجلد lib الخاص بـ VB "
+"Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"خطأ BASS {erro} عند التشغيل:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "خطأ BASS {erro} عند بدء التسجيل."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"تعذر فتح المجلد:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "مصدر"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "جهاز الإدخال الافتراضي"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "خطأ BASS {erro} عند إضافة مصدر التسجيل."
+
+msgid "Continuar Última Gra&vação"
+msgstr "متابعة التسجيل الأخير(&V)"
+
+msgid "Continuar Última Gravação"
+msgstr "متابعة التسجيل الأخير"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"تعذرت متابعة التسجيل. تأكد من أن الملف غير مفتوح في برنامج آخر:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "ملف تنفيذي"
+
+msgid "Nome do Executável:"
+msgstr "اسم الملف التنفيذي:"
+
+msgid "Nova atualização disponível!"
+msgstr "يتوفر تحديث جديد!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"إصدارك: {atual}؛\n"
+"أحدث إصدار: {nova}.\n"
+"هل تريد التحديث الآن؟"
+
+msgid "Baixando Atualização"
+msgstr "تنزيل التحديث"
+
+msgid "Por favor aguarde..."
+msgstr "يرجى الانتظار..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "التحقق من التحديثات تلقائيًا(&V)"
+
+msgid "Verificar Atuali&zação..."
+msgstr "التحقق من وجود تحديث(&Z)..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "أنت تستخدم بالفعل أحدث إصدار من VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "التحقق من وجود تحديث"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "تعذر التحقق من وجود تحديثات."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "تعذر تنزيل التحديث."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"تعذر تثبيت التحديث:\n"
+"{erro}"

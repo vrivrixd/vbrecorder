@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VB Recorder 1.2\n"
 "POT-Creation-Date: 2026-08-02 18:39\n"
-"PO-Revision-Date: 2026-08-03 08:12+0700\n"
+"PO-Revision-Date: 2026-10-12 08:32+0700\n"
 "Last-Translator: nguyenninhhoang <nguyenninhhoang2005@gmail.com>\n"
 "Language-Team: vietnamese\n"
 "Language: vi\n"
@@ -14,10 +14,10 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 
 msgid "Editar Fonte de Gravação"
-msgstr "chỉnh sửa nguồn ghi âm"
+msgstr "Chỉnh sửa nguồn ghi âm"
 
 msgid "Adicionar Fonte de Gravação"
-msgstr "thêm nguồn ghi âm"
+msgstr "Thêm nguồn ghi âm"
 
 msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Nghe thiết bị đã chọn với âm lượng đã điều chỉnh"
@@ -32,7 +32,7 @@ msgid "Mostrar janela principal"
 msgstr "Hiện cửa sổ chính"
 
 msgid "Sair"
-msgstr "thoát"
+msgstr "Thoát"
 
 msgid "&Formato de Saída:"
 msgstr "Định dạng &đầu ra:"
@@ -47,10 +47,10 @@ msgid "&Nome do Arquivo:"
 msgstr "&tên file:"
 
 msgid "Selecionar Pasta"
-msgstr "chọn thư mục"
+msgstr "Chọn thư mục"
 
 msgid "Sobre"
-msgstr "giới thiệu"
+msgstr "Giới thiệu"
 
 msgid "Configurar Teclas"
 msgstr "Cấu hình phím tắt"
@@ -65,13 +65,13 @@ msgstr ""
 "Nhấn Esc để hủy bỏ."
 
 msgid "Gravar:"
-msgstr "ghi âm:"
+msgstr "Ghi âm:"
 
 msgid "Pausar / Continuar:"
 msgstr "Tạm dừng / Tiếp tục:"
 
 msgid "Parar Gravação:"
-msgstr "dừng ghi âm:"
+msgstr "Dừng ghi âm:"
 
 msgid "Mostrar Janela Principal:"
 msgstr "Hiện cửa sổ chính:"
@@ -86,7 +86,7 @@ msgid "&Cancelar"
 msgstr "&Hủy bỏ"
 
 msgid "Filtrar Fontes Por:"
-msgstr "bộ lọc âm thanh bởi:"
+msgstr "Bộ lọc âm thanh bởi:"
 
 msgid "Selecionar Fonte:"
 msgstr "Chọn nguồn:"
@@ -98,7 +98,7 @@ msgid "Erro"
 msgstr "Lỗi"
 
 msgid "Gravar"
-msgstr "ghi âm"
+msgstr "Ghi âm"
 
 msgid "Formato de Saída"
 msgstr "Định dạng đầu ra"
@@ -113,7 +113,7 @@ msgid "Reproduzir tons ao iniciar ou parar gravação"
 msgstr "Phát âm thanh khi bắt đầu hoặc dừng ghi"
 
 msgid "Continuar"
-msgstr "tiếp tục"
+msgstr "Tiếp tục"
 
 msgid "Pausar"
 msgstr "Tạm dừng"
@@ -164,7 +164,7 @@ msgid "&Diretório de Saída:"
 msgstr "&Thư mục đầu ra:"
 
 msgid "P&rocurar..."
-msgstr "&Thay đổi"
+msgstr "&Thay đổi..."
 
 msgid "Abr&ir Pasta de Gravações"
 msgstr "&Mở thư mục ghi âm"
@@ -188,7 +188,7 @@ msgid "Parar Reprod&ução"
 msgstr "&Dừng phát lại"
 
 msgid "Escolha o arquivo a reproduzir:"
-msgstr "chọn file để phát:"
+msgstr "Chọn file để phát:"
 
 msgid "Reproduzir Gravação"
 msgstr "Phát ghi âm"
@@ -223,7 +223,7 @@ msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
 msgstr "Lưu ý: quá trình chụp yêu cầu Windows 10 v2004 trở lên."
 
 msgid "Parar Reprodução"
-msgstr "dừng Phát lại"
+msgstr "Dừng Phát lại"
 
 msgid "Excluir Gravação"
 msgstr "Xóa ghi âm"
@@ -354,10 +354,12 @@ msgid "Continuar Última Gravação"
 msgstr "Tiếp tục bản ghi cuối"
 
 msgid ""
-"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"Não foi possível continuar a gravação. Verifique se o arquivo não está "
+"aberto em outro programa:\n"
 "{arquivo}"
 msgstr ""
-"Không thể tiếp tục ghi âm. Hãy kiểm tra xem tệp có đang được mở trong chương trình khác không:\n"
+"Không thể tiếp tục ghi âm. Hãy kiểm tra xem tệp có đang được mở trong "
+"chương trình khác không:\n"
 "{arquivo}"
 
 msgid "Arquivo Executável"

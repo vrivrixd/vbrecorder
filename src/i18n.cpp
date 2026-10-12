@@ -38,15 +38,44 @@ const wchar_t* const SOURCE_LANGUAGE = L"pt_BR";
 /* Each language is listed in its own language, so people recognize theirs even
    when the program is open in a language they cannot read. */
 const std::pair<const wchar_t*, const wchar_t*> NATIVE_NAMES[] = {
+    {L"ar", L"العربية"},
+    {L"bg", L"Български"},
+    {L"bn", L"বাংলা"},
+    {L"cs", L"Čeština"},
+    {L"da", L"Dansk"},
     {L"de", L"Deutsch"},
     {L"en", L"English"},
+    {L"eo", L"Esperanto"},
     {L"es", L"Español"},
+    {L"fi", L"Suomi"},
     {L"fr", L"Français"},
+    {L"gl", L"Galego"},
+    {L"hi", L"हिन्दी"},
+    {L"id", L"Bahasa Indonesia"},
     {L"it", L"Italiano"},
+    {L"ja", L"日本語"},
+    {L"ko", L"한국어"},
+    {L"pl", L"Polski"},
     {L"pt_BR", L"Português (Brasil)"},
     {L"pt_PT", L"Português (Portugal)"},
     {L"ru", L"Русский"},
+    {L"sk", L"Slovenčina"},
+    {L"sl", L"Slovenščina"},
+    {L"th", L"ไทย"},
+    {L"tr", L"Türkçe"},
     {L"vi", L"Tiếng Việt"},
+    {L"zh_CN", L"简体中文"},
+    {L"zh_TW", L"繁體中文"},
+};
+
+/* Language used when Windows is in a language without a translation. */
+const wchar_t* const FALLBACK_LANGUAGE = L"en";
+
+/* Regions that read the same written Chinese as another one. */
+const std::pair<const wchar_t*, const wchar_t*> ALIASES[] = {
+    {L"zh_HK", L"zh_TW"},
+    {L"zh_MO", L"zh_TW"},
+    {L"zh_SG", L"zh_CN"},
 };
 
 /* ---- gettext plural expression (Plural-Forms), evaluated for each n. ---- */
@@ -262,6 +291,9 @@ struct Catalog {
 };
 
 std::unique_ptr<Catalog> g_catalog;
+/* English, for texts a catalog does not have yet; the European Portuguese one
+   falls back to the original texts instead. */
+std::unique_ptr<Catalog> g_fallback;
 
 /* Catalogs embedded in the executable: one RCDATA resource per language, named
    after its code. The resource compiler stores names in upper case, so the
@@ -352,6 +384,9 @@ std::vector<std::wstring> SystemLanguages() {
         std::wstring name = WindowsUiLanguage();
         if (!name.empty()) langs.push_back(name);
     }
+    for (auto& alias : ALIASES)
+        if (std::find(langs.begin(), langs.end(), alias.first) != langs.end())
+            langs.push_back(alias.second);
     // pt_PT also stands for pt, en_US for en, and so on.
     std::vector<std::wstring> copy = langs;
     for (auto& name : copy) {
@@ -367,14 +402,28 @@ std::vector<std::wstring> SystemLanguages() {
    Portuguese does not get the Portugal catalog, they see the original texts. */
 std::wstring LoadCatalog(const std::vector<std::wstring>& languages) {
     for (auto& lang : languages) {
+        if (lang == SOURCE_LANGUAGE || lang == L"pt") {
+            // The original texts: no catalog.
+            g_catalog.reset();
+            g_fallback.reset();
+            return SOURCE_LANGUAGE;
+        }
         std::string data;
         if (!CatalogBytes(lang, &data)) continue;
         auto cat = std::make_unique<Catalog>();
         if (!cat->Load(data)) continue;
         g_catalog = std::move(cat);
+        g_fallback.reset();
+        std::string english;
+        if (lang.compare(0, 2, L"pt") != 0 && lang != FALLBACK_LANGUAGE &&
+            CatalogBytes(FALLBACK_LANGUAGE, &english)) {
+            auto en = std::make_unique<Catalog>();
+            if (en->Load(english)) g_fallback = std::move(en);
+        }
         return lang;
     }
     g_catalog.reset();
+    g_fallback.reset();
     return std::wstring();
 }
 
@@ -389,7 +438,9 @@ std::wstring SetLanguage(const std::wstring& code) {
         std::wstring root = code.substr(0, code.find(L'_'));
         if (root != code) candidates.push_back(root);
     } else {
+        // Following Windows: a language without a translation gets English.
         candidates = SystemLanguages();
+        candidates.push_back(FALLBACK_LANGUAGE);
     }
     return LoadCatalog(candidates);
 }
@@ -431,23 +482,22 @@ std::wstring LanguageName(const std::wstring& code) {
 }  // namespace i18n
 
 std::wstring tr(const char* message) {
-    if (g_catalog) {
-        auto it = g_catalog->messages.find(message);
-        if (it != g_catalog->messages.end() && !it->second[0].empty())
-            return Widen(it->second[0]);
+    for (const Catalog* cat : {g_catalog.get(), g_fallback.get()}) {
+        if (!cat) continue;
+        auto it = cat->messages.find(message);
+        if (it != cat->messages.end() && !it->second[0].empty()) return Widen(it->second[0]);
     }
     return Widen(message);
 }
 
 std::wstring ntr(const char* singular, const char* plural, unsigned long n) {
-    if (g_catalog) {
-        auto it = g_catalog->messages.find(singular);
-        if (it != g_catalog->messages.end()) {
-            unsigned long index = g_catalog->plural ? Eval(g_catalog->plural.get(), n)
-                                                    : (n != 1 ? 1 : 0);
-            const auto& forms = it->second;
-            if (index < forms.size() && !forms[index].empty()) return Widen(forms[index]);
-        }
+    for (const Catalog* cat : {g_catalog.get(), g_fallback.get()}) {
+        if (!cat) continue;
+        auto it = cat->messages.find(singular);
+        if (it == cat->messages.end()) continue;
+        unsigned long index = cat->plural ? Eval(cat->plural.get(), n) : (n != 1 ? 1 : 0);
+        const auto& forms = it->second;
+        if (index < forms.size() && !forms[index].empty()) return Widen(forms[index]);
     }
     return Widen(n == 1 ? singular : plural);
 }

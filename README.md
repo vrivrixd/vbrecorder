@@ -94,17 +94,20 @@ goes to the file.
 VB Recorder starts in the language of the Windows interface, and you can choose
 another one in Settings. Available languages:
 
-Brazilian Portuguese, European Portuguese, English, Spanish, French, German,
-Italian, Russian and Vietnamese.
+Arabic, Bengali, Brazilian Portuguese, Bulgarian, Chinese (Simplified),
+Chinese (Traditional), Czech, Danish, English, Esperanto, European Portuguese,
+Finnish, French, Galician, German, Hindi, Indonesian, Italian, Japanese,
+Korean, Polish, Russian, Slovak, Slovenian, Spanish, Thai, Turkish and
+Vietnamese.
 
 If Windows is in a language without a translation, the program shows up in
-Brazilian Portuguese, its original language.
+English. Brazilian Portuguese is the original language of the program.
 
 **Want to translate it into your language?** Copy `locale/vbrecorder.pot` to
 `locale/<code>/LC_MESSAGES/vbrecorder.po`, fill in the texts and run
 `tools/language_compiler.py` (it needs `polib`: `pip install polib`). Anything
-left untranslated keeps showing in Portuguese, so you can translate a little at
-a time. Then add a line for the new language to `res/locale.rc`, so it is
+left untranslated shows up in English, so you can translate a little at a
+time. Then add a line for the new language to `res/locale.rc`, so it is
 embedded in the executable. Contributions are welcome through [Pull
 Request](https://github.com/vrivrixd/vbrecorder/pulls).
 

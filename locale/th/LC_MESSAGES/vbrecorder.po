@@ -1,0 +1,405 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: th\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "แก้ไขแหล่งการบันทึก"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "เพิ่มแหล่งการบันทึก"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "ฟังอุปกรณ์ที่เลือกด้วยระดับเสียงที่ปรับแล้ว"
+
+msgid "&Parar"
+msgstr "หยุด(&P)"
+
+msgid "&Testar"
+msgstr "ทดสอบ(&T)"
+
+msgid "Mostrar janela principal"
+msgstr "แสดงหน้าต่างหลัก"
+
+msgid "Sair"
+msgstr "ออก"
+
+msgid "&Formato de Saída:"
+msgstr "รูปแบบผลลัพธ์(&F):"
+
+msgid "&Bitrate:"
+msgstr "บิตเรต(&B):"
+
+msgid "Compressão F&LAC:"
+msgstr "การบีบอัด FLAC(&L):"
+
+msgid "&Taxa de Amostragem:"
+msgstr "อัตราสุ่มตัวอย่าง(&T):"
+
+msgid "&Canais:"
+msgstr "ช่อง(&C):"
+
+msgid "Fontes de &Gravação:"
+msgstr "แหล่งการบันทึก(&G):"
+
+msgid "&Nome do Arquivo:"
+msgstr "ชื่อไฟล์(&N):"
+
+msgid "&Diretório de Saída:"
+msgstr "ไดเรกทอรีผลลัพธ์(&D):"
+
+msgid "&Adicionar"
+msgstr "เพิ่ม(&A)"
+
+msgid "&Editar"
+msgstr "แก้ไข(&E)"
+
+msgid "&Remover"
+msgstr "ลบ(&R)"
+
+msgid "P&rocurar..."
+msgstr "เรียกดู(&R)..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "เปิดโฟลเดอร์การบันทึก(&I)"
+
+msgid "Config&urações..."
+msgstr "การตั้งค่า(&U)..."
+
+msgid "S&obre"
+msgstr "เกี่ยวกับ(&O)"
+
+msgid "&Minimizar"
+msgstr "ย่อเล็กสุด(&M)"
+
+msgid "&Fechar"
+msgstr "ปิด(&F)"
+
+msgid "E&xcluir Gravação"
+msgstr "ลบการบันทึก(&X)"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "บันทึกแหล่งลงในไฟล์แยกต่างหาก(&P)"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "เล่นเสียงเมื่อเริ่มหรือหยุดการบันทึก(&T)"
+
+msgid "Selecionar Pasta"
+msgstr "เลือกโฟลเดอร์"
+
+msgid "Sobre"
+msgstr "เกี่ยวกับ"
+
+msgid "Configurar Teclas"
+msgstr "กำหนดค่าปุ่มลัด"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"กดคีย์ผสม (เช่น Ctrl+Alt+R) ในช่องด้านล่าง\n"
+"หากต้องการล้างข้อมูล ให้กด Backspace หรือ Delete\n"
+"กด Esc เพื่อยกเลิก"
+
+msgid "Gravar:"
+msgstr "บันทึก:"
+
+msgid "Pausar / Continuar:"
+msgstr "หยุดชั่วคราว / ทำต่อ:"
+
+msgid "Parar Gravação:"
+msgstr "หยุดการบันทึก:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "แสดงหน้าต่างหลัก:"
+
+msgid "Fechar Programa:"
+msgstr "ปิดโปรแกรม:"
+
+msgid "&Ok"
+msgstr "ตกลง(&O)"
+
+msgid "&Cancelar"
+msgstr "ยกเลิก(&C)"
+
+msgid "Configurações"
+msgstr "การตั้งค่า"
+
+msgid "Padrão do sistema"
+msgstr "ค่าเริ่มต้นของระบบ"
+
+msgid "Iniciar &Minimizado"
+msgstr "เริ่มแบบย่อเล็กสุด(&M)"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "ย่อเล็กสุดไปที่ถาดระบบ(&B)"
+
+msgid "Janela Sempre no &Topo"
+msgstr "หน้าต่างอยู่บนสุดเสมอ(&T)"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "กำหนดค่าปุ่มลัด(&A)..."
+
+msgid "Aviso"
+msgstr "คำเตือน"
+
+msgid "Filtrar Fontes Por:"
+msgstr "กรองแหล่งตาม:"
+
+msgid "Selecionar Fonte:"
+msgstr "เลือกแหล่ง:"
+
+msgid "Volume:"
+msgstr "ระดับเสียง:"
+
+msgid "Erro"
+msgstr "ข้อผิดพลาด"
+
+msgid "Gravar"
+msgstr "บันทึก"
+
+msgid "Formato de Saída"
+msgstr "รูปแบบผลลัพธ์"
+
+msgid "Taxa de Amostragem"
+msgstr "อัตราสุ่มตัวอย่าง"
+
+msgid "Canais"
+msgstr "ช่อง"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "เล่นเสียงเมื่อเริ่มหรือหยุดการบันทึก"
+
+msgid "Continuar"
+msgstr "ทำต่อ"
+
+msgid "Pausar"
+msgstr "หยุดชั่วคราว"
+
+msgid "Parar"
+msgstr "หยุด"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder กำลังทำงานอยู่"
+
+msgid "Para&r"
+msgstr "หยุด(&R)"
+
+msgid "&Gravar"
+msgstr "บันทึก(&G)"
+
+msgid "C&ontinuar"
+msgstr "ทำต่อ(&O)"
+
+msgid "&Pausar"
+msgstr "หยุดชั่วคราว(&P)"
+
+msgid "Gravações"
+msgstr "การบันทึก"
+
+msgid "Parar Reprod&ução"
+msgstr "หยุดการเล่น(&U)"
+
+msgid "Reprod&uzir Gravação"
+msgstr "เล่นการบันทึก(&U)"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "เลือกไฟล์ที่จะเล่น:"
+
+msgid "Reproduzir Gravação"
+msgstr "เล่นการบันทึก"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"ลบการบันทึกหรือไม่?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "ยืนยันการลบ"
+
+msgid "&Idioma:"
+msgstr "ภาษา(&I):"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "ขนาดบัฟเฟอร์ (ms)(&U):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"เพิ่มบัฟเฟอร์หากเสียงแตกในคอมพิวเตอร์ที่ใช้งานหนัก จาก {minimo} ถึง {maximo}"
+" ms; ค่าเริ่มต้นคือ {padrao}"
+
+msgid "Dispositivos de Áudio"
+msgstr "อุปกรณ์เสียง"
+
+msgid "Processos em Execução"
+msgstr "กระบวนการที่กำลังทำงาน"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "หมายเหตุ: การจับภาพกระบวนการต้องใช้ Windows 10 v2004 หรือใหม่กว่า"
+
+msgid "Parar Reprodução"
+msgstr "หยุดการเล่น"
+
+msgid "Excluir Gravação"
+msgstr "ลบการบันทึก"
+
+msgid "Bitrate"
+msgstr "บิตเรต"
+
+msgid "Compressão FLAC"
+msgstr "การบีบอัด FLAC"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "บันทึกแหล่งลงในไฟล์แยกต่างหาก"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "เพิ่มแหล่งการบันทึกอย่างน้อยหนึ่งแหล่งก่อนเริ่ม"
+
+msgid "Não foi possível excluir:\n"
+msgstr "ไม่สามารถลบได้:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"ผู้เขียน: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"กำลังบันทึกอยู่\n"
+"\n"
+"คุณต้องการปิด VB Recorder จริงๆ หรือไม่?"
+
+msgid "Confirmar Saída"
+msgstr "ยืนยันการออก"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr "ขนาดบัฟเฟอร์ต้องเป็นตัวเลขระหว่าง {minimo} ถึง {maximo} มิลลิวินาที"
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "ไม่สามารถทดสอบอุปกรณ์นี้ได้ (ข้อผิดพลาด BASS {erro})"
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"หากต้องการเล่นไฟล์ {extensao} ภายในโปรแกรม ให้วาง {dll} ไว้ในโฟลเดอร์ lib "
+"ของ VB Recorder"
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"ข้อผิดพลาด BASS {erro} ขณะเล่น:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "ข้อผิดพลาด BASS {erro} เมื่อเริ่มการบันทึก"
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"ไม่สามารถเปิดโฟลเดอร์ได้:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "แหล่ง"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "อุปกรณ์ป้อนข้อมูลเริ่มต้น"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "ข้อผิดพลาด BASS {erro} ขณะเพิ่มแหล่งการบันทึก"
+
+msgid "Continuar Última Gra&vação"
+msgstr "บันทึกต่อจากครั้งล่าสุด(&V)"
+
+msgid "Continuar Última Gravação"
+msgstr "บันทึกต่อจากครั้งล่าสุด"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"ไม่สามารถบันทึกต่อได้ ตรวจสอบว่าไฟล์ไม่ได้เปิดอยู่ในโปรแกรมอื่น:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "ไฟล์ปฏิบัติการ"
+
+msgid "Nome do Executável:"
+msgstr "ชื่อไฟล์ปฏิบัติการ:"
+
+msgid "Nova atualização disponível!"
+msgstr "มีการอัปเดตใหม่!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"เวอร์ชันของคุณ: {atual};\n"
+"เวอร์ชันล่าสุด: {nova}\n"
+"ต้องการอัปเดตตอนนี้หรือไม่?"
+
+msgid "Baixando Atualização"
+msgstr "กำลังดาวน์โหลดการอัปเดต"
+
+msgid "Por favor aguarde..."
+msgstr "โปรดรอสักครู่..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "ตรวจสอบการอัปเดตโดยอัตโนมัติ(&V)"
+
+msgid "Verificar Atuali&zação..."
+msgstr "ตรวจสอบการอัปเดต(&Z)..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "คุณใช้ VB Recorder เวอร์ชันล่าสุดอยู่แล้ว"
+
+msgid "Verificar Atualização"
+msgstr "ตรวจสอบการอัปเดต"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "ไม่สามารถตรวจสอบการอัปเดตได้"
+
+msgid "Não foi possível baixar a atualização."
+msgstr "ไม่สามารถดาวน์โหลดการอัปเดตได้"
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"ไม่สามารถติดตั้งการอัปเดตได้:\n"
+"{erro}"

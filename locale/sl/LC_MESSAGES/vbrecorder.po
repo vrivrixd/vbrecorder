@@ -1,0 +1,419 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VB Recorder 1.2\n"
+"POT-Creation-Date: 2026-08-05 16:09\n"
+"PO-Revision-Date: 2026-10-11 11:00\n"
+"Last-Translator: AI Translator\n"
+"Language-Team: sl\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+
+msgid "Editar Fonte de Gravação"
+msgstr "Uredi vir snemanja"
+
+msgid "Adicionar Fonte de Gravação"
+msgstr "Dodaj vir snemanja"
+
+msgid "Ouvir o dispositivo selecionado com o volume ajustado"
+msgstr "Poslušaj izbrano napravo s prilagojeno glasnostjo"
+
+msgid "&Parar"
+msgstr "U&stavi"
+
+msgid "&Testar"
+msgstr "&Preizkusi"
+
+msgid "Mostrar janela principal"
+msgstr "Prikaži glavno okno"
+
+msgid "Sair"
+msgstr "Izhod"
+
+msgid "&Formato de Saída:"
+msgstr "&Izhodni format:"
+
+msgid "&Bitrate:"
+msgstr "&Bitna hitrost:"
+
+msgid "Compressão F&LAC:"
+msgstr "Kompresija F&LAC:"
+
+msgid "&Taxa de Amostragem:"
+msgstr "Hitros&t vzorčenja:"
+
+msgid "&Canais:"
+msgstr "&Kanali:"
+
+msgid "Fontes de &Gravação:"
+msgstr "Viri s&nemanja:"
+
+msgid "&Nome do Arquivo:"
+msgstr "&Ime datoteke:"
+
+msgid "&Diretório de Saída:"
+msgstr "&Izhodni imenik:"
+
+msgid "&Adicionar"
+msgstr "Dod&aj"
+
+msgid "&Editar"
+msgstr "Ur&edi"
+
+msgid "&Remover"
+msgstr "Odst&rani"
+
+msgid "P&rocurar..."
+msgstr "B&rskaj..."
+
+msgid "Abr&ir Pasta de Gravações"
+msgstr "Odp&ri mapo s posnetki"
+
+msgid "Config&urações..."
+msgstr "Nastavitv&e..."
+
+msgid "S&obre"
+msgstr "&O programu"
+
+msgid "&Minimizar"
+msgstr "&Minimiziraj"
+
+msgid "&Fechar"
+msgstr "&Zapri"
+
+msgid "E&xcluir Gravação"
+msgstr "I&zbriši posnetek"
+
+msgid "Gravar fontes em arquivos se&parados"
+msgstr "Snemanje virov v &ločene datoteke"
+
+msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgstr "Predvajaj &tone ob začetku ali koncu snemanja"
+
+msgid "Selecionar Pasta"
+msgstr "Izberi mapo"
+
+msgid "Sobre"
+msgstr "O programu"
+
+msgid "Configurar Teclas"
+msgstr "Konfiguriraj tipke"
+
+msgid ""
+"Pressione a combinação de teclas (ex: Ctrl+Alt+R) nos campos abaixo.\n"
+"Para limpar, pressione Backspace ou Delete.\n"
+"Pressione Esc para cancelar."
+msgstr ""
+"V spodnjih poljih pritisnite kombinacijo tipk (npr. Ctrl+Alt+R).\n"
+"Za brisanje pritisnite Backspace ali Delete.\n"
+"Za preklic pritisnite Esc."
+
+msgid "Gravar:"
+msgstr "Snemanje:"
+
+msgid "Pausar / Continuar:"
+msgstr "Premor / Nadaljuj:"
+
+msgid "Parar Gravação:"
+msgstr "Ustavi snemanje:"
+
+msgid "Mostrar Janela Principal:"
+msgstr "Prikaži glavno okno:"
+
+msgid "Fechar Programa:"
+msgstr "Zapri program:"
+
+msgid "&Ok"
+msgstr "&V redu"
+
+msgid "&Cancelar"
+msgstr "&Prekliči"
+
+msgid "Configurações"
+msgstr "Nastavitve"
+
+msgid "Padrão do sistema"
+msgstr "Sistemsko privzeto"
+
+msgid "Iniciar &Minimizado"
+msgstr "Zaženi &minimizirano"
+
+msgid "Minimizar Para a &Bandeja do Sistema"
+msgstr "Minimiziraj v s&istemsko vrstico"
+
+msgid "Janela Sempre no &Topo"
+msgstr "Okno vedno na &vrhu"
+
+msgid "Configurar Teclas de &Atalho..."
+msgstr "Konfiguriraj bli&žnjice..."
+
+msgid "Aviso"
+msgstr "Opozorilo"
+
+msgid "Filtrar Fontes Por:"
+msgstr "Filtriraj vire po:"
+
+msgid "Selecionar Fonte:"
+msgstr "Izberi vir:"
+
+msgid "Volume:"
+msgstr "Glasnost:"
+
+msgid "Erro"
+msgstr "Napaka"
+
+msgid "Gravar"
+msgstr "Snemaj"
+
+msgid "Formato de Saída"
+msgstr "Izhodni format"
+
+msgid "Taxa de Amostragem"
+msgstr "Hitrost vzorčenja"
+
+msgid "Canais"
+msgstr "Kanali"
+
+msgid "Reproduzir tons ao iniciar ou parar gravação"
+msgstr "Predvajaj tone ob začetku ali koncu snemanja"
+
+msgid "Continuar"
+msgstr "Nadaljuj"
+
+msgid "Pausar"
+msgstr "Premor"
+
+msgid "Parar"
+msgstr "Ustavi"
+
+msgid "O VB Recorder já está em execução."
+msgstr "VB Recorder se že izvaja."
+
+msgid "Para&r"
+msgstr "&Ustavi"
+
+msgid "&Gravar"
+msgstr "&Snemaj"
+
+msgid "C&ontinuar"
+msgstr "Na&daljuj"
+
+msgid "&Pausar"
+msgstr "&Premor"
+
+msgid "Gravações"
+msgstr "Posnetki"
+
+msgid "Parar Reprod&ução"
+msgstr "Ustavi predvajanj&e"
+
+msgid "Reprod&uzir Gravação"
+msgstr "Predvaja&j posnetek"
+
+msgid "Escolha o arquivo a reproduzir:"
+msgstr "Izberite datoteko za predvajanje:"
+
+msgid "Reproduzir Gravação"
+msgstr "Predvajaj posnetek"
+
+msgid ""
+"Excluir a gravação?\n"
+"\n"
+"{lista}"
+msgid_plural ""
+"Excluir os {n} arquivos da última gravação?\n"
+"\n"
+"{lista}"
+msgstr[0] ""
+"Izbrisati posnetek?\n"
+"\n"
+"{lista}"
+msgstr[1] ""
+"Izbrisati {n} datoteki iz zadnjega posnetka?\n"
+"\n"
+"{lista}"
+msgstr[2] ""
+"Izbrisati {n} datoteke iz zadnjega posnetka?\n"
+"\n"
+"{lista}"
+msgstr[3] ""
+"Izbrisati {n} datotek iz zadnjega posnetka?\n"
+"\n"
+"{lista}"
+
+msgid "Confirmar Exclusão"
+msgstr "Potrdi brisanje"
+
+msgid "&Idioma:"
+msgstr "&Jezik:"
+
+msgid "Tamanho do B&uffer (ms):"
+msgstr "Velikost medp&omnilnika (ms):"
+
+msgid ""
+"Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
+"{maximo} ms; o padrão é {padrao}."
+msgstr ""
+"Povečajte medpomnilnik, če zvok prasketa na zasedenem računalniku. Od "
+"{minimo} do {maximo} ms; privzeto je {padrao}."
+
+msgid "Dispositivos de Áudio"
+msgstr "Zvočne naprave"
+
+msgid "Processos em Execução"
+msgstr "Zagnani procesi"
+
+msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
+msgstr "Opomba: zajem procesov zahteva Windows 10 v2004 ali novejši."
+
+msgid "Parar Reprodução"
+msgstr "Ustavi predvajanje"
+
+msgid "Excluir Gravação"
+msgstr "Izbriši posnetek"
+
+msgid "Bitrate"
+msgstr "Bitna hitrost"
+
+msgid "Compressão FLAC"
+msgstr "Kompresija FLAC"
+
+msgid "Gravar fontes em arquivos separados"
+msgstr "Snemanje virov v ločene datoteke"
+
+msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
+msgstr "Pred začetkom dodajte vsaj en vir snemanja."
+
+msgid "Não foi possível excluir:\n"
+msgstr "Ni bilo mogoče izbrisati:\n"
+
+msgid ""
+"VB Recorder v{versao}\n"
+"Autor: Vitor Bruski"
+msgstr ""
+"VB Recorder v{versao}\n"
+"Avtor: Vitor Bruski"
+
+msgid ""
+"Há uma gravação em andamento.\n"
+"\n"
+"Deseja mesmo fechar o VB Recorder?"
+msgstr ""
+"Snemanje poteka.\n"
+"\n"
+"Ali res želite zapreti VB Recorder?"
+
+msgid "Confirmar Saída"
+msgstr "Potrdi izhod"
+
+msgid ""
+"O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
+"milissegundos."
+msgstr ""
+"Velikost medpomnilnika mora biti število med {minimo} in {maximo} "
+"milisekundami."
+
+msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
+msgstr "Te naprave ni bilo mogoče preizkusiti (napaka BASS {erro})."
+
+msgid ""
+"Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
+"pasta lib do VB Recorder."
+msgstr ""
+"Za predvajanje datotek {extensao} v programu postavite {dll} v mapo lib "
+"programa VB Recorder."
+
+msgid ""
+"Erro BASS {erro} ao reproduzir:\n"
+"{arquivo}"
+msgstr ""
+"Napaka BASS {erro} pri predvajanju:\n"
+"{arquivo}"
+
+msgid "Erro BASS {erro} ao iniciar a gravação."
+msgstr "Napaka BASS {erro} ob začetku snemanja."
+
+msgid ""
+"Não foi possível abrir a pasta:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+msgstr ""
+"Mape ni bilo mogoče odpreti:\n"
+"{pasta}\n"
+"\n"
+"{erro}"
+
+msgid "fonte"
+msgstr "vir"
+
+msgid "Dispositivo de Entrada Padrão"
+msgstr "Privzeta vhodna naprava"
+
+msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
+msgstr "Napaka BASS {erro} pri dodajanju vira snemanja."
+
+msgid "Continuar Última Gra&vação"
+msgstr "Nadaljuj &zadnji posnetek"
+
+msgid "Continuar Última Gravação"
+msgstr "Nadaljuj zadnji posnetek"
+
+msgid ""
+"Não foi possível continuar a gravação. Verifique se o arquivo não está aberto em outro programa:\n"
+"{arquivo}"
+msgstr ""
+"Snemanja ni bilo mogoče nadaljevati. Preverite, ali datoteka ni odprta v drugem programu:\n"
+"{arquivo}"
+
+msgid "Arquivo Executável"
+msgstr "Izvršljiva datoteka"
+
+msgid "Nome do Executável:"
+msgstr "Ime izvršljive datoteke:"
+
+msgid "Nova atualização disponível!"
+msgstr "Na voljo je nova posodobitev!"
+
+msgid ""
+"Sua versão: {atual};\n"
+"Versão mais recente: {nova}.\n"
+"Deseja atualizar agora?"
+msgstr ""
+"Vaša različica: {atual};\n"
+"Najnovejša različica: {nova}.\n"
+"Želite posodobiti zdaj?"
+
+msgid "Baixando Atualização"
+msgstr "Prenos posodobitve"
+
+msgid "Por favor aguarde..."
+msgstr "Prosimo počakajte..."
+
+msgid "&Verificar Atualizações Automaticamente"
+msgstr "Samodejno &preverjaj posodobitve"
+
+msgid "Verificar Atuali&zação..."
+msgstr "Preveri posodo&bitev..."
+
+msgid "Você já está usando a versão mais recente do VB Recorder."
+msgstr "Že uporabljate najnovejšo različico programa VB Recorder."
+
+msgid "Verificar Atualização"
+msgstr "Preverjanje posodobitev"
+
+msgid "Não foi possível verificar se há atualizações."
+msgstr "Posodobitev ni bilo mogoče preveriti."
+
+msgid "Não foi possível baixar a atualização."
+msgstr "Posodobitve ni bilo mogoče prenesti."
+
+msgid ""
+"Não foi possível instalar a atualização:\n"
+"{erro}"
+msgstr ""
+"Posodobitve ni bilo mogoče namestiti:\n"
+"{erro}"
