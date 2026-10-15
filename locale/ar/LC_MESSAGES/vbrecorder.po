@@ -27,6 +27,9 @@ msgstr "إيقاف(&P)"
 msgid "&Testar"
 msgstr "اختبار(&T)"
 
+msgid "&Atualizar"
+msgstr "تحديث(&R)"
+
 msgid "Mostrar janela principal"
 msgstr "إظهار النافذة الرئيسية"
 

@@ -27,6 +27,9 @@ msgstr "停止(&S)"
 msgid "&Testar"
 msgstr "测试(&T)"
 
+msgid "&Atualizar"
+msgstr "刷新(&R)"
+
 msgid "Mostrar janela principal"
 msgstr "显示主窗口"
 

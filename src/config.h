@@ -28,7 +28,7 @@
 
 /* Program version, in a single place. It stays out of the translatable texts on
    purpose: bumping the version does not invalidate any translation. */
-#define VB_VERSION L"1.4.1"
+#define VB_VERSION L"1.4.2"
 
 /* Recording buffer, in milliseconds. People with a busy computer can raise it
    so the audio does not crackle. */

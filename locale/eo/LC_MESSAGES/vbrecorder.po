@@ -27,6 +27,9 @@ msgstr "&Halti"
 msgid "&Testar"
 msgstr "&Testi"
 
+msgid "&Atualizar"
+msgstr "&Aktualigi"
+
 msgid "Mostrar janela principal"
 msgstr "Montri ĉefan fenestron"
 

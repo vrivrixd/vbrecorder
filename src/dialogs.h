@@ -18,6 +18,7 @@
 
 #include <functional>
 #include <map>
+#include <set>
 #include <string>
 #include <tuple>
 #include <utility>
@@ -120,6 +121,9 @@ private:
 
     void PopulateFilter(int sel);
     void OnFilterChange();
+    std::set<std::pair<std::wstring, int>> ExistingIds() const;
+    void LoadProcesses();
+    void OnRefresh();
     int SelectedDevice() const;  // -1 if the source is not a device
     int CheckedFilter() const;
     void UpdateOkState();
@@ -143,7 +147,7 @@ private:
     const std::vector<SourceItem>* current_items_ = nullptr;
     HWND rb_exe_ = nullptr, lbl_src_ = nullptr, lbl_exe_ = nullptr, txt_exe_ = nullptr;
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,
-         sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_ok_ = nullptr,
+         sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, note_ = nullptr;
 };
 

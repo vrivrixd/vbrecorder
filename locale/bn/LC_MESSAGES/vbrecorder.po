@@ -27,6 +27,9 @@ msgstr "থামান(&P)"
 msgid "&Testar"
 msgstr "পরীক্ষা করুন(&T)"
 
+msgid "&Atualizar"
+msgstr "রিফ্রেশ করুন(&R)"
+
 msgid "Mostrar janela principal"
 msgstr "প্রধান উইন্ডো দেখান"
 

@@ -310,6 +310,7 @@ enum {
     IDC_AS_TEST,
     IDC_AS_EXE,
     IDC_AS_EXE_NAME,
+    IDC_AS_REFRESH,
 };
 
 AddSourceDialog::AddSourceDialog(AudioEngine& audio, const std::vector<Source>& existing,
@@ -325,22 +326,12 @@ AddSourceDialog::AddSourceDialog(AudioEngine& audio, const std::vector<Source>& 
 
 void AddSourceDialog::OnInit() {
     auto all_devices = audio_.GetInputDevices();
-    auto processes = GetAudioSessions();
-
-    std::set<std::pair<std::wstring, int>> existing_ids;
-    for (auto& s : existing_) existing_ids.insert({s.type, s.id});
-    if (editing_) existing_ids.erase({edit_source_.type, edit_source_.id});
-
+    std::set<std::pair<std::wstring, int>> existing_ids = ExistingIds();
     for (auto& d : all_devices)
         if (!existing_ids.count({L"device", d.first}))
             device_items_.emplace_back(L"device", d.first, d.second);
     const bool available = ProcessLoopbackAvailable();
-    if (available) {
-        for (auto& p : processes)
-            if (!existing_ids.count({L"process", (int)p.first}))
-                process_items_.emplace_back(L"process", (int)p.first,
-                                            p.second + L"  (PID " + std::to_wstring(p.first) + L")");
-    }
+    if (available) LoadProcesses();
 
     auto vbox = VBox();
 
@@ -363,6 +354,9 @@ void AddSourceDialog::OnInit() {
     cmb_ = Add(WC_COMBOBOXW, L"", COMBO, IDC_AS_SOURCE);
     vbox->Add(lbl_src_, 0, ui::LEFT | ui::RIGHT, S(10));
     vbox->Add(cmb_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    // Reads the processes again, for programs opened after the dialog.
+    btn_refresh_ = Add(WC_BUTTONW, tr("&Atualizar"), BUTTON, IDC_AS_REFRESH);
+    vbox->Add(btn_refresh_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
     // An executable is typed by name: it does not need to be running.
     lbl_exe_ = ui::Create(hwnd_, WC_STATICW, tr("Nome do Executável:"), 0, 0);
     txt_exe_ = ui::Create(hwnd_, WC_EDITW, L"", WS_TABSTOP | ES_AUTOHSCROLL, IDC_AS_EXE_NAME,
@@ -434,7 +428,7 @@ void AddSourceDialog::OnInit() {
 
 bool AddSourceDialog::OnCharHook(const MSG& msg) {
     HWND focus = GetFocus();
-    if (IsEnter(msg) && focus != btn_test_ && focus != btn_cancel_) {
+    if (IsEnter(msg) && focus != btn_test_ && focus != btn_refresh_ && focus != btn_cancel_) {
         OnOk();
         return true;
     }
@@ -477,6 +471,9 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
         case IDC_AS_TEST:
             if (code == BN_CLICKED) OnTest();
             return true;
+        case IDC_AS_REFRESH:
+            if (code == BN_CLICKED) OnRefresh();
+            return true;
         case IDOK:
             OnOk();
             return true;
@@ -500,6 +497,7 @@ void AddSourceDialog::PopulateFilter(int sel) {
     bool exe = sel == 2;
     ui::Show(lbl_src_, !exe);
     ui::Show(cmb_, !exe);
+    ui::Show(btn_refresh_, sel == 1);
     ui::Show(lbl_exe_, exe);
     ui::Show(txt_exe_, exe);
     Relayout();
@@ -510,6 +508,34 @@ void AddSourceDialog::PopulateFilter(int sel) {
     if (!choices.empty()) SendMessageW(cmb_, CB_SETCURSEL, 0, 0);
     UpdateOkState();
     UpdateTestState();
+}
+
+/* Sources already in the list, which are not offered again; the one being
+   edited stays available. */
+std::set<std::pair<std::wstring, int>> AddSourceDialog::ExistingIds() const {
+    std::set<std::pair<std::wstring, int>> ids;
+    for (auto& s : existing_) ids.insert({s.type, s.id});
+    if (editing_) ids.erase({edit_source_.type, edit_source_.id});
+    return ids;
+}
+
+void AddSourceDialog::LoadProcesses() {
+    std::set<std::pair<std::wstring, int>> existing_ids = ExistingIds();
+    process_items_.clear();
+    for (auto& p : GetAudioSessions())
+        if (!existing_ids.count({L"process", (int)p.first}))
+            process_items_.emplace_back(L"process", (int)p.first,
+                                        p.second + L"  (PID " + std::to_wstring(p.first) + L")");
+}
+
+void AddSourceDialog::OnRefresh() {
+    // The selected process stays selected if it is still running.
+    int sel = (int)SendMessageW(cmb_, CB_GETCURSEL, 0, 0);
+    int pid = sel >= 0 && sel < (int)process_items_.size() ? std::get<1>(process_items_[sel]) : -1;
+    LoadProcesses();
+    PopulateFilter(1);
+    for (size_t i = 0; i < process_items_.size(); ++i)
+        if (std::get<1>(process_items_[i]) == pid) SendMessageW(cmb_, CB_SETCURSEL, i, 0);
 }
 
 void AddSourceDialog::OnFilterChange() {

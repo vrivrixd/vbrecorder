@@ -30,6 +30,9 @@ msgstr ""
 msgid "&Testar"
 msgstr ""
 
+msgid "&Atualizar"
+msgstr ""
+
 msgid "Mostrar janela principal"
 msgstr ""
 

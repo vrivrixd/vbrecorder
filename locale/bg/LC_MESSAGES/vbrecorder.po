@@ -27,6 +27,9 @@ msgstr "&Спиране"
 msgid "&Testar"
 msgstr "&Тестване"
 
+msgid "&Atualizar"
+msgstr "О&пресняване"
+
 msgid "Mostrar janela principal"
 msgstr "Показване на главния прозорец"
 

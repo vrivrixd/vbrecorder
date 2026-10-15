@@ -27,6 +27,9 @@ msgstr "&Stop"
 msgid "&Testar"
 msgstr "&Test"
 
+msgid "&Atualizar"
+msgstr "&Refresh"
+
 msgid "Mostrar janela principal"
 msgstr "Show main window"
 

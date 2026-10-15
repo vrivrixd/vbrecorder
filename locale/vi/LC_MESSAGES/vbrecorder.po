@@ -28,6 +28,9 @@ msgstr "&dừng"
 msgid "&Testar"
 msgstr "&thử"
 
+msgid "&Atualizar"
+msgstr "&Làm mới"
+
 msgid "Mostrar janela principal"
 msgstr "Hiện cửa sổ chính"
 

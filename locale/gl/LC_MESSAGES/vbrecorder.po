@@ -27,6 +27,9 @@ msgstr "&Deter"
 msgid "&Testar"
 msgstr "&Probar"
 
+msgid "&Atualizar"
+msgstr "&Actualizar"
+
 msgid "Mostrar janela principal"
 msgstr "Mostrar xanela principal"
 

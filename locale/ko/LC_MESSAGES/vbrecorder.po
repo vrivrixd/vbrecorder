@@ -27,6 +27,9 @@ msgstr "중지(&P)"
 msgid "&Testar"
 msgstr "테스트(&T)"
 
+msgid "&Atualizar"
+msgstr "새로 고침(&R)"
+
 msgid "Mostrar janela principal"
 msgstr "메인 창 표시"
 

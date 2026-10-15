@@ -27,6 +27,9 @@ msgstr "&Berhenti"
 msgid "&Testar"
 msgstr "&Uji"
 
+msgid "&Atualizar"
+msgstr "&Segarkan"
+
 msgid "Mostrar janela principal"
 msgstr "Tampilkan jendela utama"
 

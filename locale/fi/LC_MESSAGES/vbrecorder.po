@@ -27,6 +27,9 @@ msgstr "Py&säytä"
 msgid "&Testar"
 msgstr "&Testaa"
 
+msgid "&Atualizar"
+msgstr "Pä&ivitä"
+
 msgid "Mostrar janela principal"
 msgstr "Näytä pääikkuna"
 

@@ -27,6 +27,9 @@ msgstr "หยุด(&P)"
 msgid "&Testar"
 msgstr "ทดสอบ(&T)"
 
+msgid "&Atualizar"
+msgstr "รีเฟรช(&R)"
+
 msgid "Mostrar janela principal"
 msgstr "แสดงหน้าต่างหลัก"
 

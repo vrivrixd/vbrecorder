@@ -27,6 +27,9 @@ msgstr "रोकें(&P)"
 msgid "&Testar"
 msgstr "परीक्षण करें(&T)"
 
+msgid "&Atualizar"
+msgstr "रीफ़्रेश करें(&R)"
+
 msgid "Mostrar janela principal"
 msgstr "मुख्य विंडो दिखाएं"
 

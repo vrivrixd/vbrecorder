@@ -27,6 +27,9 @@ msgstr "停止(&P)"
 msgid "&Testar"
 msgstr "テスト(&T)"
 
+msgid "&Atualizar"
+msgstr "更新(&R)"
+
 msgid "Mostrar janela principal"
 msgstr "メインウィンドウを表示"
 

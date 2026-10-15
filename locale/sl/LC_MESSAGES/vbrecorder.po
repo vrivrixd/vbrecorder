@@ -27,6 +27,9 @@ msgstr "U&stavi"
 msgid "&Testar"
 msgstr "&Preizkusi"
 
+msgid "&Atualizar"
+msgstr "&Osveži"
+
 msgid "Mostrar janela principal"
 msgstr "Prikaži glavno okno"
 

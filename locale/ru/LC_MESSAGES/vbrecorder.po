@@ -27,6 +27,9 @@ msgstr "&Стоп"
 msgid "&Testar"
 msgstr "&Проверить"
 
+msgid "&Atualizar"
+msgstr "О&бновить"
+
 msgid "Mostrar janela principal"
 msgstr "Показать главное окно"
 

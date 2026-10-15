@@ -27,6 +27,9 @@ msgstr "&Zastavit"
 msgid "&Testar"
 msgstr "&Testovat"
 
+msgid "&Atualizar"
+msgstr "O&bnovit"
+
 msgid "Mostrar janela principal"
 msgstr "Zobrazit hlavní okno"
 

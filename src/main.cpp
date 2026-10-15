@@ -91,6 +91,7 @@ HANDLE g_instance_mutex = nullptr;
 
 const UINT WM_TRAY = WM_APP + 1;
 const UINT WM_UPDATE_FOUND = WM_APP + 3;  // lParam: an UpdateInfo to delete
+const UINT WM_CHECK_FOCUS = WM_APP + 4;
 const UINT_PTR TIMER_PLAY = 1;
 
 const std::vector<std::wstring> BITRATES = {L"8 KBPS",   L"16 KBPS",  L"32 KBPS",  L"64 KBPS",
@@ -158,6 +159,7 @@ private:
     void OnDeleteRecording();
     void OnAbout();
     void ToggleUi(bool enable);
+    void EnableControl(HWND ctrl, bool enable);
     bool OnClose();
 
     void AddTrayIcon();
@@ -267,6 +269,13 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
             if (id == IDC_FORMAT && code == CBN_SELCHANGE) OnFormatChange();
             return TRUE;  // IDOK and IDCANCEL (Enter and Esc) do not close the window
         }
+        case WM_ACTIVATE:
+            // Coming back to the window, Windows gives the focus back to the
+            // control that had it, which may have been disabled meanwhile (the
+            // delete button, after deleting from the tray, for example). It is
+            // checked once that is done.
+            if (LOWORD(wp) != WA_INACTIVE) PostMessageW(hwnd_, WM_CHECK_FOCUS, 0, 0);
+            return FALSE;
         case WM_CLOSE:
             OnClose();
             return TRUE;
@@ -289,6 +298,13 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
             if (LOWORD(lp) == WM_LBUTTONDBLCLK) ShowMain();
             else if (LOWORD(lp) == WM_RBUTTONUP) ShowTrayMenu();
             return TRUE;
+        case WM_CHECK_FOCUS: {
+            HWND focus = GetFocus();
+            if (GetActiveWindow() == hwnd_ && !IsIconic(hwnd_) &&
+                (!focus || (IsChild(hwnd_, focus) && !IsWindowEnabled(focus))))
+                SetFocus(btn_record_);
+            return TRUE;
+        }
         case WM_UPDATE_FOUND: {
             // Found when the program started; the window is already open.
             std::unique_ptr<UpdateInfo> info((UpdateInfo*)lp);
@@ -858,10 +874,8 @@ void MainFrame::OnRecordToggle() {
         if (Checked(chk_tones_)) audio.PlayTone(440, 150);
         ui::SetText(btn_record_, tr("&Gravar"));
         ui::SetText(btn_pause_, tr("&Pausar"));
-        bool pause_had_focus = GetFocus() == btn_pause_;
-        EnableWindow(btn_pause_, FALSE);
+        EnableControl(btn_pause_, false);
         ToggleUi(true);
-        if (pause_had_focus) SetFocus(btn_record_);
         last_recording_.clear();
         for (auto& p : audio.output_files())
             if (FileExists(p)) last_recording_.push_back(p);
@@ -886,12 +900,10 @@ void MainFrame::OnContinueLast() {
     audio.StopPlayback();  // the file being played is the one to continue
     UpdatePlayButton();
     if (Checked(chk_tones_)) audio.PlayTone(880, 150);
-    bool continue_had_focus = GetFocus() == btn_continue_;
     int err = 0;
     std::wstring failed;
     if (audio.ContinueRecording(sources_, &err, &failed)) {
         RecordingStarted();
-        if (continue_had_focus) SetFocus(btn_record_);
         return;
     }
     if (!failed.empty()) {
@@ -963,9 +975,9 @@ void MainFrame::Warn(const std::wstring& message, const std::wstring& title, UIN
 
 void MainFrame::UpdateRecordingButtons() {
     bool available = HasRecording();
-    EnableWindow(btn_play_, available);
-    EnableWindow(btn_delete_, available);
-    EnableWindow(btn_continue_, CanContinue());
+    EnableControl(btn_play_, available);
+    EnableControl(btn_delete_, available);
+    EnableControl(btn_continue_, CanContinue());
     UpdatePlayButton();
 }
 
@@ -1061,14 +1073,23 @@ void MainFrame::OnAbout() {
 }
 
 void MainFrame::ToggleUi(bool enable) {
-    HWND focus = GetFocus();
     // The sources stay available: they can be added, edited and removed while
     // recording.
     for (HWND ctrl : {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_channels_,
                       chk_separate_, txt_dir_, btn_browse_, txt_filename_, btn_settings_})
-        EnableWindow(ctrl, enable);
-    // Focus cannot stay on a disabled control: it goes to the record button.
-    if (focus && IsChild(hwnd_, focus) && !IsWindowEnabled(focus)) SetFocus(btn_record_);
+        EnableControl(ctrl, enable);
+}
+
+/* Disabling the focused control leaves the window with no focus at all, and
+   the keyboard does nothing until the user switches windows (wxWidgets, in the
+   Python version, moved the focus by itself). So the focus goes first to the
+   record button, which is never disabled. */
+void MainFrame::EnableControl(HWND ctrl, bool enable) {
+    if (!enable) {
+        HWND focus = GetFocus();
+        if (focus && (focus == ctrl || IsChild(ctrl, focus))) SetFocus(btn_record_);
+    }
+    EnableWindow(ctrl, enable);
 }
 
 bool MainFrame::OnClose() {
