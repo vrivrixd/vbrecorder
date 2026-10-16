@@ -32,6 +32,7 @@
 #include "config.h"
 #include "dialogs.h"
 #include "hotkeys.h"
+#include "startup.h"
 #include "i18n.h"
 #include "process_audio.h"
 #include "ui.h"
@@ -52,6 +53,7 @@ enum {
     IDC_BITRATE,
     IDC_FLAC,
     IDC_RATE,
+    IDC_BITS,
     IDC_CHANNELS,
     IDC_SOURCES,
     IDC_ADD,
@@ -69,7 +71,7 @@ enum {
     IDC_CLOSE,
 };
 
-enum { HK_REC = 1, HK_PAUSE, HK_STOP, HK_SHOW, HK_EXIT };
+enum { HK_REC = 1, HK_PAUSE, HK_STOP, HK_PLAY, HK_DELETE, HK_SHOW, HK_EXIT };
 
 enum {
     MENU_RECORD = 2001,
@@ -93,6 +95,19 @@ const UINT WM_TRAY = WM_APP + 1;
 const UINT WM_UPDATE_FOUND = WM_APP + 3;  // lParam: an UpdateInfo to delete
 const UINT WM_CHECK_FOCUS = WM_APP + 4;
 const UINT_PTR TIMER_PLAY = 1;
+const UINT_PTR TIMER_COUNTDOWN = 2;
+/* Low beeps before the recording starts, one per second, like the start of a race. */
+const int COUNTDOWN_BEEPS = 3;
+
+/* Sample rates. Above 48000 only for the formats without loss: MP3 does not go
+   beyond it, and OGG and OPUS would only spend more space. */
+const std::vector<std::wstring> SAMPLE_RATES = {
+    L"8000",  L"11025", L"16000", L"22050",  L"24000",  L"32000",  L"44100",
+    L"48000", L"88200", L"96000", L"176400", L"192000", L"352800", L"384000"};
+const int LOSSY_MAX_RATE = 48000;
+
+/* Bit depth of wav, aiff and flac; flac goes up to 24. */
+const std::vector<std::wstring> BIT_DEPTHS = {L"8", L"16", L"24", L"32"};
 
 const std::vector<std::wstring> BITRATES = {L"8 KBPS",   L"16 KBPS",  L"32 KBPS",  L"64 KBPS",
                                             L"96 KBPS",  L"128 KBPS", L"160 KBPS", L"192 KBPS",
@@ -142,8 +157,13 @@ private:
     void LoadSettings();
     void SaveSettings();
     void OnRecordToggle();
+    bool StartRecordingNow(bool tone);
+    void StartCountdown();
+    void OnCountdownTick();
+    void CancelCountdown();
     void OnPauseToggle();
     void RecordingStarted();
+    void UpdateShutdownBlock();
     bool CanContinue();
     void OnContinueLast();
     void OnBrowse();
@@ -168,12 +188,15 @@ private:
     void AddSubmenu(HMENU parent, const std::wstring& label, int index, HWND combo);
     void OnTrayCommand(UINT cmd);
     std::pair<int, int> OutputFormat();
+    std::wstring ChannelsValue();
 
     HWND hwnd_ = nullptr;
     std::unique_ptr<ui::Box> root_;
     std::vector<Source> sources_;
     std::vector<std::wstring> last_recording_;
     bool play_timer_ = false;
+    int countdown_ = 0;  // beeps played so far; 0 when there is no countdown
+    bool confirming_delete_ = false;
     bool tray_added_ = false;
     UINT taskbar_created_ = 0;
     HICON tray_icon_ = nullptr;
@@ -181,7 +204,7 @@ private:
 
     HWND btn_record_, btn_pause_, btn_continue_, btn_play_, btn_delete_;
     HWND lbl_format_, cmb_format_, lbl_bitrate_, cmb_bitrate_, lbl_flac_level_, cmb_flac_level_;
-    HWND lbl_rate_, cmb_rate_, lbl_channels_, cmb_channels_;
+    HWND lbl_rate_, cmb_rate_, lbl_bits_, cmb_bits_, lbl_channels_, cmb_channels_;
     HWND lbl_sources_, lst_fontes_, btn_add_, btn_edit_, btn_rem_;
     HWND chk_separate_, chk_tones_;
     HWND lbl_filename_, txt_filename_, lbl_dir_, txt_dir_, btn_browse_, btn_open_dir_;
@@ -293,6 +316,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
             return TRUE;
         case WM_TIMER:
             if (wp == TIMER_PLAY && !audio.IsPlaying()) UpdatePlayButton();
+            if (wp == TIMER_COUNTDOWN) OnCountdownTick();
             return TRUE;
         case WM_TRAY:
             if (LOWORD(lp) == WM_LBUTTONDBLCLK) ShowMain();
@@ -308,9 +332,20 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
         case WM_UPDATE_FOUND: {
             // Found when the program started; the window is already open.
             std::unique_ptr<UpdateInfo> info((UpdateInfo*)lp);
-            if (!audio.is_recording() && OfferUpdate(*info, DialogParent())) OnClose();
+            if (!audio.is_recording() && !countdown_ && OfferUpdate(*info, DialogParent()))
+                OnClose();
             return TRUE;
         }
+        case WM_QUERYENDSESSION:
+            // Windows wants to shut down or log off: not while recording,
+            // paused or not. Windows then lists the program with the reason,
+            // and the user can still shut down anyway; WM_ENDSESSION below
+            // closes the files properly in that case.
+            if (audio.is_recording()) {
+                SetWindowLongPtrW(hwnd_, DWLP_MSGRESULT, FALSE);
+                return TRUE;
+            }
+            return FALSE;
         case WM_ENDSESSION:
             // Windows is shutting down: the file being recorded is closed properly.
             if (wp) {
@@ -365,9 +400,10 @@ void MainFrame::SetupUi() {
     labeled_combo(&lbl_bitrate_, &cmb_bitrate_, IDC_BITRATE, BITRATES);
     labeled_combo(&lbl_flac_level_, &cmb_flac_level_, IDC_FLAC,
                   {L"0", L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8"});
-    labeled_combo(&lbl_rate_, &cmb_rate_, IDC_RATE,
-                  {L"8000", L"11025", L"22050", L"32000", L"44100", L"48000"});
-    labeled_combo(&lbl_channels_, &cmb_channels_, IDC_CHANNELS, {L"mono", L"stereo"});
+    labeled_combo(&lbl_rate_, &cmb_rate_, IDC_RATE, SAMPLE_RATES);
+    labeled_combo(&lbl_bits_, &cmb_bits_, IDC_BITS, BIT_DEPTHS);
+    // The channel names are translated: Retranslate fills them in.
+    labeled_combo(&lbl_channels_, &cmb_channels_, IDC_CHANNELS, {});
 
     lbl_sources_ = Add(WC_STATICW, 0, 0);
     vbox->Add(lbl_sources_, 0, ui::LEFT | ui::TOP, S(10));
@@ -436,7 +472,12 @@ void MainFrame::Retranslate() {
     ui::SetText(lbl_bitrate_, tr("&Bitrate:"));
     ui::SetText(lbl_flac_level_, tr("Compressão F&LAC:"));
     ui::SetText(lbl_rate_, tr("&Taxa de Amostragem:"));
+    ui::SetText(lbl_bits_, tr("Profundidade de Bit&s:"));
     ui::SetText(lbl_channels_, tr("&Canais:"));
+    // Same order as the values in the .ini: mono, stereo.
+    int channels = (int)SendMessageW(cmb_channels_, CB_GETCURSEL, 0, 0);
+    ui::ComboSetItems(cmb_channels_, {tr("mono"), tr("estéreo")});
+    SendMessageW(cmb_channels_, CB_SETCURSEL, channels == 0 ? 0 : 1, 0);
     ui::SetText(lbl_sources_, tr("Fontes de &Gravação:"));
     ui::SetText(lbl_filename_, tr("&Nome do Arquivo:"));
     ui::SetText(lbl_dir_, tr("&Diretório de Saída:"));
@@ -456,11 +497,12 @@ void MainFrame::Retranslate() {
     ui::SetText(chk_separate_, tr("Gravar fontes em arquivos se&parados"));
     ui::SetText(chk_tones_, tr("Reproduzir &tons ao iniciar ou parar gravação"));
 
-    ui::SetText(btn_record_, audio.is_recording() ? tr("Para&r") : tr("&Gravar"));
+    ui::SetText(btn_record_, audio.is_recording() || countdown_ ? tr("Para&r") : tr("&Gravar"));
     ui::SetText(btn_pause_, audio.is_paused() ? tr("C&ontinuar") : tr("&Pausar"));
     UpdatePlayButton();
 
     RefreshDeviceNames();
+    UpdateShutdownBlock();  // the reason shown by Windows is in the new language
     Layout();
 }
 
@@ -548,7 +590,8 @@ void MainFrame::RegisterAllHotkeys() {
     for (int id = HK_REC; id <= HK_EXIT; ++id) UnregisterHotKey(hwnd_, id);
     const std::pair<int, const wchar_t*> keys_map[] = {
         {HK_REC, L"gravar"}, {HK_PAUSE, L"pausar"}, {HK_STOP, L"parar"},
-        {HK_SHOW, L"mostrar"}, {HK_EXIT, L"fechar"}};
+        {HK_PLAY, L"reproduzir"}, {HK_DELETE, L"excluir"}, {HK_SHOW, L"mostrar"},
+        {HK_EXIT, L"fechar"}};
     for (auto& k : keys_map) {
         UINT mods = 0, vk = 0;
         ParseHotkey(config.GetKey(k.second), &mods, &vk);
@@ -557,11 +600,21 @@ void MainFrame::RegisterAllHotkeys() {
 }
 
 void MainFrame::OnHotkey(int id) {
+    // During the countdown, only stopping does something: it cancels it.
+    if (countdown_) {
+        if (id == HK_STOP) CancelCountdown();
+        else if (id == HK_SHOW) ShowMain();
+        else if (id == HK_EXIT) OnClose();
+        return;
+    }
     if (id == HK_REC && !audio.is_recording()) OnRecordToggle();
     else if (id == HK_PAUSE && audio.is_recording()) OnPauseToggle();
     // Stopped, the same hotkey continues the last recording.
     else if (id == HK_PAUSE && CanContinue()) OnContinueLast();
     else if (id == HK_STOP && audio.is_recording()) OnRecordToggle();
+    else if (id == HK_PLAY && (audio.IsPlaying() || HasRecording())) OnPlayToggle();
+    // Not while a dialog of the program is open, where it would pile up.
+    else if (id == HK_DELETE && HasRecording() && IsWindowEnabled(hwnd_)) OnDeleteRecording();
     else if (id == HK_SHOW) ShowMain();
     else if (id == HK_EXIT) OnClose();
 }
@@ -570,7 +623,12 @@ std::pair<int, int> MainFrame::OutputFormat() {
     std::wstring rate = ui::ComboValue(cmb_rate_);
     if (rate.empty() || rate.find_first_not_of(L"0123456789") != std::wstring::npos)
         return {44100, 2};
-    return {_wtoi(rate.c_str()), ui::ComboValue(cmb_channels_) == L"mono" ? 1 : 2};
+    return {_wtoi(rate.c_str()), ChannelsValue() == L"mono" ? 1 : 2};
+}
+
+/* "mono" or "stereo", as in the .ini, whatever the language of the list. */
+std::wstring MainFrame::ChannelsValue() {
+    return SendMessageW(cmb_channels_, CB_GETCURSEL, 0, 0) == 0 ? L"mono" : L"stereo";
 }
 
 void MainFrame::OnAddSource() {
@@ -737,6 +795,10 @@ void MainFrame::OnSettings() {
     config.SetConfig(L"minimizar_bandeja", dlg.tray);
     config.SetConfig(L"sempre_no_topo", dlg.on_top);
     config.SetConfig(L"verificar_atualizacoes", dlg.check_updates);
+    if (dlg.start_with_windows != config.GetBoolean(L"iniciar_com_windows"))
+        SetStartWithWindows(dlg.start_with_windows);
+    config.SetConfig(L"iniciar_com_windows", dlg.start_with_windows);
+    config.SetConfig(L"contagem_regressiva", dlg.countdown);
     config.SetConfig(L"buffer", dlg.BufferValue());
     config.Save();
 
@@ -755,6 +817,27 @@ void MainFrame::OnFormatChange() {
     ui::Show(cmb_bitrate_, needs_br);
     ui::Show(lbl_flac_level_, fmt == L"flac");
     ui::Show(cmb_flac_level_, fmt == L"flac");
+    {
+        std::wstring cur = ui::ComboValue(cmb_rate_);
+        std::vector<std::wstring> rates;
+        for (auto& r : SAMPLE_RATES)
+            if (!needs_br || _wtoi(r.c_str()) <= LOSSY_MAX_RATE) rates.push_back(r);
+        ui::ComboSetItems(cmb_rate_, rates);
+        bool found = std::find(rates.begin(), rates.end(), cur) != rates.end();
+        ui::ComboSetValue(cmb_rate_, found ? cur : cur.empty() ? L"44100" : rates.back());
+    }
+    // Bit depth only matters to the formats without loss.
+    bool needs_bits = fmt == L"wav" || fmt == L"aiff" || fmt == L"flac";
+    ui::Show(lbl_bits_, needs_bits);
+    ui::Show(cmb_bits_, needs_bits);
+    {
+        std::wstring cur = ui::ComboValue(cmb_bits_);
+        std::vector<std::wstring> depths = BIT_DEPTHS;
+        if (fmt == L"flac") depths.pop_back();
+        ui::ComboSetItems(cmb_bits_, depths);
+        bool found = std::find(depths.begin(), depths.end(), cur) != depths.end();
+        ui::ComboSetValue(cmb_bits_, found ? cur : cur.empty() ? L"16" : depths.back());
+    }
     if (needs_br) {
         std::wstring cur = ui::ComboValue(cmb_bitrate_);
         std::vector<std::wstring> base = BITRATES;
@@ -772,11 +855,14 @@ void MainFrame::LoadSettings() {
         return v.empty() ? std::wstring(fallback) : v;
     };
     ui::ComboSetValue(cmb_format_, or_default(L"formato", L"mp3"));
+    // Before the format, which takes 32 bits down to 24 in flac, and high
+    // sample rates down to 48000 in the compressed formats.
+    ui::ComboSetValue(cmb_bits_, or_default(L"bits", L"16"));
+    ui::ComboSetValue(cmb_rate_, or_default(L"taxa", L"44100"));
     OnFormatChange();
     ui::ComboSetValue(cmb_bitrate_, or_default(L"bitrate", L"128 KBPS"));
     ui::ComboSetValue(cmb_flac_level_, or_default(L"flac_nivel", L"8"));
-    ui::ComboSetValue(cmb_rate_, or_default(L"taxa", L"44100"));
-    ui::ComboSetValue(cmb_channels_, or_default(L"canais", L"stereo"));
+    SendMessageW(cmb_channels_, CB_SETCURSEL, config.Get(L"canais") == L"mono" ? 0 : 1, 0);
     SetChecked(chk_tones_, config.GetBoolean(L"reproduzir_tons"));
     SetChecked(chk_separate_, config.GetBoolean(L"arquivos_separados"));
     SetWindowTextW(txt_filename_, config.Get(L"arquivo").c_str());
@@ -816,7 +902,8 @@ void MainFrame::SaveSettings() {
     config.SetConfig(L"bitrate", ui::ComboValue(cmb_bitrate_));
     config.SetConfig(L"flac_nivel", ui::ComboValue(cmb_flac_level_));
     config.SetConfig(L"taxa", ui::ComboValue(cmb_rate_));
-    config.SetConfig(L"canais", ui::ComboValue(cmb_channels_));
+    config.SetConfig(L"bits", ui::ComboValue(cmb_bits_));
+    config.SetConfig(L"canais", ChannelsValue());
     config.SetConfig(L"reproduzir_tons", Checked(chk_tones_));
     config.SetConfig(L"arquivos_separados", Checked(chk_separate_));
     config.SetConfig(L"arquivo", ui::GetText(txt_filename_));
@@ -826,6 +913,10 @@ void MainFrame::SaveSettings() {
 }
 
 void MainFrame::OnRecordToggle() {
+    if (countdown_) {
+        CancelCountdown();
+        return;
+    }
     if (!audio.is_recording()) {
         audio.StopMonitor();
         if (sources_.empty()) {
@@ -835,42 +926,11 @@ void MainFrame::OnRecordToggle() {
         }
         audio.StopPlayback();
         UpdatePlayButton();
-        if (Checked(chk_tones_)) audio.PlayTone(880, 150);
-        std::wstring out_dir = CurrentOutputDir();
-        if (!DirExists(out_dir)) MakeDirs(out_dir);
-        std::wstring ext = ui::ComboValue(cmb_format_);
-        std::wstring filename = Trim(ui::GetText(txt_filename_));
-        if (filename.empty()) {
-            SYSTEMTIME st;
-            GetLocalTime(&st);
-            wchar_t stamp[32];
-            swprintf(stamp, 32, L"%04d-%02d-%02d_%02d-%02d-%02d", st.wYear, st.wMonth, st.wDay,
-                     st.wHour, st.wMinute, st.wSecond);
-            filename = stamp;
-        }
-        std::wstring full_path = JoinPath(out_dir, filename + L"." + ext);
-        std::wstring base = filename;
-        for (int counter = 1; FileExists(full_path); ++counter) {
-            filename = base + L" " + std::to_wstring(counter);
-            full_path = JoinPath(out_dir, filename + L"." + ext);
-        }
-        std::wstring bitrate_val = ui::ComboValue(cmb_bitrate_);
-        bitrate_val = bitrate_val.substr(0, bitrate_val.find(L' '));
-        int err = 0;
-        bool ok = audio.StartRecording(full_path, ext, bitrate_val,
-                                       _wtoi(ui::ComboValue(cmb_rate_).c_str()),
-                                       ui::ComboValue(cmb_channels_), sources_, Checked(chk_separate_),
-                                       _wtoi(ui::ComboValue(cmb_flac_level_).c_str()), &err);
-        if (ok) {
-            RecordingStarted();
-        } else {
-            ui::MsgBox(DialogParent(),
-                           Format(tr("Erro BASS {erro} ao iniciar a gravação."),
-                                  {{L"erro", std::to_wstring(err)}}),
-                           tr("Erro"), MB_ICONERROR | MB_OK);
-        }
+        if (config.GetBoolean(L"contagem_regressiva")) StartCountdown();
+        else StartRecordingNow(Checked(chk_tones_));
     } else {
         audio.StopRecording();
+        UpdateShutdownBlock();
         if (Checked(chk_tones_)) audio.PlayTone(440, 150);
         ui::SetText(btn_record_, tr("&Gravar"));
         ui::SetText(btn_pause_, tr("&Pausar"));
@@ -883,11 +943,102 @@ void MainFrame::OnRecordToggle() {
     }
 }
 
+/* Starts a new recording right away, with the start tone if asked. */
+bool MainFrame::StartRecordingNow(bool tone) {
+    if (sources_.empty()) {
+        // All sources were removed during the countdown.
+        ui::SetText(btn_record_, tr("&Gravar"));
+        ToggleUi(true);
+        ui::MsgBox(DialogParent(), tr("Adicione ao menos uma fonte de gravação antes de iniciar."),
+                   tr("Aviso"), MB_ICONWARNING | MB_OK);
+        return false;
+    }
+    if (tone) audio.PlayTone(880, 150);
+    std::wstring out_dir = CurrentOutputDir();
+    if (!DirExists(out_dir)) MakeDirs(out_dir);
+    std::wstring ext = ui::ComboValue(cmb_format_);
+    std::wstring filename = Trim(ui::GetText(txt_filename_));
+    if (filename.empty()) {
+        SYSTEMTIME st;
+        GetLocalTime(&st);
+        wchar_t stamp[32];
+        swprintf(stamp, 32, L"%04d-%02d-%02d_%02d-%02d-%02d", st.wYear, st.wMonth, st.wDay,
+                 st.wHour, st.wMinute, st.wSecond);
+        filename = stamp;
+    }
+    std::wstring full_path = JoinPath(out_dir, filename + L"." + ext);
+    std::wstring base = filename;
+    for (int counter = 1; FileExists(full_path); ++counter) {
+        filename = base + L" " + std::to_wstring(counter);
+        full_path = JoinPath(out_dir, filename + L"." + ext);
+    }
+    std::wstring bitrate_val = ui::ComboValue(cmb_bitrate_);
+    bitrate_val = bitrate_val.substr(0, bitrate_val.find(L' '));
+    int err = 0;
+    bool ok = audio.StartRecording(full_path, ext, bitrate_val,
+                                   _wtoi(ui::ComboValue(cmb_rate_).c_str()),
+                                   _wtoi(ui::ComboValue(cmb_bits_).c_str()), ChannelsValue(),
+                                   sources_, Checked(chk_separate_),
+                                   _wtoi(ui::ComboValue(cmb_flac_level_).c_str()), &err);
+    if (ok) {
+        RecordingStarted();
+        return true;
+    }
+    ui::SetText(btn_record_, tr("&Gravar"));
+    ToggleUi(true);
+    ui::MsgBox(DialogParent(),
+               Format(tr("Erro BASS {erro} ao iniciar a gravação."),
+                      {{L"erro", std::to_wstring(err)}}),
+               tr("Erro"), MB_ICONERROR | MB_OK);
+    return false;
+}
+
+/* Three low beeps, one per second, and the recording starts with the high
+   one. The options are locked meanwhile, as when recording, and Stop cancels
+   it. */
+void MainFrame::StartCountdown() {
+    countdown_ = 1;
+    ui::SetText(btn_record_, tr("Para&r"));
+    ToggleUi(false);
+    SetTimer(hwnd_, TIMER_COUNTDOWN, 1000, nullptr);
+    audio.PlayTone(440, 150);
+}
+
+void MainFrame::OnCountdownTick() {
+    if (!countdown_) return;
+    if (countdown_ < COUNTDOWN_BEEPS) {
+        ++countdown_;
+        audio.PlayTone(440, 150);
+        return;
+    }
+    KillTimer(hwnd_, TIMER_COUNTDOWN);
+    countdown_ = 0;
+    StartRecordingNow(true);
+}
+
+void MainFrame::CancelCountdown() {
+    if (!countdown_) return;
+    KillTimer(hwnd_, TIMER_COUNTDOWN);
+    countdown_ = 0;
+    ui::SetText(btn_record_, tr("&Gravar"));
+    ToggleUi(true);
+}
+
 void MainFrame::RecordingStarted() {
     ui::SetText(btn_record_, tr("Para&r"));
     EnableWindow(btn_pause_, TRUE);
     ToggleUi(false);
     UpdateRecordingButtons();
+    UpdateShutdownBlock();
+}
+
+/* While recording, paused or not, Windows asks before shutting down and shows
+   why the program is holding it. */
+void MainFrame::UpdateShutdownBlock() {
+    ShutdownBlockReasonDestroy(hwnd_);
+    if (audio.is_recording())
+        ShutdownBlockReasonCreate(
+            hwnd_, tr("Gravação em andamento. Pare a gravação antes de desligar.").c_str());
 }
 
 bool MainFrame::CanContinue() { return HasRecording() && audio.CanContinue(); }
@@ -895,7 +1046,7 @@ bool MainFrame::CanContinue() { return HasRecording() && audio.CanContinue(); }
 /* Goes on with the last recording, in the same files, as if it had only been
    paused. */
 void MainFrame::OnContinueLast() {
-    if (audio.is_recording() || !CanContinue()) return;
+    if (audio.is_recording() || countdown_ || !CanContinue()) return;
     audio.StopMonitor();
     audio.StopPlayback();  // the file being played is the one to continue
     UpdatePlayButton();
@@ -1036,6 +1187,7 @@ void MainFrame::OnPlayToggle() {
 }
 
 void MainFrame::OnDeleteRecording() {
+    if (confirming_delete_) return;
     std::vector<std::wstring> files = ExistingRecordingFiles();
     if (files.empty()) {
         last_recording_.clear();
@@ -1048,7 +1200,10 @@ void MainFrame::OnDeleteRecording() {
                                   "Excluir os {n} arquivos da última gravação?\n\n{lista}",
                                   (unsigned long)files.size()),
                               {{L"n", std::to_wstring(files.size())}, {L"lista", list_text}});
-    if (!ConfirmYesNo(DialogParent(), msg, tr("Confirmar Exclusão"))) return;
+    confirming_delete_ = true;
+    bool confirmed = ConfirmYesNo(DialogParent(), msg, tr("Confirmar Exclusão"));
+    confirming_delete_ = false;
+    if (!confirmed) return;
     audio.StopPlayback();
     audio.ForgetLastRecording();
     std::vector<std::wstring> failures;
@@ -1075,7 +1230,7 @@ void MainFrame::OnAbout() {
 void MainFrame::ToggleUi(bool enable) {
     // The sources stay available: they can be added, edited and removed while
     // recording.
-    for (HWND ctrl : {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_channels_,
+    for (HWND ctrl : {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_bits_, cmb_channels_,
                       chk_separate_, txt_dir_, btn_browse_, txt_filename_, btn_settings_})
         EnableControl(ctrl, enable);
 }
@@ -1100,7 +1255,9 @@ bool MainFrame::OnClose() {
         return false;
     if (play_timer_) KillTimer(hwnd_, TIMER_PLAY);
     play_timer_ = false;
+    CancelCountdown();
     audio.StopRecording();
+    UpdateShutdownBlock();
     SaveSettings();
     audio.Cleanup();
     RemoveTrayIcon();
@@ -1155,8 +1312,10 @@ void MainFrame::AddSubmenu(HMENU parent, const std::wstring& label, int index, H
 
 void MainFrame::ShowTrayMenu() {
     HMENU menu = CreatePopupMenu();
-    menu_combos_ = {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_channels_};
-    if (!audio.is_recording()) {
+    menu_combos_ = {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_channels_, cmb_bits_};
+    if (countdown_) {
+        AppendMenuW(menu, MF_STRING, MENU_STOP, tr("Parar").c_str());
+    } else if (!audio.is_recording()) {
         AppendMenuW(menu, MF_STRING, MENU_RECORD, tr("Gravar").c_str());
         if (CanContinue())
             AppendMenuW(menu, MF_STRING, MENU_CONTINUE, tr("Continuar Última Gravação").c_str());
@@ -1172,6 +1331,8 @@ void MainFrame::ShowTrayMenu() {
             AddSubmenu(menu, tr("Bitrate"), 1, cmb_bitrate_);
         if (fmt == L"flac") AddSubmenu(menu, tr("Compressão FLAC"), 2, cmb_flac_level_);
         AddSubmenu(menu, tr("Taxa de Amostragem"), 3, cmb_rate_);
+        if (fmt == L"wav" || fmt == L"aiff" || fmt == L"flac")
+            AddSubmenu(menu, tr("Profundidade de Bits"), 5, cmb_bits_);
         AddSubmenu(menu, tr("Canais"), 4, cmb_channels_);
         if (sources_.size() >= 2) {
             AppendMenuW(menu, MF_STRING | (Checked(chk_separate_) ? MF_CHECKED : 0), MENU_SEPARATE,
@@ -1223,15 +1384,19 @@ void MainFrame::OnTrayCommand(UINT cmd) {
         HWND combo = menu_combos_[index];
         std::vector<std::wstring> items = ui::ComboItems(combo);
         if (item >= (int)items.size()) return;
-        ui::ComboSetValue(combo, items[item]);
-        SaveSettings();
+        SendMessageW(combo, CB_SETCURSEL, item, 0);
+        // The format decides which bit depths exist, before saving.
         if (combo == cmb_format_) OnFormatChange();
+        SaveSettings();
     }
 }
 
 }  // namespace
 
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
+    // Started by Windows, the working folder is System32: the .ini and the
+    // recordings belong next to the program.
+    if (wcsstr(GetCommandLineW(), STARTUP_FLAG)) SetCurrentDirectoryW(ExeDir().c_str());
     CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
     INITCOMMONCONTROLSEX icc = {sizeof(icc),
                                 ICC_STANDARD_CLASSES | ICC_LISTVIEW_CLASSES | ICC_BAR_CLASSES |
@@ -1257,6 +1422,8 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
     if (!frame->audio.Load()) return 1;
     frame->audio.SetBuffer(frame->config.GetBuffer());
     if (!frame->Create()) return 1;
+    // A portable program: if its folder moved, Windows must start it from the new one.
+    if (frame->config.GetBoolean(L"iniciar_com_windows")) RefreshStartWithWindows();
     frame->ShowAtStart();
     if (frame->config.GetBoolean(L"verificar_atualizacoes", true)) frame->StartUpdateCheck();
 

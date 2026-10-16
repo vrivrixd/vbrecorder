@@ -48,8 +48,17 @@ msgstr "F&LAC-pakkaus:"
 msgid "&Taxa de Amostragem:"
 msgstr "&Näytetaajuus:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Bittis&yvyys:"
+
 msgid "&Canais:"
 msgstr "&Kanavat:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Tallennus&lähteet:"
@@ -123,6 +132,12 @@ msgstr "Tauko / Jatka:"
 msgid "Parar Gravação:"
 msgstr "Lopeta tallennus:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Toista / Pysäytä toisto:"
+
+msgid "Excluir Gravação:"
+msgstr "Poista tallenne:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Näytä pääikkuna:"
 
@@ -150,6 +165,9 @@ msgstr "Pienennä &ilmaisinalueelle"
 msgid "Janela Sempre no &Topo"
 msgstr "Ikkuna aina &päällimmäisenä"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "&Lähtölaskenta ennen tallennusta"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Määritä pika&näppäimet..."
 
@@ -176,6 +194,9 @@ msgstr "Tulostusmuoto"
 
 msgid "Taxa de Amostragem"
 msgstr "Näytetaajuus"
+
+msgid "Profundidade de Bits"
+msgstr "Bittisyvyys"
 
 msgid "Canais"
 msgstr "Kanavat"
@@ -304,6 +325,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Vahvista poistuminen"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Tallennus käynnissä. Lopeta tallennus ennen sammuttamista."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -391,6 +415,9 @@ msgstr "Tarkista päivitykset &automaattisesti"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Tarkista päivi&tys..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Käynnistä &Windowsin kanssa"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Käytät jo VB Recorderin uusinta versiota."

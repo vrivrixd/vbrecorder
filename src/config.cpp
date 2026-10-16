@@ -21,6 +21,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <cwchar>
+#include <initializer_list>
 
 #include "util.h"
 
@@ -142,7 +143,10 @@ void ConfigManager::Load() {
                    {L"minimizar_bandeja", L"False"},
                    {L"sempre_no_topo", L"True"},
                    {L"buffer", std::to_wstring(BUFFER_DEFAULT)},
-                   {L"verificar_atualizacoes", L"True"}};
+                   {L"verificar_atualizacoes", L"True"},
+                   {L"bits", L"16"},
+                   {L"iniciar_com_windows", L"False"},
+                   {L"contagem_regressiva", L"False"}};
     } else {
         if (!Lookup(cfg->items, L"fontes")) {
             const std::wstring* d1 = Lookup(cfg->items, L"dispositivo1");
@@ -156,31 +160,40 @@ void ConfigManager::Load() {
             {L"minimizar_bandeja", L"False"},
             {L"sempre_no_topo", L"True"},
             {L"buffer", std::to_wstring(BUFFER_DEFAULT)},
-            {L"verificar_atualizacoes", L"True"}};
+            {L"verificar_atualizacoes", L"True"},
+            {L"bits", L"16"},
+            {L"iniciar_com_windows", L"False"},
+            {L"contagem_regressiva", L"False"}};
         for (auto& p : defaults)
             if (!Lookup(cfg->items, p.first)) Put(cfg->items, p.first, p.second);
     }
 
     if (!Find(L"KEYS")) {
         Section& s = Ensure(L"KEYS");
-        s.items = {{L"gravar", L""}, {L"pausar", L""}, {L"parar", L""}, {L"mostrar", L""},
+        s.items = {{L"gravar", L""},     {L"pausar", L""},  {L"parar", L""},
+                   {L"reproduzir", L""}, {L"excluir", L""}, {L"mostrar", L""},
                    {L"fechar", L""}};
     }
 }
 
 void ConfigManager::Save() {
-    Section& cfg = Ensure(L"CONFIG");
-    static const wchar_t* const ordered[] = {
-        L"formato",  L"bitrate",          L"flac_nivel",        L"taxa",
-        L"canais",   L"fontes",           L"reproduzir_tons",   L"arquivos_separados",
-        L"arquivo",  L"diretorio",        L"idioma",            L"iniciar_minimizado",
-        L"minimizar_bandeja", L"sempre_no_topo", L"buffer", L"verificar_atualizacoes"};
-    Items sorted;
-    for (const wchar_t* k : ordered)
-        if (const std::wstring* v = Lookup(cfg.items, k)) sorted.emplace_back(k, *v);
-    for (auto& kv : cfg.items)
-        if (!Lookup(sorted, kv.first)) sorted.push_back(kv);
-    cfg.items = sorted;
+    // Known keys in a fixed order, so keys added by newer versions do not
+    // end up at the bottom; unknown ones are kept after them.
+    auto sort_items = [](Items& items, std::initializer_list<const wchar_t*> ordered) {
+        Items sorted;
+        for (const wchar_t* k : ordered)
+            if (const std::wstring* v = Lookup(items, k)) sorted.emplace_back(k, *v);
+        for (auto& kv : items)
+            if (!Lookup(sorted, kv.first)) sorted.push_back(kv);
+        items = sorted;
+    };
+    sort_items(Ensure(L"CONFIG").items,
+               {L"formato", L"bitrate", L"flac_nivel", L"taxa", L"bits", L"canais", L"fontes",
+                L"reproduzir_tons", L"arquivos_separados", L"arquivo", L"diretorio", L"idioma",
+                L"iniciar_minimizado", L"minimizar_bandeja", L"sempre_no_topo", L"buffer",
+                L"verificar_atualizacoes", L"iniciar_com_windows", L"contagem_regressiva"});
+    sort_items(Ensure(L"KEYS").items, {L"gravar", L"pausar", L"parar", L"reproduzir", L"excluir",
+                                       L"mostrar", L"fechar"});
 
     std::wstring text;
     for (auto& s : sections_) {

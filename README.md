@@ -48,10 +48,15 @@ history.
   Pause / Continue hotkey does the same when nothing is recording. With MP3,
   OGG and OPUS, the part already recorded is encoded again.
 - **Global hotkeys**, configurable, that work with the window minimized or
-  hidden.
-- **Settings window** with language, automatic update checks, start
-  minimized, minimize to tray, window always on top and buffer size, besides
-  the hotkeys.
+  hidden: record, pause and continue, stop, play, delete, show the window and
+  close the program.
+- **Countdown**, optional: three low beeps, one per second, and the recording
+  starts on the high one, as at the start of a race. Stop cancels it.
+- **Start with Windows**, optional. The program stays portable: if its folder
+  moves, it points Windows to the new place the next time it opens.
+- **Settings window** with language, automatic update checks, start with
+  Windows, start minimized, minimize to tray, window always on top, countdown
+  and buffer size, besides the hotkeys.
 - **Automatic updates.** When it starts, the program checks GitHub for a new
   version and, if you want, downloads the right one for your Windows (32 or 64
   bits), installs it and opens it again. The check can also be done from the
@@ -62,13 +67,14 @@ history.
 | Format | Notes                                          |
 |--------|------------------------------------------------|
 | MP3    | bitrate from 8 to 320 kbps                     |
-| WAV    | uncompressed, 16-bit                           |
-| AIFF   | uncompressed, 16-bit                           |
+| WAV    | uncompressed, 8, 16, 24 or 32-bit              |
+| AIFF   | uncompressed, 8, 16, 24 or 32-bit              |
 | OGG    | adjustable bitrate up to 500 kbps              |
 | OPUS   | modern, highly efficient codec, ideal for voice |
-| FLAC   | lossless, compression level from 0 to 8        |
+| FLAC   | lossless, 8, 16 or 24-bit, compression 0 to 8  |
 
-Sample rate from 8000 Hz to 48000 Hz, mono or stereo.
+Sample rate from 8000 Hz to 384000 Hz in WAV, AIFF and FLAC, and up to 48000 Hz
+in MP3, OGG and OPUS; mono or stereo.
 
 ## Stutter-free audio
 
@@ -127,7 +133,8 @@ Download the zip for your Windows from the
 `VBRecorder-x64.zip` for 64-bit Windows (most computers) or `VBRecorder-x86.zip`
 for 32-bit Windows (it also runs on 64-bit Windows). Extract it wherever you
 like and run `VBRecorder.exe`. There is no installer: the program
-creates `VBRecorder.ini` with your settings in the folder it is started from.
+creates `VBRecorder.ini` with your settings in the folder it is started from
+(when Windows starts it, in its own folder).
 
 The `lib` folder holds the BASS libraries and must stay next to the executable.
 
@@ -172,6 +179,7 @@ Structure:
 - `src/config.cpp` — reading and writing `VBRecorder.ini`.
 - `src/i18n.cpp` — language choice and reading of the translation catalogs.
 - `src/hotkeys.cpp` — hotkeys written as text.
+- `src/startup.cpp` — starting with Windows.
 - `src/ui.cpp` — interface foundation: native controls and window layout.
 - `res/` — manifest, version information and the list of embedded translations.
 - `locale/` — translation catalogs, one per language.

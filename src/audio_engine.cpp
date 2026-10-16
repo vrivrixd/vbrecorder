@@ -467,16 +467,21 @@ DWORD AudioEngine::ApplyEncoder(DWORD handle, const std::wstring& path) {
     const DWORD flags = BASS_ENCODE_AUTOFREE | BASS_ENCODE_QUEUE | BASS_UNICODE;
     const wchar_t* p = path.c_str();
     const wchar_t* o = options_.c_str();
-    // Capture is in float; FP_16BIT writes wav and aiff as 16-bit PCM.
+    // Capture is in float; the FP flag converts it to integers of the chosen
+    // bit depth in wav, aiff and flac.
+    const DWORD depth = bits_ == 8    ? BASS_ENCODE_FP_8BIT
+                        : bits_ == 24 ? BASS_ENCODE_FP_24BIT
+                        : bits_ == 32 ? BASS_ENCODE_FP_32BIT
+                                      : BASS_ENCODE_FP_16BIT;
     if (format_ == L"wav")
-        return b_.EncodeStart(handle, p, flags | BASS_ENCODE_PCM | BASS_ENCODE_FP_16BIT, nullptr,
-                              nullptr);
-    if (format_ == L"aiff")
-        return b_.EncodeStartPCMFile(handle, flags | BASS_ENCODE_AIFF | BASS_ENCODE_FP_16BIT, p);
+        return b_.EncodeStart(handle, p, flags | BASS_ENCODE_PCM | depth, nullptr, nullptr);
+    if (format_ == L"aiff") return b_.EncodeStartPCMFile(handle, flags | BASS_ENCODE_AIFF | depth, p);
     if (format_ == L"mp3") return b_.EncodeMP3StartFile(handle, o, flags, p);
     if (format_ == L"ogg") return b_.EncodeOGGStartFile(handle, o, flags, p);
     if (format_ == L"opus") return b_.EncodeOPUSStartFile(handle, o, flags, p);
-    if (format_ == L"flac") return b_.EncodeFLACStartFile(handle, o, flags, p);
+    // FLAC goes up to 24 bits.
+    if (format_ == L"flac")
+        return b_.EncodeFLACStartFile(handle, o, flags | (bits_ == 32 ? BASS_ENCODE_FP_24BIT : depth), p);
     return 0;
 }
 
@@ -712,7 +717,7 @@ void AudioEngine::ResetRecording(int sample_rate, const std::wstring& channels) 
 }
 
 bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstring& format_type,
-                                 const std::wstring& bitrate, int sample_rate,
+                                 const std::wstring& bitrate, int sample_rate, int bits,
                                  const std::wstring& channels, const std::vector<Source>& sources,
                                  bool separate_files, int flac_nivel, int* error) {
     *error = 0;
@@ -726,6 +731,7 @@ bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstri
     output_files_.clear();
     last_outputs_.clear();
     format_ = format_type;
+    bits_ = bits;
     options_.clear();
     if (format_type == L"mp3" || format_type == L"ogg") options_ = L"-b " + bitrate;
     else if (format_type == L"opus") options_ = L"--bitrate " + bitrate;

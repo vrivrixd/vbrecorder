@@ -48,8 +48,17 @@ msgstr "ضغط FLAC(&L):"
 msgid "&Taxa de Amostragem:"
 msgstr "معدل العينة(&T):"
 
+msgid "Profundidade de Bit&s:"
+msgstr "عمق البت(&H):"
+
 msgid "&Canais:"
 msgstr "القنوات(&C):"
+
+msgid "mono"
+msgstr "أحادي"
+
+msgid "estéreo"
+msgstr "ستيريو"
 
 msgid "Fontes de &Gravação:"
 msgstr "مصادر التسجيل(&G):"
@@ -123,6 +132,12 @@ msgstr "إيقاف مؤقت / استئناف:"
 msgid "Parar Gravação:"
 msgstr "إيقاف التسجيل:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "تشغيل / إيقاف التشغيل:"
+
+msgid "Excluir Gravação:"
+msgstr "حذف التسجيل:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "إظهار النافذة الرئيسية:"
 
@@ -150,6 +165,9 @@ msgstr "تصغير إلى علبة النظام(&B)"
 msgid "Janela Sempre no &Topo"
 msgstr "النافذة دائماً في المقدمة(&T)"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "عد تنازلي قبل التسجيل(&R)"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "تكوين مفاتيح الاختصار(&A)..."
 
@@ -176,6 +194,9 @@ msgstr "تنسيق الإخراج"
 
 msgid "Taxa de Amostragem"
 msgstr "معدل العينة"
+
+msgid "Profundidade de Bits"
+msgstr "عمق البت"
 
 msgid "Canais"
 msgstr "القنوات"
@@ -320,6 +341,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "تأكيد الخروج"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "التسجيل قيد التقدم. أوقف التسجيل قبل إيقاف التشغيل."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -408,6 +432,9 @@ msgstr "التحقق من التحديثات تلقائيًا(&V)"
 
 msgid "Verificar Atuali&zação..."
 msgstr "التحقق من وجود تحديث(&Z)..."
+
+msgid "Iniciar com o &Windows"
+msgstr "بدء التشغيل مع Windows(&W)"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "أنت تستخدم بالفعل أحدث إصدار من VB Recorder."

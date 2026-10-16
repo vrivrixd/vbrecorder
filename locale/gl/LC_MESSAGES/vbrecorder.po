@@ -48,8 +48,17 @@ msgstr "Compresión F&LAC:"
 msgid "&Taxa de Amostragem:"
 msgstr "&Taxa de mostraxe:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Profundidade &de bits:"
+
 msgid "&Canais:"
 msgstr "&Canais:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "estéreo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Fontes de &gravación:"
@@ -123,6 +132,12 @@ msgstr "Pausar / Continuar:"
 msgid "Parar Gravação:"
 msgstr "Parar gravación:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Reproducir / Parar reprodución:"
+
+msgid "Excluir Gravação:"
+msgstr "Excluir gravación:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Mostrar xanela principal:"
 
@@ -150,6 +165,9 @@ msgstr "Minimizar á &bandexa do sistema"
 msgid "Janela Sempre no &Topo"
 msgstr "Xanela sempre no &topo"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Conta &regresiva antes de gravar"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Configurar teclas de &atallo..."
 
@@ -176,6 +194,9 @@ msgstr "Formato de saída"
 
 msgid "Taxa de Amostragem"
 msgstr "Taxa de mostraxe"
+
+msgid "Profundidade de Bits"
+msgstr "Profundidade de bits"
 
 msgid "Canais"
 msgstr "Canais"
@@ -304,6 +325,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Confirmar saída"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Gravación en curso. Para a gravación antes de apagar."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -393,6 +417,9 @@ msgstr "&Comprobar actualizacións automaticamente"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Comprobar actuali&zación..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Iniciar con &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Xa está a usar a versión máis recente do VB Recorder."

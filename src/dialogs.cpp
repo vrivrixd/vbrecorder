@@ -107,6 +107,8 @@ void HotkeysDialog::OnInit() {
         {L"gravar", tr("Gravar:")},
         {L"pausar", tr("Pausar / Continuar:")},
         {L"parar", tr("Parar Gravação:")},
+        {L"reproduzir", tr("Reproduzir / Parar Reprodução:")},
+        {L"excluir", tr("Excluir Gravação:")},
         {L"mostrar", tr("Mostrar Janela Principal:")},
         {L"fechar", tr("Fechar Programa:")},
     };
@@ -157,6 +159,8 @@ enum {
     IDC_ST_KEYS,
     IDC_ST_UPDATES,
     IDC_ST_CHECK,
+    IDC_ST_STARTUP,
+    IDC_ST_COUNTDOWN,
 };
 
 SettingsDialog::SettingsDialog(ConfigManager& config, std::function<void()> on_keys_saved,
@@ -195,6 +199,10 @@ void SettingsDialog::OnInit() {
     btn_check_ = Add(WC_BUTTONW, tr("Verificar Atuali&zação..."), BUTTON, IDC_ST_CHECK);
     vbox->Add(btn_check_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
+    chk_startup_ = Add(WC_BUTTONW, tr("Iniciar com o &Windows"), CHECK, IDC_ST_STARTUP);
+    Button_SetCheck(chk_startup_, config_.GetBoolean(L"iniciar_com_windows"));
+    vbox->Add(chk_startup_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+
     chk_start_min_ = Add(WC_BUTTONW, tr("Iniciar &Minimizado"), CHECK, IDC_ST_START_MIN);
     Button_SetCheck(chk_start_min_, config_.GetBoolean(L"iniciar_minimizado"));
     vbox->Add(chk_start_min_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
@@ -206,6 +214,11 @@ void SettingsDialog::OnInit() {
     chk_on_top_ = Add(WC_BUTTONW, tr("Janela Sempre no &Topo"), CHECK, IDC_ST_ON_TOP);
     Button_SetCheck(chk_on_top_, config_.GetBoolean(L"sempre_no_topo", true));
     vbox->Add(chk_on_top_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+
+    chk_countdown_ = Add(WC_BUTTONW, tr("Contagem &Regressiva Antes de Gravar"), CHECK,
+                         IDC_ST_COUNTDOWN);
+    Button_SetCheck(chk_countdown_, config_.GetBoolean(L"contagem_regressiva"));
+    vbox->Add(chk_countdown_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     auto hb_buf = HBox();
     HWND lbl_buf = Add(WC_STATICW, tr("Tamanho do B&uffer (ms):"), 0);
@@ -295,6 +308,8 @@ void SettingsDialog::OnOk() {
     language_ = (sel >= 0 && sel < (int)codes_.size()) ? codes_[sel] : L"";
     start_minimized = Button_GetCheck(chk_start_min_) == BST_CHECKED;
     check_updates = Button_GetCheck(chk_updates_) == BST_CHECKED;
+    start_with_windows = Button_GetCheck(chk_startup_) == BST_CHECKED;
+    countdown = Button_GetCheck(chk_countdown_) == BST_CHECKED;
     tray = Button_GetCheck(chk_tray_) == BST_CHECKED;
     on_top = Button_GetCheck(chk_on_top_) == BST_CHECKED;
     EndModal(IDOK);

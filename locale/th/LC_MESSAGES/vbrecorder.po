@@ -48,8 +48,17 @@ msgstr "การบีบอัด FLAC(&L):"
 msgid "&Taxa de Amostragem:"
 msgstr "อัตราสุ่มตัวอย่าง(&T):"
 
+msgid "Profundidade de Bit&s:"
+msgstr "ความลึกบิต(&H):"
+
 msgid "&Canais:"
 msgstr "ช่อง(&C):"
+
+msgid "mono"
+msgstr "โมโน"
+
+msgid "estéreo"
+msgstr "สเตอริโอ"
 
 msgid "Fontes de &Gravação:"
 msgstr "แหล่งการบันทึก(&G):"
@@ -123,6 +132,12 @@ msgstr "หยุดชั่วคราว / ทำต่อ:"
 msgid "Parar Gravação:"
 msgstr "หยุดการบันทึก:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "เล่น / หยุดการเล่น:"
+
+msgid "Excluir Gravação:"
+msgstr "ลบการบันทึก:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "แสดงหน้าต่างหลัก:"
 
@@ -150,6 +165,9 @@ msgstr "ย่อเล็กสุดไปที่ถาดระบบ(&B)"
 msgid "Janela Sempre no &Topo"
 msgstr "หน้าต่างอยู่บนสุดเสมอ(&T)"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "นับถอยหลังก่อนบันทึก(&R)"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "กำหนดค่าปุ่มลัด(&A)..."
 
@@ -176,6 +194,9 @@ msgstr "รูปแบบผลลัพธ์"
 
 msgid "Taxa de Amostragem"
 msgstr "อัตราสุ่มตัวอย่าง"
+
+msgid "Profundidade de Bits"
+msgstr "ความลึกบิต"
 
 msgid "Canais"
 msgstr "ช่อง"
@@ -300,6 +321,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "ยืนยันการออก"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "กำลังบันทึก หยุดการบันทึกก่อนปิดเครื่อง"
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -387,6 +411,9 @@ msgstr "ตรวจสอบการอัปเดตโดยอัตโน
 
 msgid "Verificar Atuali&zação..."
 msgstr "ตรวจสอบการอัปเดต(&Z)..."
+
+msgid "Iniciar com o &Windows"
+msgstr "เริ่มพร้อม Windows(&W)"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "คุณใช้ VB Recorder เวอร์ชันล่าสุดอยู่แล้ว"

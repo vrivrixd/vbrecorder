@@ -48,8 +48,17 @@ msgstr "Kompresja F&LAC:"
 msgid "&Taxa de Amostragem:"
 msgstr "&Częstotliwość próbkowania:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Głębia b&itowa:"
+
 msgid "&Canais:"
 msgstr "&Kanały:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Źródła na&grywania:"
@@ -123,6 +132,12 @@ msgstr "Wstrzymaj / Wznów:"
 msgid "Parar Gravação:"
 msgstr "Zatrzymaj nagrywanie:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Odtwórz / Zatrzymaj odtwarzanie:"
+
+msgid "Excluir Gravação:"
+msgstr "Usuń nagranie:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Pokaż główne okno:"
 
@@ -150,6 +165,9 @@ msgstr "Minimalizuj do &zasobnika"
 msgid "Janela Sempre no &Topo"
 msgstr "Okno zawsze na &wierzchu"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Odliczanie &przed nagrywaniem"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Konfiguruj skróty &klawiszowe..."
 
@@ -176,6 +194,9 @@ msgstr "Format wyjściowy"
 
 msgid "Taxa de Amostragem"
 msgstr "Częstotliwość próbkowania"
+
+msgid "Profundidade de Bits"
+msgstr "Głębia bitowa"
 
 msgid "Canais"
 msgstr "Kanały"
@@ -309,6 +330,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Potwierdź wyjście"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Trwa nagrywanie. Zatrzymaj nagrywanie przed wyłączeniem komputera."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -396,6 +420,9 @@ msgstr "&Automatycznie sprawdzaj aktualizacje"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Sprawdź aktuali&zację..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Uruchamiaj &razem z systemem Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Używasz już najnowszej wersji VB Recorder."

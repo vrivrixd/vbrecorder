@@ -48,8 +48,17 @@ msgstr "FLAC Co&mpression:"
 msgid "&Taxa de Amostragem:"
 msgstr "&Sample Rate:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Bit Dept&h:"
+
 msgid "&Canais:"
 msgstr "&Channels:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Recordin&g Sources:"
@@ -123,6 +132,12 @@ msgstr "Pause / Resume:"
 msgid "Parar Gravação:"
 msgstr "Stop Recording:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Play / Stop Playback:"
+
+msgid "Excluir Gravação:"
+msgstr "Delete Recording:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Show Main Window:"
 
@@ -150,6 +165,9 @@ msgstr "Minimize to System &Tray"
 msgid "Janela Sempre no &Topo"
 msgstr "Always on To&p"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Countdown Before &Recording"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Configure &Hotkeys..."
 
@@ -176,6 +194,9 @@ msgstr "Output Format"
 
 msgid "Taxa de Amostragem"
 msgstr "Sample Rate"
+
+msgid "Profundidade de Bits"
+msgstr "Bit Depth"
 
 msgid "Canais"
 msgstr "Channels"
@@ -297,6 +318,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Confirm Exit"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Recording in progress. Stop the recording before shutting down."
+
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
 "{maximo} ms; o padrão é {padrao}."
@@ -392,6 +416,9 @@ msgstr "Check for &Updates Automatically"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Check for Updat&e..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Start with &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "You are already using the latest version of VB Recorder."

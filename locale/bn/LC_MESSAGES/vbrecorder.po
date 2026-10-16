@@ -48,8 +48,17 @@ msgstr "FLAC কম্প্রেশন(&L):"
 msgid "&Taxa de Amostragem:"
 msgstr "নমুনা হার(&T):"
 
+msgid "Profundidade de Bit&s:"
+msgstr "বিট ডেপথ(&H):"
+
 msgid "&Canais:"
 msgstr "চ্যানেল(&C):"
+
+msgid "mono"
+msgstr "মোনো"
+
+msgid "estéreo"
+msgstr "স্টেরিও"
 
 msgid "Fontes de &Gravação:"
 msgstr "রেকর্ডিং উৎস(&G):"
@@ -123,6 +132,12 @@ msgstr "পজ / আবার শুরু:"
 msgid "Parar Gravação:"
 msgstr "রেকর্ডিং থামান:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "চালান / প্লেব্যাক থামান:"
+
+msgid "Excluir Gravação:"
+msgstr "রেকর্ডিং মুছুন:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "প্রধান উইন্ডো দেখান:"
 
@@ -150,6 +165,9 @@ msgstr "সিস্টেম ট্রে-তে মিনিমাইজ ক�
 msgid "Janela Sempre no &Topo"
 msgstr "উইন্ডো সবসময় উপরে(&T)"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "রেকর্ডিংয়ের আগে কাউন্টডাউন(&R)"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "শর্টকাট কী কনফিগার করুন(&A)..."
 
@@ -176,6 +194,9 @@ msgstr "আউটপুট ফরম্যাট"
 
 msgid "Taxa de Amostragem"
 msgstr "নমুনা হার"
+
+msgid "Profundidade de Bits"
+msgstr "বিট ডেপথ"
 
 msgid "Canais"
 msgstr "চ্যানেল"
@@ -306,6 +327,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "প্রস্থান নিশ্চিত করুন"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "রেকর্ডিং চলছে। বন্ধ করার আগে রেকর্ডিং থামান।"
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -394,6 +418,9 @@ msgstr "স্বয়ংক্রিয়ভাবে আপডেট পর�
 
 msgid "Verificar Atuali&zação..."
 msgstr "আপডেট পরীক্ষা করুন(&Z)..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Windows-এর সাথে চালু করুন(&W)"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "আপনি ইতিমধ্যেই VB Recorder-এর সর্বশেষ সংস্করণ ব্যবহার করছেন।"

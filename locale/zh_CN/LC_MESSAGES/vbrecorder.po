@@ -48,8 +48,17 @@ msgstr "FLAC 压缩(&L):"
 msgid "&Taxa de Amostragem:"
 msgstr "采样率(&T):"
 
+msgid "Profundidade de Bit&s:"
+msgstr "位深度(&H):"
+
 msgid "&Canais:"
-msgstr "频道(&C):"
+msgstr "声道(&C):"
+
+msgid "mono"
+msgstr "单声道"
+
+msgid "estéreo"
+msgstr "立体声"
 
 msgid "Fontes de &Gravação:"
 msgstr "录制源(&G):"
@@ -123,6 +132,12 @@ msgstr "暂停 / 继续:"
 msgid "Parar Gravação:"
 msgstr "停止录制:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "播放 / 停止播放:"
+
+msgid "Excluir Gravação:"
+msgstr "删除录音:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "显示主窗口:"
 
@@ -149,6 +164,9 @@ msgstr "最小化到系统托盘(&B)"
 
 msgid "Janela Sempre no &Topo"
 msgstr "窗口总在最前(&T)"
+
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "录音前倒计时(&R)"
 
 msgid "Configurar Teclas de &Atalho..."
 msgstr "配置快捷键(&A)..."
@@ -177,8 +195,11 @@ msgstr "输出格式"
 msgid "Taxa de Amostragem"
 msgstr "采样率"
 
+msgid "Profundidade de Bits"
+msgstr "位深度"
+
 msgid "Canais"
-msgstr "频道"
+msgstr "声道"
 
 msgid "Reproduzir tons ao iniciar ou parar gravação"
 msgstr "开始或停止录制时播放提示音"
@@ -298,6 +319,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "确认退出"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "正在录音。请在关机前停止录音。"
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -383,6 +407,9 @@ msgstr "自动检查更新(&V)"
 
 msgid "Verificar Atuali&zação..."
 msgstr "检查更新(&Z)..."
+
+msgid "Iniciar com o &Windows"
+msgstr "随 Windows 启动(&W)"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "您已在使用最新版本的 VB Recorder。"

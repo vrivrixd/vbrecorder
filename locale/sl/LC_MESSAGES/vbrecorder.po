@@ -48,8 +48,17 @@ msgstr "Kompresija F&LAC:"
 msgid "&Taxa de Amostragem:"
 msgstr "Hitros&t vzorčenja:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Bitna &globina:"
+
 msgid "&Canais:"
 msgstr "&Kanali:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Viri s&nemanja:"
@@ -123,6 +132,12 @@ msgstr "Premor / Nadaljuj:"
 msgid "Parar Gravação:"
 msgstr "Ustavi snemanje:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Predvajaj / Ustavi predvajanje:"
+
+msgid "Excluir Gravação:"
+msgstr "Izbriši posnetek:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Prikaži glavno okno:"
 
@@ -150,6 +165,9 @@ msgstr "Minimiziraj v s&istemsko vrstico"
 msgid "Janela Sempre no &Topo"
 msgstr "Okno vedno na &vrhu"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Odš&tevanje pred snemanjem"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Konfiguriraj bli&žnjice..."
 
@@ -176,6 +194,9 @@ msgstr "Izhodni format"
 
 msgid "Taxa de Amostragem"
 msgstr "Hitrost vzorčenja"
+
+msgid "Profundidade de Bits"
+msgstr "Bitna globina"
 
 msgid "Canais"
 msgstr "Kanali"
@@ -312,6 +333,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Potrdi izhod"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Snemanje poteka. Pred zaustavitvijo ustavite snemanje."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -401,6 +425,9 @@ msgstr "Samodejno &preverjaj posodobitve"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Preveri posodo&bitev..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Zaženi z &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Že uporabljate najnovejšo različico programa VB Recorder."

@@ -48,8 +48,17 @@ msgstr "FLAC 압축(&L):"
 msgid "&Taxa de Amostragem:"
 msgstr "샘플링 속도(&T):"
 
+msgid "Profundidade de Bit&s:"
+msgstr "비트 심도(&H):"
+
 msgid "&Canais:"
 msgstr "채널(&C):"
+
+msgid "mono"
+msgstr "모노"
+
+msgid "estéreo"
+msgstr "스테레오"
 
 msgid "Fontes de &Gravação:"
 msgstr "녹음 소스(&G):"
@@ -123,6 +132,12 @@ msgstr "일시 정지 / 계속:"
 msgid "Parar Gravação:"
 msgstr "녹음 중지:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "재생 / 재생 중지:"
+
+msgid "Excluir Gravação:"
+msgstr "녹음 삭제:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "메인 창 표시:"
 
@@ -150,6 +165,9 @@ msgstr "시스템 트레이로 최소화(&B)"
 msgid "Janela Sempre no &Topo"
 msgstr "창을 항상 위에 표시(&T)"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "녹음 전 카운트다운(&R)"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "단축키 설정(&A)..."
 
@@ -176,6 +194,9 @@ msgstr "출력 형식"
 
 msgid "Taxa de Amostragem"
 msgstr "샘플링 속도"
+
+msgid "Profundidade de Bits"
+msgstr "비트 심도"
 
 msgid "Canais"
 msgstr "채널"
@@ -299,6 +320,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "종료 확인"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "녹음 중입니다. 종료하기 전에 녹음을 중지하세요."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -384,6 +408,9 @@ msgstr "자동으로 업데이트 확인(&V)"
 
 msgid "Verificar Atuali&zação..."
 msgstr "업데이트 확인(&Z)..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Windows 시작 시 실행(&W)"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "이미 최신 버전의 VB Recorder를 사용하고 있습니다."

@@ -43,8 +43,17 @@ msgstr "Định dạng &đầu ra:"
 msgid "&Taxa de Amostragem:"
 msgstr "&Tỷ lệ mẫu:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Độ &sâu bit:"
+
 msgid "&Canais:"
 msgstr "&Kênh:"
+
+msgid "mono"
+msgstr "đơn âm"
+
+msgid "estéreo"
+msgstr "âm thanh nổi"
 
 msgid "&Nome do Arquivo:"
 msgstr "&tên file:"
@@ -75,6 +84,12 @@ msgstr "Tạm dừng / Tiếp tục:"
 
 msgid "Parar Gravação:"
 msgstr "Dừng ghi âm:"
+
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Phát / Dừng phát lại:"
+
+msgid "Excluir Gravação:"
+msgstr "Xóa ghi âm:"
 
 msgid "Mostrar Janela Principal:"
 msgstr "Hiện cửa sổ chính:"
@@ -108,6 +123,9 @@ msgstr "Định dạng đầu ra"
 
 msgid "Taxa de Amostragem"
 msgstr "Tỷ lệ mẫu"
+
+msgid "Profundidade de Bits"
+msgstr "Độ sâu bit"
 
 msgid "Canais"
 msgstr "Kênh"
@@ -307,6 +325,9 @@ msgstr "Thu nhỏ xuống &khay hệ thống"
 msgid "Janela Sempre no &Topo"
 msgstr "Cửa sổ luôn ở &trên cùng"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Đế&m ngược trước khi ghi"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Cấu hình &phím tắt..."
 
@@ -327,6 +348,9 @@ msgstr ""
 
 msgid "Confirmar Saída"
 msgstr "Xác nhận thoát"
+
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Đang ghi âm. Hãy dừng ghi âm trước khi tắt máy."
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -394,6 +418,9 @@ msgstr "Tự động kiểm t&ra cập nhật"
 
 msgid "Verificar Atuali&zação..."
 msgstr "K&iểm tra cập nhật..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Khởi động cùng &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Bạn đang dùng phiên bản mới nhất của VB Recorder."

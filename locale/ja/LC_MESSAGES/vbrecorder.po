@@ -48,8 +48,17 @@ msgstr "FLAC圧縮(&L):"
 msgid "&Taxa de Amostragem:"
 msgstr "サンプリングレート(&T):"
 
+msgid "Profundidade de Bit&s:"
+msgstr "ビット深度(&H):"
+
 msgid "&Canais:"
 msgstr "チャンネル(&C):"
+
+msgid "mono"
+msgstr "モノラル"
+
+msgid "estéreo"
+msgstr "ステレオ"
 
 msgid "Fontes de &Gravação:"
 msgstr "録音ソース(&G):"
@@ -123,6 +132,12 @@ msgstr "一時停止 / 再開:"
 msgid "Parar Gravação:"
 msgstr "録音停止:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "再生 / 再生停止:"
+
+msgid "Excluir Gravação:"
+msgstr "録音を削除:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "メインウィンドウの表示:"
 
@@ -150,6 +165,9 @@ msgstr "システムトレイに最小化(&B)"
 msgid "Janela Sempre no &Topo"
 msgstr "常に手前に表示(&T)"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "録音前にカウントダウン(&R)"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "ショートカットキーを設定(&A)..."
 
@@ -176,6 +194,9 @@ msgstr "出力フォーマット"
 
 msgid "Taxa de Amostragem"
 msgstr "サンプリングレート"
+
+msgid "Profundidade de Bits"
+msgstr "ビット深度"
 
 msgid "Canais"
 msgstr "チャンネル"
@@ -300,6 +321,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "終了の確認"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "録音中です。シャットダウンする前に録音を停止してください。"
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -385,6 +409,9 @@ msgstr "アップデートを自動的に確認する(&V)"
 
 msgid "Verificar Atuali&zação..."
 msgstr "アップデートを確認(&Z)..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Windows と同時に起動(&W)"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "すでに最新バージョンの VB Recorder を使用しています。"

@@ -57,6 +57,8 @@ public:
     bool tray = false;
     bool on_top = true;
     bool check_updates = true;
+    bool start_with_windows = false;
+    bool countdown = false;
     bool updating = false;  // closed because the update is being installed
 
 protected:
@@ -75,7 +77,8 @@ private:
     std::wstring buffer_text_;
     HWND cmb_lang_ = nullptr, chk_start_min_ = nullptr, chk_tray_ = nullptr,
          chk_on_top_ = nullptr, txt_buffer_ = nullptr, btn_keys_ = nullptr, btn_ok_ = nullptr,
-         btn_cancel_ = nullptr, chk_updates_ = nullptr, btn_check_ = nullptr;
+         btn_cancel_ = nullptr, chk_updates_ = nullptr, btn_check_ = nullptr,
+         chk_startup_ = nullptr, chk_countdown_ = nullptr;
 };
 
 /* Downloads an update, with a progress bar and a Cancel button. */

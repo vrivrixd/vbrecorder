@@ -51,7 +51,16 @@ msgstr ""
 msgid "&Taxa de Amostragem:"
 msgstr ""
 
+msgid "Profundidade de Bit&s:"
+msgstr ""
+
 msgid "&Canais:"
+msgstr ""
+
+msgid "mono"
+msgstr ""
+
+msgid "estéreo"
 msgstr ""
 
 msgid "Fontes de &Gravação:"
@@ -123,6 +132,12 @@ msgstr ""
 msgid "Parar Gravação:"
 msgstr ""
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr ""
+
+msgid "Excluir Gravação:"
+msgstr ""
+
 msgid "Mostrar Janela Principal:"
 msgstr ""
 
@@ -150,6 +165,9 @@ msgstr ""
 msgid "Janela Sempre no &Topo"
 msgstr ""
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr ""
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr ""
 
@@ -175,6 +193,9 @@ msgid "Formato de Saída"
 msgstr ""
 
 msgid "Taxa de Amostragem"
+msgstr ""
+
+msgid "Profundidade de Bits"
 msgstr ""
 
 msgid "Canais"
@@ -291,6 +312,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr ""
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr ""
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -364,6 +388,9 @@ msgid "&Verificar Atualizações Automaticamente"
 msgstr ""
 
 msgid "Verificar Atuali&zação..."
+msgstr ""
+
+msgid "Iniciar com o &Windows"
 msgstr ""
 
 msgid "Você já está usando a versão mais recente do VB Recorder."

@@ -48,8 +48,17 @@ msgstr "Komprese F&LAC:"
 msgid "&Taxa de Amostragem:"
 msgstr "&Vzorkovací frekvence:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "B&itová hloubka:"
+
 msgid "&Canais:"
 msgstr "&Kanály:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Zdroje &záznamu:"
@@ -123,6 +132,12 @@ msgstr "Pozastavit / Pokračovat:"
 msgid "Parar Gravação:"
 msgstr "Zastavit záznam:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Přehrát / Zastavit přehrávání:"
+
+msgid "Excluir Gravação:"
+msgstr "Smazat záznam:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Zobrazit hlavní okno:"
 
@@ -150,6 +165,9 @@ msgstr "Minimalizovat do &systémové lišty"
 msgid "Janela Sempre no &Topo"
 msgstr "Okno vždy &navrchu"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Odpočet &před nahráváním"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Konfigurovat &klávesové zkratky..."
 
@@ -176,6 +194,9 @@ msgstr "Formát výstupu"
 
 msgid "Taxa de Amostragem"
 msgstr "Vzorkovací frekvence"
+
+msgid "Profundidade de Bits"
+msgstr "Bitová hloubka"
 
 msgid "Canais"
 msgstr "Kanály"
@@ -308,6 +329,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Potvrdit ukončení"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Probíhá záznam. Před vypnutím záznam zastavte."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -395,6 +419,9 @@ msgstr "&Automaticky kontrolovat aktualizace"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Zkontrolovat aktuali&zaci..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Spustit se systémem &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Již používáte nejnovější verzi VB Recorder."

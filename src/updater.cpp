@@ -205,12 +205,6 @@ void ListFiles(const std::wstring& dir, const std::wstring& prefix, std::vector<
     FindClose(h);
 }
 
-std::wstring ExePath() {
-    wchar_t buf[MAX_PATH * 4];
-    DWORD n = GetModuleFileNameW(nullptr, buf, MAX_PATH * 4);
-    return std::wstring(buf, n);
-}
-
 void RemoveLeftovers(const std::wstring& dir, const wchar_t* pattern) {
     WIN32_FIND_DATAW fd;
     HANDLE h = FindFirstFileW(JoinPath(dir, pattern).c_str(), &fd);

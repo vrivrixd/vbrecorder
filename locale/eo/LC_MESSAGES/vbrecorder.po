@@ -48,8 +48,17 @@ msgstr "FLAC-den&sigo:"
 msgid "&Taxa de Amostragem:"
 msgstr "Spe&cimena rapido:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Bitprofundo (&H):"
+
 msgid "&Canais:"
 msgstr "&Kanaloj:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Re&gistraj fontoj:"
@@ -123,6 +132,12 @@ msgstr "Paŭzi / Daŭrigi:"
 msgid "Parar Gravação:"
 msgstr "Haltigi registradon:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Ludi / Halti ludadon:"
+
+msgid "Excluir Gravação:"
+msgstr "Forigi registraĵon:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Montri ĉefan fenestron:"
 
@@ -150,6 +165,9 @@ msgstr "Minimumigi al la sistema &pleto"
 msgid "Janela Sempre no &Topo"
 msgstr "Fenestro ĉiam &supre"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "&Retronombrado antaŭ registrado"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Agordi &fulmklavojn..."
 
@@ -176,6 +194,9 @@ msgstr "Eliga formato"
 
 msgid "Taxa de Amostragem"
 msgstr "Specimena rapido"
+
+msgid "Profundidade de Bits"
+msgstr "Bitprofundo"
 
 msgid "Canais"
 msgstr "Kanaloj"
@@ -304,6 +325,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Konfirmi eliron"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Registrado okazas. Haltigu la registradon antaŭ ol malŝalti."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -392,6 +416,9 @@ msgstr "&Aŭtomate kontroli ĝisdatigojn"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Kontroli ĝisdati&gon..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Lanĉi kun &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Vi jam uzas la plej novan version de VB Recorder."

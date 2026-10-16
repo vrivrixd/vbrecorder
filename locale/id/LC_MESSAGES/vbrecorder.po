@@ -48,8 +48,17 @@ msgstr "Komp&resi FLAC:"
 msgid "&Taxa de Amostragem:"
 msgstr "Tingkat &Sampel:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Keda&laman bit:"
+
 msgid "&Canais:"
 msgstr "&Kanal:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Sumber &Rekaman:"
@@ -123,6 +132,12 @@ msgstr "Jeda / Lanjutkan:"
 msgid "Parar Gravação:"
 msgstr "Hentikan Rekaman:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Putar / Hentikan Pemutaran:"
+
+msgid "Excluir Gravação:"
+msgstr "Hapus Rekaman:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Tampilkan Jendela Utama:"
 
@@ -150,6 +165,9 @@ msgstr "Minimalkan ke &System Tray"
 msgid "Janela Sempre no &Topo"
 msgstr "Jendela Selalu di &Atas"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "&Hitung mundur sebelum merekam"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Konfigurasi Tombol &Pintasan..."
 
@@ -176,6 +194,9 @@ msgstr "Format Output"
 
 msgid "Taxa de Amostragem"
 msgstr "Tingkat Sampel"
+
+msgid "Profundidade de Bits"
+msgstr "Kedalaman bit"
 
 msgid "Canais"
 msgstr "Kanal"
@@ -301,6 +322,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Konfirmasi Keluar"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Perekaman sedang berlangsung. Hentikan rekaman sebelum mematikan komputer."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -389,6 +413,9 @@ msgstr "Periksa Pembaruan Secara &Otomatis"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Periksa Pem&baruan..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Mulai bersama &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Anda sudah menggunakan versi terbaru VB Recorder."

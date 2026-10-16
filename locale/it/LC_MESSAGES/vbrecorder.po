@@ -48,8 +48,17 @@ msgstr "Compressione F&LAC:"
 msgid "&Taxa de Amostragem:"
 msgstr "Frequenza di &campionamento:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Profondità &di bit:"
+
 msgid "&Canais:"
 msgstr "C&anali:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "&Sorgenti di registrazione:"
@@ -123,6 +132,12 @@ msgstr "Pausa / Riprendi:"
 msgid "Parar Gravação:"
 msgstr "Ferma registrazione:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Riproduci / Ferma riproduzione:"
+
+msgid "Excluir Gravação:"
+msgstr "Elimina registrazione:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Mostra finestra principale:"
 
@@ -150,6 +165,9 @@ msgstr "Riduci nell'area di &notifica"
 msgid "Janela Sempre no &Topo"
 msgstr "Finestra sempre in &primo piano"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Conto alla &rovescia prima di registrare"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Configura &tasti di scelta rapida..."
 
@@ -176,6 +194,9 @@ msgstr "Formato di uscita"
 
 msgid "Taxa de Amostragem"
 msgstr "Frequenza di campionamento"
+
+msgid "Profundidade de Bits"
+msgstr "Profondità di bit"
 
 msgid "Canais"
 msgstr "Canali"
@@ -297,6 +318,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Conferma uscita"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Registrazione in corso. Ferma la registrazione prima di spegnere."
+
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
 "{maximo} ms; o padrão é {padrao}."
@@ -394,6 +418,9 @@ msgstr "&Verifica aggiornamenti automaticamente"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Cerca a&ggiornamenti..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Avvia con &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Stai già usando la versione più recente di VB Recorder."

@@ -48,8 +48,17 @@ msgstr "F&LAC-komprimering:"
 msgid "&Taxa de Amostragem:"
 msgstr "&Sample rate:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Bit&dybde:"
+
 msgid "&Canais:"
 msgstr "&Kanaler:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Optagelses&kilder:"
@@ -123,6 +132,12 @@ msgstr "Pause / Genoptag:"
 msgid "Parar Gravação:"
 msgstr "Stop optagelse:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Afspil / Stop afspilning:"
+
+msgid "Excluir Gravação:"
+msgstr "Slet optagelse:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Vis hovedvindue:"
 
@@ -150,6 +165,9 @@ msgstr "Minimer til &systembakke"
 msgid "Janela Sempre no &Topo"
 msgstr "Vindue altid &øverst"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Ned&tælling før optagelse"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Konfigurer genve&je..."
 
@@ -176,6 +194,9 @@ msgstr "Outputformat"
 
 msgid "Taxa de Amostragem"
 msgstr "Sample rate"
+
+msgid "Profundidade de Bits"
+msgstr "Bitdybde"
 
 msgid "Canais"
 msgstr "Kanaler"
@@ -304,6 +325,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Bekræft afslutning"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Optagelse i gang. Stop optagelsen, før du lukker ned."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -392,6 +416,9 @@ msgstr "Søg automatisk efter &opdateringer"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Søg efter opdat&ering..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Start med &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Du bruger allerede den nyeste version af VB Recorder."

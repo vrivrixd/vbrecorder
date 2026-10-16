@@ -48,8 +48,17 @@ msgstr "FLAC संपीड़न(&L):"
 msgid "&Taxa de Amostragem:"
 msgstr "नमूना दर(&T):"
 
+msgid "Profundidade de Bit&s:"
+msgstr "बिट डेप्थ(&H):"
+
 msgid "&Canais:"
 msgstr "चैनल(&C):"
+
+msgid "mono"
+msgstr "मोनो"
+
+msgid "estéreo"
+msgstr "स्टीरियो"
 
 msgid "Fontes de &Gravação:"
 msgstr "रिकॉर्डिंग स्रोत(&G):"
@@ -123,6 +132,12 @@ msgstr "रोकें / जारी रखें:"
 msgid "Parar Gravação:"
 msgstr "रिकॉर्डिंग रोकें:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "चलाएं / प्लेबैक रोकें:"
+
+msgid "Excluir Gravação:"
+msgstr "रिकॉर्डिंग हटाएं:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "मुख्य विंडो दिखाएं:"
 
@@ -150,6 +165,9 @@ msgstr "सिस्टम ट्रे में छोटा करें(&B)"
 msgid "Janela Sempre no &Topo"
 msgstr "विंडो हमेशा सबसे ऊपर(&T)"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "रिकॉर्डिंग से पहले उलटी गिनती(&R)"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "हॉटकी कॉन्फ़िगर करें(&A)..."
 
@@ -176,6 +194,9 @@ msgstr "आउटपुट स्वरूप"
 
 msgid "Taxa de Amostragem"
 msgstr "नमूना दर"
+
+msgid "Profundidade de Bits"
+msgstr "बिट डेप्थ"
 
 msgid "Canais"
 msgstr "चैनल"
@@ -306,6 +327,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "बाहर निकलने की पुष्टि करें"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "रिकॉर्डिंग जारी है। बंद करने से पहले रिकॉर्डिंग रोकें।"
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -394,6 +418,9 @@ msgstr "अपडेट स्वचालित रूप से जाँच�
 
 msgid "Verificar Atuali&zação..."
 msgstr "अपडेट जाँचें(&Z)..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Windows के साथ शुरू करें(&W)"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "आप पहले से ही VB Recorder का नवीनतम संस्करण उपयोग कर रहे हैं।"

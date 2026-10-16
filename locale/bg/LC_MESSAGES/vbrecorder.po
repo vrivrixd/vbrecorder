@@ -48,8 +48,17 @@ msgstr "F&LAC компресия:"
 msgid "&Taxa de Amostragem:"
 msgstr "&Честота на дискретизация:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Битов&а дълбочина:"
+
 msgid "&Canais:"
 msgstr "&Канали:"
+
+msgid "mono"
+msgstr "моно"
+
+msgid "estéreo"
+msgstr "стерео"
 
 msgid "Fontes de &Gravação:"
 msgstr "Източници на &запис:"
@@ -123,6 +132,12 @@ msgstr "Пауза / Продължаване:"
 msgid "Parar Gravação:"
 msgstr "Спиране на записа:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Възпроизвеждане / Спиране на възпроизвеждането:"
+
+msgid "Excluir Gravação:"
+msgstr "Изтриване на запис:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Показване на главния прозорец:"
 
@@ -150,6 +165,9 @@ msgstr "Минимизиране в системната &лента"
 msgid "Janela Sempre no &Topo"
 msgstr "Прозорецът винаги &най-отгоре"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Обратно б&роене преди запис"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Конфигуриране на &бързи клавиши..."
 
@@ -176,6 +194,9 @@ msgstr "Формат на изхода"
 
 msgid "Taxa de Amostragem"
 msgstr "Честота на дискретизация"
+
+msgid "Profundidade de Bits"
+msgstr "Битова дълбочина"
 
 msgid "Canais"
 msgstr "Канали"
@@ -306,6 +327,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Потвърждаване на изхода"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Записът е в ход. Спрете записа, преди да изключите компютъра."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -394,6 +418,9 @@ msgstr "Автоматична &проверка за актуализации"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Проверка за акт&уализация..."
+
+msgid "Iniciar com o &Windows"
+msgstr "Стартиране с &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Вече използвате най-новата версия на VB Recorder."

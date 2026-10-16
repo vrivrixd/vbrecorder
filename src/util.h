@@ -27,6 +27,8 @@ std::string Narrow(const std::wstring& text, UINT codepage = CP_UTF8);
 std::wstring Trim(const std::wstring& text);
 std::wstring ToLower(const std::wstring& text);
 
+/* Full path of the executable. */
+std::wstring ExePath();
 /* Folder of the executable, without the trailing slash. */
 std::wstring ExeDir();
 /* Current working folder, where the .ini and the recordings folder live. */

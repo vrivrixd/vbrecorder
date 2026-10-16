@@ -50,17 +50,19 @@ std::wstring ToLower(const std::wstring& text) {
     return out;
 }
 
-std::wstring ExeDir() {
+std::wstring ExePath() {
     std::vector<wchar_t> buf(MAX_PATH);
     for (;;) {
         DWORD n = GetModuleFileNameW(nullptr, buf.data(), (DWORD)buf.size());
-        if (n < buf.size()) {
-            std::wstring path(buf.data(), n);
-            size_t slash = path.find_last_of(L"\\/");
-            return slash == std::wstring::npos ? std::wstring(L".") : path.substr(0, slash);
-        }
+        if (n < buf.size()) return std::wstring(buf.data(), n);
         buf.resize(buf.size() * 2);
     }
+}
+
+std::wstring ExeDir() {
+    std::wstring path = ExePath();
+    size_t slash = path.find_last_of(L"\\/");
+    return slash == std::wstring::npos ? std::wstring(L".") : path.substr(0, slash);
 }
 
 std::wstring CurrentDir() {

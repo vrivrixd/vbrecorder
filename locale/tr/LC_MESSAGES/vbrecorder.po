@@ -48,8 +48,17 @@ msgstr "F&LAC Sıkıştırma:"
 msgid "&Taxa de Amostragem:"
 msgstr "Örnekleme &Hızı:"
 
+msgid "Profundidade de Bit&s:"
+msgstr "Bi&t Derinliği:"
+
 msgid "&Canais:"
 msgstr "&Kanallar:"
+
+msgid "mono"
+msgstr "mono"
+
+msgid "estéreo"
+msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
 msgstr "Kayıt Ka&ynakları:"
@@ -123,6 +132,12 @@ msgstr "Duraklat / Devam Et:"
 msgid "Parar Gravação:"
 msgstr "Kaydı Durdur:"
 
+msgid "Reproduzir / Parar Reprodução:"
+msgstr "Oynat / Oynatmayı Durdur:"
+
+msgid "Excluir Gravação:"
+msgstr "Kaydı Sil:"
+
 msgid "Mostrar Janela Principal:"
 msgstr "Ana Pencereyi Göster:"
 
@@ -150,6 +165,9 @@ msgstr "Sistem &Tepsisine Küçült"
 msgid "Janela Sempre no &Topo"
 msgstr "Pencere Her Zaman &Üstte"
 
+msgid "Contagem &Regressiva Antes de Gravar"
+msgstr "Kayıttan Önce Geri &Sayım"
+
 msgid "Configurar Teclas de &Atalho..."
 msgstr "&Kısayol Tuşlarını Yapılandır..."
 
@@ -176,6 +194,9 @@ msgstr "Çıktı Formatı"
 
 msgid "Taxa de Amostragem"
 msgstr "Örnekleme Hızı"
+
+msgid "Profundidade de Bits"
+msgstr "Bit Derinliği"
 
 msgid "Canais"
 msgstr "Kanallar"
@@ -304,6 +325,9 @@ msgstr ""
 msgid "Confirmar Saída"
 msgstr "Çıkışı Onayla"
 
+msgid "Gravação em andamento. Pare a gravação antes de desligar."
+msgstr "Kayıt devam ediyor. Kapatmadan önce kaydı durdurun."
+
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
 "milissegundos."
@@ -393,6 +417,9 @@ msgstr "Güncellemeleri &Otomatik Denetle"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Güncellemeleri Denet&le..."
+
+msgid "Iniciar com o &Windows"
+msgstr "&Windows ile Başlat"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Zaten VB Recorder'ın en son sürümünü kullanıyorsunuz."

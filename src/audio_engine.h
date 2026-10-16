@@ -61,7 +61,7 @@ public:
     void StopPlayback();
 
     bool StartRecording(const std::wstring& file_path, const std::wstring& format_type,
-                        const std::wstring& bitrate, int sample_rate,
+                        const std::wstring& bitrate, int sample_rate, int bits,
                         const std::wstring& channels, const std::vector<Source>& sources,
                         bool separate_files, int flac_nivel, int* error);
     /* Goes on with the last recording, in the same files, from where it
@@ -149,6 +149,7 @@ private:
     std::vector<std::pair<std::wstring, std::wstring>> last_outputs_;  // (path, key)
     double last_end_sec_ = 0;
     std::wstring format_, options_;
+    int bits_ = 16;  // bit depth of wav, aiff and flac
     std::wstring base_path_, ext_;
     int sample_rate_ = 44100;
     int chans_ = 2;
