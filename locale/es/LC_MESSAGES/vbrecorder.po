@@ -439,3 +439,148 @@ msgid ""
 msgstr ""
 "No se pudo instalar la actualización:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Acústico"
+
+msgid "Intensidade:"
+msgstr "Intensidad:"
+
+msgid "Plano"
+msgstr "Plano"
+
+msgid "Reforço de Graves"
+msgstr "Realce de graves"
+
+msgid "Redução de Graves"
+msgstr "Reducción de graves"
+
+msgid "Reforço de Agudos"
+msgstr "Realce de agudos"
+
+msgid "Redução de Agudos"
+msgstr "Reducción de agudos"
+
+msgid "Reforço de Voz"
+msgstr "Realce de voz"
+
+msgid "Locução e Podcast"
+msgstr "Locución y pódcast"
+
+msgid "Remover Ronco"
+msgstr "Quitar zumbido grave"
+
+msgid "Telefone"
+msgstr "Teléfono"
+
+msgid "Rádio AM"
+msgstr "Radio AM"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Altavoces pequeños"
+
+msgid "Fones de Ouvido"
+msgstr "Auriculares"
+
+msgid "Clássica"
+msgstr "Clásica"
+
+msgid "Clube"
+msgstr "Club"
+
+msgid "Dance"
+msgstr "Dance"
+
+msgid "Grave Profundo"
+msgstr "Graves profundos"
+
+msgid "Eletrônica"
+msgstr "Electrónica"
+
+msgid "Graves no Máximo"
+msgstr "Graves al máximo"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Graves y agudos al máximo"
+
+msgid "Agudos no Máximo"
+msgstr "Agudos al máximo"
+
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "Salão Grande"
+msgstr "Salón grande"
+
+msgid "Latina"
+msgstr "Latina"
+
+msgid "Ao Vivo"
+msgstr "En vivo"
+
+msgid "Lounge"
+msgstr "Lounge"
+
+msgid "Festa"
+msgstr "Fiesta"
+
+msgid "Piano"
+msgstr "Piano"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Reggae"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Ska"
+msgstr "Ska"
+
+msgid "Suave"
+msgstr "Suave"
+
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+msgid "Techno"
+msgstr "Techno"
+
+msgid "&Predefinição:"
+msgstr "&Preajuste:"
+
+msgid "Personalizado"
+msgstr "Personalizado"
+
+msgid "Equalizador"
+msgstr "Ecualizador"
+
+msgid "Pré-amplificação:"
+msgstr "Preamplificación:"
+
+msgid "Removedor de Ruído"
+msgstr "Eliminador de ruido"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "Activar eliminador &de ruido"
+
+msgid "&Equalizador"
+msgstr "&Ecualizador"
+
+msgid "Removedor de &Ruído"
+msgstr "Eliminador de &ruido"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "&Mostrar todos los procesos"
+
+msgid "E&stéreo"
+msgstr "E&stéreo"
+

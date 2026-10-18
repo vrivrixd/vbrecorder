@@ -431,3 +431,148 @@ msgid ""
 msgstr ""
 "アップデートをインストールできませんでした:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "アコースティック"
+
+msgid "Intensidade:"
+msgstr "強さ:"
+
+msgid "Plano"
+msgstr "フラット"
+
+msgid "Reforço de Graves"
+msgstr "低音強調"
+
+msgid "Redução de Graves"
+msgstr "低音カット"
+
+msgid "Reforço de Agudos"
+msgstr "高音強調"
+
+msgid "Redução de Agudos"
+msgstr "高音カット"
+
+msgid "Reforço de Voz"
+msgstr "ボーカル強調"
+
+msgid "Locução e Podcast"
+msgstr "スピーチとポッドキャスト"
+
+msgid "Remover Ronco"
+msgstr "低音ノイズ除去"
+
+msgid "Telefone"
+msgstr "電話"
+
+msgid "Rádio AM"
+msgstr "AMラジオ"
+
+msgid "Alto-falantes Pequenos"
+msgstr "小型スピーカー"
+
+msgid "Fones de Ouvido"
+msgstr "ヘッドホン"
+
+msgid "Clássica"
+msgstr "クラシック"
+
+msgid "Clube"
+msgstr "クラブ"
+
+msgid "Dance"
+msgstr "ダンス"
+
+msgid "Grave Profundo"
+msgstr "重低音"
+
+msgid "Eletrônica"
+msgstr "エレクトロニック"
+
+msgid "Graves no Máximo"
+msgstr "低音最大"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "低音と高音最大"
+
+msgid "Agudos no Máximo"
+msgstr "高音最大"
+
+msgid "Hip-Hop"
+msgstr "ヒップホップ"
+
+msgid "Jazz"
+msgstr "ジャズ"
+
+msgid "Salão Grande"
+msgstr "大ホール"
+
+msgid "Latina"
+msgstr "ラテン"
+
+msgid "Ao Vivo"
+msgstr "ライブ"
+
+msgid "Lounge"
+msgstr "ラウンジ"
+
+msgid "Festa"
+msgstr "パーティー"
+
+msgid "Piano"
+msgstr "ピアノ"
+
+msgid "Pop"
+msgstr "ポップ"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "レゲエ"
+
+msgid "Rock"
+msgstr "ロック"
+
+msgid "Ska"
+msgstr "スカ"
+
+msgid "Suave"
+msgstr "ソフト"
+
+msgid "Soft Rock"
+msgstr "ソフトロック"
+
+msgid "Techno"
+msgstr "テクノ"
+
+msgid "&Predefinição:"
+msgstr "プリセット(&P):"
+
+msgid "Personalizado"
+msgstr "カスタム"
+
+msgid "Equalizador"
+msgstr "イコライザー"
+
+msgid "Pré-amplificação:"
+msgstr "プリアンプ:"
+
+msgid "Removedor de Ruído"
+msgstr "ノイズ除去"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "ノイズ除去を有効にする(&A)"
+
+msgid "&Equalizador"
+msgstr "イコライザー(&Q)"
+
+msgid "Removedor de &Ruído"
+msgstr "ノイズ除去(&N)"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "すべてのプロセスを表示(&M)"
+
+msgid "E&stéreo"
+msgstr "ステレオ(&S)"
+

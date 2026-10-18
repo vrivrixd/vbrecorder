@@ -437,3 +437,148 @@ msgid ""
 msgstr ""
 "Päivitystä ei voitu asentaa:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Akustinen"
+
+msgid "Intensidade:"
+msgstr "Voimakkuus:"
+
+msgid "Plano"
+msgstr "Tasainen"
+
+msgid "Reforço de Graves"
+msgstr "Bassonkorostus"
+
+msgid "Redução de Graves"
+msgstr "Bassonvaimennus"
+
+msgid "Reforço de Agudos"
+msgstr "Diskantinkorostus"
+
+msgid "Redução de Agudos"
+msgstr "Diskantinvaimennus"
+
+msgid "Reforço de Voz"
+msgstr "Puheenkorostus"
+
+msgid "Locução e Podcast"
+msgstr "Puhe ja podcast"
+
+msgid "Remover Ronco"
+msgstr "Poista jyminä"
+
+msgid "Telefone"
+msgstr "Puhelin"
+
+msgid "Rádio AM"
+msgstr "AM-radio"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Pienet kaiuttimet"
+
+msgid "Fones de Ouvido"
+msgstr "Kuulokkeet"
+
+msgid "Clássica"
+msgstr "Klassinen"
+
+msgid "Clube"
+msgstr "Klubi"
+
+msgid "Dance"
+msgstr "Dance"
+
+msgid "Grave Profundo"
+msgstr "Syvä basso"
+
+msgid "Eletrônica"
+msgstr "Elektroninen"
+
+msgid "Graves no Máximo"
+msgstr "Täysi basso"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Täysi basso ja diskantti"
+
+msgid "Agudos no Máximo"
+msgstr "Täysi diskantti"
+
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "Salão Grande"
+msgstr "Suuri sali"
+
+msgid "Latina"
+msgstr "Latino"
+
+msgid "Ao Vivo"
+msgstr "Livenä"
+
+msgid "Lounge"
+msgstr "Lounge"
+
+msgid "Festa"
+msgstr "Juhlat"
+
+msgid "Piano"
+msgstr "Piano"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Reggae"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Ska"
+msgstr "Ska"
+
+msgid "Suave"
+msgstr "Pehmeä"
+
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+msgid "Techno"
+msgstr "Techno"
+
+msgid "&Predefinição:"
+msgstr "&Esiasetus:"
+
+msgid "Personalizado"
+msgstr "Mukautettu"
+
+msgid "Equalizador"
+msgstr "Taajuuskorjain"
+
+msgid "Pré-amplificação:"
+msgstr "Esivahvistus:"
+
+msgid "Removedor de Ruído"
+msgstr "Kohinanpoisto"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "Ota &kohinanpoisto käyttöön"
+
+msgid "&Equalizador"
+msgstr "T&aajuuskorjain"
+
+msgid "Removedor de &Ruído"
+msgstr "&Kohinanpoisto"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "&Näytä kaikki prosessit"
+
+msgid "E&stéreo"
+msgstr "St&ereo"
+

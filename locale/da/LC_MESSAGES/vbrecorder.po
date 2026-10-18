@@ -438,3 +438,148 @@ msgid ""
 msgstr ""
 "Kunne ikke installere opdateringen:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Akustisk"
+
+msgid "Intensidade:"
+msgstr "Intensitet:"
+
+msgid "Plano"
+msgstr "Flad"
+
+msgid "Reforço de Graves"
+msgstr "Basforstærkning"
+
+msgid "Redução de Graves"
+msgstr "Basdæmpning"
+
+msgid "Reforço de Agudos"
+msgstr "Diskantforstærkning"
+
+msgid "Redução de Agudos"
+msgstr "Diskantdæmpning"
+
+msgid "Reforço de Voz"
+msgstr "Stemmeforstærkning"
+
+msgid "Locução e Podcast"
+msgstr "Tale og podcast"
+
+msgid "Remover Ronco"
+msgstr "Fjern rumlen"
+
+msgid "Telefone"
+msgstr "Telefon"
+
+msgid "Rádio AM"
+msgstr "AM-radio"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Små højttalere"
+
+msgid "Fones de Ouvido"
+msgstr "Hovedtelefoner"
+
+msgid "Clássica"
+msgstr "Klassisk"
+
+msgid "Clube"
+msgstr "Klub"
+
+msgid "Dance"
+msgstr "Dance"
+
+msgid "Grave Profundo"
+msgstr "Dyb bas"
+
+msgid "Eletrônica"
+msgstr "Elektronisk"
+
+msgid "Graves no Máximo"
+msgstr "Fuld bas"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Fuld bas og diskant"
+
+msgid "Agudos no Máximo"
+msgstr "Fuld diskant"
+
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "Salão Grande"
+msgstr "Stor hal"
+
+msgid "Latina"
+msgstr "Latin"
+
+msgid "Ao Vivo"
+msgstr "Live"
+
+msgid "Lounge"
+msgstr "Lounge"
+
+msgid "Festa"
+msgstr "Fest"
+
+msgid "Piano"
+msgstr "Klaver"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Reggae"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Ska"
+msgstr "Ska"
+
+msgid "Suave"
+msgstr "Blød"
+
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+msgid "Techno"
+msgstr "Techno"
+
+msgid "&Predefinição:"
+msgstr "&Forudindstilling:"
+
+msgid "Personalizado"
+msgstr "Brugerdefineret"
+
+msgid "Equalizador"
+msgstr "Equalizer"
+
+msgid "Pré-amplificação:"
+msgstr "Forforstærkning:"
+
+msgid "Removedor de Ruído"
+msgstr "Støjfjerner"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "&Slå støjfjerner til"
+
+msgid "&Equalizador"
+msgstr "&Equalizer"
+
+msgid "Removedor de &Ruído"
+msgstr "Stø&jfjerner"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "&Vis alle processer"
+
+msgid "E&stéreo"
+msgstr "Ste&reo"
+

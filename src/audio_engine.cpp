@@ -119,6 +119,7 @@ struct AudioEngine::Input : public CaptureSink {
     DWORD push = 0;
     DWORD rec = 0;
     std::unique_ptr<ProcessLoopbackCapture> cap;
+    std::unique_ptr<FxChain> chain;
     int rate = 0;
     int chans = 0;
     std::atomic<float> volume{1.0f};
@@ -172,16 +173,16 @@ struct AudioEngine::Input : public CaptureSink {
     void Put(const float* data, DWORD samples, bool silent) {
         if (engine->paused_ || ending || !push || samples < (DWORD)chans) return;
         DWORD frames = samples / chans;
+        samples = frames * chans;
+        // Noise remover and equalizer first, then the volume.
+        scratch.resize(samples);
+        if (silent) std::fill(scratch.begin(), scratch.end(), 0.0f);
+        else std::copy(data, data + samples, scratch.begin());
+        if (chain) chain->Process(scratch.data(), frames);
         float vol = volume.load();
-        if (silent || vol != 1.0f) {
-            scratch.resize(samples);
-            if (silent) {
-                std::fill(scratch.begin(), scratch.end(), 0.0f);
-            } else {
-                for (DWORD i = 0; i < samples; ++i) scratch[i] = data[i] * vol;
-            }
-            data = scratch.data();
-        }
+        if (vol != 1.0f)
+            for (DWORD i = 0; i < samples; ++i) scratch[i] *= vol;
+        data = scratch.data();
         std::lock_guard<std::mutex> lock(queue_mutex);
         double now = engine->RecordingSeconds();
         double lateness = now - (TailSeconds() + (double)frames / rate);
@@ -267,6 +268,12 @@ bool AudioEngine::LoadDlls() {
     HMODULE mix = load(L"bassmix.dll");
     HMODULE opus = load(L"bassenc_opus.dll");
     if (!bass || !enc || !mp3 || !ogg || !flac || !mix || !opus) return false;
+    // The equalizer. Without it the program still records; only the
+    // equalizer does nothing.
+    if (HMODULE fx = load(L"bass_fx.dll")) {
+        auto version = (DWORD(WINAPI*)())(void*)GetProcAddress(fx, "BASS_FX_GetVersion");
+        if (version) version();  // registers its effects with BASS
+    }
 
     bool ok = true;
     auto get = [&](HMODULE dll, const char* name, auto& fn, bool required = true) {
@@ -294,6 +301,9 @@ bool AudioEngine::LoadDlls() {
     get(bass, "BASS_ChannelSetAttribute", b_.ChannelSetAttribute);
     get(bass, "BASS_ChannelIsActive", b_.ChannelIsActive);
     get(bass, "BASS_PluginLoad", b_.PluginLoad);
+    get(bass, "BASS_ChannelSetFX", b_.ChannelSetFX);
+    get(bass, "BASS_ChannelRemoveFX", b_.ChannelRemoveFX);
+    get(bass, "BASS_FXSetParameters", b_.FXSetParameters);
     get(enc, "BASS_Encode_Start", b_.EncodeStart);
     get(enc, "BASS_Encode_StartPCMFile", b_.EncodeStartPCMFile);
     get(enc, "BASS_Encode_Stop", b_.EncodeStop);
@@ -366,22 +376,43 @@ void AudioEngine::PlayTone(DWORD frequency, DWORD duration) { Beep(frequency, du
 BOOL CALLBACK AudioEngine::MonitorProc(DWORD, const void* buffer, DWORD length, void* user) {
     AudioEngine* self = static_cast<AudioEngine*>(user);
     DWORD stream = self->monitor_stream_.load();
-    if (stream && buffer && length > 0) self->b_.StreamPutData(stream, buffer, length);
+    if (!stream || !buffer || length == 0) return TRUE;
+    FxChain* chain = self->monitor_chain_.get();
+    if (chain && self->monitor_chans_ > 0) {
+        // The test sounds like the recording: same equalizer and noise remover.
+        size_t samples = length / sizeof(float);
+        std::vector<float>& buf = self->monitor_buf_;
+        buf.assign(static_cast<const float*>(buffer), static_cast<const float*>(buffer) + samples);
+        chain->Process(buf.data(), (DWORD)(samples / self->monitor_chans_));
+        self->b_.StreamPutData(stream, buf.data(), length);
+    } else {
+        self->b_.StreamPutData(stream, buffer, length);
+    }
     return TRUE;
 }
 
 bool AudioEngine::StartMonitor(int dev_idx, double volume, int sample_rate, int channels,
-                               int* error) {
+                               const FxSettings& fx, int* error) {
     StopMonitor();
     if (!InitDevice(dev_idx)) {
         *error = b_.ErrorGetCode();
         return false;
     }
     b_.RecordSetDevice(dev_idx);
+    monitor_dev_ = dev_idx;
+    monitor_volume_ = volume;
+    monitor_asked_rate_ = sample_rate;
+    monitor_asked_chans_ = channels;
 
     int code = 0;
-    const std::pair<int, int> attempts[] = {{sample_rate, channels}, {44100, 2}};
+    // The noise remover needs 48000 Hz.
+    int rate = fx.noise.on ? NOISE_RATE : sample_rate;
+    const std::pair<int, int> attempts[] = {{rate, channels}, {44100, 2}};
     for (auto& t : attempts) {
+        monitor_rate_ = t.first;
+        monitor_chans_ = t.second;
+        monitor_chain_ = std::make_unique<FxChain>(b_, t.first, t.second);
+        monitor_chain_->Apply(fx);
         DWORD stream = b_.StreamCreate(t.first, t.second, BASS_SAMPLE_FLOAT, STREAMPROC_PUSH,
                                        nullptr);
         if (!stream) {
@@ -406,8 +437,23 @@ bool AudioEngine::StartMonitor(int dev_idx, double volume, int sample_rate, int 
 }
 
 void AudioEngine::SetMonitorVolume(double volume) {
+    monitor_volume_ = volume;
     DWORD stream = monitor_stream_.load();
     if (stream) b_.ChannelSetAttribute(stream, BASS_ATTRIB_VOL, (float)volume);
+}
+
+void AudioEngine::SetMonitorFx(const FxSettings& fx) {
+    if (!monitor_rec_ || !monitor_chain_) return;
+    // Turning the noise remover on or off may change the capture rate: the
+    // test starts again, which takes only a moment.
+    int rate = fx.noise.on ? NOISE_RATE : monitor_asked_rate_;
+    if (rate != monitor_rate_ && (fx.noise.on || monitor_rate_ == NOISE_RATE)) {
+        int err = 0;
+        StartMonitor(monitor_dev_, monitor_volume_, monitor_asked_rate_, monitor_asked_chans_, fx,
+                     &err);
+        return;
+    }
+    monitor_chain_->Apply(fx);
 }
 
 void AudioEngine::StopMonitor() {
@@ -420,6 +466,7 @@ void AudioEngine::StopMonitor() {
         b_.ChannelStop(stream);
         b_.StreamFree(stream);
     }
+    monitor_chain_.reset();
 }
 
 bool AudioEngine::IsPlaying() {
@@ -503,7 +550,7 @@ std::unique_ptr<AudioEngine::Input> AudioEngine::MakeInput(const Source& src, in
     double buffer = rec_buffer_ms_ / 1000.0;
     in->gap_threshold = (in->is_device ? buffer : std::max(buffer, 0.2)) + 0.05;
     if (in->is_device) {
-        in->rate = sample_rate_;
+        in->rate = DeviceRate(src);
         in->chans = chans_;
     } else {
         // The capture starts activating now; its first audio finds its place
@@ -520,14 +567,22 @@ std::unique_ptr<AudioEngine::Input> AudioEngine::MakeInput(const Source& src, in
         if (in->cap) in->cap->Stop();
         return nullptr;
     }
+    in->chain = std::make_unique<FxChain>(b_, in->rate, in->chans);
+    in->chain->Apply(src.fx);
     return in;
+}
+
+/* A device is captured at the rate of the recording, or at 48000 Hz with the
+   noise remover; the mixer converts it to the recording's rate. */
+int AudioEngine::DeviceRate(const Source& src) const {
+    return src.fx.noise.on ? NOISE_RATE : sample_rate_;
 }
 
 bool AudioEngine::StartDevice(Input* in, bool play) {
     InitDevice(in->src.id);
     b_.RecordSetDevice(in->src.id);
     DWORD flags = BASS_SAMPLE_FLOAT | (play ? 0 : BASS_RECORD_PAUSE);
-    in->rec = b_.RecordStart(sample_rate_, chans_, MAKELONG(flags, RECORD_PERIOD), RecordProc, in);
+    in->rec = b_.RecordStart(in->rate, in->chans, MAKELONG(flags, RECORD_PERIOD), RecordProc, in);
     return in->rec != 0;
 }
 
@@ -872,6 +927,36 @@ void AudioEngine::SetSourceVolume(const Source& src, double volume) {
     }
 }
 
+void AudioEngine::SetSourceFx(const Source& src) {
+    bool again = false;
+    {
+        std::lock_guard<std::mutex> lock(graph_mutex_);
+        if (Watch* w = FindWatch(src)) {
+            w->src.fx = src.fx;
+            for (auto& i : w->instances) {
+                i.second->src.fx = src.fx;
+                i.second->chain->Apply(src.fx);
+            }
+            return;
+        }
+        Input* in = FindInput(src);
+        if (!in) return;
+        if (in->is_device && DeviceRate(src) != in->rate) {
+            again = true;
+        } else {
+            in->src.fx = src.fx;
+            in->chain->Apply(src.fx);
+        }
+    }
+    // The noise remover changes the capture rate: the device leaves the
+    // recording and joins again right away, in sync, in the same file.
+    if (again) {
+        RemoveLiveSource(src);
+        int err = 0;
+        AddLiveSource(src, &err);
+    }
+}
+
 void AudioEngine::PauseRecording() {
     if (!recording_ || paused_) return;
     std::lock_guard<std::mutex> lock(clock_mutex_);
@@ -1026,7 +1111,7 @@ void AudioEngine::ScanWatches() {
         // New ones join right away.
         for (DWORD pid : running) {
             if (w->instances.count(pid)) continue;
-            Source s{L"process", (int)pid, w->src.name, w->src.volume};
+            Source s{L"process", (int)pid, w->src.name, w->src.volume, w->src.fx};
             int code = 0;
             auto made = MakeInput(s, &code);
             if (!made) continue;

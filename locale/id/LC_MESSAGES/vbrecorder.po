@@ -435,3 +435,148 @@ msgid ""
 msgstr ""
 "Tidak dapat memasang pembaruan:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Akustik"
+
+msgid "Intensidade:"
+msgstr "Intensitas:"
+
+msgid "Plano"
+msgstr "Datar"
+
+msgid "Reforço de Graves"
+msgstr "Penguat bass"
+
+msgid "Redução de Graves"
+msgstr "Pengurang bass"
+
+msgid "Reforço de Agudos"
+msgstr "Penguat treble"
+
+msgid "Redução de Agudos"
+msgstr "Pengurang treble"
+
+msgid "Reforço de Voz"
+msgstr "Penguat vokal"
+
+msgid "Locução e Podcast"
+msgstr "Ucapan dan podcast"
+
+msgid "Remover Ronco"
+msgstr "Hapus dengung rendah"
+
+msgid "Telefone"
+msgstr "Telepon"
+
+msgid "Rádio AM"
+msgstr "Radio AM"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Pengeras suara kecil"
+
+msgid "Fones de Ouvido"
+msgstr "Headphone"
+
+msgid "Clássica"
+msgstr "Klasik"
+
+msgid "Clube"
+msgstr "Klub"
+
+msgid "Dance"
+msgstr "Dance"
+
+msgid "Grave Profundo"
+msgstr "Bass dalam"
+
+msgid "Eletrônica"
+msgstr "Elektronik"
+
+msgid "Graves no Máximo"
+msgstr "Bass penuh"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Bass dan treble penuh"
+
+msgid "Agudos no Máximo"
+msgstr "Treble penuh"
+
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "Salão Grande"
+msgstr "Aula besar"
+
+msgid "Latina"
+msgstr "Latin"
+
+msgid "Ao Vivo"
+msgstr "Langsung"
+
+msgid "Lounge"
+msgstr "Lounge"
+
+msgid "Festa"
+msgstr "Pesta"
+
+msgid "Piano"
+msgstr "Piano"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Reggae"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Ska"
+msgstr "Ska"
+
+msgid "Suave"
+msgstr "Lembut"
+
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+msgid "Techno"
+msgstr "Techno"
+
+msgid "&Predefinição:"
+msgstr "&Prasetel:"
+
+msgid "Personalizado"
+msgstr "Kustom"
+
+msgid "Equalizador"
+msgstr "Ekualiser"
+
+msgid "Pré-amplificação:"
+msgstr "Pra-penguatan:"
+
+msgid "Removedor de Ruído"
+msgstr "Penghapus derau"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "Aktifkan penghapus &derau"
+
+msgid "&Equalizador"
+msgstr "&Ekualiser"
+
+msgid "Removedor de &Ruído"
+msgstr "&Penghapus derau"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "&Tampilkan semua proses"
+
+msgid "E&stéreo"
+msgstr "Ste&reo"
+

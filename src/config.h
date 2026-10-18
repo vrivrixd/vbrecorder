@@ -24,11 +24,13 @@
 #include <utility>
 #include <vector>
 
+#include "fx.h"
+
 #define CONFIG_FILE L"VBRecorder.ini"
 
 /* Program version, in a single place. It stays out of the translatable texts on
    purpose: bumping the version does not invalidate any translation. */
-#define VB_VERSION L"1.4.3"
+#define VB_VERSION L"1.4.4"
 
 /* Recording buffer, in milliseconds. People with a busy computer can raise it
    so the audio does not crackle. */
@@ -41,6 +43,7 @@ struct SourceEntry {
     int id = 0;         // device index or process id
     std::wstring exe;   // executable name, for "exe"
     double volume = 1.0;
+    FxSettings fx;
 };
 
 /* A recording source. An "exe" source is every process with that executable
@@ -50,6 +53,7 @@ struct Source {
     int id = 0;
     std::wstring name;
     double volume = 1.0;
+    FxSettings fx;  // equalizer and noise remover
 };
 
 /* Whether two sources are the same device, process or executable. */

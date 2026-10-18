@@ -28,15 +28,24 @@ history.
   takes the source back if you add it again), so every file stays in sync.
 - **Per-process capture.** Using the Windows per-process capture API (WASAPI),
   the audio of a specific program is captured directly, without a virtual
-  cable.
+  cable. The list shows the programs playing sound; "Show All Processes" lists
+  the others too.
 - **Capture by executable.** Add a program by its executable name (`game.exe`),
   even before it is open: it is recorded whenever it runs, however many times
   it is opened and closed, and however many copies are open. With separate
   files, it goes to `recording (game.exe).wav`.
-- **Per-source volume.** Adjust each source from -20 dB to +20 dB, to balance
+- **Per-source volume.** Adjust each source from -30 dB to +30 dB, to balance
   weak microphones without affecting the others.
+- **Stereo or mono per source.** A source with "Stereo" unchecked is mixed
+  down to mono, while the others stay in stereo.
 - **Test before recording.** The Test button lets you hear the device with the
-  volume already set.
+  volume already set, and with its equalizer, noise remover and stereo setting.
+- **Equalizer per source.** Ten bands, from 31 Hz to 16 kHz, each with its
+  own gain, a preamp, and presets: the classic Winamp ones, plus curves for
+  voice, podcast, telephone and more. Every slider goes from 0 to 100, as the
+  volume does, which is what the screen reader says.
+- **Noise remover** for audio devices, with RNNoise: it cleans up fans, hiss
+  and background noise from a microphone, with an adjustable intensity.
 - **Separate files.** With two or more sources, each one can go to its own
   file, named after the source: `recording (Microphone).wav`,
   `recording (chrome.exe).wav`.
@@ -158,17 +167,20 @@ windres -I res -i res\app.rc -o build\app.o
 windres -i res\locale.rc -o build\locale.o
 type nul > build\empty.c
 gcc -c build\empty.c -o build\default-manifest.o
-g++ -std=c++17 -O2 -DUNICODE -D_UNICODE -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0A00 -municode -mwindows src\*.cpp build\app.o build\locale.o -lole32 -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -luuid -lwinhttp -lbcrypt -static -s -Bbuild\ -o build\VBRecorder.exe
+for %f in (third_party\rnnoise\src\*.c) do gcc -O2 -w -Ithird_party\rnnoise\include -c %f -o build\rnn_%~nf.o
+g++ -std=c++17 -O2 -DUNICODE -D_UNICODE -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0A00 -Ithird_party\rnnoise\include -municode -mwindows src\*.cpp build\rnn_*.o build\app.o build\locale.o -lole32 -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -luuid -lwinhttp -lbcrypt -static -s -Bbuild\ -o build\VBRecorder.exe
 ```
 
 The empty `default-manifest.o` takes the place of the manifest GCC adds to
 every executable, which would clash with the program's own manifest
-(`res/app.manifest`).
+(`res/app.manifest`). The noise remover (RNNoise) is C code: it is compiled
+with `gcc` first and linked with the rest. In a `.bat` file, write `%%f` and
+`%%~nf` instead of `%f` and `%~nf`.
 
 This builds the 64-bit program. For the 32-bit one, use the i686 build of
 WinLibs (from the [WinLibs](https://winlibs.com/) page) with the same commands.
-To run it, copy the DLLs of the matching architecture, from `libd` or
-`lib`, to a `lib` folder next to `VBRecorder.exe`.
+To run it, copy the DLLs of the matching architecture, from `lib/x64` or
+`lib/x86`, to a `lib` folder next to `VBRecorder.exe`.
 
 Structure:
 
@@ -180,10 +192,14 @@ Structure:
 - `src/i18n.cpp` — language choice and reading of the translation catalogs.
 - `src/hotkeys.cpp` — hotkeys written as text.
 - `src/startup.cpp` — starting with Windows.
+- `src/fx.cpp` — equalizer and noise remover settings, and the equalizer presets.
+- `src/fx_chain.cpp` — the processing of each source (BASS_FX and RNNoise).
+- `src/fx_dialogs.cpp` — the equalizer and noise remover dialogs.
 - `src/ui.cpp` — interface foundation: native controls and window layout.
 - `res/` — manifest, version information and the list of embedded translations.
 - `locale/` — translation catalogs, one per language.
 - `lib/x64`, `lib/x86` — BASS libraries for each architecture.
+- `third_party/rnnoise` — RNNoise, the noise remover.
 - `.github/workflows/build.yml` — builds and publishes the release zips.
 - `tools/language_compiler.py` — compiles the `.po` files into `.mo`.
 
@@ -192,9 +208,14 @@ Structure:
 The VB Recorder source code is distributed under the
 [GNU General Public License v3.0](LICENSE).
 
-The libraries in the `lib` folder (BASS and its add-ons) are **not** covered by
-that license. They belong to [un4seen Developments](https://www.un4seen.com/)
-and follow the BASS terms, which make it free for non-commercial use.
+The libraries in the `lib` folder (BASS and its add-ons, BASS_FX among them)
+are **not** covered by that license. They belong to
+[un4seen Developments](https://www.un4seen.com/) and follow the BASS terms,
+which make it free for non-commercial use.
+
+[RNNoise](https://github.com/xiph/rnnoise), in `third_party/rnnoise`, is by
+Jean-Marc Valin and contributors (Xiph.Org, Mozilla, Amazon), under the BSD
+license in `third_party/rnnoise/COPYING`.
 
 ## Author
 

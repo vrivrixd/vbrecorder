@@ -3,15 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VB Recorder 1.2\n"
 "POT-Creation-Date: 2026-08-02 18:39\n"
-"PO-Revision-Date: 2026-10-12 08:32+0700\n"
+"PO-Revision-Date: 2026-10-18 10:29+0700\n"
 "Last-Translator: nguyenninhhoang <nguyenninhhoang2005@gmail.com>\n"
 "Language-Team: vietnamese\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.10\n"
 
 msgid "Editar Fonte de Gravação"
 msgstr "Chỉnh sửa nguồn ghi âm"
@@ -20,19 +20,19 @@ msgid "Adicionar Fonte de Gravação"
 msgstr "Thêm nguồn ghi âm"
 
 msgid "Ouvir o dispositivo selecionado com o volume ajustado"
-msgstr "Nghe thiết bị đã chọn với âm lượng đã điều chỉnh"
+msgstr "Nghe thử thiết bị đã chọn với âm lượng đã điều chỉnh"
 
 msgid "&Parar"
-msgstr "&dừng"
+msgstr "&Dừng"
 
 msgid "&Testar"
-msgstr "&thử"
+msgstr "&Nghe thử"
 
 msgid "&Atualizar"
 msgstr "&Làm mới"
 
 msgid "Mostrar janela principal"
-msgstr "Hiện cửa sổ chính"
+msgstr "Hiển thị cửa sổ chính"
 
 msgid "Sair"
 msgstr "Thoát"
@@ -41,7 +41,7 @@ msgid "&Formato de Saída:"
 msgstr "Định dạng &đầu ra:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "&Tỷ lệ mẫu:"
+msgstr "&Tần số lấy mẫu:"
 
 msgid "Profundidade de Bit&s:"
 msgstr "Độ &sâu bit:"
@@ -50,13 +50,13 @@ msgid "&Canais:"
 msgstr "&Kênh:"
 
 msgid "mono"
-msgstr "đơn âm"
+msgstr "mono"
 
 msgid "estéreo"
-msgstr "âm thanh nổi"
+msgstr "stereo"
 
 msgid "&Nome do Arquivo:"
-msgstr "&tên file:"
+msgstr "&Tên tệp:"
 
 msgid "Selecionar Pasta"
 msgstr "Chọn thư mục"
@@ -72,9 +72,9 @@ msgid ""
 "Para limpar, pressione Backspace ou Delete.\n"
 "Pressione Esc para cancelar."
 msgstr ""
-"Nhấn tổ hợp phím (ví dụ: Ctrl+Alt+R) trong các trường bên dưới.\n"
-"Để xóa, nhấn Backspace hoặc Delete.\n"
-"Nhấn Esc để hủy bỏ."
+"Nhấn tổ hợp phím (ví dụ: Ctrl+Alt+R) trong các ô bên dưới.\n"
+"Để xóa phím tắt, nhấn Backspace hoặc Delete.\n"
+"Nhấn Esc để hủy."
 
 msgid "Gravar:"
 msgstr "Ghi âm:"
@@ -86,25 +86,25 @@ msgid "Parar Gravação:"
 msgstr "Dừng ghi âm:"
 
 msgid "Reproduzir / Parar Reprodução:"
-msgstr "Phát / Dừng phát lại:"
+msgstr "Phát / Dừng phát:"
 
 msgid "Excluir Gravação:"
-msgstr "Xóa ghi âm:"
+msgstr "Xóa bản ghi âm:"
 
 msgid "Mostrar Janela Principal:"
-msgstr "Hiện cửa sổ chính:"
+msgstr "Hiển thị cửa sổ chính:"
 
 msgid "Fechar Programa:"
 msgstr "Đóng chương trình:"
 
 msgid "&Ok"
-msgstr "&Đồng ý"
+msgstr "&OK"
 
 msgid "&Cancelar"
-msgstr "&Hủy bỏ"
+msgstr "&Hủy"
 
 msgid "Filtrar Fontes Por:"
-msgstr "Bộ lọc âm thanh bởi:"
+msgstr "Lọc nguồn theo:"
 
 msgid "Selecionar Fonte:"
 msgstr "Chọn nguồn:"
@@ -122,7 +122,7 @@ msgid "Formato de Saída"
 msgstr "Định dạng đầu ra"
 
 msgid "Taxa de Amostragem"
-msgstr "Tỷ lệ mẫu"
+msgstr "Tần số lấy mẫu"
 
 msgid "Profundidade de Bits"
 msgstr "Độ sâu bit"
@@ -131,7 +131,7 @@ msgid "Canais"
 msgstr "Kênh"
 
 msgid "Reproduzir tons ao iniciar ou parar gravação"
-msgstr "Phát âm thanh khi bắt đầu hoặc dừng ghi"
+msgstr "Phát âm báo khi bắt đầu hoặc dừng ghi âm"
 
 msgid "Continuar"
 msgstr "Tiếp tục"
@@ -143,76 +143,76 @@ msgid "Parar"
 msgstr "Dừng"
 
 msgid "O VB Recorder já está em execução."
-msgstr "VB Recorder đang chạy."
+msgstr "VB Recorder đang chạy rồi."
 
 msgid "Aviso"
 msgstr "Cảnh báo"
 
 msgid "&Gravar"
-msgstr "&ghi âm"
+msgstr "&Ghi âm"
 
 msgid "&Pausar"
 msgstr "&Tạm dừng"
 
 msgid "Reprod&uzir Gravação"
-msgstr "&Phát ghi âm"
+msgstr "&Phát bản ghi âm"
 
 msgid "E&xcluir Gravação"
-msgstr "&Xóa ghi âm"
+msgstr "&Xóa bản ghi âm"
 
 msgid "&Bitrate:"
-msgstr "&Bitrate:"
+msgstr "&Tốc độ bit:"
 
 msgid "Compressão F&LAC:"
-msgstr "&Nén FLAC:"
+msgstr "Mức &nén FLAC:"
 
 msgid "&Adicionar"
-msgstr "&thêm"
+msgstr "&Thêm"
 
 msgid "&Editar"
 msgstr "&Chỉnh sửa"
 
 msgid "&Remover"
-msgstr "&xóa"
+msgstr "&Xóa"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "&Ghi nguồn vào các tập tin riêng biệt"
+msgstr "Ghi mỗi nguồn vào một tệp &riêng"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Phát âm thanh &khi bắt đầu hoặc dừng ghi"
+msgstr "Phát âm &báo khi bắt đầu hoặc dừng ghi âm"
 
 msgid "&Diretório de Saída:"
-msgstr "&Thư mục đầu ra:"
+msgstr "&Thư mục bản ghi âm:"
 
 msgid "P&rocurar..."
-msgstr "&Thay đổi..."
+msgstr "&Duyệt..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "&Mở thư mục ghi âm"
+msgstr "&Mở thư mục bản ghi âm"
 
 msgid "S&obre"
 msgstr "&Giới thiệu"
 
 msgid "&Minimizar"
-msgstr "&thu nhỏ"
+msgstr "&Thu nhỏ"
 
 msgid "&Fechar"
-msgstr "&Tắt"
+msgstr "&Đóng"
 
 msgid "C&ontinuar"
 msgstr "&Tiếp tục"
 
 msgid "Gravações"
-msgstr "Đang ghi âm"
+msgstr "Bản ghi âm"
 
 msgid "Parar Reprod&ução"
-msgstr "&Dừng phát lại"
+msgstr "&Dừng phát"
 
 msgid "Escolha o arquivo a reproduzir:"
-msgstr "Chọn file để phát:"
+msgstr "Chọn tệp để phát:"
 
 msgid "Reproduzir Gravação"
-msgstr "Phát ghi âm"
+msgstr "Phát bản ghi âm"
 
 msgid ""
 "Excluir a gravação?\n"
@@ -223,11 +223,7 @@ msgid_plural ""
 "\n"
 "{lista}"
 msgstr[0] ""
-"Xóa bản ghi âm?\n"
-"\n"
-"{lista}"
-msgstr[1] ""
-"Xóa {n} các file từ bản ghi cuối cùng?\n"
+"Xóa {n} tệp của bản ghi âm gần nhất?\n"
 "\n"
 "{lista}"
 
@@ -235,60 +231,62 @@ msgid "Confirmar Exclusão"
 msgstr "Xác nhận xóa"
 
 msgid "Dispositivos de Áudio"
-msgstr "Thiết bị audio"
+msgstr "Thiết bị âm thanh"
 
 msgid "Processos em Execução"
-msgstr "Đang chạy tiến trình"
+msgstr "Các tiến trình đang chạy"
 
 msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
-msgstr "Lưu ý: quá trình chụp yêu cầu Windows 10 v2004 trở lên."
+msgstr ""
+"Lưu ý: ghi âm riêng từng chương trình yêu cầu Windows 10 phiên bản 2004 trở "
+"lên."
 
 msgid "Parar Reprodução"
-msgstr "Dừng Phát lại"
+msgstr "Dừng phát"
 
 msgid "Excluir Gravação"
-msgstr "Xóa ghi âm"
+msgstr "Xóa bản ghi âm"
 
 msgid "Bitrate"
-msgstr "Bitrate"
+msgstr "Tốc độ bit"
 
 msgid "Compressão FLAC"
-msgstr "Nén FLAC"
+msgstr "Mức nén FLAC"
 
 msgid "Gravar fontes em arquivos separados"
-msgstr "Ghi nguồn vào các tập tin riêng biệt"
+msgstr "Ghi mỗi nguồn vào một tệp riêng"
 
 msgid "Fontes de &Gravação:"
-msgstr "&Nguồn ghi:"
+msgstr "&Nguồn ghi âm:"
 
 msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
-msgstr "Thêm ít nhất một nguồn ghi trước khi bắt đầu."
+msgstr "Hãy thêm ít nhất một nguồn ghi âm trước khi bắt đầu."
 
 msgid "Para&r"
-msgstr "&dừng"
+msgstr "&Dừng"
 
 msgid "Não foi possível excluir:\n"
 msgstr "Không thể xóa:\n"
 
 msgid "Não foi possível testar este dispositivo (erro BASS {erro})."
-msgstr "Không thể thử thiết bị này (lỗi BASS {erro})."
+msgstr "Không thể nghe thử thiết bị này (lỗi BASS {erro})."
 
 msgid ""
 "Para reproduzir arquivos {extensao} dentro do programa, coloque {dll} na "
 "pasta lib do VB Recorder."
 msgstr ""
-"Để phát {extensao} files bên trong chương trình, hãy đặt {dll} vào thư mục "
-"lib của VB Recorder."
+"Để phát các tệp {extensao} ngay trong chương trình, hãy đặt {dll} vào thư "
+"mục lib của VB Recorder."
 
 msgid ""
 "Erro BASS {erro} ao reproduzir:\n"
 "{arquivo}"
 msgstr ""
-"Lỗi BASS {erro} trong khi phát:\n"
+"Lỗi BASS {erro} khi phát:\n"
 "{arquivo}"
 
 msgid "Erro BASS {erro} ao iniciar a gravação."
-msgstr "Lỗi BASS {erro} trong khi bắt đầu ghi âm."
+msgstr "Lỗi BASS {erro} khi bắt đầu ghi âm."
 
 msgid ""
 "Não foi possível abrir a pasta:\n"
@@ -314,19 +312,19 @@ msgid "Configurações"
 msgstr "Cài đặt"
 
 msgid "Padrão do sistema"
-msgstr "Mặc định của hệ thống"
+msgstr "Mặc định hệ thống"
 
 msgid "Iniciar &Minimizado"
-msgstr "Khởi độn&g thu nhỏ"
+msgstr "&Khởi động ở trạng thái thu nhỏ"
 
 msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Thu nhỏ xuống &khay hệ thống"
+msgstr "Thu nhỏ vào &khay hệ thống"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Cửa sổ luôn ở &trên cùng"
 
 msgid "Contagem &Regressiva Antes de Gravar"
-msgstr "Đế&m ngược trước khi ghi"
+msgstr "Đếm &ngược trước khi ghi âm"
 
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Cấu hình &phím tắt..."
@@ -342,7 +340,7 @@ msgid ""
 "\n"
 "Deseja mesmo fechar o VB Recorder?"
 msgstr ""
-"Đang có một bản ghi âm chưa kết thúc.\n"
+"Đang có một bản ghi âm đang diễn ra.\n"
 "\n"
 "Bạn có chắc chắn muốn đóng VB Recorder không?"
 
@@ -356,8 +354,8 @@ msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
 "{maximo} ms; o padrão é {padrao}."
 msgstr ""
-"Tăng bộ đệm nếu âm thanh bị rè trên máy tính đang bận. Từ {minimo} đến "
-"{maximo} ms; mặc định là {padrao}."
+"Hãy tăng bộ đệm nếu âm thanh bị rè hoặc ngắt quãng khi máy tính đang bận. "
+"Từ {minimo} đến {maximo} ms; mặc định là {padrao}."
 
 msgid ""
 "O tamanho do buffer deve ser um número entre {minimo} e {maximo} "
@@ -369,16 +367,16 @@ msgid ""
 "Autor: Vitor Bruski"
 msgstr ""
 "VB Recorder v{versao}\n"
-"tác giả: Vitor Bruski"
+"Tác giả: Vitor Bruski"
 
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
-msgstr "Lỗi BASS {erro} trong khi thêm nguồn ghi âm."
+msgstr "Lỗi BASS {erro} khi thêm nguồn ghi âm."
 
 msgid "Continuar Última Gra&vação"
-msgstr "Tiếp tục bản g&hi cuối"
+msgstr "Tiếp tục bản ghi âm &gần nhất"
 
 msgid "Continuar Última Gravação"
-msgstr "Tiếp tục bản ghi cuối"
+msgstr "Tiếp tục bản ghi âm gần nhất"
 
 msgid ""
 "Não foi possível continuar a gravação. Verifique se o arquivo não está "
@@ -403,36 +401,36 @@ msgid ""
 "Versão mais recente: {nova}.\n"
 "Deseja atualizar agora?"
 msgstr ""
-"Phiên bản của bạn: {atual};\n"
+"Phiên bản hiện tại: {atual};\n"
 "Phiên bản mới nhất: {nova}.\n"
-"Bạn có muốn cập nhật ngay không?"
+"Bạn có muốn cập nhật ngay bây giờ không?"
 
 msgid "Baixando Atualização"
-msgstr "Đang tải bản cập nhật"
+msgstr "Đang tải xuống bản cập nhật"
 
 msgid "Por favor aguarde..."
 msgstr "Vui lòng chờ..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "Tự động kiểm t&ra cập nhật"
+msgstr "Tự động &kiểm tra bản cập nhật"
 
 msgid "Verificar Atuali&zação..."
-msgstr "K&iểm tra cập nhật..."
+msgstr "Kiểm tra bản &cập nhật..."
 
 msgid "Iniciar com o &Windows"
 msgstr "Khởi động cùng &Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
-msgstr "Bạn đang dùng phiên bản mới nhất của VB Recorder."
+msgstr "Bạn đang sử dụng phiên bản mới nhất của VB Recorder."
 
 msgid "Verificar Atualização"
-msgstr "Kiểm tra cập nhật"
+msgstr "Kiểm tra bản cập nhật"
 
 msgid "Não foi possível verificar se há atualizações."
-msgstr "Không thể kiểm tra cập nhật."
+msgstr "Không thể kiểm tra bản cập nhật."
 
 msgid "Não foi possível baixar a atualização."
-msgstr "Không thể tải bản cập nhật."
+msgstr "Không thể tải xuống bản cập nhật."
 
 msgid ""
 "Não foi possível instalar a atualização:\n"
@@ -440,3 +438,147 @@ msgid ""
 msgstr ""
 "Không thể cài đặt bản cập nhật:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Mộc (Acoustic)"
+
+msgid "Intensidade:"
+msgstr "Cường độ:"
+
+msgid "Plano"
+msgstr "Phẳng (Flat)"
+
+msgid "Reforço de Graves"
+msgstr "Tăng cường âm trầm"
+
+msgid "Redução de Graves"
+msgstr "Giảm âm trầm"
+
+msgid "Reforço de Agudos"
+msgstr "Tăng cường âm cao"
+
+msgid "Redução de Agudos"
+msgstr "Giảm âm cao"
+
+msgid "Reforço de Voz"
+msgstr "Tăng cường giọng nói"
+
+msgid "Locução e Podcast"
+msgstr "Giọng đọc và podcast"
+
+msgid "Remover Ronco"
+msgstr "Loại bỏ tiếng ù"
+
+msgid "Telefone"
+msgstr "Điện thoại"
+
+msgid "Rádio AM"
+msgstr "Radio AM"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Loa nhỏ"
+
+msgid "Fones de Ouvido"
+msgstr "Tai nghe (Headphones)"
+
+msgid "Clássica"
+msgstr "Cổ điển"
+
+msgid "Clube"
+msgstr "Câu lạc bộ (Club)"
+
+msgid "Dance"
+msgstr "Nhạc khiêu vũ (Dance)"
+
+msgid "Grave Profundo"
+msgstr "Âm trầm sâu"
+
+msgid "Eletrônica"
+msgstr "Nhạc điện tử (Electronic)"
+
+msgid "Graves no Máximo"
+msgstr "Âm trầm tối đa"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Âm trầm và âm cao tối đa"
+
+msgid "Agudos no Máximo"
+msgstr "Âm cao tối đa"
+
+msgid "Hip-Hop"
+msgstr "Nhạc Hip-Hop"
+
+msgid "Jazz"
+msgstr "Nhạc Jazz"
+
+msgid "Salão Grande"
+msgstr "Hội trường lớn"
+
+msgid "Latina"
+msgstr "Nhạc Latin"
+
+msgid "Ao Vivo"
+msgstr "Trực tiếp (Live)"
+
+msgid "Lounge"
+msgstr "Nhạc Lounge"
+
+msgid "Festa"
+msgstr "Tiệc tùng (Party)"
+
+msgid "Piano"
+msgstr "Piano"
+
+msgid "Pop"
+msgstr "Nhạc Pop"
+
+msgid "R&B"
+msgstr "Nhạc R&B"
+
+msgid "Reggae"
+msgstr "Nhạc Reggae"
+
+msgid "Rock"
+msgstr "Nhạc Rock"
+
+msgid "Ska"
+msgstr "Nhạc Ska"
+
+msgid "Suave"
+msgstr "Nhẹ nhàng (Soft)"
+
+msgid "Soft Rock"
+msgstr "Nhạc Soft Rock"
+
+msgid "Techno"
+msgstr "Nhạc Techno"
+
+msgid "&Predefinição:"
+msgstr "&Cấu hình:"
+
+msgid "Personalizado"
+msgstr "Tùy chỉnh"
+
+msgid "Equalizador"
+msgstr "Bộ cân bằng âm thanh"
+
+msgid "Pré-amplificação:"
+msgstr "Tiền khuếch đại:"
+
+msgid "Removedor de Ruído"
+msgstr "Bộ khử tiếng ồn"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "&Bật bộ khử tiếng ồn"
+
+msgid "&Equalizador"
+msgstr "&Bộ cân bằng âm thanh"
+
+msgid "Removedor de &Ruído"
+msgstr "Bộ &khử tiếng ồn"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "Hiển thị tất &cả tiến trình"
+
+msgid "E&stéreo"
+msgstr "&Stereo"

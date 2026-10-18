@@ -259,12 +259,21 @@ int ConfigManager::GetBuffer() const {
 std::vector<SourceEntry> ConfigManager::GetSources() const {
     std::wstring raw = Get(L"fontes");
     std::vector<SourceEntry> result;
+    // The equalizer, noise remover and stereo of each source, in the same order, in
+    // a section of their own: [EFEITOS] 1 = ..., 2 = ...
+    const Section* fx_section = Find(L"EFEITOS");
+    int index = 0;
+    auto fx_of = [&](int i) {
+        const std::wstring* v = fx_section ? Lookup(fx_section->items, std::to_wstring(i)) : nullptr;
+        return v ? FxSettings::Parse(*v) : FxSettings();
+    };
     size_t pos = 0;
     while (pos <= raw.size()) {
         size_t end = raw.find(L',', pos);
         if (end == std::wstring::npos) end = raw.size();
         std::wstring part = Trim(raw.substr(pos, end - pos));
         pos = end + 1;
+        ++index;
 
         std::vector<std::wstring> tokens;
         size_t t = 0;
@@ -285,6 +294,7 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
                 double v = wcstod(tokens[2].c_str(), &vend);
                 if (vend && vend != tokens[2].c_str()) e.volume = v;
             }
+            e.fx = fx_of(index);
             if (!e.exe.empty()) result.push_back(e);
             continue;
         }
@@ -302,9 +312,10 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
             double v = wcstod(tokens[2].c_str(), &vend);
             if (vend && vend != tokens[2].c_str()) e.volume = v;
         }
+        e.fx = fx_of(index);
         result.push_back(e);
     }
-    if (result.empty()) result.push_back(SourceEntry{L"device", 0, L"", 1.0});
+    if (result.empty()) result.push_back(SourceEntry{L"device", 0, L"", 1.0, FxSettings()});
     return result;
 }
 
@@ -318,6 +329,12 @@ void ConfigManager::SetSources(const std::vector<Source>& sources) {
         value += s.type + L":" + (s.type == L"exe" ? s.name : std::to_wstring(s.id)) + L":" + vol;
     }
     SetConfig(L"fontes", value);
+    Section& fx_section = Ensure(L"EFEITOS");
+    fx_section.items.clear();
+    for (size_t i = 0; i < sources.size(); ++i) {
+        std::wstring fx = sources[i].fx.Serialize();
+        if (!fx.empty()) fx_section.items.emplace_back(std::to_wstring(i + 1), fx);
+    }
 }
 
 bool SameSource(const Source& a, const Source& b) {

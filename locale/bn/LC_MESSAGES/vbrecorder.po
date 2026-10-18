@@ -440,3 +440,148 @@ msgid ""
 msgstr ""
 "আপডেট ইনস্টল করা যায়নি:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "অ্যাকোস্টিক"
+
+msgid "Intensidade:"
+msgstr "তীব্রতা:"
+
+msgid "Plano"
+msgstr "সমতল"
+
+msgid "Reforço de Graves"
+msgstr "বেস বাড়ানো"
+
+msgid "Redução de Graves"
+msgstr "বেস কমানো"
+
+msgid "Reforço de Agudos"
+msgstr "ট্রেবল বাড়ানো"
+
+msgid "Redução de Agudos"
+msgstr "ট্রেবল কমানো"
+
+msgid "Reforço de Voz"
+msgstr "কণ্ঠ বাড়ানো"
+
+msgid "Locução e Podcast"
+msgstr "কথা ও পডকাস্ট"
+
+msgid "Remover Ronco"
+msgstr "গুমগুম শব্দ সরান"
+
+msgid "Telefone"
+msgstr "টেলিফোন"
+
+msgid "Rádio AM"
+msgstr "এএম রেডিও"
+
+msgid "Alto-falantes Pequenos"
+msgstr "ছোট স্পিকার"
+
+msgid "Fones de Ouvido"
+msgstr "হেডফোন"
+
+msgid "Clássica"
+msgstr "ধ্রুপদী"
+
+msgid "Clube"
+msgstr "ক্লাব"
+
+msgid "Dance"
+msgstr "ডান্স"
+
+msgid "Grave Profundo"
+msgstr "গভীর বেস"
+
+msgid "Eletrônica"
+msgstr "ইলেকট্রনিক"
+
+msgid "Graves no Máximo"
+msgstr "পূর্ণ বেস"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "পূর্ণ বেস ও ট্রেবল"
+
+msgid "Agudos no Máximo"
+msgstr "পূর্ণ ট্রেবল"
+
+msgid "Hip-Hop"
+msgstr "হিপ-হপ"
+
+msgid "Jazz"
+msgstr "জ্যাজ"
+
+msgid "Salão Grande"
+msgstr "বড় হল"
+
+msgid "Latina"
+msgstr "ল্যাটিন"
+
+msgid "Ao Vivo"
+msgstr "লাইভ"
+
+msgid "Lounge"
+msgstr "লাউঞ্জ"
+
+msgid "Festa"
+msgstr "পার্টি"
+
+msgid "Piano"
+msgstr "পিয়ানো"
+
+msgid "Pop"
+msgstr "পপ"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "রেগে"
+
+msgid "Rock"
+msgstr "রক"
+
+msgid "Ska"
+msgstr "স্কা"
+
+msgid "Suave"
+msgstr "কোমল"
+
+msgid "Soft Rock"
+msgstr "সফট রক"
+
+msgid "Techno"
+msgstr "টেকনো"
+
+msgid "&Predefinição:"
+msgstr "প্রিসেট(&P):"
+
+msgid "Personalizado"
+msgstr "কাস্টম"
+
+msgid "Equalizador"
+msgstr "ইকুয়ালাইজার"
+
+msgid "Pré-amplificação:"
+msgstr "প্রিঅ্যাম্প:"
+
+msgid "Removedor de Ruído"
+msgstr "শব্দ দূরকারী"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "শব্দ দূরকারী চালু করুন(&A)"
+
+msgid "&Equalizador"
+msgstr "ইকুয়ালাইজার(&Q)"
+
+msgid "Removedor de &Ruído"
+msgstr "শব্দ দূরকারী(&N)"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "সব প্রসেস দেখান(&M)"
+
+msgid "E&stéreo"
+msgstr "স্টেরিও(&S)"
+

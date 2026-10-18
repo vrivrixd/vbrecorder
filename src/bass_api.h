@@ -60,6 +60,16 @@ struct BASS_DEVICEINFO {
     DWORD flags;
 };
 
+/* The BASS_FX equalizer and its parameters, from bass_fx.h. */
+const DWORD BASS_FX_BFX_PEAKEQ = 0x10004;
+const int BASS_BFX_CHANALL = -1;
+
+struct BASS_BFX_PEAKEQ {
+    int lBand;
+    float fBandwidth, fQ, fCenter, fGain;
+    int lChannel;
+};
+
 typedef BOOL(CALLBACK* RECORDPROC)(DWORD handle, const void* buffer, DWORD length, void* user);
 /* STREAMPROC_PUSH from bass.h: the value -1 in place of the function. */
 #define STREAMPROC_PUSH ((void*)(INT_PTR)-1)
@@ -85,6 +95,9 @@ struct BassApi {
     BOOL(WINAPI* ChannelSetAttribute)(DWORD, DWORD, float);
     DWORD(WINAPI* ChannelIsActive)(DWORD);
     DWORD(WINAPI* PluginLoad)(const void*, DWORD);
+    DWORD(WINAPI* ChannelSetFX)(DWORD, DWORD, int);
+    BOOL(WINAPI* ChannelRemoveFX)(DWORD, DWORD);
+    BOOL(WINAPI* FXSetParameters)(DWORD, const void*);
 
     DWORD(WINAPI* EncodeStart)(DWORD, const void*, DWORD, void*, void*);
     DWORD(WINAPI* EncodeStartPCMFile)(DWORD, DWORD, const void*);

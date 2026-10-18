@@ -29,6 +29,7 @@
 
 #include "bass_api.h"
 #include "config.h"
+#include "fx_chain.h"
 
 class AudioEngine {
 public:
@@ -50,8 +51,11 @@ public:
 
     /* Live test: captures the device and plays it on the default output. */
     bool IsMonitoring() const { return monitor_rec_ != 0; }
-    bool StartMonitor(int dev_idx, double volume, int sample_rate, int channels, int* error);
+    bool StartMonitor(int dev_idx, double volume, int sample_rate, int channels,
+                      const FxSettings& fx, int* error);
     void SetMonitorVolume(double volume);
+    /* The equalizer and noise remover of the test, changed live. */
+    void SetMonitorFx(const FxSettings& fx);
     void StopMonitor();
 
     bool IsPlaying();
@@ -78,6 +82,8 @@ public:
     bool AddLiveSource(const Source& src, int* error);
     void RemoveLiveSource(const Source& src);
     void SetSourceVolume(const Source& src, double volume);
+    /* New equalizer or noise remover for a source being recorded. */
+    void SetSourceFx(const Source& src);
 
     void PauseRecording();
     void ResumeRecording();
@@ -100,6 +106,7 @@ private:
     void ResetRecording(int sample_rate, const std::wstring& channels);
     std::unique_ptr<Input> MakeInput(const Source& src, int* error);
     bool StartDevice(Input* in, bool play);
+    int DeviceRate(const Source& src) const;
     void StopCapture(Input* in);
     void AttachLive(Input* in, Output* out, double now);
     void Place(Input* in, Output* out, double now);
@@ -136,6 +143,11 @@ private:
 
     DWORD monitor_rec_ = 0;
     std::atomic<DWORD> monitor_stream_{0};
+    std::unique_ptr<FxChain> monitor_chain_;
+    std::vector<float> monitor_buf_;  // used by the capture thread of the test
+    int monitor_dev_ = -1, monitor_rate_ = 0, monitor_chans_ = 0;
+    int monitor_asked_rate_ = 0, monitor_asked_chans_ = 0;
+    double monitor_volume_ = 1.0;
     DWORD play_stream_ = 0;
 
     // Recording in progress.

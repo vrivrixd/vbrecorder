@@ -438,3 +438,148 @@ msgid ""
 msgstr ""
 "Ne eblis instali la ĝisdatigon:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Akustika"
+
+msgid "Intensidade:"
+msgstr "Intenseco:"
+
+msgid "Plano"
+msgstr "Ebena"
+
+msgid "Reforço de Graves"
+msgstr "Plifortigo de basoj"
+
+msgid "Redução de Graves"
+msgstr "Malpliigo de basoj"
+
+msgid "Reforço de Agudos"
+msgstr "Plifortigo de altoj"
+
+msgid "Redução de Agudos"
+msgstr "Malpliigo de altoj"
+
+msgid "Reforço de Voz"
+msgstr "Plifortigo de voĉo"
+
+msgid "Locução e Podcast"
+msgstr "Parolado kaj podkasto"
+
+msgid "Remover Ronco"
+msgstr "Forigi zumadon"
+
+msgid "Telefone"
+msgstr "Telefono"
+
+msgid "Rádio AM"
+msgstr "AM-radio"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Malgrandaj laŭtparoliloj"
+
+msgid "Fones de Ouvido"
+msgstr "Kapaŭdiloj"
+
+msgid "Clássica"
+msgstr "Klasika"
+
+msgid "Clube"
+msgstr "Klubo"
+
+msgid "Dance"
+msgstr "Danca"
+
+msgid "Grave Profundo"
+msgstr "Profunda baso"
+
+msgid "Eletrônica"
+msgstr "Elektronika"
+
+msgid "Graves no Máximo"
+msgstr "Plenaj basoj"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Plenaj basoj kaj altoj"
+
+msgid "Agudos no Máximo"
+msgstr "Plenaj altoj"
+
+msgid "Hip-Hop"
+msgstr "Hiphopo"
+
+msgid "Jazz"
+msgstr "Ĵazo"
+
+msgid "Salão Grande"
+msgstr "Granda halo"
+
+msgid "Latina"
+msgstr "Latina"
+
+msgid "Ao Vivo"
+msgstr "Vive"
+
+msgid "Lounge"
+msgstr "Salona"
+
+msgid "Festa"
+msgstr "Festo"
+
+msgid "Piano"
+msgstr "Piano"
+
+msgid "Pop"
+msgstr "Popmuziko"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Regeo"
+
+msgid "Rock"
+msgstr "Roko"
+
+msgid "Ska"
+msgstr "Skao"
+
+msgid "Suave"
+msgstr "Milda"
+
+msgid "Soft Rock"
+msgstr "Milda roko"
+
+msgid "Techno"
+msgstr "Tekno"
+
+msgid "&Predefinição:"
+msgstr "&Antaŭagordo:"
+
+msgid "Personalizado"
+msgstr "Propra"
+
+msgid "Equalizador"
+msgstr "Egaligilo"
+
+msgid "Pré-amplificação:"
+msgstr "Antaŭamplifo:"
+
+msgid "Removedor de Ruído"
+msgstr "Bruoforigilo"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "Ŝa&lti bruoforigilon"
+
+msgid "&Equalizador"
+msgstr "&Egaligilo"
+
+msgid "Removedor de &Ruído"
+msgstr "B&ruoforigilo"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "&Montri ĉiujn procezojn"
+
+msgid "E&stéreo"
+msgstr "&Stereo"
+

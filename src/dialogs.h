@@ -133,6 +133,9 @@ private:
     void UpdateTestState();
     void OnTest();
     void StopTest();
+    void Preview(const FxSettings& fx);
+    void OnEqualizer();
+    void OnNoise();
     double Volume() const;
     void UpdateDbLabel();
     void OnOk();
@@ -142,6 +145,7 @@ private:
     std::vector<Source> existing_;
     bool editing_ = false;
     Source edit_source_;
+    FxSettings fx_;
     std::function<std::pair<int, int>()> output_format_;
     bool testing_ = false;
     int filter_ = 0;
@@ -150,7 +154,8 @@ private:
     const std::vector<SourceItem>* current_items_ = nullptr;
     HWND rb_exe_ = nullptr, lbl_src_ = nullptr, lbl_exe_ = nullptr, txt_exe_ = nullptr;
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,
-         sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_ok_ = nullptr,
+         sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr,
+         btn_noise_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, note_ = nullptr;
 };
 

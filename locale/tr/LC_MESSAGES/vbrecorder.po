@@ -439,3 +439,148 @@ msgid ""
 msgstr ""
 "Güncelleme yüklenemedi:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Akustik"
+
+msgid "Intensidade:"
+msgstr "Yoğunluk:"
+
+msgid "Plano"
+msgstr "Düz"
+
+msgid "Reforço de Graves"
+msgstr "Bas Güçlendirme"
+
+msgid "Redução de Graves"
+msgstr "Bas Azaltma"
+
+msgid "Reforço de Agudos"
+msgstr "Tiz Güçlendirme"
+
+msgid "Redução de Agudos"
+msgstr "Tiz Azaltma"
+
+msgid "Reforço de Voz"
+msgstr "Vokal Güçlendirme"
+
+msgid "Locução e Podcast"
+msgstr "Konuşma ve Podcast"
+
+msgid "Remover Ronco"
+msgstr "Uğultuyu Kaldır"
+
+msgid "Telefone"
+msgstr "Telefon"
+
+msgid "Rádio AM"
+msgstr "AM Radyo"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Küçük Hoparlörler"
+
+msgid "Fones de Ouvido"
+msgstr "Kulaklık"
+
+msgid "Clássica"
+msgstr "Klasik"
+
+msgid "Clube"
+msgstr "Kulüp"
+
+msgid "Dance"
+msgstr "Dance"
+
+msgid "Grave Profundo"
+msgstr "Derin Bas"
+
+msgid "Eletrônica"
+msgstr "Elektronik"
+
+msgid "Graves no Máximo"
+msgstr "Tam Bas"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Tam Bas ve Tiz"
+
+msgid "Agudos no Máximo"
+msgstr "Tam Tiz"
+
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "Salão Grande"
+msgstr "Büyük Salon"
+
+msgid "Latina"
+msgstr "Latin"
+
+msgid "Ao Vivo"
+msgstr "Canlı"
+
+msgid "Lounge"
+msgstr "Lounge"
+
+msgid "Festa"
+msgstr "Parti"
+
+msgid "Piano"
+msgstr "Piyano"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Reggae"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Ska"
+msgstr "Ska"
+
+msgid "Suave"
+msgstr "Yumuşak"
+
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+msgid "Techno"
+msgstr "Techno"
+
+msgid "&Predefinição:"
+msgstr "&Hazır Ayar:"
+
+msgid "Personalizado"
+msgstr "Özel"
+
+msgid "Equalizador"
+msgstr "Ekolayzer"
+
+msgid "Pré-amplificação:"
+msgstr "Ön Yükseltme:"
+
+msgid "Removedor de Ruído"
+msgstr "Gürültü Giderici"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "&Gürültü Gidericiyi Etkinleştir"
+
+msgid "&Equalizador"
+msgstr "&Ekolayzer"
+
+msgid "Removedor de &Ruído"
+msgstr "&Gürültü Giderici"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "Tüm &işlemleri göster"
+
+msgid "E&stéreo"
+msgstr "&Stereo"
+

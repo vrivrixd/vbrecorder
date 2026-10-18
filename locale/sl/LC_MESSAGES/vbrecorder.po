@@ -447,3 +447,148 @@ msgid ""
 msgstr ""
 "Posodobitve ni bilo mogoče namestiti:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Akustično"
+
+msgid "Intensidade:"
+msgstr "Intenzivnost:"
+
+msgid "Plano"
+msgstr "Ravno"
+
+msgid "Reforço de Graves"
+msgstr "Okrepitev nizkih tonov"
+
+msgid "Redução de Graves"
+msgstr "Zmanjšanje nizkih tonov"
+
+msgid "Reforço de Agudos"
+msgstr "Okrepitev visokih tonov"
+
+msgid "Redução de Agudos"
+msgstr "Zmanjšanje visokih tonov"
+
+msgid "Reforço de Voz"
+msgstr "Okrepitev glasu"
+
+msgid "Locução e Podcast"
+msgstr "Govor in podkast"
+
+msgid "Remover Ronco"
+msgstr "Odstrani brnenje"
+
+msgid "Telefone"
+msgstr "Telefon"
+
+msgid "Rádio AM"
+msgstr "AM radio"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Majhni zvočniki"
+
+msgid "Fones de Ouvido"
+msgstr "Slušalke"
+
+msgid "Clássica"
+msgstr "Klasična"
+
+msgid "Clube"
+msgstr "Klub"
+
+msgid "Dance"
+msgstr "Dance"
+
+msgid "Grave Profundo"
+msgstr "Globok bas"
+
+msgid "Eletrônica"
+msgstr "Elektronska"
+
+msgid "Graves no Máximo"
+msgstr "Polni nizki toni"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Polni nizki in visoki toni"
+
+msgid "Agudos no Máximo"
+msgstr "Polni visoki toni"
+
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "Salão Grande"
+msgstr "Velika dvorana"
+
+msgid "Latina"
+msgstr "Latino"
+
+msgid "Ao Vivo"
+msgstr "V živo"
+
+msgid "Lounge"
+msgstr "Lounge"
+
+msgid "Festa"
+msgstr "Zabava"
+
+msgid "Piano"
+msgstr "Klavir"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Reggae"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Ska"
+msgstr "Ska"
+
+msgid "Suave"
+msgstr "Mehko"
+
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+msgid "Techno"
+msgstr "Techno"
+
+msgid "&Predefinição:"
+msgstr "P&rednastavitev:"
+
+msgid "Personalizado"
+msgstr "Po meri"
+
+msgid "Equalizador"
+msgstr "Izenačevalnik"
+
+msgid "Pré-amplificação:"
+msgstr "Predojačanje:"
+
+msgid "Removedor de Ruído"
+msgstr "Odstranjevalnik šuma"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "Vklopi &odstranjevalnik šuma"
+
+msgid "&Equalizador"
+msgstr "&Izenačevalnik"
+
+msgid "Removedor de &Ruído"
+msgstr "O&dstranjevalnik šuma"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "Po&kaži vse procese"
+
+msgid "E&stéreo"
+msgstr "S&tereo"
+

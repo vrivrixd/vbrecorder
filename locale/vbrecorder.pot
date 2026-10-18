@@ -409,3 +409,148 @@ msgid ""
 "Não foi possível instalar a atualização:\n"
 "{erro}"
 msgstr ""
+
+msgid "Acústico"
+msgstr ""
+
+msgid "Intensidade:"
+msgstr ""
+
+msgid "Plano"
+msgstr ""
+
+msgid "Reforço de Graves"
+msgstr ""
+
+msgid "Redução de Graves"
+msgstr ""
+
+msgid "Reforço de Agudos"
+msgstr ""
+
+msgid "Redução de Agudos"
+msgstr ""
+
+msgid "Reforço de Voz"
+msgstr ""
+
+msgid "Locução e Podcast"
+msgstr ""
+
+msgid "Remover Ronco"
+msgstr ""
+
+msgid "Telefone"
+msgstr ""
+
+msgid "Rádio AM"
+msgstr ""
+
+msgid "Alto-falantes Pequenos"
+msgstr ""
+
+msgid "Fones de Ouvido"
+msgstr ""
+
+msgid "Clássica"
+msgstr ""
+
+msgid "Clube"
+msgstr ""
+
+msgid "Dance"
+msgstr ""
+
+msgid "Grave Profundo"
+msgstr ""
+
+msgid "Eletrônica"
+msgstr ""
+
+msgid "Graves no Máximo"
+msgstr ""
+
+msgid "Graves e Agudos no Máximo"
+msgstr ""
+
+msgid "Agudos no Máximo"
+msgstr ""
+
+msgid "Hip-Hop"
+msgstr ""
+
+msgid "Jazz"
+msgstr ""
+
+msgid "Salão Grande"
+msgstr ""
+
+msgid "Latina"
+msgstr ""
+
+msgid "Ao Vivo"
+msgstr ""
+
+msgid "Lounge"
+msgstr ""
+
+msgid "Festa"
+msgstr ""
+
+msgid "Piano"
+msgstr ""
+
+msgid "Pop"
+msgstr ""
+
+msgid "R&B"
+msgstr ""
+
+msgid "Reggae"
+msgstr ""
+
+msgid "Rock"
+msgstr ""
+
+msgid "Ska"
+msgstr ""
+
+msgid "Suave"
+msgstr ""
+
+msgid "Soft Rock"
+msgstr ""
+
+msgid "Techno"
+msgstr ""
+
+msgid "&Predefinição:"
+msgstr ""
+
+msgid "Personalizado"
+msgstr ""
+
+msgid "Equalizador"
+msgstr ""
+
+msgid "Pré-amplificação:"
+msgstr ""
+
+msgid "Removedor de Ruído"
+msgstr ""
+
+msgid "&Ativar Removedor de Ruído"
+msgstr ""
+
+msgid "&Equalizador"
+msgstr ""
+
+msgid "Removedor de &Ruído"
+msgstr ""
+
+msgid "&Mostrar Todos os Processos"
+msgstr ""
+
+msgid "E&stéreo"
+msgstr ""
+

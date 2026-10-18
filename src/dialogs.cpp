@@ -25,6 +25,7 @@
 #include <cwchar>
 #include <set>
 
+#include "fx_dialogs.h"
 #include "hotkeys.h"
 #include "i18n.h"
 #include "process_audio.h"
@@ -76,6 +77,11 @@ const DWORD BUTTON = WS_TABSTOP | BS_PUSHBUTTON;
 const DWORD CHECK = WS_TABSTOP | BS_AUTOCHECKBOX;
 const DWORD COMBO = WS_TABSTOP | WS_VSCROLL | CBS_DROPDOWNLIST;
 const DWORD EDIT = WS_TABSTOP | ES_AUTOHSCROLL;
+
+/* The volume slider: 50 is 0 dB, from -30 dB (0) to +30 dB (100).
+   The screen reader says the position. */
+const double VOLUME_DB = 30.0;
+const double VOLUME_STEP = VOLUME_DB / 50;
 
 }  // namespace
 
@@ -326,6 +332,10 @@ enum {
     IDC_AS_EXE,
     IDC_AS_EXE_NAME,
     IDC_AS_REFRESH,
+    IDC_AS_ALL_PROCESSES,
+    IDC_AS_STEREO,
+    IDC_AS_EQ,
+    IDC_AS_NOISE,
 };
 
 AddSourceDialog::AddSourceDialog(AudioEngine& audio, const std::vector<Source>& existing,
@@ -336,7 +346,10 @@ AddSourceDialog::AddSourceDialog(AudioEngine& audio, const std::vector<Source>& 
       existing_(existing),
       editing_(edit_source != nullptr),
       output_format_(output_format) {
-    if (edit_source) edit_source_ = *edit_source;
+    if (edit_source) {
+        edit_source_ = *edit_source;
+        fx_ = edit_source->fx;
+    }
 }
 
 void AddSourceDialog::OnInit() {
@@ -369,15 +382,23 @@ void AddSourceDialog::OnInit() {
     cmb_ = Add(WC_COMBOBOXW, L"", COMBO, IDC_AS_SOURCE);
     vbox->Add(lbl_src_, 0, ui::LEFT | ui::RIGHT, S(10));
     vbox->Add(cmb_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
-    // Reads the processes again, for programs opened after the dialog.
-    btn_refresh_ = Add(WC_BUTTONW, tr("&Atualizar"), BUTTON, IDC_AS_REFRESH);
-    vbox->Add(btn_refresh_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
     // An executable is typed by name: it does not need to be running.
     lbl_exe_ = ui::Create(hwnd_, WC_STATICW, tr("Nome do Executável:"), 0, 0);
     txt_exe_ = ui::Create(hwnd_, WC_EDITW, L"", WS_TABSTOP | ES_AUTOHSCROLL, IDC_AS_EXE_NAME,
                           WS_EX_CLIENTEDGE);
     vbox->Add(lbl_exe_, 0, ui::LEFT | ui::RIGHT, S(10));
     vbox->Add(txt_exe_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    // Unchecked, this source is recorded in mono, whatever the recording is.
+    chk_stereo_ = Add(WC_BUTTONW, tr("E&stéreo"), CHECK, IDC_AS_STEREO);
+    Button_SetCheck(chk_stereo_, fx_.stereo ? BST_CHECKED : BST_UNCHECKED);
+    vbox->Add(chk_stereo_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    // Also the processes not playing sound right now, which a program that
+    // only plays now and then needs.
+    chk_all_ = Add(WC_BUTTONW, tr("&Mostrar Todos os Processos"), CHECK, IDC_AS_ALL_PROCESSES);
+    vbox->Add(chk_all_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    // Reads the processes again, for programs opened after the dialog.
+    btn_refresh_ = Add(WC_BUTTONW, tr("&Atualizar"), BUTTON, IDC_AS_REFRESH);
+    vbox->Add(btn_refresh_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     auto vol_box = HBox();
     HWND lbl_vol = Add(WC_STATICW, tr("Volume:"), 0);
@@ -392,9 +413,17 @@ void AddSourceDialog::OnInit() {
     vol_box->Add(lbl_db_, 0, ui::CENTER_V, 0, SIZE{S(70), 0});
     vbox->Add(std::move(vol_box), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
 
+    btn_eq_ = Add(WC_BUTTONW, tr("&Equalizador"), BUTTON, IDC_AS_EQ);
+    // Only audio devices: a program's sound is already clean.
+    btn_noise_ = Add(WC_BUTTONW, tr("Removedor de &Ruído"), BUTTON, IDC_AS_NOISE);
+    // Last: it plays what the controls above set.
     btn_test_ = Add(WC_BUTTONW, tr("&Testar"), BUTTON, IDC_AS_TEST);
     ui::SetToolTip(hwnd_, btn_test_, tr("Ouvir o dispositivo selecionado com o volume ajustado"));
-    vbox->Add(btn_test_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    auto tools = HBox();
+    tools->Add(btn_eq_, 0, ui::RIGHT, S(5));
+    tools->Add(btn_noise_, 0, ui::RIGHT, S(5));
+    tools->Add(btn_test_, 0, 0, 0);
+    vbox->Add(std::move(tools), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     if (!available) {
         note_ = Add(WC_STATICW,
@@ -433,8 +462,8 @@ void AddSourceDialog::OnInit() {
             }
         }
         double vol = edit_source_.volume;
-        double db = vol > 0 ? 20 * std::log10(vol) : -20.0;
-        int slider_val = std::min(100, std::max(0, (int)std::nearbyint(db / 0.4 + 50)));
+        double db = vol > 0 ? 20 * std::log10(vol) : -VOLUME_DB;
+        int slider_val = std::min(100, std::max(0, (int)std::nearbyint(db / VOLUME_STEP + 50)));
         SendMessageW(sld_, TBM_SETPOS, TRUE, slider_val);
     }
     UpdateDbLabel();
@@ -443,7 +472,8 @@ void AddSourceDialog::OnInit() {
 
 bool AddSourceDialog::OnCharHook(const MSG& msg) {
     HWND focus = GetFocus();
-    if (IsEnter(msg) && focus != btn_test_ && focus != btn_refresh_ && focus != btn_cancel_) {
+    if (IsEnter(msg) && focus != btn_test_ && focus != btn_refresh_ && focus != btn_eq_ &&
+        focus != btn_noise_ && focus != btn_cancel_) {
         OnOk();
         return true;
     }
@@ -487,7 +517,20 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
             if (code == BN_CLICKED) OnTest();
             return true;
         case IDC_AS_REFRESH:
+        case IDC_AS_ALL_PROCESSES:
             if (code == BN_CLICKED) OnRefresh();
+            return true;
+        case IDC_AS_STEREO:
+            if (code == BN_CLICKED) {
+                fx_.stereo = Button_GetCheck(chk_stereo_) == BST_CHECKED;
+                Preview(fx_);
+            }
+            return true;
+        case IDC_AS_EQ:
+            if (code == BN_CLICKED) OnEqualizer();
+            return true;
+        case IDC_AS_NOISE:
+            if (code == BN_CLICKED) OnNoise();
             return true;
         case IDOK:
             OnOk();
@@ -512,7 +555,9 @@ void AddSourceDialog::PopulateFilter(int sel) {
     bool exe = sel == 2;
     ui::Show(lbl_src_, !exe);
     ui::Show(cmb_, !exe);
+    ui::Show(chk_all_, sel == 1);
     ui::Show(btn_refresh_, sel == 1);
+    ui::Show(btn_noise_, sel == 0);
     ui::Show(lbl_exe_, exe);
     ui::Show(txt_exe_, exe);
     Relayout();
@@ -537,7 +582,8 @@ std::set<std::pair<std::wstring, int>> AddSourceDialog::ExistingIds() const {
 void AddSourceDialog::LoadProcesses() {
     std::set<std::pair<std::wstring, int>> existing_ids = ExistingIds();
     process_items_.clear();
-    for (auto& p : GetAudioSessions())
+    bool all = chk_all_ && Button_GetCheck(chk_all_) == BST_CHECKED;  // none yet in OnInit
+    for (auto& p : all ? GetAllProcesses() : GetAudioSessions())
         if (!existing_ids.count({L"process", (int)p.first}))
             process_items_.emplace_back(L"process", (int)p.first,
                                         p.second + L"  (PID " + std::to_wstring(p.first) + L")");
@@ -578,7 +624,7 @@ void AddSourceDialog::OnTest() {
     if (dev_idx < 0) return;
     std::pair<int, int> fmt = output_format_ ? output_format_() : std::make_pair(44100, 2);
     int err = 0;
-    if (!audio_.StartMonitor(dev_idx, Volume(), fmt.first, fmt.second, &err)) {
+    if (!audio_.StartMonitor(dev_idx, Volume(), fmt.first, fmt.second, fx_, &err)) {
         ui::MsgBox(hwnd_,
                        Format(tr("Não foi possível testar este dispositivo (erro BASS {erro})."),
                               {{L"erro", std::to_wstring(err)}}),
@@ -587,6 +633,24 @@ void AddSourceDialog::OnTest() {
     }
     testing_ = true;
     ui::SetText(btn_test_, tr("&Parar"));
+}
+
+/* The test follows the dialogs of the equalizer and noise remover while they
+   are open, and the stereo check box. */
+void AddSourceDialog::Preview(const FxSettings& fx) {
+    if (testing_) audio_.SetMonitorFx(fx);
+}
+
+void AddSourceDialog::OnEqualizer() {
+    EqualizerDialog dlg(fx_, [this](const FxSettings& fx) { Preview(fx); });
+    if (dlg.ShowModal(hwnd_) == IDOK) fx_ = dlg.result;
+    Preview(fx_);
+}
+
+void AddSourceDialog::OnNoise() {
+    NoiseDialog dlg(fx_, [this](const FxSettings& fx) { Preview(fx); });
+    if (dlg.ShowModal(hwnd_) == IDOK) fx_ = dlg.result;
+    Preview(fx_);
 }
 
 void AddSourceDialog::StopTest() {
@@ -598,12 +662,12 @@ void AddSourceDialog::StopTest() {
 
 double AddSourceDialog::Volume() const {
     int pos = (int)SendMessageW(sld_, TBM_GETPOS, 0, 0);
-    return std::pow(10.0, ((pos - 50) * 0.4) / 20.0);
+    return std::pow(10.0, ((pos - 50) * VOLUME_STEP) / 20.0);
 }
 
 void AddSourceDialog::UpdateDbLabel() {
     int pos = (int)SendMessageW(sld_, TBM_GETPOS, 0, 0);
-    double db = (pos - 50) * 0.4;
+    double db = (pos - 50) * VOLUME_STEP;
     wchar_t text[32];
     swprintf(text, 32, L"  %+.1f dB", db);
     ui::SetText(lbl_db_, text);
@@ -648,6 +712,8 @@ void AddSourceDialog::OnOk() {
         selected.id = 0;
         selected.name = name;
         selected.volume = Volume();
+        selected.fx = fx_;
+        selected.fx.noise.on = false;  // only for audio devices
         has_selected = true;
         EndModal(IDOK);
         return;
@@ -662,6 +728,8 @@ void AddSourceDialog::OnOk() {
     selected.id = std::get<1>(item);
     selected.name = std::get<2>(item);
     selected.volume = Volume();
+    selected.fx = fx_;
+    if (selected.type != L"device") selected.fx.noise.on = false;
     has_selected = true;
     EndModal(IDOK);
 }

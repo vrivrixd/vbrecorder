@@ -429,3 +429,148 @@ msgid ""
 msgstr ""
 "无法安装更新：\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "原声乐器"
+
+msgid "Intensidade:"
+msgstr "强度:"
+
+msgid "Plano"
+msgstr "平直"
+
+msgid "Reforço de Graves"
+msgstr "增强低音"
+
+msgid "Redução de Graves"
+msgstr "减弱低音"
+
+msgid "Reforço de Agudos"
+msgstr "增强高音"
+
+msgid "Redução de Agudos"
+msgstr "减弱高音"
+
+msgid "Reforço de Voz"
+msgstr "增强人声"
+
+msgid "Locução e Podcast"
+msgstr "语音和播客"
+
+msgid "Remover Ronco"
+msgstr "去除低频隆隆声"
+
+msgid "Telefone"
+msgstr "电话"
+
+msgid "Rádio AM"
+msgstr "调幅广播"
+
+msgid "Alto-falantes Pequenos"
+msgstr "小型扬声器"
+
+msgid "Fones de Ouvido"
+msgstr "耳机"
+
+msgid "Clássica"
+msgstr "古典"
+
+msgid "Clube"
+msgstr "俱乐部"
+
+msgid "Dance"
+msgstr "舞曲"
+
+msgid "Grave Profundo"
+msgstr "深沉低音"
+
+msgid "Eletrônica"
+msgstr "电子"
+
+msgid "Graves no Máximo"
+msgstr "最强低音"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "最强低音和高音"
+
+msgid "Agudos no Máximo"
+msgstr "最强高音"
+
+msgid "Hip-Hop"
+msgstr "嘻哈"
+
+msgid "Jazz"
+msgstr "爵士"
+
+msgid "Salão Grande"
+msgstr "大厅"
+
+msgid "Latina"
+msgstr "拉丁"
+
+msgid "Ao Vivo"
+msgstr "现场"
+
+msgid "Lounge"
+msgstr "沙发音乐"
+
+msgid "Festa"
+msgstr "派对"
+
+msgid "Piano"
+msgstr "钢琴"
+
+msgid "Pop"
+msgstr "流行"
+
+msgid "R&B"
+msgstr "节奏布鲁斯"
+
+msgid "Reggae"
+msgstr "雷鬼"
+
+msgid "Rock"
+msgstr "摇滚"
+
+msgid "Ska"
+msgstr "斯卡"
+
+msgid "Suave"
+msgstr "柔和"
+
+msgid "Soft Rock"
+msgstr "软摇滚"
+
+msgid "Techno"
+msgstr "电子舞曲"
+
+msgid "&Predefinição:"
+msgstr "预设(&P):"
+
+msgid "Personalizado"
+msgstr "自定义"
+
+msgid "Equalizador"
+msgstr "均衡器"
+
+msgid "Pré-amplificação:"
+msgstr "前置放大:"
+
+msgid "Removedor de Ruído"
+msgstr "降噪"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "启用降噪(&A)"
+
+msgid "&Equalizador"
+msgstr "均衡器(&Q)"
+
+msgid "Removedor de &Ruído"
+msgstr "降噪(&N)"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "显示所有进程(&M)"
+
+msgid "E&stéreo"
+msgstr "立体声(&H)"
+

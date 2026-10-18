@@ -438,3 +438,148 @@ msgid ""
 msgstr ""
 "Could not install the update:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Acoustic"
+
+msgid "Intensidade:"
+msgstr "Intensity:"
+
+msgid "Plano"
+msgstr "Flat"
+
+msgid "Reforço de Graves"
+msgstr "Bass Boost"
+
+msgid "Redução de Graves"
+msgstr "Bass Cut"
+
+msgid "Reforço de Agudos"
+msgstr "Treble Boost"
+
+msgid "Redução de Agudos"
+msgstr "Treble Cut"
+
+msgid "Reforço de Voz"
+msgstr "Vocal Boost"
+
+msgid "Locução e Podcast"
+msgstr "Speech and Podcast"
+
+msgid "Remover Ronco"
+msgstr "Remove Rumble"
+
+msgid "Telefone"
+msgstr "Telephone"
+
+msgid "Rádio AM"
+msgstr "AM Radio"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Small Speakers"
+
+msgid "Fones de Ouvido"
+msgstr "Headphones"
+
+msgid "Clássica"
+msgstr "Classical"
+
+msgid "Clube"
+msgstr "Club"
+
+msgid "Dance"
+msgstr "Dance"
+
+msgid "Grave Profundo"
+msgstr "Deep Bass"
+
+msgid "Eletrônica"
+msgstr "Electronic"
+
+msgid "Graves no Máximo"
+msgstr "Full Bass"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Full Bass and Treble"
+
+msgid "Agudos no Máximo"
+msgstr "Full Treble"
+
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "Salão Grande"
+msgstr "Large Hall"
+
+msgid "Latina"
+msgstr "Latin"
+
+msgid "Ao Vivo"
+msgstr "Live"
+
+msgid "Lounge"
+msgstr "Lounge"
+
+msgid "Festa"
+msgstr "Party"
+
+msgid "Piano"
+msgstr "Piano"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Reggae"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Ska"
+msgstr "Ska"
+
+msgid "Suave"
+msgstr "Soft"
+
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+msgid "Techno"
+msgstr "Techno"
+
+msgid "&Predefinição:"
+msgstr "&Preset:"
+
+msgid "Personalizado"
+msgstr "Custom"
+
+msgid "Equalizador"
+msgstr "Equalizer"
+
+msgid "Pré-amplificação:"
+msgstr "Preamp:"
+
+msgid "Removedor de Ruído"
+msgstr "Noise Remover"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "Enable Noise &Remover"
+
+msgid "&Equalizador"
+msgstr "&Equalizer"
+
+msgid "Removedor de &Ruído"
+msgstr "&Noise Remover"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "Show &All Processes"
+
+msgid "E&stéreo"
+msgstr "Stereo (&H)"
+

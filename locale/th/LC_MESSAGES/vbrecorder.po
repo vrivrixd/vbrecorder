@@ -433,3 +433,148 @@ msgid ""
 msgstr ""
 "ไม่สามารถติดตั้งการอัปเดตได้:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "อะคูสติก"
+
+msgid "Intensidade:"
+msgstr "ความเข้ม:"
+
+msgid "Plano"
+msgstr "ราบเรียบ"
+
+msgid "Reforço de Graves"
+msgstr "เพิ่มเสียงเบส"
+
+msgid "Redução de Graves"
+msgstr "ลดเสียงเบส"
+
+msgid "Reforço de Agudos"
+msgstr "เพิ่มเสียงแหลม"
+
+msgid "Redução de Agudos"
+msgstr "ลดเสียงแหลม"
+
+msgid "Reforço de Voz"
+msgstr "เพิ่มเสียงร้อง"
+
+msgid "Locução e Podcast"
+msgstr "เสียงพูดและพอดแคสต์"
+
+msgid "Remover Ronco"
+msgstr "ลบเสียงครางต่ำ"
+
+msgid "Telefone"
+msgstr "โทรศัพท์"
+
+msgid "Rádio AM"
+msgstr "วิทยุ AM"
+
+msgid "Alto-falantes Pequenos"
+msgstr "ลำโพงเล็ก"
+
+msgid "Fones de Ouvido"
+msgstr "หูฟัง"
+
+msgid "Clássica"
+msgstr "คลาสสิก"
+
+msgid "Clube"
+msgstr "คลับ"
+
+msgid "Dance"
+msgstr "แดนซ์"
+
+msgid "Grave Profundo"
+msgstr "เบสลึก"
+
+msgid "Eletrônica"
+msgstr "อิเล็กทรอนิกส์"
+
+msgid "Graves no Máximo"
+msgstr "เบสเต็มที่"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "เบสและแหลมเต็มที่"
+
+msgid "Agudos no Máximo"
+msgstr "แหลมเต็มที่"
+
+msgid "Hip-Hop"
+msgstr "ฮิปฮอป"
+
+msgid "Jazz"
+msgstr "แจ๊ส"
+
+msgid "Salão Grande"
+msgstr "ห้องโถงใหญ่"
+
+msgid "Latina"
+msgstr "ละติน"
+
+msgid "Ao Vivo"
+msgstr "แสดงสด"
+
+msgid "Lounge"
+msgstr "เลานจ์"
+
+msgid "Festa"
+msgstr "ปาร์ตี้"
+
+msgid "Piano"
+msgstr "เปียโน"
+
+msgid "Pop"
+msgstr "ป๊อป"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "เร็กเก้"
+
+msgid "Rock"
+msgstr "ร็อก"
+
+msgid "Ska"
+msgstr "สกา"
+
+msgid "Suave"
+msgstr "นุ่มนวล"
+
+msgid "Soft Rock"
+msgstr "ซอฟต์ร็อก"
+
+msgid "Techno"
+msgstr "เทคโน"
+
+msgid "&Predefinição:"
+msgstr "ค่าที่ตั้งไว้(&P):"
+
+msgid "Personalizado"
+msgstr "กำหนดเอง"
+
+msgid "Equalizador"
+msgstr "อีควอไลเซอร์"
+
+msgid "Pré-amplificação:"
+msgstr "พรีแอมป์:"
+
+msgid "Removedor de Ruído"
+msgstr "ตัวลบเสียงรบกวน"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "เปิดตัวลบเสียงรบกวน(&A)"
+
+msgid "&Equalizador"
+msgstr "อีควอไลเซอร์(&Q)"
+
+msgid "Removedor de &Ruído"
+msgstr "ตัวลบเสียงรบกวน(&N)"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "แสดงโปรเซสทั้งหมด(&M)"
+
+msgid "E&stéreo"
+msgstr "สเตอริโอ(&S)"
+

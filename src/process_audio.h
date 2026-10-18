@@ -31,6 +31,10 @@ bool ProcessLoopbackAvailable();
    The recorder itself never shows up. */
 std::vector<std::pair<DWORD, std::wstring>> GetAudioSessions();
 
+/* Every process of the user's session, playing sound or not, sorted by name:
+   (PID, name). Services are left out, and so is the recorder itself. */
+std::vector<std::pair<DWORD, std::wstring>> GetAllProcesses();
+
 /* Executable name of the process, or empty if it no longer exists. */
 std::wstring GetProcessName(DWORD pid);
 

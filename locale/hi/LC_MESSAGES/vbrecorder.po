@@ -440,3 +440,148 @@ msgid ""
 msgstr ""
 "अपडेट इंस्टॉल नहीं किया जा सका:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "ध्वनिक"
+
+msgid "Intensidade:"
+msgstr "तीव्रता:"
+
+msgid "Plano"
+msgstr "सपाट"
+
+msgid "Reforço de Graves"
+msgstr "बास बढ़ाएँ"
+
+msgid "Redução de Graves"
+msgstr "बास घटाएँ"
+
+msgid "Reforço de Agudos"
+msgstr "ट्रेबल बढ़ाएँ"
+
+msgid "Redução de Agudos"
+msgstr "ट्रेबल घटाएँ"
+
+msgid "Reforço de Voz"
+msgstr "आवाज़ बढ़ाएँ"
+
+msgid "Locução e Podcast"
+msgstr "भाषण और पॉडकास्ट"
+
+msgid "Remover Ronco"
+msgstr "गड़गड़ाहट हटाएँ"
+
+msgid "Telefone"
+msgstr "टेलीफ़ोन"
+
+msgid "Rádio AM"
+msgstr "एएम रेडियो"
+
+msgid "Alto-falantes Pequenos"
+msgstr "छोटे स्पीकर"
+
+msgid "Fones de Ouvido"
+msgstr "हेडफ़ोन"
+
+msgid "Clássica"
+msgstr "शास्त्रीय"
+
+msgid "Clube"
+msgstr "क्लब"
+
+msgid "Dance"
+msgstr "डांस"
+
+msgid "Grave Profundo"
+msgstr "गहरा बास"
+
+msgid "Eletrônica"
+msgstr "इलेक्ट्रॉनिक"
+
+msgid "Graves no Máximo"
+msgstr "पूरा बास"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "पूरा बास और ट्रेबल"
+
+msgid "Agudos no Máximo"
+msgstr "पूरा ट्रेबल"
+
+msgid "Hip-Hop"
+msgstr "हिप-हॉप"
+
+msgid "Jazz"
+msgstr "जैज़"
+
+msgid "Salão Grande"
+msgstr "बड़ा हॉल"
+
+msgid "Latina"
+msgstr "लैटिन"
+
+msgid "Ao Vivo"
+msgstr "लाइव"
+
+msgid "Lounge"
+msgstr "लाउंज"
+
+msgid "Festa"
+msgstr "पार्टी"
+
+msgid "Piano"
+msgstr "पियानो"
+
+msgid "Pop"
+msgstr "पॉप"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "रेगे"
+
+msgid "Rock"
+msgstr "रॉक"
+
+msgid "Ska"
+msgstr "स्का"
+
+msgid "Suave"
+msgstr "कोमल"
+
+msgid "Soft Rock"
+msgstr "सॉफ़्ट रॉक"
+
+msgid "Techno"
+msgstr "टेक्नो"
+
+msgid "&Predefinição:"
+msgstr "प्रीसेट(&P):"
+
+msgid "Personalizado"
+msgstr "कस्टम"
+
+msgid "Equalizador"
+msgstr "इक्वलाइज़र"
+
+msgid "Pré-amplificação:"
+msgstr "प्रीएम्प:"
+
+msgid "Removedor de Ruído"
+msgstr "शोर हटाने वाला"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "शोर हटाना चालू करें(&A)"
+
+msgid "&Equalizador"
+msgstr "इक्वलाइज़र(&Q)"
+
+msgid "Removedor de &Ruído"
+msgstr "शोर हटाने वाला(&N)"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "सभी प्रोसेस दिखाएँ(&M)"
+
+msgid "E&stéreo"
+msgstr "स्टीरियो(&S)"
+

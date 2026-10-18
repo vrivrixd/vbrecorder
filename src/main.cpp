@@ -670,8 +670,9 @@ void MainFrame::OnEditSource() {
         if (now.type == L"device") audio.InitDevice(now.id);
         if (audio.is_recording()) {
             if (SameSource(now, src)) {
-                // Same source: only the volume changes, right away.
+                // Same source: the volume, equalizer and noise remover change right away.
                 audio.SetSourceVolume(now, now.volume);
+                audio.SetSourceFx(now);
             } else {
                 if (!AddToRecording(now)) return;
                 audio.RemoveLiveSource(src);
@@ -874,24 +875,25 @@ void MainFrame::LoadSettings() {
         if (entry.type == L"device") {
             for (auto& d : all_devices) {
                 if (d.first != entry.id) continue;
-                sources_.push_back(Source{L"device", entry.id, d.second, entry.volume});
+                sources_.push_back(Source{L"device", entry.id, d.second, entry.volume, entry.fx});
                 audio.InitDevice(entry.id);
                 break;
             }
         } else if (entry.type == L"exe") {
             // Kept even with the program closed: it is recorded whenever it runs.
-            sources_.push_back(Source{L"exe", 0, entry.exe, entry.volume});
+            sources_.push_back(Source{L"exe", 0, entry.exe, entry.volume, entry.fx});
         } else {
             std::wstring resolved = GetProcessName((DWORD)entry.id);
             if (!resolved.empty()) {
                 sources_.push_back(Source{L"process", entry.id,
                                           resolved + L"  (PID " + std::to_wstring(entry.id) + L")",
-                                          entry.volume});
+                                          entry.volume, entry.fx});
             }
         }
     }
     if (sources_.empty() && !all_devices.empty()) {
-        sources_.push_back(Source{L"device", all_devices[0].first, all_devices[0].second, 1.0});
+        sources_.push_back(
+            Source{L"device", all_devices[0].first, all_devices[0].second, 1.0, FxSettings()});
         audio.InitDevice(all_devices[0].first);
     }
     RefreshList();

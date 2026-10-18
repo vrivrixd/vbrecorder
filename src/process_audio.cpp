@@ -22,6 +22,7 @@
 #include <mmreg.h>
 #include <tlhelp32.h>
 
+#include <algorithm>
 #include <map>
 #include <set>
 
@@ -143,6 +144,28 @@ std::wstring GetProcessName(DWORD pid) {
     if (QueryFullProcessImageNameW(h, 0, buf, &size)) name = BaseName(std::wstring(buf, size));
     CloseHandle(h);
     return name;
+}
+
+std::vector<std::pair<DWORD, std::wstring>> GetAllProcesses() {
+    std::vector<std::pair<DWORD, std::wstring>> result;
+    HANDLE snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (snap == INVALID_HANDLE_VALUE) return result;
+    DWORD self = GetCurrentProcessId(), session = 0;
+    ProcessIdToSessionId(self, &session);
+    PROCESSENTRY32W pe = {sizeof(pe)};
+    for (BOOL ok = Process32FirstW(snap, &pe); ok; ok = Process32NextW(snap, &pe)) {
+        DWORD s = 0;
+        if (pe.th32ProcessID == self || !ProcessIdToSessionId(pe.th32ProcessID, &s) ||
+            s != session)
+            continue;
+        result.emplace_back(pe.th32ProcessID, pe.szExeFile);
+    }
+    CloseHandle(snap);
+    std::sort(result.begin(), result.end(), [](const auto& a, const auto& b) {
+        int c = _wcsicmp(a.second.c_str(), b.second.c_str());
+        return c != 0 ? c < 0 : a.first < b.first;
+    });
+    return result;
 }
 
 std::vector<DWORD> FindMainProcesses(const std::wstring& exe_name) {

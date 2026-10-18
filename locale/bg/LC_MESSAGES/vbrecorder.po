@@ -440,3 +440,148 @@ msgid ""
 msgstr ""
 "Актуализацията не може да бъде инсталирана:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Акустичен"
+
+msgid "Intensidade:"
+msgstr "Интензивност:"
+
+msgid "Plano"
+msgstr "Равен"
+
+msgid "Reforço de Graves"
+msgstr "Усилване на басите"
+
+msgid "Redução de Graves"
+msgstr "Намаляване на басите"
+
+msgid "Reforço de Agudos"
+msgstr "Усилване на високите"
+
+msgid "Redução de Agudos"
+msgstr "Намаляване на високите"
+
+msgid "Reforço de Voz"
+msgstr "Усилване на гласа"
+
+msgid "Locução e Podcast"
+msgstr "Говор и подкаст"
+
+msgid "Remover Ronco"
+msgstr "Премахване на бучене"
+
+msgid "Telefone"
+msgstr "Телефон"
+
+msgid "Rádio AM"
+msgstr "AM радио"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Малки високоговорители"
+
+msgid "Fones de Ouvido"
+msgstr "Слушалки"
+
+msgid "Clássica"
+msgstr "Класическа"
+
+msgid "Clube"
+msgstr "Клуб"
+
+msgid "Dance"
+msgstr "Денс"
+
+msgid "Grave Profundo"
+msgstr "Дълбок бас"
+
+msgid "Eletrônica"
+msgstr "Електронна"
+
+msgid "Graves no Máximo"
+msgstr "Пълни баси"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Пълни баси и високи"
+
+msgid "Agudos no Máximo"
+msgstr "Пълни високи"
+
+msgid "Hip-Hop"
+msgstr "Хип-хоп"
+
+msgid "Jazz"
+msgstr "Джаз"
+
+msgid "Salão Grande"
+msgstr "Голяма зала"
+
+msgid "Latina"
+msgstr "Латино"
+
+msgid "Ao Vivo"
+msgstr "На живо"
+
+msgid "Lounge"
+msgstr "Лаундж"
+
+msgid "Festa"
+msgstr "Парти"
+
+msgid "Piano"
+msgstr "Пиано"
+
+msgid "Pop"
+msgstr "Поп"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Реге"
+
+msgid "Rock"
+msgstr "Рок"
+
+msgid "Ska"
+msgstr "Ска"
+
+msgid "Suave"
+msgstr "Мек"
+
+msgid "Soft Rock"
+msgstr "Софт рок"
+
+msgid "Techno"
+msgstr "Техно"
+
+msgid "&Predefinição:"
+msgstr "&Предварителна настройка:"
+
+msgid "Personalizado"
+msgstr "Персонализирана"
+
+msgid "Equalizador"
+msgstr "Еквалайзер"
+
+msgid "Pré-amplificação:"
+msgstr "Предусилване:"
+
+msgid "Removedor de Ruído"
+msgstr "Премахване на шума"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "&Включване на премахването на шума"
+
+msgid "&Equalizador"
+msgstr "&Еквалайзер"
+
+msgid "Removedor de &Ruído"
+msgstr "Премахване &на шума"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "Показване на &всички процеси"
+
+msgid "E&stéreo"
+msgstr "Сте&рео"
+

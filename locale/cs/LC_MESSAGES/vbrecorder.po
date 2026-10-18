@@ -441,3 +441,148 @@ msgid ""
 msgstr ""
 "Aktualizaci nelze nainstalovat:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Akustický"
+
+msgid "Intensidade:"
+msgstr "Intenzita:"
+
+msgid "Plano"
+msgstr "Rovný"
+
+msgid "Reforço de Graves"
+msgstr "Zesílení basů"
+
+msgid "Redução de Graves"
+msgstr "Potlačení basů"
+
+msgid "Reforço de Agudos"
+msgstr "Zesílení výšek"
+
+msgid "Redução de Agudos"
+msgstr "Potlačení výšek"
+
+msgid "Reforço de Voz"
+msgstr "Zesílení hlasu"
+
+msgid "Locução e Podcast"
+msgstr "Řeč a podcast"
+
+msgid "Remover Ronco"
+msgstr "Odstranit hučení"
+
+msgid "Telefone"
+msgstr "Telefon"
+
+msgid "Rádio AM"
+msgstr "AM rádio"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Malé reproduktory"
+
+msgid "Fones de Ouvido"
+msgstr "Sluchátka"
+
+msgid "Clássica"
+msgstr "Klasická"
+
+msgid "Clube"
+msgstr "Klub"
+
+msgid "Dance"
+msgstr "Dance"
+
+msgid "Grave Profundo"
+msgstr "Hluboký bas"
+
+msgid "Eletrônica"
+msgstr "Elektronická"
+
+msgid "Graves no Máximo"
+msgstr "Plné basy"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Plné basy a výšky"
+
+msgid "Agudos no Máximo"
+msgstr "Plné výšky"
+
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "Salão Grande"
+msgstr "Velký sál"
+
+msgid "Latina"
+msgstr "Latinská"
+
+msgid "Ao Vivo"
+msgstr "Živě"
+
+msgid "Lounge"
+msgstr "Lounge"
+
+msgid "Festa"
+msgstr "Večírek"
+
+msgid "Piano"
+msgstr "Klavír"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Reggae"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Ska"
+msgstr "Ska"
+
+msgid "Suave"
+msgstr "Jemný"
+
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+msgid "Techno"
+msgstr "Techno"
+
+msgid "&Predefinição:"
+msgstr "&Předvolba:"
+
+msgid "Personalizado"
+msgstr "Vlastní"
+
+msgid "Equalizador"
+msgstr "Ekvalizér"
+
+msgid "Pré-amplificação:"
+msgstr "Předzesílení:"
+
+msgid "Removedor de Ruído"
+msgstr "Odstranění šumu"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "Z&apnout odstranění šumu"
+
+msgid "&Equalizador"
+msgstr "&Ekvalizér"
+
+msgid "Removedor de &Ruído"
+msgstr "O&dstranění šumu"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "Zobrazit &všechny procesy"
+
+msgid "E&stéreo"
+msgstr "&Stereo"
+

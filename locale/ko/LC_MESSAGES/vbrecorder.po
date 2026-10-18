@@ -430,3 +430,148 @@ msgid ""
 msgstr ""
 "업데이트를 설치할 수 없습니다:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "어쿠스틱"
+
+msgid "Intensidade:"
+msgstr "강도:"
+
+msgid "Plano"
+msgstr "평탄"
+
+msgid "Reforço de Graves"
+msgstr "저음 강화"
+
+msgid "Redução de Graves"
+msgstr "저음 감소"
+
+msgid "Reforço de Agudos"
+msgstr "고음 강화"
+
+msgid "Redução de Agudos"
+msgstr "고음 감소"
+
+msgid "Reforço de Voz"
+msgstr "보컬 강화"
+
+msgid "Locução e Podcast"
+msgstr "음성 및 팟캐스트"
+
+msgid "Remover Ronco"
+msgstr "저음 웅웅거림 제거"
+
+msgid "Telefone"
+msgstr "전화"
+
+msgid "Rádio AM"
+msgstr "AM 라디오"
+
+msgid "Alto-falantes Pequenos"
+msgstr "소형 스피커"
+
+msgid "Fones de Ouvido"
+msgstr "헤드폰"
+
+msgid "Clássica"
+msgstr "클래식"
+
+msgid "Clube"
+msgstr "클럽"
+
+msgid "Dance"
+msgstr "댄스"
+
+msgid "Grave Profundo"
+msgstr "깊은 저음"
+
+msgid "Eletrônica"
+msgstr "일렉트로닉"
+
+msgid "Graves no Máximo"
+msgstr "최대 저음"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "최대 저음과 고음"
+
+msgid "Agudos no Máximo"
+msgstr "최대 고음"
+
+msgid "Hip-Hop"
+msgstr "힙합"
+
+msgid "Jazz"
+msgstr "재즈"
+
+msgid "Salão Grande"
+msgstr "큰 홀"
+
+msgid "Latina"
+msgstr "라틴"
+
+msgid "Ao Vivo"
+msgstr "라이브"
+
+msgid "Lounge"
+msgstr "라운지"
+
+msgid "Festa"
+msgstr "파티"
+
+msgid "Piano"
+msgstr "피아노"
+
+msgid "Pop"
+msgstr "팝"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "레게"
+
+msgid "Rock"
+msgstr "록"
+
+msgid "Ska"
+msgstr "스카"
+
+msgid "Suave"
+msgstr "부드럽게"
+
+msgid "Soft Rock"
+msgstr "소프트 록"
+
+msgid "Techno"
+msgstr "테크노"
+
+msgid "&Predefinição:"
+msgstr "프리셋(&P):"
+
+msgid "Personalizado"
+msgstr "사용자 지정"
+
+msgid "Equalizador"
+msgstr "이퀄라이저"
+
+msgid "Pré-amplificação:"
+msgstr "프리앰프:"
+
+msgid "Removedor de Ruído"
+msgstr "노이즈 제거"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "노이즈 제거 사용(&A)"
+
+msgid "&Equalizador"
+msgstr "이퀄라이저(&Q)"
+
+msgid "Removedor de &Ruído"
+msgstr "노이즈 제거(&N)"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "모든 프로세스 표시(&M)"
+
+msgid "E&stéreo"
+msgstr "스테레오(&S)"
+

@@ -440,3 +440,148 @@ msgid ""
 msgstr ""
 "Impossible d'installer la mise à jour :\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "Acoustique"
+
+msgid "Intensidade:"
+msgstr "Intensité :"
+
+msgid "Plano"
+msgstr "Plat"
+
+msgid "Reforço de Graves"
+msgstr "Renfort des basses"
+
+msgid "Redução de Graves"
+msgstr "Atténuation des basses"
+
+msgid "Reforço de Agudos"
+msgstr "Renfort des aigus"
+
+msgid "Redução de Agudos"
+msgstr "Atténuation des aigus"
+
+msgid "Reforço de Voz"
+msgstr "Renfort de la voix"
+
+msgid "Locução e Podcast"
+msgstr "Voix et podcast"
+
+msgid "Remover Ronco"
+msgstr "Supprimer le grondement"
+
+msgid "Telefone"
+msgstr "Téléphone"
+
+msgid "Rádio AM"
+msgstr "Radio AM"
+
+msgid "Alto-falantes Pequenos"
+msgstr "Petits haut-parleurs"
+
+msgid "Fones de Ouvido"
+msgstr "Casque"
+
+msgid "Clássica"
+msgstr "Classique"
+
+msgid "Clube"
+msgstr "Club"
+
+msgid "Dance"
+msgstr "Dance"
+
+msgid "Grave Profundo"
+msgstr "Basses profondes"
+
+msgid "Eletrônica"
+msgstr "Électronique"
+
+msgid "Graves no Máximo"
+msgstr "Basses à fond"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "Basses et aigus à fond"
+
+msgid "Agudos no Máximo"
+msgstr "Aigus à fond"
+
+msgid "Hip-Hop"
+msgstr "Hip-Hop"
+
+msgid "Jazz"
+msgstr "Jazz"
+
+msgid "Salão Grande"
+msgstr "Grande salle"
+
+msgid "Latina"
+msgstr "Latine"
+
+msgid "Ao Vivo"
+msgstr "En direct"
+
+msgid "Lounge"
+msgstr "Lounge"
+
+msgid "Festa"
+msgstr "Fête"
+
+msgid "Piano"
+msgstr "Piano"
+
+msgid "Pop"
+msgstr "Pop"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "Reggae"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Ska"
+msgstr "Ska"
+
+msgid "Suave"
+msgstr "Doux"
+
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+msgid "Techno"
+msgstr "Techno"
+
+msgid "&Predefinição:"
+msgstr "&Préréglage :"
+
+msgid "Personalizado"
+msgstr "Personnalisé"
+
+msgid "Equalizador"
+msgstr "Égaliseur"
+
+msgid "Pré-amplificação:"
+msgstr "Préamplification :"
+
+msgid "Removedor de Ruído"
+msgstr "Suppresseur de bruit"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "&Activer le suppresseur de bruit"
+
+msgid "&Equalizador"
+msgstr "É&galiseur"
+
+msgid "Removedor de &Ruído"
+msgstr "&Suppresseur de bruit"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "Afficher tous &les processus"
+
+msgid "E&stéreo"
+msgstr "Sté&réo"
+

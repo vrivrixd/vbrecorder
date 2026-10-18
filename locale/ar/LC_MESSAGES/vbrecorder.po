@@ -454,3 +454,148 @@ msgid ""
 msgstr ""
 "تعذر تثبيت التحديث:\n"
 "{erro}"
+
+msgid "Acústico"
+msgstr "صوتي"
+
+msgid "Intensidade:"
+msgstr "الشدة:"
+
+msgid "Plano"
+msgstr "مستوٍ"
+
+msgid "Reforço de Graves"
+msgstr "تعزيز الجهير"
+
+msgid "Redução de Graves"
+msgstr "تقليل الجهير"
+
+msgid "Reforço de Agudos"
+msgstr "تعزيز الحاد"
+
+msgid "Redução de Agudos"
+msgstr "تقليل الحاد"
+
+msgid "Reforço de Voz"
+msgstr "تعزيز الصوت البشري"
+
+msgid "Locução e Podcast"
+msgstr "كلام وبودكاست"
+
+msgid "Remover Ronco"
+msgstr "إزالة الهدير"
+
+msgid "Telefone"
+msgstr "هاتف"
+
+msgid "Rádio AM"
+msgstr "راديو AM"
+
+msgid "Alto-falantes Pequenos"
+msgstr "سماعات صغيرة"
+
+msgid "Fones de Ouvido"
+msgstr "سماعات رأس"
+
+msgid "Clássica"
+msgstr "كلاسيكية"
+
+msgid "Clube"
+msgstr "نادٍ"
+
+msgid "Dance"
+msgstr "رقص"
+
+msgid "Grave Profundo"
+msgstr "جهير عميق"
+
+msgid "Eletrônica"
+msgstr "إلكترونية"
+
+msgid "Graves no Máximo"
+msgstr "أقصى جهير"
+
+msgid "Graves e Agudos no Máximo"
+msgstr "أقصى جهير وحاد"
+
+msgid "Agudos no Máximo"
+msgstr "أقصى حاد"
+
+msgid "Hip-Hop"
+msgstr "هيب هوب"
+
+msgid "Jazz"
+msgstr "جاز"
+
+msgid "Salão Grande"
+msgstr "قاعة كبيرة"
+
+msgid "Latina"
+msgstr "لاتينية"
+
+msgid "Ao Vivo"
+msgstr "مباشر"
+
+msgid "Lounge"
+msgstr "لاونج"
+
+msgid "Festa"
+msgstr "حفلة"
+
+msgid "Piano"
+msgstr "بيانو"
+
+msgid "Pop"
+msgstr "بوب"
+
+msgid "R&B"
+msgstr "R&B"
+
+msgid "Reggae"
+msgstr "ريغي"
+
+msgid "Rock"
+msgstr "روك"
+
+msgid "Ska"
+msgstr "سكا"
+
+msgid "Suave"
+msgstr "ناعم"
+
+msgid "Soft Rock"
+msgstr "روك ناعم"
+
+msgid "Techno"
+msgstr "تكنو"
+
+msgid "&Predefinição:"
+msgstr "الإعداد المسبق(&P):"
+
+msgid "Personalizado"
+msgstr "مخصص"
+
+msgid "Equalizador"
+msgstr "معادل الصوت"
+
+msgid "Pré-amplificação:"
+msgstr "التضخيم المسبق:"
+
+msgid "Removedor de Ruído"
+msgstr "مزيل الضوضاء"
+
+msgid "&Ativar Removedor de Ruído"
+msgstr "تفعيل مزيل الضوضاء(&A)"
+
+msgid "&Equalizador"
+msgstr "معادل الصوت(&Q)"
+
+msgid "Removedor de &Ruído"
+msgstr "مزيل الضوضاء(&N)"
+
+msgid "&Mostrar Todos os Processos"
+msgstr "إظهار كل العمليات(&M)"
+
+msgid "E&stéreo"
+msgstr "ستيريو(&S)"
+
