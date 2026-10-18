@@ -167,7 +167,7 @@ windres -I res -i res\app.rc -o build\app.o
 windres -i res\locale.rc -o build\locale.o
 type nul > build\empty.c
 gcc -c build\empty.c -o build\default-manifest.o
-for %f in (third_party\rnnoise\src\*.c) do gcc -O2 -w -Ithird_party\rnnoise\include -c %f -o build\rnn_%~nf.o
+for %f in (third_party\rnnoise\src\*.c) do gcc -O2 -msse2 -w -Ithird_party\rnnoise\include -c %f -o build\rnn_%~nf.o
 g++ -std=c++17 -O2 -DUNICODE -D_UNICODE -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0A00 -Ithird_party\rnnoise\include -municode -mwindows src\*.cpp build\rnn_*.o build\app.o build\locale.o -lole32 -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -luuid -lwinhttp -lbcrypt -static -s -Bbuild\ -o build\VBRecorder.exe
 ```
 
