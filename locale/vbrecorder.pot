@@ -554,3 +554,12 @@ msgstr ""
 msgid "E&stéreo"
 msgstr ""
 
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr ""
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr ""
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr ""
+

@@ -43,7 +43,7 @@ msgid "&Bitrate:"
 msgstr "&Débit binaire :"
 
 msgid "Compressão F&LAC:"
-msgstr "Compression F&LAC :"
+msgstr "Compression FL&AC :"
 
 msgid "&Taxa de Amostragem:"
 msgstr "Fréquence d'é&chantillonnage :"
@@ -52,7 +52,7 @@ msgid "Profundidade de Bit&s:"
 msgstr "Profondeur de bi&ts :"
 
 msgid "&Canais:"
-msgstr "Cana&ux :"
+msgstr "Canau&x :"
 
 msgid "mono"
 msgstr "mono"
@@ -61,7 +61,7 @@ msgid "estéreo"
 msgstr "stéréo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Sources d'e&nregistrement :"
+msgstr "Sourc&es d'enregistrement :"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Nom du fichier :"
@@ -70,7 +70,7 @@ msgid "&Diretório de Saída:"
 msgstr "Dossier de s&ortie :"
 
 msgid "&Adicionar"
-msgstr "&Ajouter"
+msgstr "A&jouter"
 
 msgid "&Editar"
 msgstr "&Modifier"
@@ -79,16 +79,16 @@ msgid "&Remover"
 msgstr "&Retirer"
 
 msgid "P&rocurar..."
-msgstr "&Parcourir..."
+msgstr "Pa&rcourir..."
 
 msgid "Abr&ir Pasta de Gravações"
 msgstr "Ouvr&ir le dossier des enregistrements"
 
 msgid "Config&urações..."
-msgstr "&Paramètres..."
+msgstr "Param&ètres..."
 
 msgid "S&obre"
-msgstr "À pro&pos"
+msgstr "&À propos"
 
 msgid "&Minimizar"
 msgstr "Réd&uire"
@@ -100,7 +100,7 @@ msgid "E&xcluir Gravação"
 msgstr "&Supprimer l'enregistrement"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Enregistrer les sources dans des fichiers sé&parés"
+msgstr "Enregistrer les sources dans des fichiers s&éparés"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
 msgstr "Jouer des &bips au démarrage et à l'arrêt de l'enregistrement"
@@ -583,5 +583,14 @@ msgid "&Mostrar Todos os Processos"
 msgstr "Afficher tous &les processus"
 
 msgid "E&stéreo"
-msgstr "Sté&réo"
+msgstr "St&éréo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Durée de l'enregistrement (&hh:mm:ss) :"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Vide : enregistre sans limite. 1:30:00 correspond à une heure et demie, 45:00 à 45 minutes."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Durée d'enregistrement non valide. Utilisez des heures, des minutes et des secondes, comme 1:30:00, ou laissez vide pour enregistrer sans limite."
 

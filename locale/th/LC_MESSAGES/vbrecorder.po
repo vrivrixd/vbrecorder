@@ -28,7 +28,7 @@ msgid "&Testar"
 msgstr "ทดสอบ(&T)"
 
 msgid "&Atualizar"
-msgstr "รีเฟรช(&R)"
+msgstr "รีเฟรช(&U)"
 
 msgid "Mostrar janela principal"
 msgstr "แสดงหน้าต่างหลัก"
@@ -577,4 +577,13 @@ msgstr "แสดงโปรเซสทั้งหมด(&M)"
 
 msgid "E&stéreo"
 msgstr "สเตอริโอ(&S)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "ระยะเวลาการบันทึก (hh:mm:&ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "เว้นว่างไว้เพื่อบันทึกโดยไม่จำกัดเวลา 1:30:00 คือหนึ่งชั่วโมงครึ่ง 45:00 คือ 45 นาที"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "ระยะเวลาการบันทึกไม่ถูกต้อง ใช้ชั่วโมง นาที และวินาที เช่น 1:30:00 หรือเว้นว่างไว้เพื่อบันทึกโดยไม่จำกัดเวลา"
 

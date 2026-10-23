@@ -34,6 +34,7 @@
 #include "hotkeys.h"
 #include "startup.h"
 #include "i18n.h"
+#include "install.h"
 #include "process_audio.h"
 #include "ui.h"
 #include "updater.h"
@@ -61,6 +62,7 @@ enum {
     IDC_REMOVE,
     IDC_SEPARATE,
     IDC_TONES,
+    IDC_DURATION,
     IDC_FILENAME,
     IDC_DIR,
     IDC_BROWSE,
@@ -96,6 +98,7 @@ const UINT WM_UPDATE_FOUND = WM_APP + 3;  // lParam: an UpdateInfo to delete
 const UINT WM_CHECK_FOCUS = WM_APP + 4;
 const UINT_PTR TIMER_PLAY = 1;
 const UINT_PTR TIMER_COUNTDOWN = 2;
+const UINT_PTR TIMER_DURATION = 3;
 /* Low beeps before the recording starts, one per second, like the start of a race. */
 const int COUNTDOWN_BEEPS = 3;
 
@@ -167,6 +170,8 @@ private:
     bool CanContinue();
     void OnContinueLast();
     void OnBrowse();
+    bool ReadDuration();
+    void OnDurationTick();
     std::wstring CurrentOutputDir();
     void OnOpenDir();
     std::vector<std::wstring> ExistingRecordingFiles();
@@ -207,6 +212,11 @@ private:
     HWND lbl_rate_, cmb_rate_, lbl_bits_, cmb_bits_, lbl_channels_, cmb_channels_;
     HWND lbl_sources_, lst_fontes_, btn_add_, btn_edit_, btn_rem_;
     HWND chk_separate_, chk_tones_;
+    HWND lbl_duration_, txt_duration_;
+    // The recording stops by itself when it reaches this many seconds; 0 is
+    // no limit. Counted from where it started, or was continued, without the
+    // pauses.
+    double duration_limit_ = 0, duration_start_ = 0;
     HWND lbl_filename_, txt_filename_, lbl_dir_, txt_dir_, btn_browse_, btn_open_dir_;
     HWND btn_settings_, btn_about_, btn_min_, btn_close_;
 };
@@ -317,6 +327,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
         case WM_TIMER:
             if (wp == TIMER_PLAY && !audio.IsPlaying()) UpdatePlayButton();
             if (wp == TIMER_COUNTDOWN) OnCountdownTick();
+            if (wp == TIMER_DURATION) OnDurationTick();
             return TRUE;
         case WM_TRAY:
             if (LOWORD(lp) == WM_LBUTTONDBLCLK) ShowMain();
@@ -431,6 +442,15 @@ void MainFrame::SetupUi() {
     chk_tones_ = Add(WC_BUTTONW, CHECK, IDC_TONES);
     vbox->Add(chk_tones_, 0, ui::ALL, S(10));
 
+    lbl_duration_ = Add(WC_STATICW, 0, 0);
+    txt_duration_ = Add(WC_EDITW, EDIT, IDC_DURATION, WS_EX_CLIENTEDGE);
+    {
+        auto hb = HBox();
+        hb->Add(lbl_duration_, 0, ui::CENTER_V | ui::RIGHT, S(5));
+        hb->Add(txt_duration_, 0, 0, 0, SIZE{S(90), 0});
+        vbox->Add(std::move(hb), 0, ui::ALL, S(5));
+    }
+
     lbl_filename_ = Add(WC_STATICW, 0, 0);
     txt_filename_ = Add(WC_EDITW, EDIT, IDC_FILENAME, WS_EX_CLIENTEDGE);
     {
@@ -479,6 +499,9 @@ void MainFrame::Retranslate() {
     ui::ComboSetItems(cmb_channels_, {tr("mono"), tr("estéreo")});
     SendMessageW(cmb_channels_, CB_SETCURSEL, channels == 0 ? 0 : 1, 0);
     ui::SetText(lbl_sources_, tr("Fontes de &Gravação:"));
+    ui::SetText(lbl_duration_, tr("Duração da Gravação (&hh:mm:ss):"));
+    ui::SetToolTip(hwnd_, txt_duration_,
+                   tr("Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."));
     ui::SetText(lbl_filename_, tr("&Nome do Arquivo:"));
     ui::SetText(lbl_dir_, tr("&Diretório de Saída:"));
 
@@ -867,6 +890,7 @@ void MainFrame::LoadSettings() {
     SetChecked(chk_tones_, config.GetBoolean(L"reproduzir_tons"));
     SetChecked(chk_separate_, config.GetBoolean(L"arquivos_separados"));
     SetWindowTextW(txt_filename_, config.Get(L"arquivo").c_str());
+    SetWindowTextW(txt_duration_, config.Get(L"duracao").c_str());
     SetWindowTextW(txt_dir_, config.Get(L"diretorio").c_str());
 
     auto all_devices = audio.GetInputDevices();
@@ -909,6 +933,7 @@ void MainFrame::SaveSettings() {
     config.SetConfig(L"reproduzir_tons", Checked(chk_tones_));
     config.SetConfig(L"arquivos_separados", Checked(chk_separate_));
     config.SetConfig(L"arquivo", ui::GetText(txt_filename_));
+    config.SetConfig(L"duracao", Trim(ui::GetText(txt_duration_)));
     config.SetConfig(L"diretorio", ui::GetText(txt_dir_));
     config.SetSources(sources_);
     config.Save();
@@ -926,11 +951,13 @@ void MainFrame::OnRecordToggle() {
                            tr("Aviso"), MB_ICONWARNING | MB_OK);
             return;
         }
+        if (!ReadDuration()) return;
         audio.StopPlayback();
         UpdatePlayButton();
         if (config.GetBoolean(L"contagem_regressiva")) StartCountdown();
         else StartRecordingNow(Checked(chk_tones_));
     } else {
+        KillTimer(hwnd_, TIMER_DURATION);
         audio.StopRecording();
         UpdateShutdownBlock();
         if (Checked(chk_tones_)) audio.PlayTone(440, 150);
@@ -1032,6 +1059,53 @@ void MainFrame::RecordingStarted() {
     ToggleUi(false);
     UpdateRecordingButtons();
     UpdateShutdownBlock();
+    if (duration_limit_ > 0) {
+        duration_start_ = audio.RecordingSeconds();
+        SetTimer(hwnd_, TIMER_DURATION, 100, nullptr);
+    }
+}
+
+/* The duration field: empty is no limit; otherwise seconds, minutes:seconds
+   or hours:minutes:seconds. A wrong value is reported, and false stops the
+   recording from starting. */
+bool MainFrame::ReadDuration() {
+    duration_limit_ = 0;
+    std::wstring text = Trim(ui::GetText(txt_duration_));
+    if (text.empty()) return true;
+    double total = 0;
+    int parts = 0;
+    bool ok = true;
+    size_t pos = 0;
+    while (ok && pos <= text.size()) {
+        size_t end = text.find(L':', pos);
+        if (end == std::wstring::npos) end = text.size();
+        std::wstring part = Trim(text.substr(pos, end - pos));
+        ok = !part.empty() && part.size() <= 6 &&
+             part.find_first_not_of(L"0123456789") == std::wstring::npos;
+        if (ok) total = total * 60 + _wtoi(part.c_str());
+        ++parts;
+        pos = end + 1;
+    }
+    if (!ok || parts > 3 || total <= 0) {
+        ui::MsgBox(DialogParent(),
+                   tr("Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, "
+                      "ou deixe em branco para gravar sem limite."),
+                   tr("Aviso"), MB_ICONWARNING | MB_OK);
+        SetFocus(txt_duration_);
+        return false;
+    }
+    duration_limit_ = total;
+    return true;
+}
+
+/* Stops the recording when it reaches the duration, as the Stop button does.
+   While paused, the time does not run. */
+void MainFrame::OnDurationTick() {
+    if (!audio.is_recording()) {
+        KillTimer(hwnd_, TIMER_DURATION);
+        return;
+    }
+    if (audio.RecordingSeconds() - duration_start_ >= duration_limit_) OnRecordToggle();
 }
 
 /* While recording, paused or not, Windows asks before shutting down and shows
@@ -1049,6 +1123,7 @@ bool MainFrame::CanContinue() { return HasRecording() && audio.CanContinue(); }
    paused. */
 void MainFrame::OnContinueLast() {
     if (audio.is_recording() || countdown_ || !CanContinue()) return;
+    if (!ReadDuration()) return;
     audio.StopMonitor();
     audio.StopPlayback();  // the file being played is the one to continue
     UpdatePlayButton();
@@ -1089,10 +1164,12 @@ void MainFrame::OnBrowse() {
     if (PickFolder(hwnd_, tr("Selecionar Pasta"), &path)) SetWindowTextW(txt_dir_, path.c_str());
 }
 
-/* Folder in use: the one in the edit field, or the default if it is empty. */
+/* Folder in use: the one in the edit field, or the default if it is empty:
+   next to the portable program, or in Documents for the installed one. */
 std::wstring MainFrame::CurrentOutputDir() {
     std::wstring dir = Trim(ui::GetText(txt_dir_));
-    return dir.empty() ? JoinPath(CurrentDir(), tr("Gravações")) : dir;
+    if (!dir.empty()) return dir;
+    return IsInstalled() ? InstalledRecordingsDir() : JoinPath(CurrentDir(), tr("Gravações"));
 }
 
 void MainFrame::OnOpenDir() {
@@ -1233,7 +1310,8 @@ void MainFrame::ToggleUi(bool enable) {
     // The sources stay available: they can be added, edited and removed while
     // recording.
     for (HWND ctrl : {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_bits_, cmb_channels_,
-                      chk_separate_, txt_dir_, btn_browse_, txt_filename_, btn_settings_})
+                      chk_separate_, txt_duration_, txt_dir_, btn_browse_, txt_filename_,
+                      btn_settings_})
         EnableControl(ctrl, enable);
 }
 
@@ -1397,8 +1475,10 @@ void MainFrame::OnTrayCommand(UINT cmd) {
 
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
     // Started by Windows, the working folder is System32: the .ini and the
-    // recordings belong next to the program.
-    if (wcsstr(GetCommandLineW(), STARTUP_FLAG)) SetCurrentDirectoryW(ExeDir().c_str());
+    // recordings belong next to the program. The installed copy always keeps
+    // its .ini there, wherever its shortcut starts it from.
+    if (wcsstr(GetCommandLineW(), STARTUP_FLAG) || IsInstalled())
+        SetCurrentDirectoryW(ExeDir().c_str());
     CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
     INITCOMMONCONTROLSEX icc = {sizeof(icc),
                                 ICC_STANDARD_CLASSES | ICC_LISTVIEW_CLASSES | ICC_BAR_CLASSES |
@@ -1408,6 +1488,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
     // Right after an update: waits for the old version to close, and removes
     // what it left behind.
     FinishUpdate(GetCommandLineW());
+    RefreshInstalledVersion();
 
     // Settings come first: they define the language of the messages,
     // including the one saying the program is already running.

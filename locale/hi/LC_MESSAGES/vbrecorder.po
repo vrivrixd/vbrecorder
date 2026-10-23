@@ -28,7 +28,7 @@ msgid "&Testar"
 msgstr "परीक्षण करें(&T)"
 
 msgid "&Atualizar"
-msgstr "रीफ़्रेश करें(&R)"
+msgstr "रीफ़्रेश करें(&Z)"
 
 msgid "Mostrar janela principal"
 msgstr "मुख्य विंडो दिखाएं"
@@ -584,4 +584,13 @@ msgstr "सभी प्रोसेस दिखाएँ(&M)"
 
 msgid "E&stéreo"
 msgstr "स्टीरियो(&S)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "रिकॉर्डिंग की अवधि (hh:mm:&ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "खाली छोड़ने पर बिना सीमा के रिकॉर्ड होगा। 1:30:00 यानी डेढ़ घंटा, 45:00 यानी 45 मिनट।"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "रिकॉर्डिंग की अवधि मान्य नहीं है। घंटे, मिनट और सेकंड का उपयोग करें, जैसे 1:30:00, या बिना सीमा के रिकॉर्ड करने के लिए खाली छोड़ दें।"
 

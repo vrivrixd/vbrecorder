@@ -28,7 +28,7 @@ msgid "&Testar"
 msgstr "テスト(&T)"
 
 msgid "&Atualizar"
-msgstr "更新(&R)"
+msgstr "更新(&W)"
 
 msgid "Mostrar janela principal"
 msgstr "メインウィンドウを表示"
@@ -575,4 +575,13 @@ msgstr "すべてのプロセスを表示(&M)"
 
 msgid "E&stéreo"
 msgstr "ステレオ(&S)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "録音時間 (hh:mm:&ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "空欄の場合は無制限に録音します。1:30:00 は 1 時間 30 分、45:00 は 45 分です。"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "録音時間が正しくありません。1:30:00 のように時間・分・秒で入力するか、無制限に録音する場合は空欄にしてください。"
 

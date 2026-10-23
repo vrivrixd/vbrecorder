@@ -22,7 +22,7 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Ascolta il dispositivo selezionato con il volume impostato"
 
 msgid "&Parar"
-msgstr "&Ferma"
+msgstr "Fer&ma"
 
 msgid "&Testar"
 msgstr "&Prova"
@@ -37,7 +37,7 @@ msgid "Sair"
 msgstr "Esci"
 
 msgid "&Formato de Saída:"
-msgstr "&Formato di uscita:"
+msgstr "Formato di us&cita:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
@@ -46,10 +46,10 @@ msgid "Compressão F&LAC:"
 msgstr "Compressione F&LAC:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "Frequenza di &campionamento:"
+msgstr "Fre&quenza di campionamento:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Profondità &di bit:"
+msgstr "Profondità di &bit:"
 
 msgid "&Canais:"
 msgstr "C&anali:"
@@ -61,7 +61,7 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "&Sorgenti di registrazione:"
+msgstr "Sorgenti di &registrazione:"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Nome del file:"
@@ -76,16 +76,16 @@ msgid "&Editar"
 msgstr "&Modifica"
 
 msgid "&Remover"
-msgstr "Ri&muovi"
+msgstr "Rimuo&vi"
 
 msgid "P&rocurar..."
-msgstr "Sfo&glia..."
+msgstr "S&foglia..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Apri cartella delle registra&zioni"
+msgstr "Apri cartella &delle registrazioni"
 
 msgid "Config&urações..."
-msgstr "&Impostazioni..."
+msgstr "Im&postazioni..."
 
 msgid "S&obre"
 msgstr "&Informazioni"
@@ -100,7 +100,7 @@ msgid "E&xcluir Gravação"
 msgstr "&Elimina registrazione"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Registra le sorgenti in file se&parati"
+msgstr "Registra le &sorgenti in file separati"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
 msgstr "Riproduci &toni all'avvio e all'arresto della registrazione"
@@ -217,16 +217,16 @@ msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder è già in esecuzione."
 
 msgid "Para&r"
-msgstr "Fe&rma"
+msgstr "&Ferma"
 
 msgid "&Gravar"
 msgstr "&Registra"
 
 msgid "C&ontinuar"
-msgstr "Ri&prendi"
+msgstr "R&iprendi"
 
 msgid "&Pausar"
-msgstr "&Pausa"
+msgstr "Pau&sa"
 
 msgid "Gravações"
 msgstr "Registrazioni"
@@ -580,8 +580,17 @@ msgid "Removedor de &Ruído"
 msgstr "&Riduttore di rumore"
 
 msgid "&Mostrar Todos os Processos"
-msgstr "&Mostra tutti i processi"
+msgstr "Mostra &tutti i processi"
 
 msgid "E&stéreo"
 msgstr "&Stereo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Durata della registrazione (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Vuoto: registra senza limite. 1:30:00 è un'ora e mezza, 45:00 sono 45 minuti."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Durata della registrazione non valida. Usa ore, minuti e secondi, come 1:30:00, oppure lascia vuoto per registrare senza limite."
 

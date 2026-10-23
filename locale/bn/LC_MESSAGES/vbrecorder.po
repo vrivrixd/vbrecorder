@@ -28,7 +28,7 @@ msgid "&Testar"
 msgstr "পরীক্ষা করুন(&T)"
 
 msgid "&Atualizar"
-msgstr "রিফ্রেশ করুন(&R)"
+msgstr "রিফ্রেশ করুন(&I)"
 
 msgid "Mostrar janela principal"
 msgstr "প্রধান উইন্ডো দেখান"
@@ -584,4 +584,13 @@ msgstr "সব প্রসেস দেখান(&M)"
 
 msgid "E&stéreo"
 msgstr "স্টেরিও(&S)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "রেকর্ডিংয়ের সময়কাল (hh:mm:&ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "খালি রাখলে সীমা ছাড়াই রেকর্ড হবে। 1:30:00 মানে দেড় ঘণ্টা, 45:00 মানে 45 মিনিট।"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "রেকর্ডিংয়ের সময়কাল সঠিক নয়। ঘণ্টা, মিনিট ও সেকেন্ড ব্যবহার করুন, যেমন 1:30:00, অথবা সীমা ছাড়া রেকর্ড করতে খালি রাখুন।"
 

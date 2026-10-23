@@ -25,7 +25,7 @@ msgid "&Parar"
 msgstr "&Durdur"
 
 msgid "&Testar"
-msgstr "&Test Et"
+msgstr "Test &Et"
 
 msgid "&Atualizar"
 msgstr "&Yenile"
@@ -46,10 +46,10 @@ msgid "Compressão F&LAC:"
 msgstr "F&LAC Sıkıştırma:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "Örnekleme &Hızı:"
+msgstr "Örnekleme Hı&zı:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Bi&t Derinliği:"
+msgstr "&Bit Derinliği:"
 
 msgid "&Canais:"
 msgstr "&Kanallar:"
@@ -64,46 +64,46 @@ msgid "Fontes de &Gravação:"
 msgstr "Kayıt Ka&ynakları:"
 
 msgid "&Nome do Arquivo:"
-msgstr "Dosya &Adı:"
+msgstr "D&osya Adı:"
 
 msgid "&Diretório de Saída:"
-msgstr "Çıktı &Dizini:"
+msgstr "&Çıktı Dizini:"
 
 msgid "&Adicionar"
 msgstr "&Ekle"
 
 msgid "&Editar"
-msgstr "&Düzenle"
+msgstr "D&üzenle"
 
 msgid "&Remover"
-msgstr "&Kaldır"
+msgstr "Kaldı&r"
 
 msgid "P&rocurar..."
-msgstr "Göz&at..."
+msgstr "&Gözat..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Kayıtlar Klasörünü &Aç"
+msgstr "Kayı&tlar Klasörünü Aç"
 
 msgid "Config&urações..."
 msgstr "Ay&arlar..."
 
 msgid "S&obre"
-msgstr "Hakkınd&a"
+msgstr "Hakkı&nda"
 
 msgid "&Minimizar"
 msgstr "S&imge Durumuna Küçült"
 
 msgid "&Fechar"
-msgstr "&Kapat"
+msgstr "Ka&pat"
 
 msgid "E&xcluir Gravação"
 msgstr "Kaydı &Sil"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Kaynakları ayrı dosyalara &kaydet"
+msgstr "Kaynakları ayrı &dosyalara kaydet"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Kayıt başlarken veya dururken &ses çal"
+msgstr "Kayıt ba&şlarken veya dururken ses çal"
 
 msgid "Selecionar Pasta"
 msgstr "Klasör Seç"
@@ -160,7 +160,7 @@ msgid "Iniciar &Minimizado"
 msgstr "Simg&e Durumunda Başlat"
 
 msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Sistem &Tepsisine Küçült"
+msgstr "Sistem Te&psisine Küçült"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Pencere Her Zaman &Üstte"
@@ -220,7 +220,7 @@ msgid "Para&r"
 msgstr "D&urdur"
 
 msgid "&Gravar"
-msgstr "&Kaydet"
+msgstr "Ka&ydet"
 
 msgid "C&ontinuar"
 msgstr "Deva&m Et"
@@ -232,7 +232,7 @@ msgid "Gravações"
 msgstr "Kayıtlar"
 
 msgid "Parar Reprod&ução"
-msgstr "Oynatmayı &Durdur"
+msgstr "Oyn&atmayı Durdur"
 
 msgid "Reprod&uzir Gravação"
 msgstr "Kaydı Oyn&at"
@@ -573,7 +573,7 @@ msgid "&Ativar Removedor de Ruído"
 msgstr "&Gürültü Gidericiyi Etkinleştir"
 
 msgid "&Equalizador"
-msgstr "&Ekolayzer"
+msgstr "Eko&layzer"
 
 msgid "Removedor de &Ruído"
 msgstr "&Gürültü Giderici"
@@ -583,4 +583,13 @@ msgstr "Tüm &işlemleri göster"
 
 msgid "E&stéreo"
 msgstr "&Stereo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Kayıt Süresi (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Boş bırakılırsa sınırsız kaydeder. 1:30:00 bir buçuk saat, 45:00 ise 45 dakikadır."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Geçersiz kayıt süresi. 1:30:00 gibi saat, dakika ve saniye kullanın ya da sınırsız kayıt için boş bırakın."
 

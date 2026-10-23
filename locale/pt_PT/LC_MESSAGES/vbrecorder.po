@@ -49,7 +49,7 @@ msgid "&Taxa de Amostragem:"
 msgstr "&Taxa de Amostragem:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Profundidade de Bit&s:"
+msgstr "Profundidade de &Bits:"
 
 msgid "&Canais:"
 msgstr "&Canais:"
@@ -67,7 +67,7 @@ msgid "&Nome do Arquivo:"
 msgstr "&Nome do Ficheiro:"
 
 msgid "&Diretório de Saída:"
-msgstr "&Pasta de Destino:"
+msgstr "Pa&sta de Destino:"
 
 msgid "&Adicionar"
 msgstr "&Adicionar"
@@ -97,7 +97,7 @@ msgid "&Fechar"
 msgstr "&Fechar"
 
 msgid "E&xcluir Gravação"
-msgstr "E&liminar Gravação"
+msgstr "Eliminar Grava&ção"
 
 msgid "Gravar fontes em arquivos se&parados"
 msgstr "Gravar fontes em ficheiros se&parados"
@@ -583,4 +583,13 @@ msgstr "&Mostrar Todos os Processos"
 
 msgid "E&stéreo"
 msgstr "E&stéreo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Duração da Gravação (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Duração da gravação inválida. Utilize horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 

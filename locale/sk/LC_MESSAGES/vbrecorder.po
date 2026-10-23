@@ -22,7 +22,7 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Počúvať vybrané zariadenie s upravenou hlasitosťou"
 
 msgid "&Parar"
-msgstr "&Zastaviť"
+msgstr "Z&astaviť"
 
 msgid "&Testar"
 msgstr "&Testovať"
@@ -46,7 +46,7 @@ msgid "Compressão F&LAC:"
 msgstr "Kompresia F&LAC:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "&Vzorkovacia frekvencia:"
+msgstr "Vzorkova&cia frekvencia:"
 
 msgid "Profundidade de Bit&s:"
 msgstr "Bitov&á hĺbka:"
@@ -61,7 +61,7 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Zdroje &záznamu:"
+msgstr "Zdro&je záznamu:"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Názov súboru:"
@@ -70,13 +70,13 @@ msgid "&Diretório de Saída:"
 msgstr "&Výstupný adresár:"
 
 msgid "&Adicionar"
-msgstr "Pri&dať"
+msgstr "&Pridať"
 
 msgid "&Editar"
 msgstr "&Upraviť"
 
 msgid "&Remover"
-msgstr "&Odstrániť"
+msgstr "Odst&rániť"
 
 msgid "P&rocurar..."
 msgstr "P&rehľadávať..."
@@ -217,25 +217,25 @@ msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder je už spustený."
 
 msgid "Para&r"
-msgstr "Zas&taviť"
+msgstr "Zastavi&ť"
 
 msgid "&Gravar"
-msgstr "&Nahrávať"
+msgstr "Nahráva&ť"
 
 msgid "C&ontinuar"
 msgstr "P&okračovať"
 
 msgid "&Pausar"
-msgstr "&Pozastaviť"
+msgstr "Poza&staviť"
 
 msgid "Gravações"
 msgstr "Záznamy"
 
 msgid "Parar Reprod&ução"
-msgstr "Zastaviť pre&hrávanie"
+msgstr "Z&astaviť prehrávanie"
 
 msgid "Reprod&uzir Gravação"
-msgstr "Prehrať zázna&m"
+msgstr "Prehr&ať záznam"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Vyberte súbor na prehrávanie:"
@@ -378,7 +378,7 @@ msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Chyba BASS {erro} pri pridávaní zdroja záznamu."
 
 msgid "Continuar Última Gra&vação"
-msgstr "Pokračovať v &poslednom zázname"
+msgstr "Pokračovať v posl&ednom zázname"
 
 msgid "Continuar Última Gravação"
 msgstr "Pokračovať v poslednom zázname"
@@ -418,7 +418,7 @@ msgid "&Verificar Atualizações Automaticamente"
 msgstr "&Automaticky kontrolovať aktualizácie"
 
 msgid "Verificar Atuali&zação..."
-msgstr "Skontrolovať aktuali&záciu..."
+msgstr "Skon&trolovať aktualizáciu..."
 
 msgid "Iniciar com o &Windows"
 msgstr "Spustiť so systémom &Windows"
@@ -585,4 +585,13 @@ msgstr "Zobraziť &všetky procesy"
 
 msgid "E&stéreo"
 msgstr "&Stereo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Dĺžka nahrávania (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Prázdne = nahrávať bez obmedzenia. 1:30:00 je hodina a pol, 45:00 je 45 minút."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Neplatná dĺžka nahrávania. Použite hodiny, minúty a sekundy, napríklad 1:30:00, alebo nechajte prázdne pre nahrávanie bez obmedzenia."
 

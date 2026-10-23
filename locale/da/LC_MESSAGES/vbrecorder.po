@@ -43,7 +43,7 @@ msgid "&Bitrate:"
 msgstr "&Bitrate:"
 
 msgid "Compressão F&LAC:"
-msgstr "F&LAC-komprimering:"
+msgstr "FLA&C-komprimering:"
 
 msgid "&Taxa de Amostragem:"
 msgstr "&Sample rate:"
@@ -61,16 +61,16 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Optagelses&kilder:"
+msgstr "Opt&agelseskilder:"
 
 msgid "&Nome do Arquivo:"
-msgstr "Fil&navn:"
+msgstr "Filna&vn:"
 
 msgid "&Diretório de Saída:"
-msgstr "Output&mappe:"
+msgstr "O&utputmappe:"
 
 msgid "&Adicionar"
-msgstr "&Tilføj"
+msgstr "Tilf&øj"
 
 msgid "&Editar"
 msgstr "&Rediger"
@@ -82,10 +82,10 @@ msgid "P&rocurar..."
 msgstr "Gen&nemse..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Åb&n optagelsesmappe"
+msgstr "&Åbn optagelsesmappe"
 
 msgid "Config&urações..."
-msgstr "Indstillinge&r..."
+msgstr "&Indstillinger..."
 
 msgid "S&obre"
 msgstr "&Om"
@@ -103,7 +103,7 @@ msgid "Gravar fontes em arquivos se&parados"
 msgstr "Optag kilder til se&parate filer"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Afspil &toner ved start eller stop af optagelse"
+msgstr "Afspil toner ved &start eller stop af optagelse"
 
 msgid "Selecionar Pasta"
 msgstr "Vælg mappe"
@@ -220,7 +220,7 @@ msgid "Para&r"
 msgstr "S&top"
 
 msgid "&Gravar"
-msgstr "&Optag"
+msgstr "Opt&ag"
 
 msgid "C&ontinuar"
 msgstr "F&ortsæt"
@@ -375,7 +375,7 @@ msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "BASS fejl {erro} ved tilføjelse af optagelseskilden."
 
 msgid "Continuar Última Gra&vação"
-msgstr "Fortsæt &sidste optagelse"
+msgstr "Forts&æt sidste optagelse"
 
 msgid "Continuar Última Gravação"
 msgstr "Fortsæt sidste optagelse"
@@ -412,7 +412,7 @@ msgid "Por favor aguarde..."
 msgstr "Vent venligst..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "Søg automatisk efter &opdateringer"
+msgstr "Søg automatisk efter opdateri&nger"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Søg efter opdat&ering..."
@@ -582,4 +582,13 @@ msgstr "&Vis alle processer"
 
 msgid "E&stéreo"
 msgstr "Ste&reo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Optagelsens varighed (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Tom: optager uden grænse. 1:30:00 er halvanden time, 45:00 er 45 minutter."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Ugyldig varighed for optagelsen. Brug timer, minutter og sekunder, f.eks. 1:30:00, eller lad feltet stå tomt for at optage uden grænse."
 

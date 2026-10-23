@@ -23,7 +23,7 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Nghe thử thiết bị đã chọn với âm lượng đã điều chỉnh"
 
 msgid "&Parar"
-msgstr "&Dừng"
+msgstr "Dừ&ng"
 
 msgid "&Testar"
 msgstr "&Nghe thử"
@@ -41,10 +41,10 @@ msgid "&Formato de Saída:"
 msgstr "Định dạng &đầu ra:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "&Tần số lấy mẫu:"
+msgstr "Tần số lấ&y mẫu:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Độ &sâu bit:"
+msgstr "Độ sâu &bit:"
 
 msgid "&Canais:"
 msgstr "&Kênh:"
@@ -56,7 +56,7 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "&Nome do Arquivo:"
-msgstr "&Tên tệp:"
+msgstr "Tên tệp (&Q):"
 
 msgid "Selecionar Pasta"
 msgstr "Chọn thư mục"
@@ -161,28 +161,28 @@ msgid "E&xcluir Gravação"
 msgstr "&Xóa bản ghi âm"
 
 msgid "&Bitrate:"
-msgstr "&Tốc độ bit:"
+msgstr "Tốc độ &bit:"
 
 msgid "Compressão F&LAC:"
-msgstr "Mức &nén FLAC:"
+msgstr "Mức nén &FLAC:"
 
 msgid "&Adicionar"
-msgstr "&Thêm"
+msgstr "Thêm (&Z)"
 
 msgid "&Editar"
-msgstr "&Chỉnh sửa"
+msgstr "Chỉnh &sửa"
 
 msgid "&Remover"
-msgstr "&Xóa"
+msgstr "Xó&a"
 
 msgid "Gravar fontes em arquivos se&parados"
 msgstr "Ghi mỗi nguồn vào một tệp &riêng"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Phát âm &báo khi bắt đầu hoặc dừng ghi âm"
+msgstr "Phát âm bá&o khi bắt đầu hoặc dừng ghi âm"
 
 msgid "&Diretório de Saída:"
-msgstr "&Thư mục bản ghi âm:"
+msgstr "T&hư mục bản ghi âm:"
 
 msgid "P&rocurar..."
 msgstr "&Duyệt..."
@@ -191,10 +191,10 @@ msgid "Abr&ir Pasta de Gravações"
 msgstr "&Mở thư mục bản ghi âm"
 
 msgid "S&obre"
-msgstr "&Giới thiệu"
+msgstr "G&iới thiệu"
 
 msgid "&Minimizar"
-msgstr "&Thu nhỏ"
+msgstr "Th&u nhỏ"
 
 msgid "&Fechar"
 msgstr "&Đóng"
@@ -206,7 +206,7 @@ msgid "Gravações"
 msgstr "Bản ghi âm"
 
 msgid "Parar Reprod&ução"
-msgstr "&Dừng phát"
+msgstr "Dừng &phát"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Chọn tệp để phát:"
@@ -257,7 +257,7 @@ msgid "Gravar fontes em arquivos separados"
 msgstr "Ghi mỗi nguồn vào một tệp riêng"
 
 msgid "Fontes de &Gravação:"
-msgstr "&Nguồn ghi âm:"
+msgstr "Nguồn &ghi âm:"
 
 msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
 msgstr "Hãy thêm ít nhất một nguồn ghi âm trước khi bắt đầu."
@@ -315,16 +315,16 @@ msgid "Padrão do sistema"
 msgstr "Mặc định hệ thống"
 
 msgid "Iniciar &Minimizado"
-msgstr "&Khởi động ở trạng thái thu nhỏ"
+msgstr "Khở&i động ở trạng thái thu nhỏ"
 
 msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Thu nhỏ vào &khay hệ thống"
+msgstr "Thu nhỏ &vào khay hệ thống"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Cửa sổ luôn ở &trên cùng"
 
 msgid "Contagem &Regressiva Antes de Gravar"
-msgstr "Đếm &ngược trước khi ghi âm"
+msgstr "Đếm ngược trước khi &ghi âm"
 
 msgid "Configurar Teclas de &Atalho..."
 msgstr "Cấu hình &phím tắt..."
@@ -373,7 +373,7 @@ msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Lỗi BASS {erro} khi thêm nguồn ghi âm."
 
 msgid "Continuar Última Gra&vação"
-msgstr "Tiếp tục bản ghi âm &gần nhất"
+msgstr "Tiếp tục bản ghi âm gần &nhất"
 
 msgid "Continuar Última Gravação"
 msgstr "Tiếp tục bản ghi âm gần nhất"
@@ -582,3 +582,13 @@ msgstr "Hiển thị tất &cả tiến trình"
 
 msgid "E&stéreo"
 msgstr "&Stereo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Thời &lượng ghi âm (hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Để trống để ghi âm không giới hạn. 1:30:00 là một tiếng rưỡi, 45:00 là 45 phút."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Thời lượng ghi âm không hợp lệ. Hãy dùng giờ, phút và giây, ví dụ 1:30:00, hoặc để trống để ghi âm không giới hạn."
+

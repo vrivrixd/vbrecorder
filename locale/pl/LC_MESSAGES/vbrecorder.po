@@ -49,7 +49,7 @@ msgid "&Taxa de Amostragem:"
 msgstr "&Częstotliwość próbkowania:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Głębia b&itowa:"
+msgstr "Głębia &bitowa:"
 
 msgid "&Canais:"
 msgstr "&Kanały:"
@@ -70,7 +70,7 @@ msgid "&Diretório de Saída:"
 msgstr "Katalog w&yjściowy:"
 
 msgid "&Adicionar"
-msgstr "Dod&aj"
+msgstr "&Dodaj"
 
 msgid "&Editar"
 msgstr "&Edytuj"
@@ -88,13 +88,13 @@ msgid "Config&urações..."
 msgstr "Ustawieni&a..."
 
 msgid "S&obre"
-msgstr "&O programie"
+msgstr "O program&ie"
 
 msgid "&Minimizar"
 msgstr "&Minimalizuj"
 
 msgid "&Fechar"
-msgstr "&Zamknij"
+msgstr "Zamkni&j"
 
 msgid "E&xcluir Gravação"
 msgstr "U&suń nagranie"
@@ -103,7 +103,7 @@ msgid "Gravar fontes em arquivos se&parados"
 msgstr "Nagrywaj źródła do oddzielnych &plików"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Odtwarzaj &dźwięki podczas rozpoczynania lub zatrzymywania nagrywania"
+msgstr "Odtwarzaj dźwięki pod&czas rozpoczynania lub zatrzymywania nagrywania"
 
 msgid "Selecionar Pasta"
 msgstr "Wybierz folder"
@@ -160,7 +160,7 @@ msgid "Iniciar &Minimizado"
 msgstr "Uruchom z&minimalizowany"
 
 msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Minimalizuj do &zasobnika"
+msgstr "Minimalizuj &do zasobnika"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Okno zawsze na &wierzchu"
@@ -220,10 +220,10 @@ msgid "Para&r"
 msgstr "Za&trzymaj"
 
 msgid "&Gravar"
-msgstr "&Nagrywaj"
+msgstr "Na&grywaj"
 
 msgid "C&ontinuar"
-msgstr "Wz&nów"
+msgstr "&Wznów"
 
 msgid "&Pausar"
 msgstr "&Wstrzymaj"
@@ -232,10 +232,10 @@ msgid "Gravações"
 msgstr "Nagrania"
 
 msgid "Parar Reprod&ução"
-msgstr "Zatrzymaj odtwar&zanie"
+msgstr "Z&atrzymaj odtwarzanie"
 
 msgid "Reprod&uzir Gravação"
-msgstr "Odtwórz nagranie(&U)"
+msgstr "Odtwórz nagranie(&V)"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Wybierz plik do odtworzenia:"
@@ -416,7 +416,7 @@ msgid "Por favor aguarde..."
 msgstr "Proszę czekać..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "&Automatycznie sprawdzaj aktualizacje"
+msgstr "Automatycznie &sprawdzaj aktualizacje"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Sprawdź aktuali&zację..."
@@ -586,4 +586,13 @@ msgstr "&Pokaż wszystkie procesy"
 
 msgid "E&stéreo"
 msgstr "&Stereo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Czas nagrywania (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Puste: nagrywanie bez limitu. 1:30:00 to półtorej godziny, 45:00 to 45 minut."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Nieprawidłowy czas nagrywania. Użyj godzin, minut i sekund, np. 1:30:00, lub zostaw puste, aby nagrywać bez limitu."
 

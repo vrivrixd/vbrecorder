@@ -136,6 +136,7 @@ void ConfigManager::Load() {
                    {L"fontes", L"device:0:1.0"},
                    {L"reproduzir_tons", L"False"},
                    {L"arquivos_separados", L"False"},
+                   {L"duracao", L""},
                    {L"arquivo", L""},
                    {L"diretorio", L""},
                    {L"idioma", L""},
@@ -189,8 +190,8 @@ void ConfigManager::Save() {
     };
     sort_items(Ensure(L"CONFIG").items,
                {L"formato", L"bitrate", L"flac_nivel", L"taxa", L"bits", L"canais", L"fontes",
-                L"reproduzir_tons", L"arquivos_separados", L"arquivo", L"diretorio", L"idioma",
-                L"iniciar_minimizado", L"minimizar_bandeja", L"sempre_no_topo", L"buffer",
+                L"reproduzir_tons", L"arquivos_separados", L"duracao", L"arquivo", L"diretorio",
+                L"idioma", L"iniciar_minimizado", L"minimizar_bandeja", L"sempre_no_topo", L"buffer",
                 L"verificar_atualizacoes", L"iniciar_com_windows", L"contagem_regressiva"});
     sort_items(Ensure(L"KEYS").items, {L"gravar", L"pausar", L"parar", L"reproduzir", L"excluir",
                                        L"mostrar", L"fechar"});

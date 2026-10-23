@@ -28,7 +28,7 @@ msgid "&Testar"
 msgstr "اختبار(&T)"
 
 msgid "&Atualizar"
-msgstr "تحديث(&R)"
+msgstr "تحديث(&L)"
 
 msgid "Mostrar janela principal"
 msgstr "إظهار النافذة الرئيسية"
@@ -598,4 +598,13 @@ msgstr "إظهار كل العمليات(&M)"
 
 msgid "E&stéreo"
 msgstr "ستيريو(&S)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "مدة التسجيل (hh:mm:&ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "اتركه فارغًا للتسجيل بلا حد. 1:30:00 تعني ساعة ونصف، و45:00 تعني 45 دقيقة."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "مدة التسجيل غير صالحة. استخدم الساعات والدقائق والثواني، مثل 1:30:00، أو اتركها فارغة للتسجيل بلا حد."
 

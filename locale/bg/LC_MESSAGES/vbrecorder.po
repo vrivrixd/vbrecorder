@@ -28,7 +28,7 @@ msgid "&Testar"
 msgstr "&Тестване"
 
 msgid "&Atualizar"
-msgstr "О&пресняване"
+msgstr "Опресн&яване"
 
 msgid "Mostrar janela principal"
 msgstr "Показване на главния прозорец"
@@ -64,10 +64,10 @@ msgid "Fontes de &Gravação:"
 msgstr "Източници на &запис:"
 
 msgid "&Nome do Arquivo:"
-msgstr "&Име на файл:"
+msgstr "Име на фа&йл:"
 
 msgid "&Diretório de Saída:"
-msgstr "&Изходна директория:"
+msgstr "Изходна дир&ектория:"
 
 msgid "&Adicionar"
 msgstr "&Добавяне"
@@ -79,10 +79,10 @@ msgid "&Remover"
 msgstr "&Премахване"
 
 msgid "P&rocurar..."
-msgstr "П&реглед..."
+msgstr "&Преглед..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Отваряне на папка със запис&и"
+msgstr "Отваряне на папка с&ъс записи"
 
 msgid "Config&urações..."
 msgstr "Настройк&и..."
@@ -94,13 +94,13 @@ msgid "&Minimizar"
 msgstr "&Минимизиране"
 
 msgid "&Fechar"
-msgstr "&Затваряне"
+msgstr "Затвар&яне"
 
 msgid "E&xcluir Gravação"
-msgstr "Из&триване на запис"
+msgstr "Изтриване &на запис"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Записване на източници в &отделни файлове"
+msgstr "Записване на източни&ци в отделни файлове"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
 msgstr "Възпроизвеждане на &тонове при стартиране или спиране на запис"
@@ -148,7 +148,7 @@ msgid "&Ok"
 msgstr "&ОК"
 
 msgid "&Cancelar"
-msgstr "&Отказ"
+msgstr "От&каз"
 
 msgid "Configurações"
 msgstr "Настройки"
@@ -217,7 +217,7 @@ msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder вече работи."
 
 msgid "Para&r"
-msgstr "Сп&иране"
+msgstr "&Спиране"
 
 msgid "&Gravar"
 msgstr "&Запис"
@@ -226,13 +226,13 @@ msgid "C&ontinuar"
 msgstr "Пр&одължаване"
 
 msgid "&Pausar"
-msgstr "&Пауза"
+msgstr "Па&уза"
 
 msgid "Gravações"
 msgstr "Записи"
 
 msgid "Parar Reprod&ução"
-msgstr "Спиране на възпроизве&ждането"
+msgstr "Спиране на &възпроизвеждането"
 
 msgid "Reprod&uzir Gravação"
 msgstr "Възпроиз&веждане на запис"
@@ -417,7 +417,7 @@ msgid "&Verificar Atualizações Automaticamente"
 msgstr "Автоматична &проверка за актуализации"
 
 msgid "Verificar Atuali&zação..."
-msgstr "Проверка за акт&уализация..."
+msgstr "Проверка за &актуализация..."
 
 msgid "Iniciar com o &Windows"
 msgstr "Стартиране с &Windows"
@@ -583,5 +583,14 @@ msgid "&Mostrar Todos os Processos"
 msgstr "Показване на &всички процеси"
 
 msgid "E&stéreo"
-msgstr "Сте&рео"
+msgstr "Стерео (&S)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Продължителност на записа (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Празно – записва без ограничение. 1:30:00 е час и половина, 45:00 са 45 минути."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Невалидна продължителност на записа. Използвайте часове, минути и секунди, например 1:30:00, или оставете празно за запис без ограничение."
 

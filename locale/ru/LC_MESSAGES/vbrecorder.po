@@ -28,7 +28,7 @@ msgid "&Testar"
 msgstr "&Проверить"
 
 msgid "&Atualizar"
-msgstr "О&бновить"
+msgstr "Обновит&ь"
 
 msgid "Mostrar janela principal"
 msgstr "Показать главное окно"
@@ -40,7 +40,7 @@ msgid "&Formato de Saída:"
 msgstr "&Формат вывода:"
 
 msgid "&Bitrate:"
-msgstr "&Битрейт:"
+msgstr "Битре&йт:"
 
 msgid "Compressão F&LAC:"
 msgstr "Сжатие F&LAC:"
@@ -67,22 +67,22 @@ msgid "&Nome do Arquivo:"
 msgstr "И&мя файла:"
 
 msgid "&Diretório de Saída:"
-msgstr "&Папка сохранения:"
+msgstr "Папка со&хранения:"
 
 msgid "&Adicionar"
 msgstr "&Добавить"
 
 msgid "&Editar"
-msgstr "И&зменить"
+msgstr "Изменит&ь"
 
 msgid "&Remover"
-msgstr "Уб&рать"
+msgstr "У&брать"
 
 msgid "P&rocurar..."
 msgstr "О&бзор..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Открыть папку с &записями"
+msgstr "Открыть папку с запис&ями"
 
 msgid "Config&urações..."
 msgstr "&Настройки..."
@@ -100,7 +100,7 @@ msgid "E&xcluir Gravação"
 msgstr "&Удалить запись"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Записывать источники в отдельные &файлы"
+msgstr "Записывать источники в отде&льные файлы"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
 msgstr "Воспроизводить &сигналы при начале и остановке записи"
@@ -585,4 +585,13 @@ msgstr "Показать &все процессы"
 
 msgid "E&stéreo"
 msgstr "Ст&ерео"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Длительность записи (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Пусто — запись без ограничения. 1:30:00 — полтора часа, 45:00 — 45 минут."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Недопустимая длительность записи. Укажите часы, минуты и секунды, например 1:30:00, или оставьте поле пустым для записи без ограничения."
 

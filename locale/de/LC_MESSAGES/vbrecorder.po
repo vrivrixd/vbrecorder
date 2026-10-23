@@ -40,19 +40,19 @@ msgid "&Formato de Saída:"
 msgstr "Ausgabe&format:"
 
 msgid "&Bitrate:"
-msgstr "&Bitrate:"
+msgstr "Bi&trate:"
 
 msgid "Compressão F&LAC:"
 msgstr "FLAC-&Kompression:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "Ab&tastrate:"
+msgstr "Abta&strate:"
 
 msgid "Profundidade de Bit&s:"
 msgstr "Bittiefe (&J):"
 
 msgid "&Canais:"
-msgstr "K&anäle:"
+msgstr "Kan&äle:"
 
 msgid "mono"
 msgstr "Mono"
@@ -70,7 +70,7 @@ msgid "&Diretório de Saída:"
 msgstr "&Zielordner:"
 
 msgid "&Adicionar"
-msgstr "&Hinzufügen"
+msgstr "Hinzuf&ügen"
 
 msgid "&Editar"
 msgstr "Bear&beiten"
@@ -79,13 +79,13 @@ msgid "&Remover"
 msgstr "&Entfernen"
 
 msgid "P&rocurar..."
-msgstr "&Durchsuchen..."
+msgstr "Dur&chsuchen..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Aufnahmeordner ö&ffnen"
+msgstr "Aufnahmeordner &öffnen"
 
 msgid "Config&urações..."
-msgstr "&Einstellungen..."
+msgstr "Einstellun&gen..."
 
 msgid "S&obre"
 msgstr "Übe&r"
@@ -223,10 +223,10 @@ msgid "&Gravar"
 msgstr "&Aufnehmen"
 
 msgid "C&ontinuar"
-msgstr "&Fortsetzen"
+msgstr "Fo&rtsetzen"
 
 msgid "&Pausar"
-msgstr "&Pause"
+msgstr "Pa&use"
 
 msgid "Gravações"
 msgstr "Aufnahmen"
@@ -583,4 +583,13 @@ msgstr "Alle &Prozesse anzeigen"
 
 msgid "E&stéreo"
 msgstr "Stereo (&H)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Aufnahmedauer (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Leer: Aufnahme ohne Begrenzung. 1:30:00 sind anderthalb Stunden, 45:00 sind 45 Minuten."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Ungültige Aufnahmedauer. Verwenden Sie Stunden, Minuten und Sekunden, z. B. 1:30:00, oder lassen Sie das Feld leer, um ohne Begrenzung aufzunehmen."
 

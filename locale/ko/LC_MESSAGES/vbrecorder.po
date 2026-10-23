@@ -28,7 +28,7 @@ msgid "&Testar"
 msgstr "테스트(&T)"
 
 msgid "&Atualizar"
-msgstr "새로 고침(&R)"
+msgstr "새로 고침(&A)"
 
 msgid "Mostrar janela principal"
 msgstr "메인 창 표시"
@@ -574,4 +574,13 @@ msgstr "모든 프로세스 표시(&M)"
 
 msgid "E&stéreo"
 msgstr "스테레오(&S)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "녹음 시간 (hh:mm:&ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "비워 두면 제한 없이 녹음합니다. 1:30:00은 1시간 30분, 45:00은 45분입니다."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "녹음 시간이 올바르지 않습니다. 1:30:00처럼 시, 분, 초를 사용하거나, 제한 없이 녹음하려면 비워 두세요."
 

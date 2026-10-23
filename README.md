@@ -8,7 +8,8 @@ and also from running processes, such as browsers, music players and calling
 apps. All together, with individual volume control for each source, and with
 very little latency: you can record your performance over a playback.
 
-The program is light, portable and runs in the system tray.
+The program is light, runs in the system tray, and comes both portable and
+with an installer.
 
 Starting with version 1.4, VB Recorder is written in C++: the program got much
 smaller, runs on 32-bit and 64-bit Windows and records without stutters. The
@@ -33,7 +34,8 @@ history.
 - **Capture by executable.** Add a program by its executable name (`game.exe`),
   even before it is open: it is recorded whenever it runs, however many times
   it is opened and closed, and however many copies are open. With separate
-  files, it goes to `recording (game.exe).wav`.
+  files, it goes to `recording (game.exe).wav`. The Browse button finds the
+  program on disk and keeps only its file name.
 - **Per-source volume.** Adjust each source from -30 dB to +30 dB, to balance
   weak microphones without affecting the others.
 - **Stereo or mono per source.** A source with "Stereo" unchecked is mixed
@@ -61,6 +63,9 @@ history.
   close the program.
 - **Countdown**, optional: three low beeps, one per second, and the recording
   starts on the high one, as at the start of a race. Stop cancels it.
+- **Recording duration**, optional: type how long to record (`1:30:00` is an
+  hour and a half), and the recording stops by itself when it gets there.
+  Pausing also pauses the count.
 - **Start with Windows**, optional. The program stays portable: if its folder
   moves, it points Windows to the new place the next time it opens.
 - **Settings window** with language, automatic update checks, start with
@@ -137,15 +142,25 @@ To test a translation without compiling, put the `locale` folder next to
 
 ## Installation
 
-Download the zip for your Windows from the
-[Releases](https://github.com/vrivrixd/vbrecorder/releases) page:
-`VBRecorder-x64.zip` for 64-bit Windows (most computers) or `VBRecorder-x86.zip`
-for 32-bit Windows (it also runs on 64-bit Windows). Extract it wherever you
-like and run `VBRecorder.exe`. There is no installer: the program
-creates `VBRecorder.ini` with your settings in the folder it is started from
-(when Windows starts it, in its own folder).
+From the [Releases](https://github.com/vrivrixd/vbrecorder/releases) page,
+download either the installer or the portable version.
 
-The `lib` folder holds the BASS libraries and must stay next to the executable.
+**Installer:** `VBRecorder-Setup.exe`, for 64-bit and 32-bit Windows alike. It
+needs no administrator rights and installs into `C:\VBRecorder` by default (the
+folder can be changed), with Start menu and desktop shortcuts if you want them.
+It shows in "Installed apps", from where it can be uninstalled. The installed
+program keeps `VBRecorder.ini` in its folder and records into
+`Documents\VB Recorder` by default.
+
+**Portable:** `VBRecorder-x64.zip` for 64-bit Windows (most computers) or
+`VBRecorder-x86.zip` for 32-bit Windows (it also runs on 64-bit Windows).
+Extract it wherever you like and run `VBRecorder.exe`. The program creates
+`VBRecorder.ini` with your settings in the folder it is started from (when
+Windows starts it, in its own folder), and records into the `Recordings`
+folder next to it by default. The `lib` folder holds the BASS libraries and must
+stay next to the executable.
+
+Both update themselves in the same way, when a new version comes out.
 
 ## Building from source
 
@@ -182,6 +197,17 @@ WinLibs (from the [WinLibs](https://winlibs.com/) page) with the same commands.
 To run it, copy the DLLs of the matching architecture, from `lib/x64` or
 `lib/x86`, to a `lib` folder next to `VBRecorder.exe`.
 
+The installer is made with [Inno Setup](https://jrsoftware.org/isinfo.php) 7,
+from the folders of the two release zips (their contents, extracted):
+
+```
+ISCC /DX64=<64-bit folder> /DX86=<32-bit folder> installer\VBRecorder.iss
+```
+
+It writes `dist\VBRecorder-Setup.exe`. The installer comes in the same
+languages as the program; the ones Inno Setup does not ship are in
+`installer/Languages`.
+
 Structure:
 
 - `src/main.cpp` — main window, system tray and global hotkeys.
@@ -192,6 +218,7 @@ Structure:
 - `src/i18n.cpp` — language choice and reading of the translation catalogs.
 - `src/hotkeys.cpp` — hotkeys written as text.
 - `src/startup.cpp` — starting with Windows.
+- `src/install.cpp` — what changes in the installed copy.
 - `src/fx.cpp` — equalizer and noise remover settings, and the equalizer presets.
 - `src/fx_chain.cpp` — the processing of each source (BASS_FX and RNNoise).
 - `src/fx_dialogs.cpp` — the equalizer and noise remover dialogs.
@@ -201,6 +228,7 @@ Structure:
 - `lib/x64`, `lib/x86` — BASS libraries for each architecture.
 - `third_party/rnnoise` — RNNoise, the noise remover.
 - `.github/workflows/build.yml` — builds and publishes the release zips.
+- `installer/` — the Inno Setup script and its extra languages.
 - `tools/language_compiler.py` — compiles the `.po` files into `.mo`.
 
 ## License

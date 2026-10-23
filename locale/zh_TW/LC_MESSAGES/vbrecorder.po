@@ -28,7 +28,7 @@ msgid "&Testar"
 msgstr "測試(&T)"
 
 msgid "&Atualizar"
-msgstr "重新整理(&R)"
+msgstr "重新整理(&E)"
 
 msgid "Mostrar janela principal"
 msgstr "顯示主視窗"
@@ -573,4 +573,13 @@ msgstr "顯示所有處理程序(&M)"
 
 msgid "E&stéreo"
 msgstr "立體聲(&H)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "錄音時長 (hh:mm:&ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "留空則不限時長錄音。1:30:00 為一個半小時，45:00 為 45 分鐘。"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "錄音時長無效。請使用時、分、秒，例如 1:30:00，或留空以不限時長錄音。"
 

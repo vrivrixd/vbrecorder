@@ -22,13 +22,13 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Dengarkan perangkat yang dipilih dengan volume yang disesuaikan"
 
 msgid "&Parar"
-msgstr "&Berhenti"
+msgstr "B&erhenti"
 
 msgid "&Testar"
 msgstr "&Uji"
 
 msgid "&Atualizar"
-msgstr "&Segarkan"
+msgstr "Se&garkan"
 
 msgid "Mostrar janela principal"
 msgstr "Tampilkan jendela utama"
@@ -37,19 +37,19 @@ msgid "Sair"
 msgstr "Keluar"
 
 msgid "&Formato de Saída:"
-msgstr "&Format Output:"
+msgstr "Forma&t Output:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
 
 msgid "Compressão F&LAC:"
-msgstr "Komp&resi FLAC:"
+msgstr "Kompresi FLA&C:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "Tingkat &Sampel:"
+msgstr "Tin&gkat Sampel:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Keda&laman bit:"
+msgstr "Kedalaman &bit:"
 
 msgid "&Canais:"
 msgstr "&Kanal:"
@@ -76,13 +76,13 @@ msgid "&Editar"
 msgstr "&Edit"
 
 msgid "&Remover"
-msgstr "&Hapus"
+msgstr "Hapu&s"
 
 msgid "P&rocurar..."
-msgstr "T&elusuri..."
+msgstr "Telu&suri..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Buka Folder Rekaman(&I)"
+msgstr "Buka Folder Rekaman(&W)"
 
 msgid "Config&urações..."
 msgstr "Pengat&uran..."
@@ -100,10 +100,10 @@ msgid "E&xcluir Gravação"
 msgstr "Ha&pus Rekaman"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Rekam sumber ke file ter&pisah"
+msgstr "Rekam sumber ke &file terpisah"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Putarkan &nada saat memulai atau menghentikan rekaman"
+msgstr "Putarkan nada saat memulai atau men&ghentikan rekaman"
 
 msgid "Selecionar Pasta"
 msgstr "Pilih Folder"
@@ -160,7 +160,7 @@ msgid "Iniciar &Minimizado"
 msgstr "Mulai &Minimalkan"
 
 msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Minimalkan ke &System Tray"
+msgstr "Minimalkan ke System &Tray"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Jendela Selalu di &Atas"
@@ -217,16 +217,16 @@ msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder sudah berjalan."
 
 msgid "Para&r"
-msgstr "&Berhenti"
+msgstr "Berhent&i"
 
 msgid "&Gravar"
-msgstr "Re&kam"
+msgstr "&Rekam"
 
 msgid "C&ontinuar"
-msgstr "L&anjutkan"
+msgstr "Lan&jutkan"
 
 msgid "&Pausar"
-msgstr "Je&da"
+msgstr "&Jeda"
 
 msgid "Gravações"
 msgstr "Rekaman"
@@ -260,7 +260,7 @@ msgid "Confirmar Exclusão"
 msgstr "Konfirmasi Penghapusan"
 
 msgid "&Idioma:"
-msgstr "&Bahasa:"
+msgstr "Baha&sa:"
 
 msgid "Tamanho do B&uffer (ms):"
 msgstr "Ukuran B&uffer (ms):"
@@ -372,7 +372,7 @@ msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Kesalahan BASS {erro} saat menambahkan sumber rekaman."
 
 msgid "Continuar Última Gra&vação"
-msgstr "Lanjutkan Rekaman &Terakhir"
+msgstr "&Lanjutkan Rekaman Terakhir"
 
 msgid "Continuar Última Gravação"
 msgstr "Lanjutkan Rekaman Terakhir"
@@ -409,10 +409,10 @@ msgid "Por favor aguarde..."
 msgstr "Harap tunggu..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "Periksa Pembaruan Secara &Otomatis"
+msgstr "Periksa Pembaruan Se&cara Otomatis"
 
 msgid "Verificar Atuali&zação..."
-msgstr "Periksa Pem&baruan..."
+msgstr "Peri&ksa Pembaruan..."
 
 msgid "Iniciar com o &Windows"
 msgstr "Mulai bersama &Windows"
@@ -569,7 +569,7 @@ msgid "&Ativar Removedor de Ruído"
 msgstr "Aktifkan penghapus &derau"
 
 msgid "&Equalizador"
-msgstr "&Ekualiser"
+msgstr "E&kualiser"
 
 msgid "Removedor de &Ruído"
 msgstr "&Penghapus derau"
@@ -579,4 +579,13 @@ msgstr "&Tampilkan semua proses"
 
 msgid "E&stéreo"
 msgstr "Ste&reo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Durasi Rekaman (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Kosongkan untuk merekam tanpa batas. 1:30:00 adalah satu setengah jam, 45:00 adalah 45 menit."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Durasi rekaman tidak valid. Gunakan jam, menit, dan detik, seperti 1:30:00, atau kosongkan untuk merekam tanpa batas."
 

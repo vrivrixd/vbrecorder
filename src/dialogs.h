@@ -127,6 +127,7 @@ private:
     std::set<std::pair<std::wstring, int>> ExistingIds() const;
     void LoadProcesses();
     void OnRefresh();
+    void OnBrowseExe();
     int SelectedDevice() const;  // -1 if the source is not a device
     int CheckedFilter() const;
     void UpdateOkState();
@@ -154,7 +155,7 @@ private:
     const std::vector<SourceItem>* current_items_ = nullptr;
     HWND rb_exe_ = nullptr, lbl_src_ = nullptr, lbl_exe_ = nullptr, txt_exe_ = nullptr;
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,
-         sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr,
+         sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr, btn_exe_browse_ = nullptr,
          btn_noise_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, note_ = nullptr;
 };
@@ -165,6 +166,11 @@ int SingleChoice(HWND parent, const std::wstring& message, const std::wstring& t
 
 /* Folder picker. Returns false if the user cancels. */
 bool PickFolder(HWND parent, const std::wstring& title, std::wstring* path);
+
+/* Picker for one existing file, showing only those that match pattern
+   ("*.exe"), under the name kind. Returns false if the user cancels. */
+bool PickFile(HWND parent, const std::wstring& title, const std::wstring& kind,
+              const std::wstring& pattern, std::wstring* path);
 
 /* Native Yes/No question: warning icon (with the Windows sound) and focus on
    Yes. The question icon is not used because the SystemQuestion sound has no

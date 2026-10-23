@@ -331,6 +331,7 @@ enum {
     IDC_AS_TEST,
     IDC_AS_EXE,
     IDC_AS_EXE_NAME,
+    IDC_AS_EXE_BROWSE,
     IDC_AS_REFRESH,
     IDC_AS_ALL_PROCESSES,
     IDC_AS_STEREO,
@@ -386,8 +387,15 @@ void AddSourceDialog::OnInit() {
     lbl_exe_ = ui::Create(hwnd_, WC_STATICW, tr("Nome do Executável:"), 0, 0);
     txt_exe_ = ui::Create(hwnd_, WC_EDITW, L"", WS_TABSTOP | ES_AUTOHSCROLL, IDC_AS_EXE_NAME,
                           WS_EX_CLIENTEDGE);
+    // Finds the program on disk; only its file name goes into the field.
+    btn_exe_browse_ = ui::Create(hwnd_, WC_BUTTONW, tr("P&rocurar..."), BUTTON, IDC_AS_EXE_BROWSE);
     vbox->Add(lbl_exe_, 0, ui::LEFT | ui::RIGHT, S(10));
-    vbox->Add(txt_exe_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    {
+        auto row = HBox();
+        row->Add(txt_exe_, 1, ui::EXPAND | ui::RIGHT, S(5));
+        row->Add(btn_exe_browse_, 0, 0, 0);
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    }
     // Unchecked, this source is recorded in mono, whatever the recording is.
     chk_stereo_ = Add(WC_BUTTONW, tr("E&stéreo"), CHECK, IDC_AS_STEREO);
     Button_SetCheck(chk_stereo_, fx_.stereo ? BST_CHECKED : BST_UNCHECKED);
@@ -473,7 +481,7 @@ void AddSourceDialog::OnInit() {
 bool AddSourceDialog::OnCharHook(const MSG& msg) {
     HWND focus = GetFocus();
     if (IsEnter(msg) && focus != btn_test_ && focus != btn_refresh_ && focus != btn_eq_ &&
-        focus != btn_noise_ && focus != btn_cancel_) {
+        focus != btn_noise_ && focus != btn_exe_browse_ && focus != btn_cancel_) {
         OnOk();
         return true;
     }
@@ -506,6 +514,9 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
             return true;
         case IDC_AS_EXE_NAME:
             if (code == EN_CHANGE) UpdateOkState();
+            return true;
+        case IDC_AS_EXE_BROWSE:
+            if (code == BN_CLICKED) OnBrowseExe();
             return true;
         case IDC_AS_SOURCE:
             if (code == CBN_SELCHANGE) {
@@ -560,6 +571,7 @@ void AddSourceDialog::PopulateFilter(int sel) {
     ui::Show(btn_noise_, sel == 0);
     ui::Show(lbl_exe_, exe);
     ui::Show(txt_exe_, exe);
+    ui::Show(btn_exe_browse_, exe);
     Relayout();
     current_items_ = sel == 0 ? &device_items_ : sel == 1 ? &process_items_ : &exe_items_;
     std::vector<std::wstring> choices;
@@ -587,6 +599,14 @@ void AddSourceDialog::LoadProcesses() {
         if (!existing_ids.count({L"process", (int)p.first}))
             process_items_.emplace_back(L"process", (int)p.first,
                                         p.second + L"  (PID " + std::to_wstring(p.first) + L")");
+}
+
+void AddSourceDialog::OnBrowseExe() {
+    std::wstring path;
+    if (!PickFile(hwnd_, tr("Arquivo Executável"), tr("Arquivo Executável"), L"*.exe", &path))
+        return;
+    SetWindowTextW(txt_exe_, BaseName(path).c_str());
+    SetFocus(txt_exe_);
 }
 
 void AddSourceDialog::OnRefresh() {
@@ -794,15 +814,20 @@ int SingleChoice(HWND parent, const std::wstring& message, const std::wstring& t
     return dlg.selection;
 }
 
-bool PickFolder(HWND parent, const std::wstring& title, std::wstring* path) {
+namespace {
+
+/* The Windows open dialog, for a folder or for one file. */
+bool PickPath(HWND parent, const std::wstring& title, DWORD flags, const COMDLG_FILTERSPEC* filter,
+              std::wstring* path) {
     IFileOpenDialog* dlg = nullptr;
     if (FAILED(CoCreateInstance(CLSID_FileOpenDialog, nullptr, CLSCTX_INPROC_SERVER,
                                 IID_PPV_ARGS(&dlg))))
         return false;
     DWORD options = 0;
     dlg->GetOptions(&options);
-    dlg->SetOptions(options | FOS_PICKFOLDERS | FOS_FORCEFILESYSTEM | FOS_PATHMUSTEXIST);
+    dlg->SetOptions(options | flags | FOS_FORCEFILESYSTEM | FOS_PATHMUSTEXIST);
     dlg->SetTitle(title.c_str());
+    if (filter) dlg->SetFileTypes(1, filter);
     bool ok = false;
     if (SUCCEEDED(dlg->Show(parent))) {
         IShellItem* item = nullptr;
@@ -818,6 +843,19 @@ bool PickFolder(HWND parent, const std::wstring& title, std::wstring* path) {
     }
     dlg->Release();
     return ok;
+}
+
+}  // namespace
+
+bool PickFolder(HWND parent, const std::wstring& title, std::wstring* path) {
+    return PickPath(parent, title, FOS_PICKFOLDERS, nullptr, path);
+}
+
+bool PickFile(HWND parent, const std::wstring& title, const std::wstring& kind,
+              const std::wstring& pattern, std::wstring* path) {
+    std::wstring name = kind + L" (" + pattern + L")";
+    COMDLG_FILTERSPEC filter = {name.c_str(), pattern.c_str()};
+    return PickPath(parent, title, FOS_FILEMUSTEXIST, &filter, path);
 }
 
 bool ConfirmYesNo(HWND parent, const std::wstring& message, const std::wstring& title) {

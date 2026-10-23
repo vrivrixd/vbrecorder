@@ -37,16 +37,16 @@ msgid "Sair"
 msgstr "Poistu"
 
 msgid "&Formato de Saída:"
-msgstr "Tulostus&muoto:"
+msgstr "Tulo&stusmuoto:"
 
 msgid "&Bitrate:"
 msgstr "&Bittinopeus:"
 
 msgid "Compressão F&LAC:"
-msgstr "F&LAC-pakkaus:"
+msgstr "&FLAC-pakkaus:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "&Näytetaajuus:"
+msgstr "N&äytetaajuus:"
 
 msgid "Profundidade de Bit&s:"
 msgstr "Bittis&yvyys:"
@@ -61,10 +61,10 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Tallennus&lähteet:"
+msgstr "Talle&nnuslähteet:"
 
 msgid "&Nome do Arquivo:"
-msgstr "Tiedoston &nimi:"
+msgstr "Tie&doston nimi:"
 
 msgid "&Diretório de Saída:"
 msgstr "Tulostus&hakemisto:"
@@ -76,7 +76,7 @@ msgid "&Editar"
 msgstr "&Muokkaa"
 
 msgid "&Remover"
-msgstr "P&oista"
+msgstr "&Poista"
 
 msgid "P&rocurar..."
 msgstr "S&elaa..."
@@ -85,13 +85,13 @@ msgid "Abr&ir Pasta de Gravações"
 msgstr "Avaa ta&llennuskansio"
 
 msgid "Config&urações..."
-msgstr "Aset&ukset..."
+msgstr "Ase&tukset..."
 
 msgid "S&obre"
-msgstr "Tiet&oja"
+msgstr "Tieto&ja"
 
 msgid "&Minimizar"
-msgstr "P&ienennä"
+msgstr "Pienennä (&Z)"
 
 msgid "&Fechar"
 msgstr "&Sulje"
@@ -100,7 +100,7 @@ msgid "E&xcluir Gravação"
 msgstr "P&oista tallenne"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Tallenna lähteet &erillisiin tiedostoihin"
+msgstr "Tallenna lähteet e&rillisiin tiedostoihin"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
 msgstr "Soita &äänimerkit, kun tallennus alkaa tai päättyy"
@@ -157,13 +157,13 @@ msgid "Padrão do sistema"
 msgstr "Järjestelmän oletus"
 
 msgid "Iniciar &Minimizado"
-msgstr "Käynnistä &pienennettynä"
+msgstr "Käynni&stä pienennettynä"
 
 msgid "Minimizar Para a &Bandeja do Sistema"
 msgstr "Pienennä &ilmaisinalueelle"
 
 msgid "Janela Sempre no &Topo"
-msgstr "Ikkuna aina &päällimmäisenä"
+msgstr "Ikkuna aina päällimmäis&enä"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "&Lähtölaskenta ennen tallennusta"
@@ -220,22 +220,22 @@ msgid "Para&r"
 msgstr "&Pysäytä"
 
 msgid "&Gravar"
-msgstr "&Tallenna"
+msgstr "Talle&nna"
 
 msgid "C&ontinuar"
 msgstr "J&atka"
 
 msgid "&Pausar"
-msgstr "&Tauko"
+msgstr "T&auko"
 
 msgid "Gravações"
 msgstr "Tallenteet"
 
 msgid "Parar Reprod&ução"
-msgstr "Pysäytä t&oisto"
+msgstr "Pysäytä &toisto"
 
 msgid "Reprod&uzir Gravação"
-msgstr "T&oista tallenne"
+msgstr "&Toista tallenne"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Valitse toistettava tiedosto:"
@@ -580,5 +580,14 @@ msgid "&Mostrar Todos os Processos"
 msgstr "&Näytä kaikki prosessit"
 
 msgid "E&stéreo"
-msgstr "St&ereo"
+msgstr "Ste&reo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Tallenn&uksen kesto (hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Tyhjä: tallennetaan ilman rajaa. 1:30:00 on puolitoista tuntia, 45:00 on 45 minuuttia."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Virheellinen tallennuksen kesto. Käytä tunteja, minuutteja ja sekunteja, esimerkiksi 1:30:00, tai jätä tyhjäksi tallentaaksesi ilman rajaa."
 

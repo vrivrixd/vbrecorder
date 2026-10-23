@@ -93,6 +93,8 @@ public:
     bool is_recording() const { return recording_; }
     bool is_paused() const { return paused_; }
     const std::vector<std::wstring>& output_files() const { return output_files_; }
+    /* Where the recording is on its timeline, in seconds, without the pauses. */
+    double RecordingSeconds();
 
 private:
     struct Input;
@@ -126,7 +128,6 @@ private:
     static BOOL CALLBACK MonitorProc(DWORD handle, const void* buffer, DWORD length, void* user);
     static DWORD WINAPI PumpThread(void* self);
     void Pump();
-    double RecordingSeconds();
     void Watchdog(double wall);
     void ScanWatches();
     void CollectEnded();

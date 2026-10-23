@@ -22,7 +22,7 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Poslouchat vybrané zařízení s upravenou hlasitostí"
 
 msgid "&Parar"
-msgstr "&Zastavit"
+msgstr "Z&astavit"
 
 msgid "&Testar"
 msgstr "&Testovat"
@@ -67,7 +67,7 @@ msgid "&Nome do Arquivo:"
 msgstr "&Název souboru:"
 
 msgid "&Diretório de Saída:"
-msgstr "&Výstupní adresář:"
+msgstr "Výstupní &adresář:"
 
 msgid "&Adicionar"
 msgstr "Při&dat"
@@ -76,13 +76,13 @@ msgid "&Editar"
 msgstr "&Upravit"
 
 msgid "&Remover"
-msgstr "&Odebrat"
+msgstr "Odebra&t"
 
 msgid "P&rocurar..."
 msgstr "P&rocházet..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Otevř&ít složku záznamů"
+msgstr "Ot&evřít složku záznamů"
 
 msgid "Config&urações..."
 msgstr "Nastaven&í..."
@@ -94,16 +94,16 @@ msgid "&Minimizar"
 msgstr "&Minimalizovat"
 
 msgid "&Fechar"
-msgstr "&Zavřít"
+msgstr "Zav&řít"
 
 msgid "E&xcluir Gravação"
-msgstr "S&mazat záznam"
+msgstr "Smazat z&áznam"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Zaznamenávat zdroje do &oddělených souborů"
+msgstr "Zaznamenávat zdro&je do oddělených souborů"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Přehrát &tón při spuštění nebo zastavení záznamu"
+msgstr "Přehrát tón při spuštění nebo zasta&vení záznamu"
 
 msgid "Selecionar Pasta"
 msgstr "Vybrat složku"
@@ -378,7 +378,7 @@ msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Chyba BASS {erro} při přidávání zdroje záznamu."
 
 msgid "Continuar Última Gra&vação"
-msgstr "Pokračovat v &posledním záznamu"
+msgstr "Pokra&čovat v posledním záznamu"
 
 msgid "Continuar Última Gravação"
 msgstr "Pokračovat v posledním záznamu"
@@ -418,7 +418,7 @@ msgid "&Verificar Atualizações Automaticamente"
 msgstr "&Automaticky kontrolovat aktualizace"
 
 msgid "Verificar Atuali&zação..."
-msgstr "Zkontrolovat aktuali&zaci..."
+msgstr "Zkont&rolovat aktualizaci..."
 
 msgid "Iniciar com o &Windows"
 msgstr "Spustit se systémem &Windows"
@@ -585,4 +585,13 @@ msgstr "Zobrazit &všechny procesy"
 
 msgid "E&stéreo"
 msgstr "&Stereo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Délka nahrávání (hh:mm:&ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Prázdné = nahrávat bez omezení. 1:30:00 je hodina a půl, 45:00 je 45 minut."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Neplatná délka nahrávání. Použijte hodiny, minuty a sekundy, například 1:30:00, nebo nechte prázdné pro nahrávání bez omezení."
 

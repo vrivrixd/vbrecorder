@@ -25,7 +25,7 @@ msgid "&Parar"
 msgstr "U&stavi"
 
 msgid "&Testar"
-msgstr "&Preizkusi"
+msgstr "Pr&eizkusi"
 
 msgid "&Atualizar"
 msgstr "&Osveži"
@@ -37,19 +37,19 @@ msgid "Sair"
 msgstr "Izhod"
 
 msgid "&Formato de Saída:"
-msgstr "&Izhodni format:"
+msgstr "I&zhodni format:"
 
 msgid "&Bitrate:"
 msgstr "&Bitna hitrost:"
 
 msgid "Compressão F&LAC:"
-msgstr "Kompresija F&LAC:"
+msgstr "Kompresija &FLAC:"
 
 msgid "&Taxa de Amostragem:"
 msgstr "Hitros&t vzorčenja:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Bitna &globina:"
+msgstr "&Bitna globina:"
 
 msgid "&Canais:"
 msgstr "&Kanali:"
@@ -61,13 +61,13 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Viri s&nemanja:"
+msgstr "Viri &snemanja:"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Ime datoteke:"
 
 msgid "&Diretório de Saída:"
-msgstr "&Izhodni imenik:"
+msgstr "Izhod&ni imenik:"
 
 msgid "&Adicionar"
 msgstr "Dod&aj"
@@ -82,13 +82,13 @@ msgid "P&rocurar..."
 msgstr "B&rskaj..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Odp&ri mapo s posnetki"
+msgstr "&Odpri mapo s posnetki"
 
 msgid "Config&urações..."
-msgstr "Nastavitv&e..."
+msgstr "Nasta&vitve..."
 
 msgid "S&obre"
-msgstr "&O programu"
+msgstr "O pro&gramu"
 
 msgid "&Minimizar"
 msgstr "&Minimiziraj"
@@ -97,10 +97,10 @@ msgid "&Fechar"
 msgstr "&Zapri"
 
 msgid "E&xcluir Gravação"
-msgstr "I&zbriši posnetek"
+msgstr "Izbri&ši posnetek"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Snemanje virov v &ločene datoteke"
+msgstr "Snemanje virov v lo&čene datoteke"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
 msgstr "Predvajaj &tone ob začetku ali koncu snemanja"
@@ -163,7 +163,7 @@ msgid "Minimizar Para a &Bandeja do Sistema"
 msgstr "Minimiziraj v s&istemsko vrstico"
 
 msgid "Janela Sempre no &Topo"
-msgstr "Okno vedno na &vrhu"
+msgstr "Okno vedno &na vrhu"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "Odš&tevanje pred snemanjem"
@@ -232,7 +232,7 @@ msgid "Gravações"
 msgstr "Posnetki"
 
 msgid "Parar Reprod&ução"
-msgstr "Ustavi predvajanj&e"
+msgstr "Ustavi predva&janje"
 
 msgid "Reprod&uzir Gravação"
 msgstr "Predvaja&j posnetek"
@@ -384,7 +384,7 @@ msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Napaka BASS {erro} pri dodajanju vira snemanja."
 
 msgid "Continuar Última Gra&vação"
-msgstr "Nadaljuj &zadnji posnetek"
+msgstr "Nada&ljuj zadnji posnetek"
 
 msgid "Continuar Última Gravação"
 msgstr "Nadaljuj zadnji posnetek"
@@ -421,7 +421,7 @@ msgid "Por favor aguarde..."
 msgstr "Prosimo počakajte..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "Samodejno &preverjaj posodobitve"
+msgstr "&Samodejno preverjaj posodobitve"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Preveri posodo&bitev..."
@@ -591,4 +591,13 @@ msgstr "Po&kaži vse procese"
 
 msgid "E&stéreo"
 msgstr "S&tereo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Trajanje snemanja (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Prazno: snemanje brez omejitve. 1:30:00 je ura in pol, 45:00 je 45 minut."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Neveljavno trajanje snemanja. Uporabite ure, minute in sekunde, na primer 1:30:00, ali pustite prazno za snemanje brez omejitve."
 

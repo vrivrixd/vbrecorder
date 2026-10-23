@@ -46,10 +46,10 @@ msgid "Compressão F&LAC:"
 msgstr "FLAC Co&mpression:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "&Sample Rate:"
+msgstr "Sample Ra&te:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Bit Dept&h:"
+msgstr "&Bit Depth:"
 
 msgid "&Canais:"
 msgstr "&Channels:"
@@ -61,7 +61,7 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Recordin&g Sources:"
+msgstr "&Recording Sources:"
 
 msgid "&Nome do Arquivo:"
 msgstr "File &Name:"
@@ -85,7 +85,7 @@ msgid "Abr&ir Pasta de Gravações"
 msgstr "Open Record&ings Folder"
 
 msgid "Config&urações..."
-msgstr "&Settings..."
+msgstr "Settin&gs..."
 
 msgid "S&obre"
 msgstr "Abo&ut"
@@ -100,7 +100,7 @@ msgid "E&xcluir Gravação"
 msgstr "&Delete Recording"
 
 msgid "Gravar fontes em arquivos se&parados"
-msgstr "Record sources to separate fi&les"
+msgstr "Record sources to se&parate files"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
 msgstr "Play &tones when starting or stopping recording"
@@ -217,13 +217,13 @@ msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder is already running."
 
 msgid "Para&r"
-msgstr "Sto&p"
+msgstr "&Stop"
 
 msgid "&Gravar"
 msgstr "&Record"
 
 msgid "C&ontinuar"
-msgstr "&Resume"
+msgstr "Res&ume"
 
 msgid "&Pausar"
 msgstr "&Pause"
@@ -375,7 +375,7 @@ msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "BASS error {erro} when adding the recording source."
 
 msgid "Continuar Última Gra&vação"
-msgstr "Continue Last Recordin&g"
+msgstr "Continue &Last Recording"
 
 msgid "Continuar Última Gravação"
 msgstr "Continue Last Recording"
@@ -582,4 +582,13 @@ msgstr "Show &All Processes"
 
 msgid "E&stéreo"
 msgstr "Stereo (&H)"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Recording Duration (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Leave empty to record with no limit. 1:30:00 is an hour and a half, 45:00 is 45 minutes."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Invalid recording duration. Use hours, minutes and seconds, such as 1:30:00, or leave it empty to record with no limit."
 

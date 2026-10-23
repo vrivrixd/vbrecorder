@@ -1,8 +1,8 @@
 // VB Recorder - executable resources: manifest and version information.
 #include <windows.h>
 
-#define VB_VERSION_NUM 1,4,4,0
-#define VB_VERSION_STR "1.4.4.0"
+#define VB_VERSION_NUM 1,4,5,0
+#define VB_VERSION_STR "1.4.5.0"
 
 CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "app.manifest"
 

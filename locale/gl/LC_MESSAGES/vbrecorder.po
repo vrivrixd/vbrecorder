@@ -49,7 +49,7 @@ msgid "&Taxa de Amostragem:"
 msgstr "&Taxa de mostraxe:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Profundidade &de bits:"
+msgstr "Profundidade de &bits:"
 
 msgid "&Canais:"
 msgstr "&Canais:"
@@ -67,16 +67,16 @@ msgid "&Nome do Arquivo:"
 msgstr "&Nome do ficheiro:"
 
 msgid "&Diretório de Saída:"
-msgstr "&Cartafol de saída:"
+msgstr "Cartafol de &saída:"
 
 msgid "&Adicionar"
-msgstr "&Engadir"
+msgstr "Enga&dir"
 
 msgid "&Editar"
 msgstr "&Editar"
 
 msgid "&Remover"
-msgstr "&Eliminar"
+msgstr "Elimina&r"
 
 msgid "P&rocurar..."
 msgstr "P&rocurar..."
@@ -94,7 +94,7 @@ msgid "&Minimizar"
 msgstr "&Minimizar"
 
 msgid "&Fechar"
-msgstr "&Pechar"
+msgstr "Pech&ar"
 
 msgid "E&xcluir Gravação"
 msgstr "E&xcluir gravación"
@@ -217,7 +217,7 @@ msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder xa está en execución."
 
 msgid "Para&r"
-msgstr "De&ter"
+msgstr "Dete&r"
 
 msgid "&Gravar"
 msgstr "&Gravar"
@@ -413,7 +413,7 @@ msgid "Por favor aguarde..."
 msgstr "Por favor agarde..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "&Comprobar actualizacións automaticamente"
+msgstr "Comprobar actualizacións automaticam&ente"
 
 msgid "Verificar Atuali&zação..."
 msgstr "Comprobar actuali&zación..."
@@ -583,4 +583,13 @@ msgstr "Amosar &todos os procesos"
 
 msgid "E&stéreo"
 msgstr "E&stéreo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Duración da gravación (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "En branco, grava sen límite. 1:30:00 é unha hora e media, 45:00 son 45 minutos."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Duración da gravación non válida. Use horas, minutos e segundos, como 1:30:00, ou déixeo en branco para gravar sen límite."
 

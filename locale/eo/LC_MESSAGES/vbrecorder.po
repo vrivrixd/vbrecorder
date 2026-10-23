@@ -37,7 +37,7 @@ msgid "Sair"
 msgstr "Eliri"
 
 msgid "&Formato de Saída:"
-msgstr "Eliga &formato:"
+msgstr "Eliga for&mato:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrapido:"
@@ -49,7 +49,7 @@ msgid "&Taxa de Amostragem:"
 msgstr "Spe&cimena rapido:"
 
 msgid "Profundidade de Bit&s:"
-msgstr "Bitprofundo (&H):"
+msgstr "Bitprofundo (&Z):"
 
 msgid "&Canais:"
 msgstr "&Kanaloj:"
@@ -76,7 +76,7 @@ msgid "&Editar"
 msgstr "R&edakti"
 
 msgid "&Remover"
-msgstr "Fo&rigi"
+msgstr "For&igi"
 
 msgid "P&rocurar..."
 msgstr "Folium&i..."
@@ -88,7 +88,7 @@ msgid "Config&urações..."
 msgstr "Agord&oj..."
 
 msgid "S&obre"
-msgstr "Pr&i"
+msgstr "P&ri"
 
 msgid "&Minimizar"
 msgstr "Mi&nimumigi"
@@ -97,13 +97,13 @@ msgid "&Fechar"
 msgstr "Fer&mi"
 
 msgid "E&xcluir Gravação"
-msgstr "Forigi re&gistraĵon"
+msgstr "&Forigi registraĵon"
 
 msgid "Gravar fontes em arquivos se&parados"
 msgstr "Registri fontojn en a&partaj dosieroj"
 
 msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Ludi &tonojn ĉe komenco aŭ halto de registrado"
+msgstr "Ludi tonojn ĉe komen&co aŭ halto de registrado"
 
 msgid "Selecionar Pasta"
 msgstr "Elekti dosierujon"
@@ -217,13 +217,13 @@ msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder jam funkcias."
 
 msgid "Para&r"
-msgstr "Hal&ti"
+msgstr "Halt&i"
 
 msgid "&Gravar"
-msgstr "&Registri"
+msgstr "Re&gistri"
 
 msgid "C&ontinuar"
-msgstr "&Daŭrigi"
+msgstr "Daŭ&rigi"
 
 msgid "&Pausar"
 msgstr "&Paŭzi"
@@ -267,7 +267,7 @@ msgid "&Idioma:"
 msgstr "&Lingvo:"
 
 msgid "Tamanho do B&uffer (ms):"
-msgstr "&Bufrogrando (ms):"
+msgstr "B&ufrogrando (ms):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -582,4 +582,13 @@ msgstr "&Montri ĉiujn procezojn"
 
 msgid "E&stéreo"
 msgstr "&Stereo"
+
+msgid "Duração da Gravação (&hh:mm:ss):"
+msgstr "Daŭro de la registrado (&hh:mm:ss):"
+
+msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
+msgstr "Malplena: registri sen limo. 1:30:00 estas horo kaj duono, 45:00 estas 45 minutoj."
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+msgstr "Nevalida daŭro de registrado. Uzu horojn, minutojn kaj sekundojn, ekzemple 1:30:00, aŭ lasu ĝin malplena por registri sen limo."
 
