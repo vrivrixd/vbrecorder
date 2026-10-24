@@ -790,3 +790,30 @@ msgstr "&Ja"
 msgid "&Não"
 msgstr "&Nej"
 
+msgid "Áudio de Fundo"
+msgstr "Baggrundslyd"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Fil eller mappe:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Gennemse &fil..."
+
+msgid "Procurar P&asta..."
+msgstr "Gennemse &mappe..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "&Gentag ved slutningen"
+
+msgid "Arquivos de Áudio"
+msgstr "Lydfiler"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Der blev ikke fundet nogen lydfil i:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Baggrundslyd: {nome}"
+
+msgid "A&leatório"
+msgstr "T&ilfældig rækkefølge"
+

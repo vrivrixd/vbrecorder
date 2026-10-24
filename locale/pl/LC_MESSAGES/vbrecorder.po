@@ -794,3 +794,30 @@ msgstr "&Tak"
 msgid "&Não"
 msgstr "&Nie"
 
+msgid "Áudio de Fundo"
+msgstr "Dźwięk w tle"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Plik lub folder:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Wybierz &plik..."
+
+msgid "Procurar P&asta..."
+msgstr "Wybierz &folder..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "Powtarzaj po zakończe&niu"
+
+msgid "Arquivos de Áudio"
+msgstr "Pliki dźwiękowe"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Nie znaleziono żadnego pliku dźwiękowego w:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Dźwięk w tle: {nome}"
+
+msgid "A&leatório"
+msgstr "&Losowo"
+

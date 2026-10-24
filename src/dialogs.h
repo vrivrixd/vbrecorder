@@ -145,6 +145,9 @@ private:
     void LoadProcesses();
     void OnRefresh();
     void OnBrowseExe();
+    void OnBrowseBackground(bool folder);
+    std::wstring BackgroundPath() const;
+    void UpdateShuffleState();
     int SelectedDevice() const;  // -1 if the source is not a device
     int CheckedFilter() const;
     void UpdateOkState();
@@ -172,6 +175,8 @@ private:
     std::vector<SourceItem> exe_items_;  // always empty: the name is typed
     const std::vector<SourceItem>* current_items_ = nullptr;
     HWND rb_exe_ = nullptr, lbl_src_ = nullptr, lbl_exe_ = nullptr, txt_exe_ = nullptr;
+    HWND rb_file_ = nullptr, lbl_file_ = nullptr, txt_file_ = nullptr, btn_file_browse_ = nullptr,
+         btn_folder_browse_ = nullptr, chk_loop_ = nullptr, chk_shuffle_ = nullptr;
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,
          sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, btn_fx_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr, btn_exe_browse_ = nullptr,
          btn_noise_ = nullptr, btn_ok_ = nullptr,

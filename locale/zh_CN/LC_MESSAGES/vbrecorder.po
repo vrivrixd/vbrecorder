@@ -781,3 +781,30 @@ msgstr "是(&Y)"
 msgid "&Não"
 msgstr "否(&N)"
 
+msgid "Áudio de Fundo"
+msgstr "背景音频"
+
+msgid "Arquivo ou Pasta:"
+msgstr "文件或文件夹:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "浏览文件(&F)..."
+
+msgid "Procurar P&asta..."
+msgstr "浏览文件夹(&D)..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "播放结束后重复(&R)"
+
+msgid "Arquivos de Áudio"
+msgstr "音频文件"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "在以下位置未找到音频文件:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "背景音频: {nome}"
+
+msgid "A&leatório"
+msgstr "随机顺序(&H)"
+

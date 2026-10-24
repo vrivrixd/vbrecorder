@@ -791,3 +791,30 @@ msgstr "&Si"
 msgid "&Não"
 msgstr "&Non"
 
+msgid "Áudio de Fundo"
+msgstr "Audio de fondo"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Ficheiro ou cartafol:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Buscar &ficheiro..."
+
+msgid "Procurar P&asta..."
+msgstr "Buscar cartafo&l..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "&Repetir ao rematar"
+
+msgid "Arquivos de Áudio"
+msgstr "Ficheiros de audio"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Non se atopou ningún ficheiro de audio en:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Audio de fondo: {nome}"
+
+msgid "A&leatório"
+msgstr "&Aleatorio"
+

@@ -263,6 +263,9 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
     // The equalizer, noise remover and stereo of each source, in the same order, in
     // a section of their own: [EFEITOS] 1 = ..., 2 = ...
     const Section* fx_section = Find(L"EFEITOS");
+    // And the path of each background audio, which may have any character:
+    // [ARQUIVOS] 2 = C:\Música\fundo.mp3
+    const Section* file_section = Find(L"ARQUIVOS");
     int index = 0;
     auto fx_of = [&](int i) {
         const std::wstring* v = fx_section ? Lookup(fx_section->items, std::to_wstring(i)) : nullptr;
@@ -299,6 +302,27 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
             if (!e.exe.empty()) result.push_back(e);
             continue;
         }
+        if (tokens[0] == L"file") {
+            // Background audio: "file:1:1.0000:0", 1 when it repeats, then 1
+            // when it shuffles.
+            SourceEntry e;
+            e.type = tokens[0];
+            e.loop = Trim(tokens[1]) != L"0";
+            e.shuffle = tokens.size() >= 4 && Trim(tokens[3]) == L"1";
+            if (tokens.size() >= 3) {
+                wchar_t* vend = nullptr;
+                double v = wcstod(tokens[2].c_str(), &vend);
+                if (vend && vend != tokens[2].c_str()) e.volume = v;
+            }
+            e.fx = fx_of(index);
+            const std::wstring* path =
+                file_section ? Lookup(file_section->items, std::to_wstring(index)) : nullptr;
+            if (path && !Trim(*path).empty()) {
+                e.path = Trim(*path);
+                result.push_back(e);
+            }
+            continue;
+        }
         const std::wstring& id_str = tokens[1];
         size_t digits = id_str.find_first_not_of(L'-');
         // A single sign only: "-1" is valid, "--1" is not a number.
@@ -327,9 +351,18 @@ void ConfigManager::SetSources(const std::vector<Source>& sources) {
         swprintf(vol, 64, L"%.4f", sources[i].volume);
         if (i) value += L",";
         const Source& s = sources[i];
-        value += s.type + L":" + (s.type == L"exe" ? s.name : std::to_wstring(s.id)) + L":" + vol;
+        std::wstring what = s.type == L"exe"    ? s.name
+                            : s.type == L"file" ? std::wstring(s.loop ? L"1" : L"0")
+                                                : std::to_wstring(s.id);
+        value += s.type + L":" + what + L":" + vol;
+        if (s.type == L"file") value += s.shuffle ? L":1" : L":0";
     }
     SetConfig(L"fontes", value);
+    Section& file_section = Ensure(L"ARQUIVOS");
+    file_section.items.clear();
+    for (size_t i = 0; i < sources.size(); ++i)
+        if (sources[i].type == L"file")
+            file_section.items.emplace_back(std::to_wstring(i + 1), sources[i].name);
     Section& fx_section = Ensure(L"EFEITOS");
     fx_section.items.clear();
     for (size_t i = 0; i < sources.size(); ++i) {
@@ -340,6 +373,6 @@ void ConfigManager::SetSources(const std::vector<Source>& sources) {
 
 bool SameSource(const Source& a, const Source& b) {
     if (a.type != b.type) return false;
-    if (a.type == L"exe") return ToLower(a.name) == ToLower(b.name);
+    if (a.type == L"exe" || a.type == L"file") return ToLower(a.name) == ToLower(b.name);
     return a.id == b.id;
 }

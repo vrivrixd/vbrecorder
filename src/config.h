@@ -39,22 +39,31 @@ const int BUFFER_MIN = 100;
 const int BUFFER_MAX = 5000;
 
 struct SourceEntry {
-    std::wstring type;  // "device", "process" or "exe"
+    std::wstring type;  // "device", "process", "exe" or "file"
     int id = 0;         // device index or process id
     std::wstring exe;   // executable name, for "exe"
     double volume = 1.0;
     FxSettings fx;
+    std::wstring path;  // file or folder, for "file"
+    bool loop = true;
+    bool shuffle = false;
 };
 
 /* A recording source. An "exe" source is every process with that executable
-   name, whenever it runs; its name is the executable name (jogo.exe). */
+   name, whenever it runs; its name is the executable name (jogo.exe). A
+   "file" source is background audio: its name is the file or folder played,
+   loop says whether it starts over when it ends, and shuffle whether a
+   folder plays in a random order. */
 struct Source {
     std::wstring type;
     int id = 0;
     std::wstring name;
     double volume = 1.0;
-    FxSettings fx;  // equalizer and noise remover
+    FxSettings fx;  // equalizer, effects, noise remover and stereo
+    bool loop = true;
+    bool shuffle = false;
 };
+
 
 /* Whether two sources are the same device, process or executable. */
 bool SameSource(const Source& a, const Source& b);

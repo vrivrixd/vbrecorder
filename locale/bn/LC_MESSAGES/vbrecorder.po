@@ -792,3 +792,30 @@ msgstr "হ্যাঁ(&Y)"
 msgid "&Não"
 msgstr "না(&N)"
 
+msgid "Áudio de Fundo"
+msgstr "পটভূমির অডিও"
+
+msgid "Arquivo ou Pasta:"
+msgstr "ফাইল বা ফোল্ডার:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "ফাইল খুঁজুন(&F)..."
+
+msgid "Procurar P&asta..."
+msgstr "ফোল্ডার খুঁজুন(&D)..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "শেষ হলে আবার চালান(&R)"
+
+msgid "Arquivos de Áudio"
+msgstr "অডিও ফাইল"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "এখানে কোনো অডিও ফাইল পাওয়া যায়নি:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "পটভূমির অডিও: {nome}"
+
+msgid "A&leatório"
+msgstr "এলোমেলো ক্রম(&H)"
+

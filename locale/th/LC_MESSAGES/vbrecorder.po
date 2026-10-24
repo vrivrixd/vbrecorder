@@ -785,3 +785,30 @@ msgstr "ใช่(&Y)"
 msgid "&Não"
 msgstr "ไม่(&N)"
 
+msgid "Áudio de Fundo"
+msgstr "เสียงพื้นหลัง"
+
+msgid "Arquivo ou Pasta:"
+msgstr "ไฟล์หรือโฟลเดอร์:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "เรียกดูไฟล์(&F)..."
+
+msgid "Procurar P&asta..."
+msgstr "เรียกดูโฟลเดอร์(&D)..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "เล่นซ้ำเมื่อจบ(&R)"
+
+msgid "Arquivos de Áudio"
+msgstr "ไฟล์เสียง"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "ไม่พบไฟล์เสียงใน:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "เสียงพื้นหลัง: {nome}"
+
+msgid "A&leatório"
+msgstr "สุ่มลำดับ(&H)"
+

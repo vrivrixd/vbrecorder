@@ -783,3 +783,30 @@ msgstr "はい(&Y)"
 msgid "&Não"
 msgstr "いいえ(&N)"
 
+msgid "Áudio de Fundo"
+msgstr "バックグラウンド オーディオ"
+
+msgid "Arquivo ou Pasta:"
+msgstr "ファイルまたはフォルダー:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "ファイルを参照(&F)..."
+
+msgid "Procurar P&asta..."
+msgstr "フォルダーを参照(&D)..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "終了したら繰り返す(&R)"
+
+msgid "Arquivos de Áudio"
+msgstr "オーディオ ファイル"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "オーディオ ファイルが見つかりませんでした:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "バックグラウンド オーディオ: {nome}"
+
+msgid "A&leatório"
+msgstr "シャッフル(&H)"
+

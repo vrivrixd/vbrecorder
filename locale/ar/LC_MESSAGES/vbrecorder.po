@@ -806,3 +806,30 @@ msgstr "نعم(&Y)"
 msgid "&Não"
 msgstr "لا(&N)"
 
+msgid "Áudio de Fundo"
+msgstr "صوت الخلفية"
+
+msgid "Arquivo ou Pasta:"
+msgstr "ملف أو مجلد:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "استعراض ملف(&F)..."
+
+msgid "Procurar P&asta..."
+msgstr "استعراض مجلد(&D)..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "التكرار عند الانتهاء(&R)"
+
+msgid "Arquivos de Áudio"
+msgstr "ملفات الصوت"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "لم يُعثر على أي ملف صوتي في:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "صوت الخلفية: {nome}"
+
+msgid "A&leatório"
+msgstr "ترتيب عشوائي(&H)"
+

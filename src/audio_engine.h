@@ -27,6 +27,7 @@
 #include <utility>
 #include <vector>
 
+#include "background.h"
 #include "bass_api.h"
 #include "config.h"
 #include "fx_chain.h"
@@ -82,7 +83,8 @@ public:
     bool AddLiveSource(const Source& src, int* error);
     void RemoveLiveSource(const Source& src);
     void SetSourceVolume(const Source& src, double volume);
-    /* New equalizer or noise remover for a source being recorded. */
+    /* New equalizer or noise remover for a source being recorded, and the
+       repeat and shuffle of a background audio. */
     void SetSourceFx(const Source& src);
 
     void PauseRecording();
@@ -161,6 +163,10 @@ private:
     // The files of the last recording and where it stopped, to continue it.
     std::vector<std::pair<std::wstring, std::wstring>> last_outputs_;  // (path, key)
     double last_end_sec_ = 0;
+    // Where each background audio was when the last recording stopped, so
+    // continuing it goes on from there too; by path, in lower case.
+    std::map<std::wstring, BackgroundPlayer::Place> background_places_;
+    bool resuming_ = false;  // the sources being placed continue a recording
     std::wstring format_, options_;
     int bits_ = 16;  // bit depth of wav, aiff and flac
     std::wstring base_path_, ext_;

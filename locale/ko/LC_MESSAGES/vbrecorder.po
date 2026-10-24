@@ -782,3 +782,30 @@ msgstr "예(&Y)"
 msgid "&Não"
 msgstr "아니요(&N)"
 
+msgid "Áudio de Fundo"
+msgstr "배경 오디오"
+
+msgid "Arquivo ou Pasta:"
+msgstr "파일 또는 폴더:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "파일 찾아보기(&F)..."
+
+msgid "Procurar P&asta..."
+msgstr "폴더 찾아보기(&D)..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "끝나면 반복(&R)"
+
+msgid "Arquivos de Áudio"
+msgstr "오디오 파일"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "오디오 파일을 찾을 수 없습니다:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "배경 오디오: {nome}"
+
+msgid "A&leatório"
+msgstr "무작위 순서(&H)"
+

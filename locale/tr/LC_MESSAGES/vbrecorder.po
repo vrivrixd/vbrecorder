@@ -791,3 +791,30 @@ msgstr "&Evet"
 msgid "&Não"
 msgstr "&Hayır"
 
+msgid "Áudio de Fundo"
+msgstr "Arka plan sesi"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Dosya veya klasör:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Dosyaya &göz at..."
+
+msgid "Procurar P&asta..."
+msgstr "&Klasöre göz at..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "Bitince &yinele"
+
+msgid "Arquivos de Áudio"
+msgstr "Ses dosyaları"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Şurada ses dosyası bulunamadı:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Arka plan sesi: {nome}"
+
+msgid "A&leatório"
+msgstr "&Rastgele"
+

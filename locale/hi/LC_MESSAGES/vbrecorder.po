@@ -792,3 +792,30 @@ msgstr "हाँ(&Y)"
 msgid "&Não"
 msgstr "नहीं(&N)"
 
+msgid "Áudio de Fundo"
+msgstr "बैकग्राउंड ऑडियो"
+
+msgid "Arquivo ou Pasta:"
+msgstr "फ़ाइल या फ़ोल्डर:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "फ़ाइल ढूँढें(&F)..."
+
+msgid "Procurar P&asta..."
+msgstr "फ़ोल्डर ढूँढें(&D)..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "ख़त्म होने पर दोहराएँ(&R)"
+
+msgid "Arquivos de Áudio"
+msgstr "ऑडियो फ़ाइलें"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "यहाँ कोई ऑडियो फ़ाइल नहीं मिली:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "बैकग्राउंड ऑडियो: {nome}"
+
+msgid "A&leatório"
+msgstr "यादृच्छिक क्रम(&H)"
+

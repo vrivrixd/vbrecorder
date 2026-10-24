@@ -793,3 +793,30 @@ msgstr "&Ano"
 msgid "&Não"
 msgstr "&Ne"
 
+msgid "Áudio de Fundo"
+msgstr "Zvuk na pozadí"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Soubor nebo složka:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Procházet sou&bor..."
+
+msgid "Procurar P&asta..."
+msgstr "Procházet slož&ku..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "Opakovat po &dokončení"
+
+msgid "Arquivos de Áudio"
+msgstr "Zvukové soubory"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "V tomto umístění nebyl nalezen žádný zvukový soubor:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Zvuk na pozadí: {nome}"
+
+msgid "A&leatório"
+msgstr "Náhodné &pořadí"
+

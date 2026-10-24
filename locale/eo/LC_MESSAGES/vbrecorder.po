@@ -790,3 +790,30 @@ msgstr "&Jes"
 msgid "&Não"
 msgstr "&Ne"
 
+msgid "Áudio de Fundo"
+msgstr "Fona sonaĵo"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Dosiero aŭ dosierujo:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Foliumi &dosieron..."
+
+msgid "Procurar P&asta..."
+msgstr "Foliumi dosier&ujon..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "&Ripeti je la fino"
+
+msgid "Arquivos de Áudio"
+msgstr "Sondosieroj"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Neniu sondosiero troviĝis en:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Fona sonaĵo: {nome}"
+
+msgid "A&leatório"
+msgstr "Hazarda &ordo"
+

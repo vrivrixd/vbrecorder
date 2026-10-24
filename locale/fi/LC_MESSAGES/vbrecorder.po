@@ -789,3 +789,30 @@ msgstr "&Kyllä"
 msgid "&Não"
 msgstr "&Ei"
 
+msgid "Áudio de Fundo"
+msgstr "Taustaääni"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Tiedosto tai kansio:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Selaa tie&dostoa..."
+
+msgid "Procurar P&asta..."
+msgstr "Selaa &kansiota..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "Toista &uudelleen lopussa"
+
+msgid "Arquivos de Áudio"
+msgstr "Äänitiedostot"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Äänitiedostoja ei löytynyt kohteesta:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Taustaääni: {nome}"
+
+msgid "A&leatório"
+msgstr "Satunna&inen järjestys"
+

@@ -60,6 +60,9 @@ const std::pair<const wchar_t*, const wchar_t*> PLAYBACK_PLUGINS[] = {
     {L"opus", L"bassopus.dll"},
 };
 
+/* How far ahead of the clock background audio is read, in seconds. */
+const double BACKGROUND_LEAD = 0.05;
+
 /* How often devices deliver audio, in ms. */
 const DWORD RECORD_PERIOD = 20;
 
@@ -119,6 +122,7 @@ struct AudioEngine::Input : public CaptureSink {
     DWORD push = 0;
     DWORD rec = 0;
     std::unique_ptr<ProcessLoopbackCapture> cap;
+    std::unique_ptr<BackgroundPlayer> player;  // background audio
     std::unique_ptr<FxChain> chain;
     int rate = 0;
     int chans = 0;
@@ -203,6 +207,25 @@ struct AudioEngine::Input : public CaptureSink {
 
     void OnAudio(const float* data, DWORD samples, bool silent) override {
         Put(data, samples, silent);
+    }
+
+    /* Background audio fills its queue up to the given recording time, at
+       the recording's own clock: it is never late, and never drifts. */
+    void FillBackground(double seconds) {
+        std::lock_guard<std::mutex> lock(queue_mutex);
+        long long want = (long long)((seconds - TailSeconds()) * rate);
+        const DWORD chunk = 4096;
+        while (want > 0) {
+            DWORD n = (DWORD)std::min<long long>(want, chunk);
+            scratch.resize((size_t)n * chans);
+            player->Read(scratch.data(), n);
+            if (chain) chain->Process(scratch.data(), n);
+            float vol = volume.load();
+            if (vol != 1.0f)
+                for (float& v : scratch) v *= vol;
+            PushLocked(scratch.data(), n);
+            want -= n;
+        }
     }
 
     double BytesPerSecond() const { return (double)rate * chans * sizeof(float); }
@@ -300,6 +323,8 @@ bool AudioEngine::LoadDlls() {
     get(bass, "BASS_ChannelGetData", b_.ChannelGetData);
     get(bass, "BASS_ChannelSetAttribute", b_.ChannelSetAttribute);
     get(bass, "BASS_ChannelIsActive", b_.ChannelIsActive);
+    get(bass, "BASS_ChannelGetPosition", b_.ChannelGetPosition);
+    get(bass, "BASS_ChannelSetPosition", b_.ChannelSetPosition);
     get(bass, "BASS_PluginLoad", b_.PluginLoad);
     get(bass, "BASS_ChannelSetFX", b_.ChannelSetFX);
     get(bass, "BASS_ChannelRemoveFX", b_.ChannelRemoveFX);
@@ -545,6 +570,27 @@ std::unique_ptr<AudioEngine::Input> AudioEngine::MakeInput(const Source& src, in
     in->src = src;
     in->is_device = src.type == L"device";
     in->volume = (float)src.volume;
+    if (src.type == L"file") {
+        // At the recording's rate and channels, from its start or, when the
+        // recording is continued, from where it was.
+        in->rate = sample_rate_;
+        in->chans = chans_;
+        in->player = std::make_unique<BackgroundPlayer>(b_, src.name, src.loop, src.shuffle,
+                                                        in->rate, in->chans);
+        auto place = background_places_.find(ToLower(src.name));
+        const BackgroundPlayer::Place* from =
+            resuming_ && place != background_places_.end() ? &place->second : nullptr;
+        if (!in->player->Open(from, error)) return nullptr;
+        in->push = b_.StreamCreate(in->rate, in->chans, BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT,
+                                   STREAMPROC_PUSH, nullptr);
+        if (!in->push) {
+            *error = b_.ErrorGetCode();
+            return nullptr;
+        }
+        in->chain = std::make_unique<FxChain>(b_, in->rate, in->chans);
+        in->chain->Apply(src.fx);
+        return in;
+    }
     // Beyond the size of the capture buffer, late audio can no longer exist:
     // the device or Windows would have dropped it.
     double buffer = rec_buffer_ms_ / 1000.0;
@@ -595,6 +641,7 @@ void AudioEngine::StopCapture(Input* in) {
         in->cap->SetSink(nullptr);
         in->cap->Stop();
     }
+    in->player.reset();
 }
 
 void AudioEngine::AttachLive(Input* in, Output* out, double now) {
@@ -671,7 +718,16 @@ AudioEngine::Output* AudioEngine::OutputFor(const Source& src, double now) {
     if (!separate_) return outputs_.empty() ? nullptr : outputs_[0].get();
     // Back to the file of this same source, if it was removed before;
     // otherwise a new file, which starts with silence up to now.
-    std::wstring name = src.type == L"exe" ? src.name : SourceSafeName(src.name), key = name;
+    std::wstring name = src.type == L"exe" ? src.name : SourceSafeName(src.name);
+    if (src.type == L"file") {
+        // The name of the folder, or of the file without its extension.
+        std::wstring stem = BaseName(src.name), ext;
+        DWORD attr = GetFileAttributesW(src.name.c_str());
+        if (attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY))
+            SplitExt(BaseName(src.name), &stem, &ext);
+        name = SourceSafeName(stem);
+    }
+    std::wstring key = name;
     for (int n = 2;; ++n) {
         auto it = std::find_if(outputs_.begin(), outputs_.end(),
                                [&](const std::unique_ptr<Output>& o) { return o->key == key; });
@@ -728,7 +784,7 @@ bool AudioEngine::PlaceSource(const Source& src, double now, int* error) {
             DropInput(in);
             return false;
         }
-    } else {
+    } else if (in->cap) {
         in->cap->SetSink(in);
     }
     inputs_.push_back(std::move(made));
@@ -785,6 +841,7 @@ bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstri
     ResetRecording(sample_rate, channels);
     output_files_.clear();
     last_outputs_.clear();
+    background_places_.clear();
     format_ = format_type;
     bits_ = bits;
     options_.clear();
@@ -873,10 +930,15 @@ bool AudioEngine::ContinueRecording(const std::vector<Source>& sources, int* err
     QueryPerformanceCounter(&now);
     start_ticks_ = now.QuadPart - (LONGLONG)(t0 * (double)qpc_freq_);
     paused_ticks_ = 0;
+    resuming_ = true;
     for (auto& src : sources) {
         int code = 0;
-        if (!PlaceSource(src, t0, &code)) return fail(code, L"");
+        if (!PlaceSource(src, t0, &code)) {
+            resuming_ = false;
+            return fail(code, L"");
+        }
     }
+    resuming_ = false;
 
     recording_ = true;
     SetRecordingPower(true);
@@ -946,6 +1008,12 @@ void AudioEngine::SetSourceFx(const Source& src) {
         } else {
             in->src.fx = src.fx;
             in->chain->Apply(src.fx);
+            if (in->player) {
+                in->src.loop = src.loop;
+                in->src.shuffle = src.shuffle;
+                in->player->SetShuffle(src.shuffle);
+                in->player->SetLoop(src.loop);
+            }
         }
     }
     // The noise remover changes the capture rate: the device leaves the
@@ -1038,6 +1106,8 @@ void AudioEngine::Pump() {
         CollectEnded();
         if (paused_) continue;
         double now = RecordingSeconds();
+        for (auto& in : inputs_)
+            if (in->player && !in->ending) in->FillBackground(now + BACKGROUND_LEAD);
         double t = now - delay;
         for (auto& out : outputs_) {
             if (out->frames_done < out->join_at) {
@@ -1060,7 +1130,7 @@ void AudioEngine::Watchdog(double wall) {
     // again. The time they were gone becomes silence.
     for (auto& ptr : inputs_) {
         Input* in = ptr.get();
-        if (in->ending) continue;
+        if (in->ending || in->player) continue;  // background audio never goes away
         bool healthy;
         if (in->is_device) {
             healthy = in->rec && b_.ChannelIsActive(in->rec) == BASS_ACTIVE_PLAYING;
@@ -1212,7 +1282,8 @@ bool AudioEngine::Feed(Output& out, DWORD frames, bool final_flush, bool may_wai
             in->level_known = false;
             continue;
         }
-        if (final_flush) continue;
+        // Background audio follows the recording's clock already.
+        if (final_flush || in->player) continue;
 
         double excess = avail / in->BytesPerSecond() - expected;
         if (excess > target * 3 + 1.0) {
@@ -1254,7 +1325,9 @@ void AudioEngine::Teardown(bool flush) {
         CloseHandle(pump_thread_);
         pump_thread_ = nullptr;
     }
-    for (auto& in : inputs_) StopCapture(in.get());
+    // Background audio stops after the flush: where it was is kept first.
+    for (auto& in : inputs_)
+        if (!in->player) StopCapture(in.get());
     if (flush) {
         double now = RecordingSeconds();
         // Files that join in the middle finish their start, and their sources
@@ -1283,7 +1356,13 @@ void AudioEngine::Teardown(bool flush) {
         last_outputs_.clear();
         for (auto& out : outputs_) last_outputs_.emplace_back(out->path, out->key);
         last_end_sec_ = (double)end / sample_rate_;
+        background_places_.clear();
+        for (auto& in : inputs_)
+            if (in->player && !in->ending)
+                background_places_[ToLower(in->src.name)] = in->player->Where();
     }
+    for (auto& in : inputs_)
+        if (in->player) StopCapture(in.get());
     for (auto& out : outputs_) {
         if (out->encoder) {
             if (b_.EncodeStopEx) b_.EncodeStopEx(out->encoder, BASS_ENCODE_STOP_WAIT);

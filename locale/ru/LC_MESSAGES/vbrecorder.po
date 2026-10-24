@@ -793,3 +793,30 @@ msgstr "&Да"
 msgid "&Não"
 msgstr "&Нет"
 
+msgid "Áudio de Fundo"
+msgstr "Фоновый звук"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Файл или папка:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Выбрать &файл..."
+
+msgid "Procurar P&asta..."
+msgstr "Выбрать п&апку..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "По&вторять по окончании"
+
+msgid "Arquivos de Áudio"
+msgstr "Аудиофайлы"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Не найдено ни одного аудиофайла в:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Фоновый звук: {nome}"
+
+msgid "A&leatório"
+msgstr "Случайный по&рядок"
+

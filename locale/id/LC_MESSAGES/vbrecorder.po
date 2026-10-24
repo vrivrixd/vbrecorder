@@ -787,3 +787,30 @@ msgstr "&Ya"
 msgid "&Não"
 msgstr "&Tidak"
 
+msgid "Áudio de Fundo"
+msgstr "Audio latar"
+
+msgid "Arquivo ou Pasta:"
+msgstr "File atau folder:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Telusuri &file..."
+
+msgid "Procurar P&asta..."
+msgstr "Telusuri fol&der..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "Ulang&i setelah selesai"
+
+msgid "Arquivos de Áudio"
+msgstr "File audio"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Tidak ada file audio yang ditemukan di:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Audio latar: {nome}"
+
+msgid "A&leatório"
+msgstr "&Acak"
+

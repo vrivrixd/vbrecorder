@@ -36,6 +36,13 @@ history.
   it is opened and closed, and however many copies are open. With separate
   files, it goes to `recording (game.exe).wav`. The Browse button finds the
   program on disk and keeps only its file name.
+- **Background audio.** A file, or a folder whose audio files play in name
+  order, goes into the recording as one more source, such as music under a
+  voice. "Repeat When Finished" starts it over at the end; unchecked, it plays
+  once. With "Shuffle", a folder plays in a random order, a new one each time
+  it repeats. It has its own volume, equalizer and stereo setting, and it is
+  never played aloud: it is only heard in the recording. Pausing pauses it
+  too, and continuing the last recording goes on from where it stopped.
 - **Per-source volume.** Adjust each source from -30 dB to +30 dB, to balance
   weak microphones without affecting the others.
 - **Stereo or mono per source.** A source with "Stereo" unchecked is mixed
@@ -231,6 +238,7 @@ Structure:
 - `src/install.cpp` — what changes in the installed copy.
 - `src/fx.cpp` — equalizer, effects and noise remover settings, and their presets.
 - `src/fx_chain.cpp` — the processing of each source (BASS_FX, RNNoise and the delay).
+- `src/background.cpp` — background audio: the files of a source, played in turn.
 - `src/fx_dialogs.cpp` — the equalizer, effects and noise remover dialogs.
 - `src/ui.cpp` — interface foundation: native controls and window layout.
 - `res/` — manifest, version information and the list of embedded translations.

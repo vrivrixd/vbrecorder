@@ -799,3 +799,30 @@ msgstr "&Da"
 msgid "&Não"
 msgstr "&Ne"
 
+msgid "Áudio de Fundo"
+msgstr "Zvok v ozadju"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Datoteka ali mapa:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Prebrskaj &datoteko..."
+
+msgid "Procurar P&asta..."
+msgstr "Prebrskaj &mapo..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "Ponovi ob &koncu"
+
+msgid "Arquivos de Áudio"
+msgstr "Zvočne datoteke"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Ni bilo najdene nobene zvočne datoteke v:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Zvok v ozadju: {nome}"
+
+msgid "A&leatório"
+msgstr "&Naključno"
+

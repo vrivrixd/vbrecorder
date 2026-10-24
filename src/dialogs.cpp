@@ -25,6 +25,7 @@
 #include <cwchar>
 #include <set>
 
+#include "background.h"
 #include "fx_dialogs.h"
 #include "hotkeys.h"
 #include "i18n.h"
@@ -338,6 +339,12 @@ enum {
     IDC_AS_EQ,
     IDC_AS_FX,
     IDC_AS_NOISE,
+    IDC_AS_FILE,
+    IDC_AS_FILE_PATH,
+    IDC_AS_FILE_BROWSE,
+    IDC_AS_FOLDER_BROWSE,
+    IDC_AS_LOOP,
+    IDC_AS_SHUFFLE,
 };
 
 AddSourceDialog::AddSourceDialog(AudioEngine& audio, const std::vector<Source>& existing,
@@ -371,13 +378,14 @@ void AddSourceDialog::OnInit() {
     rb_processes_ = Add(WC_BUTTONW, tr("Processos em Execução"), BS_AUTORADIOBUTTON,
                         IDC_AS_PROCESSES);
     rb_exe_ = Add(WC_BUTTONW, tr("Arquivo Executável"), BS_AUTORADIOBUTTON, IDC_AS_EXE);
+    rb_file_ = Add(WC_BUTTONW, tr("Áudio de Fundo"), BS_AUTORADIOBUTTON, IDC_AS_FILE);
     Button_SetCheck(rb_devices_, BST_CHECKED);
     if (!available) {
         EnableWindow(rb_processes_, FALSE);
         EnableWindow(rb_exe_, FALSE);
     }
     vbox->Add(std::unique_ptr<ui::Item>(
-                  new RadioBoxItem(grp_, {rb_devices_, rb_processes_, rb_exe_})),
+                  new RadioBoxItem(grp_, {rb_devices_, rb_processes_, rb_exe_, rb_file_})),
               0, ui::ALL | ui::EXPAND, S(10));
 
     lbl_src_ = Add(WC_STATICW, tr("Selecionar Fonte:"), WS_GROUP);
@@ -397,6 +405,30 @@ void AddSourceDialog::OnInit() {
         row->Add(btn_exe_browse_, 0, 0, 0);
         vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
     }
+    // Background audio: a file, or a folder whose audio files play in name
+    // order. It is typed or found with the buttons.
+    lbl_file_ = ui::Create(hwnd_, WC_STATICW, tr("Arquivo ou Pasta:"), 0, 0);
+    txt_file_ = ui::Create(hwnd_, WC_EDITW, L"", WS_TABSTOP | ES_AUTOHSCROLL, IDC_AS_FILE_PATH,
+                           WS_EX_CLIENTEDGE);
+    btn_file_browse_ = ui::Create(hwnd_, WC_BUTTONW, tr("Procurar Arq&uivo..."), BUTTON, IDC_AS_FILE_BROWSE);
+    btn_folder_browse_ =
+        ui::Create(hwnd_, WC_BUTTONW, tr("Procurar P&asta..."), BUTTON, IDC_AS_FOLDER_BROWSE);
+    vbox->Add(lbl_file_, 0, ui::LEFT | ui::RIGHT, S(10));
+    {
+        auto row = HBox();
+        row->Add(txt_file_, 1, ui::EXPAND | ui::RIGHT, S(5));
+        row->Add(btn_file_browse_, 0, ui::RIGHT, S(5));
+        row->Add(btn_folder_browse_, 0, 0, 0);
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    }
+    // Unchecked, it plays once and then the source is silent.
+    chk_loop_ = ui::Create(hwnd_, WC_BUTTONW, tr("Repet&ir ao Terminar"), CHECK, IDC_AS_LOOP);
+    Button_SetCheck(chk_loop_, !editing_ || edit_source_.loop ? BST_CHECKED : BST_UNCHECKED);
+    vbox->Add(chk_loop_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    // A folder in a random order instead of by name; a single file has no order.
+    chk_shuffle_ = ui::Create(hwnd_, WC_BUTTONW, tr("A&leatório"), CHECK, IDC_AS_SHUFFLE);
+    Button_SetCheck(chk_shuffle_, editing_ && edit_source_.shuffle ? BST_CHECKED : BST_UNCHECKED);
+    vbox->Add(chk_shuffle_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
     // Unchecked, this source is recorded in mono, whatever the recording is.
     chk_stereo_ = Add(WC_BUTTONW, tr("E&stéreo"), CHECK, IDC_AS_STEREO);
     Button_SetCheck(chk_stereo_, fx_.stereo ? BST_CHECKED : BST_UNCHECKED);
@@ -460,6 +492,11 @@ void AddSourceDialog::OnInit() {
         PopulateFilter(2);
         // Only now: typing in the field updates the dialog, which must be ready.
         SetWindowTextW(txt_exe_, edit_source_.name.c_str());
+    } else if (editing_ && edit_source_.type == L"file") {
+        Button_SetCheck(rb_devices_, BST_UNCHECKED);
+        Button_SetCheck(rb_file_, BST_CHECKED);
+        PopulateFilter(3);
+        SetWindowTextW(txt_file_, edit_source_.name.c_str());
     } else {
         PopulateFilter(0);
     }
@@ -484,7 +521,8 @@ void AddSourceDialog::OnInit() {
 bool AddSourceDialog::OnCharHook(const MSG& msg) {
     HWND focus = GetFocus();
     if (IsEnter(msg) && focus != btn_test_ && focus != btn_refresh_ && focus != btn_eq_ && focus != btn_fx_ &&
-        focus != btn_noise_ && focus != btn_exe_browse_ && focus != btn_cancel_) {
+        focus != btn_noise_ && focus != btn_exe_browse_ && focus != btn_file_browse_ &&
+        focus != btn_folder_browse_ && focus != btn_cancel_) {
         OnOk();
         return true;
     }
@@ -513,7 +551,18 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
         case IDC_AS_DEVICES:
         case IDC_AS_PROCESSES:
         case IDC_AS_EXE:
+        case IDC_AS_FILE:
             if (code == BN_CLICKED && CheckedFilter() != filter_) OnFilterChange();
+            return true;
+        case IDC_AS_FILE_PATH:
+            if (code == EN_CHANGE) {
+                UpdateOkState();
+                UpdateShuffleState();
+            }
+            return true;
+        case IDC_AS_FILE_BROWSE:
+        case IDC_AS_FOLDER_BROWSE:
+            if (code == BN_CLICKED) OnBrowseBackground(id == IDC_AS_FOLDER_BROWSE);
             return true;
         case IDC_AS_EXE_NAME:
             if (code == EN_CHANGE) UpdateOkState();
@@ -557,27 +606,41 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
 }
 
 int AddSourceDialog::CheckedFilter() const {
+    if (Button_GetCheck(rb_file_) == BST_CHECKED) return 3;
     if (Button_GetCheck(rb_exe_) == BST_CHECKED) return 2;
     return Button_GetCheck(rb_processes_) == BST_CHECKED ? 1 : 0;
 }
 
 void AddSourceDialog::UpdateOkState() {
     if (!current_items_) return;  // the dialog is still being built
-    bool ok = filter_ == 2 ? !Trim(ui::GetText(txt_exe_)).empty() : !current_items_->empty();
+    bool ok = filter_ == 2   ? !Trim(ui::GetText(txt_exe_)).empty()
+              : filter_ == 3 ? !BackgroundPath().empty()
+                             : !current_items_->empty();
     EnableWindow(btn_ok_, ok);
 }
 
 void AddSourceDialog::PopulateFilter(int sel) {
     filter_ = sel;
-    bool exe = sel == 2;
-    ui::Show(lbl_src_, !exe);
-    ui::Show(cmb_, !exe);
+    bool exe = sel == 2, file = sel == 3;
+    ui::Show(lbl_src_, !exe && !file);
+    ui::Show(cmb_, !exe && !file);
     ui::Show(chk_all_, sel == 1);
     ui::Show(btn_refresh_, sel == 1);
     ui::Show(btn_noise_, sel == 0);
+    // Background audio has only the equalizer, and no test: it is only heard
+    // in the recording.
+    ui::Show(btn_fx_, !file);
+    ui::Show(btn_test_, !file);
     ui::Show(lbl_exe_, exe);
     ui::Show(txt_exe_, exe);
     ui::Show(btn_exe_browse_, exe);
+    ui::Show(lbl_file_, file);
+    ui::Show(txt_file_, file);
+    ui::Show(btn_file_browse_, file);
+    ui::Show(btn_folder_browse_, file);
+    ui::Show(chk_loop_, file);
+    ui::Show(chk_shuffle_, file);
+    UpdateShuffleState();
     Relayout();
     current_items_ = sel == 0 ? &device_items_ : sel == 1 ? &process_items_ : &exe_items_;
     std::vector<std::wstring> choices;
@@ -613,6 +676,30 @@ void AddSourceDialog::OnBrowseExe() {
         return;
     SetWindowTextW(txt_exe_, BaseName(path).c_str());
     SetFocus(txt_exe_);
+}
+
+/* The path typed, without the quotes Explorer's "Copy as path" adds. */
+std::wstring AddSourceDialog::BackgroundPath() const {
+    std::wstring path = Trim(ui::GetText(txt_file_));
+    if (path.size() >= 2 && path.front() == L'"' && path.back() == L'"')
+        path = Trim(path.substr(1, path.size() - 2));
+    return path;
+}
+
+/* Shuffle is for folders only: with a file, it is there but disabled. */
+void AddSourceDialog::UpdateShuffleState() {
+    DWORD attr = GetFileAttributesW(BackgroundPath().c_str());
+    EnableWindow(chk_shuffle_, attr != INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY));
+}
+
+void AddSourceDialog::OnBrowseBackground(bool folder) {
+    std::wstring path;
+    bool picked = folder ? PickFolder(hwnd_, tr("Áudio de Fundo"), &path)
+                         : PickFile(hwnd_, tr("Áudio de Fundo"), tr("Arquivos de Áudio"),
+                                    BackgroundPattern(), &path);
+    if (!picked) return;
+    SetWindowTextW(txt_file_, path.c_str());
+    SetFocus(txt_file_);
 }
 
 void AddSourceDialog::OnRefresh() {
@@ -735,6 +822,34 @@ LRESULT CALLBACK AddSourceDialog::SliderProc(HWND hwnd, UINT msg, WPARAM wp, LPA
 
 void AddSourceDialog::OnOk() {
     StopTest();
+    if (filter_ == 3) {
+        std::wstring path = BackgroundPath();
+        if (path.empty()) return;
+        wchar_t full[MAX_PATH * 4];
+        DWORD n = GetFullPathNameW(path.c_str(), MAX_PATH * 4, full, nullptr);
+        if (n > 0 && n < MAX_PATH * 4) path = full;
+        if (BackgroundFiles(path).empty()) {
+            ui::MsgBox(hwnd_,
+                       Format(tr("Nenhum arquivo de áudio foi encontrado em:\n{caminho}"),
+                              {{L"caminho", path}}),
+                       tr("Aviso"), MB_ICONWARNING | MB_OK);
+            SetFocus(txt_file_);
+            return;
+        }
+        selected.type = L"file";
+        selected.id = 0;
+        selected.name = path;
+        selected.volume = Volume();
+        selected.fx = fx_;
+        // Only the equalizer and stereo: a recorded file needs no cleaning.
+        selected.fx.noise.on = false;
+        for (auto& e : selected.fx.effects) e.on = false;
+        selected.loop = Button_GetCheck(chk_loop_) == BST_CHECKED;
+        selected.shuffle = Button_GetCheck(chk_shuffle_) == BST_CHECKED;
+        has_selected = true;
+        EndModal(IDOK);
+        return;
+    }
     if (filter_ == 2) {
         // Only the file name counts, and ".exe" is added when missing.
         std::wstring name = BaseName(Trim(ui::GetText(txt_exe_)));

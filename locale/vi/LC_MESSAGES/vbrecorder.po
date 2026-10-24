@@ -790,3 +790,30 @@ msgstr "&Có"
 msgid "&Não"
 msgstr "&Không"
 
+msgid "Áudio de Fundo"
+msgstr "Âm thanh nền"
+
+msgid "Arquivo ou Pasta:"
+msgstr "Tệp hoặc thư mục:"
+
+msgid "Procurar Arq&uivo..."
+msgstr "Chọn &tệp..."
+
+msgid "Procurar P&asta..."
+msgstr "Chọn thư &mục..."
+
+msgid "Repet&ir ao Terminar"
+msgstr "&Lặp lại khi kết thúc"
+
+msgid "Arquivos de Áudio"
+msgstr "Tệp âm thanh"
+
+msgid "Nenhum arquivo de áudio foi encontrado em:\n{caminho}"
+msgstr "Không tìm thấy tệp âm thanh nào trong:\n{caminho}"
+
+msgid "Áudio de Fundo: {nome}"
+msgstr "Âm thanh nền: {nome}"
+
+msgid "A&leatório"
+msgstr "Ngẫu nh&iên"
+

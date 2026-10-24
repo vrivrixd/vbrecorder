@@ -29,6 +29,7 @@
 #include <vector>
 
 #include "audio_engine.h"
+#include "background.h"
 #include "config.h"
 #include "dialogs.h"
 #include "hotkeys.h"
@@ -171,6 +172,7 @@ private:
     void OnContinueLast();
     void OnBrowse();
     bool ReadDuration();
+    bool BackgroundReady();
     void OnDurationTick();
     std::wstring CurrentOutputDir();
     void OnOpenDir();
@@ -556,10 +558,14 @@ void MainFrame::Layout() {
 void MainFrame::RefreshList() {
     ListView_DeleteAllItems(lst_fontes_);
     for (auto& s : sources_) {
+        // Background audio shows the name of its file or folder.
+        std::wstring label = s.type == L"file"
+                                 ? Format(tr("Áudio de Fundo: {nome}"), {{L"nome", BaseName(s.name)}})
+                                 : s.name;
         LVITEMW item = {};
         item.mask = LVIF_TEXT;
         item.iItem = ListView_GetItemCount(lst_fontes_);
-        item.pszText = const_cast<wchar_t*>(s.name.c_str());
+        item.pszText = const_cast<wchar_t*>(label.c_str());
         ListView_InsertItem(lst_fontes_, &item);
     }
     ListView_SetColumnWidth(lst_fontes_, 0, LVSCW_AUTOSIZE);
@@ -905,6 +911,10 @@ void MainFrame::LoadSettings() {
         } else if (entry.type == L"exe") {
             // Kept even with the program closed: it is recorded whenever it runs.
             sources_.push_back(Source{L"exe", 0, entry.exe, entry.volume, entry.fx});
+        } else if (entry.type == L"file") {
+            // Kept even if the file is gone for now: recording says so.
+            sources_.push_back(
+                Source{L"file", 0, entry.path, entry.volume, entry.fx, entry.loop, entry.shuffle});
         } else {
             std::wstring resolved = GetProcessName((DWORD)entry.id);
             if (!resolved.empty()) {
@@ -950,7 +960,7 @@ void MainFrame::OnRecordToggle() {
                            tr("Aviso"), MB_ICONWARNING | MB_OK);
             return;
         }
-        if (!ReadDuration()) return;
+        if (!ReadDuration() || !BackgroundReady()) return;
         audio.StopPlayback();
         UpdatePlayButton();
         if (config.GetBoolean(L"contagem_regressiva")) StartCountdown();
@@ -1064,6 +1074,20 @@ void MainFrame::RecordingStarted() {
     }
 }
 
+/* Every background audio has something to play; the first one that does
+   not is reported, and false stops the recording from starting. */
+bool MainFrame::BackgroundReady() {
+    for (auto& s : sources_) {
+        if (s.type != L"file" || !BackgroundFiles(s.name).empty()) continue;
+        ui::MsgBox(DialogParent(),
+                   Format(tr("Nenhum arquivo de áudio foi encontrado em:\n{caminho}"),
+                          {{L"caminho", s.name}}),
+                   tr("Aviso"), MB_ICONWARNING | MB_OK);
+        return false;
+    }
+    return true;
+}
+
 /* The duration field: empty is no limit; otherwise seconds, minutes:seconds
    or hours:minutes:seconds. A wrong value is reported, and false stops the
    recording from starting. */
@@ -1122,7 +1146,7 @@ bool MainFrame::CanContinue() { return HasRecording() && audio.CanContinue(); }
    paused. */
 void MainFrame::OnContinueLast() {
     if (audio.is_recording() || countdown_ || !CanContinue()) return;
-    if (!ReadDuration()) return;
+    if (!ReadDuration() || !BackgroundReady()) return;
     audio.StopMonitor();
     audio.StopPlayback();  // the file being played is the one to continue
     UpdatePlayButton();
