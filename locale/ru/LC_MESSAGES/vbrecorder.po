@@ -36,20 +36,20 @@ msgstr "Показать главное окно"
 msgid "Sair"
 msgstr "Выход"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "&Формат вывода:"
 
 msgid "&Bitrate:"
-msgstr "Битре&йт:"
+msgstr "&Битрейт:"
 
-msgid "Compressão F&LAC:"
-msgstr "Сжатие F&LAC:"
+msgid "Compressão &FLAC:"
+msgstr "Сжатие &FLAC:"
 
 msgid "&Taxa de Amostragem:"
 msgstr "&Частота дискретизации:"
 
-msgid "Profundidade de Bit&s:"
-msgstr "Р&азрядность:"
+msgid "Profundidade de &Bits:"
+msgstr "&Разрядность:"
 
 msgid "&Canais:"
 msgstr "&Каналы:"
@@ -69,26 +69,23 @@ msgstr "И&мя файла:"
 msgid "&Diretório de Saída:"
 msgstr "Папка со&хранения:"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "&Добавить"
 
 msgid "&Editar"
 msgstr "Изменит&ь"
 
-msgid "&Remover"
-msgstr "У&брать"
+msgid "Remo&ver"
+msgstr "&Убрать"
 
-msgid "P&rocurar..."
-msgstr "О&бзор..."
+msgid "&Procurar..."
+msgstr "&Обзор..."
 
 msgid "Abr&ir Pasta de Gravações"
 msgstr "Открыть папку с запис&ями"
 
-msgid "Config&urações..."
+msgid "Configura&ções..."
 msgstr "&Настройки..."
-
-msgid "S&obre"
-msgstr "О п&рограмме"
 
 msgid "&Minimizar"
 msgstr "Св&ернуть"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "В&ыход"
 
 msgid "E&xcluir Gravação"
-msgstr "&Удалить запись"
+msgstr "Уд&алить запись"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Записывать источники в отде&льные файлы"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "Запис&ывать источники в отдельные файлы"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Воспроизводить &сигналы при начале и остановке записи"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Воспроизводи&ть сигналы при начале и остановке записи"
 
 msgid "Selecionar Pasta"
 msgstr "Выберите папку"
@@ -159,17 +156,17 @@ msgstr "Как в системе"
 msgid "Iniciar &Minimizado"
 msgstr "Запускать &свёрнутым"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
+msgid "Minimizar &Para a Bandeja do Sistema"
 msgstr "Сворачивать в область &уведомлений"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Окно поверх &всех окон"
 
 msgid "Contagem &Regressiva Antes de Gravar"
-msgstr "Обратный отсчёт &перед записью"
+msgstr "Обратный отсчёт перед &записью"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "Настроить &клавиши..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "&Настроить клавиши..."
 
 msgid "Aviso"
 msgstr "Предупреждение"
@@ -216,25 +213,25 @@ msgstr "Стоп"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder уже запущен."
 
-msgid "Para&r"
-msgstr "С&топ"
+msgid "P&arar"
+msgstr "&Стоп"
 
-msgid "&Gravar"
+msgid "Gr&avar"
 msgstr "&Запись"
 
-msgid "C&ontinuar"
-msgstr "П&родолжить"
+msgid "Contin&uar"
+msgstr "&Продолжить"
 
-msgid "&Pausar"
+msgid "Pa&usar"
 msgstr "&Пауза"
 
 msgid "Gravações"
 msgstr "Записи"
 
-msgid "Parar Reprod&ução"
+msgid "Parar &Reprodução"
 msgstr "Остановить &воспроизведение"
 
-msgid "Reprod&uzir Gravação"
+msgid "&Reproduzir Gravação"
 msgstr "&Воспроизвести запись"
 
 msgid "Escolha o arquivo a reproduzir:"
@@ -270,8 +267,8 @@ msgstr "Подтверждение удаления"
 msgid "&Idioma:"
 msgstr "&Язык:"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "Размер &буфера (мс):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "Размер буфера (&мс):"
 
 msgid "Dispositivos de Áudio"
 msgstr "Аудиоустройства"
@@ -377,8 +374,8 @@ msgstr "Устройство ввода по умолчанию"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Ошибка BASS {erro} при добавлении источника записи."
 
-msgid "Continuar Última Gra&vação"
-msgstr "Пр&одолжить последнюю запись"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "Продо&лжить последнюю запись"
 
 msgid "Continuar Última Gravação"
 msgstr "Продолжить последнюю запись"
@@ -417,8 +414,8 @@ msgstr "Пожалуйста, подождите..."
 msgid "&Verificar Atualizações Automaticamente"
 msgstr "&Автоматически проверять обновления"
 
-msgid "Verificar Atuali&zação..."
-msgstr "Пров&ерить обновления..."
+msgid "Verificar &Atualização..."
+msgstr "&Проверить обновления..."
 
 msgid "Iniciar com o &Windows"
 msgstr "Запускать вместе с &Windows"
@@ -557,7 +554,7 @@ msgid "Techno"
 msgstr "Техно"
 
 msgid "&Predefinição:"
-msgstr "&Предустановка:"
+msgstr "П&редустановка:"
 
 msgid "Personalizado"
 msgstr "Пользовательская"
@@ -594,4 +591,205 @@ msgstr "Пусто — запись без ограничения. 1:30:00 — �
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Недопустимая длительность записи. Укажите часы, минуты и секунды, например 1:30:00, или оставьте поле пустым для записи без ограничения."
+
+msgid "E&feitos"
+msgstr "Э&ффекты"
+
+msgid "Efeitos"
+msgstr "Эффекты"
+
+msgid "&Efeitos:"
+msgstr "&Эффекты:"
+
+msgid "Con&figurar..."
+msgstr "&Настроить..."
+
+msgid "Compressor"
+msgstr "Компрессор"
+
+msgid "Padrão"
+msgstr "По умолчанию"
+
+msgid "Voz Suave"
+msgstr "Мягкий голос"
+
+msgid "Podcast"
+msgstr "Подкаст"
+
+msgid "Locução de Rádio"
+msgstr "Радиоведущий"
+
+msgid "Nivelar Música"
+msgstr "Выравнивание музыки"
+
+msgid "Compressão Pesada"
+msgstr "Сильное сжатие"
+
+msgid "Limitador"
+msgstr "Лимитер"
+
+msgid "Pitch Shift"
+msgstr "Сдвиг высоты тона"
+
+msgid "Voz Grave"
+msgstr "Низкий голос"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Немного ниже"
+
+msgid "Monstro"
+msgstr "Монстр"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Немного выше"
+
+msgid "Voz Aguda"
+msgstr "Высокий голос"
+
+msgid "Esquilo"
+msgstr "Бурундук"
+
+msgid "Delay"
+msgstr "Задержка"
+
+msgid "Eco Curto"
+msgstr "Короткое эхо"
+
+msgid "Muitos Ecos"
+msgstr "Много эха"
+
+msgid "Ecos Invertidos"
+msgstr "Обратное эхо"
+
+msgid "Voz Robótica"
+msgstr "Голос робота"
+
+msgid "Slapback"
+msgstr "Слэпбэк"
+
+msgid "Dobra de Voz"
+msgstr "Удвоение голоса"
+
+msgid "Pingue-pongue"
+msgstr "Пинг-понг"
+
+msgid "Estádio"
+msgstr "Стадион"
+
+msgid "Cânion"
+msgstr "Каньон"
+
+msgid "Reverb"
+msgstr "Реверберация"
+
+msgid "Sala Média"
+msgstr "Средняя комната"
+
+msgid "Sala Pequena Clara"
+msgstr "Маленькая светлая комната"
+
+msgid "Sala Pequena Escura"
+msgstr "Маленькая тёмная комната"
+
+msgid "Sala Grande"
+msgstr "Большая комната"
+
+msgid "Banheiro"
+msgstr "Ванная"
+
+msgid "Salão de Igreja"
+msgstr "Церковный зал"
+
+msgid "Catedral"
+msgstr "Собор"
+
+msgid "Caverna Grande"
+msgstr "Большая пещера"
+
+msgid "Ambiente"
+msgstr "Атмосфера"
+
+msgid "Artificial"
+msgstr "Искусственная"
+
+msgid "Limpo"
+msgstr "Чистая"
+
+msgid "Moderno"
+msgstr "Современная"
+
+msgid "Voz I"
+msgstr "Вокал I"
+
+msgid "Voz II"
+msgstr "Вокал II"
+
+msgid "Voz Dance"
+msgstr "Танцевальный вокал"
+
+msgid "Voz Moderna"
+msgstr "Современный вокал"
+
+msgid "Cauda de Voz"
+msgstr "Хвост голоса"
+
+msgid "Limiar:"
+msgstr "Порог:"
+
+msgid "Proporção:"
+msgstr "Соотношение:"
+
+msgid "Ataque:"
+msgstr "Атака:"
+
+msgid "Liberação:"
+msgstr "Восстановление:"
+
+msgid "Ganho:"
+msgstr "Усиление:"
+
+msgid "Semitons:"
+msgstr "Полутоны:"
+
+msgid "Tempo:"
+msgstr "Время:"
+
+msgid "Realimentação:"
+msgstr "Обратная связь:"
+
+msgid "Nível do Efeito:"
+msgstr "Уровень эффекта:"
+
+msgid "Som Original:"
+msgstr "Исходный звук:"
+
+msgid "P&ingue-pongue"
+msgstr "&Пинг-понг"
+
+msgid "Tamanho da Sala:"
+msgstr "Размер комнаты:"
+
+msgid "Amortecimento:"
+msgstr "Затухание:"
+
+msgid "Largura Estéreo:"
+msgstr "Ширина стерео:"
+
+msgid "P&rocurar..."
+msgstr "О&бзор..."
+
+msgid "S&obre"
+msgstr "О п&рограмме"
+
+msgid "Pré-atraso:"
+msgstr "Предзадержка:"
+
+msgid "Novidades:"
+msgstr "Что нового:"
+
+msgid "&Sim"
+msgstr "&Да"
+
+msgid "&Não"
+msgstr "&Нет"
 

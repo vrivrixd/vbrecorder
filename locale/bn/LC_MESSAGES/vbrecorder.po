@@ -22,13 +22,13 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "সামঞ্জস্যপূর্ণ ভলিউম সহ নির্বাচিত ডিভাইসটি শুনুন"
 
 msgid "&Parar"
-msgstr "থামান(&P)"
+msgstr "থামান(&T)"
 
 msgid "&Testar"
 msgstr "পরীক্ষা করুন(&T)"
 
 msgid "&Atualizar"
-msgstr "রিফ্রেশ করুন(&I)"
+msgstr "রিফ্রেশ করুন(&R)"
 
 msgid "Mostrar janela principal"
 msgstr "প্রধান উইন্ডো দেখান"
@@ -36,20 +36,20 @@ msgstr "প্রধান উইন্ডো দেখান"
 msgid "Sair"
 msgstr "প্রস্থান করুন"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "আউটপুট ফরম্যাট(&F):"
 
 msgid "&Bitrate:"
 msgstr "বিটরেট(&B):"
 
-msgid "Compressão F&LAC:"
-msgstr "FLAC কম্প্রেশন(&L):"
+msgid "Compressão &FLAC:"
+msgstr "FLAC কম্প্রেশন(&M):"
 
 msgid "&Taxa de Amostragem:"
 msgstr "নমুনা হার(&T):"
 
-msgid "Profundidade de Bit&s:"
-msgstr "বিট ডেপথ(&H):"
+msgid "Profundidade de &Bits:"
+msgstr "বিট ডেপথ(&B):"
 
 msgid "&Canais:"
 msgstr "চ্যানেল(&C):"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "স্টেরিও"
 
 msgid "Fontes de &Gravação:"
-msgstr "রেকর্ডিং উৎস(&G):"
+msgstr "রেকর্ডিং উৎস(&I):"
 
 msgid "&Nome do Arquivo:"
 msgstr "ফাইলের নাম(&N):"
 
 msgid "&Diretório de Saída:"
-msgstr "আউটপুট ডিরেক্টরি(&D):"
+msgstr "আউটপুট ডিরেক্টরি(&O):"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "যোগ করুন(&A)"
 
 msgid "&Editar"
 msgstr "সম্পাদনা করুন(&E)"
 
-msgid "&Remover"
-msgstr "সরান(&R)"
+msgid "Remo&ver"
+msgstr "সরান(&V)"
 
-msgid "P&rocurar..."
-msgstr "ব্রাউজ করুন(&R)..."
+msgid "&Procurar..."
+msgstr "ব্রাউজ করুন(&W)..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "রেকর্ডিং ফোল্ডার খুলুন(&I)"
+msgstr "রেকর্ডিং ফোল্ডার খুলুন(&X)"
 
-msgid "Config&urações..."
-msgstr "সেটিংস(&U)..."
-
-msgid "S&obre"
-msgstr "সম্পর্কে(&O)"
+msgid "Configura&ções..."
+msgstr "সেটিংস(&G)..."
 
 msgid "&Minimizar"
 msgstr "মিনিমাইজ করুন(&M)"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "বন্ধ করুন(&F)"
 
 msgid "E&xcluir Gravação"
-msgstr "রেকর্ডিং মুছুন(&X)"
+msgstr "রেকর্ডিং মুছুন(&D)"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "আলাদা ফাইলে উৎস রেকর্ড করুন(&P)"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "আলাদা ফাইলে উৎস রেকর্ড করুন(&Q)"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "রেকর্ডিং শুরু বা বন্ধ করার সময় টোন বাজান(&T)"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "রেকর্ডিং শুরু বা বন্ধ করার সময় টোন বাজান(&Y)"
 
 msgid "Selecionar Pasta"
 msgstr "ফোল্ডার নির্বাচন করুন"
@@ -159,17 +156,17 @@ msgstr "সিস্টেম ডিফল্ট"
 msgid "Iniciar &Minimizado"
 msgstr "মিনিমাইজ করে শুরু করুন(&M)"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "সিস্টেম ট্রে-তে মিনিমাইজ করুন(&B)"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "সিস্টেম ট্রে-তে মিনিমাইজ করুন(&T)"
 
 msgid "Janela Sempre no &Topo"
-msgstr "উইন্ডো সবসময় উপরে(&T)"
+msgstr "উইন্ডো সবসময় উপরে(&A)"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "রেকর্ডিংয়ের আগে কাউন্টডাউন(&R)"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "শর্টকাট কী কনফিগার করুন(&A)..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "শর্টকাট কী কনফিগার করুন(&H)..."
 
 msgid "Aviso"
 msgstr "সতর্কবাণী"
@@ -216,26 +213,26 @@ msgstr "থামান"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder ইতিমধ্যে চলছে।"
 
-msgid "Para&r"
-msgstr "থামান(&R)"
+msgid "P&arar"
+msgstr "থামান(&S)"
 
-msgid "&Gravar"
-msgstr "রেকর্ড(&G)"
+msgid "Gr&avar"
+msgstr "রেকর্ড(&R)"
 
-msgid "C&ontinuar"
-msgstr "চালিয়ে যান(&O)"
+msgid "Contin&uar"
+msgstr "চালিয়ে যান(&U)"
 
-msgid "&Pausar"
-msgstr "পজ(&P)"
+msgid "Pa&usar"
+msgstr "পজ(&U)"
 
 msgid "Gravações"
 msgstr "রেকর্ডিংগুলি"
 
-msgid "Parar Reprod&ução"
-msgstr "প্লেব্যাক থামান(&U)"
+msgid "Parar &Reprodução"
+msgstr "প্লেব্যাক থামান(&P)"
 
-msgid "Reprod&uzir Gravação"
-msgstr "রেকর্ডিং চালান(&U)"
+msgid "&Reproduzir Gravação"
+msgstr "রেকর্ডিং চালান(&P)"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "চালানোর জন্য ফাইল নির্বাচন করুন:"
@@ -264,10 +261,10 @@ msgid "Confirmar Exclusão"
 msgstr "মুছে ফেলার বিষয়টি নিশ্চিত করুন"
 
 msgid "&Idioma:"
-msgstr "ভাষা(&I):"
+msgstr "ভাষা(&L):"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "বাফার সাইজ (ms)(&U):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "বাফার সাইজ (ms)(&B):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -376,8 +373,8 @@ msgstr "ডিফল্ট ইনपुट ডিভাইস"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "রেকর্ডিং উৎস যোগ করার সময় BASS ত্রুটি {erro}।"
 
-msgid "Continuar Última Gra&vação"
-msgstr "শেষ রেকর্ডিং চালিয়ে যান(&V)"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "শেষ রেকর্ডিং চালিয়ে যান(&L)"
 
 msgid "Continuar Última Gravação"
 msgstr "শেষ রেকর্ডিং চালিয়ে যান"
@@ -414,13 +411,13 @@ msgid "Por favor aguarde..."
 msgstr "অনুগ্রহ করে অপেক্ষা করুন..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "স্বয়ংক্রিয়ভাবে আপডেট পরীক্ষা করুন(&V)"
+msgstr "স্বয়ংক্রিয়ভাবে আপডেট পরীক্ষা করুন(&U)"
 
-msgid "Verificar Atuali&zação..."
-msgstr "আপডেট পরীক্ষা করুন(&Z)..."
+msgid "Verificar &Atualização..."
+msgstr "আপডেট পরীক্ষা করুন(&F)..."
 
 msgid "Iniciar com o &Windows"
-msgstr "Windows-এর সাথে চালু করুন(&W)"
+msgstr "Window&s-এর সাথে চালু করুন"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "আপনি ইতিমধ্যেই VB Recorder-এর সর্বশেষ সংস্করণ ব্যবহার করছেন।"
@@ -571,26 +568,227 @@ msgid "Removedor de Ruído"
 msgstr "শব্দ দূরকারী"
 
 msgid "&Ativar Removedor de Ruído"
-msgstr "শব্দ দূরকারী চালু করুন(&A)"
+msgstr "শব্দ দূরকারী চালু করুন(&E)"
 
 msgid "&Equalizador"
-msgstr "ইকুয়ালাইজার(&Q)"
+msgstr "ইকুয়ালাইজার(&E)"
 
 msgid "Removedor de &Ruído"
 msgstr "শব্দ দূরকারী(&N)"
 
 msgid "&Mostrar Todos os Processos"
-msgstr "সব প্রসেস দেখান(&M)"
+msgstr "সব প্রসেস দেখান(&A)"
 
 msgid "E&stéreo"
 msgstr "স্টেরিও(&S)"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "রেকর্ডিংয়ের সময়কাল (hh:mm:&ss):"
+msgstr "রেকর্ডিংয়ের সময়কাল (&hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "খালি রাখলে সীমা ছাড়াই রেকর্ড হবে। 1:30:00 মানে দেড় ঘণ্টা, 45:00 মানে 45 মিনিট।"
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "রেকর্ডিংয়ের সময়কাল সঠিক নয়। ঘণ্টা, মিনিট ও সেকেন্ড ব্যবহার করুন, যেমন 1:30:00, অথবা সীমা ছাড়া রেকর্ড করতে খালি রাখুন।"
+
+msgid "E&feitos"
+msgstr "ইফেক্ট(&F)"
+
+msgid "Efeitos"
+msgstr "ইফেক্ট"
+
+msgid "&Efeitos:"
+msgstr "ইফেক্ট(&E):"
+
+msgid "Con&figurar..."
+msgstr "কনফিগার করুন(&F)..."
+
+msgid "Compressor"
+msgstr "কম্প্রেসর"
+
+msgid "Padrão"
+msgstr "ডিফল্ট"
+
+msgid "Voz Suave"
+msgstr "কোমল কণ্ঠ"
+
+msgid "Podcast"
+msgstr "পডকাস্ট"
+
+msgid "Locução de Rádio"
+msgstr "রেডিও কণ্ঠ"
+
+msgid "Nivelar Música"
+msgstr "সংগীতের মাত্রা সমান করুন"
+
+msgid "Compressão Pesada"
+msgstr "ভারী কম্প্রেশন"
+
+msgid "Limitador"
+msgstr "লিমিটার"
+
+msgid "Pitch Shift"
+msgstr "পিচ শিফট"
+
+msgid "Voz Grave"
+msgstr "গভীর কণ্ঠ"
+
+msgid "Um Pouco Mais Grave"
+msgstr "একটু নিচু"
+
+msgid "Monstro"
+msgstr "দানব"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "একটু উঁচু"
+
+msgid "Voz Aguda"
+msgstr "উঁচু কণ্ঠ"
+
+msgid "Esquilo"
+msgstr "কাঠবিড়ালি"
+
+msgid "Delay"
+msgstr "ডিলে"
+
+msgid "Eco Curto"
+msgstr "ছোট প্রতিধ্বনি"
+
+msgid "Muitos Ecos"
+msgstr "অনেক প্রতিধ্বনি"
+
+msgid "Ecos Invertidos"
+msgstr "উল্টো প্রতিধ্বনি"
+
+msgid "Voz Robótica"
+msgstr "রোবট কণ্ঠ"
+
+msgid "Slapback"
+msgstr "স্ল্যাপব্যাক"
+
+msgid "Dobra de Voz"
+msgstr "কণ্ঠ দ্বিগুণ"
+
+msgid "Pingue-pongue"
+msgstr "পিং-পং"
+
+msgid "Estádio"
+msgstr "স্টেডিয়াম"
+
+msgid "Cânion"
+msgstr "গিরিখাত"
+
+msgid "Reverb"
+msgstr "রিভার্ব"
+
+msgid "Sala Média"
+msgstr "মাঝারি ঘর"
+
+msgid "Sala Pequena Clara"
+msgstr "ছোট উজ্জ্বল ঘর"
+
+msgid "Sala Pequena Escura"
+msgstr "ছোট অন্ধকার ঘর"
+
+msgid "Sala Grande"
+msgstr "বড় ঘর"
+
+msgid "Banheiro"
+msgstr "বাথরুম"
+
+msgid "Salão de Igreja"
+msgstr "গির্জার হল"
+
+msgid "Catedral"
+msgstr "ক্যাথেড্রাল"
+
+msgid "Caverna Grande"
+msgstr "বড় গুহা"
+
+msgid "Ambiente"
+msgstr "পরিবেশ"
+
+msgid "Artificial"
+msgstr "কৃত্রিম"
+
+msgid "Limpo"
+msgstr "পরিষ্কার"
+
+msgid "Moderno"
+msgstr "আধুনিক"
+
+msgid "Voz I"
+msgstr "কণ্ঠ I"
+
+msgid "Voz II"
+msgstr "কণ্ঠ II"
+
+msgid "Voz Dance"
+msgstr "নাচের কণ্ঠ"
+
+msgid "Voz Moderna"
+msgstr "আধুনিক কণ্ঠ"
+
+msgid "Cauda de Voz"
+msgstr "কণ্ঠের রেশ"
+
+msgid "Limiar:"
+msgstr "সীমা:"
+
+msgid "Proporção:"
+msgstr "অনুপাত:"
+
+msgid "Ataque:"
+msgstr "অ্যাটাক:"
+
+msgid "Liberação:"
+msgstr "রিলিজ:"
+
+msgid "Ganho:"
+msgstr "গেইন:"
+
+msgid "Semitons:"
+msgstr "অর্ধস্বর:"
+
+msgid "Tempo:"
+msgstr "সময়:"
+
+msgid "Realimentação:"
+msgstr "ফিডব্যাক:"
+
+msgid "Nível do Efeito:"
+msgstr "ইফেক্টের মাত্রা:"
+
+msgid "Som Original:"
+msgstr "মূল শব্দ:"
+
+msgid "P&ingue-pongue"
+msgstr "পিং-পং(&I)"
+
+msgid "Tamanho da Sala:"
+msgstr "ঘরের আকার:"
+
+msgid "Amortecimento:"
+msgstr "ড্যাম্পিং:"
+
+msgid "Largura Estéreo:"
+msgstr "স্টেরিও প্রস্থ:"
+
+msgid "P&rocurar..."
+msgstr "ব্রাউজ করুন(&B)..."
+
+msgid "S&obre"
+msgstr "সম্পর্কে(&O)"
+
+msgid "Pré-atraso:"
+msgstr "প্রি-ডিলে:"
+
+msgid "Novidades:"
+msgstr "নতুন কী আছে:"
+
+msgid "&Sim"
+msgstr "হ্যাঁ(&Y)"
+
+msgid "&Não"
+msgstr "না(&N)"
 

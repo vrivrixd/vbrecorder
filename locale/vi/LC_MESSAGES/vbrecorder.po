@@ -20,10 +20,10 @@ msgid "Adicionar Fonte de Gravação"
 msgstr "Thêm nguồn ghi âm"
 
 msgid "Ouvir o dispositivo selecionado com o volume ajustado"
-msgstr "Nghe thử thiết bị đã chọn với âm lượng đã điều chỉnh"
+msgstr "Nghe thử thiết bị đã chọn với âm lượng đã chỉnh"
 
 msgid "&Parar"
-msgstr "Dừ&ng"
+msgstr "&Dừng"
 
 msgid "&Testar"
 msgstr "&Nghe thử"
@@ -37,13 +37,13 @@ msgstr "Hiển thị cửa sổ chính"
 msgid "Sair"
 msgstr "Thoát"
 
-msgid "&Formato de Saída:"
-msgstr "Định dạng &đầu ra:"
+msgid "Formato de &Saída:"
+msgstr "Định dạng đầu &ra:"
 
 msgid "&Taxa de Amostragem:"
 msgstr "Tần số lấ&y mẫu:"
 
-msgid "Profundidade de Bit&s:"
+msgid "Profundidade de &Bits:"
 msgstr "Độ sâu &bit:"
 
 msgid "&Canais:"
@@ -56,7 +56,7 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "&Nome do Arquivo:"
-msgstr "Tên tệp (&Q):"
+msgstr "Tê&n tệp:"
 
 msgid "Selecionar Pasta"
 msgstr "Chọn thư mục"
@@ -148,13 +148,13 @@ msgstr "VB Recorder đang chạy rồi."
 msgid "Aviso"
 msgstr "Cảnh báo"
 
-msgid "&Gravar"
+msgid "Gr&avar"
 msgstr "&Ghi âm"
 
-msgid "&Pausar"
+msgid "Pa&usar"
 msgstr "&Tạm dừng"
 
-msgid "Reprod&uzir Gravação"
+msgid "&Reproduzir Gravação"
 msgstr "&Phát bản ghi âm"
 
 msgid "E&xcluir Gravação"
@@ -163,35 +163,32 @@ msgstr "&Xóa bản ghi âm"
 msgid "&Bitrate:"
 msgstr "Tốc độ &bit:"
 
-msgid "Compressão F&LAC:"
+msgid "Compressão &FLAC:"
 msgstr "Mức nén &FLAC:"
 
-msgid "&Adicionar"
-msgstr "Thêm (&Z)"
+msgid "Adici&onar"
+msgstr "T&hêm"
 
 msgid "&Editar"
 msgstr "Chỉnh &sửa"
 
-msgid "&Remover"
+msgid "Remo&ver"
 msgstr "Xó&a"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Ghi mỗi nguồn vào một tệp &riêng"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "Ghi mỗi nguồn &vào một tệp riêng"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
 msgstr "Phát âm bá&o khi bắt đầu hoặc dừng ghi âm"
 
 msgid "&Diretório de Saída:"
-msgstr "T&hư mục bản ghi âm:"
+msgstr "Thư &mục lưu bản ghi âm:"
 
-msgid "P&rocurar..."
+msgid "&Procurar..."
 msgstr "&Duyệt..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "&Mở thư mục bản ghi âm"
-
-msgid "S&obre"
-msgstr "G&iới thiệu"
+msgstr "Mở thư mụ&c bản ghi âm"
 
 msgid "&Minimizar"
 msgstr "Th&u nhỏ"
@@ -199,13 +196,13 @@ msgstr "Th&u nhỏ"
 msgid "&Fechar"
 msgstr "&Đóng"
 
-msgid "C&ontinuar"
+msgid "Contin&uar"
 msgstr "&Tiếp tục"
 
 msgid "Gravações"
 msgstr "Bản ghi âm"
 
-msgid "Parar Reprod&ução"
+msgid "Parar &Reprodução"
 msgstr "Dừng &phát"
 
 msgid "Escolha o arquivo a reproduzir:"
@@ -223,7 +220,7 @@ msgid_plural ""
 "\n"
 "{lista}"
 msgstr[0] ""
-"Xóa {n} tệp của bản ghi âm gần nhất?\n"
+"Xóa {n} tệp của lần ghi âm gần nhất?\n"
 "\n"
 "{lista}"
 
@@ -238,7 +235,7 @@ msgstr "Các tiến trình đang chạy"
 
 msgid "Nota: captura por processo requer Windows 10 v2004 ou superior."
 msgstr ""
-"Lưu ý: ghi âm riêng từng chương trình yêu cầu Windows 10 phiên bản 2004 trở "
+"Lưu ý: ghi âm theo từng tiến trình yêu cầu Windows 10 phiên bản 2004 trở "
 "lên."
 
 msgid "Parar Reprodução"
@@ -257,13 +254,13 @@ msgid "Gravar fontes em arquivos separados"
 msgstr "Ghi mỗi nguồn vào một tệp riêng"
 
 msgid "Fontes de &Gravação:"
-msgstr "Nguồn &ghi âm:"
+msgstr "Ng&uồn ghi âm:"
 
 msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
 msgstr "Hãy thêm ít nhất một nguồn ghi âm trước khi bắt đầu."
 
-msgid "Para&r"
-msgstr "&Dừng"
+msgid "P&arar"
+msgstr "Dừn&g"
 
 msgid "Não foi possível excluir:\n"
 msgstr "Không thể xóa:\n"
@@ -305,8 +302,8 @@ msgstr "nguồn"
 msgid "Dispositivo de Entrada Padrão"
 msgstr "Thiết bị đầu vào mặc định"
 
-msgid "Config&urações..."
-msgstr "&Cài đặt..."
+msgid "Configura&ções..."
+msgstr "Cài &đặt..."
 
 msgid "Configurações"
 msgstr "Cài đặt"
@@ -315,24 +312,24 @@ msgid "Padrão do sistema"
 msgstr "Mặc định hệ thống"
 
 msgid "Iniciar &Minimizado"
-msgstr "Khở&i động ở trạng thái thu nhỏ"
+msgstr "&Khởi động ở trạng thái thu nhỏ"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
+msgid "Minimizar &Para a Bandeja do Sistema"
 msgstr "Thu nhỏ &vào khay hệ thống"
 
 msgid "Janela Sempre no &Topo"
-msgstr "Cửa sổ luôn ở &trên cùng"
+msgstr "Cửa &sổ luôn ở trên cùng"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "Đếm ngược trước khi &ghi âm"
 
-msgid "Configurar Teclas de &Atalho..."
+msgid "Configurar Teclas &de Atalho..."
 msgstr "Cấu hình &phím tắt..."
 
 msgid "&Idioma:"
 msgstr "&Ngôn ngữ:"
 
-msgid "Tamanho do B&uffer (ms):"
+msgid "Tamanho do &Buffer (ms):"
 msgstr "Kích thước &bộ đệm (ms):"
 
 msgid ""
@@ -340,7 +337,7 @@ msgid ""
 "\n"
 "Deseja mesmo fechar o VB Recorder?"
 msgstr ""
-"Đang có một bản ghi âm đang diễn ra.\n"
+"Hiện đang ghi âm.\n"
 "\n"
 "Bạn có chắc chắn muốn đóng VB Recorder không?"
 
@@ -372,8 +369,8 @@ msgstr ""
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Lỗi BASS {erro} khi thêm nguồn ghi âm."
 
-msgid "Continuar Última Gra&vação"
-msgstr "Tiếp tục bản ghi âm gần &nhất"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "T&iếp tục bản ghi âm gần nhất"
 
 msgid "Continuar Última Gravação"
 msgstr "Tiếp tục bản ghi âm gần nhất"
@@ -412,9 +409,9 @@ msgid "Por favor aguarde..."
 msgstr "Vui lòng chờ..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "Tự động &kiểm tra bản cập nhật"
+msgstr "&Tự động kiểm tra bản cập nhật"
 
-msgid "Verificar Atuali&zação..."
+msgid "Verificar &Atualização..."
 msgstr "Kiểm tra bản &cập nhật..."
 
 msgid "Iniciar com o &Windows"
@@ -440,13 +437,13 @@ msgstr ""
 "{erro}"
 
 msgid "Acústico"
-msgstr "Mộc (Acoustic)"
+msgstr "Acoustic"
 
 msgid "Intensidade:"
 msgstr "Cường độ:"
 
 msgid "Plano"
-msgstr "Phẳng (Flat)"
+msgstr "Phẳng"
 
 msgid "Reforço de Graves"
 msgstr "Tăng cường âm trầm"
@@ -479,22 +476,22 @@ msgid "Alto-falantes Pequenos"
 msgstr "Loa nhỏ"
 
 msgid "Fones de Ouvido"
-msgstr "Tai nghe (Headphones)"
+msgstr "Tai nghe"
 
 msgid "Clássica"
 msgstr "Cổ điển"
 
 msgid "Clube"
-msgstr "Câu lạc bộ (Club)"
+msgstr "Club"
 
 msgid "Dance"
-msgstr "Nhạc khiêu vũ (Dance)"
+msgstr "Dance"
 
 msgid "Grave Profundo"
 msgstr "Âm trầm sâu"
 
 msgid "Eletrônica"
-msgstr "Nhạc điện tử (Electronic)"
+msgstr "Nhạc điện tử"
 
 msgid "Graves no Máximo"
 msgstr "Âm trầm tối đa"
@@ -518,7 +515,7 @@ msgid "Latina"
 msgstr "Nhạc Latin"
 
 msgid "Ao Vivo"
-msgstr "Trực tiếp (Live)"
+msgstr "Trực tiếp"
 
 msgid "Lounge"
 msgstr "Nhạc Lounge"
@@ -545,7 +542,7 @@ msgid "Ska"
 msgstr "Nhạc Ska"
 
 msgid "Suave"
-msgstr "Nhẹ nhàng (Soft)"
+msgstr "Nhẹ nhàng"
 
 msgid "Soft Rock"
 msgstr "Nhạc Soft Rock"
@@ -554,7 +551,7 @@ msgid "Techno"
 msgstr "Nhạc Techno"
 
 msgid "&Predefinição:"
-msgstr "&Cấu hình:"
+msgstr "&Thiết lập sẵn:"
 
 msgid "Personalizado"
 msgstr "Tùy chỉnh"
@@ -578,7 +575,7 @@ msgid "Removedor de &Ruído"
 msgstr "Bộ &khử tiếng ồn"
 
 msgid "&Mostrar Todos os Processos"
-msgstr "Hiển thị tất &cả tiến trình"
+msgstr "Hiển &thị tất cả tiến trình"
 
 msgid "E&stéreo"
 msgstr "&Stereo"
@@ -591,4 +588,205 @@ msgstr "Để trống để ghi âm không giới hạn. 1:30:00 là một tiế
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Thời lượng ghi âm không hợp lệ. Hãy dùng giờ, phút và giây, ví dụ 1:30:00, hoặc để trống để ghi âm không giới hạn."
+
+msgid "E&feitos"
+msgstr "H&iệu ứng"
+
+msgid "Efeitos"
+msgstr "Hiệu ứng"
+
+msgid "&Efeitos:"
+msgstr "H&iệu ứng:"
+
+msgid "Con&figurar..."
+msgstr "&Cấu hình..."
+
+msgid "Compressor"
+msgstr "Bộ nén"
+
+msgid "Padrão"
+msgstr "Mặc định"
+
+msgid "Voz Suave"
+msgstr "Giọng nhẹ nhàng"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "Giọng phát thanh"
+
+msgid "Nivelar Música"
+msgstr "Cân bằng âm lượng nhạc"
+
+msgid "Compressão Pesada"
+msgstr "Nén mạnh"
+
+msgid "Limitador"
+msgstr "Bộ giới hạn"
+
+msgid "Pitch Shift"
+msgstr "Đổi cao độ"
+
+msgid "Voz Grave"
+msgstr "Giọng trầm hơn"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Trầm hơn một chút"
+
+msgid "Monstro"
+msgstr "Quái vật"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Cao hơn một chút"
+
+msgid "Voz Aguda"
+msgstr "Giọng cao hơn"
+
+msgid "Esquilo"
+msgstr "Sóc chuột"
+
+msgid "Delay"
+msgstr "Hiệu ứng trễ"
+
+msgid "Eco Curto"
+msgstr "Tiếng vọng ngắn"
+
+msgid "Muitos Ecos"
+msgstr "Nhiều tiếng vọng"
+
+msgid "Ecos Invertidos"
+msgstr "Tiếng vọng ngược"
+
+msgid "Voz Robótica"
+msgstr "Giọng rô-bốt"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Nhân đôi giọng"
+
+msgid "Pingue-pongue"
+msgstr "Ping-pong"
+
+msgid "Estádio"
+msgstr "Sân vận động"
+
+msgid "Cânion"
+msgstr "Hẻm núi"
+
+msgid "Reverb"
+msgstr "Vang"
+
+msgid "Sala Média"
+msgstr "Phòng cỡ vừa"
+
+msgid "Sala Pequena Clara"
+msgstr "Phòng nhỏ âm sáng"
+
+msgid "Sala Pequena Escura"
+msgstr "Phòng nhỏ âm tối"
+
+msgid "Sala Grande"
+msgstr "Phòng lớn"
+
+msgid "Banheiro"
+msgstr "Phòng tắm"
+
+msgid "Salão de Igreja"
+msgstr "Hội trường nhà thờ"
+
+msgid "Catedral"
+msgstr "Nhà thờ lớn"
+
+msgid "Caverna Grande"
+msgstr "Hang động lớn"
+
+msgid "Ambiente"
+msgstr "Không gian"
+
+msgid "Artificial"
+msgstr "Nhân tạo"
+
+msgid "Limpo"
+msgstr "Trong trẻo"
+
+msgid "Moderno"
+msgstr "Hiện đại"
+
+msgid "Voz I"
+msgstr "Giọng hát I"
+
+msgid "Voz II"
+msgstr "Giọng hát II"
+
+msgid "Voz Dance"
+msgstr "Giọng hát dance"
+
+msgid "Voz Moderna"
+msgstr "Giọng hát hiện đại"
+
+msgid "Cauda de Voz"
+msgstr "Đuôi vang giọng hát"
+
+msgid "Limiar:"
+msgstr "Ngưỡng:"
+
+msgid "Proporção:"
+msgstr "Tỉ lệ:"
+
+msgid "Ataque:"
+msgstr "Thời gian tấn công:"
+
+msgid "Liberação:"
+msgstr "Thời gian nhả:"
+
+msgid "Ganho:"
+msgstr "Độ lợi:"
+
+msgid "Semitons:"
+msgstr "Nửa cung:"
+
+msgid "Tempo:"
+msgstr "Thời gian trễ:"
+
+msgid "Realimentação:"
+msgstr "Phản hồi:"
+
+msgid "Nível do Efeito:"
+msgstr "Mức hiệu ứng:"
+
+msgid "Som Original:"
+msgstr "Âm thanh gốc:"
+
+msgid "P&ingue-pongue"
+msgstr "P&ing-pong"
+
+msgid "Tamanho da Sala:"
+msgstr "Kích thước phòng:"
+
+msgid "Amortecimento:"
+msgstr "Độ giảm chấn:"
+
+msgid "Largura Estéreo:"
+msgstr "Độ rộng stereo:"
+
+msgid "P&rocurar..."
+msgstr "D&uyệt..."
+
+msgid "S&obre"
+msgstr "G&iới thiệu"
+
+msgid "Pré-atraso:"
+msgstr "Độ trễ ban đầu:"
+
+msgid "Novidades:"
+msgstr "Có gì mới:"
+
+msgid "&Sim"
+msgstr "&Có"
+
+msgid "&Não"
+msgstr "&Không"
 

@@ -22,13 +22,13 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "الاستماع إلى الجهاز المحدد بحجم صوت مضبوط"
 
 msgid "&Parar"
-msgstr "إيقاف(&P)"
+msgstr "إيقاف(&T)"
 
 msgid "&Testar"
 msgstr "اختبار(&T)"
 
 msgid "&Atualizar"
-msgstr "تحديث(&L)"
+msgstr "تحديث(&R)"
 
 msgid "Mostrar janela principal"
 msgstr "إظهار النافذة الرئيسية"
@@ -36,20 +36,20 @@ msgstr "إظهار النافذة الرئيسية"
 msgid "Sair"
 msgstr "خروج"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "تنسيق الإخراج(&F):"
 
 msgid "&Bitrate:"
 msgstr "معدل البت(&B):"
 
-msgid "Compressão F&LAC:"
-msgstr "ضغط FLAC(&L):"
+msgid "Compressão &FLAC:"
+msgstr "ضغط FLAC(&M):"
 
 msgid "&Taxa de Amostragem:"
 msgstr "معدل العينة(&T):"
 
-msgid "Profundidade de Bit&s:"
-msgstr "عمق البت(&H):"
+msgid "Profundidade de &Bits:"
+msgstr "عمق البت(&B):"
 
 msgid "&Canais:"
 msgstr "القنوات(&C):"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "ستيريو"
 
 msgid "Fontes de &Gravação:"
-msgstr "مصادر التسجيل(&G):"
+msgstr "مصادر التسجيل(&I):"
 
 msgid "&Nome do Arquivo:"
 msgstr "اسم الملف(&N):"
 
 msgid "&Diretório de Saída:"
-msgstr "دليل الإخراج(&D):"
+msgstr "دليل الإخراج(&O):"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "إضافة(&A)"
 
 msgid "&Editar"
 msgstr "تحرير(&E)"
 
-msgid "&Remover"
-msgstr "إزالة(&R)"
+msgid "Remo&ver"
+msgstr "إزالة(&V)"
 
-msgid "P&rocurar..."
-msgstr "تصفح(&R)..."
+msgid "&Procurar..."
+msgstr "تصفح(&W)..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "فتح مجلد التسجيلات(&I)"
+msgstr "فتح مجلد التسجيلات(&X)"
 
-msgid "Config&urações..."
-msgstr "الإعدادات(&U)..."
-
-msgid "S&obre"
-msgstr "حول(&O)"
+msgid "Configura&ções..."
+msgstr "الإعدادات(&G)..."
 
 msgid "&Minimizar"
 msgstr "تصغير(&M)"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "إغلاق(&F)"
 
 msgid "E&xcluir Gravação"
-msgstr "حذف التسجيل(&X)"
+msgstr "حذف التسجيل(&D)"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "تسجيل المصادر في ملفات منفصلة(&P)"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "تسجيل المصادر في ملفات منفصلة(&Q)"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "تشغيل نغمات عند بدء أو إيقاف التسجيل(&T)"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "تشغيل نغمات عند بدء أو إيقاف التسجيل(&Y)"
 
 msgid "Selecionar Pasta"
 msgstr "تحديد مجلد"
@@ -159,17 +156,17 @@ msgstr "الافتراضي للنظام"
 msgid "Iniciar &Minimizado"
 msgstr "بدء مصغراً(&M)"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "تصغير إلى علبة النظام(&B)"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "تصغير إلى علبة النظام(&T)"
 
 msgid "Janela Sempre no &Topo"
-msgstr "النافذة دائماً في المقدمة(&T)"
+msgstr "النافذة دائماً في المقدمة(&A)"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "عد تنازلي قبل التسجيل(&R)"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "تكوين مفاتيح الاختصار(&A)..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "تكوين مفاتيح الاختصار(&H)..."
 
 msgid "Aviso"
 msgstr "تحذير"
@@ -216,26 +213,26 @@ msgstr "إيقاف"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder قيد التشغيل بالفعل."
 
-msgid "Para&r"
-msgstr "إيقاف(&R)"
+msgid "P&arar"
+msgstr "إيقاف(&S)"
 
-msgid "&Gravar"
-msgstr "تسجيل(&G)"
+msgid "Gr&avar"
+msgstr "تسجيل(&R)"
 
-msgid "C&ontinuar"
-msgstr "استئناف(&O)"
+msgid "Contin&uar"
+msgstr "استئناف(&U)"
 
-msgid "&Pausar"
-msgstr "إيقاف مؤقت(&P)"
+msgid "Pa&usar"
+msgstr "إيقاف مؤقت(&U)"
 
 msgid "Gravações"
 msgstr "تسجيلات"
 
-msgid "Parar Reprod&ução"
-msgstr "إيقاف التشغيل(&U)"
+msgid "Parar &Reprodução"
+msgstr "إيقاف التشغيل(&P)"
 
-msgid "Reprod&uzir Gravação"
-msgstr "تشغيل التسجيل(&U)"
+msgid "&Reproduzir Gravação"
+msgstr "تشغيل التسجيل(&P)"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "اختر الملف لتشغيله:"
@@ -280,10 +277,10 @@ msgid "Confirmar Exclusão"
 msgstr "تأكيد الحذف"
 
 msgid "&Idioma:"
-msgstr "اللغة(&I):"
+msgstr "اللغة(&L):"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "حجم المخزن المؤقت (مللي ثانية)(&U):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "حجم المخزن المؤقت (مللي ثانية)(&B):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -390,8 +387,8 @@ msgstr "جهاز الإدخال الافتراضي"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "خطأ BASS {erro} عند إضافة مصدر التسجيل."
 
-msgid "Continuar Última Gra&vação"
-msgstr "متابعة التسجيل الأخير(&V)"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "متابعة التسجيل الأخير(&L)"
 
 msgid "Continuar Última Gravação"
 msgstr "متابعة التسجيل الأخير"
@@ -428,10 +425,10 @@ msgid "Por favor aguarde..."
 msgstr "يرجى الانتظار..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "التحقق من التحديثات تلقائيًا(&V)"
+msgstr "التحقق من التحديثات تلقائيًا(&U)"
 
-msgid "Verificar Atuali&zação..."
-msgstr "التحقق من وجود تحديث(&Z)..."
+msgid "Verificar &Atualização..."
+msgstr "التحقق من وجود تحديث(&F)..."
 
 msgid "Iniciar com o &Windows"
 msgstr "بدء التشغيل مع Windows(&W)"
@@ -585,26 +582,227 @@ msgid "Removedor de Ruído"
 msgstr "مزيل الضوضاء"
 
 msgid "&Ativar Removedor de Ruído"
-msgstr "تفعيل مزيل الضوضاء(&A)"
+msgstr "تفعيل مزيل الضوضاء(&E)"
 
 msgid "&Equalizador"
-msgstr "معادل الصوت(&Q)"
+msgstr "معادل الصوت(&E)"
 
 msgid "Removedor de &Ruído"
 msgstr "مزيل الضوضاء(&N)"
 
 msgid "&Mostrar Todos os Processos"
-msgstr "إظهار كل العمليات(&M)"
+msgstr "إظهار كل العمليات(&A)"
 
 msgid "E&stéreo"
 msgstr "ستيريو(&S)"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "مدة التسجيل (hh:mm:&ss):"
+msgstr "مدة التسجيل (&hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "اتركه فارغًا للتسجيل بلا حد. 1:30:00 تعني ساعة ونصف، و45:00 تعني 45 دقيقة."
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "مدة التسجيل غير صالحة. استخدم الساعات والدقائق والثواني، مثل 1:30:00، أو اتركها فارغة للتسجيل بلا حد."
+
+msgid "E&feitos"
+msgstr "التأثيرات(&F)"
+
+msgid "Efeitos"
+msgstr "التأثيرات"
+
+msgid "&Efeitos:"
+msgstr "التأثيرات(&E):"
+
+msgid "Con&figurar..."
+msgstr "تكوين(&F)..."
+
+msgid "Compressor"
+msgstr "الضاغط"
+
+msgid "Padrão"
+msgstr "الافتراضي"
+
+msgid "Voz Suave"
+msgstr "صوت ناعم"
+
+msgid "Podcast"
+msgstr "بودكاست"
+
+msgid "Locução de Rádio"
+msgstr "صوت إذاعي"
+
+msgid "Nivelar Música"
+msgstr "موازنة الموسيقى"
+
+msgid "Compressão Pesada"
+msgstr "ضغط قوي"
+
+msgid "Limitador"
+msgstr "المحدِّد"
+
+msgid "Pitch Shift"
+msgstr "تغيير طبقة الصوت"
+
+msgid "Voz Grave"
+msgstr "صوت أعمق"
+
+msgid "Um Pouco Mais Grave"
+msgstr "أخفض قليلًا"
+
+msgid "Monstro"
+msgstr "وحش"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "أعلى قليلًا"
+
+msgid "Voz Aguda"
+msgstr "صوت أعلى"
+
+msgid "Esquilo"
+msgstr "سنجاب"
+
+msgid "Delay"
+msgstr "التأخير"
+
+msgid "Eco Curto"
+msgstr "صدى قصير"
+
+msgid "Muitos Ecos"
+msgstr "أصداء كثيرة"
+
+msgid "Ecos Invertidos"
+msgstr "أصداء معكوسة"
+
+msgid "Voz Robótica"
+msgstr "صوت آلي"
+
+msgid "Slapback"
+msgstr "صدى ارتدادي"
+
+msgid "Dobra de Voz"
+msgstr "مضاعفة الصوت"
+
+msgid "Pingue-pongue"
+msgstr "بينغ بونغ"
+
+msgid "Estádio"
+msgstr "ملعب"
+
+msgid "Cânion"
+msgstr "وادٍ"
+
+msgid "Reverb"
+msgstr "الصدى"
+
+msgid "Sala Média"
+msgstr "غرفة متوسطة"
+
+msgid "Sala Pequena Clara"
+msgstr "غرفة صغيرة ساطعة"
+
+msgid "Sala Pequena Escura"
+msgstr "غرفة صغيرة داكنة"
+
+msgid "Sala Grande"
+msgstr "غرفة كبيرة"
+
+msgid "Banheiro"
+msgstr "حمّام"
+
+msgid "Salão de Igreja"
+msgstr "قاعة كنيسة"
+
+msgid "Catedral"
+msgstr "كاتدرائية"
+
+msgid "Caverna Grande"
+msgstr "كهف كبير"
+
+msgid "Ambiente"
+msgstr "أجواء"
+
+msgid "Artificial"
+msgstr "اصطناعي"
+
+msgid "Limpo"
+msgstr "نقي"
+
+msgid "Moderno"
+msgstr "حديث"
+
+msgid "Voz I"
+msgstr "غناء I"
+
+msgid "Voz II"
+msgstr "غناء II"
+
+msgid "Voz Dance"
+msgstr "غناء راقص"
+
+msgid "Voz Moderna"
+msgstr "غناء حديث"
+
+msgid "Cauda de Voz"
+msgstr "ذيل الصوت"
+
+msgid "Limiar:"
+msgstr "العتبة:"
+
+msgid "Proporção:"
+msgstr "النسبة:"
+
+msgid "Ataque:"
+msgstr "الهجوم:"
+
+msgid "Liberação:"
+msgstr "التحرير:"
+
+msgid "Ganho:"
+msgstr "الكسب:"
+
+msgid "Semitons:"
+msgstr "أنصاف النغمات:"
+
+msgid "Tempo:"
+msgstr "الوقت:"
+
+msgid "Realimentação:"
+msgstr "التغذية الراجعة:"
+
+msgid "Nível do Efeito:"
+msgstr "مستوى التأثير:"
+
+msgid "Som Original:"
+msgstr "الصوت الأصلي:"
+
+msgid "P&ingue-pongue"
+msgstr "بينغ بونغ(&I)"
+
+msgid "Tamanho da Sala:"
+msgstr "حجم الغرفة:"
+
+msgid "Amortecimento:"
+msgstr "التخميد:"
+
+msgid "Largura Estéreo:"
+msgstr "عرض الاستريو:"
+
+msgid "P&rocurar..."
+msgstr "تصفح(&B)..."
+
+msgid "S&obre"
+msgstr "حول(&O)"
+
+msgid "Pré-atraso:"
+msgstr "التأخير المسبق:"
+
+msgid "Novidades:"
+msgstr "ما الجديد:"
+
+msgid "&Sim"
+msgstr "نعم(&Y)"
+
+msgid "&Não"
+msgstr "لا(&N)"
 

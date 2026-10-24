@@ -488,11 +488,11 @@ void MainFrame::SetupUi() {
 /* Writes every text of the window in the current language. It is the only
    place they appear, so switching languages leaves nothing behind. */
 void MainFrame::Retranslate() {
-    ui::SetText(lbl_format_, tr("&Formato de Saída:"));
+    ui::SetText(lbl_format_, tr("Formato de &Saída:"));
     ui::SetText(lbl_bitrate_, tr("&Bitrate:"));
-    ui::SetText(lbl_flac_level_, tr("Compressão F&LAC:"));
+    ui::SetText(lbl_flac_level_, tr("Compressão &FLAC:"));
     ui::SetText(lbl_rate_, tr("&Taxa de Amostragem:"));
-    ui::SetText(lbl_bits_, tr("Profundidade de Bit&s:"));
+    ui::SetText(lbl_bits_, tr("Profundidade de &Bits:"));
     ui::SetText(lbl_channels_, tr("&Canais:"));
     // Same order as the values in the .ini: mono, stereo.
     int channels = (int)SendMessageW(cmb_channels_, CB_GETCURSEL, 0, 0);
@@ -505,23 +505,23 @@ void MainFrame::Retranslate() {
     ui::SetText(lbl_filename_, tr("&Nome do Arquivo:"));
     ui::SetText(lbl_dir_, tr("&Diretório de Saída:"));
 
-    ui::SetText(btn_add_, tr("&Adicionar"));
+    ui::SetText(btn_add_, tr("Adici&onar"));
     ui::SetText(btn_edit_, tr("&Editar"));
-    ui::SetText(btn_rem_, tr("&Remover"));
-    ui::SetText(btn_browse_, tr("P&rocurar..."));
+    ui::SetText(btn_rem_, tr("Remo&ver"));
+    ui::SetText(btn_browse_, tr("&Procurar..."));
     ui::SetText(btn_open_dir_, tr("Abr&ir Pasta de Gravações"));
-    ui::SetText(btn_settings_, tr("Config&urações..."));
+    ui::SetText(btn_settings_, tr("Configura&ções..."));
     ui::SetText(btn_about_, tr("S&obre"));
     ui::SetText(btn_min_, tr("&Minimizar"));
     ui::SetText(btn_close_, tr("&Fechar"));
     ui::SetText(btn_delete_, tr("E&xcluir Gravação"));
-    ui::SetText(btn_continue_, tr("Continuar Última Gra&vação"));
+    ui::SetText(btn_continue_, tr("Continuar Ú&ltima Gravação"));
 
-    ui::SetText(chk_separate_, tr("Gravar fontes em arquivos se&parados"));
-    ui::SetText(chk_tones_, tr("Reproduzir &tons ao iniciar ou parar gravação"));
+    ui::SetText(chk_separate_, tr("Gravar fontes em ar&quivos separados"));
+    ui::SetText(chk_tones_, tr("Reprodu&zir tons ao iniciar ou parar gravação"));
 
-    ui::SetText(btn_record_, audio.is_recording() || countdown_ ? tr("Para&r") : tr("&Gravar"));
-    ui::SetText(btn_pause_, audio.is_paused() ? tr("C&ontinuar") : tr("&Pausar"));
+    ui::SetText(btn_record_, audio.is_recording() || countdown_ ? tr("P&arar") : tr("Gr&avar"));
+    ui::SetText(btn_pause_, audio.is_paused() ? tr("Contin&uar") : tr("Pa&usar"));
     UpdatePlayButton();
 
     RefreshDeviceNames();
@@ -745,11 +745,10 @@ void MainFrame::StartUpdateCheck() {
 /* Asks, downloads and installs. True when the new version is starting and this
    one must close. */
 bool MainFrame::OfferUpdate(const UpdateInfo& info, HWND parent) {
-    std::wstring text = Format(tr("Sua versão: {atual};\nVersão mais recente: {nova}.\nDeseja atualizar agora?"),
-                               {{L"atual", VB_VERSION}, {L"nova", info.version}});
-    if (ui::MsgBox(parent, text, tr("Nova atualização disponível!"),
-                   MB_YESNO | MB_ICONINFORMATION) != IDYES)
-        return false;
+    {
+        UpdateDialog offer(info);
+        if (offer.ShowModal(parent) != IDOK) return false;
+    }
     wchar_t temp[MAX_PATH];
     GetTempPathW(MAX_PATH, temp);
     std::wstring zip = JoinPath(temp, L"VBRecorder-update.zip");
@@ -961,8 +960,8 @@ void MainFrame::OnRecordToggle() {
         audio.StopRecording();
         UpdateShutdownBlock();
         if (Checked(chk_tones_)) audio.PlayTone(440, 150);
-        ui::SetText(btn_record_, tr("&Gravar"));
-        ui::SetText(btn_pause_, tr("&Pausar"));
+        ui::SetText(btn_record_, tr("Gr&avar"));
+        ui::SetText(btn_pause_, tr("Pa&usar"));
         EnableControl(btn_pause_, false);
         ToggleUi(true);
         last_recording_.clear();
@@ -976,7 +975,7 @@ void MainFrame::OnRecordToggle() {
 bool MainFrame::StartRecordingNow(bool tone) {
     if (sources_.empty()) {
         // All sources were removed during the countdown.
-        ui::SetText(btn_record_, tr("&Gravar"));
+        ui::SetText(btn_record_, tr("Gr&avar"));
         ToggleUi(true);
         ui::MsgBox(DialogParent(), tr("Adicione ao menos uma fonte de gravação antes de iniciar."),
                    tr("Aviso"), MB_ICONWARNING | MB_OK);
@@ -1013,7 +1012,7 @@ bool MainFrame::StartRecordingNow(bool tone) {
         RecordingStarted();
         return true;
     }
-    ui::SetText(btn_record_, tr("&Gravar"));
+    ui::SetText(btn_record_, tr("Gr&avar"));
     ToggleUi(true);
     ui::MsgBox(DialogParent(),
                Format(tr("Erro BASS {erro} ao iniciar a gravação."),
@@ -1027,7 +1026,7 @@ bool MainFrame::StartRecordingNow(bool tone) {
    it. */
 void MainFrame::StartCountdown() {
     countdown_ = 1;
-    ui::SetText(btn_record_, tr("Para&r"));
+    ui::SetText(btn_record_, tr("P&arar"));
     ToggleUi(false);
     SetTimer(hwnd_, TIMER_COUNTDOWN, 1000, nullptr);
     audio.PlayTone(440, 150);
@@ -1049,12 +1048,12 @@ void MainFrame::CancelCountdown() {
     if (!countdown_) return;
     KillTimer(hwnd_, TIMER_COUNTDOWN);
     countdown_ = 0;
-    ui::SetText(btn_record_, tr("&Gravar"));
+    ui::SetText(btn_record_, tr("Gr&avar"));
     ToggleUi(true);
 }
 
 void MainFrame::RecordingStarted() {
-    ui::SetText(btn_record_, tr("Para&r"));
+    ui::SetText(btn_record_, tr("P&arar"));
     EnableWindow(btn_pause_, TRUE);
     ToggleUi(false);
     UpdateRecordingButtons();
@@ -1151,11 +1150,11 @@ void MainFrame::OnPauseToggle() {
     if (!audio.is_paused()) {
         audio.PauseRecording();
         if (Checked(chk_tones_)) audio.PlayTone(659, 150);
-        ui::SetText(btn_pause_, tr("C&ontinuar"));
+        ui::SetText(btn_pause_, tr("Contin&uar"));
     } else {
         audio.ResumeRecording();
         if (Checked(chk_tones_)) audio.PlayTone(880, 150);
-        ui::SetText(btn_pause_, tr("&Pausar"));
+        ui::SetText(btn_pause_, tr("Pa&usar"));
     }
 }
 
@@ -1213,7 +1212,7 @@ void MainFrame::UpdateRecordingButtons() {
 
 void MainFrame::UpdatePlayButton() {
     bool playing = audio.IsPlaying();
-    ui::SetText(btn_play_, playing ? tr("Parar Reprod&ução") : tr("Reprod&uzir Gravação"));
+    ui::SetText(btn_play_, playing ? tr("Parar &Reprodução") : tr("&Reproduzir Gravação"));
     if (playing && !play_timer_) {
         SetTimer(hwnd_, TIMER_PLAY, 300, nullptr);
         play_timer_ = true;

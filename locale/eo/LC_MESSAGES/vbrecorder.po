@@ -36,20 +36,20 @@ msgstr "Montri ĉefan fenestron"
 msgid "Sair"
 msgstr "Eliri"
 
-msgid "&Formato de Saída:"
-msgstr "Eliga for&mato:"
+msgid "Formato de &Saída:"
+msgstr "&Eliga formato:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrapido:"
 
-msgid "Compressão F&LAC:"
-msgstr "FLAC-den&sigo:"
+msgid "Compressão &FLAC:"
+msgstr "FLA&C-densigo:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "Spe&cimena rapido:"
+msgstr "&Specimena rapido:"
 
-msgid "Profundidade de Bit&s:"
-msgstr "Bitprofundo (&Z):"
+msgid "Profundidade de &Bits:"
+msgstr "&Bitprofundo:"
 
 msgid "&Canais:"
 msgstr "&Kanaloj:"
@@ -64,31 +64,28 @@ msgid "Fontes de &Gravação:"
 msgstr "Re&gistraj fontoj:"
 
 msgid "&Nome do Arquivo:"
-msgstr "&Dosiernomo:"
+msgstr "Dosierno&mo:"
 
 msgid "&Diretório de Saída:"
 msgstr "Eliga dosier&ujo:"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "&Aldoni"
 
 msgid "&Editar"
-msgstr "R&edakti"
+msgstr "Redakt&i"
 
-msgid "&Remover"
-msgstr "For&igi"
+msgid "Remo&ver"
+msgstr "F&origi"
 
-msgid "P&rocurar..."
-msgstr "Folium&i..."
+msgid "&Procurar..."
+msgstr "Foliumi..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Malfermi registraĵan dosieru&jon"
+msgstr "Malfermi registraĵan dosierujon"
 
-msgid "Config&urações..."
-msgstr "Agord&oj..."
-
-msgid "S&obre"
-msgstr "P&ri"
+msgid "Configura&ções..."
+msgstr "Agordo&j..."
 
 msgid "&Minimizar"
 msgstr "Mi&nimumigi"
@@ -99,11 +96,11 @@ msgstr "Fer&mi"
 msgid "E&xcluir Gravação"
 msgstr "&Forigi registraĵon"
 
-msgid "Gravar fontes em arquivos se&parados"
+msgid "Gravar fontes em ar&quivos separados"
 msgstr "Registri fontojn en a&partaj dosieroj"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Ludi tonojn ĉe komen&co aŭ halto de registrado"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Ludi &tonojn ĉe komenco aŭ halto de registrado"
 
 msgid "Selecionar Pasta"
 msgstr "Elekti dosierujon"
@@ -159,17 +156,17 @@ msgstr "Sistema defaŭlto"
 msgid "Iniciar &Minimizado"
 msgstr "Starti &minimumigite"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Minimumigi al la sistema &pleto"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "Minimumigi al la &sistema pleto"
 
 msgid "Janela Sempre no &Topo"
-msgstr "Fenestro ĉiam &supre"
+msgstr "&Fenestro ĉiam supre"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "&Retronombrado antaŭ registrado"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "Agordi &fulmklavojn..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "&Agordi fulmklavojn..."
 
 msgid "Aviso"
 msgstr "Averto"
@@ -216,25 +213,25 @@ msgstr "Halti"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder jam funkcias."
 
-msgid "Para&r"
-msgstr "Halt&i"
+msgid "P&arar"
+msgstr "&Halti"
 
-msgid "&Gravar"
-msgstr "Re&gistri"
+msgid "Gr&avar"
+msgstr "&Registri"
 
-msgid "C&ontinuar"
-msgstr "Daŭ&rigi"
+msgid "Contin&uar"
+msgstr "&Daŭrigi"
 
-msgid "&Pausar"
-msgstr "&Paŭzi"
+msgid "Pa&usar"
+msgstr "Paŭ&zi"
 
 msgid "Gravações"
 msgstr "Registraĵoj"
 
-msgid "Parar Reprod&ução"
+msgid "Parar &Reprodução"
 msgstr "Halti &ludadon"
 
-msgid "Reprod&uzir Gravação"
+msgid "&Reproduzir Gravação"
 msgstr "&Ludi registraĵon"
 
 msgid "Escolha o arquivo a reproduzir:"
@@ -266,7 +263,7 @@ msgstr "Konfirmi forigon"
 msgid "&Idioma:"
 msgstr "&Lingvo:"
 
-msgid "Tamanho do B&uffer (ms):"
+msgid "Tamanho do &Buffer (ms):"
 msgstr "B&ufrogrando (ms):"
 
 msgid ""
@@ -374,8 +371,8 @@ msgstr "Defaŭlta enigaparato"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "BASS-eraro {erro} dum aldono de la registra fonto."
 
-msgid "Continuar Última Gra&vação"
-msgstr "Daŭrigi la lastan regis&traĵon"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "Daŭrigi la lasta&n registraĵon"
 
 msgid "Continuar Última Gravação"
 msgstr "Daŭrigi la lastan registraĵon"
@@ -412,9 +409,9 @@ msgid "Por favor aguarde..."
 msgstr "Bonvolu atendi..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "&Aŭtomate kontroli ĝisdatigojn"
+msgstr "Aŭtomate &kontroli ĝisdatigojn"
 
-msgid "Verificar Atuali&zação..."
+msgid "Verificar &Atualização..."
 msgstr "Kontroli ĝisdati&gon..."
 
 msgid "Iniciar com o &Windows"
@@ -572,7 +569,7 @@ msgid "&Ativar Removedor de Ruído"
 msgstr "Ŝa&lti bruoforigilon"
 
 msgid "&Equalizador"
-msgstr "&Egaligilo"
+msgstr "E&galigilo"
 
 msgid "Removedor de &Ruído"
 msgstr "B&ruoforigilo"
@@ -584,11 +581,212 @@ msgid "E&stéreo"
 msgstr "&Stereo"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Daŭro de la registrado (&hh:mm:ss):"
+msgstr "Daŭro de la registrado (hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Malplena: registri sen limo. 1:30:00 estas horo kaj duono, 45:00 estas 45 minutoj."
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Nevalida daŭro de registrado. Uzu horojn, minutojn kaj sekundojn, ekzemple 1:30:00, aŭ lasu ĝin malplena por registri sen limo."
+
+msgid "E&feitos"
+msgstr "&Efektoj"
+
+msgid "Efeitos"
+msgstr "Efektoj"
+
+msgid "&Efeitos:"
+msgstr "&Efektoj:"
+
+msgid "Con&figurar..."
+msgstr "&Agordi..."
+
+msgid "Compressor"
+msgstr "Kunpremilo"
+
+msgid "Padrão"
+msgstr "Defaŭlta"
+
+msgid "Voz Suave"
+msgstr "Milda voĉo"
+
+msgid "Podcast"
+msgstr "Podkasto"
+
+msgid "Locução de Rádio"
+msgstr "Radia voĉo"
+
+msgid "Nivelar Música"
+msgstr "Ebenigi muzikon"
+
+msgid "Compressão Pesada"
+msgstr "Forta kunpremo"
+
+msgid "Limitador"
+msgstr "Limigilo"
+
+msgid "Pitch Shift"
+msgstr "Tonalta ŝovo"
+
+msgid "Voz Grave"
+msgstr "Pli malalta voĉo"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Iom pli malalte"
+
+msgid "Monstro"
+msgstr "Monstro"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Iom pli alte"
+
+msgid "Voz Aguda"
+msgstr "Pli alta voĉo"
+
+msgid "Esquilo"
+msgstr "Burunduko"
+
+msgid "Delay"
+msgstr "Prokrasto"
+
+msgid "Eco Curto"
+msgstr "Mallonga eĥo"
+
+msgid "Muitos Ecos"
+msgstr "Multaj eĥoj"
+
+msgid "Ecos Invertidos"
+msgstr "Inversaj eĥoj"
+
+msgid "Voz Robótica"
+msgstr "Robota voĉo"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Duobligo de voĉo"
+
+msgid "Pingue-pongue"
+msgstr "Pingpongo"
+
+msgid "Estádio"
+msgstr "Stadiono"
+
+msgid "Cânion"
+msgstr "Kanjono"
+
+msgid "Reverb"
+msgstr "Resonado"
+
+msgid "Sala Média"
+msgstr "Meza ĉambro"
+
+msgid "Sala Pequena Clara"
+msgstr "Malgranda hela ĉambro"
+
+msgid "Sala Pequena Escura"
+msgstr "Malgranda malhela ĉambro"
+
+msgid "Sala Grande"
+msgstr "Granda ĉambro"
+
+msgid "Banheiro"
+msgstr "Banĉambro"
+
+msgid "Salão de Igreja"
+msgstr "Preĝeja halo"
+
+msgid "Catedral"
+msgstr "Katedralo"
+
+msgid "Caverna Grande"
+msgstr "Granda kaverno"
+
+msgid "Ambiente"
+msgstr "Etoso"
+
+msgid "Artificial"
+msgstr "Artefarita"
+
+msgid "Limpo"
+msgstr "Pura"
+
+msgid "Moderno"
+msgstr "Moderna"
+
+msgid "Voz I"
+msgstr "Kanto I"
+
+msgid "Voz II"
+msgstr "Kanto II"
+
+msgid "Voz Dance"
+msgstr "Danca kanto"
+
+msgid "Voz Moderna"
+msgstr "Moderna kanto"
+
+msgid "Cauda de Voz"
+msgstr "Vosto de voĉo"
+
+msgid "Limiar:"
+msgstr "Sojlo:"
+
+msgid "Proporção:"
+msgstr "Proporcio:"
+
+msgid "Ataque:"
+msgstr "Atako:"
+
+msgid "Liberação:"
+msgstr "Malstreĉo:"
+
+msgid "Ganho:"
+msgstr "Plifortigo:"
+
+msgid "Semitons:"
+msgstr "Duontonoj:"
+
+msgid "Tempo:"
+msgstr "Tempo:"
+
+msgid "Realimentação:"
+msgstr "Retrokuplo:"
+
+msgid "Nível do Efeito:"
+msgstr "Nivelo de efekto:"
+
+msgid "Som Original:"
+msgstr "Originala sono:"
+
+msgid "P&ingue-pongue"
+msgstr "&Pingpongo"
+
+msgid "Tamanho da Sala:"
+msgstr "Grando de ĉambro:"
+
+msgid "Amortecimento:"
+msgstr "Sordigo:"
+
+msgid "Largura Estéreo:"
+msgstr "Stereofonia larĝo:"
+
+msgid "P&rocurar..."
+msgstr "&Foliumi..."
+
+msgid "S&obre"
+msgstr "P&ri"
+
+msgid "Pré-atraso:"
+msgstr "Antaŭprokrasto:"
+
+msgid "Novidades:"
+msgstr "Novaĵoj:"
+
+msgid "&Sim"
+msgstr "&Jes"
+
+msgid "&Não"
+msgstr "&Ne"
 

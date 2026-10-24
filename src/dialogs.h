@@ -81,6 +81,23 @@ private:
          chk_startup_ = nullptr, chk_countdown_ = nullptr;
 };
 
+/* Offers an update, with what is new in it. The notes come first, where the
+   focus starts, and Enter does nothing in them, so reading them never says
+   yes by accident; Esc says no. ShowModal gives IDOK for yes. */
+class UpdateDialog : public ui::Dialog {
+public:
+    explicit UpdateDialog(const UpdateInfo& info);
+
+protected:
+    void OnInit() override;
+    bool OnCommand(int id, int code, HWND control) override;
+    bool OnCharHook(const MSG& msg) override;
+
+private:
+    UpdateInfo info_;
+    HWND notes_ = nullptr;
+};
+
 /* Downloads an update, with a progress bar and a Cancel button. */
 class DownloadDialog : public ui::Dialog {
 public:
@@ -136,6 +153,7 @@ private:
     void StopTest();
     void Preview(const FxSettings& fx);
     void OnEqualizer();
+    void OnEffects();
     void OnNoise();
     double Volume() const;
     void UpdateDbLabel();
@@ -155,7 +173,7 @@ private:
     const std::vector<SourceItem>* current_items_ = nullptr;
     HWND rb_exe_ = nullptr, lbl_src_ = nullptr, lbl_exe_ = nullptr, txt_exe_ = nullptr;
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,
-         sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr, btn_exe_browse_ = nullptr,
+         sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, btn_fx_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr, btn_exe_browse_ = nullptr,
          btn_noise_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, note_ = nullptr;
 };

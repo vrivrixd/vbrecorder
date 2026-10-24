@@ -22,7 +22,7 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Poslušaj izbrano napravo s prilagojeno glasnostjo"
 
 msgid "&Parar"
-msgstr "U&stavi"
+msgstr "&Ustavi"
 
 msgid "&Testar"
 msgstr "Pr&eizkusi"
@@ -36,20 +36,20 @@ msgstr "Prikaži glavno okno"
 msgid "Sair"
 msgstr "Izhod"
 
-msgid "&Formato de Saída:"
-msgstr "I&zhodni format:"
+msgid "Formato de &Saída:"
+msgstr "Izhodni &format:"
 
 msgid "&Bitrate:"
-msgstr "&Bitna hitrost:"
+msgstr "Bitna hit&rost:"
 
-msgid "Compressão F&LAC:"
-msgstr "Kompresija &FLAC:"
+msgid "Compressão &FLAC:"
+msgstr "Komp&resija FLAC:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "Hitros&t vzorčenja:"
+msgstr "&Hitrost vzorčenja:"
 
-msgid "Profundidade de Bit&s:"
-msgstr "&Bitna globina:"
+msgid "Profundidade de &Bits:"
+msgstr "Bitna &globina:"
 
 msgid "&Canais:"
 msgstr "&Kanali:"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Viri &snemanja:"
+msgstr "&Viri snemanja:"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Ime datoteke:"
 
 msgid "&Diretório de Saída:"
-msgstr "Izhod&ni imenik:"
+msgstr "I&zhodni imenik:"
 
-msgid "&Adicionar"
-msgstr "Dod&aj"
+msgid "Adici&onar"
+msgstr "&Dodaj"
 
 msgid "&Editar"
 msgstr "Ur&edi"
 
-msgid "&Remover"
-msgstr "Odst&rani"
+msgid "Remo&ver"
+msgstr "&Odstrani"
 
-msgid "P&rocurar..."
-msgstr "B&rskaj..."
+msgid "&Procurar..."
+msgstr "&Brskaj..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "&Odpri mapo s posnetki"
+msgstr "Odpri &mapo s posnetki"
 
-msgid "Config&urações..."
-msgstr "Nasta&vitve..."
-
-msgid "S&obre"
-msgstr "O pro&gramu"
+msgid "Configura&ções..."
+msgstr "N&astavitve..."
 
 msgid "&Minimizar"
 msgstr "&Minimiziraj"
@@ -99,11 +96,11 @@ msgstr "&Zapri"
 msgid "E&xcluir Gravação"
 msgstr "Izbri&ši posnetek"
 
-msgid "Gravar fontes em arquivos se&parados"
+msgid "Gravar fontes em ar&quivos separados"
 msgstr "Snemanje virov v lo&čene datoteke"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Predvajaj &tone ob začetku ali koncu snemanja"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Predvajaj tone ob začetku ali kon&cu snemanja"
 
 msgid "Selecionar Pasta"
 msgstr "Izberi mapo"
@@ -157,19 +154,19 @@ msgid "Padrão do sistema"
 msgstr "Sistemsko privzeto"
 
 msgid "Iniciar &Minimizado"
-msgstr "Zaženi &minimizirano"
+msgstr "&Zaženi minimizirano"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
+msgid "Minimizar &Para a Bandeja do Sistema"
 msgstr "Minimiziraj v s&istemsko vrstico"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Okno vedno &na vrhu"
 
 msgid "Contagem &Regressiva Antes de Gravar"
-msgstr "Odš&tevanje pred snemanjem"
+msgstr "&Odštevanje pred snemanjem"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "Konfiguriraj bli&žnjice..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "&Konfiguriraj bližnjice..."
 
 msgid "Aviso"
 msgstr "Opozorilo"
@@ -216,25 +213,25 @@ msgstr "Ustavi"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder se že izvaja."
 
-msgid "Para&r"
+msgid "P&arar"
 msgstr "&Ustavi"
 
-msgid "&Gravar"
+msgid "Gr&avar"
 msgstr "&Snemaj"
 
-msgid "C&ontinuar"
-msgstr "Na&daljuj"
+msgid "Contin&uar"
+msgstr "&Nadaljuj"
 
-msgid "&Pausar"
+msgid "Pa&usar"
 msgstr "&Premor"
 
 msgid "Gravações"
 msgstr "Posnetki"
 
-msgid "Parar Reprod&ução"
+msgid "Parar &Reprodução"
 msgstr "Ustavi predva&janje"
 
-msgid "Reprod&uzir Gravação"
+msgid "&Reproduzir Gravação"
 msgstr "Predvaja&j posnetek"
 
 msgid "Escolha o arquivo a reproduzir:"
@@ -274,8 +271,8 @@ msgstr "Potrdi brisanje"
 msgid "&Idioma:"
 msgstr "&Jezik:"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "Velikost medp&omnilnika (ms):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "Velikost medpomnilnika (&ms):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -383,7 +380,7 @@ msgstr "Privzeta vhodna naprava"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Napaka BASS {erro} pri dodajanju vira snemanja."
 
-msgid "Continuar Última Gra&vação"
+msgid "Continuar Ú&ltima Gravação"
 msgstr "Nada&ljuj zadnji posnetek"
 
 msgid "Continuar Última Gravação"
@@ -423,7 +420,7 @@ msgstr "Prosimo počakajte..."
 msgid "&Verificar Atualizações Automaticamente"
 msgstr "&Samodejno preverjaj posodobitve"
 
-msgid "Verificar Atuali&zação..."
+msgid "Verificar &Atualização..."
 msgstr "Preveri posodo&bitev..."
 
 msgid "Iniciar com o &Windows"
@@ -584,20 +581,221 @@ msgid "&Equalizador"
 msgstr "&Izenačevalnik"
 
 msgid "Removedor de &Ruído"
-msgstr "O&dstranjevalnik šuma"
+msgstr "&Odstranjevalnik šuma"
 
 msgid "&Mostrar Todos os Processos"
 msgstr "Po&kaži vse procese"
 
 msgid "E&stéreo"
-msgstr "S&tereo"
+msgstr "&Stereo"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Trajanje snemanja (&hh:mm:ss):"
+msgstr "&Trajanje snemanja (hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Prazno: snemanje brez omejitve. 1:30:00 je ura in pol, 45:00 je 45 minut."
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Neveljavno trajanje snemanja. Uporabite ure, minute in sekunde, na primer 1:30:00, ali pustite prazno za snemanje brez omejitve."
+
+msgid "E&feitos"
+msgstr "U&činki"
+
+msgid "Efeitos"
+msgstr "Učinki"
+
+msgid "&Efeitos:"
+msgstr "&Učinki:"
+
+msgid "Con&figurar..."
+msgstr "&Nastavi..."
+
+msgid "Compressor"
+msgstr "Kompresor"
+
+msgid "Padrão"
+msgstr "Privzeto"
+
+msgid "Voz Suave"
+msgstr "Mehak glas"
+
+msgid "Podcast"
+msgstr "Podkast"
+
+msgid "Locução de Rádio"
+msgstr "Radijski glas"
+
+msgid "Nivelar Música"
+msgstr "Izravnava glasbe"
+
+msgid "Compressão Pesada"
+msgstr "Močno stiskanje"
+
+msgid "Limitador"
+msgstr "Omejevalnik"
+
+msgid "Pitch Shift"
+msgstr "Sprememba višine tona"
+
+msgid "Voz Grave"
+msgstr "Nižji glas"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Malo nižje"
+
+msgid "Monstro"
+msgstr "Pošast"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Malo višje"
+
+msgid "Voz Aguda"
+msgstr "Višji glas"
+
+msgid "Esquilo"
+msgstr "Veverica"
+
+msgid "Delay"
+msgstr "Zakasnitev"
+
+msgid "Eco Curto"
+msgstr "Kratek odmev"
+
+msgid "Muitos Ecos"
+msgstr "Veliko odmevov"
+
+msgid "Ecos Invertidos"
+msgstr "Obrnjeni odmevi"
+
+msgid "Voz Robótica"
+msgstr "Robotski glas"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Podvojitev glasu"
+
+msgid "Pingue-pongue"
+msgstr "Ping-pong"
+
+msgid "Estádio"
+msgstr "Stadion"
+
+msgid "Cânion"
+msgstr "Kanjon"
+
+msgid "Reverb"
+msgstr "Odmev prostora"
+
+msgid "Sala Média"
+msgstr "Srednja soba"
+
+msgid "Sala Pequena Clara"
+msgstr "Majhna svetla soba"
+
+msgid "Sala Pequena Escura"
+msgstr "Majhna temna soba"
+
+msgid "Sala Grande"
+msgstr "Velika soba"
+
+msgid "Banheiro"
+msgstr "Kopalnica"
+
+msgid "Salão de Igreja"
+msgstr "Cerkvena dvorana"
+
+msgid "Catedral"
+msgstr "Katedrala"
+
+msgid "Caverna Grande"
+msgstr "Velika jama"
+
+msgid "Ambiente"
+msgstr "Ambient"
+
+msgid "Artificial"
+msgstr "Umeten"
+
+msgid "Limpo"
+msgstr "Čist"
+
+msgid "Moderno"
+msgstr "Sodoben"
+
+msgid "Voz I"
+msgstr "Vokal I"
+
+msgid "Voz II"
+msgstr "Vokal II"
+
+msgid "Voz Dance"
+msgstr "Plesni vokal"
+
+msgid "Voz Moderna"
+msgstr "Sodoben vokal"
+
+msgid "Cauda de Voz"
+msgstr "Rep glasu"
+
+msgid "Limiar:"
+msgstr "Prag:"
+
+msgid "Proporção:"
+msgstr "Razmerje:"
+
+msgid "Ataque:"
+msgstr "Napad:"
+
+msgid "Liberação:"
+msgstr "Sprostitev:"
+
+msgid "Ganho:"
+msgstr "Ojačanje:"
+
+msgid "Semitons:"
+msgstr "Poltoni:"
+
+msgid "Tempo:"
+msgstr "Čas:"
+
+msgid "Realimentação:"
+msgstr "Povratna zanka:"
+
+msgid "Nível do Efeito:"
+msgstr "Raven učinka:"
+
+msgid "Som Original:"
+msgstr "Izvirni zvok:"
+
+msgid "P&ingue-pongue"
+msgstr "P&ing-pong"
+
+msgid "Tamanho da Sala:"
+msgstr "Velikost sobe:"
+
+msgid "Amortecimento:"
+msgstr "Dušenje:"
+
+msgid "Largura Estéreo:"
+msgstr "Širina sterea:"
+
+msgid "P&rocurar..."
+msgstr "&Brskaj..."
+
+msgid "S&obre"
+msgstr "O pro&gramu"
+
+msgid "Pré-atraso:"
+msgstr "Predzakasnitev:"
+
+msgid "Novidades:"
+msgstr "Novosti:"
+
+msgid "&Sim"
+msgstr "&Da"
+
+msgid "&Não"
+msgstr "&Ne"
 

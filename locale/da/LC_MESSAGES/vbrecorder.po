@@ -36,20 +36,20 @@ msgstr "Vis hovedvindue"
 msgid "Sair"
 msgstr "Afslut"
 
-msgid "&Formato de Saída:"
-msgstr "Output &format:"
+msgid "Formato de &Saída:"
+msgstr "Output for&mat:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
 
-msgid "Compressão F&LAC:"
+msgid "Compressão &FLAC:"
 msgstr "FLA&C-komprimering:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "&Sample rate:"
+msgstr "Samp&le rate:"
 
-msgid "Profundidade de Bit&s:"
-msgstr "Bit&dybde:"
+msgid "Profundidade de &Bits:"
+msgstr "&Bitdybde:"
 
 msgid "&Canais:"
 msgstr "&Kanaler:"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Opt&agelseskilder:"
+msgstr "Optagelseskil&der:"
 
 msgid "&Nome do Arquivo:"
-msgstr "Filna&vn:"
+msgstr "Fil&navn:"
 
 msgid "&Diretório de Saída:"
 msgstr "O&utputmappe:"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "Tilf&øj"
 
 msgid "&Editar"
 msgstr "&Rediger"
 
-msgid "&Remover"
+msgid "Remo&ver"
 msgstr "F&jern"
 
-msgid "P&rocurar..."
-msgstr "Gen&nemse..."
+msgid "&Procurar..."
+msgstr "&Gennemse..."
 
 msgid "Abr&ir Pasta de Gravações"
 msgstr "&Åbn optagelsesmappe"
 
-msgid "Config&urações..."
+msgid "Configura&ções..."
 msgstr "&Indstillinger..."
-
-msgid "S&obre"
-msgstr "&Om"
 
 msgid "&Minimizar"
 msgstr "&Minimer"
@@ -99,11 +96,11 @@ msgstr "&Luk"
 msgid "E&xcluir Gravação"
 msgstr "Sl&et optagelse"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Optag kilder til se&parate filer"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "Optag kilder &til separate filer"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Afspil toner ved &start eller stop af optagelse"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Afspil toner &ved start eller stop af optagelse"
 
 msgid "Selecionar Pasta"
 msgstr "Vælg mappe"
@@ -159,17 +156,17 @@ msgstr "Systemstandard"
 msgid "Iniciar &Minimizado"
 msgstr "Start &minimeret"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Minimer til &systembakke"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "Minimer &til systembakke"
 
 msgid "Janela Sempre no &Topo"
-msgstr "Vindue altid &øverst"
+msgstr "&Vindue altid øverst"
 
 msgid "Contagem &Regressiva Antes de Gravar"
-msgstr "Ned&tælling før optagelse"
+msgstr "&Nedtælling før optagelse"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "Konfigurer genve&je..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "&Konfigurer genveje..."
 
 msgid "Aviso"
 msgstr "Advarsel"
@@ -216,26 +213,26 @@ msgstr "Stop"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder kører allerede."
 
-msgid "Para&r"
-msgstr "S&top"
+msgid "P&arar"
+msgstr "&Stop"
 
-msgid "&Gravar"
-msgstr "Opt&ag"
+msgid "Gr&avar"
+msgstr "&Optag"
 
-msgid "C&ontinuar"
-msgstr "F&ortsæt"
+msgid "Contin&uar"
+msgstr "&Fortsæt"
 
-msgid "&Pausar"
+msgid "Pa&usar"
 msgstr "&Pause"
 
 msgid "Gravações"
 msgstr "Optagelser"
 
-msgid "Parar Reprod&ução"
-msgstr "Stop afspilnin&g"
+msgid "Parar &Reprodução"
+msgstr "Stop &afspilning"
 
-msgid "Reprod&uzir Gravação"
-msgstr "Afsp&il optagelse"
+msgid "&Reproduzir Gravação"
+msgstr "&Afspil optagelse"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Vælg filen der skal afspilles:"
@@ -266,8 +263,8 @@ msgstr "Bekræft sletning"
 msgid "&Idioma:"
 msgstr "Spro&g:"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "B&ufferstørrelse (ms):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "&Bufferstørrelse (ms):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -374,7 +371,7 @@ msgstr "Standard inputenhed"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "BASS fejl {erro} ved tilføjelse af optagelseskilden."
 
-msgid "Continuar Última Gra&vação"
+msgid "Continuar Ú&ltima Gravação"
 msgstr "Forts&æt sidste optagelse"
 
 msgid "Continuar Última Gravação"
@@ -412,9 +409,9 @@ msgid "Por favor aguarde..."
 msgstr "Vent venligst..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "Søg automatisk efter opdateri&nger"
+msgstr "&Søg automatisk efter opdateringer"
 
-msgid "Verificar Atuali&zação..."
+msgid "Verificar &Atualização..."
 msgstr "Søg efter opdat&ering..."
 
 msgid "Iniciar com o &Windows"
@@ -591,4 +588,205 @@ msgstr "Tom: optager uden grænse. 1:30:00 er halvanden time, 45:00 er 45 minutt
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Ugyldig varighed for optagelsen. Brug timer, minutter og sekunder, f.eks. 1:30:00, eller lad feltet stå tomt for at optage uden grænse."
+
+msgid "E&feitos"
+msgstr "E&ffekter"
+
+msgid "Efeitos"
+msgstr "Effekter"
+
+msgid "&Efeitos:"
+msgstr "&Effekter:"
+
+msgid "Con&figurar..."
+msgstr "&Konfigurer..."
+
+msgid "Compressor"
+msgstr "Kompressor"
+
+msgid "Padrão"
+msgstr "Standard"
+
+msgid "Voz Suave"
+msgstr "Blød stemme"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "Radiostemme"
+
+msgid "Nivelar Música"
+msgstr "Udjævn musik"
+
+msgid "Compressão Pesada"
+msgstr "Kraftig kompression"
+
+msgid "Limitador"
+msgstr "Limiter"
+
+msgid "Pitch Shift"
+msgstr "Toneforskydning"
+
+msgid "Voz Grave"
+msgstr "Dybere stemme"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Lidt lavere"
+
+msgid "Monstro"
+msgstr "Monster"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Lidt højere"
+
+msgid "Voz Aguda"
+msgstr "Højere stemme"
+
+msgid "Esquilo"
+msgstr "Jordegern"
+
+msgid "Delay"
+msgstr "Forsinkelse"
+
+msgid "Eco Curto"
+msgstr "Kort ekko"
+
+msgid "Muitos Ecos"
+msgstr "Mange ekkoer"
+
+msgid "Ecos Invertidos"
+msgstr "Omvendte ekkoer"
+
+msgid "Voz Robótica"
+msgstr "Robotstemme"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Stemmefordobling"
+
+msgid "Pingue-pongue"
+msgstr "Ping-pong"
+
+msgid "Estádio"
+msgstr "Stadion"
+
+msgid "Cânion"
+msgstr "Kløft"
+
+msgid "Reverb"
+msgstr "Rumklang"
+
+msgid "Sala Média"
+msgstr "Mellemstort rum"
+
+msgid "Sala Pequena Clara"
+msgstr "Lille lyst rum"
+
+msgid "Sala Pequena Escura"
+msgstr "Lille mørkt rum"
+
+msgid "Sala Grande"
+msgstr "Stort rum"
+
+msgid "Banheiro"
+msgstr "Badeværelse"
+
+msgid "Salão de Igreja"
+msgstr "Kirkesal"
+
+msgid "Catedral"
+msgstr "Katedral"
+
+msgid "Caverna Grande"
+msgstr "Stor hule"
+
+msgid "Ambiente"
+msgstr "Stemning"
+
+msgid "Artificial"
+msgstr "Kunstig"
+
+msgid "Limpo"
+msgstr "Ren"
+
+msgid "Moderno"
+msgstr "Moderne"
+
+msgid "Voz I"
+msgstr "Vokal I"
+
+msgid "Voz II"
+msgstr "Vokal II"
+
+msgid "Voz Dance"
+msgstr "Dancevokal"
+
+msgid "Voz Moderna"
+msgstr "Moderne vokal"
+
+msgid "Cauda de Voz"
+msgstr "Stemmehale"
+
+msgid "Limiar:"
+msgstr "Tærskel:"
+
+msgid "Proporção:"
+msgstr "Forhold:"
+
+msgid "Ataque:"
+msgstr "Anslag:"
+
+msgid "Liberação:"
+msgstr "Udløsning:"
+
+msgid "Ganho:"
+msgstr "Forstærkning:"
+
+msgid "Semitons:"
+msgstr "Halvtoner:"
+
+msgid "Tempo:"
+msgstr "Tid:"
+
+msgid "Realimentação:"
+msgstr "Feedback:"
+
+msgid "Nível do Efeito:"
+msgstr "Effektniveau:"
+
+msgid "Som Original:"
+msgstr "Original lyd:"
+
+msgid "P&ingue-pongue"
+msgstr "&Ping-pong"
+
+msgid "Tamanho da Sala:"
+msgstr "Rumstørrelse:"
+
+msgid "Amortecimento:"
+msgstr "Dæmpning:"
+
+msgid "Largura Estéreo:"
+msgstr "Stereobredde:"
+
+msgid "P&rocurar..."
+msgstr "&Gennemse..."
+
+msgid "S&obre"
+msgstr "&Om"
+
+msgid "Pré-atraso:"
+msgstr "Forforsinkelse:"
+
+msgid "Novidades:"
+msgstr "Nyheder:"
+
+msgid "&Sim"
+msgstr "&Ja"
+
+msgid "&Não"
+msgstr "&Nej"
 

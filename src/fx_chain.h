@@ -15,8 +15,10 @@
  */
 
 /*
- * The processing of one source: the noise remover (RNNoise), the equalizer,
- * then mono, if the source is not stereo. The source's volume comes after.
+ * The processing of one source, in this order: the noise remover (RNNoise),
+ * the equalizer, compressor and pitch shift (BASS_FX), the delay (our own),
+ * the reverb (BASS_FX, with our own pre-delay), then mono, if the source is
+ * not stereo. The source's volume comes after.
  *
  * The audio goes through as it is captured, in place and with the same
  * length, so the source keeps its place on the recording timeline. The
@@ -49,13 +51,25 @@ public:
     void Process(float* data, DWORD frames);
 
 private:
+    /* A decoding push stream carrying BASS_FX effects: what goes in comes
+       right back out, processed. */
+    struct Stage {
+        DWORD stream = 0;
+        int count = 0;  // effects on it
+    };
+    /* Adds or removes one effect; returns its handle, 0 when off. */
+    DWORD SetFx(Stage& stage, DWORD handle, bool on, DWORD type, int priority);
+    void RunStage(Stage& stage, float* data, DWORD frames);
     void Denoise(float* data, DWORD frames);
+    void Delay(float* data, DWORD frames);
+    void Reverb(float* data, DWORD frames);
 
     const BassApi& b_;
     int rate_, chans_;
     std::mutex mutex_;
-    DWORD stream_ = 0;  // decoding push stream carrying the BASS_FX equalizer
-    DWORD eq_ = 0;
+    Stage pre_;   // equalizer, compressor, pitch shift
+    Stage post_;  // reverb, after the delay
+    DWORD eq_ = 0, compressor_ = 0, pitch_ = 0, reverb_ = 0;
     float preamp_ = 1.0f;
     bool stereo_ = true;
 
@@ -67,4 +81,20 @@ private:
     std::vector<DenoiseState*> denoise_;
     std::vector<float> in_frames_, out_frames_, dry_frames_;
     size_t fill_ = 0;
+
+    // Delay: one line per channel, as long as the longest time allowed.
+    bool delay_on_ = false;
+    size_t delay_frames_ = 1;
+    float delay_feedback_ = 0, delay_wet_ = 0, delay_dry_ = 1;
+    bool delay_pingpong_ = false;
+    std::vector<float> delay_line_;  // interleaved, like the audio
+    size_t delay_pos_ = 0;
+
+    // Reverb: Freeverb has no pre-delay, so it gets only the effect's part
+    // of the sound, from a line that holds it back; the original sound is
+    // mixed in afterwards, on time.
+    float reverb_dry_ = 1;
+    size_t predelay_frames_ = 0;
+    std::vector<float> predelay_line_, reverb_in_;
+    size_t predelay_pos_ = 0;
 };

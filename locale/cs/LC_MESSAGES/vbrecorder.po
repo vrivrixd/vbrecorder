@@ -36,20 +36,20 @@ msgstr "Zobrazit hlavní okno"
 msgid "Sair"
 msgstr "Ukončit"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "&Formát výstupu:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
 
-msgid "Compressão F&LAC:"
+msgid "Compressão &FLAC:"
 msgstr "Komprese F&LAC:"
 
 msgid "&Taxa de Amostragem:"
 msgstr "&Vzorkovací frekvence:"
 
-msgid "Profundidade de Bit&s:"
-msgstr "B&itová hloubka:"
+msgid "Profundidade de &Bits:"
+msgstr "&Bitová hloubka:"
 
 msgid "&Canais:"
 msgstr "&Kanály:"
@@ -61,7 +61,7 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Zdroje &záznamu:"
+msgstr "Zdro&je záznamu:"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Název souboru:"
@@ -69,26 +69,23 @@ msgstr "&Název souboru:"
 msgid "&Diretório de Saída:"
 msgstr "Výstupní &adresář:"
 
-msgid "&Adicionar"
-msgstr "Při&dat"
+msgid "Adici&onar"
+msgstr "P&řidat"
 
 msgid "&Editar"
 msgstr "&Upravit"
 
-msgid "&Remover"
-msgstr "Odebra&t"
+msgid "Remo&ver"
+msgstr "&Odebrat"
 
-msgid "P&rocurar..."
+msgid "&Procurar..."
 msgstr "P&rocházet..."
 
 msgid "Abr&ir Pasta de Gravações"
 msgstr "Ot&evřít složku záznamů"
 
-msgid "Config&urações..."
+msgid "Configura&ções..."
 msgstr "Nastaven&í..."
-
-msgid "S&obre"
-msgstr "&O aplikaci"
 
 msgid "&Minimizar"
 msgstr "&Minimalizovat"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "Zav&řít"
 
 msgid "E&xcluir Gravação"
-msgstr "Smazat z&áznam"
+msgstr "&Smazat záznam"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Zaznamenávat zdro&je do oddělených souborů"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "Zaznamen&ávat zdroje do oddělených souborů"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Přehrát tón při spuštění nebo zasta&vení záznamu"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Přehrát &tón při spuštění nebo zastavení záznamu"
 
 msgid "Selecionar Pasta"
 msgstr "Vybrat složku"
@@ -157,10 +154,10 @@ msgid "Padrão do sistema"
 msgstr "Výchozí nastavení systému"
 
 msgid "Iniciar &Minimizado"
-msgstr "Spustit &minimalizovaně"
+msgstr "&Spustit minimalizovaně"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Minimalizovat do &systémové lišty"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "Minimalizovat do systémové &lišty"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Okno vždy &navrchu"
@@ -168,7 +165,7 @@ msgstr "Okno vždy &navrchu"
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "Odpočet &před nahráváním"
 
-msgid "Configurar Teclas de &Atalho..."
+msgid "Configurar Teclas &de Atalho..."
 msgstr "Konfigurovat &klávesové zkratky..."
 
 msgid "Aviso"
@@ -216,25 +213,25 @@ msgstr "Zastavit"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder je již spuštěn."
 
-msgid "Para&r"
-msgstr "Zas&tavit"
+msgid "P&arar"
+msgstr "&Zastavit"
 
-msgid "&Gravar"
+msgid "Gr&avar"
 msgstr "Za&znamenat"
 
-msgid "C&ontinuar"
-msgstr "P&okračovat"
+msgid "Contin&uar"
+msgstr "&Pokračovat"
 
-msgid "&Pausar"
+msgid "Pa&usar"
 msgstr "&Pozastavit"
 
 msgid "Gravações"
 msgstr "Záznamy"
 
-msgid "Parar Reprod&ução"
+msgid "Parar &Reprodução"
 msgstr "Zastavit pře&hrávání"
 
-msgid "Reprod&uzir Gravação"
+msgid "&Reproduzir Gravação"
 msgstr "Pře&hrát záznam"
 
 msgid "Escolha o arquivo a reproduzir:"
@@ -270,8 +267,8 @@ msgstr "Potvrdit smazání"
 msgid "&Idioma:"
 msgstr "&Jazyk:"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "Velikost b&ufferu (ms):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "Velikost bufferu (&ms):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -377,7 +374,7 @@ msgstr "Výchozí vstupní zařízení"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Chyba BASS {erro} při přidávání zdroje záznamu."
 
-msgid "Continuar Última Gra&vação"
+msgid "Continuar Ú&ltima Gravação"
 msgstr "Pokra&čovat v posledním záznamu"
 
 msgid "Continuar Última Gravação"
@@ -417,7 +414,7 @@ msgstr "Prosím čekejte..."
 msgid "&Verificar Atualizações Automaticamente"
 msgstr "&Automaticky kontrolovat aktualizace"
 
-msgid "Verificar Atuali&zação..."
+msgid "Verificar &Atualização..."
 msgstr "Zkont&rolovat aktualizaci..."
 
 msgid "Iniciar com o &Windows"
@@ -572,13 +569,13 @@ msgid "Removedor de Ruído"
 msgstr "Odstranění šumu"
 
 msgid "&Ativar Removedor de Ruído"
-msgstr "Z&apnout odstranění šumu"
+msgstr "Zapnout odstranění &šumu"
 
 msgid "&Equalizador"
 msgstr "&Ekvalizér"
 
 msgid "Removedor de &Ruído"
-msgstr "O&dstranění šumu"
+msgstr "Odstranění &šumu"
 
 msgid "&Mostrar Todos os Processos"
 msgstr "Zobrazit &všechny procesy"
@@ -587,11 +584,212 @@ msgid "E&stéreo"
 msgstr "&Stereo"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Délka nahrávání (hh:mm:&ss):"
+msgstr "&Délka nahrávání (hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Prázdné = nahrávat bez omezení. 1:30:00 je hodina a půl, 45:00 je 45 minut."
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Neplatná délka nahrávání. Použijte hodiny, minuty a sekundy, například 1:30:00, nebo nechte prázdné pro nahrávání bez omezení."
+
+msgid "E&feitos"
+msgstr "E&fekty"
+
+msgid "Efeitos"
+msgstr "Efekty"
+
+msgid "&Efeitos:"
+msgstr "&Efekty:"
+
+msgid "Con&figurar..."
+msgstr "&Konfigurovat..."
+
+msgid "Compressor"
+msgstr "Kompresor"
+
+msgid "Padrão"
+msgstr "Výchozí"
+
+msgid "Voz Suave"
+msgstr "Jemný hlas"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "Rozhlasový hlas"
+
+msgid "Nivelar Música"
+msgstr "Vyrovnání hudby"
+
+msgid "Compressão Pesada"
+msgstr "Silná komprese"
+
+msgid "Limitador"
+msgstr "Limiter"
+
+msgid "Pitch Shift"
+msgstr "Změna výšky tónu"
+
+msgid "Voz Grave"
+msgstr "Hlubší hlas"
+
+msgid "Um Pouco Mais Grave"
+msgstr "O něco níž"
+
+msgid "Monstro"
+msgstr "Monstrum"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "O něco výš"
+
+msgid "Voz Aguda"
+msgstr "Vyšší hlas"
+
+msgid "Esquilo"
+msgstr "Veverka"
+
+msgid "Delay"
+msgstr "Zpoždění"
+
+msgid "Eco Curto"
+msgstr "Krátká ozvěna"
+
+msgid "Muitos Ecos"
+msgstr "Mnoho ozvěn"
+
+msgid "Ecos Invertidos"
+msgstr "Obrácené ozvěny"
+
+msgid "Voz Robótica"
+msgstr "Robotický hlas"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Zdvojení hlasu"
+
+msgid "Pingue-pongue"
+msgstr "Ping-pong"
+
+msgid "Estádio"
+msgstr "Stadion"
+
+msgid "Cânion"
+msgstr "Kaňon"
+
+msgid "Reverb"
+msgstr "Dozvuk"
+
+msgid "Sala Média"
+msgstr "Střední místnost"
+
+msgid "Sala Pequena Clara"
+msgstr "Malá světlá místnost"
+
+msgid "Sala Pequena Escura"
+msgstr "Malá tmavá místnost"
+
+msgid "Sala Grande"
+msgstr "Velká místnost"
+
+msgid "Banheiro"
+msgstr "Koupelna"
+
+msgid "Salão de Igreja"
+msgstr "Kostelní sál"
+
+msgid "Catedral"
+msgstr "Katedrála"
+
+msgid "Caverna Grande"
+msgstr "Velká jeskyně"
+
+msgid "Ambiente"
+msgstr "Atmosféra"
+
+msgid "Artificial"
+msgstr "Umělý"
+
+msgid "Limpo"
+msgstr "Čistý"
+
+msgid "Moderno"
+msgstr "Moderní"
+
+msgid "Voz I"
+msgstr "Zpěv I"
+
+msgid "Voz II"
+msgstr "Zpěv II"
+
+msgid "Voz Dance"
+msgstr "Taneční zpěv"
+
+msgid "Voz Moderna"
+msgstr "Moderní zpěv"
+
+msgid "Cauda de Voz"
+msgstr "Doznívání hlasu"
+
+msgid "Limiar:"
+msgstr "Práh:"
+
+msgid "Proporção:"
+msgstr "Poměr:"
+
+msgid "Ataque:"
+msgstr "Náběh:"
+
+msgid "Liberação:"
+msgstr "Uvolnění:"
+
+msgid "Ganho:"
+msgstr "Zesílení:"
+
+msgid "Semitons:"
+msgstr "Půltóny:"
+
+msgid "Tempo:"
+msgstr "Čas:"
+
+msgid "Realimentação:"
+msgstr "Zpětná vazba:"
+
+msgid "Nível do Efeito:"
+msgstr "Úroveň efektu:"
+
+msgid "Som Original:"
+msgstr "Původní zvuk:"
+
+msgid "P&ingue-pongue"
+msgstr "P&ing-pong"
+
+msgid "Tamanho da Sala:"
+msgstr "Velikost místnosti:"
+
+msgid "Amortecimento:"
+msgstr "Tlumení:"
+
+msgid "Largura Estéreo:"
+msgstr "Šířka sterea:"
+
+msgid "P&rocurar..."
+msgstr "&Procházet..."
+
+msgid "S&obre"
+msgstr "&O aplikaci"
+
+msgid "Pré-atraso:"
+msgstr "Předzpoždění:"
+
+msgid "Novidades:"
+msgstr "Novinky:"
+
+msgid "&Sim"
+msgstr "&Ano"
+
+msgid "&Não"
+msgstr "&Ne"
 

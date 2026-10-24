@@ -22,13 +22,13 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "ฟังอุปกรณ์ที่เลือกด้วยระดับเสียงที่ปรับแล้ว"
 
 msgid "&Parar"
-msgstr "หยุด(&P)"
+msgstr "หยุด(&T)"
 
 msgid "&Testar"
 msgstr "ทดสอบ(&T)"
 
 msgid "&Atualizar"
-msgstr "รีเฟรช(&U)"
+msgstr "รีเฟรช(&R)"
 
 msgid "Mostrar janela principal"
 msgstr "แสดงหน้าต่างหลัก"
@@ -36,20 +36,20 @@ msgstr "แสดงหน้าต่างหลัก"
 msgid "Sair"
 msgstr "ออก"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "รูปแบบผลลัพธ์(&F):"
 
 msgid "&Bitrate:"
 msgstr "บิตเรต(&B):"
 
-msgid "Compressão F&LAC:"
-msgstr "การบีบอัด FLAC(&L):"
+msgid "Compressão &FLAC:"
+msgstr "การบีบอัด FLAC(&M):"
 
 msgid "&Taxa de Amostragem:"
 msgstr "อัตราสุ่มตัวอย่าง(&T):"
 
-msgid "Profundidade de Bit&s:"
-msgstr "ความลึกบิต(&H):"
+msgid "Profundidade de &Bits:"
+msgstr "ความลึกบิต(&B):"
 
 msgid "&Canais:"
 msgstr "ช่อง(&C):"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "สเตอริโอ"
 
 msgid "Fontes de &Gravação:"
-msgstr "แหล่งการบันทึก(&G):"
+msgstr "แหล่งการบันทึก(&I):"
 
 msgid "&Nome do Arquivo:"
 msgstr "ชื่อไฟล์(&N):"
 
 msgid "&Diretório de Saída:"
-msgstr "ไดเรกทอรีผลลัพธ์(&D):"
+msgstr "ไดเรกทอรีผลลัพธ์(&O):"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "เพิ่ม(&A)"
 
 msgid "&Editar"
 msgstr "แก้ไข(&E)"
 
-msgid "&Remover"
-msgstr "ลบ(&R)"
+msgid "Remo&ver"
+msgstr "ลบ(&V)"
 
-msgid "P&rocurar..."
-msgstr "เรียกดู(&R)..."
+msgid "&Procurar..."
+msgstr "เรียกดู(&W)..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "เปิดโฟลเดอร์การบันทึก(&I)"
+msgstr "เปิดโฟลเดอร์การบันทึก(&X)"
 
-msgid "Config&urações..."
-msgstr "การตั้งค่า(&U)..."
-
-msgid "S&obre"
-msgstr "เกี่ยวกับ(&O)"
+msgid "Configura&ções..."
+msgstr "การตั้งค่า(&G)..."
 
 msgid "&Minimizar"
 msgstr "ย่อเล็กสุด(&M)"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "ปิด(&F)"
 
 msgid "E&xcluir Gravação"
-msgstr "ลบการบันทึก(&X)"
+msgstr "ลบการบันทึก(&D)"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "บันทึกแหล่งลงในไฟล์แยกต่างหาก(&P)"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "บันทึกแหล่งลงในไฟล์แยกต่างหาก(&Q)"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "เล่นเสียงเมื่อเริ่มหรือหยุดการบันทึก(&T)"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "เล่นเสียงเมื่อเริ่มหรือหยุดการบันทึก(&Y)"
 
 msgid "Selecionar Pasta"
 msgstr "เลือกโฟลเดอร์"
@@ -159,17 +156,17 @@ msgstr "ค่าเริ่มต้นของระบบ"
 msgid "Iniciar &Minimizado"
 msgstr "เริ่มแบบย่อเล็กสุด(&M)"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "ย่อเล็กสุดไปที่ถาดระบบ(&B)"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "ย่อเล็กสุดไปที่ถาดระบบ(&T)"
 
 msgid "Janela Sempre no &Topo"
-msgstr "หน้าต่างอยู่บนสุดเสมอ(&T)"
+msgstr "หน้าต่างอยู่บนสุดเสมอ(&A)"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "นับถอยหลังก่อนบันทึก(&R)"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "กำหนดค่าปุ่มลัด(&A)..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "กำหนดค่าปุ่มลัด(&H)..."
 
 msgid "Aviso"
 msgstr "คำเตือน"
@@ -216,26 +213,26 @@ msgstr "หยุด"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder กำลังทำงานอยู่"
 
-msgid "Para&r"
-msgstr "หยุด(&R)"
+msgid "P&arar"
+msgstr "หยุด(&S)"
 
-msgid "&Gravar"
-msgstr "บันทึก(&G)"
+msgid "Gr&avar"
+msgstr "บันทึก(&R)"
 
-msgid "C&ontinuar"
-msgstr "ทำต่อ(&O)"
+msgid "Contin&uar"
+msgstr "ทำต่อ(&U)"
 
-msgid "&Pausar"
-msgstr "หยุดชั่วคราว(&P)"
+msgid "Pa&usar"
+msgstr "หยุดชั่วคราว(&U)"
 
 msgid "Gravações"
 msgstr "การบันทึก"
 
-msgid "Parar Reprod&ução"
-msgstr "หยุดการเล่น(&U)"
+msgid "Parar &Reprodução"
+msgstr "หยุดการเล่น(&P)"
 
-msgid "Reprod&uzir Gravação"
-msgstr "เล่นการบันทึก(&U)"
+msgid "&Reproduzir Gravação"
+msgstr "เล่นการบันทึก(&P)"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "เลือกไฟล์ที่จะเล่น:"
@@ -260,10 +257,10 @@ msgid "Confirmar Exclusão"
 msgstr "ยืนยันการลบ"
 
 msgid "&Idioma:"
-msgstr "ภาษา(&I):"
+msgstr "ภาษา(&L):"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "ขนาดบัฟเฟอร์ (ms)(&U):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "ขนาดบัฟเฟอร์ (ms)(&B):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -369,8 +366,8 @@ msgstr "อุปกรณ์ป้อนข้อมูลเริ่มต้
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "ข้อผิดพลาด BASS {erro} ขณะเพิ่มแหล่งการบันทึก"
 
-msgid "Continuar Última Gra&vação"
-msgstr "บันทึกต่อจากครั้งล่าสุด(&V)"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "บันทึกต่อจากครั้งล่าสุด(&L)"
 
 msgid "Continuar Última Gravação"
 msgstr "บันทึกต่อจากครั้งล่าสุด"
@@ -407,10 +404,10 @@ msgid "Por favor aguarde..."
 msgstr "โปรดรอสักครู่..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "ตรวจสอบการอัปเดตโดยอัตโนมัติ(&V)"
+msgstr "ตรวจสอบการอัปเดตโดยอัตโนมัติ(&U)"
 
-msgid "Verificar Atuali&zação..."
-msgstr "ตรวจสอบการอัปเดต(&Z)..."
+msgid "Verificar &Atualização..."
+msgstr "ตรวจสอบการอัปเดต(&F)..."
 
 msgid "Iniciar com o &Windows"
 msgstr "เริ่มพร้อม Windows(&W)"
@@ -564,26 +561,227 @@ msgid "Removedor de Ruído"
 msgstr "ตัวลบเสียงรบกวน"
 
 msgid "&Ativar Removedor de Ruído"
-msgstr "เปิดตัวลบเสียงรบกวน(&A)"
+msgstr "เปิดตัวลบเสียงรบกวน(&E)"
 
 msgid "&Equalizador"
-msgstr "อีควอไลเซอร์(&Q)"
+msgstr "อีควอไลเซอร์(&E)"
 
 msgid "Removedor de &Ruído"
 msgstr "ตัวลบเสียงรบกวน(&N)"
 
 msgid "&Mostrar Todos os Processos"
-msgstr "แสดงโปรเซสทั้งหมด(&M)"
+msgstr "แสดงโปรเซสทั้งหมด(&A)"
 
 msgid "E&stéreo"
 msgstr "สเตอริโอ(&S)"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "ระยะเวลาการบันทึก (hh:mm:&ss):"
+msgstr "ระยะเวลาการบันทึก (&hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "เว้นว่างไว้เพื่อบันทึกโดยไม่จำกัดเวลา 1:30:00 คือหนึ่งชั่วโมงครึ่ง 45:00 คือ 45 นาที"
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "ระยะเวลาการบันทึกไม่ถูกต้อง ใช้ชั่วโมง นาที และวินาที เช่น 1:30:00 หรือเว้นว่างไว้เพื่อบันทึกโดยไม่จำกัดเวลา"
+
+msgid "E&feitos"
+msgstr "เอฟเฟกต์(&F)"
+
+msgid "Efeitos"
+msgstr "เอฟเฟกต์"
+
+msgid "&Efeitos:"
+msgstr "เอฟเฟกต์(&E):"
+
+msgid "Con&figurar..."
+msgstr "กำหนดค่า(&F)..."
+
+msgid "Compressor"
+msgstr "คอมเพรสเซอร์"
+
+msgid "Padrão"
+msgstr "ค่าเริ่มต้น"
+
+msgid "Voz Suave"
+msgstr "เสียงนุ่ม"
+
+msgid "Podcast"
+msgstr "พอดแคสต์"
+
+msgid "Locução de Rádio"
+msgstr "เสียงดีเจวิทยุ"
+
+msgid "Nivelar Música"
+msgstr "ปรับระดับเพลง"
+
+msgid "Compressão Pesada"
+msgstr "บีบอัดหนัก"
+
+msgid "Limitador"
+msgstr "ลิมิตเตอร์"
+
+msgid "Pitch Shift"
+msgstr "เปลี่ยนระดับเสียง"
+
+msgid "Voz Grave"
+msgstr "เสียงทุ้มขึ้น"
+
+msgid "Um Pouco Mais Grave"
+msgstr "ต่ำลงเล็กน้อย"
+
+msgid "Monstro"
+msgstr "สัตว์ประหลาด"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "สูงขึ้นเล็กน้อย"
+
+msgid "Voz Aguda"
+msgstr "เสียงแหลมขึ้น"
+
+msgid "Esquilo"
+msgstr "กระแต"
+
+msgid "Delay"
+msgstr "ดีเลย์"
+
+msgid "Eco Curto"
+msgstr "เสียงสะท้อนสั้น"
+
+msgid "Muitos Ecos"
+msgstr "เสียงสะท้อนหลายครั้ง"
+
+msgid "Ecos Invertidos"
+msgstr "เสียงสะท้อนกลับเฟส"
+
+msgid "Voz Robótica"
+msgstr "เสียงหุ่นยนต์"
+
+msgid "Slapback"
+msgstr "สแลปแบ็ก"
+
+msgid "Dobra de Voz"
+msgstr "เสียงซ้อน"
+
+msgid "Pingue-pongue"
+msgstr "ปิงปอง"
+
+msgid "Estádio"
+msgstr "สนามกีฬา"
+
+msgid "Cânion"
+msgstr "หุบเขา"
+
+msgid "Reverb"
+msgstr "รีเวิร์บ"
+
+msgid "Sala Média"
+msgstr "ห้องขนาดกลาง"
+
+msgid "Sala Pequena Clara"
+msgstr "ห้องเล็กสว่าง"
+
+msgid "Sala Pequena Escura"
+msgstr "ห้องเล็กทึบ"
+
+msgid "Sala Grande"
+msgstr "ห้องใหญ่"
+
+msgid "Banheiro"
+msgstr "ห้องน้ำ"
+
+msgid "Salão de Igreja"
+msgstr "ห้องโถงโบสถ์"
+
+msgid "Catedral"
+msgstr "มหาวิหาร"
+
+msgid "Caverna Grande"
+msgstr "ถ้ำใหญ่"
+
+msgid "Ambiente"
+msgstr "บรรยากาศ"
+
+msgid "Artificial"
+msgstr "สังเคราะห์"
+
+msgid "Limpo"
+msgstr "สะอาด"
+
+msgid "Moderno"
+msgstr "ทันสมัย"
+
+msgid "Voz I"
+msgstr "เสียงร้อง I"
+
+msgid "Voz II"
+msgstr "เสียงร้อง II"
+
+msgid "Voz Dance"
+msgstr "เสียงร้องแดนซ์"
+
+msgid "Voz Moderna"
+msgstr "เสียงร้องทันสมัย"
+
+msgid "Cauda de Voz"
+msgstr "หางเสียง"
+
+msgid "Limiar:"
+msgstr "เกณฑ์:"
+
+msgid "Proporção:"
+msgstr "อัตราส่วน:"
+
+msgid "Ataque:"
+msgstr "แอตแท็ก:"
+
+msgid "Liberação:"
+msgstr "รีลีส:"
+
+msgid "Ganho:"
+msgstr "เกน:"
+
+msgid "Semitons:"
+msgstr "ครึ่งเสียง:"
+
+msgid "Tempo:"
+msgstr "เวลา:"
+
+msgid "Realimentação:"
+msgstr "ฟีดแบ็ก:"
+
+msgid "Nível do Efeito:"
+msgstr "ระดับเอฟเฟกต์:"
+
+msgid "Som Original:"
+msgstr "เสียงต้นฉบับ:"
+
+msgid "P&ingue-pongue"
+msgstr "ปิงปอง(&I)"
+
+msgid "Tamanho da Sala:"
+msgstr "ขนาดห้อง:"
+
+msgid "Amortecimento:"
+msgstr "การหน่วง:"
+
+msgid "Largura Estéreo:"
+msgstr "ความกว้างสเตอริโอ:"
+
+msgid "P&rocurar..."
+msgstr "เรียกดู(&B)..."
+
+msgid "S&obre"
+msgstr "เกี่ยวกับ(&O)"
+
+msgid "Pré-atraso:"
+msgstr "พรีดีเลย์:"
+
+msgid "Novidades:"
+msgstr "มีอะไรใหม่:"
+
+msgid "&Sim"
+msgstr "ใช่(&Y)"
+
+msgid "&Não"
+msgstr "ไม่(&N)"
 

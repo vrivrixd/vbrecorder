@@ -22,13 +22,13 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "조정된 볼륨으로 선택한 장치 듣기"
 
 msgid "&Parar"
-msgstr "중지(&P)"
+msgstr "중지(&T)"
 
 msgid "&Testar"
 msgstr "테스트(&T)"
 
 msgid "&Atualizar"
-msgstr "새로 고침(&A)"
+msgstr "새로 고침(&R)"
 
 msgid "Mostrar janela principal"
 msgstr "메인 창 표시"
@@ -36,20 +36,20 @@ msgstr "메인 창 표시"
 msgid "Sair"
 msgstr "종료"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "출력 형식(&F):"
 
 msgid "&Bitrate:"
 msgstr "비트레이트(&B):"
 
-msgid "Compressão F&LAC:"
-msgstr "FLAC 압축(&L):"
+msgid "Compressão &FLAC:"
+msgstr "FLAC 압축(&M):"
 
 msgid "&Taxa de Amostragem:"
 msgstr "샘플링 속도(&T):"
 
-msgid "Profundidade de Bit&s:"
-msgstr "비트 심도(&H):"
+msgid "Profundidade de &Bits:"
+msgstr "비트 심도(&B):"
 
 msgid "&Canais:"
 msgstr "채널(&C):"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "스테레오"
 
 msgid "Fontes de &Gravação:"
-msgstr "녹음 소스(&G):"
+msgstr "녹음 소스(&I):"
 
 msgid "&Nome do Arquivo:"
 msgstr "파일 이름(&N):"
 
 msgid "&Diretório de Saída:"
-msgstr "출력 디렉토리(&D):"
+msgstr "출력 디렉토리(&O):"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "추가(&A)"
 
 msgid "&Editar"
 msgstr "편집(&E)"
 
-msgid "&Remover"
-msgstr "제거(&R)"
+msgid "Remo&ver"
+msgstr "제거(&V)"
 
-msgid "P&rocurar..."
-msgstr "찾아보기(&R)..."
+msgid "&Procurar..."
+msgstr "찾아보기(&W)..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "녹음 폴더 열기(&I)"
+msgstr "녹음 폴더 열기(&X)"
 
-msgid "Config&urações..."
-msgstr "설정(&U)..."
-
-msgid "S&obre"
-msgstr "정보(&O)"
+msgid "Configura&ções..."
+msgstr "설정(&G)..."
 
 msgid "&Minimizar"
 msgstr "최소화(&M)"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "닫기(&F)"
 
 msgid "E&xcluir Gravação"
-msgstr "녹음 삭제(&X)"
+msgstr "녹음 삭제(&D)"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "소스를 개별 파일로 녹음(&P)"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "소스를 개별 파일로 녹음(&Q)"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "녹음 시작 또는 중지 시 신호음 재생(&T)"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "녹음 시작 또는 중지 시 신호음 재생(&Y)"
 
 msgid "Selecionar Pasta"
 msgstr "폴더 선택"
@@ -159,17 +156,17 @@ msgstr "시스템 기본값"
 msgid "Iniciar &Minimizado"
 msgstr "최소화된 상태로 시작(&M)"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "시스템 트레이로 최소화(&B)"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "시스템 트레이로 최소화(&T)"
 
 msgid "Janela Sempre no &Topo"
-msgstr "창을 항상 위에 표시(&T)"
+msgstr "창을 항상 위에 표시(&A)"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "녹음 전 카운트다운(&R)"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "단축키 설정(&A)..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "단축키 설정(&H)..."
 
 msgid "Aviso"
 msgstr "경고"
@@ -216,26 +213,26 @@ msgstr "중지"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder가 이미 실행 중입니다."
 
-msgid "Para&r"
-msgstr "중지(&R)"
+msgid "P&arar"
+msgstr "중지(&S)"
 
-msgid "&Gravar"
-msgstr "녹음(&G)"
+msgid "Gr&avar"
+msgstr "녹음(&R)"
 
-msgid "C&ontinuar"
-msgstr "계속(&O)"
+msgid "Contin&uar"
+msgstr "계속(&U)"
 
-msgid "&Pausar"
-msgstr "일시 정지(&P)"
+msgid "Pa&usar"
+msgstr "일시 정지(&U)"
 
 msgid "Gravações"
 msgstr "녹음 파일"
 
-msgid "Parar Reprod&ução"
-msgstr "재생 중지(&U)"
+msgid "Parar &Reprodução"
+msgstr "재생 중지(&P)"
 
-msgid "Reprod&uzir Gravação"
-msgstr "녹음 재생(&U)"
+msgid "&Reproduzir Gravação"
+msgstr "녹음 재생(&P)"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "재생할 파일을 선택하세요:"
@@ -260,10 +257,10 @@ msgid "Confirmar Exclusão"
 msgstr "삭제 확인"
 
 msgid "&Idioma:"
-msgstr "언어(&I):"
+msgstr "언어(&L):"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "버퍼 크기(ms)(&U):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "버퍼 크기(ms)(&B):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -366,8 +363,8 @@ msgstr "기본 입력 장치"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "녹음 소스 추가 중 BASS 오류 {erro}."
 
-msgid "Continuar Última Gra&vação"
-msgstr "마지막 녹음 계속(&V)"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "마지막 녹음 계속(&L)"
 
 msgid "Continuar Última Gravação"
 msgstr "마지막 녹음 계속"
@@ -404,13 +401,13 @@ msgid "Por favor aguarde..."
 msgstr "잠시 기다려주세요..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "자동으로 업데이트 확인(&V)"
+msgstr "자동으로 업데이트 확인(&U)"
 
-msgid "Verificar Atuali&zação..."
-msgstr "업데이트 확인(&Z)..."
+msgid "Verificar &Atualização..."
+msgstr "업데이트 확인(&F)..."
 
 msgid "Iniciar com o &Windows"
-msgstr "Windows 시작 시 실행(&W)"
+msgstr "Window&s 시작 시 실행"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "이미 최신 버전의 VB Recorder를 사용하고 있습니다."
@@ -561,26 +558,227 @@ msgid "Removedor de Ruído"
 msgstr "노이즈 제거"
 
 msgid "&Ativar Removedor de Ruído"
-msgstr "노이즈 제거 사용(&A)"
+msgstr "노이즈 제거 사용(&E)"
 
 msgid "&Equalizador"
-msgstr "이퀄라이저(&Q)"
+msgstr "이퀄라이저(&E)"
 
 msgid "Removedor de &Ruído"
 msgstr "노이즈 제거(&N)"
 
 msgid "&Mostrar Todos os Processos"
-msgstr "모든 프로세스 표시(&M)"
+msgstr "모든 프로세스 표시(&A)"
 
 msgid "E&stéreo"
 msgstr "스테레오(&S)"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "녹음 시간 (hh:mm:&ss):"
+msgstr "녹음 시간 (&hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "비워 두면 제한 없이 녹음합니다. 1:30:00은 1시간 30분, 45:00은 45분입니다."
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "녹음 시간이 올바르지 않습니다. 1:30:00처럼 시, 분, 초를 사용하거나, 제한 없이 녹음하려면 비워 두세요."
+
+msgid "E&feitos"
+msgstr "효과(&F)"
+
+msgid "Efeitos"
+msgstr "효과"
+
+msgid "&Efeitos:"
+msgstr "효과(&E):"
+
+msgid "Con&figurar..."
+msgstr "구성(&F)..."
+
+msgid "Compressor"
+msgstr "컴프레서"
+
+msgid "Padrão"
+msgstr "기본값"
+
+msgid "Voz Suave"
+msgstr "부드러운 목소리"
+
+msgid "Podcast"
+msgstr "팟캐스트"
+
+msgid "Locução de Rádio"
+msgstr "라디오 목소리"
+
+msgid "Nivelar Música"
+msgstr "음악 레벨 맞추기"
+
+msgid "Compressão Pesada"
+msgstr "강한 압축"
+
+msgid "Limitador"
+msgstr "리미터"
+
+msgid "Pitch Shift"
+msgstr "피치 시프트"
+
+msgid "Voz Grave"
+msgstr "낮은 목소리"
+
+msgid "Um Pouco Mais Grave"
+msgstr "조금 낮게"
+
+msgid "Monstro"
+msgstr "괴물"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "조금 높게"
+
+msgid "Voz Aguda"
+msgstr "높은 목소리"
+
+msgid "Esquilo"
+msgstr "다람쥐"
+
+msgid "Delay"
+msgstr "딜레이"
+
+msgid "Eco Curto"
+msgstr "짧은 에코"
+
+msgid "Muitos Ecos"
+msgstr "많은 에코"
+
+msgid "Ecos Invertidos"
+msgstr "반전된 에코"
+
+msgid "Voz Robótica"
+msgstr "로봇 목소리"
+
+msgid "Slapback"
+msgstr "슬랩백"
+
+msgid "Dobra de Voz"
+msgstr "목소리 더블링"
+
+msgid "Pingue-pongue"
+msgstr "핑퐁"
+
+msgid "Estádio"
+msgstr "경기장"
+
+msgid "Cânion"
+msgstr "협곡"
+
+msgid "Reverb"
+msgstr "리버브"
+
+msgid "Sala Média"
+msgstr "중간 방"
+
+msgid "Sala Pequena Clara"
+msgstr "작고 밝은 방"
+
+msgid "Sala Pequena Escura"
+msgstr "작고 어두운 방"
+
+msgid "Sala Grande"
+msgstr "큰 방"
+
+msgid "Banheiro"
+msgstr "욕실"
+
+msgid "Salão de Igreja"
+msgstr "교회 홀"
+
+msgid "Catedral"
+msgstr "대성당"
+
+msgid "Caverna Grande"
+msgstr "큰 동굴"
+
+msgid "Ambiente"
+msgstr "앰비언스"
+
+msgid "Artificial"
+msgstr "인공"
+
+msgid "Limpo"
+msgstr "깨끗함"
+
+msgid "Moderno"
+msgstr "모던"
+
+msgid "Voz I"
+msgstr "보컬 I"
+
+msgid "Voz II"
+msgstr "보컬 II"
+
+msgid "Voz Dance"
+msgstr "댄스 보컬"
+
+msgid "Voz Moderna"
+msgstr "모던 보컬"
+
+msgid "Cauda de Voz"
+msgstr "목소리 잔향"
+
+msgid "Limiar:"
+msgstr "임계값:"
+
+msgid "Proporção:"
+msgstr "비율:"
+
+msgid "Ataque:"
+msgstr "어택:"
+
+msgid "Liberação:"
+msgstr "릴리스:"
+
+msgid "Ganho:"
+msgstr "게인:"
+
+msgid "Semitons:"
+msgstr "반음:"
+
+msgid "Tempo:"
+msgstr "시간:"
+
+msgid "Realimentação:"
+msgstr "피드백:"
+
+msgid "Nível do Efeito:"
+msgstr "효과 레벨:"
+
+msgid "Som Original:"
+msgstr "원래 소리:"
+
+msgid "P&ingue-pongue"
+msgstr "핑퐁(&I)"
+
+msgid "Tamanho da Sala:"
+msgstr "방 크기:"
+
+msgid "Amortecimento:"
+msgstr "감쇠:"
+
+msgid "Largura Estéreo:"
+msgstr "스테레오 폭:"
+
+msgid "P&rocurar..."
+msgstr "찾아보기(&B)..."
+
+msgid "S&obre"
+msgstr "정보(&O)"
+
+msgid "Pré-atraso:"
+msgstr "프리딜레이:"
+
+msgid "Novidades:"
+msgstr "새로운 기능:"
+
+msgid "&Sim"
+msgstr "예(&Y)"
+
+msgid "&Não"
+msgstr "아니요(&N)"
 

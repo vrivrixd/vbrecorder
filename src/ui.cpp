@@ -17,6 +17,7 @@
 #include "ui.h"
 
 #include <commctrl.h>
+#include <oleacc.h>
 
 #include <algorithm>
 
@@ -143,6 +144,18 @@ void ComboSetValue(HWND combo, const std::wstring& value) {
             return;
         }
     }
+}
+
+void SetAccessibleValue(HWND control, const std::wstring& value) {
+    static IAccPropServices* services = nullptr;
+    if (!services &&
+        FAILED(CoCreateInstance(CLSID_AccPropServices, nullptr, CLSCTX_INPROC_SERVER,
+                                IID_IAccPropServices, (void**)&services)))
+        services = nullptr;
+    if (services)
+        services->SetHwndPropStr(control, (DWORD)OBJID_CLIENT, CHILDID_SELF, PROPID_ACC_VALUE,
+                                 value.c_str());
+    NotifyWinEvent(EVENT_OBJECT_VALUECHANGE, control, OBJID_CLIENT, CHILDID_SELF);
 }
 
 void SetToolTip(HWND owner_window, HWND control, const std::wstring& text) {

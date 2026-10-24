@@ -291,6 +291,7 @@ struct Catalog {
 };
 
 std::unique_ptr<Catalog> g_catalog;
+std::wstring g_language = FALLBACK_LANGUAGE;
 /* English, for texts a catalog does not have yet; the European Portuguese one
    falls back to the original texts instead. */
 std::unique_ptr<Catalog> g_fallback;
@@ -442,8 +443,12 @@ std::wstring SetLanguage(const std::wstring& code) {
         candidates = SystemLanguages();
         candidates.push_back(FALLBACK_LANGUAGE);
     }
-    return LoadCatalog(candidates);
+    std::wstring found = LoadCatalog(candidates);
+    g_language = found.empty() ? FALLBACK_LANGUAGE : found;
+    return found;
 }
+
+std::wstring CurrentLanguage() { return g_language; }
 
 std::vector<std::wstring> AvailableLanguages() {
     std::vector<std::wstring> found = {SOURCE_LANGUAGE};

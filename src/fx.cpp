@@ -61,7 +61,128 @@ float ToFloat(const std::wstring& text, float fallback) {
 
 float Clamp(float v, float lo, float hi) { return std::max(lo, std::min(hi, v)); }
 
+/* Every effect starts with "Flat", which changes nothing, as the equalizer
+   does: checking an effect turns it on without changing the sound yet.
+   Where the other presets come from:
+   - compressor: usual starting points for recording voice and music;
+   - pitch shift: steps that keep a voice recognizable, and the extremes;
+   - delay: the examples of the BASS_FX author and common pedal settings;
+   - reverb: Audacity's factory presets, converted to Freeverb, with their
+     pre-delays as they are. */
+const std::vector<EffectDef>& Defs() {
+    static const std::vector<EffectDef> defs = {
+        {L"compressor", "Compressor",
+         {{"Limiar:", -60, 0, 0, L" dB", false, 1, 5},
+          {"Proporção:", 1, 20, 1, L":1", false, 0.5f, 2},
+          {"Ataque:", 1, 500, 0, L" ms", false, 1, 10},
+          {"Liberação:", 10, 5000, 0, L" ms", false, 1, 50},
+          {"Ganho:", -20, 30, 0, L" dB", false, 1, 5}},
+         {
+             {L"flat", "Plano", {0, 1, 10, 200, 0}},
+             {L"default", "Padrão", {-15, 3, 10, 200, 0}},
+             {L"gentle_voice", "Voz Suave", {-18, 2, 10, 150, 3}},
+             {L"podcast", "Podcast", {-20, 3, 5, 100, 5}},
+             {L"radio", "Locução de Rádio", {-24, 4, 3, 80, 8}},
+             {L"music", "Nivelar Música", {-15, 2.5f, 20, 250, 3}},
+             {L"heavy", "Compressão Pesada", {-30, 8, 1, 100, 9}},
+             {L"limiter", "Limitador", {-6, 20, 1, 50, 0}},
+         }},
+        // One octave each way, as far as BASS_FX goes, in half semitones.
+        {L"pitch", "Pitch Shift",
+         {{"Semitons:", -12, 12, 1, L"", false, 0.5f, 1}},
+         {
+             {L"flat", "Plano", {0}},
+             {L"deeper", "Voz Grave", {-5}},
+             {L"slightly_lower", "Um Pouco Mais Grave", {-2}},
+             {L"monster", "Monstro", {-12}},
+             {L"slightly_higher", "Um Pouco Mais Aguda", {2}},
+             {L"higher", "Voz Aguda", {5}},
+             {L"chipmunk", "Esquilo", {12}},
+         }},
+        {L"delay", "Delay",
+         {{"Tempo:", 1, 2000, 0, L" ms", false, 1, 50},
+          {"Realimentação:", -95, 95, 0, L"%", false, 1, 5},
+          {"Nível do Efeito:", 0, 100, 0, L"%", false, 1, 5},
+          {"Som Original:", 0, 100, 0, L"%", false, 1, 5},
+          {"P&ingue-pongue", 0, 1, 0, L"", true, 1, 1}},
+         {
+             {L"flat", "Plano", {200, 0, 0, 100, 0}},
+             {L"small_echo", "Eco Curto", {200, 0, 60, 100, 0}},
+             {L"many_echoes", "Muitos Ecos", {500, 70, 50, 100, 0}},
+             {L"reverse_echoes", "Ecos Invertidos", {800, -70, 60, 100, 0}},
+             {L"robotic", "Voz Robótica", {10, 70, 80, 50, 0}},
+             {L"slapback", "Slapback", {110, 0, 50, 100, 0}},
+             {L"doubling", "Dobra de Voz", {30, 0, 60, 100, 0}},
+             {L"pingpong", "Pingue-pongue", {350, 50, 60, 100, 1}},
+             {L"stadium", "Estádio", {250, 35, 40, 100, 1}},
+             {L"canyon", "Cânion", {700, 40, 60, 100, 0}},
+         }},
+        {L"reverb", "Reverb",
+         {{"Tamanho da Sala:", 0, 100, 0, L"%", false, 1, 5},
+          {"Amortecimento:", 0, 100, 0, L"%", false, 1, 5},
+          {"Nível do Efeito:", 0, 300, 0, L"%", false, 1, 10},
+          {"Som Original:", 0, 100, 0, L"%", false, 1, 5},
+          {"Largura Estéreo:", 0, 100, 0, L"%", false, 1, 5},
+          {"Pré-atraso:", 0, 500, 0, L" ms", false, 1, 10}},
+         {
+             {L"flat", "Plano", {50, 50, 0, 100, 100, 0}},
+             {L"medium_room", "Sala Média", {56, 42, 89, 89, 70, 10}},
+             {L"small_bright", "Sala Pequena Clara", {39, 30, 89, 89, 100, 10}},
+             {L"small_dark", "Sala Pequena Escura", {39, 70, 89, 89, 100, 10}},
+             {L"large_room", "Sala Grande", {61, 38, 100, 50, 90, 10}},
+             {L"bathroom", "Banheiro", {47, 0, 50, 100, 100, 8}},
+             {L"church_hall", "Salão de Igreja", {74, 50, 100, 25, 100, 32}},
+             {L"cathedral", "Catedral", {88, 70, 100, 10, 100, 16}},
+             {L"big_cave", "Caverna Grande", {98, 55, 178, 71, 100, 55}},
+             {L"ambience", "Ambiente", {98, 55, 100, 32, 100, 55}},
+             {L"acoustic", "Acústico", {61, 60, 20, 100, 80, 10}},
+             {L"artificial", "Artificial", {51, 70, 63, 100, 100, 99}},
+             {L"clean", "Limpo", {61, 60, 13, 100, 75, 10}},
+             {L"modern", "Moderno", {61, 60, 18, 100, 75, 10}},
+             {L"vocal1", "Voz I", {54, 79, 25, 100, 70, 20}},
+             {L"vocal2", "Voz II", {49, 59, 89, 89, 70, 0}},
+             {L"dance_vocal", "Voz Dance", {74, 66, 32, 100, 100, 2}},
+             {L"modern_vocal", "Voz Moderna", {70, 24, 32, 100, 68, 27}},
+             {L"voice_tail", "Cauda de Voz", {81, 24, 50, 100, 68, 27}},
+         }},
+    };
+    return defs;
+}
+
 }  // namespace
+
+const EffectDef& GetEffectDef(int kind) { return Defs()[kind]; }
+
+int ParamSteps(const FxParam& p) { return std::max(1, (int)std::lround((p.max - p.min) / p.step)); }
+
+int ParamPage(const FxParam& p) { return std::max(1, (int)std::lround(p.page / p.step)); }
+
+float ParamValue(const FxParam& p, int pos) {
+    if (p.toggle) return pos > 0 ? 1.0f : 0.0f;
+    pos = std::max(0, std::min(ParamSteps(p), pos));
+    return std::min(p.max, p.min + pos * p.step);
+}
+
+int ParamPos(const FxParam& p, float value) {
+    if (p.toggle) return value > 0.5f ? 1 : 0;
+    return std::max(0, std::min(ParamSteps(p), (int)std::lround((value - p.min) / p.step)));
+}
+
+std::wstring FormatParam(const FxParam& p, float value) {
+    wchar_t buf[48];
+    // Values that can go both ways show their sign: +5.0, -5.0.
+    float shown = std::fabs(value) < 0.5f * std::pow(10.0f, -(float)p.decimals) ? 0.0f : value;
+    swprintf(buf, 48, p.min < 0 && shown > 0 ? L"%+.*f%ls" : L"%.*f%ls", p.decimals, shown, p.unit);
+    return buf;
+}
+
+FxSettings::FxSettings() {
+    for (int k = 0; k < FX_COUNT; ++k) {
+        const EffectDef& def = GetEffectDef(k);
+        effects[k].preset = def.presets[0].key;
+        effects[k].values = def.presets[0].values;
+    }
+}
 
 /* The classic Winamp presets (as VLC ships them), moved to these bands, plus
    curves for voice and everyday use. */
@@ -108,7 +229,7 @@ const std::vector<EqPreset>& EqPresets() {
     return presets;
 }
 
-/* eq=preset|preamp|gain/gain/...;ruido=1|amount;estereo=0
+/* eq=preset|preamp|gain/gain/...;delay=1|preset|v/v/...;ruido=1|amount;estereo=0
    Only what differs from the defaults is written. */
 std::wstring FxSettings::Serialize() const {
     const FxSettings defaults;
@@ -116,6 +237,16 @@ std::wstring FxSettings::Serialize() const {
     if (eq.preset != defaults.eq.preset || !eq.IsFlat()) {
         std::wstring s = L"eq=" + eq.preset + L"|" + Num(eq.preamp) + L"|";
         for (int i = 0; i < EQ_BANDS; ++i) s += (i ? L"/" : L"") + Num(eq.gain[i]);
+        parts.push_back(s);
+    }
+    for (int k = 0; k < FX_COUNT; ++k) {
+        const EffectSettings& e = effects[k];
+        if (!e.on && e.preset == defaults.effects[k].preset &&
+            e.values == defaults.effects[k].values)
+            continue;
+        std::wstring s = std::wstring(GetEffectDef(k).key) + L"=" + (e.on ? L"1" : L"0") + L"|" +
+                         e.preset + L"|";
+        for (size_t i = 0; i < e.values.size(); ++i) s += (i ? L"/" : L"") + Num(e.values[i]);
         parts.push_back(s);
     }
     if (noise.on || noise.amount != defaults.noise.amount)
@@ -147,6 +278,18 @@ FxSettings FxSettings::Parse(const std::wstring& text) {
             fx.noise.amount = Clamp(ToFloat(fields[1], 100), 0, 100);
         } else if (name == L"estereo") {
             fx.stereo = fields[0] != L"0";
+        } else {
+            for (int k = 0; k < FX_COUNT; ++k) {
+                const EffectDef& def = GetEffectDef(k);
+                if (name != def.key || fields.size() < 3) continue;
+                EffectSettings& e = fx.effects[k];
+                e.on = fields[0] == L"1";
+                e.preset = fields[1];
+                std::vector<std::wstring> values = Split(fields[2], L'/');
+                for (size_t i = 0; i < def.params.size() && i < values.size(); ++i)
+                    e.values[i] = Clamp(ToFloat(values[i], e.values[i]), def.params[i].min,
+                                        def.params[i].max);
+            }
         }
     }
     return fx;

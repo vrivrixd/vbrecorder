@@ -22,7 +22,7 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Kuuntele valittua laitetta säädetyllä äänenvoimakkuudella"
 
 msgid "&Parar"
-msgstr "Py&säytä"
+msgstr "P&ysäytä"
 
 msgid "&Testar"
 msgstr "&Testaa"
@@ -36,23 +36,23 @@ msgstr "Näytä pääikkuna"
 msgid "Sair"
 msgstr "Poistu"
 
-msgid "&Formato de Saída:"
-msgstr "Tulo&stusmuoto:"
+msgid "Formato de &Saída:"
+msgstr "T&ulostusmuoto:"
 
 msgid "&Bitrate:"
 msgstr "&Bittinopeus:"
 
-msgid "Compressão F&LAC:"
+msgid "Compressão &FLAC:"
 msgstr "&FLAC-pakkaus:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "N&äytetaajuus:"
+msgstr "&Näytetaajuus:"
 
-msgid "Profundidade de Bit&s:"
-msgstr "Bittis&yvyys:"
+msgid "Profundidade de &Bits:"
+msgstr "&Bittisyvyys:"
 
 msgid "&Canais:"
-msgstr "&Kanavat:"
+msgstr "Kana&vat:"
 
 msgid "mono"
 msgstr "mono"
@@ -61,7 +61,7 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Talle&nnuslähteet:"
+msgstr "Tallennusl&ähteet:"
 
 msgid "&Nome do Arquivo:"
 msgstr "Tie&doston nimi:"
@@ -69,26 +69,23 @@ msgstr "Tie&doston nimi:"
 msgid "&Diretório de Saída:"
 msgstr "Tulostus&hakemisto:"
 
-msgid "&Adicionar"
-msgstr "L&isää"
+msgid "Adici&onar"
+msgstr "&Lisää"
 
 msgid "&Editar"
 msgstr "&Muokkaa"
 
-msgid "&Remover"
+msgid "Remo&ver"
 msgstr "&Poista"
 
-msgid "P&rocurar..."
-msgstr "S&elaa..."
+msgid "&Procurar..."
+msgstr "&Selaa..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Avaa ta&llennuskansio"
+msgstr "Avaa tallennuskansio"
 
-msgid "Config&urações..."
-msgstr "Ase&tukset..."
-
-msgid "S&obre"
-msgstr "Tieto&ja"
+msgid "Configura&ções..."
+msgstr "As&etukset..."
 
 msgid "&Minimizar"
 msgstr "Pienennä (&Z)"
@@ -99,11 +96,11 @@ msgstr "&Sulje"
 msgid "E&xcluir Gravação"
 msgstr "P&oista tallenne"
 
-msgid "Gravar fontes em arquivos se&parados"
+msgid "Gravar fontes em ar&quivos separados"
 msgstr "Tallenna lähteet e&rillisiin tiedostoihin"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Soita &äänimerkit, kun tallennus alkaa tai päättyy"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Soita äänimerkit, kun tallennus alkaa tai päätt&yy"
 
 msgid "Selecionar Pasta"
 msgstr "Valitse kansio"
@@ -159,17 +156,17 @@ msgstr "Järjestelmän oletus"
 msgid "Iniciar &Minimizado"
 msgstr "Käynni&stä pienennettynä"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Pienennä &ilmaisinalueelle"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "Pi&enennä ilmaisinalueelle"
 
 msgid "Janela Sempre no &Topo"
-msgstr "Ikkuna aina päällimmäis&enä"
+msgstr "&Ikkuna aina päällimmäisenä"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "&Lähtölaskenta ennen tallennusta"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "Määritä pika&näppäimet..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "&Määritä pikanäppäimet..."
 
 msgid "Aviso"
 msgstr "Varoitus"
@@ -216,26 +213,26 @@ msgstr "Pysäytä"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder on jo käynnissä."
 
-msgid "Para&r"
-msgstr "&Pysäytä"
+msgid "P&arar"
+msgstr "Pysäy&tä"
 
-msgid "&Gravar"
-msgstr "Talle&nna"
+msgid "Gr&avar"
+msgstr "&Tallenna"
 
-msgid "C&ontinuar"
+msgid "Contin&uar"
 msgstr "J&atka"
 
-msgid "&Pausar"
+msgid "Pa&usar"
 msgstr "T&auko"
 
 msgid "Gravações"
 msgstr "Tallenteet"
 
-msgid "Parar Reprod&ução"
-msgstr "Pysäytä &toisto"
+msgid "Parar &Reprodução"
+msgstr "Pysäytä to&isto"
 
-msgid "Reprod&uzir Gravação"
-msgstr "&Toista tallenne"
+msgid "&Reproduzir Gravação"
+msgstr "To&ista tallenne"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Valitse toistettava tiedosto:"
@@ -266,7 +263,7 @@ msgstr "Vahvista poisto"
 msgid "&Idioma:"
 msgstr "&Kieli:"
 
-msgid "Tamanho do B&uffer (ms):"
+msgid "Tamanho do &Buffer (ms):"
 msgstr "P&uskurin koko (ms):"
 
 msgid ""
@@ -373,8 +370,8 @@ msgstr "Oletus syöttölaite"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "BASS-virhe {erro} tallennuslähdettä lisättäessä."
 
-msgid "Continuar Última Gra&vação"
-msgstr "Jatka &viimeisintä tallennetta"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "&Jatka viimeisintä tallennetta"
 
 msgid "Continuar Última Gravação"
 msgstr "Jatka viimeisintä tallennetta"
@@ -413,7 +410,7 @@ msgstr "Odota..."
 msgid "&Verificar Atualizações Automaticamente"
 msgstr "Tarkista päivitykset &automaattisesti"
 
-msgid "Verificar Atuali&zação..."
+msgid "Verificar &Atualização..."
 msgstr "Tarkista päivi&tys..."
 
 msgid "Iniciar com o &Windows"
@@ -580,14 +577,215 @@ msgid "&Mostrar Todos os Processos"
 msgstr "&Näytä kaikki prosessit"
 
 msgid "E&stéreo"
-msgstr "Ste&reo"
+msgstr "&Stereo"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Tallenn&uksen kesto (hh:mm:ss):"
+msgstr "Tallennuksen &kesto (hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Tyhjä: tallennetaan ilman rajaa. 1:30:00 on puolitoista tuntia, 45:00 on 45 minuuttia."
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Virheellinen tallennuksen kesto. Käytä tunteja, minuutteja ja sekunteja, esimerkiksi 1:30:00, tai jätä tyhjäksi tallentaaksesi ilman rajaa."
+
+msgid "E&feitos"
+msgstr "Te&hosteet"
+
+msgid "Efeitos"
+msgstr "Tehosteet"
+
+msgid "&Efeitos:"
+msgstr "&Tehosteet:"
+
+msgid "Con&figurar..."
+msgstr "&Määritä..."
+
+msgid "Compressor"
+msgstr "Kompressori"
+
+msgid "Padrão"
+msgstr "Oletus"
+
+msgid "Voz Suave"
+msgstr "Pehmeä ääni"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "Radioääni"
+
+msgid "Nivelar Música"
+msgstr "Musiikin tasoitus"
+
+msgid "Compressão Pesada"
+msgstr "Voimakas kompressio"
+
+msgid "Limitador"
+msgstr "Rajoitin"
+
+msgid "Pitch Shift"
+msgstr "Sävelkorkeuden muutos"
+
+msgid "Voz Grave"
+msgstr "Matalampi ääni"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Hieman matalampi"
+
+msgid "Monstro"
+msgstr "Hirviö"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Hieman korkeampi"
+
+msgid "Voz Aguda"
+msgstr "Korkeampi ääni"
+
+msgid "Esquilo"
+msgstr "Maaorava"
+
+msgid "Delay"
+msgstr "Viive"
+
+msgid "Eco Curto"
+msgstr "Lyhyt kaiku"
+
+msgid "Muitos Ecos"
+msgstr "Monta kaikua"
+
+msgid "Ecos Invertidos"
+msgstr "Käänteiset kaiut"
+
+msgid "Voz Robótica"
+msgstr "Robottiääni"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Äänen tuplaus"
+
+msgid "Pingue-pongue"
+msgstr "Ping-pong"
+
+msgid "Estádio"
+msgstr "Stadion"
+
+msgid "Cânion"
+msgstr "Kanjoni"
+
+msgid "Reverb"
+msgstr "Jälkikaiunta"
+
+msgid "Sala Média"
+msgstr "Keskikokoinen huone"
+
+msgid "Sala Pequena Clara"
+msgstr "Pieni kirkas huone"
+
+msgid "Sala Pequena Escura"
+msgstr "Pieni tumma huone"
+
+msgid "Sala Grande"
+msgstr "Suuri huone"
+
+msgid "Banheiro"
+msgstr "Kylpyhuone"
+
+msgid "Salão de Igreja"
+msgstr "Seurakuntasali"
+
+msgid "Catedral"
+msgstr "Katedraali"
+
+msgid "Caverna Grande"
+msgstr "Suuri luola"
+
+msgid "Ambiente"
+msgstr "Tunnelma"
+
+msgid "Artificial"
+msgstr "Keinotekoinen"
+
+msgid "Limpo"
+msgstr "Puhdas"
+
+msgid "Moderno"
+msgstr "Moderni"
+
+msgid "Voz I"
+msgstr "Laulu I"
+
+msgid "Voz II"
+msgstr "Laulu II"
+
+msgid "Voz Dance"
+msgstr "Tanssilaulu"
+
+msgid "Voz Moderna"
+msgstr "Moderni laulu"
+
+msgid "Cauda de Voz"
+msgstr "Äänen häntä"
+
+msgid "Limiar:"
+msgstr "Kynnys:"
+
+msgid "Proporção:"
+msgstr "Suhde:"
+
+msgid "Ataque:"
+msgstr "Nousuaika:"
+
+msgid "Liberação:"
+msgstr "Laskuaika:"
+
+msgid "Ganho:"
+msgstr "Vahvistus:"
+
+msgid "Semitons:"
+msgstr "Puolisävelaskeleet:"
+
+msgid "Tempo:"
+msgstr "Aika:"
+
+msgid "Realimentação:"
+msgstr "Takaisinkytkentä:"
+
+msgid "Nível do Efeito:"
+msgstr "Tehosteen taso:"
+
+msgid "Som Original:"
+msgstr "Alkuperäinen ääni:"
+
+msgid "P&ingue-pongue"
+msgstr "P&ing-pong"
+
+msgid "Tamanho da Sala:"
+msgstr "Huoneen koko:"
+
+msgid "Amortecimento:"
+msgstr "Vaimennus:"
+
+msgid "Largura Estéreo:"
+msgstr "Stereoleveys:"
+
+msgid "P&rocurar..."
+msgstr "S&elaa..."
+
+msgid "S&obre"
+msgstr "Tieto&ja"
+
+msgid "Pré-atraso:"
+msgstr "Esiviive:"
+
+msgid "Novidades:"
+msgstr "Uutta:"
+
+msgid "&Sim"
+msgstr "&Kyllä"
+
+msgid "&Não"
+msgstr "&Ei"
 

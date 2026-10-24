@@ -41,11 +41,20 @@ history.
 - **Stereo or mono per source.** A source with "Stereo" unchecked is mixed
   down to mono, while the others stay in stereo.
 - **Test before recording.** The Test button lets you hear the device with the
-  volume already set, and with its equalizer, noise remover and stereo setting.
+  volume already set, and with its equalizer, effects, noise remover and stereo
+  setting.
 - **Equalizer per source.** Ten bands, from 31 Hz to 16 kHz, each with its
   own gain, a preamp, and presets: the classic Winamp ones, plus curves for
-  voice, podcast, telephone and more. Every slider goes from 0 to 100, as the
-  volume does, which is what the screen reader says.
+  voice, podcast, telephone and more. The sliders say the gain in dB to the
+  screen reader: the arrows move 0.5 dB, Page Up and Page Down 3 dB.
+- **Effects per source.** Compressor, pitch shift, delay and reverb, each with
+  its controls and presets (the reverb ones based on Audacity's). They are
+  applied in that order, after the noise remover and the equalizer. The delay
+  has a real ping-pong mode: the echoes take turns between left and right,
+  even with a microphone, which has the same sound on both sides. The reverb
+  has a pre-delay. Each effect starts with a Flat preset, which changes
+  nothing, and its sliders say the value itself (ms, dB, semitones): the
+  arrows move one step, Page Up and Page Down a larger one.
 - **Noise remover** for audio devices, with RNNoise: it cleans up fans, hiss
   and background noise from a microphone, with an adjustable intensity.
 - **Separate files.** With two or more sources, each one can go to its own
@@ -73,7 +82,8 @@ history.
   and buffer size, besides the hotkeys.
 - **Automatic updates.** When it starts, the program checks GitHub for a new
   version and, if you want, downloads the right one for your Windows (32 or 64
-  bits), installs it and opens it again. The check can also be done from the
+  bits), installs it and opens it again. What is new in the version shows
+  first, in the program's language. The check can also be done from the
   settings, and turned off.
 
 ## Formats
@@ -183,7 +193,7 @@ windres -i res\locale.rc -o build\locale.o
 type nul > build\empty.c
 gcc -c build\empty.c -o build\default-manifest.o
 for %f in (third_party\rnnoise\src\*.c) do gcc -O2 -msse2 -w -Ithird_party\rnnoise\include -c %f -o build\rnn_%~nf.o
-g++ -std=c++17 -O2 -DUNICODE -D_UNICODE -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0A00 -Ithird_party\rnnoise\include -municode -mwindows src\*.cpp build\rnn_*.o build\app.o build\locale.o -lole32 -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -luuid -lwinhttp -lbcrypt -static -s -Bbuild\ -o build\VBRecorder.exe
+g++ -std=c++17 -O2 -DUNICODE -D_UNICODE -DWIN32_LEAN_AND_MEAN -DNOMINMAX -D_WIN32_WINNT=0x0A00 -Ithird_party\rnnoise\include -municode -mwindows src\*.cpp build\rnn_*.o build\app.o build\locale.o -lole32 -loleacc -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32 -luuid -lwinhttp -lbcrypt -static -s -Bbuild\ -o build\VBRecorder.exe
 ```
 
 The empty `default-manifest.o` takes the place of the manifest GCC adds to
@@ -219,9 +229,9 @@ Structure:
 - `src/hotkeys.cpp` — hotkeys written as text.
 - `src/startup.cpp` — starting with Windows.
 - `src/install.cpp` — what changes in the installed copy.
-- `src/fx.cpp` — equalizer and noise remover settings, and the equalizer presets.
-- `src/fx_chain.cpp` — the processing of each source (BASS_FX and RNNoise).
-- `src/fx_dialogs.cpp` — the equalizer and noise remover dialogs.
+- `src/fx.cpp` — equalizer, effects and noise remover settings, and their presets.
+- `src/fx_chain.cpp` — the processing of each source (BASS_FX, RNNoise and the delay).
+- `src/fx_dialogs.cpp` — the equalizer, effects and noise remover dialogs.
 - `src/ui.cpp` — interface foundation: native controls and window layout.
 - `res/` — manifest, version information and the list of embedded translations.
 - `locale/` — translation catalogs, one per language.

@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "config.h"
+#include "i18n.h"
 #include "util.h"
 
 namespace {
@@ -128,6 +129,74 @@ bool JsonString(const std::string& json, const std::string& key, size_t from, st
     return false;
 }
 
+/* A whole JSON string, escapes and all, from its opening quote; UTF-8. */
+bool JsonText(const std::string& json, const std::string& key, std::string* value) {
+    size_t k = json.find("\"" + key + "\"");
+    if (k == std::string::npos) return false;
+    size_t colon = json.find(':', k);
+    if (colon == std::string::npos) return false;
+    size_t q = json.find_first_not_of(" \t\r\n", colon + 1);
+    if (q == std::string::npos || json[q] != '"') return false;
+    std::wstring text;
+    for (size_t i = q + 1; i < json.size(); ++i) {
+        char c = json[i];
+        if (c == '"') {
+            *value = Narrow(text);
+            return true;
+        }
+        if (c != '\\') {
+            // A run of plain UTF-8, up to the next quote or escape.
+            size_t end = json.find_first_of("\"\\", i);
+            if (end == std::string::npos) return false;
+            text += Widen(json.substr(i, end - i));
+            i = end - 1;
+            continue;
+        }
+        if (++i >= json.size()) return false;
+        switch (json[i]) {
+            case 'n': text += L'\n'; break;
+            case 'r': text += L'\r'; break;
+            case 't': text += L'\t'; break;
+            case 'b': case 'f': break;
+            case 'u':
+                if (i + 4 >= json.size()) return false;
+                text += (wchar_t)strtoul(json.substr(i + 1, 4).c_str(), nullptr, 16);
+                i += 4;
+                break;
+            default: text += (wchar_t)(unsigned char)json[i]; break;
+        }
+    }
+    return false;
+}
+
+std::string Trim(const std::string& s) {
+    size_t a = s.find_first_not_of(" \t\r\n");
+    if (a == std::string::npos) return std::string();
+    return s.substr(a, s.find_last_not_of(" \t\r\n") - a + 1);
+}
+
+/* Markdown as plain text: no heading marks, bold or code marks; lines end in
+   CR LF, as an edit box wants. */
+std::wstring PlainText(const std::string& markdown) {
+    std::wstring out;
+    size_t start = 0;
+    while (start <= markdown.size()) {
+        size_t end = markdown.find('\n', start);
+        if (end == std::string::npos) end = markdown.size();
+        std::string line = markdown.substr(start, end - start);
+        if (!line.empty() && line.back() == '\r') line.pop_back();
+        size_t hashes = line.find_first_not_of('#');
+        if (hashes > 0 && hashes != std::string::npos && line[hashes] == ' ')
+            line = line.substr(hashes + 1);
+        for (size_t b; (b = line.find("**")) != std::string::npos;) line.erase(b, 2);
+        for (size_t b; (b = line.find('`')) != std::string::npos;) line.erase(b, 1);
+        if (!out.empty()) out += L"\r\n";
+        out += Widen(line);
+        start = end + 1;
+    }
+    return out;
+}
+
 std::vector<int> VersionParts(const std::wstring& text) {
     std::vector<int> parts;
     size_t i = (!text.empty() && (text[0] == L'v' || text[0] == L'V')) ? 1 : 0;
@@ -218,6 +287,29 @@ void RemoveLeftovers(const std::wstring& dir, const wchar_t* pattern) {
 
 }  // namespace
 
+std::wstring ReleaseNotes(const std::string& body, const std::wstring& language) {
+    std::string english;
+    size_t pos = 0;
+    while (pos < body.size()) {
+        size_t open = body.find("<!--", pos);
+        english += body.substr(pos, open == std::string::npos ? std::string::npos : open - pos);
+        if (open == std::string::npos) break;
+        size_t close = body.find("-->", open + 4);
+        std::string comment = body.substr(open + 4, close == std::string::npos
+                                                        ? std::string::npos
+                                                        : close - open - 4);
+        // "<!-- pt_BR" and a new line: the code is the comment's first word.
+        size_t word = comment.find_first_not_of(" \t");
+        size_t word_end = word == std::string::npos ? word : comment.find_first_of(" \t\r\n", word);
+        if (word != std::string::npos && word_end != std::string::npos &&
+            Widen(comment.substr(word, word_end - word)) == language)
+            return PlainText(Trim(comment.substr(word_end)));
+        if (close == std::string::npos) break;
+        pos = close + 3;
+    }
+    return PlainText(Trim(english));
+}
+
 UpdateCheck CheckForUpdate(UpdateInfo* info) {
 #ifdef VB_UPDATE_TEST
     // Test build: a version 1.5 whose "download" is the zip built next to it
@@ -229,6 +321,18 @@ UpdateCheck CheckForUpdate(UpdateInfo* info) {
     if (!GetFileAttributesExW(info->url.c_str(), GetFileExInfoStandard, &fa))
         return UpdateCheck::Failed;
     info->size = ((unsigned long long)fa.nFileSizeHigh << 32) | fa.nFileSizeLow;
+    // The release text: dist\VBRecorder-notes.md, written as on GitHub.
+    HANDLE notes = CreateFileW(JoinPath(ExeDir(), L"..\\VBRecorder-notes.md").c_str(), GENERIC_READ,
+                               FILE_SHARE_READ, nullptr, OPEN_EXISTING, 0, nullptr);
+    if (notes != INVALID_HANDLE_VALUE) {
+        std::string body(1 << 20, '\0');
+        DWORD read = 0;
+        ReadFile(notes, &body[0], (DWORD)body.size(), &read, nullptr);
+        CloseHandle(notes);
+        body.resize(read);
+        if (body.compare(0, 3, "\xEF\xBB\xBF") == 0) body.erase(0, 3);  // the BOM of Notepad
+        info->notes = ReleaseNotes(body, i18n::CurrentLanguage());
+    }
     return UpdateCheck::Available;
 #endif
     std::string json;
@@ -256,6 +360,8 @@ UpdateCheck CheckForUpdate(UpdateInfo* info) {
     if (s != std::string::npos) info->size = strtoull(json.c_str() + json.find(':', s) + 1, nullptr, 10);
     info->version = version;
     info->url = Widen(url);
+    std::string body;
+    if (JsonText(json, "body", &body)) info->notes = ReleaseNotes(body, i18n::CurrentLanguage());
     return UpdateCheck::Available;
 }
 

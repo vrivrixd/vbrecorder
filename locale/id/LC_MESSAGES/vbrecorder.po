@@ -22,7 +22,7 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Dengarkan perangkat yang dipilih dengan volume yang disesuaikan"
 
 msgid "&Parar"
-msgstr "B&erhenti"
+msgstr "Be&rhenti"
 
 msgid "&Testar"
 msgstr "&Uji"
@@ -36,19 +36,19 @@ msgstr "Tampilkan jendela utama"
 msgid "Sair"
 msgstr "Keluar"
 
-msgid "&Formato de Saída:"
-msgstr "Forma&t Output:"
+msgid "Formato de &Saída:"
+msgstr "&Format Output:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
 
-msgid "Compressão F&LAC:"
+msgid "Compressão &FLAC:"
 msgstr "Kompresi FLA&C:"
 
 msgid "&Taxa de Amostragem:"
 msgstr "Tin&gkat Sampel:"
 
-msgid "Profundidade de Bit&s:"
+msgid "Profundidade de &Bits:"
 msgstr "Kedalaman &bit:"
 
 msgid "&Canais:"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Sumber &Rekaman:"
+msgstr "&Sumber Rekaman:"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Nama File:"
 
 msgid "&Diretório de Saída:"
-msgstr "&Direktori Output:"
+msgstr "Direktori &Output:"
 
-msgid "&Adicionar"
-msgstr "T&ambah"
+msgid "Adici&onar"
+msgstr "&Tambah"
 
 msgid "&Editar"
 msgstr "&Edit"
 
-msgid "&Remover"
-msgstr "Hapu&s"
+msgid "Remo&ver"
+msgstr "H&apus"
 
-msgid "P&rocurar..."
-msgstr "Telu&suri..."
+msgid "&Procurar..."
+msgstr "Telusur&i..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Buka Folder Rekaman(&W)"
+msgstr "Buka Folder Rekaman"
 
-msgid "Config&urações..."
+msgid "Configura&ções..."
 msgstr "Pengat&uran..."
-
-msgid "S&obre"
-msgstr "Tentang(&O)"
 
 msgid "&Minimizar"
 msgstr "&Minimalkan"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "&Tutup"
 
 msgid "E&xcluir Gravação"
-msgstr "Ha&pus Rekaman"
+msgstr "&Hapus Rekaman"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Rekam sumber ke &file terpisah"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "Rekam sumber ke file terpisah"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Putarkan nada saat memulai atau men&ghentikan rekaman"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Putarkan nada saat &memulai atau menghentikan rekaman"
 
 msgid "Selecionar Pasta"
 msgstr "Pilih Folder"
@@ -159,7 +156,7 @@ msgstr "Standar sistem"
 msgid "Iniciar &Minimizado"
 msgstr "Mulai &Minimalkan"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
+msgid "Minimizar &Para a Bandeja do Sistema"
 msgstr "Minimalkan ke System &Tray"
 
 msgid "Janela Sempre no &Topo"
@@ -168,8 +165,8 @@ msgstr "Jendela Selalu di &Atas"
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "&Hitung mundur sebelum merekam"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "Konfigurasi Tombol &Pintasan..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "&Konfigurasi Tombol Pintasan..."
 
 msgid "Aviso"
 msgstr "Peringatan"
@@ -216,26 +213,26 @@ msgstr "Berhenti"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder sudah berjalan."
 
-msgid "Para&r"
-msgstr "Berhent&i"
+msgid "P&arar"
+msgstr "Be&rhenti"
 
-msgid "&Gravar"
+msgid "Gr&avar"
 msgstr "&Rekam"
 
-msgid "C&ontinuar"
+msgid "Contin&uar"
 msgstr "Lan&jutkan"
 
-msgid "&Pausar"
+msgid "Pa&usar"
 msgstr "&Jeda"
 
 msgid "Gravações"
 msgstr "Rekaman"
 
-msgid "Parar Reprod&ução"
-msgstr "Hentikan Pemutaran(&U)"
+msgid "Parar &Reprodução"
+msgstr "Hentikan &Pemutaran"
 
-msgid "Reprod&uzir Gravação"
-msgstr "Putar Rekaman(&U)"
+msgid "&Reproduzir Gravação"
+msgstr "&Putar Rekaman"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Pilih file untuk diputar:"
@@ -262,7 +259,7 @@ msgstr "Konfirmasi Penghapusan"
 msgid "&Idioma:"
 msgstr "Baha&sa:"
 
-msgid "Tamanho do B&uffer (ms):"
+msgid "Tamanho do &Buffer (ms):"
 msgstr "Ukuran B&uffer (ms):"
 
 msgid ""
@@ -371,7 +368,7 @@ msgstr "Perangkat Input Standar"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Kesalahan BASS {erro} saat menambahkan sumber rekaman."
 
-msgid "Continuar Última Gra&vação"
+msgid "Continuar Ú&ltima Gravação"
 msgstr "&Lanjutkan Rekaman Terakhir"
 
 msgid "Continuar Última Gravação"
@@ -411,8 +408,8 @@ msgstr "Harap tunggu..."
 msgid "&Verificar Atualizações Automaticamente"
 msgstr "Periksa Pembaruan Se&cara Otomatis"
 
-msgid "Verificar Atuali&zação..."
-msgstr "Peri&ksa Pembaruan..."
+msgid "Verificar &Atualização..."
+msgstr "Periksa &Pembaruan..."
 
 msgid "Iniciar com o &Windows"
 msgstr "Mulai bersama &Windows"
@@ -566,10 +563,10 @@ msgid "Removedor de Ruído"
 msgstr "Penghapus derau"
 
 msgid "&Ativar Removedor de Ruído"
-msgstr "Aktifkan penghapus &derau"
+msgstr "&Aktifkan penghapus derau"
 
 msgid "&Equalizador"
-msgstr "E&kualiser"
+msgstr "&Ekualiser"
 
 msgid "Removedor de &Ruído"
 msgstr "&Penghapus derau"
@@ -578,14 +575,215 @@ msgid "&Mostrar Todos os Processos"
 msgstr "&Tampilkan semua proses"
 
 msgid "E&stéreo"
-msgstr "Ste&reo"
+msgstr "&Stereo"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Durasi Rekaman (&hh:mm:ss):"
+msgstr "&Durasi Rekaman (hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Kosongkan untuk merekam tanpa batas. 1:30:00 adalah satu setengah jam, 45:00 adalah 45 menit."
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Durasi rekaman tidak valid. Gunakan jam, menit, dan detik, seperti 1:30:00, atau kosongkan untuk merekam tanpa batas."
+
+msgid "E&feitos"
+msgstr "E&fek"
+
+msgid "Efeitos"
+msgstr "Efek"
+
+msgid "&Efeitos:"
+msgstr "&Efek:"
+
+msgid "Con&figurar..."
+msgstr "&Konfigurasi..."
+
+msgid "Compressor"
+msgstr "Kompresor"
+
+msgid "Padrão"
+msgstr "Bawaan"
+
+msgid "Voz Suave"
+msgstr "Suara lembut"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "Suara radio"
+
+msgid "Nivelar Música"
+msgstr "Ratakan musik"
+
+msgid "Compressão Pesada"
+msgstr "Kompresi kuat"
+
+msgid "Limitador"
+msgstr "Pembatas"
+
+msgid "Pitch Shift"
+msgstr "Pengubah nada"
+
+msgid "Voz Grave"
+msgstr "Suara lebih berat"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Sedikit lebih rendah"
+
+msgid "Monstro"
+msgstr "Monster"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Sedikit lebih tinggi"
+
+msgid "Voz Aguda"
+msgstr "Suara lebih tinggi"
+
+msgid "Esquilo"
+msgstr "Tupai"
+
+msgid "Delay"
+msgstr "Tunda"
+
+msgid "Eco Curto"
+msgstr "Gema pendek"
+
+msgid "Muitos Ecos"
+msgstr "Banyak gema"
+
+msgid "Ecos Invertidos"
+msgstr "Gema terbalik"
+
+msgid "Voz Robótica"
+msgstr "Suara robot"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Penggandaan suara"
+
+msgid "Pingue-pongue"
+msgstr "Ping-pong"
+
+msgid "Estádio"
+msgstr "Stadion"
+
+msgid "Cânion"
+msgstr "Ngarai"
+
+msgid "Reverb"
+msgstr "Gaung"
+
+msgid "Sala Média"
+msgstr "Ruang sedang"
+
+msgid "Sala Pequena Clara"
+msgstr "Ruang kecil terang"
+
+msgid "Sala Pequena Escura"
+msgstr "Ruang kecil gelap"
+
+msgid "Sala Grande"
+msgstr "Ruang besar"
+
+msgid "Banheiro"
+msgstr "Kamar mandi"
+
+msgid "Salão de Igreja"
+msgstr "Aula gereja"
+
+msgid "Catedral"
+msgstr "Katedral"
+
+msgid "Caverna Grande"
+msgstr "Gua besar"
+
+msgid "Ambiente"
+msgstr "Suasana"
+
+msgid "Artificial"
+msgstr "Buatan"
+
+msgid "Limpo"
+msgstr "Bersih"
+
+msgid "Moderno"
+msgstr "Modern"
+
+msgid "Voz I"
+msgstr "Vokal I"
+
+msgid "Voz II"
+msgstr "Vokal II"
+
+msgid "Voz Dance"
+msgstr "Vokal dansa"
+
+msgid "Voz Moderna"
+msgstr "Vokal modern"
+
+msgid "Cauda de Voz"
+msgstr "Ekor suara"
+
+msgid "Limiar:"
+msgstr "Ambang:"
+
+msgid "Proporção:"
+msgstr "Rasio:"
+
+msgid "Ataque:"
+msgstr "Serangan:"
+
+msgid "Liberação:"
+msgstr "Pelepasan:"
+
+msgid "Ganho:"
+msgstr "Penguatan:"
+
+msgid "Semitons:"
+msgstr "Semiton:"
+
+msgid "Tempo:"
+msgstr "Waktu:"
+
+msgid "Realimentação:"
+msgstr "Umpan balik:"
+
+msgid "Nível do Efeito:"
+msgstr "Tingkat efek:"
+
+msgid "Som Original:"
+msgstr "Suara asli:"
+
+msgid "P&ingue-pongue"
+msgstr "P&ing-pong"
+
+msgid "Tamanho da Sala:"
+msgstr "Ukuran ruang:"
+
+msgid "Amortecimento:"
+msgstr "Peredaman:"
+
+msgid "Largura Estéreo:"
+msgstr "Lebar stereo:"
+
+msgid "P&rocurar..."
+msgstr "&Telusuri..."
+
+msgid "S&obre"
+msgstr "Tentang(&O)"
+
+msgid "Pré-atraso:"
+msgstr "Pra-tunda:"
+
+msgid "Novidades:"
+msgstr "Yang baru:"
+
+msgid "&Sim"
+msgstr "&Ya"
+
+msgid "&Não"
+msgstr "&Tidak"
 

@@ -22,13 +22,13 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "以調整後的音量聆聽選取裝置"
 
 msgid "&Parar"
-msgstr "停止(&S)"
+msgstr "停止(&T)"
 
 msgid "&Testar"
 msgstr "測試(&T)"
 
 msgid "&Atualizar"
-msgstr "重新整理(&E)"
+msgstr "重新整理(&R)"
 
 msgid "Mostrar janela principal"
 msgstr "顯示主視窗"
@@ -36,20 +36,20 @@ msgstr "顯示主視窗"
 msgid "Sair"
 msgstr "退出"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "輸出格式(&F):"
 
 msgid "&Bitrate:"
 msgstr "位元率(&B):"
 
-msgid "Compressão F&LAC:"
-msgstr "FLAC 壓縮(&L):"
+msgid "Compressão &FLAC:"
+msgstr "FLAC 壓縮(&M):"
 
 msgid "&Taxa de Amostragem:"
 msgstr "取樣率(&T):"
 
-msgid "Profundidade de Bit&s:"
-msgstr "位元深度(&H):"
+msgid "Profundidade de &Bits:"
+msgstr "位元深度(&B):"
 
 msgid "&Canais:"
 msgstr "聲道(&C):"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "立體聲"
 
 msgid "Fontes de &Gravação:"
-msgstr "錄製來源(&G):"
+msgstr "錄製來源(&I):"
 
 msgid "&Nome do Arquivo:"
 msgstr "檔案名稱(&N):"
 
 msgid "&Diretório de Saída:"
-msgstr "輸出目錄(&D):"
+msgstr "輸出目錄(&O):"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "新增(&A)"
 
 msgid "&Editar"
 msgstr "編輯(&E)"
 
-msgid "&Remover"
-msgstr "移除(&R)"
+msgid "Remo&ver"
+msgstr "移除(&V)"
 
-msgid "P&rocurar..."
-msgstr "瀏覽(&R)..."
+msgid "&Procurar..."
+msgstr "瀏覽(&W)..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "開啟錄音資料夾(&I)"
+msgstr "開啟錄音資料夾(&X)"
 
-msgid "Config&urações..."
-msgstr "設定(&U)..."
-
-msgid "S&obre"
-msgstr "關於(&O)"
+msgid "Configura&ções..."
+msgstr "設定(&G)..."
 
 msgid "&Minimizar"
 msgstr "最小化(&M)"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "關閉(&F)"
 
 msgid "E&xcluir Gravação"
-msgstr "刪除錄音(&X)"
+msgstr "刪除錄音(&D)"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "將來源錄製到單獨的檔案中(&P)"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "將來源錄製到單獨的檔案中(&Q)"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "開始或停止錄製時播放提示音(&T)"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "開始或停止錄製時播放提示音(&Y)"
 
 msgid "Selecionar Pasta"
 msgstr "選取資料夾"
@@ -159,17 +156,17 @@ msgstr "系統預設"
 msgid "Iniciar &Minimizado"
 msgstr "啟動時最小化(&M)"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "最小化至系統匣(&B)"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "最小化至系統匣(&T)"
 
 msgid "Janela Sempre no &Topo"
-msgstr "視窗總在最前(&T)"
+msgstr "視窗總在最前(&A)"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "錄音前倒數計時(&R)"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "設定快速鍵(&A)..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "設定快速鍵(&H)..."
 
 msgid "Aviso"
 msgstr "警告"
@@ -216,26 +213,26 @@ msgstr "停止"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder 已經在執行。"
 
-msgid "Para&r"
-msgstr "停止(&R)"
+msgid "P&arar"
+msgstr "停止(&S)"
 
-msgid "&Gravar"
-msgstr "錄製(&G)"
+msgid "Gr&avar"
+msgstr "錄製(&R)"
 
-msgid "C&ontinuar"
-msgstr "繼續(&O)"
+msgid "Contin&uar"
+msgstr "繼續(&U)"
 
-msgid "&Pausar"
-msgstr "暫停(&P)"
+msgid "Pa&usar"
+msgstr "暫停(&U)"
 
 msgid "Gravações"
 msgstr "錄音"
 
-msgid "Parar Reprod&ução"
-msgstr "停止播放(&U)"
+msgid "Parar &Reprodução"
+msgstr "停止播放(&P)"
 
-msgid "Reprod&uzir Gravação"
-msgstr "播放錄音(&U)"
+msgid "&Reproduzir Gravação"
+msgstr "播放錄音(&P)"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "選擇要播放的檔案:"
@@ -260,10 +257,10 @@ msgid "Confirmar Exclusão"
 msgstr "確認刪除"
 
 msgid "&Idioma:"
-msgstr "語言(&I):"
+msgstr "語言(&L):"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "緩衝區大小(ms)(&U):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "緩衝區大小(ms)(&B):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -365,8 +362,8 @@ msgstr "預設輸入裝置"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "新增錄製來源時 BASS 錯誤 {erro}。"
 
-msgid "Continuar Última Gra&vação"
-msgstr "繼續上次錄製(&V)"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "繼續上次錄製(&L)"
 
 msgid "Continuar Última Gravação"
 msgstr "繼續上次錄製"
@@ -403,13 +400,13 @@ msgid "Por favor aguarde..."
 msgstr "請稍候..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "自動檢查更新(&V)"
+msgstr "自動檢查更新(&U)"
 
-msgid "Verificar Atuali&zação..."
-msgstr "檢查更新(&Z)..."
+msgid "Verificar &Atualização..."
+msgstr "檢查更新(&F)..."
 
 msgid "Iniciar com o &Windows"
-msgstr "隨 Windows 啟動(&W)"
+msgstr "隨 Window&s 啟動"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "您已在使用最新版本的 VB Recorder。"
@@ -560,26 +557,227 @@ msgid "Removedor de Ruído"
 msgstr "降噪"
 
 msgid "&Ativar Removedor de Ruído"
-msgstr "啟用降噪(&A)"
+msgstr "啟用降噪(&E)"
 
 msgid "&Equalizador"
-msgstr "等化器(&Q)"
+msgstr "等化器(&E)"
 
 msgid "Removedor de &Ruído"
 msgstr "降噪(&N)"
 
 msgid "&Mostrar Todos os Processos"
-msgstr "顯示所有處理程序(&M)"
+msgstr "顯示所有處理程序(&A)"
 
 msgid "E&stéreo"
-msgstr "立體聲(&H)"
+msgstr "立體聲(&S)"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "錄音時長 (hh:mm:&ss):"
+msgstr "錄音時長 (&hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "留空則不限時長錄音。1:30:00 為一個半小時，45:00 為 45 分鐘。"
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "錄音時長無效。請使用時、分、秒，例如 1:30:00，或留空以不限時長錄音。"
+
+msgid "E&feitos"
+msgstr "效果(&F)"
+
+msgid "Efeitos"
+msgstr "效果"
+
+msgid "&Efeitos:"
+msgstr "效果(&E):"
+
+msgid "Con&figurar..."
+msgstr "設定(&F)..."
+
+msgid "Compressor"
+msgstr "壓縮器"
+
+msgid "Padrão"
+msgstr "預設"
+
+msgid "Voz Suave"
+msgstr "柔和人聲"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "電台人聲"
+
+msgid "Nivelar Música"
+msgstr "音樂音量均衡"
+
+msgid "Compressão Pesada"
+msgstr "強壓縮"
+
+msgid "Limitador"
+msgstr "限制器"
+
+msgid "Pitch Shift"
+msgstr "變調"
+
+msgid "Voz Grave"
+msgstr "低沉人聲"
+
+msgid "Um Pouco Mais Grave"
+msgstr "稍低一些"
+
+msgid "Monstro"
+msgstr "怪物"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "稍高一些"
+
+msgid "Voz Aguda"
+msgstr "高亢人聲"
+
+msgid "Esquilo"
+msgstr "花栗鼠"
+
+msgid "Delay"
+msgstr "延遲"
+
+msgid "Eco Curto"
+msgstr "短回音"
+
+msgid "Muitos Ecos"
+msgstr "多重回音"
+
+msgid "Ecos Invertidos"
+msgstr "反相回音"
+
+msgid "Voz Robótica"
+msgstr "機器人聲"
+
+msgid "Slapback"
+msgstr "拍擊回音"
+
+msgid "Dobra de Voz"
+msgstr "人聲加倍"
+
+msgid "Pingue-pongue"
+msgstr "乒乓"
+
+msgid "Estádio"
+msgstr "體育場"
+
+msgid "Cânion"
+msgstr "峽谷"
+
+msgid "Reverb"
+msgstr "殘響"
+
+msgid "Sala Média"
+msgstr "中型房間"
+
+msgid "Sala Pequena Clara"
+msgstr "明亮小房間"
+
+msgid "Sala Pequena Escura"
+msgstr "暗沉小房間"
+
+msgid "Sala Grande"
+msgstr "大房間"
+
+msgid "Banheiro"
+msgstr "浴室"
+
+msgid "Salão de Igreja"
+msgstr "教會禮堂"
+
+msgid "Catedral"
+msgstr "大教堂"
+
+msgid "Caverna Grande"
+msgstr "大洞穴"
+
+msgid "Ambiente"
+msgstr "環境"
+
+msgid "Artificial"
+msgstr "人工"
+
+msgid "Limpo"
+msgstr "乾淨"
+
+msgid "Moderno"
+msgstr "現代"
+
+msgid "Voz I"
+msgstr "人聲 I"
+
+msgid "Voz II"
+msgstr "人聲 II"
+
+msgid "Voz Dance"
+msgstr "舞曲人聲"
+
+msgid "Voz Moderna"
+msgstr "現代人聲"
+
+msgid "Cauda de Voz"
+msgstr "人聲尾音"
+
+msgid "Limiar:"
+msgstr "臨界值:"
+
+msgid "Proporção:"
+msgstr "壓縮比:"
+
+msgid "Ataque:"
+msgstr "起音時間:"
+
+msgid "Liberação:"
+msgstr "釋放時間:"
+
+msgid "Ganho:"
+msgstr "增益:"
+
+msgid "Semitons:"
+msgstr "半音:"
+
+msgid "Tempo:"
+msgstr "時間:"
+
+msgid "Realimentação:"
+msgstr "回授:"
+
+msgid "Nível do Efeito:"
+msgstr "效果音量:"
+
+msgid "Som Original:"
+msgstr "原始聲音:"
+
+msgid "P&ingue-pongue"
+msgstr "乒乓(&I)"
+
+msgid "Tamanho da Sala:"
+msgstr "房間大小:"
+
+msgid "Amortecimento:"
+msgstr "阻尼:"
+
+msgid "Largura Estéreo:"
+msgstr "立體聲寬度:"
+
+msgid "P&rocurar..."
+msgstr "瀏覽(&B)..."
+
+msgid "S&obre"
+msgstr "關於(&O)"
+
+msgid "Pré-atraso:"
+msgstr "預延遲:"
+
+msgid "Novidades:"
+msgstr "新功能："
+
+msgid "&Sim"
+msgstr "是(&Y)"
+
+msgid "&Não"
+msgstr "否(&N)"
 

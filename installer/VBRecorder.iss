@@ -65,7 +65,7 @@ DisableWelcomePage=no
 ShowLanguageDialog=yes
 OutputDir={#OutputDir}
 OutputBaseFilename=VBRecorder-Setup
-Compression=lzma2/max
+Compression=lzma2/ultra64
 SolidCompression=yes
 
 ; The languages of the program, and only those. English comes first: it is

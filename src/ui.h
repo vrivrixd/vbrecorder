@@ -50,6 +50,10 @@ std::wstring ComboValue(HWND combo);
 /* Selects the item with this text; if there is none, nothing changes. */
 void ComboSetValue(HWND combo, const std::wstring& value);
 
+/* What the screen reader says as the control's value (a slider's "+3.0 dB"
+   instead of its position), and tells it that the value changed. */
+void SetAccessibleValue(HWND control, const std::wstring& value);
+
 /* Tooltip that the screen reader announces along with the control. */
 void SetToolTip(HWND owner_window, HWND control, const std::wstring& text);
 

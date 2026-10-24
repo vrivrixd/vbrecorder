@@ -38,6 +38,9 @@ namespace i18n {
 /* Switches to another language. With an empty code, follows the Windows language. */
 std::wstring SetLanguage(const std::wstring& code);
 
+/* The language in use: "pt_BR", "vi"...; English when nothing was found. */
+std::wstring CurrentLanguage();
+
 /* Codes with a catalog, plus the original language, sorted by display name. */
 std::vector<std::wstring> AvailableLanguages();
 

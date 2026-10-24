@@ -36,20 +36,20 @@ msgstr "Afficher la fenêtre principale"
 msgid "Sair"
 msgstr "Quitter"
 
-msgid "&Formato de Saída:"
-msgstr "&Format de sortie :"
+msgid "Formato de &Saída:"
+msgstr "F&ormat de sortie :"
 
 msgid "&Bitrate:"
-msgstr "&Débit binaire :"
+msgstr "Débit &binaire :"
 
-msgid "Compressão F&LAC:"
-msgstr "Compression FL&AC :"
+msgid "Compressão &FLAC:"
+msgstr "Compression &FLAC :"
 
 msgid "&Taxa de Amostragem:"
-msgstr "Fréquence d'é&chantillonnage :"
+msgstr "Fré&quence d'échantillonnage :"
 
-msgid "Profundidade de Bit&s:"
-msgstr "Profondeur de bi&ts :"
+msgid "Profundidade de &Bits:"
+msgstr "Profondeur de &bits :"
 
 msgid "&Canais:"
 msgstr "Canau&x :"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "stéréo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Sourc&es d'enregistrement :"
+msgstr "&Sources d'enregistrement :"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Nom du fichier :"
 
 msgid "&Diretório de Saída:"
-msgstr "Dossier de s&ortie :"
+msgstr "&Dossier de sortie :"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "A&jouter"
 
 msgid "&Editar"
 msgstr "&Modifier"
 
-msgid "&Remover"
-msgstr "&Retirer"
+msgid "Remo&ver"
+msgstr "Re&tirer"
 
-msgid "P&rocurar..."
-msgstr "Pa&rcourir..."
+msgid "&Procurar..."
+msgstr "Parcour&ir..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Ouvr&ir le dossier des enregistrements"
+msgstr "Ou&vrir le dossier des enregistrements"
 
-msgid "Config&urações..."
+msgid "Configura&ções..."
 msgstr "Param&ètres..."
-
-msgid "S&obre"
-msgstr "&À propos"
 
 msgid "&Minimizar"
 msgstr "Réd&uire"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "&Quitter"
 
 msgid "E&xcluir Gravação"
-msgstr "&Supprimer l'enregistrement"
+msgstr "S&upprimer l'enregistrement"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Enregistrer les sources dans des fichiers s&éparés"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "Enre&gistrer les sources dans des fichiers séparés"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Jouer des &bips au démarrage et à l'arrêt de l'enregistrement"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Jouer des bips au démarrage et &à l'arrêt de l'enregistrement"
 
 msgid "Selecionar Pasta"
 msgstr "Sélectionner le dossier"
@@ -159,17 +156,17 @@ msgstr "Par défaut du système"
 msgid "Iniciar &Minimizado"
 msgstr "Démarrer &minimisé"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
+msgid "Minimizar &Para a Bandeja do Sistema"
 msgstr "Réduire dans la &zone de notification"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Fenêtre toujours au &premier plan"
 
 msgid "Contagem &Regressiva Antes de Gravar"
-msgstr "&Compte à rebours avant l'enregistrement"
+msgstr "Compte &à rebours avant l'enregistrement"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "Configurer les &raccourcis clavier..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "Configurer les raccourcis &clavier..."
 
 msgid "Aviso"
 msgstr "Avertissement"
@@ -216,25 +213,25 @@ msgstr "Arrêter"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder est déjà en cours d'exécution."
 
-msgid "Para&r"
-msgstr "A&rrêter"
+msgid "P&arar"
+msgstr "&Arrêter"
 
-msgid "&Gravar"
+msgid "Gr&avar"
 msgstr "&Enregistrer"
 
-msgid "C&ontinuar"
-msgstr "Re&prendre"
+msgid "Contin&uar"
+msgstr "&Reprendre"
 
-msgid "&Pausar"
+msgid "Pa&usar"
 msgstr "&Pause"
 
 msgid "Gravações"
 msgstr "Enregistrements"
 
-msgid "Parar Reprod&ução"
+msgid "Parar &Reprodução"
 msgstr "Arrêter la &lecture"
 
-msgid "Reprod&uzir Gravação"
+msgid "&Reproduzir Gravação"
 msgstr "&Lire l'enregistrement"
 
 msgid "Escolha o arquivo a reproduzir:"
@@ -266,7 +263,7 @@ msgstr "Confirmer la suppression"
 msgid "&Idioma:"
 msgstr "&Langue :"
 
-msgid "Tamanho do B&uffer (ms):"
+msgid "Tamanho do &Buffer (ms):"
 msgstr "&Taille du tampon (ms) :"
 
 msgid "Dispositivos de Áudio"
@@ -376,8 +373,8 @@ msgstr "Périphérique d'entrée par défaut"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Erreur BASS {erro} lors de l'ajout de la source d'enregistrement."
 
-msgid "Continuar Última Gra&vação"
-msgstr "Continuer le dernier enre&gistrement"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "&Continuer le dernier enregistrement"
 
 msgid "Continuar Última Gravação"
 msgstr "Continuer le dernier enregistrement"
@@ -416,11 +413,11 @@ msgstr "Veuillez patienter..."
 msgid "&Verificar Atualizações Automaticamente"
 msgstr "&Vérifier automatiquement les mises à jour"
 
-msgid "Verificar Atuali&zação..."
+msgid "Verificar &Atualização..."
 msgstr "Rechercher une mise à jo&ur..."
 
 msgid "Iniciar com o &Windows"
-msgstr "Démarrer avec &Windows"
+msgstr "&Démarrer avec Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "Vous utilisez déjà la version la plus récente de VB Recorder."
@@ -574,16 +571,16 @@ msgid "&Ativar Removedor de Ruído"
 msgstr "&Activer le suppresseur de bruit"
 
 msgid "&Equalizador"
-msgstr "É&galiseur"
+msgstr "&Égaliseur"
 
 msgid "Removedor de &Ruído"
-msgstr "&Suppresseur de bruit"
+msgstr "Suppresseur &de bruit"
 
 msgid "&Mostrar Todos os Processos"
 msgstr "Afficher tous &les processus"
 
 msgid "E&stéreo"
-msgstr "St&éréo"
+msgstr "&Stéréo"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
 msgstr "Durée de l'enregistrement (&hh:mm:ss) :"
@@ -593,4 +590,205 @@ msgstr "Vide : enregistre sans limite. 1:30:00 correspond à une heure et demie,
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Durée d'enregistrement non valide. Utilisez des heures, des minutes et des secondes, comme 1:30:00, ou laissez vide pour enregistrer sans limite."
+
+msgid "E&feitos"
+msgstr "&Effets"
+
+msgid "Efeitos"
+msgstr "Effets"
+
+msgid "&Efeitos:"
+msgstr "&Effets :"
+
+msgid "Con&figurar..."
+msgstr "&Configurer..."
+
+msgid "Compressor"
+msgstr "Compresseur"
+
+msgid "Padrão"
+msgstr "Par défaut"
+
+msgid "Voz Suave"
+msgstr "Voix douce"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "Voix radio"
+
+msgid "Nivelar Música"
+msgstr "Niveler la musique"
+
+msgid "Compressão Pesada"
+msgstr "Compression forte"
+
+msgid "Limitador"
+msgstr "Limiteur"
+
+msgid "Pitch Shift"
+msgstr "Transposition"
+
+msgid "Voz Grave"
+msgstr "Voix grave"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Un peu plus grave"
+
+msgid "Monstro"
+msgstr "Monstre"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Un peu plus aiguë"
+
+msgid "Voz Aguda"
+msgstr "Voix aiguë"
+
+msgid "Esquilo"
+msgstr "Écureuil"
+
+msgid "Delay"
+msgstr "Délai"
+
+msgid "Eco Curto"
+msgstr "Écho court"
+
+msgid "Muitos Ecos"
+msgstr "Nombreux échos"
+
+msgid "Ecos Invertidos"
+msgstr "Échos inversés"
+
+msgid "Voz Robótica"
+msgstr "Voix de robot"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Doublage de voix"
+
+msgid "Pingue-pongue"
+msgstr "Ping-pong"
+
+msgid "Estádio"
+msgstr "Stade"
+
+msgid "Cânion"
+msgstr "Canyon"
+
+msgid "Reverb"
+msgstr "Réverbération"
+
+msgid "Sala Média"
+msgstr "Pièce moyenne"
+
+msgid "Sala Pequena Clara"
+msgstr "Petite pièce claire"
+
+msgid "Sala Pequena Escura"
+msgstr "Petite pièce sombre"
+
+msgid "Sala Grande"
+msgstr "Grande pièce"
+
+msgid "Banheiro"
+msgstr "Salle de bain"
+
+msgid "Salão de Igreja"
+msgstr "Salle paroissiale"
+
+msgid "Catedral"
+msgstr "Cathédrale"
+
+msgid "Caverna Grande"
+msgstr "Grande grotte"
+
+msgid "Ambiente"
+msgstr "Ambiance"
+
+msgid "Artificial"
+msgstr "Artificielle"
+
+msgid "Limpo"
+msgstr "Propre"
+
+msgid "Moderno"
+msgstr "Moderne"
+
+msgid "Voz I"
+msgstr "Voix I"
+
+msgid "Voz II"
+msgstr "Voix II"
+
+msgid "Voz Dance"
+msgstr "Voix dance"
+
+msgid "Voz Moderna"
+msgstr "Voix moderne"
+
+msgid "Cauda de Voz"
+msgstr "Traîne de voix"
+
+msgid "Limiar:"
+msgstr "Seuil :"
+
+msgid "Proporção:"
+msgstr "Taux :"
+
+msgid "Ataque:"
+msgstr "Attaque :"
+
+msgid "Liberação:"
+msgstr "Relâchement :"
+
+msgid "Ganho:"
+msgstr "Gain :"
+
+msgid "Semitons:"
+msgstr "Demi-tons :"
+
+msgid "Tempo:"
+msgstr "Temps :"
+
+msgid "Realimentação:"
+msgstr "Réinjection :"
+
+msgid "Nível do Efeito:"
+msgstr "Niveau de l'effet :"
+
+msgid "Som Original:"
+msgstr "Son original :"
+
+msgid "P&ingue-pongue"
+msgstr "P&ing-pong"
+
+msgid "Tamanho da Sala:"
+msgstr "Taille de la pièce :"
+
+msgid "Amortecimento:"
+msgstr "Amortissement :"
+
+msgid "Largura Estéreo:"
+msgstr "Largeur stéréo :"
+
+msgid "P&rocurar..."
+msgstr "&Parcourir..."
+
+msgid "S&obre"
+msgstr "&À propos"
+
+msgid "Pré-atraso:"
+msgstr "Pré-délai :"
+
+msgid "Novidades:"
+msgstr "Nouveautés :"
+
+msgid "&Sim"
+msgstr "&Oui"
+
+msgid "&Não"
+msgstr "&Non"
 

@@ -36,23 +36,23 @@ msgstr "Ana pencereyi göster"
 msgid "Sair"
 msgstr "Çıkış"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "Çıktı &Formatı:"
 
 msgid "&Bitrate:"
 msgstr "&Bit Hızı:"
 
-msgid "Compressão F&LAC:"
-msgstr "F&LAC Sıkıştırma:"
+msgid "Compressão &FLAC:"
+msgstr "FLA&C Sıkıştırma:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "Örnekleme Hı&zı:"
+msgstr "&Örnekleme Hızı:"
 
-msgid "Profundidade de Bit&s:"
+msgid "Profundidade de &Bits:"
 msgstr "&Bit Derinliği:"
 
 msgid "&Canais:"
-msgstr "&Kanallar:"
+msgstr "Ka&nallar:"
 
 msgid "mono"
 msgstr "mono"
@@ -64,31 +64,28 @@ msgid "Fontes de &Gravação:"
 msgstr "Kayıt Ka&ynakları:"
 
 msgid "&Nome do Arquivo:"
-msgstr "D&osya Adı:"
+msgstr "Dosya &Adı:"
 
 msgid "&Diretório de Saída:"
 msgstr "&Çıktı Dizini:"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "&Ekle"
 
 msgid "&Editar"
-msgstr "D&üzenle"
+msgstr "Dü&zenle"
 
-msgid "&Remover"
+msgid "Remo&ver"
 msgstr "Kaldı&r"
 
-msgid "P&rocurar..."
+msgid "&Procurar..."
 msgstr "&Gözat..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Kayı&tlar Klasörünü Aç"
+msgstr "Kayıtlar Klasör&ünü Aç"
 
-msgid "Config&urações..."
-msgstr "Ay&arlar..."
-
-msgid "S&obre"
-msgstr "Hakkı&nda"
+msgid "Configura&ções..."
+msgstr "Ayar&lar..."
 
 msgid "&Minimizar"
 msgstr "S&imge Durumuna Küçült"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "Ka&pat"
 
 msgid "E&xcluir Gravação"
-msgstr "Kaydı &Sil"
+msgstr "Kayd&ı Sil"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Kaynakları ayrı &dosyalara kaydet"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "Kaynakları ayrı dosyalara kayde&t"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Kayıt ba&şlarken veya dururken ses çal"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Kayıt başlarken &veya dururken ses çal"
 
 msgid "Selecionar Pasta"
 msgstr "Klasör Seç"
@@ -157,18 +154,18 @@ msgid "Padrão do sistema"
 msgstr "Sistem varsayılanı"
 
 msgid "Iniciar &Minimizado"
-msgstr "Simg&e Durumunda Başlat"
+msgstr "Simge Durumunda &Başlat"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Sistem Te&psisine Küçült"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "&Sistem Tepsisine Küçült"
 
 msgid "Janela Sempre no &Topo"
 msgstr "Pencere Her Zaman &Üstte"
 
 msgid "Contagem &Regressiva Antes de Gravar"
-msgstr "Kayıttan Önce Geri &Sayım"
+msgstr "Kayıttan &Önce Geri Sayım"
 
-msgid "Configurar Teclas de &Atalho..."
+msgid "Configurar Teclas &de Atalho..."
 msgstr "&Kısayol Tuşlarını Yapılandır..."
 
 msgid "Aviso"
@@ -216,26 +213,26 @@ msgstr "Durdur"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder zaten çalışıyor."
 
-msgid "Para&r"
+msgid "P&arar"
 msgstr "D&urdur"
 
-msgid "&Gravar"
-msgstr "Ka&ydet"
+msgid "Gr&avar"
+msgstr "&Kaydet"
 
-msgid "C&ontinuar"
-msgstr "Deva&m Et"
+msgid "Contin&uar"
+msgstr "&Devam Et"
 
-msgid "&Pausar"
+msgid "Pa&usar"
 msgstr "&Duraklat"
 
 msgid "Gravações"
 msgstr "Kayıtlar"
 
-msgid "Parar Reprod&ução"
-msgstr "Oyn&atmayı Durdur"
+msgid "Parar &Reprodução"
+msgstr "&Oynatmayı Durdur"
 
-msgid "Reprod&uzir Gravação"
-msgstr "Kaydı Oyn&at"
+msgid "&Reproduzir Gravação"
+msgstr "Kaydı &Oynat"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Oynatılacak dosyayı seçin:"
@@ -266,8 +263,8 @@ msgstr "Silmeyi Onayla"
 msgid "&Idioma:"
 msgstr "&Dil:"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "A&rabellek Boyutu (ms):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "Arabellek Boyutu (&ms):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -375,8 +372,8 @@ msgstr "Varsayılan Giriş Cihazı"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Kayıt kaynağı eklenirken BASS hatası {erro}."
 
-msgid "Continuar Última Gra&vação"
-msgstr "Son Kayda De&vam Et"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "&Son Kayda Devam Et"
 
 msgid "Continuar Última Gravação"
 msgstr "Son Kayda Devam Et"
@@ -415,8 +412,8 @@ msgstr "Lütfen bekleyin..."
 msgid "&Verificar Atualizações Automaticamente"
 msgstr "Güncellemeleri &Otomatik Denetle"
 
-msgid "Verificar Atuali&zação..."
-msgstr "Güncellemeleri Denet&le..."
+msgid "Verificar &Atualização..."
+msgstr "&Güncellemeleri Denetle..."
 
 msgid "Iniciar com o &Windows"
 msgstr "&Windows ile Başlat"
@@ -592,4 +589,205 @@ msgstr "Boş bırakılırsa sınırsız kaydeder. 1:30:00 bir buçuk saat, 45:00
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Geçersiz kayıt süresi. 1:30:00 gibi saat, dakika ve saniye kullanın ya da sınırsız kayıt için boş bırakın."
+
+msgid "E&feitos"
+msgstr "E&fektler"
+
+msgid "Efeitos"
+msgstr "Efektler"
+
+msgid "&Efeitos:"
+msgstr "&Efektler:"
+
+msgid "Con&figurar..."
+msgstr "&Yapılandır..."
+
+msgid "Compressor"
+msgstr "Sıkıştırıcı"
+
+msgid "Padrão"
+msgstr "Varsayılan"
+
+msgid "Voz Suave"
+msgstr "Yumuşak Ses"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "Radyo Sesi"
+
+msgid "Nivelar Música"
+msgstr "Müziği Dengele"
+
+msgid "Compressão Pesada"
+msgstr "Güçlü Sıkıştırma"
+
+msgid "Limitador"
+msgstr "Sınırlayıcı"
+
+msgid "Pitch Shift"
+msgstr "Perde Kaydırma"
+
+msgid "Voz Grave"
+msgstr "Daha Kalın Ses"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Biraz Daha Kalın"
+
+msgid "Monstro"
+msgstr "Canavar"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Biraz Daha İnce"
+
+msgid "Voz Aguda"
+msgstr "Daha İnce Ses"
+
+msgid "Esquilo"
+msgstr "Sincap"
+
+msgid "Delay"
+msgstr "Gecikme"
+
+msgid "Eco Curto"
+msgstr "Kısa Yankı"
+
+msgid "Muitos Ecos"
+msgstr "Çok Sayıda Yankı"
+
+msgid "Ecos Invertidos"
+msgstr "Ters Yankılar"
+
+msgid "Voz Robótica"
+msgstr "Robot Sesi"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Ses Katlama"
+
+msgid "Pingue-pongue"
+msgstr "Pinpon"
+
+msgid "Estádio"
+msgstr "Stadyum"
+
+msgid "Cânion"
+msgstr "Kanyon"
+
+msgid "Reverb"
+msgstr "Yankılanma"
+
+msgid "Sala Média"
+msgstr "Orta Oda"
+
+msgid "Sala Pequena Clara"
+msgstr "Küçük Aydınlık Oda"
+
+msgid "Sala Pequena Escura"
+msgstr "Küçük Karanlık Oda"
+
+msgid "Sala Grande"
+msgstr "Büyük Oda"
+
+msgid "Banheiro"
+msgstr "Banyo"
+
+msgid "Salão de Igreja"
+msgstr "Kilise Salonu"
+
+msgid "Catedral"
+msgstr "Katedral"
+
+msgid "Caverna Grande"
+msgstr "Büyük Mağara"
+
+msgid "Ambiente"
+msgstr "Ortam"
+
+msgid "Artificial"
+msgstr "Yapay"
+
+msgid "Limpo"
+msgstr "Temiz"
+
+msgid "Moderno"
+msgstr "Modern"
+
+msgid "Voz I"
+msgstr "Vokal I"
+
+msgid "Voz II"
+msgstr "Vokal II"
+
+msgid "Voz Dance"
+msgstr "Dans Vokali"
+
+msgid "Voz Moderna"
+msgstr "Modern Vokal"
+
+msgid "Cauda de Voz"
+msgstr "Ses Kuyruğu"
+
+msgid "Limiar:"
+msgstr "Eşik:"
+
+msgid "Proporção:"
+msgstr "Oran:"
+
+msgid "Ataque:"
+msgstr "Atak:"
+
+msgid "Liberação:"
+msgstr "Bırakma:"
+
+msgid "Ganho:"
+msgstr "Kazanç:"
+
+msgid "Semitons:"
+msgstr "Yarım Tonlar:"
+
+msgid "Tempo:"
+msgstr "Süre:"
+
+msgid "Realimentação:"
+msgstr "Geri Besleme:"
+
+msgid "Nível do Efeito:"
+msgstr "Efekt Düzeyi:"
+
+msgid "Som Original:"
+msgstr "Özgün Ses:"
+
+msgid "P&ingue-pongue"
+msgstr "&Pinpon"
+
+msgid "Tamanho da Sala:"
+msgstr "Oda Boyutu:"
+
+msgid "Amortecimento:"
+msgstr "Sönümleme:"
+
+msgid "Largura Estéreo:"
+msgstr "Stereo Genişliği:"
+
+msgid "P&rocurar..."
+msgstr "&Gözat..."
+
+msgid "S&obre"
+msgstr "Hakkı&nda"
+
+msgid "Pré-atraso:"
+msgstr "Ön Gecikme:"
+
+msgid "Novidades:"
+msgstr "Yenilikler:"
+
+msgid "&Sim"
+msgstr "&Evet"
+
+msgid "&Não"
+msgstr "&Hayır"
 

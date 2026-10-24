@@ -202,7 +202,7 @@ void SettingsDialog::OnInit() {
                        IDC_ST_UPDATES);
     Button_SetCheck(chk_updates_, config_.GetBoolean(L"verificar_atualizacoes", true));
     vbox->Add(chk_updates_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
-    btn_check_ = Add(WC_BUTTONW, tr("Verificar Atuali&zação..."), BUTTON, IDC_ST_CHECK);
+    btn_check_ = Add(WC_BUTTONW, tr("Verificar &Atualização..."), BUTTON, IDC_ST_CHECK);
     vbox->Add(btn_check_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     chk_startup_ = Add(WC_BUTTONW, tr("Iniciar com o &Windows"), CHECK, IDC_ST_STARTUP);
@@ -213,7 +213,7 @@ void SettingsDialog::OnInit() {
     Button_SetCheck(chk_start_min_, config_.GetBoolean(L"iniciar_minimizado"));
     vbox->Add(chk_start_min_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
-    chk_tray_ = Add(WC_BUTTONW, tr("Minimizar Para a &Bandeja do Sistema"), CHECK, IDC_ST_TRAY);
+    chk_tray_ = Add(WC_BUTTONW, tr("Minimizar &Para a Bandeja do Sistema"), CHECK, IDC_ST_TRAY);
     Button_SetCheck(chk_tray_, config_.GetBoolean(L"minimizar_bandeja"));
     vbox->Add(chk_tray_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
@@ -227,7 +227,7 @@ void SettingsDialog::OnInit() {
     vbox->Add(chk_countdown_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     auto hb_buf = HBox();
-    HWND lbl_buf = Add(WC_STATICW, tr("Tamanho do B&uffer (ms):"), 0);
+    HWND lbl_buf = Add(WC_STATICW, tr("Tamanho do &Buffer (ms):"), 0);
     txt_buffer_ = Add(WC_EDITW, std::to_wstring(config_.GetBuffer()), EDIT, IDC_ST_BUFFER,
                       WS_EX_CLIENTEDGE);
     // The explanation goes in the field's tooltip, not in loose text in the
@@ -242,7 +242,7 @@ void SettingsDialog::OnInit() {
     hb_buf->Add(txt_buffer_, 0, ui::CENTER_V, 0, SIZE{S(80), 0});
     vbox->Add(std::move(hb_buf), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
-    btn_keys_ = Add(WC_BUTTONW, tr("Configurar Teclas de &Atalho..."), BUTTON, IDC_ST_KEYS);
+    btn_keys_ = Add(WC_BUTTONW, tr("Configurar Teclas &de Atalho..."), BUTTON, IDC_ST_KEYS);
     vbox->Add(btn_keys_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     auto hb = HBox();
@@ -336,6 +336,7 @@ enum {
     IDC_AS_ALL_PROCESSES,
     IDC_AS_STEREO,
     IDC_AS_EQ,
+    IDC_AS_FX,
     IDC_AS_NOISE,
 };
 
@@ -422,6 +423,7 @@ void AddSourceDialog::OnInit() {
     vbox->Add(std::move(vol_box), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
 
     btn_eq_ = Add(WC_BUTTONW, tr("&Equalizador"), BUTTON, IDC_AS_EQ);
+    btn_fx_ = Add(WC_BUTTONW, tr("E&feitos"), BUTTON, IDC_AS_FX);
     // Only audio devices: a program's sound is already clean.
     btn_noise_ = Add(WC_BUTTONW, tr("Removedor de &Ruído"), BUTTON, IDC_AS_NOISE);
     // Last: it plays what the controls above set.
@@ -429,6 +431,7 @@ void AddSourceDialog::OnInit() {
     ui::SetToolTip(hwnd_, btn_test_, tr("Ouvir o dispositivo selecionado com o volume ajustado"));
     auto tools = HBox();
     tools->Add(btn_eq_, 0, ui::RIGHT, S(5));
+    tools->Add(btn_fx_, 0, ui::RIGHT, S(5));
     tools->Add(btn_noise_, 0, ui::RIGHT, S(5));
     tools->Add(btn_test_, 0, 0, 0);
     vbox->Add(std::move(tools), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
@@ -480,7 +483,7 @@ void AddSourceDialog::OnInit() {
 
 bool AddSourceDialog::OnCharHook(const MSG& msg) {
     HWND focus = GetFocus();
-    if (IsEnter(msg) && focus != btn_test_ && focus != btn_refresh_ && focus != btn_eq_ &&
+    if (IsEnter(msg) && focus != btn_test_ && focus != btn_refresh_ && focus != btn_eq_ && focus != btn_fx_ &&
         focus != btn_noise_ && focus != btn_exe_browse_ && focus != btn_cancel_) {
         OnOk();
         return true;
@@ -539,6 +542,9 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
             return true;
         case IDC_AS_EQ:
             if (code == BN_CLICKED) OnEqualizer();
+            return true;
+        case IDC_AS_FX:
+            if (code == BN_CLICKED) OnEffects();
             return true;
         case IDC_AS_NOISE:
             if (code == BN_CLICKED) OnNoise();
@@ -655,14 +661,20 @@ void AddSourceDialog::OnTest() {
     ui::SetText(btn_test_, tr("&Parar"));
 }
 
-/* The test follows the dialogs of the equalizer and noise remover while they
-   are open, and the stereo check box. */
+/* The test follows the dialogs of the equalizer, effects and noise remover
+   while they are open, and the stereo check box. */
 void AddSourceDialog::Preview(const FxSettings& fx) {
     if (testing_) audio_.SetMonitorFx(fx);
 }
 
 void AddSourceDialog::OnEqualizer() {
     EqualizerDialog dlg(fx_, [this](const FxSettings& fx) { Preview(fx); });
+    if (dlg.ShowModal(hwnd_) == IDOK) fx_ = dlg.result;
+    Preview(fx_);
+}
+
+void AddSourceDialog::OnEffects() {
+    EffectsDialog dlg(fx_, [this](const FxSettings& fx) { Preview(fx); });
     if (dlg.ShowModal(hwnd_) == IDOK) fx_ = dlg.result;
     Preview(fx_);
 }
@@ -869,6 +881,50 @@ namespace {
 const UINT WM_DOWNLOAD_PROGRESS = WM_APP + 20;
 const UINT WM_DOWNLOAD_DONE = WM_APP + 21;
 }  // namespace
+
+/* ---- Update offer ---- */
+
+UpdateDialog::UpdateDialog(const UpdateInfo& info)
+    : ui::Dialog(tr("Nova atualização disponível!")), info_(info) {}
+
+void UpdateDialog::OnInit() {
+    auto vbox = VBox();
+    if (!info_.notes.empty()) {
+        HWND label = Add(WC_STATICW, tr("Novidades:"), SS_NOPREFIX);
+        notes_ = Add(WC_EDITW, info_.notes,
+                     WS_TABSTOP | WS_VSCROLL | ES_MULTILINE | ES_READONLY | ES_AUTOVSCROLL | ES_WANTRETURN,
+                     0, WS_EX_CLIENTEDGE);
+        vbox->Add(label, 0, ui::LEFT | ui::RIGHT | ui::TOP, S(10));
+        vbox->Add(notes_, 1, ui::LEFT | ui::RIGHT | ui::TOP | ui::EXPAND, S(10), SIZE{S(440), S(220)});
+    }
+    std::wstring text = Format(tr("Sua versão: {atual};\nVersão mais recente: {nova}.\nDeseja atualizar agora?"),
+                               {{L"atual", VB_VERSION}, {L"nova", info_.version}});
+    HWND message = Add(WC_STATICW, text, SS_NOPREFIX);
+    HWND yes = Add(WC_BUTTONW, tr("&Sim"), BUTTON, IDYES);
+    HWND no = Add(WC_BUTTONW, tr("&Não"), BUTTON, IDCANCEL);
+    vbox->Add(message, 0, ui::ALL, S(10));
+    auto buttons = HBox();
+    buttons->Add(yes, 0, ui::RIGHT, S(10));
+    buttons->Add(no, 0, 0, 0);
+    vbox->Add(std::move(buttons), 0, ui::CENTER | ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    root_ = std::move(vbox);
+    Fit();
+    SetFocus(notes_ ? notes_ : yes);
+    if (notes_) SendMessageW(notes_, EM_SETSEL, 0, 0);
+}
+
+bool UpdateDialog::OnCharHook(const MSG& msg) {
+    // Enter in the notes: nothing, not even the button.
+    return IsEnter(msg) && msg.hwnd == notes_;
+}
+
+bool UpdateDialog::OnCommand(int id, int, HWND) {
+    if (id == IDYES) {
+        EndModal(IDOK);
+        return true;
+    }
+    return id == IDOK;  // Enter outside the buttons does nothing
+}
 
 DownloadDialog::DownloadDialog(const UpdateInfo& info, const std::wstring& file)
     : ui::Dialog(tr("Baixando Atualização")), info_(info), file_(file) {}

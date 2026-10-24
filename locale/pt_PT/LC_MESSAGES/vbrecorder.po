@@ -36,19 +36,19 @@ msgstr "Mostrar janela principal"
 msgid "Sair"
 msgstr "Sair"
 
-msgid "&Formato de Saída:"
-msgstr "&Formato de Saída:"
+msgid "Formato de &Saída:"
+msgstr "Formato de &Saída:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
 
-msgid "Compressão F&LAC:"
+msgid "Compressão &FLAC:"
 msgstr "Compressão F&LAC:"
 
 msgid "&Taxa de Amostragem:"
-msgstr "&Taxa de Amostragem:"
+msgstr "Ta&xa de Amostragem:"
 
-msgid "Profundidade de Bit&s:"
+msgid "Profundidade de &Bits:"
 msgstr "Profundidade de &Bits:"
 
 msgid "&Canais:"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "estéreo"
 
 msgid "Fontes de &Gravação:"
-msgstr "Fontes de &Gravação:"
+msgstr "&Fontes de Gravação:"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Nome do Ficheiro:"
 
 msgid "&Diretório de Saída:"
-msgstr "Pa&sta de Destino:"
+msgstr "Pasta &de Destino:"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "&Adicionar"
 
 msgid "&Editar"
 msgstr "&Editar"
 
-msgid "&Remover"
-msgstr "&Remover"
+msgid "Remo&ver"
+msgstr "Re&mover"
 
-msgid "P&rocurar..."
-msgstr "P&rocurar..."
+msgid "&Procurar..."
+msgstr "Pr&ocurar..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Abr&ir Pasta de Gravações"
+msgstr "Abrir Pasta de Gravações"
 
-msgid "Config&urações..."
-msgstr "&Definições..."
-
-msgid "S&obre"
-msgstr "S&obre"
+msgid "Configura&ções..."
+msgstr "Def&inições..."
 
 msgid "&Minimizar"
 msgstr "&Minimizar"
@@ -99,11 +96,11 @@ msgstr "&Fechar"
 msgid "E&xcluir Gravação"
 msgstr "Eliminar Grava&ção"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Gravar fontes em ficheiros se&parados"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "Gra&var fontes em ficheiros separados"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Reproduzir &tons ao iniciar ou parar a gravação"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Reprodu&zir tons ao iniciar ou parar a gravação"
 
 msgid "Selecionar Pasta"
 msgstr "Selecionar Pasta"
@@ -159,17 +156,17 @@ msgstr "Predefinição do sistema"
 msgid "Iniciar &Minimizado"
 msgstr "Iniciar &Minimizado"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "Minimizar Para a Área de &Notificação"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "Minimizar &Para a Área de Notificação"
 
 msgid "Janela Sempre no &Topo"
-msgstr "Janela Sempre no &Topo"
+msgstr "&Janela Sempre no Topo"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "Contagem &Decrescente Antes de Gravar"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "Configurar Teclas de &Atalho..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "Configurar &Teclas de Atalho..."
 
 msgid "Aviso"
 msgstr "Aviso"
@@ -216,26 +213,26 @@ msgstr "Parar"
 msgid "O VB Recorder já está em execução."
 msgstr "O VB Recorder já está em execução."
 
-msgid "Para&r"
-msgstr "Para&r"
+msgid "P&arar"
+msgstr "&Parar"
 
-msgid "&Gravar"
+msgid "Gr&avar"
 msgstr "&Gravar"
 
-msgid "C&ontinuar"
-msgstr "C&ontinuar"
+msgid "Contin&uar"
+msgstr "Contin&uar"
 
-msgid "&Pausar"
-msgstr "&Pausar"
+msgid "Pa&usar"
+msgstr "Pa&usar"
 
 msgid "Gravações"
 msgstr "Gravações"
 
-msgid "Parar Reprod&ução"
-msgstr "Parar Reprod&ução"
+msgid "Parar &Reprodução"
+msgstr "Parar &Reprodução"
 
-msgid "Reprod&uzir Gravação"
-msgstr "Reprod&uzir Gravação"
+msgid "&Reproduzir Gravação"
+msgstr "&Reproduzir Gravação"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Escolha o ficheiro a reproduzir:"
@@ -266,8 +263,8 @@ msgstr "Confirmar Eliminação"
 msgid "&Idioma:"
 msgstr "&Idioma:"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "Tamanho do B&uffer (ms):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "Tamanho do &Buffer (ms):"
 
 msgid "Dispositivos de Áudio"
 msgstr "Dispositivos de Áudio"
@@ -375,8 +372,8 @@ msgstr "Dispositivo de Entrada Predefinido"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "Erro BASS {erro} ao adicionar a fonte de gravação."
 
-msgid "Continuar Última Gra&vação"
-msgstr "Continuar Última Gra&vação"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "Con&tinuar Última Gravação"
 
 msgid "Continuar Última Gravação"
 msgstr "Continuar Última Gravação"
@@ -415,8 +412,8 @@ msgstr "Por favor aguarde..."
 msgid "&Verificar Atualizações Automaticamente"
 msgstr "&Verificar Atualizações Automaticamente"
 
-msgid "Verificar Atuali&zação..."
-msgstr "Verificar Atuali&zação..."
+msgid "Verificar &Atualização..."
+msgstr "Verificar &Atualização..."
 
 msgid "Iniciar com o &Windows"
 msgstr "Iniciar com o &Windows"
@@ -555,7 +552,7 @@ msgid "Techno"
 msgstr "Techno"
 
 msgid "&Predefinição:"
-msgstr "&Predefinição:"
+msgstr "P&redefinição:"
 
 msgid "Personalizado"
 msgstr "Personalizado"
@@ -592,4 +589,205 @@ msgstr "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 m
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Duração da gravação inválida. Utilize horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
+
+msgid "E&feitos"
+msgstr "E&feitos"
+
+msgid "Efeitos"
+msgstr "Efeitos"
+
+msgid "&Efeitos:"
+msgstr "&Efeitos:"
+
+msgid "Con&figurar..."
+msgstr "Con&figurar..."
+
+msgid "Compressor"
+msgstr "Compressor"
+
+msgid "Padrão"
+msgstr "Predefinido"
+
+msgid "Voz Suave"
+msgstr "Voz Suave"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "Locução de Rádio"
+
+msgid "Nivelar Música"
+msgstr "Nivelar Música"
+
+msgid "Compressão Pesada"
+msgstr "Compressão Forte"
+
+msgid "Limitador"
+msgstr "Limitador"
+
+msgid "Pitch Shift"
+msgstr "Alteração de Tom"
+
+msgid "Voz Grave"
+msgstr "Voz Grave"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Um Pouco Mais Grave"
+
+msgid "Monstro"
+msgstr "Monstro"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Um Pouco Mais Aguda"
+
+msgid "Voz Aguda"
+msgstr "Voz Aguda"
+
+msgid "Esquilo"
+msgstr "Esquilo"
+
+msgid "Delay"
+msgstr "Atraso"
+
+msgid "Eco Curto"
+msgstr "Eco Curto"
+
+msgid "Muitos Ecos"
+msgstr "Muitos Ecos"
+
+msgid "Ecos Invertidos"
+msgstr "Ecos Invertidos"
+
+msgid "Voz Robótica"
+msgstr "Voz Robótica"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Dobragem de Voz"
+
+msgid "Pingue-pongue"
+msgstr "Pingue-pongue"
+
+msgid "Estádio"
+msgstr "Estádio"
+
+msgid "Cânion"
+msgstr "Desfiladeiro"
+
+msgid "Reverb"
+msgstr "Reverberação"
+
+msgid "Sala Média"
+msgstr "Sala Média"
+
+msgid "Sala Pequena Clara"
+msgstr "Sala Pequena Clara"
+
+msgid "Sala Pequena Escura"
+msgstr "Sala Pequena Escura"
+
+msgid "Sala Grande"
+msgstr "Sala Grande"
+
+msgid "Banheiro"
+msgstr "Casa de Banho"
+
+msgid "Salão de Igreja"
+msgstr "Salão de Igreja"
+
+msgid "Catedral"
+msgstr "Catedral"
+
+msgid "Caverna Grande"
+msgstr "Caverna Grande"
+
+msgid "Ambiente"
+msgstr "Ambiente"
+
+msgid "Artificial"
+msgstr "Artificial"
+
+msgid "Limpo"
+msgstr "Limpo"
+
+msgid "Moderno"
+msgstr "Moderno"
+
+msgid "Voz I"
+msgstr "Voz I"
+
+msgid "Voz II"
+msgstr "Voz II"
+
+msgid "Voz Dance"
+msgstr "Voz Dance"
+
+msgid "Voz Moderna"
+msgstr "Voz Moderna"
+
+msgid "Cauda de Voz"
+msgstr "Cauda de Voz"
+
+msgid "Limiar:"
+msgstr "Limiar:"
+
+msgid "Proporção:"
+msgstr "Rácio:"
+
+msgid "Ataque:"
+msgstr "Ataque:"
+
+msgid "Liberação:"
+msgstr "Libertação:"
+
+msgid "Ganho:"
+msgstr "Ganho:"
+
+msgid "Semitons:"
+msgstr "Semitons:"
+
+msgid "Tempo:"
+msgstr "Tempo:"
+
+msgid "Realimentação:"
+msgstr "Realimentação:"
+
+msgid "Nível do Efeito:"
+msgstr "Nível do Efeito:"
+
+msgid "Som Original:"
+msgstr "Som Original:"
+
+msgid "P&ingue-pongue"
+msgstr "&Pingue-pongue"
+
+msgid "Tamanho da Sala:"
+msgstr "Tamanho da Sala:"
+
+msgid "Amortecimento:"
+msgstr "Amortecimento:"
+
+msgid "Largura Estéreo:"
+msgstr "Largura Estéreo:"
+
+msgid "P&rocurar..."
+msgstr "P&rocurar..."
+
+msgid "S&obre"
+msgstr "S&obre"
+
+msgid "Pré-atraso:"
+msgstr "Pré-atraso:"
+
+msgid "Novidades:"
+msgstr "Novidades:"
+
+msgid "&Sim"
+msgstr "&Sim"
+
+msgid "&Não"
+msgstr "&Não"
 

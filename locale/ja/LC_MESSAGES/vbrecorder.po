@@ -22,13 +22,13 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "調整された音量で選択したデバイスを聴く"
 
 msgid "&Parar"
-msgstr "停止(&P)"
+msgstr "停止(&T)"
 
 msgid "&Testar"
 msgstr "テスト(&T)"
 
 msgid "&Atualizar"
-msgstr "更新(&W)"
+msgstr "更新(&R)"
 
 msgid "Mostrar janela principal"
 msgstr "メインウィンドウを表示"
@@ -36,20 +36,20 @@ msgstr "メインウィンドウを表示"
 msgid "Sair"
 msgstr "終了"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "出力フォーマット(&F):"
 
 msgid "&Bitrate:"
 msgstr "ビットレート(&B):"
 
-msgid "Compressão F&LAC:"
-msgstr "FLAC圧縮(&L):"
+msgid "Compressão &FLAC:"
+msgstr "FLAC圧縮(&M):"
 
 msgid "&Taxa de Amostragem:"
 msgstr "サンプリングレート(&T):"
 
-msgid "Profundidade de Bit&s:"
-msgstr "ビット深度(&H):"
+msgid "Profundidade de &Bits:"
+msgstr "ビット深度(&B):"
 
 msgid "&Canais:"
 msgstr "チャンネル(&C):"
@@ -61,34 +61,31 @@ msgid "estéreo"
 msgstr "ステレオ"
 
 msgid "Fontes de &Gravação:"
-msgstr "録音ソース(&G):"
+msgstr "録音ソース(&I):"
 
 msgid "&Nome do Arquivo:"
 msgstr "ファイル名(&N):"
 
 msgid "&Diretório de Saída:"
-msgstr "出力ディレクトリ(&D):"
+msgstr "出力ディレクトリ(&O):"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "追加(&A)"
 
 msgid "&Editar"
 msgstr "編集(&E)"
 
-msgid "&Remover"
-msgstr "削除(&R)"
+msgid "Remo&ver"
+msgstr "削除(&V)"
 
-msgid "P&rocurar..."
-msgstr "参照(&R)..."
+msgid "&Procurar..."
+msgstr "参照(&W)..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "録音フォルダを開く(&I)"
+msgstr "録音フォルダを開く(&X)"
 
-msgid "Config&urações..."
-msgstr "設定(&U)..."
-
-msgid "S&obre"
-msgstr "情報(&O)"
+msgid "Configura&ções..."
+msgstr "設定(&G)..."
 
 msgid "&Minimizar"
 msgstr "最小化(&M)"
@@ -97,13 +94,13 @@ msgid "&Fechar"
 msgstr "閉じる(&F)"
 
 msgid "E&xcluir Gravação"
-msgstr "録音を削除(&X)"
+msgstr "録音を削除(&D)"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "ソースを個別のファイルに録音(&P)"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "ソースを個別のファイルに録音(&Q)"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "録音の開始または停止時にトーンを再生(&T)"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "録音の開始または停止時にトーンを再生(&Y)"
 
 msgid "Selecionar Pasta"
 msgstr "フォルダを選択"
@@ -159,17 +156,17 @@ msgstr "システムデフォルト"
 msgid "Iniciar &Minimizado"
 msgstr "最小化して起動(&M)"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
-msgstr "システムトレイに最小化(&B)"
+msgid "Minimizar &Para a Bandeja do Sistema"
+msgstr "システムトレイに最小化(&T)"
 
 msgid "Janela Sempre no &Topo"
-msgstr "常に手前に表示(&T)"
+msgstr "常に手前に表示(&A)"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "録音前にカウントダウン(&R)"
 
-msgid "Configurar Teclas de &Atalho..."
-msgstr "ショートカットキーを設定(&A)..."
+msgid "Configurar Teclas &de Atalho..."
+msgstr "ショートカットキーを設定(&H)..."
 
 msgid "Aviso"
 msgstr "警告"
@@ -216,26 +213,26 @@ msgstr "停止"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorderはすでに実行中です。"
 
-msgid "Para&r"
-msgstr "停止(&R)"
+msgid "P&arar"
+msgstr "停止(&S)"
 
-msgid "&Gravar"
-msgstr "録音(&G)"
+msgid "Gr&avar"
+msgstr "録音(&R)"
 
-msgid "C&ontinuar"
-msgstr "再開(&O)"
+msgid "Contin&uar"
+msgstr "再開(&U)"
 
-msgid "&Pausar"
-msgstr "一時停止(&P)"
+msgid "Pa&usar"
+msgstr "一時停止(&U)"
 
 msgid "Gravações"
 msgstr "録音"
 
-msgid "Parar Reprod&ução"
-msgstr "再生停止(&U)"
+msgid "Parar &Reprodução"
+msgstr "再生停止(&P)"
 
-msgid "Reprod&uzir Gravação"
-msgstr "録音を再生(&U)"
+msgid "&Reproduzir Gravação"
+msgstr "録音を再生(&P)"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "再生するファイルを選択してください:"
@@ -260,10 +257,10 @@ msgid "Confirmar Exclusão"
 msgstr "削除の確認"
 
 msgid "&Idioma:"
-msgstr "言語(&I):"
+msgstr "言語(&L):"
 
-msgid "Tamanho do B&uffer (ms):"
-msgstr "バッファサイズ(ms)(&U):"
+msgid "Tamanho do &Buffer (ms):"
+msgstr "バッファサイズ(ms)(&B):"
 
 msgid ""
 "Aumente o buffer se o áudio estalar em um computador ocupado. De {minimo} a "
@@ -367,8 +364,8 @@ msgstr "デフォルトの入力デバイス"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "録音ソースの追加時のBASSエラー {erro}。"
 
-msgid "Continuar Última Gra&vação"
-msgstr "最後の録音を続ける(&V)"
+msgid "Continuar Ú&ltima Gravação"
+msgstr "最後の録音を続ける(&L)"
 
 msgid "Continuar Última Gravação"
 msgstr "最後の録音を続ける"
@@ -405,10 +402,10 @@ msgid "Por favor aguarde..."
 msgstr "お待ちください..."
 
 msgid "&Verificar Atualizações Automaticamente"
-msgstr "アップデートを自動的に確認する(&V)"
+msgstr "アップデートを自動的に確認する(&U)"
 
-msgid "Verificar Atuali&zação..."
-msgstr "アップデートを確認(&Z)..."
+msgid "Verificar &Atualização..."
+msgstr "アップデートを確認(&F)..."
 
 msgid "Iniciar com o &Windows"
 msgstr "Windows と同時に起動(&W)"
@@ -562,26 +559,227 @@ msgid "Removedor de Ruído"
 msgstr "ノイズ除去"
 
 msgid "&Ativar Removedor de Ruído"
-msgstr "ノイズ除去を有効にする(&A)"
+msgstr "ノイズ除去を有効にする(&E)"
 
 msgid "&Equalizador"
-msgstr "イコライザー(&Q)"
+msgstr "イコライザー(&E)"
 
 msgid "Removedor de &Ruído"
 msgstr "ノイズ除去(&N)"
 
 msgid "&Mostrar Todos os Processos"
-msgstr "すべてのプロセスを表示(&M)"
+msgstr "すべてのプロセスを表示(&A)"
 
 msgid "E&stéreo"
 msgstr "ステレオ(&S)"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "録音時間 (hh:mm:&ss):"
+msgstr "録音時間 (&hh:mm:ss):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "空欄の場合は無制限に録音します。1:30:00 は 1 時間 30 分、45:00 は 45 分です。"
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "録音時間が正しくありません。1:30:00 のように時間・分・秒で入力するか、無制限に録音する場合は空欄にしてください。"
+
+msgid "E&feitos"
+msgstr "エフェクト(&F)"
+
+msgid "Efeitos"
+msgstr "エフェクト"
+
+msgid "&Efeitos:"
+msgstr "エフェクト(&E):"
+
+msgid "Con&figurar..."
+msgstr "設定(&F)..."
+
+msgid "Compressor"
+msgstr "コンプレッサー"
+
+msgid "Padrão"
+msgstr "標準"
+
+msgid "Voz Suave"
+msgstr "柔らかい声"
+
+msgid "Podcast"
+msgstr "ポッドキャスト"
+
+msgid "Locução de Rádio"
+msgstr "ラジオの声"
+
+msgid "Nivelar Música"
+msgstr "音楽の音量を揃える"
+
+msgid "Compressão Pesada"
+msgstr "強いコンプレッション"
+
+msgid "Limitador"
+msgstr "リミッター"
+
+msgid "Pitch Shift"
+msgstr "ピッチシフト"
+
+msgid "Voz Grave"
+msgstr "低い声"
+
+msgid "Um Pouco Mais Grave"
+msgstr "少し低く"
+
+msgid "Monstro"
+msgstr "モンスター"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "少し高く"
+
+msgid "Voz Aguda"
+msgstr "高い声"
+
+msgid "Esquilo"
+msgstr "シマリス"
+
+msgid "Delay"
+msgstr "ディレイ"
+
+msgid "Eco Curto"
+msgstr "短いエコー"
+
+msgid "Muitos Ecos"
+msgstr "多くのエコー"
+
+msgid "Ecos Invertidos"
+msgstr "逆位相のエコー"
+
+msgid "Voz Robótica"
+msgstr "ロボットの声"
+
+msgid "Slapback"
+msgstr "スラップバック"
+
+msgid "Dobra de Voz"
+msgstr "ダブリング"
+
+msgid "Pingue-pongue"
+msgstr "ピンポン"
+
+msgid "Estádio"
+msgstr "スタジアム"
+
+msgid "Cânion"
+msgstr "峡谷"
+
+msgid "Reverb"
+msgstr "リバーブ"
+
+msgid "Sala Média"
+msgstr "中くらいの部屋"
+
+msgid "Sala Pequena Clara"
+msgstr "小さく明るい部屋"
+
+msgid "Sala Pequena Escura"
+msgstr "小さく暗い部屋"
+
+msgid "Sala Grande"
+msgstr "大きな部屋"
+
+msgid "Banheiro"
+msgstr "浴室"
+
+msgid "Salão de Igreja"
+msgstr "教会のホール"
+
+msgid "Catedral"
+msgstr "大聖堂"
+
+msgid "Caverna Grande"
+msgstr "大きな洞窟"
+
+msgid "Ambiente"
+msgstr "アンビエンス"
+
+msgid "Artificial"
+msgstr "人工的"
+
+msgid "Limpo"
+msgstr "クリーン"
+
+msgid "Moderno"
+msgstr "モダン"
+
+msgid "Voz I"
+msgstr "ボーカル I"
+
+msgid "Voz II"
+msgstr "ボーカル II"
+
+msgid "Voz Dance"
+msgstr "ダンス ボーカル"
+
+msgid "Voz Moderna"
+msgstr "モダン ボーカル"
+
+msgid "Cauda de Voz"
+msgstr "声の余韻"
+
+msgid "Limiar:"
+msgstr "しきい値:"
+
+msgid "Proporção:"
+msgstr "比率:"
+
+msgid "Ataque:"
+msgstr "アタック:"
+
+msgid "Liberação:"
+msgstr "リリース:"
+
+msgid "Ganho:"
+msgstr "ゲイン:"
+
+msgid "Semitons:"
+msgstr "半音:"
+
+msgid "Tempo:"
+msgstr "時間:"
+
+msgid "Realimentação:"
+msgstr "フィードバック:"
+
+msgid "Nível do Efeito:"
+msgstr "エフェクトの量:"
+
+msgid "Som Original:"
+msgstr "元の音:"
+
+msgid "P&ingue-pongue"
+msgstr "ピンポン(&I)"
+
+msgid "Tamanho da Sala:"
+msgstr "部屋の大きさ:"
+
+msgid "Amortecimento:"
+msgstr "減衰:"
+
+msgid "Largura Estéreo:"
+msgstr "ステレオの広がり:"
+
+msgid "P&rocurar..."
+msgstr "参照(&B)..."
+
+msgid "S&obre"
+msgstr "情報(&O)"
+
+msgid "Pré-atraso:"
+msgstr "プリディレイ:"
+
+msgid "Novidades:"
+msgstr "新機能:"
+
+msgid "&Sim"
+msgstr "はい(&Y)"
+
+msgid "&Não"
+msgstr "いいえ(&N)"
 

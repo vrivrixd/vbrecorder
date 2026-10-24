@@ -60,13 +60,30 @@ struct BASS_DEVICEINFO {
     DWORD flags;
 };
 
-/* The BASS_FX equalizer and its parameters, from bass_fx.h. */
+/* The BASS_FX effects in use and their parameters, from bass_fx.h. */
 const DWORD BASS_FX_BFX_PEAKEQ = 0x10004;
+const DWORD BASS_FX_BFX_COMPRESSOR2 = 0x10011;
+const DWORD BASS_FX_BFX_PITCHSHIFT = 0x10015;
+const DWORD BASS_FX_BFX_FREEVERB = 0x10016;
 const int BASS_BFX_CHANALL = -1;
 
 struct BASS_BFX_PEAKEQ {
     int lBand;
     float fBandwidth, fQ, fCenter, fGain;
+    int lChannel;
+};
+struct BASS_BFX_COMPRESSOR2 {
+    float fGain, fThreshold, fRatio, fAttack, fRelease;  // dB, dB, ratio, ms, ms
+    int lChannel;
+};
+struct BASS_BFX_PITCHSHIFT {
+    float fPitchShift, fSemitones;  // fPitchShift (a factor) wins over fSemitones
+    long lFFTsize, lOsamp;
+    int lChannel;
+};
+struct BASS_BFX_FREEVERB {
+    float fDryMix, fWetMix, fRoomSize, fDamp, fWidth;  // 0..1, 0..3, then 0..1
+    DWORD lMode;
     int lChannel;
 };
 

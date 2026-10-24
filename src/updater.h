@@ -31,12 +31,24 @@
 
 struct UpdateInfo {
     std::wstring version;  // "1.5"
+    std::wstring notes;    // what is new, in the program's language if the release has it
     std::wstring url;      // the zip of this architecture
     unsigned long long size = 0;
     std::string sha256;    // lower-case hex, when GitHub gives it
 };
 
 enum class UpdateCheck { UpToDate, Available, Failed };
+
+/* The release text, written in English, may carry translations of itself
+   in comments, which GitHub does not show on the page:
+
+       <!-- pt_BR
+       The Portuguese text
+       -->
+
+   The block of the program's language is the one shown; without it, the
+   English text, which is everything outside the comments. */
+std::wstring ReleaseNotes(const std::string& body, const std::wstring& language);
 
 /* Asks GitHub for the latest release. Blocks for a moment: network. */
 UpdateCheck CheckForUpdate(UpdateInfo* info);

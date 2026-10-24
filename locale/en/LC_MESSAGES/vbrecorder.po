@@ -22,7 +22,7 @@ msgid "Ouvir o dispositivo selecionado com o volume ajustado"
 msgstr "Listen to the selected device with the adjusted volume"
 
 msgid "&Parar"
-msgstr "&Stop"
+msgstr "S&top"
 
 msgid "&Testar"
 msgstr "&Test"
@@ -36,19 +36,19 @@ msgstr "Show main window"
 msgid "Sair"
 msgstr "Exit"
 
-msgid "&Formato de Saída:"
+msgid "Formato de &Saída:"
 msgstr "Output &Format:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
 
-msgid "Compressão F&LAC:"
+msgid "Compressão &FLAC:"
 msgstr "FLAC Co&mpression:"
 
 msgid "&Taxa de Amostragem:"
 msgstr "Sample Ra&te:"
 
-msgid "Profundidade de Bit&s:"
+msgid "Profundidade de &Bits:"
 msgstr "&Bit Depth:"
 
 msgid "&Canais:"
@@ -61,7 +61,7 @@ msgid "estéreo"
 msgstr "stereo"
 
 msgid "Fontes de &Gravação:"
-msgstr "&Recording Sources:"
+msgstr "Record&ing Sources:"
 
 msgid "&Nome do Arquivo:"
 msgstr "File &Name:"
@@ -69,26 +69,23 @@ msgstr "File &Name:"
 msgid "&Diretório de Saída:"
 msgstr "&Output Directory:"
 
-msgid "&Adicionar"
+msgid "Adici&onar"
 msgstr "&Add"
 
 msgid "&Editar"
 msgstr "&Edit"
 
-msgid "&Remover"
+msgid "Remo&ver"
 msgstr "Remo&ve"
 
-msgid "P&rocurar..."
+msgid "&Procurar..."
 msgstr "Bro&wse..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Open Record&ings Folder"
+msgstr "Open Recordings Folder"
 
-msgid "Config&urações..."
+msgid "Configura&ções..."
 msgstr "Settin&gs..."
-
-msgid "S&obre"
-msgstr "Abo&ut"
 
 msgid "&Minimizar"
 msgstr "Minimi&ze"
@@ -99,11 +96,11 @@ msgstr "&Quit"
 msgid "E&xcluir Gravação"
 msgstr "&Delete Recording"
 
-msgid "Gravar fontes em arquivos se&parados"
-msgstr "Record sources to se&parate files"
+msgid "Gravar fontes em ar&quivos separados"
+msgstr "Record sources to separate files"
 
-msgid "Reproduzir &tons ao iniciar ou parar gravação"
-msgstr "Play &tones when starting or stopping recording"
+msgid "Reprodu&zir tons ao iniciar ou parar gravação"
+msgstr "Pla&y tones when starting or stopping recording"
 
 msgid "Selecionar Pasta"
 msgstr "Select Folder"
@@ -159,16 +156,16 @@ msgstr "System default"
 msgid "Iniciar &Minimizado"
 msgstr "Start &Minimized"
 
-msgid "Minimizar Para a &Bandeja do Sistema"
+msgid "Minimizar &Para a Bandeja do Sistema"
 msgstr "Minimize to System &Tray"
 
 msgid "Janela Sempre no &Topo"
-msgstr "Always on To&p"
+msgstr "&Always on Top"
 
 msgid "Contagem &Regressiva Antes de Gravar"
 msgstr "Countdown Before &Recording"
 
-msgid "Configurar Teclas de &Atalho..."
+msgid "Configurar Teclas &de Atalho..."
 msgstr "Configure &Hotkeys..."
 
 msgid "Aviso"
@@ -216,26 +213,26 @@ msgstr "Stop"
 msgid "O VB Recorder já está em execução."
 msgstr "VB Recorder is already running."
 
-msgid "Para&r"
+msgid "P&arar"
 msgstr "&Stop"
 
-msgid "&Gravar"
+msgid "Gr&avar"
 msgstr "&Record"
 
-msgid "C&ontinuar"
+msgid "Contin&uar"
 msgstr "Res&ume"
 
-msgid "&Pausar"
-msgstr "&Pause"
+msgid "Pa&usar"
+msgstr "Pa&use"
 
 msgid "Gravações"
 msgstr "Recordings"
 
-msgid "Parar Reprod&ução"
-msgstr "Stop Pla&yback"
+msgid "Parar &Reprodução"
+msgstr "Stop &Playback"
 
-msgid "Reprod&uzir Gravação"
-msgstr "Pla&y Recording"
+msgid "&Reproduzir Gravação"
+msgstr "&Play Recording"
 
 msgid "Escolha o arquivo a reproduzir:"
 msgstr "Choose the file to play:"
@@ -266,7 +263,7 @@ msgstr "Confirm Deletion"
 msgid "&Idioma:"
 msgstr "&Language:"
 
-msgid "Tamanho do B&uffer (ms):"
+msgid "Tamanho do &Buffer (ms):"
 msgstr "&Buffer Size (ms):"
 
 msgid "Dispositivos de Áudio"
@@ -374,7 +371,7 @@ msgstr "Default Input Device"
 msgid "Erro BASS {erro} ao adicionar a fonte de gravação."
 msgstr "BASS error {erro} when adding the recording source."
 
-msgid "Continuar Última Gra&vação"
+msgid "Continuar Ú&ltima Gravação"
 msgstr "Continue &Last Recording"
 
 msgid "Continuar Última Gravação"
@@ -414,11 +411,11 @@ msgstr "Please wait..."
 msgid "&Verificar Atualizações Automaticamente"
 msgstr "Check for &Updates Automatically"
 
-msgid "Verificar Atuali&zação..."
-msgstr "Check for Updat&e..."
+msgid "Verificar &Atualização..."
+msgstr "Check &for Update..."
 
 msgid "Iniciar com o &Windows"
-msgstr "Start with &Windows"
+msgstr "&Start with Windows"
 
 msgid "Você já está usando a versão mais recente do VB Recorder."
 msgstr "You are already using the latest version of VB Recorder."
@@ -569,7 +566,7 @@ msgid "Removedor de Ruído"
 msgstr "Noise Remover"
 
 msgid "&Ativar Removedor de Ruído"
-msgstr "Enable Noise &Remover"
+msgstr "&Enable Noise Remover"
 
 msgid "&Equalizador"
 msgstr "&Equalizer"
@@ -581,7 +578,7 @@ msgid "&Mostrar Todos os Processos"
 msgstr "Show &All Processes"
 
 msgid "E&stéreo"
-msgstr "Stereo (&H)"
+msgstr "&Stereo"
 
 msgid "Duração da Gravação (&hh:mm:ss):"
 msgstr "Recording Duration (&hh:mm:ss):"
@@ -591,4 +588,205 @@ msgstr "Leave empty to record with no limit. 1:30:00 is an hour and a half, 45:0
 
 msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para gravar sem limite."
 msgstr "Invalid recording duration. Use hours, minutes and seconds, such as 1:30:00, or leave it empty to record with no limit."
+
+msgid "E&feitos"
+msgstr "E&ffects"
+
+msgid "Efeitos"
+msgstr "Effects"
+
+msgid "&Efeitos:"
+msgstr "&Effects:"
+
+msgid "Con&figurar..."
+msgstr "Con&figure..."
+
+msgid "Compressor"
+msgstr "Compressor"
+
+msgid "Padrão"
+msgstr "Default"
+
+msgid "Voz Suave"
+msgstr "Gentle Voice"
+
+msgid "Podcast"
+msgstr "Podcast"
+
+msgid "Locução de Rádio"
+msgstr "Radio Voice"
+
+msgid "Nivelar Música"
+msgstr "Level Music"
+
+msgid "Compressão Pesada"
+msgstr "Heavy Compression"
+
+msgid "Limitador"
+msgstr "Limiter"
+
+msgid "Pitch Shift"
+msgstr "Pitch Shift"
+
+msgid "Voz Grave"
+msgstr "Deeper Voice"
+
+msgid "Um Pouco Mais Grave"
+msgstr "Slightly Lower"
+
+msgid "Monstro"
+msgstr "Monster"
+
+msgid "Um Pouco Mais Aguda"
+msgstr "Slightly Higher"
+
+msgid "Voz Aguda"
+msgstr "Higher Voice"
+
+msgid "Esquilo"
+msgstr "Chipmunk"
+
+msgid "Delay"
+msgstr "Delay"
+
+msgid "Eco Curto"
+msgstr "Short Echo"
+
+msgid "Muitos Ecos"
+msgstr "Many Echoes"
+
+msgid "Ecos Invertidos"
+msgstr "Reverse Echoes"
+
+msgid "Voz Robótica"
+msgstr "Robot Voice"
+
+msgid "Slapback"
+msgstr "Slapback"
+
+msgid "Dobra de Voz"
+msgstr "Voice Doubling"
+
+msgid "Pingue-pongue"
+msgstr "Ping-Pong"
+
+msgid "Estádio"
+msgstr "Stadium"
+
+msgid "Cânion"
+msgstr "Canyon"
+
+msgid "Reverb"
+msgstr "Reverb"
+
+msgid "Sala Média"
+msgstr "Medium Room"
+
+msgid "Sala Pequena Clara"
+msgstr "Small Bright Room"
+
+msgid "Sala Pequena Escura"
+msgstr "Small Dark Room"
+
+msgid "Sala Grande"
+msgstr "Large Room"
+
+msgid "Banheiro"
+msgstr "Bathroom"
+
+msgid "Salão de Igreja"
+msgstr "Church Hall"
+
+msgid "Catedral"
+msgstr "Cathedral"
+
+msgid "Caverna Grande"
+msgstr "Big Cave"
+
+msgid "Ambiente"
+msgstr "Ambience"
+
+msgid "Artificial"
+msgstr "Artificial"
+
+msgid "Limpo"
+msgstr "Clean"
+
+msgid "Moderno"
+msgstr "Modern"
+
+msgid "Voz I"
+msgstr "Vocal I"
+
+msgid "Voz II"
+msgstr "Vocal II"
+
+msgid "Voz Dance"
+msgstr "Dance Vocal"
+
+msgid "Voz Moderna"
+msgstr "Modern Vocal"
+
+msgid "Cauda de Voz"
+msgstr "Voice Tail"
+
+msgid "Limiar:"
+msgstr "Threshold:"
+
+msgid "Proporção:"
+msgstr "Ratio:"
+
+msgid "Ataque:"
+msgstr "Attack:"
+
+msgid "Liberação:"
+msgstr "Release:"
+
+msgid "Ganho:"
+msgstr "Gain:"
+
+msgid "Semitons:"
+msgstr "Semitones:"
+
+msgid "Tempo:"
+msgstr "Time:"
+
+msgid "Realimentação:"
+msgstr "Feedback:"
+
+msgid "Nível do Efeito:"
+msgstr "Effect Level:"
+
+msgid "Som Original:"
+msgstr "Original Sound:"
+
+msgid "P&ingue-pongue"
+msgstr "P&ing-Pong"
+
+msgid "Tamanho da Sala:"
+msgstr "Room Size:"
+
+msgid "Amortecimento:"
+msgstr "Damping:"
+
+msgid "Largura Estéreo:"
+msgstr "Stereo Width:"
+
+msgid "P&rocurar..."
+msgstr "&Browse..."
+
+msgid "S&obre"
+msgstr "Abo&ut"
+
+msgid "Pré-atraso:"
+msgstr "Pre-delay:"
+
+msgid "Novidades:"
+msgstr "What's new:"
+
+msgid "&Sim"
+msgstr "&Yes"
+
+msgid "&Não"
+msgstr "&No"
 
