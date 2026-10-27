@@ -582,8 +582,8 @@ msgstr "सभी प्रोसेस दिखाएँ(&A)"
 msgid "E&stéreo"
 msgstr "स्टीरियो(&S)"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "रिकॉर्डिंग की अवधि (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "रिकॉर्डिंग की अवधि (वैकल्पिक)(&H):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "खाली छोड़ने पर बिना सीमा के रिकॉर्ड होगा। 1:30:00 यानी डेढ़ घंटा, 45:00 यानी 45 मिनट।"
@@ -799,7 +799,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "फ़ाइल या फ़ोल्डर:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "फ़ाइल ढूँढें(&F)..."
+msgstr "फ़ाइल ढूँढें(&I)..."
 
 msgid "Procurar P&asta..."
 msgstr "फ़ोल्डर ढूँढें(&D)..."
@@ -818,4 +818,100 @@ msgstr "बैकग्राउंड ऑडियो: {nome}"
 
 msgid "A&leatório"
 msgstr "यादृच्छिक क्रम(&H)"
+
+msgid "A&gendamentos:"
+msgstr "शेड्यूल(&S):"
+
+msgid "&Adicionar"
+msgstr "जोड़ें(&A)"
+
+msgid "&Remover"
+msgstr "हटाएँ(&R)"
+
+msgid "Adicionar Agendamento"
+msgstr "शेड्यूल जोड़ें"
+
+msgid "Editar Agendamento"
+msgstr "शेड्यूल संपादित करें"
+
+msgid "&Remover após concluído"
+msgstr "पूरा होने पर हटाएँ(&R)"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "तारीख़ ग़लत है। {exemplo} की तरह लिखें, या हर दिन रिकॉर्ड करने के लिए ख़ाली छोड़ें।"
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "समय ग़लत है। घंटे और मिनट लिखें, जैसे 14:30।"
+
+msgid "Essa data e esse horário já passaram."
+msgstr "यह तारीख़ और समय बीत चुके हैं।"
+
+msgid "Todos os dias às {hora}"
+msgstr "हर दिन {hora} बजे"
+
+msgid "{data} às {hora}"
+msgstr "{data}, {hora} बजे"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, पूरा होने पर हटाएँ"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "रिकॉर्डिंग शेड्यूल(&J)..."
+
+msgid "Agendamento de Gravações"
+msgstr "रिकॉर्डिंग शेड्यूल"
+
+msgid "&Data (Opcional):"
+msgstr "तारीख़ (वैकल्पिक)(&D):"
+
+msgid "&Horário:"
+msgstr "समय(&T):"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "रिकॉर्डिंग की अवधि (वैकल्पिक)(&U):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, {duracao} के लिए"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "रिकॉर्डिंग की अवधि ग़लत है। घंटे, मिनट और सेकंड लिखें, जैसे 1:30:00, या मुख्य विंडो की अवधि इस्तेमाल करने के लिए ख़ाली छोड़ें।"
+
+msgid "Chorus"
+msgstr "कोरस"
+
+msgid "Flanger"
+msgstr "फ़्लैंजर"
+
+msgid "Atraso Mínimo:"
+msgstr "न्यूनतम विलंब:"
+
+msgid "Atraso Máximo:"
+msgstr "अधिकतम विलंब:"
+
+msgid "Velocidade:"
+msgstr "गति:"
+
+msgid "Chorus Exagerado"
+msgstr "बढ़ा-चढ़ाकर कोरस"
+
+msgid "Motocicleta"
+msgstr "मोटरसाइकिल"
+
+msgid "Diabo"
+msgstr "शैतान"
+
+msgid "Muitas Vozes"
+msgstr "कई आवाज़ें"
+
+msgid "Esquilo ao Fundo"
+msgstr "पीछे गिलहरी"
+
+msgid "Flanger Suave"
+msgstr "हल्का फ़्लैंजर"
+
+msgid "Água"
+msgstr "पानी"
+
+msgid "Avião"
+msgstr "हवाई जहाज़"
 

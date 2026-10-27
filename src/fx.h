@@ -46,6 +46,8 @@ struct EqSettings {
 enum EffectKind {
     FX_COMPRESSOR,
     FX_PITCH,
+    FX_CHORUS,
+    FX_FLANGER,
     FX_DELAY,
     FX_REVERB,
     FX_COUNT

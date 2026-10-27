@@ -581,8 +581,8 @@ msgstr "&Mostrar Todos os Processos"
 msgid "E&stéreo"
 msgstr "E&stéreo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Duração da Gravação (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Duração da Gravação (Opcio&nal):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
@@ -817,4 +817,100 @@ msgstr "Áudio de Fundo: {nome}"
 
 msgid "A&leatório"
 msgstr "A&leatório"
+
+msgid "A&gendamentos:"
+msgstr "A&gendamentos:"
+
+msgid "&Adicionar"
+msgstr "&Adicionar"
+
+msgid "&Remover"
+msgstr "&Remover"
+
+msgid "Adicionar Agendamento"
+msgstr "Adicionar Agendamento"
+
+msgid "Editar Agendamento"
+msgstr "Editar Agendamento"
+
+msgid "&Remover após concluído"
+msgstr "&Remover após concluído"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Data inválida. Escreva como {exemplo}, ou deixe em branco para gravar todos os dias."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Hora inválida. Escreva as horas e os minutos, por exemplo 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Essa data e essa hora já passaram."
+
+msgid "Todos os dias às {hora}"
+msgstr "Todos os dias às {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} às {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, remover após concluído"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Agendamento de Gravaçõe&s..."
+
+msgid "Agendamento de Gravações"
+msgstr "Agendamento de Gravações"
+
+msgid "&Data (Opcional):"
+msgstr "&Data (Opcional):"
+
+msgid "&Horário:"
+msgstr "&Hora:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "D&uração da Gravação (Opcional):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, por {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Atraso Mínimo:"
+
+msgid "Atraso Máximo:"
+msgstr "Atraso Máximo:"
+
+msgid "Velocidade:"
+msgstr "Velocidade:"
+
+msgid "Chorus Exagerado"
+msgstr "Chorus Exagerado"
+
+msgid "Motocicleta"
+msgstr "Mota"
+
+msgid "Diabo"
+msgstr "Diabo"
+
+msgid "Muitas Vozes"
+msgstr "Muitas Vozes"
+
+msgid "Esquilo ao Fundo"
+msgstr "Esquilo ao Fundo"
+
+msgid "Flanger Suave"
+msgstr "Flanger Suave"
+
+msgid "Água"
+msgstr "Água"
+
+msgid "Avião"
+msgstr "Avião"
 

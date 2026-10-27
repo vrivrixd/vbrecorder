@@ -583,8 +583,8 @@ msgstr "Zobraziť &všetky procesy"
 msgid "E&stéreo"
 msgstr "&Stereo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Dĺžka nahrávania (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Dĺžka nahrávania (&voliteľné):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Prázdne = nahrávať bez obmedzenia. 1:30:00 je hodina a pol, 45:00 je 45 minút."
@@ -819,4 +819,100 @@ msgstr "Zvuk na pozadí: {nome}"
 
 msgid "A&leatório"
 msgstr "Náhodné &poradie"
+
+msgid "A&gendamentos:"
+msgstr "&Plány:"
+
+msgid "&Adicionar"
+msgstr "Prid&ať"
+
+msgid "&Remover"
+msgstr "Odob&rať"
+
+msgid "Adicionar Agendamento"
+msgstr "Pridať plán"
+
+msgid "Editar Agendamento"
+msgstr "Upraviť plán"
+
+msgid "&Remover após concluído"
+msgstr "Odob&rať po dokončení"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Neplatný dátum. Zadajte ho ako {exemplo}, alebo ho nechajte prázdny na nahrávanie každý deň."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Neplatný čas. Zadajte hodiny a minúty, napríklad 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Tento dátum a čas už uplynuli."
+
+msgid "Todos os dias às {hora}"
+msgstr "Každý deň o {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} o {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, odobrať po dokončení"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Pl&ánovanie nahrávania..."
+
+msgid "Agendamento de Gravações"
+msgstr "Plánovanie nahrávania"
+
+msgid "&Data (Opcional):"
+msgstr "&Dátum (voliteľné):"
+
+msgid "&Horário:"
+msgstr "Ča&s:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "Dĺž&ka nahrávania (voliteľné):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, na {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Neplatná dĺžka nahrávania. Použite hodiny, minúty a sekundy, napríklad 1:30:00, alebo pole nechajte prázdne a použije sa dĺžka z hlavného okna."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Minimálne oneskorenie:"
+
+msgid "Atraso Máximo:"
+msgstr "Maximálne oneskorenie:"
+
+msgid "Velocidade:"
+msgstr "Rýchlosť:"
+
+msgid "Chorus Exagerado"
+msgstr "Prehnaný chorus"
+
+msgid "Motocicleta"
+msgstr "Motocykel"
+
+msgid "Diabo"
+msgstr "Diabol"
+
+msgid "Muitas Vozes"
+msgstr "Veľa hlasov"
+
+msgid "Esquilo ao Fundo"
+msgstr "Veverička v pozadí"
+
+msgid "Flanger Suave"
+msgstr "Jemný flanger"
+
+msgid "Água"
+msgstr "Voda"
+
+msgid "Avião"
+msgstr "Lietadlo"
 

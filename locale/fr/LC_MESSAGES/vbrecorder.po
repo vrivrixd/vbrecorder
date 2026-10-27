@@ -582,8 +582,8 @@ msgstr "Afficher tous &les processus"
 msgid "E&stéreo"
 msgstr "&Stéréo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Durée de l'enregistrement (&hh:mm:ss) :"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Durée de l'e&nregistrement (facultatif) :"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Vide : enregistre sans limite. 1:30:00 correspond à une heure et demie, 45:00 à 45 minutes."
@@ -818,4 +818,100 @@ msgstr "Audio de fond : {nome}"
 
 msgid "A&leatório"
 msgstr "&Lecture aléatoire"
+
+msgid "A&gendamentos:"
+msgstr "&Programmations :"
+
+msgid "&Adicionar"
+msgstr "&Ajouter"
+
+msgid "&Remover"
+msgstr "&Supprimer"
+
+msgid "Adicionar Agendamento"
+msgstr "Ajouter une programmation"
+
+msgid "Editar Agendamento"
+msgstr "Modifier la programmation"
+
+msgid "&Remover após concluído"
+msgstr "&Supprimer une fois terminé"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Date non valide. Saisissez-la comme {exemplo}, ou laissez-la vide pour enregistrer tous les jours."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Heure non valide. Saisissez les heures et les minutes, par exemple 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Cette date et cette heure sont déjà passées."
+
+msgid "Todos os dias às {hora}"
+msgstr "Tous les jours à {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} à {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, supprimer une fois terminé"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Pr&ogrammation des enregistrements..."
+
+msgid "Agendamento de Gravações"
+msgstr "Programmation des enregistrements"
+
+msgid "&Data (Opcional):"
+msgstr "&Date (facultatif) :"
+
+msgid "&Horário:"
+msgstr "&Heure :"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "D&urée de l'enregistrement (facultatif) :"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, pendant {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Durée d'enregistrement non valide. Utilisez des heures, minutes et secondes, comme 1:30:00, ou laissez vide pour utiliser la durée de la fenêtre principale."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Délai minimal :"
+
+msgid "Atraso Máximo:"
+msgstr "Délai maximal :"
+
+msgid "Velocidade:"
+msgstr "Vitesse :"
+
+msgid "Chorus Exagerado"
+msgstr "Chorus exagéré"
+
+msgid "Motocicleta"
+msgstr "Moto"
+
+msgid "Diabo"
+msgstr "Diable"
+
+msgid "Muitas Vozes"
+msgstr "Plusieurs voix"
+
+msgid "Esquilo ao Fundo"
+msgstr "Écureuil au fond"
+
+msgid "Flanger Suave"
+msgstr "Flanger doux"
+
+msgid "Água"
+msgstr "Eau"
+
+msgid "Avião"
+msgstr "Avion"
 

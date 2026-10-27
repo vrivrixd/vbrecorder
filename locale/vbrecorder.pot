@@ -551,7 +551,7 @@ msgstr ""
 msgid "E&stéreo"
 msgstr ""
 
-msgid "Duração da Gravação (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
 msgstr ""
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
@@ -786,5 +786,101 @@ msgid "Áudio de Fundo: {nome}"
 msgstr ""
 
 msgid "A&leatório"
+msgstr ""
+
+msgid "A&gendamentos:"
+msgstr ""
+
+msgid "&Adicionar"
+msgstr ""
+
+msgid "&Remover"
+msgstr ""
+
+msgid "Adicionar Agendamento"
+msgstr ""
+
+msgid "Editar Agendamento"
+msgstr ""
+
+msgid "&Remover após concluído"
+msgstr ""
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr ""
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr ""
+
+msgid "Essa data e esse horário já passaram."
+msgstr ""
+
+msgid "Todos os dias às {hora}"
+msgstr ""
+
+msgid "{data} às {hora}"
+msgstr ""
+
+msgid "{agendamento}, remover após concluído"
+msgstr ""
+
+msgid "Agenda&mento de Gravações..."
+msgstr ""
+
+msgid "Agendamento de Gravações"
+msgstr ""
+
+msgid "&Data (Opcional):"
+msgstr ""
+
+msgid "&Horário:"
+msgstr ""
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr ""
+
+msgid "{agendamento}, por {duracao}"
+msgstr ""
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr ""
+
+msgid "Chorus"
+msgstr ""
+
+msgid "Flanger"
+msgstr ""
+
+msgid "Atraso Mínimo:"
+msgstr ""
+
+msgid "Atraso Máximo:"
+msgstr ""
+
+msgid "Velocidade:"
+msgstr ""
+
+msgid "Chorus Exagerado"
+msgstr ""
+
+msgid "Motocicleta"
+msgstr ""
+
+msgid "Diabo"
+msgstr ""
+
+msgid "Muitas Vozes"
+msgstr ""
+
+msgid "Esquilo ao Fundo"
+msgstr ""
+
+msgid "Flanger Suave"
+msgstr ""
+
+msgid "Água"
+msgstr ""
+
+msgid "Avião"
 msgstr ""
 

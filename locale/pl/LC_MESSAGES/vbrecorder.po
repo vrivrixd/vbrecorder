@@ -584,8 +584,8 @@ msgstr "&Pokaż wszystkie procesy"
 msgid "E&stéreo"
 msgstr "&Stereo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Czas nagrywania (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "&Czas nagrywania (opcjonalnie):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Puste: nagrywanie bez limitu. 1:30:00 to półtorej godziny, 45:00 to 45 minut."
@@ -820,4 +820,100 @@ msgstr "Dźwięk w tle: {nome}"
 
 msgid "A&leatório"
 msgstr "&Losowo"
+
+msgid "A&gendamentos:"
+msgstr "&Harmonogramy:"
+
+msgid "&Adicionar"
+msgstr "&Dodaj"
+
+msgid "&Remover"
+msgstr "&Usuń"
+
+msgid "Adicionar Agendamento"
+msgstr "Dodaj harmonogram"
+
+msgid "Editar Agendamento"
+msgstr "Edytuj harmonogram"
+
+msgid "&Remover após concluído"
+msgstr "&Usuń po zakończeniu"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Nieprawidłowa data. Wpisz ją jak {exemplo} albo zostaw puste, aby nagrywać codziennie."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Nieprawidłowa godzina. Wpisz godziny i minuty, na przykład 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Ta data i godzina już minęły."
+
+msgid "Todos os dias às {hora}"
+msgstr "Codziennie o {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} o {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, usuń po zakończeniu"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "&Harmonogram nagrań..."
+
+msgid "Agendamento de Gravações"
+msgstr "Harmonogram nagrań"
+
+msgid "&Data (Opcional):"
+msgstr "Da&ta (opcjonalnie):"
+
+msgid "&Horário:"
+msgstr "&Godzina:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "Czas &nagrywania (opcjonalnie):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, przez {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Nieprawidłowy czas nagrywania. Użyj godzin, minut i sekund, na przykład 1:30:00, albo zostaw puste, aby użyć czasu z okna głównego."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Minimalne opóźnienie:"
+
+msgid "Atraso Máximo:"
+msgstr "Maksymalne opóźnienie:"
+
+msgid "Velocidade:"
+msgstr "Szybkość:"
+
+msgid "Chorus Exagerado"
+msgstr "Przesadny chorus"
+
+msgid "Motocicleta"
+msgstr "Motocykl"
+
+msgid "Diabo"
+msgstr "Diabeł"
+
+msgid "Muitas Vozes"
+msgstr "Wiele głosów"
+
+msgid "Esquilo ao Fundo"
+msgstr "Wiewiórka w tle"
+
+msgid "Flanger Suave"
+msgstr "Łagodny flanger"
+
+msgid "Água"
+msgstr "Woda"
+
+msgid "Avião"
+msgstr "Samolot"
 

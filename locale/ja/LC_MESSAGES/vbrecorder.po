@@ -573,8 +573,8 @@ msgstr "すべてのプロセスを表示(&A)"
 msgid "E&stéreo"
 msgstr "ステレオ(&S)"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "録音時間 (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "録音時間 (省略可)(&H):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "空欄の場合は無制限に録音します。1:30:00 は 1 時間 30 分、45:00 は 45 分です。"
@@ -790,7 +790,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "ファイルまたはフォルダー:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "ファイルを参照(&F)..."
+msgstr "ファイルを参照(&I)..."
 
 msgid "Procurar P&asta..."
 msgstr "フォルダーを参照(&D)..."
@@ -809,4 +809,100 @@ msgstr "バックグラウンド オーディオ: {nome}"
 
 msgid "A&leatório"
 msgstr "シャッフル(&H)"
+
+msgid "A&gendamentos:"
+msgstr "スケジュール(&S):"
+
+msgid "&Adicionar"
+msgstr "追加(&A)"
+
+msgid "&Remover"
+msgstr "削除(&R)"
+
+msgid "Adicionar Agendamento"
+msgstr "スケジュールの追加"
+
+msgid "Editar Agendamento"
+msgstr "スケジュールの編集"
+
+msgid "&Remover após concluído"
+msgstr "完了後に削除(&R)"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "日付が正しくありません。{exemplo} のように入力するか、毎日録音する場合は空欄にしてください。"
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "時刻が正しくありません。時と分を入力してください (例: 14:30)。"
+
+msgid "Essa data e esse horário já passaram."
+msgstr "その日時はすでに過ぎています。"
+
+msgid "Todos os dias às {hora}"
+msgstr "毎日 {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}、完了後に削除"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "録音スケジュール(&J)..."
+
+msgid "Agendamento de Gravações"
+msgstr "録音スケジュール"
+
+msgid "&Data (Opcional):"
+msgstr "日付 (省略可)(&D):"
+
+msgid "&Horário:"
+msgstr "時刻(&T):"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "録音時間 (省略可)(&U):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}、{duracao} 間"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "録音時間が正しくありません。1:30:00 のように時、分、秒で入力するか、メイン ウィンドウの録音時間を使う場合は空欄にしてください。"
+
+msgid "Chorus"
+msgstr "コーラス"
+
+msgid "Flanger"
+msgstr "フランジャー"
+
+msgid "Atraso Mínimo:"
+msgstr "最小ディレイ:"
+
+msgid "Atraso Máximo:"
+msgstr "最大ディレイ:"
+
+msgid "Velocidade:"
+msgstr "速度:"
+
+msgid "Chorus Exagerado"
+msgstr "大げさなコーラス"
+
+msgid "Motocicleta"
+msgstr "オートバイ"
+
+msgid "Diabo"
+msgstr "悪魔"
+
+msgid "Muitas Vozes"
+msgstr "たくさんの声"
+
+msgid "Esquilo ao Fundo"
+msgstr "背後のシマリス"
+
+msgid "Flanger Suave"
+msgstr "やわらかいフランジャー"
+
+msgid "Água"
+msgstr "水"
+
+msgid "Avião"
+msgstr "飛行機"
 

@@ -64,6 +64,7 @@ struct BASS_DEVICEINFO {
 
 /* The BASS_FX effects in use and their parameters, from bass_fx.h. */
 const DWORD BASS_FX_BFX_PEAKEQ = 0x10004;
+const DWORD BASS_FX_BFX_CHORUS = 0x1000d;  // also the flanger
 const DWORD BASS_FX_BFX_COMPRESSOR2 = 0x10011;
 const DWORD BASS_FX_BFX_PITCHSHIFT = 0x10015;
 const DWORD BASS_FX_BFX_FREEVERB = 0x10016;
@@ -72,6 +73,12 @@ const int BASS_BFX_CHANALL = -1;
 struct BASS_BFX_PEAKEQ {
     int lBand;
     float fBandwidth, fQ, fCenter, fGain;
+    int lChannel;
+};
+struct BASS_BFX_CHORUS {
+    float fDryMix, fWetMix, fFeedback;  // -2..2, -2..2, -1..1
+    float fMinSweep, fMaxSweep;         // ms of delay, 0 < x <= 6000
+    float fRate;                        // how fast the delay moves, ms per second
     int lChannel;
 };
 struct BASS_BFX_COMPRESSOR2 {

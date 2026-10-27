@@ -579,8 +579,8 @@ msgstr "&Näytä kaikki prosessit"
 msgid "E&stéreo"
 msgstr "&Stereo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Tallennuksen &kesto (hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Tallennuksen &kesto (valinnainen):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Tyhjä: tallennetaan ilman rajaa. 1:30:00 on puolitoista tuntia, 45:00 on 45 minuuttia."
@@ -815,4 +815,100 @@ msgstr "Taustaääni: {nome}"
 
 msgid "A&leatório"
 msgstr "Satunna&inen järjestys"
+
+msgid "A&gendamentos:"
+msgstr "&Ajastukset:"
+
+msgid "&Adicionar"
+msgstr "&Lisää"
+
+msgid "&Remover"
+msgstr "Pois&ta"
+
+msgid "Adicionar Agendamento"
+msgstr "Lisää ajastus"
+
+msgid "Editar Agendamento"
+msgstr "Muokkaa ajastusta"
+
+msgid "&Remover após concluído"
+msgstr "Poista valmis&tuttua"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Virheellinen päivämäärä. Kirjoita se muodossa {exemplo} tai jätä se tyhjäksi, niin tallennus tehdään joka päivä."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Virheellinen kellonaika. Kirjoita tunnit ja minuutit, esimerkiksi 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Tämä päivämäärä ja kellonaika ovat jo menneet."
+
+msgid "Todos os dias às {hora}"
+msgstr "Joka päivä klo {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} klo {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, poista valmistuttua"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Tallenn&usten ajastus..."
+
+msgid "Agendamento de Gravações"
+msgstr "Tallennusten ajastus"
+
+msgid "&Data (Opcional):"
+msgstr "Päi&vämäärä (valinnainen):"
+
+msgid "&Horário:"
+msgstr "&Kellonaika:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "Tallennuksen k&esto (valinnainen):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, kesto {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Virheellinen tallennuksen kesto. Käytä tunteja, minuutteja ja sekunteja, esimerkiksi 1:30:00, tai jätä tyhjäksi, niin käytetään pääikkunan kestoa."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Pienin viive:"
+
+msgid "Atraso Máximo:"
+msgstr "Suurin viive:"
+
+msgid "Velocidade:"
+msgstr "Nopeus:"
+
+msgid "Chorus Exagerado"
+msgstr "Liioiteltu chorus"
+
+msgid "Motocicleta"
+msgstr "Moottoripyörä"
+
+msgid "Diabo"
+msgstr "Paholainen"
+
+msgid "Muitas Vozes"
+msgstr "Monta ääntä"
+
+msgid "Esquilo ao Fundo"
+msgstr "Maaorava taustalla"
+
+msgid "Flanger Suave"
+msgstr "Pehmeä flanger"
+
+msgid "Água"
+msgstr "Vesi"
+
+msgid "Avião"
+msgstr "Lentokone"
 

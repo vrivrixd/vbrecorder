@@ -589,8 +589,8 @@ msgstr "Po&kaži vse procese"
 msgid "E&stéreo"
 msgstr "&Stereo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "&Trajanje snemanja (hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "T&rajanje snemanja (neobvezno):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Prazno: snemanje brez omejitve. 1:30:00 je ura in pol, 45:00 je 45 minut."
@@ -825,4 +825,100 @@ msgstr "Zvok v ozadju: {nome}"
 
 msgid "A&leatório"
 msgstr "&Naključno"
+
+msgid "A&gendamentos:"
+msgstr "&Načrti:"
+
+msgid "&Adicionar"
+msgstr "&Dodaj"
+
+msgid "&Remover"
+msgstr "&Odstrani"
+
+msgid "Adicionar Agendamento"
+msgstr "Dodaj načrt"
+
+msgid "Editar Agendamento"
+msgstr "Uredi načrt"
+
+msgid "&Remover após concluído"
+msgstr "&Odstrani po koncu"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Neveljaven datum. Vnesite ga kot {exemplo} ali ga pustite praznega za snemanje vsak dan."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Neveljavna ura. Vnesite ure in minute, na primer 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Ta datum in ura sta že minila."
+
+msgid "Todos os dias às {hora}"
+msgstr "Vsak dan ob {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} ob {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, odstrani po koncu"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Načr&tovanje snemanj..."
+
+msgid "Agendamento de Gravações"
+msgstr "Načrtovanje snemanj"
+
+msgid "&Data (Opcional):"
+msgstr "D&atum (neobvezno):"
+
+msgid "&Horário:"
+msgstr "&Ura:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "&Trajanje snemanja (neobvezno):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, za {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Neveljavno trajanje snemanja. Uporabite ure, minute in sekunde, na primer 1:30:00, ali pustite prazno za trajanje iz glavnega okna."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Najmanjša zakasnitev:"
+
+msgid "Atraso Máximo:"
+msgstr "Največja zakasnitev:"
+
+msgid "Velocidade:"
+msgstr "Hitrost:"
+
+msgid "Chorus Exagerado"
+msgstr "Pretiran chorus"
+
+msgid "Motocicleta"
+msgstr "Motor"
+
+msgid "Diabo"
+msgstr "Hudič"
+
+msgid "Muitas Vozes"
+msgstr "Veliko glasov"
+
+msgid "Esquilo ao Fundo"
+msgstr "Veverica v ozadju"
+
+msgid "Flanger Suave"
+msgstr "Nežen flanger"
+
+msgid "Água"
+msgstr "Voda"
+
+msgid "Avião"
+msgstr "Letalo"
 

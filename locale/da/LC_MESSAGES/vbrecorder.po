@@ -580,8 +580,8 @@ msgstr "&Vis alle processer"
 msgid "E&stéreo"
 msgstr "Ste&reo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Optagelsens varighed (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Optagelsens varig&hed (valgfri):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Tom: optager uden grænse. 1:30:00 er halvanden time, 45:00 er 45 minutter."
@@ -797,7 +797,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "Fil eller mappe:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "Gennemse &fil..."
+msgstr "Gennemse fi&l..."
 
 msgid "Procurar P&asta..."
 msgstr "Gennemse &mappe..."
@@ -816,4 +816,100 @@ msgstr "Baggrundslyd: {nome}"
 
 msgid "A&leatório"
 msgstr "T&ilfældig rækkefølge"
+
+msgid "A&gendamentos:"
+msgstr "&Planlægninger:"
+
+msgid "&Adicionar"
+msgstr "&Tilføj"
+
+msgid "&Remover"
+msgstr "&Fjern"
+
+msgid "Adicionar Agendamento"
+msgstr "Tilføj planlægning"
+
+msgid "Editar Agendamento"
+msgstr "Rediger planlægning"
+
+msgid "&Remover após concluído"
+msgstr "&Fjern efter afslutning"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Ugyldig dato. Skriv den som {exemplo}, eller lad den være tom for at optage hver dag."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Ugyldigt klokkeslæt. Skriv timer og minutter, for eksempel 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Den dato og det klokkeslæt er allerede gået."
+
+msgid "Todos os dias às {hora}"
+msgstr "Hver dag kl. {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} kl. {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, fjern efter afslutning"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "P&lanlægning af optagelser..."
+
+msgid "Agendamento de Gravações"
+msgstr "Planlægning af optagelser"
+
+msgid "&Data (Opcional):"
+msgstr "&Dato (valgfri):"
+
+msgid "&Horário:"
+msgstr "&Klokkeslæt:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "Optagelsens &varighed (valgfri):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, i {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Ugyldig optagelsesvarighed. Brug timer, minutter og sekunder, f.eks. 1:30:00, eller lad feltet være tomt for at bruge varigheden fra hovedvinduet."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Mindste forsinkelse:"
+
+msgid "Atraso Máximo:"
+msgstr "Største forsinkelse:"
+
+msgid "Velocidade:"
+msgstr "Hastighed:"
+
+msgid "Chorus Exagerado"
+msgstr "Overdrevet chorus"
+
+msgid "Motocicleta"
+msgstr "Motorcykel"
+
+msgid "Diabo"
+msgstr "Djævel"
+
+msgid "Muitas Vozes"
+msgstr "Mange stemmer"
+
+msgid "Esquilo ao Fundo"
+msgstr "Jordegern i baggrunden"
+
+msgid "Flanger Suave"
+msgstr "Blød flanger"
+
+msgid "Água"
+msgstr "Vand"
+
+msgid "Avião"
+msgstr "Fly"
 

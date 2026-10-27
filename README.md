@@ -40,9 +40,10 @@ history.
   order, goes into the recording as one more source, such as music under a
   voice. "Repeat When Finished" starts it over at the end; unchecked, it plays
   once. With "Shuffle", a folder plays in a random order, a new one each time
-  it repeats. It has its own volume, equalizer and stereo setting, and it is
-  never played aloud: it is only heard in the recording. Pausing pauses it
-  too, and continuing the last recording goes on from where it stopped.
+  it repeats. It has its own volume, equalizer, effects and stereo setting,
+  and it is never played aloud: it is only heard in the recording. Pausing
+  pauses it too, and continuing the last recording goes on from where it
+  stopped.
 - **Per-source volume.** Adjust each source from -30 dB to +30 dB, to balance
   weak microphones without affecting the others.
 - **Stereo or mono per source.** A source with "Stereo" unchecked is mixed
@@ -54,9 +55,10 @@ history.
   own gain, a preamp, and presets: the classic Winamp ones, plus curves for
   voice, podcast, telephone and more. The sliders say the gain in dB to the
   screen reader: the arrows move 0.5 dB, Page Up and Page Down 3 dB.
-- **Effects per source.** Compressor, pitch shift, delay and reverb, each with
-  its controls and presets (the reverb ones based on Audacity's). They are
-  applied in that order, after the noise remover and the equalizer. The delay
+- **Effects per source.** Compressor, pitch shift, chorus, flanger, delay and
+  reverb, each with its controls and presets (the reverb ones based on
+  Audacity's). They are applied in that order, after the noise remover and
+  the equalizer. The delay
   has a real ping-pong mode: the echoes take turns between left and right,
   even with a microphone, which has the same sound on both sides. The reverb
   has a pre-delay. Each effect starts with a Flat preset, which changes
@@ -84,6 +86,14 @@ history.
   Pausing also pauses the count.
 - **Start with Windows**, optional. The program stays portable: if its folder
   moves, it points Windows to the new place the next time it opens.
+- **Scheduled recordings.** Recording Schedule, in the main window, keeps a
+  list of times to start recording by itself, as if Record were pressed:
+  on a given date, or every day when the date is left empty. Each one may
+  have its own recording duration; without one, the duration field of the
+  main window counts. "Remove When Done" takes a schedule out of the list
+  once its recording starts. The program does this itself, without the
+  Windows Task Scheduler, so it must be open (in the tray is enough) and the
+  computer awake.
 - **Settings window** with language, automatic update checks, start with
   Windows, start minimized, minimize to tray, window always on top, countdown
   and buffer size, besides the hotkeys.
@@ -239,6 +249,7 @@ Structure:
 - `src/fx.cpp` — equalizer, effects and noise remover settings, and their presets.
 - `src/fx_chain.cpp` — the processing of each source (BASS_FX, RNNoise and the delay).
 - `src/background.cpp` — background audio: the files of a source, played in turn.
+- `src/schedule.cpp` — scheduled recordings: their dates and times.
 - `src/fx_dialogs.cpp` — the equalizer, effects and noise remover dialogs.
 - `src/ui.cpp` — interface foundation: native controls and window layout.
 - `res/` — manifest, version information and the list of embedded translations.

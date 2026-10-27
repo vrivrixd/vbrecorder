@@ -28,6 +28,8 @@ const int NOISE_FRAME = 480;  // 10 ms at 48000 Hz, what RNNoise takes at a time
 const int EQ_PRIORITY = 100;
 const int COMPRESSOR_PRIORITY = 90;
 const int PITCH_PRIORITY = 80;
+const int CHORUS_PRIORITY = 70;
+const int FLANGER_PRIORITY = 60;
 const int REVERB_PRIORITY = 100;
 const float DELAY_MAX_MS = 2000;
 const float PREDELAY_MAX_MS = 500;
@@ -128,6 +130,11 @@ void FxChain::Apply(const FxSettings& fx) {
         b_.FXSetParameters(pitch_, &p);
     }
 
+    // Chorus and flanger are left out without any of the effect's sound:
+    // that is what "Flat" is, and it must change nothing.
+    chorus_ = SetChorus(chorus_, fx.effects[FX_CHORUS], CHORUS_PRIORITY);
+    flanger_ = SetChorus(flanger_, fx.effects[FX_FLANGER], FLANGER_PRIORITY);
+
     // Delay. BASS_FX's own one, in stereo, only crosses the left and right
     // echoes: a microphone has the same sound on both sides, so it sounded
     // like a plain delay. This one bounces for real.
@@ -169,6 +176,24 @@ void FxChain::Apply(const FxSettings& fx) {
         p.lChannel = BASS_BFX_CHANALL;
         b_.FXSetParameters(reverb_, &p);
     }
+}
+
+DWORD FxChain::SetChorus(DWORD handle, const EffectSettings& e, int priority) {
+    handle = SetFx(pre_, handle, e.on && std::fabs(At(e, 1)) >= 0.5f, BASS_FX_BFX_CHORUS, priority);
+    if (handle) {
+        // The delay sways between the two; the smaller one is the minimum.
+        float a = Clamp(At(e, 3), 0.1f, 6000), b = Clamp(At(e, 4), 0.1f, 6000);
+        BASS_BFX_CHORUS p = {};
+        p.fDryMix = Clamp(At(e, 0) / 100, 0, 1);
+        p.fWetMix = Clamp(At(e, 1) / 100, -1, 1);
+        p.fFeedback = Clamp(At(e, 2) / 100, -0.95f, 0.95f);
+        p.fMinSweep = std::min(a, b);
+        p.fMaxSweep = std::max(a, b);
+        p.fRate = Clamp(At(e, 5), 0.1f, 1000);
+        p.lChannel = BASS_BFX_CHANALL;
+        b_.FXSetParameters(handle, &p);
+    }
+    return handle;
 }
 
 void FxChain::RunStage(Stage& stage, float* data, DWORD frames) {

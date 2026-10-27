@@ -581,8 +581,8 @@ msgstr "Tüm &işlemleri göster"
 msgid "E&stéreo"
 msgstr "&Stereo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Kayıt Süresi (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Kayıt Süresi (iste&ğe bağlı):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Boş bırakılırsa sınırsız kaydeder. 1:30:00 bir buçuk saat, 45:00 ise 45 dakikadır."
@@ -817,4 +817,100 @@ msgstr "Arka plan sesi: {nome}"
 
 msgid "A&leatório"
 msgstr "&Rastgele"
+
+msgid "A&gendamentos:"
+msgstr "Za&manlamalar:"
+
+msgid "&Adicionar"
+msgstr "&Ekle"
+
+msgid "&Remover"
+msgstr "&Kaldır"
+
+msgid "Adicionar Agendamento"
+msgstr "Zamanlama Ekle"
+
+msgid "Editar Agendamento"
+msgstr "Zamanlamayı Düzenle"
+
+msgid "&Remover após concluído"
+msgstr "Tamamlanınca &kaldır"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Geçersiz tarih. {exemplo} gibi yazın ya da her gün kaydetmek için boş bırakın."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Geçersiz saat. Saati ve dakikayı yazın, örneğin 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Bu tarih ve saat çoktan geçti."
+
+msgid "Todos os dias às {hora}"
+msgstr "Her gün {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, tamamlanınca kaldır"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Kayıt Za&manlaması..."
+
+msgid "Agendamento de Gravações"
+msgstr "Kayıt Zamanlaması"
+
+msgid "&Data (Opcional):"
+msgstr "Ta&rih (isteğe bağlı):"
+
+msgid "&Horário:"
+msgstr "&Saat:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "Kayıt S&üresi (isteğe bağlı):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, {duracao} süreyle"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Geçersiz kayıt süresi. 1:30:00 gibi saat, dakika ve saniye kullanın ya da ana penceredeki süreyi kullanmak için boş bırakın."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "En Az Gecikme:"
+
+msgid "Atraso Máximo:"
+msgstr "En Çok Gecikme:"
+
+msgid "Velocidade:"
+msgstr "Hız:"
+
+msgid "Chorus Exagerado"
+msgstr "Abartılı Chorus"
+
+msgid "Motocicleta"
+msgstr "Motosiklet"
+
+msgid "Diabo"
+msgstr "Şeytan"
+
+msgid "Muitas Vozes"
+msgstr "Birçok Ses"
+
+msgid "Esquilo ao Fundo"
+msgstr "Arkada Sincap"
+
+msgid "Flanger Suave"
+msgstr "Yumuşak Flanger"
+
+msgid "Água"
+msgstr "Su"
+
+msgid "Avião"
+msgstr "Uçak"
 

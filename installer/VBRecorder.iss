@@ -62,6 +62,9 @@ AppMutex=VBRecorder_Mutex
 WizardStyle=modern
 ; The welcome page, with only Next and Cancel, which Inno Setup hides by default.
 DisableWelcomePage=no
+; The license (GPL) to accept before installing, in English, the only
+; language in which it is official; the page around it is translated.
+LicenseFile={#X64}\LICENSE
 ShowLanguageDialog=yes
 OutputDir={#OutputDir}
 OutputBaseFilename=VBRecorder-Setup

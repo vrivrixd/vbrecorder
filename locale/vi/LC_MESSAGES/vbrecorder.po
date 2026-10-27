@@ -580,8 +580,8 @@ msgstr "Hiển &thị tất cả tiến trình"
 msgid "E&stéreo"
 msgstr "&Stereo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Thời &lượng ghi âm (hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Thời &lượng ghi âm (không bắt buộc):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Để trống để ghi âm không giới hạn. 1:30:00 là một tiếng rưỡi, 45:00 là 45 phút."
@@ -815,5 +815,101 @@ msgid "Áudio de Fundo: {nome}"
 msgstr "Âm thanh nền: {nome}"
 
 msgid "A&leatório"
-msgstr "Ngẫu nh&iên"
+msgstr "N&gẫu nhiên"
+
+msgid "A&gendamentos:"
+msgstr "&Lịch hẹn:"
+
+msgid "&Adicionar"
+msgstr "&Thêm"
+
+msgid "&Remover"
+msgstr "&Xóa"
+
+msgid "Adicionar Agendamento"
+msgstr "Thêm lịch hẹn"
+
+msgid "Editar Agendamento"
+msgstr "Sửa lịch hẹn"
+
+msgid "&Remover após concluído"
+msgstr "&Xóa sau khi hoàn tất"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Ngày không hợp lệ. Hãy nhập như {exemplo}, hoặc để trống để ghi âm mỗi ngày."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Giờ không hợp lệ. Hãy nhập giờ và phút, ví dụ 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Ngày giờ này đã qua."
+
+msgid "Todos os dias às {hora}"
+msgstr "Mỗi ngày lúc {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} lúc {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, xóa sau khi hoàn tất"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Lịch hẹn ghi â&m..."
+
+msgid "Agendamento de Gravações"
+msgstr "Lịch hẹn ghi âm"
+
+msgid "&Data (Opcional):"
+msgstr "&Ngày (không bắt buộc):"
+
+msgid "&Horário:"
+msgstr "&Giờ:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "Thời &lượng ghi âm (không bắt buộc):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, trong {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Thời lượng ghi âm không hợp lệ. Hãy dùng giờ, phút và giây, ví dụ 1:30:00, hoặc để trống để dùng thời lượng ở cửa sổ chính."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Độ trễ tối thiểu:"
+
+msgid "Atraso Máximo:"
+msgstr "Độ trễ tối đa:"
+
+msgid "Velocidade:"
+msgstr "Tốc độ:"
+
+msgid "Chorus Exagerado"
+msgstr "Chorus cường điệu"
+
+msgid "Motocicleta"
+msgstr "Xe máy"
+
+msgid "Diabo"
+msgstr "Ác quỷ"
+
+msgid "Muitas Vozes"
+msgstr "Nhiều giọng"
+
+msgid "Esquilo ao Fundo"
+msgstr "Sóc chuột phía sau"
+
+msgid "Flanger Suave"
+msgstr "Flanger nhẹ"
+
+msgid "Água"
+msgstr "Nước"
+
+msgid "Avião"
+msgstr "Máy bay"
 

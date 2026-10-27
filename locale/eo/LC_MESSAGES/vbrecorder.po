@@ -580,8 +580,8 @@ msgstr "&Montri ĉiujn procezojn"
 msgid "E&stéreo"
 msgstr "&Stereo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Daŭro de la registrado (hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Daŭro de la registrado (nedeviga):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Malplena: registri sen limo. 1:30:00 estas horo kaj duono, 45:00 estas 45 minutoj."
@@ -816,4 +816,100 @@ msgstr "Fona sonaĵo: {nome}"
 
 msgid "A&leatório"
 msgstr "Hazarda &ordo"
+
+msgid "A&gendamentos:"
+msgstr "&Planoj:"
+
+msgid "&Adicionar"
+msgstr "&Aldoni"
+
+msgid "&Remover"
+msgstr "&Forigi"
+
+msgid "Adicionar Agendamento"
+msgstr "Aldoni planon"
+
+msgid "Editar Agendamento"
+msgstr "Redakti planon"
+
+msgid "&Remover após concluído"
+msgstr "&Forigi post fino"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Nevalida dato. Tajpu ĝin kiel {exemplo}, aŭ lasu ĝin malplena por registri ĉiutage."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Nevalida horo. Tajpu la horojn kaj minutojn, ekzemple 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Tiu dato kaj horo jam pasis."
+
+msgid "Todos os dias às {hora}"
+msgstr "Ĉiutage je {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} je {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, forigi post fino"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Planado de r&egistradoj..."
+
+msgid "Agendamento de Gravações"
+msgstr "Planado de registradoj"
+
+msgid "&Data (Opcional):"
+msgstr "&Dato (nedeviga):"
+
+msgid "&Horário:"
+msgstr "&Horo:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "Daŭr&o de la registrado (nedeviga):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, dum {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Nevalida daŭro de registrado. Uzu horojn, minutojn kaj sekundojn, ekzemple 1:30:00, aŭ lasu ĝin malplena por uzi la daŭron de la ĉefa fenestro."
+
+msgid "Chorus"
+msgstr "Koruso"
+
+msgid "Flanger"
+msgstr "Flanĝilo"
+
+msgid "Atraso Mínimo:"
+msgstr "Minimuma prokrasto:"
+
+msgid "Atraso Máximo:"
+msgstr "Maksimuma prokrasto:"
+
+msgid "Velocidade:"
+msgstr "Rapido:"
+
+msgid "Chorus Exagerado"
+msgstr "Troiga koruso"
+
+msgid "Motocicleta"
+msgstr "Motorciklo"
+
+msgid "Diabo"
+msgstr "Diablo"
+
+msgid "Muitas Vozes"
+msgstr "Multaj voĉoj"
+
+msgid "Esquilo ao Fundo"
+msgstr "Sciuro en la fono"
+
+msgid "Flanger Suave"
+msgstr "Milda flanĝilo"
+
+msgid "Água"
+msgstr "Akvo"
+
+msgid "Avião"
+msgstr "Aviadilo"
 

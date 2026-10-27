@@ -183,6 +183,46 @@ private:
          btn_cancel_ = nullptr, note_ = nullptr;
 };
 
+/* The list of scheduled recordings: add, edit and remove; Ok keeps the
+   changes. */
+class ScheduleListDialog : public ui::Dialog {
+public:
+    explicit ScheduleListDialog(const std::vector<Schedule>& schedules);
+    std::vector<Schedule> result;
+
+protected:
+    void OnInit() override;
+    bool OnCommand(int id, int code, HWND control) override;
+    bool OnCharHook(const MSG& msg) override;
+
+private:
+    void Refresh(int select);
+    int Selected() const;
+    void OnAdd();
+    void OnEdit();
+    void OnRemove();
+
+    std::vector<Schedule> list_;
+    HWND lst_ = nullptr, btn_edit_ = nullptr, btn_remove_ = nullptr;
+};
+
+/* One scheduled recording: date, time and whether it leaves the list. */
+class ScheduleDialog : public ui::Dialog {
+public:
+    ScheduleDialog(const Schedule* edit);
+    Schedule result;
+
+protected:
+    void OnInit() override;
+    bool OnCommand(int id, int code, HWND control) override;
+
+private:
+    void OnOk();
+
+    bool editing_;
+    HWND txt_date_ = nullptr, txt_time_ = nullptr, txt_duration_ = nullptr, chk_remove_ = nullptr;
+};
+
 /* Single-choice list (wx.SingleChoiceDialog). Returns the index, or -1. */
 int SingleChoice(HWND parent, const std::wstring& message, const std::wstring& title,
                  const std::vector<std::wstring>& items, bool on_top);

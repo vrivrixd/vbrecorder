@@ -596,8 +596,8 @@ msgstr "إظهار كل العمليات(&A)"
 msgid "E&stéreo"
 msgstr "ستيريو(&S)"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "مدة التسجيل (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "مدة التسجيل (اختياري)(&H):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "اتركه فارغًا للتسجيل بلا حد. 1:30:00 تعني ساعة ونصف، و45:00 تعني 45 دقيقة."
@@ -813,7 +813,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "ملف أو مجلد:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "استعراض ملف(&F)..."
+msgstr "استعراض ملف(&I)..."
 
 msgid "Procurar P&asta..."
 msgstr "استعراض مجلد(&D)..."
@@ -832,4 +832,100 @@ msgstr "صوت الخلفية: {nome}"
 
 msgid "A&leatório"
 msgstr "ترتيب عشوائي(&H)"
+
+msgid "A&gendamentos:"
+msgstr "الجداول(&S):"
+
+msgid "&Adicionar"
+msgstr "إضافة(&A)"
+
+msgid "&Remover"
+msgstr "إزالة(&R)"
+
+msgid "Adicionar Agendamento"
+msgstr "إضافة جدول"
+
+msgid "Editar Agendamento"
+msgstr "تحرير الجدول"
+
+msgid "&Remover após concluído"
+msgstr "الإزالة بعد الاكتمال(&R)"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "تاريخ غير صالح. اكتبه مثل {exemplo}، أو اتركه فارغًا للتسجيل كل يوم."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "وقت غير صالح. اكتب الساعات والدقائق، مثلًا 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "هذا التاريخ والوقت قد مضيا."
+
+msgid "Todos os dias às {hora}"
+msgstr "كل يوم في {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} في {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}، الإزالة بعد الاكتمال"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "جدول التسجيلات(&J)..."
+
+msgid "Agendamento de Gravações"
+msgstr "جدول التسجيلات"
+
+msgid "&Data (Opcional):"
+msgstr "التاريخ (اختياري)(&D):"
+
+msgid "&Horário:"
+msgstr "الوقت(&T):"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "مدة التسجيل (اختياري)(&U):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}، لمدة {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "مدة تسجيل غير صالحة. استخدم الساعات والدقائق والثواني، مثل 1:30:00، أو اتركها فارغة لاستخدام المدة في النافذة الرئيسية."
+
+msgid "Chorus"
+msgstr "الكورس"
+
+msgid "Flanger"
+msgstr "الفلانجر"
+
+msgid "Atraso Mínimo:"
+msgstr "أدنى تأخير:"
+
+msgid "Atraso Máximo:"
+msgstr "أقصى تأخير:"
+
+msgid "Velocidade:"
+msgstr "السرعة:"
+
+msgid "Chorus Exagerado"
+msgstr "كورس مبالغ فيه"
+
+msgid "Motocicleta"
+msgstr "دراجة نارية"
+
+msgid "Diabo"
+msgstr "شيطان"
+
+msgid "Muitas Vozes"
+msgstr "أصوات كثيرة"
+
+msgid "Esquilo ao Fundo"
+msgstr "سنجاب في الخلفية"
+
+msgid "Flanger Suave"
+msgstr "فلانجر لطيف"
+
+msgid "Água"
+msgstr "ماء"
+
+msgid "Avião"
+msgstr "طائرة"
 

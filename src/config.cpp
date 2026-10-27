@@ -371,6 +371,40 @@ void ConfigManager::SetSources(const std::vector<Source>& sources) {
     }
 }
 
+std::vector<Schedule> ConfigManager::GetSchedules() const {
+    std::vector<Schedule> result;
+    const Section* section = Find(L"AGENDAMENTOS");
+    if (!section) return result;
+    for (auto& kv : section->items) {
+        std::wstring v = kv.second;
+        size_t a = v.find(L'|');
+        size_t b = a == std::wstring::npos ? a : v.find(L'|', a + 1);
+        if (b == std::wstring::npos) continue;
+        size_t c = v.find(L'|', b + 1);
+        Schedule s;
+        s.date = Trim(v.substr(0, a));
+        s.remove_after = Trim(v.substr(b + 1, c == std::wstring::npos ? c : c - b - 1)) == L"1";
+        if (c != std::wstring::npos) ParseDuration(v.substr(c + 1), &s.duration);
+        if (!ParseScheduleTime(v.substr(a + 1, b - a - 1), &s.hour, &s.minute)) continue;
+        int y = 0, m = 0, d = 0;
+        if (!s.date.empty() && swscanf(s.date.c_str(), L"%d-%d-%d", &y, &m, &d) != 3) continue;
+        result.push_back(s);
+    }
+    return result;
+}
+
+void ConfigManager::SetSchedules(const std::vector<Schedule>& schedules) {
+    Section& section = Ensure(L"AGENDAMENTOS");
+    section.items.clear();
+    for (size_t i = 0; i < schedules.size(); ++i) {
+        const Schedule& s = schedules[i];
+        section.items.emplace_back(std::to_wstring(i + 1),
+                                   s.date + L"|" + ScheduleTimeForEdit(s) + L"|" +
+                                       (s.remove_after ? L"1" : L"0") + L"|" +
+                                       (s.duration > 0 ? FormatDuration(s.duration) : L""));
+    }
+}
+
 bool SameSource(const Source& a, const Source& b) {
     if (a.type != b.type) return false;
     if (a.type == L"exe" || a.type == L"file") return ToLower(a.name) == ToLower(b.name);

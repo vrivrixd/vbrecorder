@@ -572,8 +572,8 @@ msgstr "모든 프로세스 표시(&A)"
 msgid "E&stéreo"
 msgstr "스테레오(&S)"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "녹음 시간 (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "녹음 시간 (선택 사항)(&H):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "비워 두면 제한 없이 녹음합니다. 1:30:00은 1시간 30분, 45:00은 45분입니다."
@@ -789,7 +789,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "파일 또는 폴더:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "파일 찾아보기(&F)..."
+msgstr "파일 찾아보기(&I)..."
 
 msgid "Procurar P&asta..."
 msgstr "폴더 찾아보기(&D)..."
@@ -808,4 +808,100 @@ msgstr "배경 오디오: {nome}"
 
 msgid "A&leatório"
 msgstr "무작위 순서(&H)"
+
+msgid "A&gendamentos:"
+msgstr "예약(&S):"
+
+msgid "&Adicionar"
+msgstr "추가(&A)"
+
+msgid "&Remover"
+msgstr "제거(&R)"
+
+msgid "Adicionar Agendamento"
+msgstr "예약 추가"
+
+msgid "Editar Agendamento"
+msgstr "예약 편집"
+
+msgid "&Remover após concluído"
+msgstr "완료 후 제거(&R)"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "날짜가 잘못되었습니다. {exemplo}처럼 입력하거나, 매일 녹음하려면 비워 두세요."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "시간이 잘못되었습니다. 시와 분을 입력하세요. 예: 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "그 날짜와 시간은 이미 지났습니다."
+
+msgid "Todos os dias às {hora}"
+msgstr "매일 {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, 완료 후 제거"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "녹음 예약(&J)..."
+
+msgid "Agendamento de Gravações"
+msgstr "녹음 예약"
+
+msgid "&Data (Opcional):"
+msgstr "날짜 (선택 사항)(&D):"
+
+msgid "&Horário:"
+msgstr "시간(&T):"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "녹음 시간 (선택 사항)(&U):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, {duracao} 동안"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "녹음 시간이 잘못되었습니다. 1:30:00처럼 시, 분, 초로 입력하거나, 기본 창의 녹음 시간을 사용하려면 비워 두세요."
+
+msgid "Chorus"
+msgstr "코러스"
+
+msgid "Flanger"
+msgstr "플랜저"
+
+msgid "Atraso Mínimo:"
+msgstr "최소 지연:"
+
+msgid "Atraso Máximo:"
+msgstr "최대 지연:"
+
+msgid "Velocidade:"
+msgstr "속도:"
+
+msgid "Chorus Exagerado"
+msgstr "과장된 코러스"
+
+msgid "Motocicleta"
+msgstr "오토바이"
+
+msgid "Diabo"
+msgstr "악마"
+
+msgid "Muitas Vozes"
+msgstr "많은 목소리"
+
+msgid "Esquilo ao Fundo"
+msgstr "뒤에서 다람쥐"
+
+msgid "Flanger Suave"
+msgstr "부드러운 플랜저"
+
+msgid "Água"
+msgstr "물"
+
+msgid "Avião"
+msgstr "비행기"
 

@@ -65,6 +65,8 @@ float Clamp(float v, float lo, float hi) { return std::max(lo, std::min(hi, v));
    does: checking an effect turns it on without changing the sound yet.
    Where the other presets come from:
    - compressor: usual starting points for recording voice and music;
+   - chorus and flanger: the examples of the BASS_FX author, and a gentler
+     flanger;
    - pitch shift: steps that keep a voice recognizable, and the extremes;
    - delay: the examples of the BASS_FX author and common pedal settings;
    - reverb: Audacity's factory presets, converted to Freeverb, with their
@@ -98,6 +100,37 @@ const std::vector<EffectDef>& Defs() {
              {L"slightly_higher", "Um Pouco Mais Aguda", {2}},
              {L"higher", "Voz Aguda", {5}},
              {L"chipmunk", "Esquilo", {12}},
+         }},
+        // A delay that sways, from a few to hundreds of milliseconds.
+        {L"chorus", "Chorus",
+         {{"Som Original:", 0, 100, 0, L"%", false, 1, 5},
+          {"Nível do Efeito:", -100, 100, 0, L"%", false, 1, 5},
+          {"Realimentação:", -95, 95, 0, L"%", false, 1, 5},
+          {"Atraso Mínimo:", 1, 500, 0, L" ms", false, 1, 10},
+          {"Atraso Máximo:", 1, 500, 0, L" ms", false, 1, 10},
+          {"Velocidade:", 1, 500, 0, L" ms/s", false, 1, 10}},
+         {
+             {L"flat", "Plano", {100, 0, 50, 1, 200, 50}},
+             {L"exaggerated", "Chorus Exagerado", {70, 25, 50, 1, 200, 50}},
+             {L"motorcycle", "Motocicleta", {90, 45, 50, 1, 100, 25}},
+             {L"devil", "Diabo", {90, 35, 50, 1, 50, 200}},
+             {L"many_voices", "Muitas Vozes", {90, 35, 50, 1, 400, 200}},
+             {L"back_chipmunk", "Esquilo ao Fundo", {90, -20, 50, 1, 400, 400}},
+         }},
+        // The same effect with a short delay, in tenths of a millisecond.
+        {L"flanger", "Flanger",
+         {{"Som Original:", 0, 100, 0, L"%", false, 1, 5},
+          {"Nível do Efeito:", -100, 100, 0, L"%", false, 1, 5},
+          {"Realimentação:", -95, 95, 0, L"%", false, 1, 5},
+          {"Atraso Mínimo:", 0.1f, 20, 1, L" ms", false, 0.1f, 1},
+          {"Atraso Máximo:", 0.1f, 20, 1, L" ms", false, 0.1f, 1},
+          {"Velocidade:", 0.1f, 50, 1, L" ms/s", false, 0.1f, 1}},
+         {
+             {L"flat", "Plano", {100, 0, 50, 1, 5, 1}},
+             {L"default", "Padrão", {100, 35, 50, 1, 5, 1}},
+             {L"gentle", "Flanger Suave", {100, 25, 20, 1, 3, 0.5f}},
+             {L"water", "Água", {90, -40, 50, 1, 2, 1}},
+             {L"airplane", "Avião", {30, 40, 50, 1, 10, 5}},
          }},
         {L"delay", "Delay",
          {{"Tempo:", 1, 2000, 0, L" ms", false, 1, 50},

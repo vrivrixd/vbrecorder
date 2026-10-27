@@ -627,9 +627,7 @@ void AddSourceDialog::PopulateFilter(int sel) {
     ui::Show(chk_all_, sel == 1);
     ui::Show(btn_refresh_, sel == 1);
     ui::Show(btn_noise_, sel == 0);
-    // Background audio has only the equalizer, and no test: it is only heard
-    // in the recording.
-    ui::Show(btn_fx_, !file);
+    // Background audio has no test: it is only heard in the recording.
     ui::Show(btn_test_, !file);
     ui::Show(lbl_exe_, exe);
     ui::Show(txt_exe_, exe);
@@ -841,9 +839,8 @@ void AddSourceDialog::OnOk() {
         selected.name = path;
         selected.volume = Volume();
         selected.fx = fx_;
-        // Only the equalizer and stereo: a recorded file needs no cleaning.
+        // A recorded file needs no cleaning: no noise remover.
         selected.fx.noise.on = false;
-        for (auto& e : selected.fx.effects) e.on = false;
         selected.loop = Button_GetCheck(chk_loop_) == BST_CHECKED;
         selected.shuffle = Button_GetCheck(chk_shuffle_) == BST_CHECKED;
         has_selected = true;
@@ -879,6 +876,218 @@ void AddSourceDialog::OnOk() {
     if (selected.type != L"device") selected.fx.noise.on = false;
     has_selected = true;
     EndModal(IDOK);
+}
+
+/* ---- Scheduled recordings ---- */
+
+namespace {
+enum {
+    IDC_SCH_LIST = 451,
+    IDC_SCH_ADD,
+    IDC_SCH_EDIT,
+    IDC_SCH_REMOVE,
+    IDC_SCH_DATE,
+    IDC_SCH_TIME,
+    IDC_SCH_DURATION,
+    IDC_SCH_REMOVE_AFTER,
+};
+}  // namespace
+
+ScheduleListDialog::ScheduleListDialog(const std::vector<Schedule>& schedules)
+    : ui::Dialog(tr("Agendamento de Gravações")), result(schedules), list_(schedules) {}
+
+void ScheduleListDialog::OnInit() {
+    auto vbox = VBox();
+    HWND label = Add(WC_STATICW, tr("A&gendamentos:"), 0);
+    lst_ = Add(WC_LISTVIEWW, L"", WS_TABSTOP | LVS_REPORT | LVS_NOCOLUMNHEADER | LVS_SINGLESEL |
+                                      LVS_SHOWSELALWAYS,
+               IDC_SCH_LIST, WS_EX_CLIENTEDGE);
+    ListView_SetExtendedListViewStyle(lst_, LVS_EX_FULLROWSELECT);
+    LVCOLUMNW col = {};
+    col.mask = LVCF_WIDTH;
+    col.cx = S(400);
+    ListView_InsertColumn(lst_, 0, &col);
+    vbox->Add(label, 0, ui::LEFT | ui::RIGHT | ui::TOP, S(10));
+    vbox->Add(lst_, 1, ui::ALL | ui::EXPAND, S(10), SIZE{S(420), S(180)});
+
+    auto tools = HBox();
+    HWND add = Add(WC_BUTTONW, tr("&Adicionar"), BUTTON, IDC_SCH_ADD);
+    btn_edit_ = Add(WC_BUTTONW, tr("&Editar"), BUTTON, IDC_SCH_EDIT);
+    btn_remove_ = Add(WC_BUTTONW, tr("&Remover"), BUTTON, IDC_SCH_REMOVE);
+    tools->Add(add, 0, ui::RIGHT, S(5));
+    tools->Add(btn_edit_, 0, ui::RIGHT, S(5));
+    tools->Add(btn_remove_, 0, 0, 0);
+    vbox->Add(std::move(tools), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+
+    auto hb = HBox();
+    HWND ok = Add(WC_BUTTONW, tr("&Ok"), BUTTON | BS_DEFPUSHBUTTON, IDOK);
+    HWND cancel = Add(WC_BUTTONW, tr("&Cancelar"), BUTTON, IDCANCEL);
+    hb->Add(ok, 0, ui::RIGHT, S(5));
+    hb->Add(cancel, 0, 0, 0);
+    vbox->Add(std::move(hb), 0, ui::CENTER | ui::ALL, S(15));
+    root_ = std::move(vbox);
+    Refresh(0);
+    Fit();
+    SetFocus(list_.empty() ? add : lst_);
+}
+
+void ScheduleListDialog::Refresh(int select) {
+    ListView_DeleteAllItems(lst_);
+    for (auto& s : list_) {
+        std::wstring text = ScheduleText(s);
+        LVITEMW item = {};
+        item.mask = LVIF_TEXT;
+        item.iItem = ListView_GetItemCount(lst_);
+        item.pszText = const_cast<wchar_t*>(text.c_str());
+        ListView_InsertItem(lst_, &item);
+    }
+    ListView_SetColumnWidth(lst_, 0, LVSCW_AUTOSIZE_USEHEADER);
+    if (!list_.empty()) {
+        select = std::max(0, std::min((int)list_.size() - 1, select));
+        ListView_SetItemState(lst_, select, LVIS_SELECTED | LVIS_FOCUSED, LVIS_SELECTED | LVIS_FOCUSED);
+        ListView_EnsureVisible(lst_, select, FALSE);
+    }
+    EnableWindow(btn_edit_, !list_.empty());
+    EnableWindow(btn_remove_, !list_.empty());
+}
+
+int ScheduleListDialog::Selected() const { return ListView_GetNextItem(lst_, -1, LVNI_SELECTED); }
+
+void ScheduleListDialog::OnAdd() {
+    ScheduleDialog dlg(nullptr);
+    if (dlg.ShowModal(hwnd_) != IDOK) return;
+    list_.push_back(dlg.result);
+    Refresh((int)list_.size() - 1);
+    SetFocus(lst_);
+}
+
+void ScheduleListDialog::OnEdit() {
+    int sel = Selected();
+    if (sel < 0) return;
+    ScheduleDialog dlg(&list_[sel]);
+    if (dlg.ShowModal(hwnd_) != IDOK) return;
+    list_[sel] = dlg.result;
+    Refresh(sel);
+    SetFocus(lst_);
+}
+
+void ScheduleListDialog::OnRemove() {
+    int sel = Selected();
+    if (sel < 0) return;
+    list_.erase(list_.begin() + sel);
+    Refresh(sel);
+    SetFocus(list_.empty() ? GetDlgItem(hwnd_, IDC_SCH_ADD) : lst_);
+}
+
+bool ScheduleListDialog::OnCharHook(const MSG& msg) {
+    // Delete in the list removes, as in the list of sources.
+    if (msg.message == WM_KEYDOWN && msg.wParam == VK_DELETE && msg.hwnd == lst_) {
+        OnRemove();
+        return true;
+    }
+    return false;
+}
+
+bool ScheduleListDialog::OnCommand(int id, int code, HWND) {
+    switch (id) {
+        case IDC_SCH_ADD:
+            if (code == BN_CLICKED) OnAdd();
+            return true;
+        case IDC_SCH_EDIT:
+            if (code == BN_CLICKED) OnEdit();
+            return true;
+        case IDC_SCH_REMOVE:
+            if (code == BN_CLICKED) OnRemove();
+            return true;
+        case IDOK:
+            result = list_;
+            EndModal(IDOK);
+            return true;
+    }
+    return false;
+}
+
+ScheduleDialog::ScheduleDialog(const Schedule* edit)
+    : ui::Dialog(edit ? tr("Editar Agendamento") : tr("Adicionar Agendamento")), editing_(edit != nullptr) {
+    if (edit) result = *edit;
+}
+
+void ScheduleDialog::OnInit() {
+    auto vbox = VBox();
+    // Without a date it records every day.
+    HWND lbl_date = Add(WC_STATICW, tr("&Data (Opcional):"), 0);
+    txt_date_ = Add(WC_EDITW, editing_ ? ScheduleDateForEdit(result.date) : L"", EDIT, IDC_SCH_DATE,
+                    WS_EX_CLIENTEDGE);
+    HWND lbl_time = Add(WC_STATICW, tr("&Horário:"), 0);
+    txt_time_ = Add(WC_EDITW, editing_ ? ScheduleTimeForEdit(result) : L"", EDIT, IDC_SCH_TIME,
+                    WS_EX_CLIENTEDGE);
+    // Without one, the duration field of the main window counts.
+    HWND lbl_duration = Add(WC_STATICW, tr("D&uração da Gravação (Opcional):"), 0);
+    txt_duration_ = Add(WC_EDITW, editing_ && result.duration > 0 ? FormatDuration(result.duration) : L"",
+                        EDIT, IDC_SCH_DURATION, WS_EX_CLIENTEDGE);
+    chk_remove_ = Add(WC_BUTTONW, tr("&Remover após concluído"), CHECK, IDC_SCH_REMOVE_AFTER);
+    Button_SetCheck(chk_remove_, editing_ && result.remove_after ? BST_CHECKED : BST_UNCHECKED);
+    vbox->Add(lbl_date, 0, ui::LEFT | ui::RIGHT | ui::TOP, S(10));
+    vbox->Add(txt_date_, 0, ui::LEFT | ui::RIGHT | ui::EXPAND, S(10), SIZE{S(260), 0});
+    vbox->Add(lbl_time, 0, ui::LEFT | ui::RIGHT | ui::TOP, S(10));
+    vbox->Add(txt_time_, 0, ui::LEFT | ui::RIGHT | ui::EXPAND, S(10));
+    vbox->Add(lbl_duration, 0, ui::LEFT | ui::RIGHT | ui::TOP, S(10));
+    vbox->Add(txt_duration_, 0, ui::LEFT | ui::RIGHT | ui::EXPAND, S(10));
+    vbox->Add(chk_remove_, 0, ui::ALL, S(10));
+
+    auto hb = HBox();
+    HWND ok = Add(WC_BUTTONW, tr("&Ok"), BUTTON | BS_DEFPUSHBUTTON, IDOK);
+    HWND cancel = Add(WC_BUTTONW, tr("&Cancelar"), BUTTON, IDCANCEL);
+    hb->Add(ok, 0, ui::RIGHT, S(5));
+    hb->Add(cancel, 0, 0, 0);
+    vbox->Add(std::move(hb), 0, ui::CENTER | ui::ALL, S(15));
+    root_ = std::move(vbox);
+    Fit();
+    SetFocus(txt_date_);
+}
+
+void ScheduleDialog::OnOk() {
+    Schedule s = result;
+    std::wstring date = Trim(ui::GetText(txt_date_));
+    s.date.clear();
+    if (!date.empty() && !ParseScheduleDate(date, &s.date)) {
+        ui::MsgBox(hwnd_,
+                   Format(tr("Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."),
+                          {{L"exemplo", ScheduleDateExample()}}),
+                   tr("Aviso"), MB_ICONWARNING | MB_OK);
+        SetFocus(txt_date_);
+        return;
+    }
+    if (!ParseScheduleTime(ui::GetText(txt_time_), &s.hour, &s.minute)) {
+        ui::MsgBox(hwnd_, tr("Horário inválido. Digite as horas e os minutos, por exemplo 14:30."),
+                   tr("Aviso"), MB_ICONWARNING | MB_OK);
+        SetFocus(txt_time_);
+        return;
+    }
+    if (!ParseDuration(ui::GetText(txt_duration_), &s.duration)) {
+        ui::MsgBox(hwnd_,
+                   tr("Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, "
+                      "ou deixe em branco para usar a duração da janela principal."),
+                   tr("Aviso"), MB_ICONWARNING | MB_OK);
+        SetFocus(txt_duration_);
+        return;
+    }
+    if (SchedulePassed(s)) {
+        ui::MsgBox(hwnd_, tr("Essa data e esse horário já passaram."), tr("Aviso"), MB_ICONWARNING | MB_OK);
+        SetFocus(txt_date_);
+        return;
+    }
+    s.remove_after = Button_GetCheck(chk_remove_) == BST_CHECKED;
+    result = s;
+    EndModal(IDOK);
+}
+
+bool ScheduleDialog::OnCommand(int id, int, HWND) {
+    if (id == IDOK) {
+        OnOk();
+        return true;
+    }
+    return false;
 }
 
 /* ---- Single choice ---- */

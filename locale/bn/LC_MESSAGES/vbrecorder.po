@@ -582,8 +582,8 @@ msgstr "সব প্রসেস দেখান(&A)"
 msgid "E&stéreo"
 msgstr "স্টেরিও(&S)"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "রেকর্ডিংয়ের সময়কাল (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "রেকর্ডিংয়ের সময়কাল (ঐচ্ছিক)(&H):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "খালি রাখলে সীমা ছাড়াই রেকর্ড হবে। 1:30:00 মানে দেড় ঘণ্টা, 45:00 মানে 45 মিনিট।"
@@ -799,7 +799,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "ফাইল বা ফোল্ডার:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "ফাইল খুঁজুন(&F)..."
+msgstr "ফাইল খুঁজুন(&I)..."
 
 msgid "Procurar P&asta..."
 msgstr "ফোল্ডার খুঁজুন(&D)..."
@@ -818,4 +818,100 @@ msgstr "পটভূমির অডিও: {nome}"
 
 msgid "A&leatório"
 msgstr "এলোমেলো ক্রম(&H)"
+
+msgid "A&gendamentos:"
+msgstr "সময়সূচি(&S):"
+
+msgid "&Adicionar"
+msgstr "যোগ করুন(&A)"
+
+msgid "&Remover"
+msgstr "সরান(&R)"
+
+msgid "Adicionar Agendamento"
+msgstr "সময়সূচি যোগ করুন"
+
+msgid "Editar Agendamento"
+msgstr "সময়সূচি সম্পাদনা করুন"
+
+msgid "&Remover após concluído"
+msgstr "শেষ হলে সরান(&R)"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "তারিখ সঠিক নয়। {exemplo} এর মতো লিখুন, অথবা প্রতিদিন রেকর্ড করতে ফাঁকা রাখুন।"
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "সময় সঠিক নয়। ঘণ্টা ও মিনিট লিখুন, যেমন 14:30।"
+
+msgid "Essa data e esse horário já passaram."
+msgstr "এই তারিখ ও সময় পেরিয়ে গেছে।"
+
+msgid "Todos os dias às {hora}"
+msgstr "প্রতিদিন {hora}-এ"
+
+msgid "{data} às {hora}"
+msgstr "{data}, {hora}-এ"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, শেষ হলে সরান"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "রেকর্ডিং সময়সূচি(&J)..."
+
+msgid "Agendamento de Gravações"
+msgstr "রেকর্ডিং সময়সূচি"
+
+msgid "&Data (Opcional):"
+msgstr "তারিখ (ঐচ্ছিক)(&D):"
+
+msgid "&Horário:"
+msgstr "সময়(&T):"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "রেকর্ডিংয়ের সময়কাল (ঐচ্ছিক)(&U):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, {duracao} ধরে"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "রেকর্ডিংয়ের সময়কাল সঠিক নয়। ঘণ্টা, মিনিট ও সেকেন্ড ব্যবহার করুন, যেমন 1:30:00, অথবা মূল উইন্ডোর সময়কাল ব্যবহার করতে ফাঁকা রাখুন।"
+
+msgid "Chorus"
+msgstr "কোরাস"
+
+msgid "Flanger"
+msgstr "ফ্ল্যাঞ্জার"
+
+msgid "Atraso Mínimo:"
+msgstr "সর্বনিম্ন বিলম্ব:"
+
+msgid "Atraso Máximo:"
+msgstr "সর্বোচ্চ বিলম্ব:"
+
+msgid "Velocidade:"
+msgstr "গতি:"
+
+msgid "Chorus Exagerado"
+msgstr "অতিরঞ্জিত কোরাস"
+
+msgid "Motocicleta"
+msgstr "মোটরসাইকেল"
+
+msgid "Diabo"
+msgstr "শয়তান"
+
+msgid "Muitas Vozes"
+msgstr "অনেক কণ্ঠ"
+
+msgid "Esquilo ao Fundo"
+msgstr "পেছনে কাঠবিড়ালি"
+
+msgid "Flanger Suave"
+msgstr "নরম ফ্ল্যাঞ্জার"
+
+msgid "Água"
+msgstr "পানি"
+
+msgid "Avião"
+msgstr "বিমান"
 

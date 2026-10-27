@@ -577,8 +577,8 @@ msgstr "&Tampilkan semua proses"
 msgid "E&stéreo"
 msgstr "&Stereo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "&Durasi Rekaman (hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "&Durasi Rekaman (Opsional):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Kosongkan untuk merekam tanpa batas. 1:30:00 adalah satu setengah jam, 45:00 adalah 45 menit."
@@ -794,7 +794,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "File atau folder:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "Telusuri &file..."
+msgstr "Telusuri fi&le..."
 
 msgid "Procurar P&asta..."
 msgstr "Telusuri fol&der..."
@@ -813,4 +813,100 @@ msgstr "Audio latar: {nome}"
 
 msgid "A&leatório"
 msgstr "&Acak"
+
+msgid "A&gendamentos:"
+msgstr "&Jadwal:"
+
+msgid "&Adicionar"
+msgstr "&Tambah"
+
+msgid "&Remover"
+msgstr "&Hapus"
+
+msgid "Adicionar Agendamento"
+msgstr "Tambah Jadwal"
+
+msgid "Editar Agendamento"
+msgstr "Edit Jadwal"
+
+msgid "&Remover após concluído"
+msgstr "&Hapus setelah selesai"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Tanggal tidak valid. Ketik seperti {exemplo}, atau kosongkan untuk merekam setiap hari."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Waktu tidak valid. Ketik jam dan menit, misalnya 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Tanggal dan waktu itu sudah lewat."
+
+msgid "Todos os dias às {hora}"
+msgstr "Setiap hari pukul {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} pukul {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, hapus setelah selesai"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Jad&wal Rekaman..."
+
+msgid "Agendamento de Gravações"
+msgstr "Jadwal Rekaman"
+
+msgid "&Data (Opcional):"
+msgstr "&Tanggal (Opsional):"
+
+msgid "&Horário:"
+msgstr "&Waktu:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "&Durasi Rekaman (Opsional):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, selama {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Durasi rekaman tidak valid. Gunakan jam, menit, dan detik, seperti 1:30:00, atau kosongkan untuk memakai durasi di jendela utama."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Tunda minimum:"
+
+msgid "Atraso Máximo:"
+msgstr "Tunda maksimum:"
+
+msgid "Velocidade:"
+msgstr "Kecepatan:"
+
+msgid "Chorus Exagerado"
+msgstr "Chorus berlebihan"
+
+msgid "Motocicleta"
+msgstr "Sepeda motor"
+
+msgid "Diabo"
+msgstr "Iblis"
+
+msgid "Muitas Vozes"
+msgstr "Banyak suara"
+
+msgid "Esquilo ao Fundo"
+msgstr "Tupai di latar"
+
+msgid "Flanger Suave"
+msgstr "Flanger lembut"
+
+msgid "Água"
+msgstr "Air"
+
+msgid "Avião"
+msgstr "Pesawat"
 

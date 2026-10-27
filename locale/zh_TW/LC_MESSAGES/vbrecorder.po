@@ -571,8 +571,8 @@ msgstr "顯示所有處理程序(&A)"
 msgid "E&stéreo"
 msgstr "立體聲(&S)"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "錄音時長 (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "錄音時長 (選填)(&H):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "留空則不限時長錄音。1:30:00 為一個半小時，45:00 為 45 分鐘。"
@@ -788,7 +788,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "檔案或資料夾:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "瀏覽檔案(&F)..."
+msgstr "瀏覽檔案(&I)..."
 
 msgid "Procurar P&asta..."
 msgstr "瀏覽資料夾(&D)..."
@@ -807,4 +807,100 @@ msgstr "背景音訊: {nome}"
 
 msgid "A&leatório"
 msgstr "隨機順序(&H)"
+
+msgid "A&gendamentos:"
+msgstr "排程(&S):"
+
+msgid "&Adicionar"
+msgstr "新增(&A)"
+
+msgid "&Remover"
+msgstr "移除(&R)"
+
+msgid "Adicionar Agendamento"
+msgstr "新增排程"
+
+msgid "Editar Agendamento"
+msgstr "編輯排程"
+
+msgid "&Remover após concluído"
+msgstr "完成後移除(&R)"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "日期無效。請依 {exemplo} 的格式輸入，或留空以每天錄製。"
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "時間無效。請輸入小時和分鐘，例如 14:30。"
+
+msgid "Essa data e esse horário já passaram."
+msgstr "該日期和時間已經過去。"
+
+msgid "Todos os dias às {hora}"
+msgstr "每天 {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}，完成後移除"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "錄製排程(&J)..."
+
+msgid "Agendamento de Gravações"
+msgstr "錄製排程"
+
+msgid "&Data (Opcional):"
+msgstr "日期 (選填)(&D):"
+
+msgid "&Horário:"
+msgstr "時間(&T):"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "錄音時長 (選填)(&U):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}，時長 {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "錄音時長無效。請使用時、分、秒，例如 1:30:00，或留空以使用主視窗的錄音時長。"
+
+msgid "Chorus"
+msgstr "合唱"
+
+msgid "Flanger"
+msgstr "鑲邊"
+
+msgid "Atraso Mínimo:"
+msgstr "最小延遲:"
+
+msgid "Atraso Máximo:"
+msgstr "最大延遲:"
+
+msgid "Velocidade:"
+msgstr "速度:"
+
+msgid "Chorus Exagerado"
+msgstr "誇張合唱"
+
+msgid "Motocicleta"
+msgstr "機車"
+
+msgid "Diabo"
+msgstr "惡魔"
+
+msgid "Muitas Vozes"
+msgstr "多人聲"
+
+msgid "Esquilo ao Fundo"
+msgstr "背景花栗鼠"
+
+msgid "Flanger Suave"
+msgstr "柔和鑲邊"
+
+msgid "Água"
+msgstr "水"
+
+msgid "Avião"
+msgstr "飛機"
 

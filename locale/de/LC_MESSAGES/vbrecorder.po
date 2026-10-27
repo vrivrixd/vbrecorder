@@ -581,8 +581,8 @@ msgstr "Alle &Prozesse anzeigen"
 msgid "E&stéreo"
 msgstr "&Stereo"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Aufnahmedauer (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Aufna&hmedauer (optional):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Leer: Aufnahme ohne Begrenzung. 1:30:00 sind anderthalb Stunden, 45:00 sind 45 Minuten."
@@ -817,4 +817,100 @@ msgstr "Hintergrundaudio: {nome}"
 
 msgid "A&leatório"
 msgstr "&Zufällig"
+
+msgid "A&gendamentos:"
+msgstr "&Zeitpläne:"
+
+msgid "&Adicionar"
+msgstr "&Hinzufügen"
+
+msgid "&Remover"
+msgstr "&Entfernen"
+
+msgid "Adicionar Agendamento"
+msgstr "Zeitplan hinzufügen"
+
+msgid "Editar Agendamento"
+msgstr "Zeitplan bearbeiten"
+
+msgid "&Remover após concluído"
+msgstr "Nach Abschluss &entfernen"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Ungültiges Datum. Geben Sie es wie {exemplo} ein, oder lassen Sie es leer, um jeden Tag aufzunehmen."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Ungültige Uhrzeit. Geben Sie Stunden und Minuten ein, zum Beispiel 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Dieses Datum und diese Uhrzeit sind schon vorbei."
+
+msgid "Todos os dias às {hora}"
+msgstr "Jeden Tag um {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} um {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, nach Abschluss entfernen"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Aufnah&meplanung..."
+
+msgid "Agendamento de Gravações"
+msgstr "Aufnahmeplanung"
+
+msgid "&Data (Opcional):"
+msgstr "&Datum (optional):"
+
+msgid "&Horário:"
+msgstr "&Uhrzeit:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "Aufnahmedaue&r (optional):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, für {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Ungültige Aufnahmedauer. Verwenden Sie Stunden, Minuten und Sekunden, z. B. 1:30:00, oder lassen Sie das Feld leer, um die Dauer des Hauptfensters zu verwenden."
+
+msgid "Chorus"
+msgstr "Chorus"
+
+msgid "Flanger"
+msgstr "Flanger"
+
+msgid "Atraso Mínimo:"
+msgstr "Minimale Verzögerung:"
+
+msgid "Atraso Máximo:"
+msgstr "Maximale Verzögerung:"
+
+msgid "Velocidade:"
+msgstr "Geschwindigkeit:"
+
+msgid "Chorus Exagerado"
+msgstr "Übertriebener Chorus"
+
+msgid "Motocicleta"
+msgstr "Motorrad"
+
+msgid "Diabo"
+msgstr "Teufel"
+
+msgid "Muitas Vozes"
+msgstr "Viele Stimmen"
+
+msgid "Esquilo ao Fundo"
+msgstr "Streifenhörnchen im Hintergrund"
+
+msgid "Flanger Suave"
+msgstr "Sanfter Flanger"
+
+msgid "Água"
+msgstr "Wasser"
+
+msgid "Avião"
+msgstr "Flugzeug"
 

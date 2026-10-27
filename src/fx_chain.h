@@ -16,9 +16,9 @@
 
 /*
  * The processing of one source, in this order: the noise remover (RNNoise),
- * the equalizer, compressor and pitch shift (BASS_FX), the delay (our own),
- * the reverb (BASS_FX, with our own pre-delay), then mono, if the source is
- * not stereo. The source's volume comes after.
+ * the equalizer, compressor, pitch shift, chorus and flanger (BASS_FX), the
+ * delay (our own), the reverb (BASS_FX, with our own pre-delay), then mono,
+ * if the source is not stereo. The source's volume comes after.
  *
  * The audio goes through as it is captured, in place and with the same
  * length, so the source keeps its place on the recording timeline. The
@@ -59,6 +59,8 @@ private:
     };
     /* Adds or removes one effect; returns its handle, 0 when off. */
     DWORD SetFx(Stage& stage, DWORD handle, bool on, DWORD type, int priority);
+    /* The chorus or the flanger: the same BASS_FX effect, set from e. */
+    DWORD SetChorus(DWORD handle, const EffectSettings& e, int priority);
     void RunStage(Stage& stage, float* data, DWORD frames);
     void Denoise(float* data, DWORD frames);
     void Delay(float* data, DWORD frames);
@@ -67,9 +69,9 @@ private:
     const BassApi& b_;
     int rate_, chans_;
     std::mutex mutex_;
-    Stage pre_;   // equalizer, compressor, pitch shift
+    Stage pre_;   // equalizer, compressor, pitch shift, chorus, flanger
     Stage post_;  // reverb, after the delay
-    DWORD eq_ = 0, compressor_ = 0, pitch_ = 0, reverb_ = 0;
+    DWORD eq_ = 0, compressor_ = 0, pitch_ = 0, chorus_ = 0, flanger_ = 0, reverb_ = 0;
     float preamp_ = 1.0f;
     bool stereo_ = true;
 

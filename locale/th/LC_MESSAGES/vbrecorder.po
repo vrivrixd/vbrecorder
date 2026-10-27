@@ -575,8 +575,8 @@ msgstr "แสดงโปรเซสทั้งหมด(&A)"
 msgid "E&stéreo"
 msgstr "สเตอริโอ(&S)"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "ระยะเวลาการบันทึก (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "ระยะเวลาการบันทึก (ไม่บังคับ)(&H):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "เว้นว่างไว้เพื่อบันทึกโดยไม่จำกัดเวลา 1:30:00 คือหนึ่งชั่วโมงครึ่ง 45:00 คือ 45 นาที"
@@ -792,7 +792,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "ไฟล์หรือโฟลเดอร์:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "เรียกดูไฟล์(&F)..."
+msgstr "เรียกดูไฟล์(&I)..."
 
 msgid "Procurar P&asta..."
 msgstr "เรียกดูโฟลเดอร์(&D)..."
@@ -811,4 +811,100 @@ msgstr "เสียงพื้นหลัง: {nome}"
 
 msgid "A&leatório"
 msgstr "สุ่มลำดับ(&H)"
+
+msgid "A&gendamentos:"
+msgstr "รายการตั้งเวลา(&S):"
+
+msgid "&Adicionar"
+msgstr "เพิ่ม(&A)"
+
+msgid "&Remover"
+msgstr "ลบ(&R)"
+
+msgid "Adicionar Agendamento"
+msgstr "เพิ่มการตั้งเวลา"
+
+msgid "Editar Agendamento"
+msgstr "แก้ไขการตั้งเวลา"
+
+msgid "&Remover após concluído"
+msgstr "ลบหลังเสร็จสิ้น(&R)"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "วันที่ไม่ถูกต้อง พิมพ์แบบ {exemplo} หรือเว้นว่างเพื่อบันทึกทุกวัน"
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "เวลาไม่ถูกต้อง พิมพ์ชั่วโมงและนาที เช่น 14:30"
+
+msgid "Essa data e esse horário já passaram."
+msgstr "วันที่และเวลานี้ผ่านไปแล้ว"
+
+msgid "Todos os dias às {hora}"
+msgstr "ทุกวันเวลา {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} เวลา {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, ลบหลังเสร็จสิ้น"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "ตารางการบันทึก(&J)..."
+
+msgid "Agendamento de Gravações"
+msgstr "ตารางการบันทึก"
+
+msgid "&Data (Opcional):"
+msgstr "วันที่ (ไม่บังคับ)(&D):"
+
+msgid "&Horário:"
+msgstr "เวลา(&T):"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "ระยะเวลาการบันทึก (ไม่บังคับ)(&U):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, นาน {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "ระยะเวลาการบันทึกไม่ถูกต้อง ใช้ชั่วโมง นาที และวินาที เช่น 1:30:00 หรือเว้นว่างเพื่อใช้ระยะเวลาจากหน้าต่างหลัก"
+
+msgid "Chorus"
+msgstr "คอรัส"
+
+msgid "Flanger"
+msgstr "แฟลนเจอร์"
+
+msgid "Atraso Mínimo:"
+msgstr "ดีเลย์ต่ำสุด:"
+
+msgid "Atraso Máximo:"
+msgstr "ดีเลย์สูงสุด:"
+
+msgid "Velocidade:"
+msgstr "ความเร็ว:"
+
+msgid "Chorus Exagerado"
+msgstr "คอรัสเกินจริง"
+
+msgid "Motocicleta"
+msgstr "มอเตอร์ไซค์"
+
+msgid "Diabo"
+msgstr "ปีศาจ"
+
+msgid "Muitas Vozes"
+msgstr "หลายเสียง"
+
+msgid "Esquilo ao Fundo"
+msgstr "กระรอกด้านหลัง"
+
+msgid "Flanger Suave"
+msgstr "แฟลนเจอร์นุ่มนวล"
+
+msgid "Água"
+msgstr "น้ำ"
+
+msgid "Avião"
+msgstr "เครื่องบิน"
 

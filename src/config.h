@@ -25,12 +25,13 @@
 #include <vector>
 
 #include "fx.h"
+#include "schedule.h"
 
 #define CONFIG_FILE L"VBRecorder.ini"
 
 /* Program version, in a single place. It stays out of the translatable texts on
    purpose: bumping the version does not invalidate any translation. */
-#define VB_VERSION L"1.4.6"
+#define VB_VERSION L"1.4.7"
 
 /* Recording buffer, in milliseconds. People with a busy computer can raise it
    so the audio does not crackle. */
@@ -90,6 +91,13 @@ public:
 
     std::vector<SourceEntry> GetSources() const;
     void SetSources(const std::vector<Source>& sources);
+
+    /* The scheduled recordings, in their own section:
+       [AGENDAMENTOS] 1 = 2026-12-31|14:30|1|1:30:00, with no date for every
+       day, 1 when it leaves the list once it starts, and its duration, if it
+       has one. */
+    std::vector<Schedule> GetSchedules() const;
+    void SetSchedules(const std::vector<Schedule>& schedules);
 
 private:
     typedef std::vector<std::pair<std::wstring, std::wstring>> Items;

@@ -25,6 +25,7 @@
 #include <algorithm>
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -68,6 +69,7 @@ enum {
     IDC_DIR,
     IDC_BROWSE,
     IDC_OPEN_DIR,
+    IDC_SCHEDULE,
     IDC_SETTINGS,
     IDC_ABOUT,
     IDC_MIN,
@@ -100,6 +102,7 @@ const UINT WM_CHECK_FOCUS = WM_APP + 4;
 const UINT_PTR TIMER_PLAY = 1;
 const UINT_PTR TIMER_COUNTDOWN = 2;
 const UINT_PTR TIMER_DURATION = 3;
+const UINT_PTR TIMER_SCHEDULE = 4;  // every second: is a scheduled recording due?
 /* Low beeps before the recording starts, one per second, like the start of a race. */
 const int COUNTDOWN_BEEPS = 3;
 
@@ -154,6 +157,8 @@ private:
     void OnEditSource();
     void OnRemoveSource();
     void OnSettings();
+    void OnSchedule();
+    void OnScheduleTick();
     bool OfferUpdate(const UpdateInfo& info, HWND parent);
     bool CheckUpdateNow(HWND parent);
     static DWORD WINAPI UpdateCheckThread(void* window);
@@ -220,7 +225,17 @@ private:
     // pauses.
     double duration_limit_ = 0, duration_start_ = 0;
     HWND lbl_filename_, txt_filename_, lbl_dir_, txt_dir_, btn_browse_, btn_open_dir_;
-    HWND btn_settings_, btn_about_, btn_min_, btn_close_;
+    HWND btn_schedule_, btn_settings_, btn_about_, btn_min_, btn_close_;
+
+    // Scheduled recordings. fired_ holds the day and minute each one last
+    // started, so it starts only once in that minute; removed_ the ones
+    // that left the list by themselves, which an open list dialog must not
+    // bring back.
+    std::vector<Schedule> schedules_;
+    int next_schedule_id_ = 1;
+    std::map<int, std::wstring> fired_;
+    std::set<int> removed_;
+    int schedule_duration_ = 0;  // of the schedule starting now, if it has one
 };
 
 bool Checked(HWND hwnd) { return Button_GetCheck(hwnd) == BST_CHECKED; }
@@ -295,6 +310,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
                     case IDC_REMOVE: OnRemoveSource(); return TRUE;
                     case IDC_BROWSE: OnBrowse(); return TRUE;
                     case IDC_OPEN_DIR: OnOpenDir(); return TRUE;
+                    case IDC_SCHEDULE: OnSchedule(); return TRUE;
                     case IDC_SETTINGS: OnSettings(); return TRUE;
                     case IDC_ABOUT: OnAbout(); return TRUE;
                     case IDC_MIN: Iconize(); return TRUE;
@@ -330,6 +346,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
             if (wp == TIMER_PLAY && !audio.IsPlaying()) UpdatePlayButton();
             if (wp == TIMER_COUNTDOWN) OnCountdownTick();
             if (wp == TIMER_DURATION) OnDurationTick();
+            if (wp == TIMER_SCHEDULE) OnScheduleTick();
             return TRUE;
         case WM_TRAY:
             if (LOWORD(lp) == WM_LBUTTONDBLCLK) ShowMain();
@@ -446,10 +463,13 @@ void MainFrame::SetupUi() {
 
     lbl_duration_ = Add(WC_STATICW, 0, 0);
     txt_duration_ = Add(WC_EDITW, EDIT, IDC_DURATION, WS_EX_CLIENTEDGE);
+    // Right after the duration: each schedule has a duration of its own.
+    btn_schedule_ = Add(WC_BUTTONW, BUTTON, IDC_SCHEDULE);
     {
         auto hb = HBox();
         hb->Add(lbl_duration_, 0, ui::CENTER_V | ui::RIGHT, S(5));
-        hb->Add(txt_duration_, 0, 0, 0, SIZE{S(90), 0});
+        hb->Add(txt_duration_, 0, ui::RIGHT, S(10), SIZE{S(90), 0});
+        hb->Add(btn_schedule_, 0, 0, 0);
         vbox->Add(std::move(hb), 0, ui::ALL, S(5));
     }
 
@@ -501,7 +521,7 @@ void MainFrame::Retranslate() {
     ui::ComboSetItems(cmb_channels_, {tr("mono"), tr("estéreo")});
     SendMessageW(cmb_channels_, CB_SETCURSEL, channels == 0 ? 0 : 1, 0);
     ui::SetText(lbl_sources_, tr("Fontes de &Gravação:"));
-    ui::SetText(lbl_duration_, tr("Duração da Gravação (&hh:mm:ss):"));
+    ui::SetText(lbl_duration_, tr("Duração da Gravação (Opcio&nal):"));
     ui::SetToolTip(hwnd_, txt_duration_,
                    tr("Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."));
     ui::SetText(lbl_filename_, tr("&Nome do Arquivo:"));
@@ -512,6 +532,7 @@ void MainFrame::Retranslate() {
     ui::SetText(btn_rem_, tr("Remo&ver"));
     ui::SetText(btn_browse_, tr("&Procurar..."));
     ui::SetText(btn_open_dir_, tr("Abr&ir Pasta de Gravações"));
+    ui::SetText(btn_schedule_, tr("Agenda&mento de Gravações..."));
     ui::SetText(btn_settings_, tr("Configura&ções..."));
     ui::SetText(btn_about_, tr("S&obre"));
     ui::SetText(btn_min_, tr("&Minimizar"));
@@ -569,6 +590,13 @@ void MainFrame::RefreshList() {
         ListView_InsertItem(lst_fontes_, &item);
     }
     ListView_SetColumnWidth(lst_fontes_, 0, LVSCW_AUTOSIZE);
+    // An empty list has nothing to edit or remove; the focus, if it was on
+    // one of them, goes to Add instead of nowhere.
+    bool any = !sources_.empty();
+    HWND focus = GetFocus();
+    if (!any && (focus == btn_edit_ || focus == btn_rem_)) SetFocus(btn_add_);
+    EnableWindow(btn_edit_, any);
+    EnableWindow(btn_rem_, any);
     ui::Show(chk_separate_, sources_.size() >= 2);
     Layout();
 }
@@ -807,6 +835,47 @@ bool MainFrame::CheckUpdateNow(HWND parent) {
     return OfferUpdate(info, parent);
 }
 
+/* ---- Scheduled recordings ---- */
+
+void MainFrame::OnSchedule() {
+    removed_.clear();
+    ScheduleListDialog dlg(schedules_);
+    if (dlg.ShowModal(hwnd_) != IDOK) return;
+    std::vector<Schedule> list;
+    for (auto& s : dlg.result) {
+        if (removed_.count(s.id)) continue;  // started meanwhile, and left the list
+        list.push_back(s);
+        if (!list.back().id) list.back().id = next_schedule_id_++;
+    }
+    schedules_ = list;
+    SaveSettings();
+}
+
+/* At its time, a schedule starts the recording as the Record button does,
+   with the countdown and the tones if they are on. One already recording is
+   left alone: the schedule waits for its next day. */
+void MainFrame::OnScheduleTick() {
+    SYSTEMTIME now;
+    GetLocalTime(&now);
+    for (size_t i = 0; i < schedules_.size(); ++i) {
+        Schedule s = schedules_[i];
+        std::wstring key = ScheduleDueKey(s, now);
+        if (key.empty() || fired_[s.id] == key) continue;
+        fired_[s.id] = key;
+        if (audio.is_recording() || countdown_) continue;
+        schedule_duration_ = s.duration;
+        OnRecordToggle();
+        schedule_duration_ = 0;
+        if (!audio.is_recording() && !countdown_) return;  // it did not start: said why
+        if (s.remove_after) {
+            schedules_.erase(schedules_.begin() + i);
+            removed_.insert(s.id);
+            SaveSettings();
+        }
+        return;
+    }
+}
+
 void MainFrame::OnSettings() {
     SettingsDialog dlg(config, [this] { RegisterAllHotkeys(); },
                        [this](HWND parent) { return CheckUpdateNow(parent); });
@@ -924,6 +993,9 @@ void MainFrame::LoadSettings() {
             }
         }
     }
+    schedules_ = config.GetSchedules();
+    for (auto& s : schedules_) s.id = next_schedule_id_++;
+    SetTimer(hwnd_, TIMER_SCHEDULE, 1000, nullptr);
     if (sources_.empty() && !all_devices.empty()) {
         sources_.push_back(
             Source{L"device", all_devices[0].first, all_devices[0].second, 1.0, FxSettings()});
@@ -945,6 +1017,7 @@ void MainFrame::SaveSettings() {
     config.SetConfig(L"duracao", Trim(ui::GetText(txt_duration_)));
     config.SetConfig(L"diretorio", ui::GetText(txt_dir_));
     config.SetSources(sources_);
+    config.SetSchedules(schedules_);
     config.Save();
 }
 
@@ -1093,23 +1166,13 @@ bool MainFrame::BackgroundReady() {
    recording from starting. */
 bool MainFrame::ReadDuration() {
     duration_limit_ = 0;
-    std::wstring text = Trim(ui::GetText(txt_duration_));
-    if (text.empty()) return true;
-    double total = 0;
-    int parts = 0;
-    bool ok = true;
-    size_t pos = 0;
-    while (ok && pos <= text.size()) {
-        size_t end = text.find(L':', pos);
-        if (end == std::wstring::npos) end = text.size();
-        std::wstring part = Trim(text.substr(pos, end - pos));
-        ok = !part.empty() && part.size() <= 6 &&
-             part.find_first_not_of(L"0123456789") == std::wstring::npos;
-        if (ok) total = total * 60 + _wtoi(part.c_str());
-        ++parts;
-        pos = end + 1;
+    // A scheduled recording with a duration of its own.
+    if (schedule_duration_ > 0) {
+        duration_limit_ = schedule_duration_;
+        return true;
     }
-    if (!ok || parts > 3 || total <= 0) {
+    int total = 0;
+    if (!ParseDuration(ui::GetText(txt_duration_), &total)) {
         ui::MsgBox(DialogParent(),
                    tr("Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, "
                       "ou deixe em branco para gravar sem limite."),

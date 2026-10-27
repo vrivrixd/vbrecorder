@@ -583,8 +583,8 @@ msgstr "Показать &все процессы"
 msgid "E&stéreo"
 msgstr "Ст&ерео"
 
-msgid "Duração da Gravação (&hh:mm:ss):"
-msgstr "Длительность записи (&hh:mm:ss):"
+msgid "Duração da Gravação (Opcio&nal):"
+msgstr "Дл&ительность записи (необязательно):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Пусто — запись без ограничения. 1:30:00 — полтора часа, 45:00 — 45 минут."
@@ -800,7 +800,7 @@ msgid "Arquivo ou Pasta:"
 msgstr "Файл или папка:"
 
 msgid "Procurar Arq&uivo..."
-msgstr "Выбрать &файл..."
+msgstr "Выбрать фай&л..."
 
 msgid "Procurar P&asta..."
 msgstr "Выбрать п&апку..."
@@ -819,4 +819,100 @@ msgstr "Фоновый звук: {nome}"
 
 msgid "A&leatório"
 msgstr "Случайный по&рядок"
+
+msgid "A&gendamentos:"
+msgstr "&Расписание:"
+
+msgid "&Adicionar"
+msgstr "&Добавить"
+
+msgid "&Remover"
+msgstr "&Удалить"
+
+msgid "Adicionar Agendamento"
+msgstr "Добавить расписание"
+
+msgid "Editar Agendamento"
+msgstr "Изменить расписание"
+
+msgid "&Remover após concluído"
+msgstr "&Удалить после завершения"
+
+msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
+msgstr "Неверная дата. Введите её как {exemplo} или оставьте пустой, чтобы записывать каждый день."
+
+msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgstr "Неверное время. Введите часы и минуты, например 14:30."
+
+msgid "Essa data e esse horário já passaram."
+msgstr "Эти дата и время уже прошли."
+
+msgid "Todos os dias às {hora}"
+msgstr "Каждый день в {hora}"
+
+msgid "{data} às {hora}"
+msgstr "{data} в {hora}"
+
+msgid "{agendamento}, remover após concluído"
+msgstr "{agendamento}, удалить после завершения"
+
+msgid "Agenda&mento de Gravações..."
+msgstr "Расписание записе&й..."
+
+msgid "Agendamento de Gravações"
+msgstr "Расписание записей"
+
+msgid "&Data (Opcional):"
+msgstr "Д&ата (необязательно):"
+
+msgid "&Horário:"
+msgstr "&Время:"
+
+msgid "D&uração da Gravação (Opcional):"
+msgstr "&Длительность записи (необязательно):"
+
+msgid "{agendamento}, por {duracao}"
+msgstr "{agendamento}, на {duracao}"
+
+msgid "Duração da gravação inválida. Use horas, minutos e segundos, como 1:30:00, ou deixe em branco para usar a duração da janela principal."
+msgstr "Неверная длительность записи. Используйте часы, минуты и секунды, например 1:30:00, или оставьте пустым, чтобы использовать длительность из главного окна."
+
+msgid "Chorus"
+msgstr "Хорус"
+
+msgid "Flanger"
+msgstr "Флэнджер"
+
+msgid "Atraso Mínimo:"
+msgstr "Минимальная задержка:"
+
+msgid "Atraso Máximo:"
+msgstr "Максимальная задержка:"
+
+msgid "Velocidade:"
+msgstr "Скорость:"
+
+msgid "Chorus Exagerado"
+msgstr "Преувеличенный хорус"
+
+msgid "Motocicleta"
+msgstr "Мотоцикл"
+
+msgid "Diabo"
+msgstr "Дьявол"
+
+msgid "Muitas Vozes"
+msgstr "Много голосов"
+
+msgid "Esquilo ao Fundo"
+msgstr "Бурундук на фоне"
+
+msgid "Flanger Suave"
+msgstr "Мягкий флэнджер"
+
+msgid "Água"
+msgstr "Вода"
+
+msgid "Avião"
+msgstr "Самолёт"
 
