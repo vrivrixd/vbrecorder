@@ -915,3 +915,21 @@ msgstr "पानी"
 msgid "Avião"
 msgstr "हवाई जहाज़"
 
+msgid "Reverb de Convolução"
+msgstr "कन्वोल्यूशन रिवर्ब"
+
+msgid "Somente o Efeito"
+msgstr "सिर्फ़ प्रभाव"
+
+msgid "Arquivo de &Impulso:"
+msgstr "इंपल्स फ़ाइल(&I):"
+
+msgid "Proc&urar..."
+msgstr "ब्राउज़ करें(&B)..."
+
+msgid "Arquivo de Impulso"
+msgstr "इंपल्स फ़ाइल"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "इंपल्स फ़ाइल नहीं मिली:\n{arquivo}"
+

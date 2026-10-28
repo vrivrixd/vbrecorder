@@ -55,10 +55,12 @@ history.
   own gain, a preamp, and presets: the classic Winamp ones, plus curves for
   voice, podcast, telephone and more. The sliders say the gain in dB to the
   screen reader: the arrows move 0.5 dB, Page Up and Page Down 3 dB.
-- **Effects per source.** Compressor, pitch shift, chorus, flanger, delay and
-  reverb, each with its controls and presets (the reverb ones based on
-  Audacity's). They are applied in that order, after the noise remover and
-  the equalizer. The delay
+- **Effects per source.** Compressor, pitch shift, chorus, flanger, delay,
+  reverb and convolution reverb, each with its controls and
+  presets (the reverb ones based on Audacity's). They are applied in that
+  order, after the noise remover and the equalizer. The convolution reverb
+  takes an impulse response of your own, a wav or flac of up to 10 seconds,
+  and gives the source the sound of that place. The delay
   has a real ping-pong mode: the echoes take turns between left and right,
   even with a microphone, which has the same sound on both sides. The reverb
   has a pre-delay. Each effect starts with a Flat preset, which changes
@@ -94,6 +96,9 @@ history.
   once its recording starts. The program does this itself, without the
   Windows Task Scheduler, so it must be open (in the tray is enough) and the
   computer awake.
+- **A second copy, for demonstrations.** `VBRecorder.exe --multiple` opens
+  even with another copy already running, so the program can record itself
+  being used. That copy does not look for updates by itself.
 - **Settings window** with language, automatic update checks, start with
   Windows, start minimized, minimize to tray, window always on top, countdown
   and buffer size, besides the hotkeys.
@@ -248,6 +253,7 @@ Structure:
 - `src/install.cpp` — what changes in the installed copy.
 - `src/fx.cpp` — equalizer, effects and noise remover settings, and their presets.
 - `src/fx_chain.cpp` — the processing of each source (BASS_FX, RNNoise and the delay).
+- `src/convolver.cpp` — the convolution reverb.
 - `src/background.cpp` — background audio: the files of a source, played in turn.
 - `src/schedule.cpp` — scheduled recordings: their dates and times.
 - `src/fx_dialogs.cpp` — the equalizer, effects and noise remover dialogs.

@@ -17,8 +17,8 @@
 /*
  * The processing of one source, in this order: the noise remover (RNNoise),
  * the equalizer, compressor, pitch shift, chorus and flanger (BASS_FX), the
- * delay (our own), the reverb (BASS_FX, with our own pre-delay), then mono,
- * if the source is not stereo. The source's volume comes after.
+ * delay (our own), the reverb (BASS_FX, with our own pre-delay), the
+ * convolution reverb (our own), then mono, if the source is not stereo. The source's volume comes after.
  *
  * The audio goes through as it is captured, in place and with the same
  * length, so the source keeps its place on the recording timeline. The
@@ -32,6 +32,7 @@
 #include <vector>
 
 #include "bass_api.h"
+#include "convolver.h"
 #include "fx.h"
 
 struct DenoiseState;
@@ -65,6 +66,7 @@ private:
     void Denoise(float* data, DWORD frames);
     void Delay(float* data, DWORD frames);
     void Reverb(float* data, DWORD frames);
+    void Convolve(float* data, DWORD frames);
 
     const BassApi& b_;
     int rate_, chans_;
@@ -99,4 +101,13 @@ private:
     size_t predelay_frames_ = 0;
     std::vector<float> predelay_line_, reverb_in_;
     size_t predelay_pos_ = 0;
+
+    // Convolution reverb. The response is read again only when the file,
+    // the pre-delay or the format changes; the pre-delay is silence in front
+    // of it.
+    bool conv_on_ = false;
+    float conv_dry_ = 1, conv_wet_ = 0;
+    std::wstring conv_loaded_;  // file and pre-delay of the response in conv_
+    Convolver conv_;
+    std::vector<float> conv_out_;
 };

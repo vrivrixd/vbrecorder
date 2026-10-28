@@ -913,3 +913,21 @@ msgstr "Nước"
 msgid "Avião"
 msgstr "Máy bay"
 
+msgid "Reverb de Convolução"
+msgstr "Vang tích chập"
+
+msgid "Somente o Efeito"
+msgstr "Chỉ hiệu ứng"
+
+msgid "Arquivo de &Impulso:"
+msgstr "Tệp &xung:"
+
+msgid "Proc&urar..."
+msgstr "D&uyệt..."
+
+msgid "Arquivo de Impulso"
+msgstr "Tệp xung"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Không tìm thấy tệp xung:\n{arquivo}"
+

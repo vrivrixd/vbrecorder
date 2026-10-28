@@ -915,3 +915,21 @@ msgstr "Вода"
 msgid "Avião"
 msgstr "Самолет"
 
+msgid "Reverb de Convolução"
+msgstr "Конволюционна реверберация"
+
+msgid "Somente o Efeito"
+msgstr "Само ефектът"
+
+msgid "Arquivo de &Impulso:"
+msgstr "Файл с &импулс:"
+
+msgid "Proc&urar..."
+msgstr "&Преглед..."
+
+msgid "Arquivo de Impulso"
+msgstr "Файл с импулс"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Файлът с импулс не е намерен:\n{arquivo}"
+

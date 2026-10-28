@@ -917,3 +917,21 @@ msgstr "Woda"
 msgid "Avião"
 msgstr "Samolot"
 
+msgid "Reverb de Convolução"
+msgstr "Pogłos splotowy"
+
+msgid "Somente o Efeito"
+msgstr "Tylko efekt"
+
+msgid "Arquivo de &Impulso:"
+msgstr "Plik &impulsu:"
+
+msgid "Proc&urar..."
+msgstr "&Przeglądaj..."
+
+msgid "Arquivo de Impulso"
+msgstr "Plik impulsu"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Nie znaleziono pliku impulsu:\n{arquivo}"
+

@@ -912,3 +912,21 @@ msgstr "Vesi"
 msgid "Avião"
 msgstr "Lentokone"
 
+msgid "Reverb de Convolução"
+msgstr "Konvoluutiokaiku"
+
+msgid "Somente o Efeito"
+msgstr "Vain tehoste"
+
+msgid "Arquivo de &Impulso:"
+msgstr "&Impulssitiedosto:"
+
+msgid "Proc&urar..."
+msgstr "&Selaa..."
+
+msgid "Arquivo de Impulso"
+msgstr "Impulssitiedosto"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Impulssitiedostoa ei löytynyt:\n{arquivo}"
+

@@ -1215,8 +1215,12 @@ void UpdateDialog::OnInit() {
     auto vbox = VBox();
     if (!info_.notes.empty()) {
         HWND label = Add(WC_STATICW, tr("Novidades:"), SS_NOPREFIX);
+        // No word wrap: a screen reader reads the box line by line, and a
+        // wrapped paragraph would stop at the edge of the box, mid-sentence.
+        // Each paragraph is one line, read whole; it scrolls sideways.
         notes_ = Add(WC_EDITW, info_.notes,
-                     WS_TABSTOP | WS_VSCROLL | ES_MULTILINE | ES_READONLY | ES_AUTOVSCROLL | ES_WANTRETURN,
+                     WS_TABSTOP | WS_VSCROLL | WS_HSCROLL | ES_MULTILINE | ES_READONLY | ES_AUTOVSCROLL |
+                         ES_AUTOHSCROLL | ES_WANTRETURN,
                      0, WS_EX_CLIENTEDGE);
         vbox->Add(label, 0, ui::LEFT | ui::RIGHT | ui::TOP, S(10));
         vbox->Add(notes_, 1, ui::LEFT | ui::RIGHT | ui::TOP | ui::EXPAND, S(10), SIZE{S(440), S(220)});

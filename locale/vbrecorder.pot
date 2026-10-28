@@ -884,3 +884,21 @@ msgstr ""
 msgid "Avião"
 msgstr ""
 
+msgid "Reverb de Convolução"
+msgstr ""
+
+msgid "Somente o Efeito"
+msgstr ""
+
+msgid "Arquivo de &Impulso:"
+msgstr ""
+
+msgid "Proc&urar..."
+msgstr ""
+
+msgid "Arquivo de Impulso"
+msgstr ""
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr ""
+

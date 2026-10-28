@@ -94,6 +94,10 @@ enum {
 
 /* Marks the running instance; a second one only warns and quits. */
 const wchar_t* const INSTANCE_MUTEX = L"VBRecorder_Mutex";
+/* Starts even with another copy running, to record the program with itself.
+   This one does not look for updates by itself: it would replace the files
+   of both. */
+const wchar_t* const MULTIPLE_FLAG = L"--multiple";
 HANDLE g_instance_mutex = nullptr;
 
 const UINT WM_TRAY = WM_APP + 1;
@@ -1581,8 +1585,9 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
     std::unique_ptr<MainFrame> frame(new MainFrame());
     i18n::SetLanguage(frame->config.Get(L"idioma"));
 
+    const bool multiple = wcsstr(GetCommandLineW(), MULTIPLE_FLAG) != nullptr;
     g_instance_mutex = CreateMutexW(nullptr, FALSE, INSTANCE_MUTEX);
-    if (GetLastError() == ERROR_ALREADY_EXISTS) {
+    if (GetLastError() == ERROR_ALREADY_EXISTS && !multiple) {
         ui::MsgBox(nullptr, tr("O VB Recorder já está em execução."), tr("Aviso"),
                        MB_ICONWARNING | MB_OK);
         return 0;
@@ -1594,7 +1599,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
     // A portable program: if its folder moved, Windows must start it from the new one.
     if (frame->config.GetBoolean(L"iniciar_com_windows")) RefreshStartWithWindows();
     frame->ShowAtStart();
-    if (frame->config.GetBoolean(L"verificar_atualizacoes", true)) frame->StartUpdateCheck();
+    if (!multiple && frame->config.GetBoolean(L"verificar_atualizacoes", true)) frame->StartUpdateCheck();
 
     MSG msg;
     while (GetMessageW(&msg, nullptr, 0, 0) > 0) {

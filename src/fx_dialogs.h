@@ -139,6 +139,7 @@ private:
     HWND cmb_preset_ = nullptr;
     std::vector<int> param_of_slider_;
     std::vector<HWND> check_of_;  // per parameter, for the check boxes
+    HWND txt_file_ = nullptr;     // the impulse response, for the effects that take one
     bool updating_ = false;
 };
 

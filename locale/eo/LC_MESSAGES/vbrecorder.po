@@ -913,3 +913,21 @@ msgstr "Akvo"
 msgid "Avião"
 msgstr "Aviadilo"
 
+msgid "Reverb de Convolução"
+msgstr "Konvolucia resonado"
+
+msgid "Somente o Efeito"
+msgstr "Nur la efekto"
+
+msgid "Arquivo de &Impulso:"
+msgstr "&Impulsa dosiero:"
+
+msgid "Proc&urar..."
+msgstr "&Foliumi..."
+
+msgid "Arquivo de Impulso"
+msgstr "Impulsa dosiero"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "La impulsa dosiero ne troviĝis:\n{arquivo}"
+

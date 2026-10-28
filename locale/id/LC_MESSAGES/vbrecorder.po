@@ -910,3 +910,21 @@ msgstr "Air"
 msgid "Avião"
 msgstr "Pesawat"
 
+msgid "Reverb de Convolução"
+msgstr "Gaung konvolusi"
+
+msgid "Somente o Efeito"
+msgstr "Hanya efek"
+
+msgid "Arquivo de &Impulso:"
+msgstr "Berkas &impuls:"
+
+msgid "Proc&urar..."
+msgstr "&Telusuri..."
+
+msgid "Arquivo de Impulso"
+msgstr "Berkas impuls"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Berkas impuls tidak ditemukan:\n{arquivo}"
+

@@ -904,3 +904,21 @@ msgstr "水"
 msgid "Avião"
 msgstr "飛機"
 
+msgid "Reverb de Convolução"
+msgstr "卷積殘響"
+
+msgid "Somente o Efeito"
+msgstr "僅效果"
+
+msgid "Arquivo de &Impulso:"
+msgstr "脈衝響應檔案(&I):"
+
+msgid "Proc&urar..."
+msgstr "瀏覽(&B)..."
+
+msgid "Arquivo de Impulso"
+msgstr "脈衝響應檔案"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "找不到脈衝響應檔案:\n{arquivo}"
+

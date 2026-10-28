@@ -922,3 +922,21 @@ msgstr "Voda"
 msgid "Avião"
 msgstr "Letalo"
 
+msgid "Reverb de Convolução"
+msgstr "Konvolucijski odmev"
+
+msgid "Somente o Efeito"
+msgstr "Samo učinek"
+
+msgid "Arquivo de &Impulso:"
+msgstr "Datoteka &impulza:"
+
+msgid "Proc&urar..."
+msgstr "&Brskaj..."
+
+msgid "Arquivo de Impulso"
+msgstr "Datoteka impulza"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Datoteke impulza ni bilo mogoče najti:\n{arquivo}"
+

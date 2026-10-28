@@ -50,6 +50,7 @@ enum EffectKind {
     FX_FLANGER,
     FX_DELAY,
     FX_REVERB,
+    FX_CONVOLUTION,
     FX_COUNT
 };
 
@@ -57,6 +58,7 @@ struct EffectSettings {
     bool on = false;
     std::wstring preset;        // preset key, or FX_CUSTOM
     std::vector<float> values;  // one per parameter, in the units shown
+    std::wstring file;          // for the effects that take one: the impulse response
 };
 
 struct NoiseSettings {
@@ -110,6 +112,7 @@ struct EffectDef {
     const char* name;    // translatable text
     std::vector<FxParam> params;
     std::vector<FxPreset> presets;  // the first one is the starting point
+    bool takes_file = false;        // its dialog asks for a file (the impulse response)
 };
 
 const EffectDef& GetEffectDef(int kind);

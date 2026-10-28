@@ -908,3 +908,21 @@ msgstr "น้ำ"
 msgid "Avião"
 msgstr "เครื่องบิน"
 
+msgid "Reverb de Convolução"
+msgstr "รีเวิร์บแบบคอนโวลูชัน"
+
+msgid "Somente o Efeito"
+msgstr "เฉพาะเอฟเฟกต์"
+
+msgid "Arquivo de &Impulso:"
+msgstr "ไฟล์อิมพัลส์(&I):"
+
+msgid "Proc&urar..."
+msgstr "เรียกดู(&B)..."
+
+msgid "Arquivo de Impulso"
+msgstr "ไฟล์อิมพัลส์"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "ไม่พบไฟล์อิมพัลส์:\n{arquivo}"
+

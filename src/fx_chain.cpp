@@ -176,6 +176,33 @@ void FxChain::Apply(const FxSettings& fx) {
         p.lChannel = BASS_BFX_CHANALL;
         b_.FXSetParameters(reverb_, &p);
     }
+
+    // Convolution reverb, with a response that plays; without the effect's
+    // sound it is left out, as the others.
+    const EffectSettings& conv = fx.effects[FX_CONVOLUTION];
+    conv_on_ = conv.on && At(conv, 1) >= 0.5f && !conv.file.empty();
+    if (conv_on_) {
+        std::wstring want = conv.file + L"|" + std::to_wstring((int)At(conv, 2));
+        if (want != conv_loaded_) {
+            std::vector<float> ir;
+            if (LoadImpulse(b_, conv.file, rate_, chans_, &ir)) {
+                size_t lead = (size_t)(Clamp(At(conv, 2), 0, 500) / 1000 * rate_) * chans_;
+                ir.insert(ir.begin(), lead, 0.0f);
+            }
+            conv_.Setup(ir, chans_);
+            conv_loaded_ = want;
+        }
+        conv_dry_ = Clamp(At(conv, 0) / 100, 0, 1);
+        conv_wet_ = Clamp(At(conv, 1) / 100, 0, 2);
+        conv_on_ = conv_.Ready();
+    }
+}
+
+void FxChain::Convolve(float* data, DWORD frames) {
+    size_t n = (size_t)frames * chans_;
+    conv_out_.resize(n);
+    conv_.Process(data, conv_out_.data(), frames);
+    for (size_t i = 0; i < n; ++i) data[i] = conv_dry_ * data[i] + conv_wet_ * conv_out_[i];
 }
 
 DWORD FxChain::SetChorus(DWORD handle, const EffectSettings& e, int priority) {
@@ -215,6 +242,7 @@ void FxChain::Process(float* data, DWORD frames) {
     RunStage(pre_, data, frames);
     if (delay_on_) Delay(data, frames);
     if (reverb_) Reverb(data, frames);
+    if (conv_on_) Convolve(data, frames);
     if (!stereo_ && chans_ > 1) {
         // Mono: every channel gets the average of all of them, so the source
         // keeps its number of channels and the mixer does not change.

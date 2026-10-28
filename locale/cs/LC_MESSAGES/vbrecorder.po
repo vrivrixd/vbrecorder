@@ -916,3 +916,21 @@ msgstr "Voda"
 msgid "Avião"
 msgstr "Letadlo"
 
+msgid "Reverb de Convolução"
+msgstr "Konvoluční dozvuk"
+
+msgid "Somente o Efeito"
+msgstr "Jen efekt"
+
+msgid "Arquivo de &Impulso:"
+msgstr "Soubor &impulsu:"
+
+msgid "Proc&urar..."
+msgstr "Pro&cházet..."
+
+msgid "Arquivo de Impulso"
+msgstr "Soubor impulsu"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Soubor impulsu nebyl nalezen:\n{arquivo}"
+

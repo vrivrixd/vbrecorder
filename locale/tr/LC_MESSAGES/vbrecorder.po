@@ -914,3 +914,21 @@ msgstr "Su"
 msgid "Avião"
 msgstr "Uçak"
 
+msgid "Reverb de Convolução"
+msgstr "Evrişimli Yankılanma"
+
+msgid "Somente o Efeito"
+msgstr "Yalnızca Efekt"
+
+msgid "Arquivo de &Impulso:"
+msgstr "&Dürtü Dosyası:"
+
+msgid "Proc&urar..."
+msgstr "&Gözat..."
+
+msgid "Arquivo de Impulso"
+msgstr "Dürtü Dosyası"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Dürtü dosyası bulunamadı:\n{arquivo}"
+

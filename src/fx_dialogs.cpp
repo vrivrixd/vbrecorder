@@ -23,6 +23,8 @@
 #include <cmath>
 #include <cwchar>
 
+#include "background.h"
+#include "dialogs.h"
 #include "i18n.h"
 #include "util.h"
 
@@ -39,6 +41,8 @@ enum {
     IDC_FX_NOISE_ON,
     IDC_FX_LIST,
     IDC_FX_CONFIG,
+    IDC_FX_FILE,
+    IDC_FX_BROWSE,
     IDC_FX_TRACK = 600,  // + slider index
     IDC_FX_CHECK = 700,  // + parameter index
 };
@@ -413,6 +417,18 @@ void EffectConfigDialog::OnInit() {
     }
     cmb_preset_ = AddPresetCombo(vbox.get(), names, selected, IDC_FX_PRESET);
 
+    if (def.takes_file) {
+        // The impulse response: typed, or found with the button.
+        HWND label = Add(WC_STATICW, tr("Arquivo de &Impulso:"), 0);
+        txt_file_ = Add(WC_EDITW, e.file, WS_TABSTOP | ES_AUTOHSCROLL, IDC_FX_FILE, WS_EX_CLIENTEDGE);
+        HWND browse = Add(WC_BUTTONW, tr("Proc&urar..."), BUTTON, IDC_FX_BROWSE);
+        vbox->Add(label, 0, ui::LEFT | ui::RIGHT, S(10));
+        auto row = HBox();
+        row->Add(txt_file_, 1, ui::EXPAND | ui::RIGHT, S(5), SIZE{S(300), 0});
+        row->Add(browse, 0, 0, 0);
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    }
+
     check_of_.assign(def.params.size(), nullptr);
     for (size_t i = 0; i < def.params.size(); ++i) {
         const FxParam& p = def.params[i];
@@ -473,6 +489,20 @@ bool EffectConfigDialog::OnCommand(int id, int code, HWND control) {
         ApplyPreset((int)SendMessageW(cmb_preset_, CB_GETCURSEL, 0, 0));
         return true;
     }
+    if (id == IDC_FX_FILE && code == EN_CHANGE) {
+        // The file is not part of the preset: changing it keeps the preset.
+        fx_.effects[kind_].file = Trim(ui::GetText(txt_file_));
+        if (preview_) preview_(fx_);
+        return true;
+    }
+    if (id == IDC_FX_BROWSE && code == BN_CLICKED) {
+        std::wstring path;
+        if (PickFile(hwnd_, tr("Arquivo de Impulso"), tr("Arquivos de Áudio"), BackgroundPattern(), &path)) {
+            SetWindowTextW(txt_file_, path.c_str());
+            SetFocus(txt_file_);
+        }
+        return true;
+    }
     int i = id - IDC_FX_CHECK;
     if (i >= 0 && i < (int)check_of_.size() && check_of_[i] && code == BN_CLICKED) {
         fx_.effects[kind_].values[i] = Button_GetCheck(check_of_[i]) == BST_CHECKED ? 1.0f : 0.0f;
@@ -483,6 +513,13 @@ bool EffectConfigDialog::OnCommand(int id, int code, HWND control) {
 }
 
 void EffectConfigDialog::OnOk() {
+    const std::wstring& file = fx_.effects[kind_].file;
+    if (txt_file_ && !file.empty() && !FileExists(file)) {
+        ui::MsgBox(hwnd_, Format(tr("O arquivo de impulso não foi encontrado:\n{arquivo}"), {{L"arquivo", file}}),
+                   tr("Aviso"), MB_ICONWARNING | MB_OK);
+        SetFocus(txt_file_);
+        return;
+    }
     result = fx_;
     EndModal(IDOK);
 }

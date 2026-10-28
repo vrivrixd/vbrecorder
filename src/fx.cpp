@@ -178,6 +178,17 @@ const std::vector<EffectDef>& Defs() {
              {L"modern_vocal", "Voz Moderna", {70, 24, 32, 100, 68, 27}},
              {L"voice_tail", "Cauda de Voz", {81, 24, 50, 100, 68, 27}},
          }},
+        // The sound of a real place, from an impulse response of the user's.
+        {L"convolution", "Reverb de Convolução",
+         {{"Som Original:", 0, 100, 0, L"%", false, 1, 5},
+          {"Nível do Efeito:", 0, 200, 0, L"%", false, 1, 10},
+          {"Pré-atraso:", 0, 500, 0, L" ms", false, 1, 10}},
+         {
+             {L"flat", "Plano", {100, 0, 0}},
+             {L"default", "Padrão", {100, 50, 0}},
+             {L"effect_only", "Somente o Efeito", {0, 100, 0}},
+         },
+         true},
     };
     return defs;
 }
@@ -262,6 +273,37 @@ const std::vector<EqPreset>& EqPresets() {
     return presets;
 }
 
+namespace {
+
+/* A path in the effects line: ; and | separate things there, and % starts
+   an escape. */
+std::wstring Escape(const std::wstring& text) {
+    std::wstring out;
+    for (wchar_t c : text) {
+        if (c == L'%') out += L"%25";
+        else if (c == L';') out += L"%3B";
+        else if (c == L'|') out += L"%7C";
+        else out += c;
+    }
+    return out;
+}
+
+std::wstring Unescape(const std::wstring& text) {
+    std::wstring out;
+    for (size_t i = 0; i < text.size(); ++i) {
+        if (text[i] == L'%' && i + 2 < text.size()) {
+            std::wstring code = text.substr(i + 1, 2);
+            if (code == L"25") { out += L'%'; i += 2; continue; }
+            if (code == L"3B") { out += L';'; i += 2; continue; }
+            if (code == L"7C") { out += L'|'; i += 2; continue; }
+        }
+        out += text[i];
+    }
+    return out;
+}
+
+}  // namespace
+
 /* eq=preset|preamp|gain/gain/...;delay=1|preset|v/v/...;ruido=1|amount;estereo=0
    Only what differs from the defaults is written. */
 std::wstring FxSettings::Serialize() const {
@@ -275,11 +317,12 @@ std::wstring FxSettings::Serialize() const {
     for (int k = 0; k < FX_COUNT; ++k) {
         const EffectSettings& e = effects[k];
         if (!e.on && e.preset == defaults.effects[k].preset &&
-            e.values == defaults.effects[k].values)
+            e.values == defaults.effects[k].values && e.file.empty())
             continue;
         std::wstring s = std::wstring(GetEffectDef(k).key) + L"=" + (e.on ? L"1" : L"0") + L"|" +
                          e.preset + L"|";
         for (size_t i = 0; i < e.values.size(); ++i) s += (i ? L"/" : L"") + Num(e.values[i]);
+        if (!e.file.empty()) s += L"|" + Escape(e.file);
         parts.push_back(s);
     }
     if (noise.on || noise.amount != defaults.noise.amount)
@@ -322,6 +365,7 @@ FxSettings FxSettings::Parse(const std::wstring& text) {
                 for (size_t i = 0; i < def.params.size() && i < values.size(); ++i)
                     e.values[i] = Clamp(ToFloat(values[i], e.values[i]), def.params[i].min,
                                         def.params[i].max);
+                if (fields.size() >= 4) e.file = Unescape(fields[3]);
             }
         }
     }

@@ -905,3 +905,21 @@ msgstr "물"
 msgid "Avião"
 msgstr "비행기"
 
+msgid "Reverb de Convolução"
+msgstr "컨볼루션 리버브"
+
+msgid "Somente o Efeito"
+msgstr "효과만"
+
+msgid "Arquivo de &Impulso:"
+msgstr "임펄스 파일(&I):"
+
+msgid "Proc&urar..."
+msgstr "찾아보기(&B)..."
+
+msgid "Arquivo de Impulso"
+msgstr "임펄스 파일"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "임펄스 파일을 찾을 수 없습니다:\n{arquivo}"
+

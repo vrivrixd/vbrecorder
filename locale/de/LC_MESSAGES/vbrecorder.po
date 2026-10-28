@@ -914,3 +914,21 @@ msgstr "Wasser"
 msgid "Avião"
 msgstr "Flugzeug"
 
+msgid "Reverb de Convolução"
+msgstr "Faltungshall"
+
+msgid "Somente o Efeito"
+msgstr "Nur Effekt"
+
+msgid "Arquivo de &Impulso:"
+msgstr "&Impulsdatei:"
+
+msgid "Proc&urar..."
+msgstr "&Durchsuchen..."
+
+msgid "Arquivo de Impulso"
+msgstr "Impulsdatei"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Die Impulsdatei wurde nicht gefunden:\n{arquivo}"
+

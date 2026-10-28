@@ -914,3 +914,21 @@ msgstr "Auga"
 msgid "Avião"
 msgstr "Avión"
 
+msgid "Reverb de Convolução"
+msgstr "Reverberación por convolución"
+
+msgid "Somente o Efeito"
+msgstr "Só o efecto"
+
+msgid "Arquivo de &Impulso:"
+msgstr "Ficheiro de &impulso:"
+
+msgid "Proc&urar..."
+msgstr "Proc&urar..."
+
+msgid "Arquivo de Impulso"
+msgstr "Ficheiro de impulso"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Non se atopou o ficheiro de impulso:\n{arquivo}"
+

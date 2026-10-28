@@ -929,3 +929,21 @@ msgstr "ماء"
 msgid "Avião"
 msgstr "طائرة"
 
+msgid "Reverb de Convolução"
+msgstr "صدى الالتفاف"
+
+msgid "Somente o Efeito"
+msgstr "التأثير فقط"
+
+msgid "Arquivo de &Impulso:"
+msgstr "ملف الاستجابة النبضية(&I):"
+
+msgid "Proc&urar..."
+msgstr "تصفح(&B)..."
+
+msgid "Arquivo de Impulso"
+msgstr "ملف الاستجابة النبضية"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "لم يُعثر على ملف الاستجابة النبضية:\n{arquivo}"
+

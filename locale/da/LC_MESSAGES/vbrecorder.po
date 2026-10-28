@@ -913,3 +913,21 @@ msgstr "Vand"
 msgid "Avião"
 msgstr "Fly"
 
+msgid "Reverb de Convolução"
+msgstr "Foldningsrumklang"
+
+msgid "Somente o Efeito"
+msgstr "Kun effekt"
+
+msgid "Arquivo de &Impulso:"
+msgstr "&Impulsfil:"
+
+msgid "Proc&urar..."
+msgstr "&Gennemse..."
+
+msgid "Arquivo de Impulso"
+msgstr "Impulsfil"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Impulsfilen blev ikke fundet:\n{arquivo}"
+

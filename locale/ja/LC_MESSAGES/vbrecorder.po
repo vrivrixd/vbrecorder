@@ -906,3 +906,21 @@ msgstr "水"
 msgid "Avião"
 msgstr "飛行機"
 
+msgid "Reverb de Convolução"
+msgstr "コンボリューション リバーブ"
+
+msgid "Somente o Efeito"
+msgstr "エフェクトのみ"
+
+msgid "Arquivo de &Impulso:"
+msgstr "インパルス ファイル(&I):"
+
+msgid "Proc&urar..."
+msgstr "参照(&B)..."
+
+msgid "Arquivo de Impulso"
+msgstr "インパルス ファイル"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "インパルス ファイルが見つかりません:\n{arquivo}"
+

@@ -915,3 +915,21 @@ msgstr "Eau"
 msgid "Avião"
 msgstr "Avion"
 
+msgid "Reverb de Convolução"
+msgstr "Réverbération à convolution"
+
+msgid "Somente o Efeito"
+msgstr "Effet seul"
+
+msgid "Arquivo de &Impulso:"
+msgstr "Fichier d'&impulsion :"
+
+msgid "Proc&urar..."
+msgstr "P&arcourir..."
+
+msgid "Arquivo de Impulso"
+msgstr "Fichier d'impulsion"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "Le fichier d'impulsion est introuvable :\n{arquivo}"
+

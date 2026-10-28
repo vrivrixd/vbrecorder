@@ -915,3 +915,21 @@ msgstr "পানি"
 msgid "Avião"
 msgstr "বিমান"
 
+msgid "Reverb de Convolução"
+msgstr "কনভোলিউশন রিভার্ব"
+
+msgid "Somente o Efeito"
+msgstr "শুধু ইফেক্ট"
+
+msgid "Arquivo de &Impulso:"
+msgstr "ইমপালস ফাইল(&I):"
+
+msgid "Proc&urar..."
+msgstr "ব্রাউজ করুন(&B)..."
+
+msgid "Arquivo de Impulso"
+msgstr "ইমপালস ফাইল"
+
+msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
+msgstr "ইমপালস ফাইল পাওয়া যায়নি:\n{arquivo}"
+
