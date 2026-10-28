@@ -150,7 +150,50 @@ struct AudioEngine::Input : public CaptureSink {
     double down_since = -1.0;   // when the capture was found stopped
     double last_retry = -1.0;
 
+    // The side chain, changed by the window while recording; and how far
+    // this source is turned down, used only by the thread that fills it.
+    std::mutex sidechain_mutex;
+    SidechainSettings sidechain;
+    float duck_gain = 1.0f;
+
     double TailSeconds() const { return base_sec + (double)pushed / rate; }
+
+    void SetSidechain(const SidechainSettings& sc) {
+        std::lock_guard<std::mutex> lock(sidechain_mutex);
+        sidechain = sc;
+    }
+
+    /* A source that reduces the others, with sound above its threshold, tells
+       the engine until when they stay down; a reduced one goes down until
+       then, and comes back after. The audio is at the given recording time. */
+    void Sidechain(float* data, DWORD frames, double now) {
+        SidechainSettings sc;
+        {
+            std::lock_guard<std::mutex> lock(sidechain_mutex);
+            sc = sidechain;
+        }
+        if (sc.role == SC_REDUCES) {
+            float peak = 0.0f;
+            for (DWORD i = 0; i < frames * chans; ++i) peak = std::max(peak, std::fabs(data[i]));
+            if (peak > 0.0f && 20.0f * std::log10(peak) >= sc.values[SC_THRESHOLD])
+                engine->HoldDuck(now + sc.values[SC_HOLD] / 1000.0);
+            return;
+        }
+        float target = 1.0f;
+        if (sc.role == SC_REDUCED && now < engine->duck_until_) {
+            float db = sc.values[SC_REDUCTION];
+            target = db >= SidechainParams()[SC_REDUCTION].max ? 0.0f : std::pow(10.0f, -db / 20.0f);
+        }
+        if (target == 1.0f && duck_gain == 1.0f) return;
+        // Most of the way there in the time set: three time constants.
+        float down = 1.0f - std::exp(-3000.0f / (sc.values[SC_ATTACK] * rate));
+        float up = 1.0f - std::exp(-3000.0f / (sc.values[SC_RELEASE] * rate));
+        for (DWORD f = 0; f < frames; ++f) {
+            duck_gain += (target - duck_gain) * (target < duck_gain ? down : up);
+            for (int c = 0; c < chans; ++c) data[f * chans + c] *= duck_gain;
+        }
+        if (std::fabs(duck_gain - target) < 0.0001f) duck_gain = target;
+    }
 
     void PushLocked(const float* data, DWORD frames) {
         engine->b_.StreamPutData(push, data, frames * chans * sizeof(float));
@@ -178,7 +221,8 @@ struct AudioEngine::Input : public CaptureSink {
         if (engine->paused_ || ending || !push || samples < (DWORD)chans) return;
         DWORD frames = samples / chans;
         samples = frames * chans;
-        // Noise remover and equalizer first, then the volume.
+        // Noise remover and equalizer first, then the volume, then the side
+        // chain, which goes by the level that is recorded.
         scratch.resize(samples);
         if (silent) std::fill(scratch.begin(), scratch.end(), 0.0f);
         else std::copy(data, data + samples, scratch.begin());
@@ -186,6 +230,7 @@ struct AudioEngine::Input : public CaptureSink {
         float vol = volume.load();
         if (vol != 1.0f)
             for (DWORD i = 0; i < samples; ++i) scratch[i] *= vol;
+        Sidechain(scratch.data(), frames, engine->RecordingSeconds());
         data = scratch.data();
         std::lock_guard<std::mutex> lock(queue_mutex);
         double now = engine->RecordingSeconds();
@@ -223,6 +268,7 @@ struct AudioEngine::Input : public CaptureSink {
             float vol = volume.load();
             if (vol != 1.0f)
                 for (float& v : scratch) v *= vol;
+            Sidechain(scratch.data(), n, TailSeconds());
             PushLocked(scratch.data(), n);
             want -= n;
         }
@@ -570,6 +616,7 @@ std::unique_ptr<AudioEngine::Input> AudioEngine::MakeInput(const Source& src, in
     in->src = src;
     in->is_device = src.type == L"device";
     in->volume = (float)src.volume;
+    in->sidechain = src.fx.sidechain;
     if (src.type == L"file") {
         // At the recording's rate and channels, from its start or, when the
         // recording is continued, from where it was.
@@ -862,6 +909,7 @@ bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstri
     LARGE_INTEGER now;
     QueryPerformanceCounter(&now);
     start_ticks_ = now.QuadPart;
+    duck_until_ = -1.0;
     paused_ticks_ = 0;
     if (!separate_ && !MakeOutput(file_path, L"", true)) return fail(b_.ErrorGetCode());
     for (auto& src : sources) {
@@ -929,6 +977,7 @@ bool AudioEngine::ContinueRecording(const std::vector<Source>& sources, int* err
     LARGE_INTEGER now;
     QueryPerformanceCounter(&now);
     start_ticks_ = now.QuadPart - (LONGLONG)(t0 * (double)qpc_freq_);
+    duck_until_ = -1.0;
     paused_ticks_ = 0;
     resuming_ = true;
     for (auto& src : sources) {
@@ -998,6 +1047,7 @@ void AudioEngine::SetSourceFx(const Source& src) {
             for (auto& i : w->instances) {
                 i.second->src.fx = src.fx;
                 i.second->chain->Apply(src.fx);
+                i.second->SetSidechain(src.fx.sidechain);
             }
             return;
         }
@@ -1008,6 +1058,7 @@ void AudioEngine::SetSourceFx(const Source& src) {
         } else {
             in->src.fx = src.fx;
             in->chain->Apply(src.fx);
+            in->SetSidechain(src.fx.sidechain);
             if (in->player) {
                 in->src.loop = src.loop;
                 in->src.shuffle = src.shuffle;
@@ -1041,6 +1092,12 @@ void AudioEngine::ResumeRecording() {
     QueryPerformanceCounter(&now);
     paused_ticks_ += now.QuadPart - pause_began_;
     paused_ = false;
+}
+
+void AudioEngine::HoldDuck(double until) {
+    double was = duck_until_.load();
+    while (was < until && !duck_until_.compare_exchange_weak(was, until)) {
+    }
 }
 
 double AudioEngine::RecordingSeconds() {

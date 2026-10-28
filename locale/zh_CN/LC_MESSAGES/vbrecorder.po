@@ -829,8 +829,8 @@ msgstr "完成后删除(&R)"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "日期无效。请按 {exemplo} 的格式输入，或留空以每天录制。"
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "时间无效。请输入小时和分钟，例如 14:30。"
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "时间无效。请输入小时和分钟，也可以加上秒，例如 14:30 或 14:30:15。"
 
 msgid "Essa data e esse horário já passaram."
 msgstr "该日期和时间已经过去。"
@@ -922,3 +922,29 @@ msgstr "脉冲响应文件"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "找不到脉冲响应文件:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "侧链(&L)"
+
+msgid "Cadeia Lateral"
+msgstr "侧链"
+
+msgid "&Papel desta fonte:"
+msgstr "此来源的作用(&P):"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "被其他来源压低"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "压低其他来源的音量"
+
+msgid "Não participa"
+msgstr "不参与"
+
+msgid "Retenção:"
+msgstr "保持时间:"
+
+msgid "Redução:"
+msgstr "衰减量:"
+
+msgid "Silêncio"
+msgstr "静音"

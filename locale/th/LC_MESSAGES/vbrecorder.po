@@ -833,8 +833,8 @@ msgstr "ลบหลังเสร็จสิ้น(&R)"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "วันที่ไม่ถูกต้อง พิมพ์แบบ {exemplo} หรือเว้นว่างเพื่อบันทึกทุกวัน"
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "เวลาไม่ถูกต้อง พิมพ์ชั่วโมงและนาที เช่น 14:30"
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "เวลาไม่ถูกต้อง พิมพ์ชั่วโมงและนาที และวินาทีถ้าต้องการ เช่น 14:30 หรือ 14:30:15"
 
 msgid "Essa data e esse horário já passaram."
 msgstr "วันที่และเวลานี้ผ่านไปแล้ว"
@@ -926,3 +926,29 @@ msgstr "ไฟล์อิมพัลส์"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "ไม่พบไฟล์อิมพัลส์:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "ไซด์เชน(&L)"
+
+msgid "Cadeia Lateral"
+msgstr "ไซด์เชน"
+
+msgid "&Papel desta fonte:"
+msgstr "บทบาทของแหล่งนี้(&P):"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "ถูกลดเสียงโดยแหล่งอื่น"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "ลดเสียงของแหล่งอื่น"
+
+msgid "Não participa"
+msgstr "ไม่เข้าร่วม"
+
+msgid "Retenção:"
+msgstr "ค้างไว้:"
+
+msgid "Redução:"
+msgstr "การลด:"
+
+msgid "Silêncio"
+msgstr "เงียบ"

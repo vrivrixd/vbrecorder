@@ -158,6 +158,7 @@ private:
     void OnEqualizer();
     void OnEffects();
     void OnNoise();
+    void OnSidechain();
     double Volume() const;
     void UpdateDbLabel();
     void OnOk();
@@ -179,7 +180,7 @@ private:
          btn_folder_browse_ = nullptr, chk_loop_ = nullptr, chk_shuffle_ = nullptr;
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,
          sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, btn_fx_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr, btn_exe_browse_ = nullptr,
-         btn_noise_ = nullptr, btn_ok_ = nullptr,
+         btn_noise_ = nullptr, btn_sidechain_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, note_ = nullptr;
 };
 

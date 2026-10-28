@@ -838,8 +838,8 @@ msgstr "&Xóa sau khi hoàn tất"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Ngày không hợp lệ. Hãy nhập như {exemplo}, hoặc để trống để ghi âm mỗi ngày."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Giờ không hợp lệ. Hãy nhập giờ và phút, ví dụ 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Giờ không hợp lệ. Hãy nhập giờ và phút, và giây nếu muốn, ví dụ 14:30 hoặc 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Ngày giờ này đã qua."
@@ -931,3 +931,29 @@ msgstr "Tệp xung"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Không tìm thấy tệp xung:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "&Chuỗi bên"
+
+msgid "Cadeia Lateral"
+msgstr "Chuỗi bên"
+
+msgid "&Papel desta fonte:"
+msgstr "&Vai trò của nguồn này:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Bị các nguồn khác giảm âm lượng"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Giảm âm lượng của các nguồn khác"
+
+msgid "Não participa"
+msgstr "Không tham gia"
+
+msgid "Retenção:"
+msgstr "Thời gian giữ:"
+
+msgid "Redução:"
+msgstr "Mức giảm:"
+
+msgid "Silêncio"
+msgstr "Im lặng"

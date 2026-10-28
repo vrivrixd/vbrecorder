@@ -63,10 +63,10 @@ std::wstring Iso(int y, int m, int d) {
     return buf;
 }
 
-long long Minutes(const SYSTEMTIME& st) {
+long long Seconds(const SYSTEMTIME& st) {
     FILETIME ft;
     SystemTimeToFileTime(&st, &ft);
-    return (((long long)ft.dwHighDateTime << 32) | ft.dwLowDateTime) / 600000000LL;
+    return (((long long)ft.dwHighDateTime << 32) | ft.dwLowDateTime) / 10000000LL;
 }
 
 }  // namespace
@@ -99,14 +99,17 @@ std::wstring FormatDuration(int seconds) {
     return buf;
 }
 
-bool ParseScheduleTime(const std::wstring& text, int* hour, int* minute) {
+bool ParseScheduleTime(const std::wstring& text, int* hour, int* minute, int* second) {
     std::wstring t = Trim(text);
-    int h = -1, m = -1;
+    int h = -1, m = -1, s = 0;
     wchar_t rest = 0;
-    if (swscanf(t.c_str(), L"%d:%d%lc", &h, &m, &rest) != 2) return false;
-    if (h < 0 || h > 23 || m < 0 || m > 59) return false;
+    int n = swscanf(t.c_str(), L"%d:%d%lc", &h, &m, &rest);
+    if (n == 3 && rest == L':') n = swscanf(t.c_str(), L"%d:%d:%d%lc", &h, &m, &s, &rest) == 3 ? 2 : 0;
+    if (n != 2) return false;
+    if (h < 0 || h > 23 || m < 0 || m > 59 || s < 0 || s > 59) return false;
     *hour = h;
     *minute = m;
+    *second = s;
     return true;
 }
 
@@ -152,7 +155,10 @@ std::wstring ScheduleDateForEdit(const std::wstring& iso) {
 
 std::wstring ScheduleTimeForEdit(const Schedule& s) {
     wchar_t buf[16];
-    swprintf(buf, 16, L"%02d:%02d", s.hour, s.minute);
+    if (s.second)
+        swprintf(buf, 16, L"%02d:%02d:%02d", s.hour, s.minute, s.second);
+    else
+        swprintf(buf, 16, L"%02d:%02d", s.hour, s.minute);
     return buf;
 }
 
@@ -180,14 +186,16 @@ bool SchedulePassed(const Schedule& s) {
     if (s.date.empty() || !ToSystemTime(s.date, &st)) return false;
     st.wHour = (WORD)s.hour;
     st.wMinute = (WORD)s.minute;
+    st.wSecond = (WORD)s.second;
     GetLocalTime(&now);
-    now.wSecond = now.wMilliseconds = 0;
-    return Minutes(st) < Minutes(now);
+    now.wMilliseconds = 0;
+    return Seconds(st) < Seconds(now);
 }
 
 std::wstring ScheduleDueKey(const Schedule& s, const SYSTEMTIME& now) {
     std::wstring today = Iso(now.wYear, now.wMonth, now.wDay);
     if (!s.date.empty() && s.date != today) return std::wstring();
-    if (now.wHour != s.hour || now.wMinute != s.minute) return std::wstring();
+    int late = (now.wHour * 3600 + now.wMinute * 60 + now.wSecond) - (s.hour * 3600 + s.minute * 60 + s.second);
+    if (late < 0 || late >= 60) return std::wstring();
     return today + L" " + ScheduleTimeForEdit(s);
 }

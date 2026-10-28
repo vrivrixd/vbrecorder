@@ -830,8 +830,8 @@ msgstr "완료 후 제거(&R)"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "날짜가 잘못되었습니다. {exemplo}처럼 입력하거나, 매일 녹음하려면 비워 두세요."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "시간이 잘못되었습니다. 시와 분을 입력하세요. 예: 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "시간이 잘못되었습니다. 시와 분을 입력하고, 원하면 초도 입력하세요. 예: 14:30 또는 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "그 날짜와 시간은 이미 지났습니다."
@@ -923,3 +923,29 @@ msgstr "임펄스 파일"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "임펄스 파일을 찾을 수 없습니다:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "사이드체인(&L)"
+
+msgid "Cadeia Lateral"
+msgstr "사이드체인"
+
+msgid "&Papel desta fonte:"
+msgstr "이 소스의 역할(&P):"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "다른 소스에 의해 줄어듦"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "다른 소스의 볼륨을 줄임"
+
+msgid "Não participa"
+msgstr "참여하지 않음"
+
+msgid "Retenção:"
+msgstr "유지:"
+
+msgid "Redução:"
+msgstr "감소량:"
+
+msgid "Silêncio"
+msgstr "무음"

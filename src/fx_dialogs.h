@@ -15,8 +15,8 @@
  */
 
 /*
- * The dialogs of the equalizer, the effects and the noise remover of a
- * source. Each change goes to preview right away, so the test of the source
+ * The dialogs of the equalizer, the effects, the noise remover and the side
+ * chain of a source. Each change goes to preview right away, so the test of the source
  * dialog sounds the way the dialog is; Cancel gives back what was there
  * before.
  */
@@ -42,7 +42,7 @@ protected:
     typedef std::function<std::wstring(int)> ValueText;
 
     struct Slider {
-        HWND track = nullptr, value = nullptr;
+        HWND label = nullptr, track = nullptr, value = nullptr;
         ValueText text;
         int max = 100, page = 5;
         int origin = 0;  // the value of position 0, in steps: Page Up lands on round values
@@ -158,4 +158,26 @@ private:
     FxSettings fx_;
     FxPreview preview_;
     HWND chk_on_ = nullptr;
+};
+
+/* The side chain of a source: whether it reduces the others, is reduced by
+   them or takes no part, and its controls for that. It is heard only in the
+   recording, so there is nothing to preview. */
+class SidechainDialog : public SliderDialog {
+public:
+    explicit SidechainDialog(const FxSettings& fx);
+    FxSettings result;
+
+protected:
+    void OnInit() override;
+    bool OnCommand(int id, int code, HWND control) override;
+    void OnSliderChanged(int i) override;
+    void OnOk() override;
+
+private:
+    void ShowRole();
+
+    // One slider per SidechainParam, in that order.
+    FxSettings fx_;
+    HWND cmb_role_ = nullptr;
 };

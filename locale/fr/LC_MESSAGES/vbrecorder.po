@@ -840,8 +840,8 @@ msgstr "&Supprimer une fois terminé"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Date non valide. Saisissez-la comme {exemplo}, ou laissez-la vide pour enregistrer tous les jours."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Heure non valide. Saisissez les heures et les minutes, par exemple 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Heure non valide. Saisissez les heures et les minutes, et les secondes si vous le souhaitez, par exemple 14:30 ou 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Cette date et cette heure sont déjà passées."
@@ -933,3 +933,29 @@ msgstr "Fichier d'impulsion"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Le fichier d'impulsion est introuvable :\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "Ch&aîne latérale"
+
+msgid "Cadeia Lateral"
+msgstr "Chaîne latérale"
+
+msgid "&Papel desta fonte:"
+msgstr "&Rôle de cette source :"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Réduite par les autres sources"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Réduit le volume des autres sources"
+
+msgid "Não participa"
+msgstr "Ne participe pas"
+
+msgid "Retenção:"
+msgstr "Maintien :"
+
+msgid "Redução:"
+msgstr "Réduction :"
+
+msgid "Silêncio"
+msgstr "Silence"

@@ -835,8 +835,8 @@ msgstr "&Hapus setelah selesai"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Tanggal tidak valid. Ketik seperti {exemplo}, atau kosongkan untuk merekam setiap hari."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Waktu tidak valid. Ketik jam dan menit, misalnya 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Waktu tidak valid. Ketik jam dan menit, serta detik jika mau, misalnya 14:30 atau 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Tanggal dan waktu itu sudah lewat."
@@ -928,3 +928,29 @@ msgstr "Berkas impuls"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Berkas impuls tidak ditemukan:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "&Rantai Samping"
+
+msgid "Cadeia Lateral"
+msgstr "Rantai Samping"
+
+msgid "&Papel desta fonte:"
+msgstr "P&eran sumber ini:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Dikecilkan oleh sumber lain"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Mengecilkan volume sumber lain"
+
+msgid "Não participa"
+msgstr "Tidak ikut serta"
+
+msgid "Retenção:"
+msgstr "Tahan:"
+
+msgid "Redução:"
+msgstr "Pengurangan:"
+
+msgid "Silêncio"
+msgstr "Hening"

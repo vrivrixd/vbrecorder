@@ -841,8 +841,8 @@ msgstr "&Удалить после завершения"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Неверная дата. Введите её как {exemplo} или оставьте пустой, чтобы записывать каждый день."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Неверное время. Введите часы и минуты, например 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Неверное время. Введите часы и минуты, а при желании и секунды, например 14:30 или 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Эти дата и время уже прошли."
@@ -934,3 +934,29 @@ msgstr "Файл импульса"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Файл импульса не найден:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "Бо&ковая цепь"
+
+msgid "Cadeia Lateral"
+msgstr "Боковая цепь"
+
+msgid "&Papel desta fonte:"
+msgstr "&Роль этого источника:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Приглушается другими источниками"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Приглушает другие источники"
+
+msgid "Não participa"
+msgstr "Не участвует"
+
+msgid "Retenção:"
+msgstr "Удержание:"
+
+msgid "Redução:"
+msgstr "Приглушение:"
+
+msgid "Silêncio"
+msgstr "Тишина"

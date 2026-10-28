@@ -125,6 +125,8 @@ private:
     Input* FindInput(const Source& src);
     Watch* FindWatch(const Source& src);
     void SetRecordingPower(bool on);
+    /* The side chain: the reduced sources stay down until then, at least. */
+    void HoldDuck(double until);
 
     static BOOL CALLBACK RecordProc(DWORD handle, const void* buffer, DWORD length, void* user);
     static BOOL CALLBACK MonitorProc(DWORD handle, const void* buffer, DWORD length, void* user);
@@ -185,5 +187,7 @@ private:
     LONGLONG start_ticks_ = 0;
     LONGLONG paused_ticks_ = 0;
     LONGLONG pause_began_ = 0;
+    // Recording time until which the side chain keeps the reduced sources down.
+    std::atomic<double> duck_until_{-1.0};
     std::vector<float> scratch_;
 };

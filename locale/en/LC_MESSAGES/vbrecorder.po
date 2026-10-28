@@ -838,8 +838,8 @@ msgstr "&Remove When Done"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Invalid date. Type it like {exemplo}, or leave it empty to record every day."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Invalid time. Type the hours and minutes, for example 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Invalid time. Type the hours and minutes, and the seconds if you like, for example 14:30 or 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "That date and time have already passed."
@@ -931,3 +931,29 @@ msgstr "Impulse File"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "The impulse file was not found:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "Side Chain D&ucking"
+
+msgid "Cadeia Lateral"
+msgstr "Side Chain Ducking"
+
+msgid "&Papel desta fonte:"
+msgstr "&Role of this source:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Reduced by the other sources"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Reduces the volume of the other sources"
+
+msgid "Não participa"
+msgstr "Takes no part"
+
+msgid "Retenção:"
+msgstr "Hold:"
+
+msgid "Redução:"
+msgstr "Reduction:"
+
+msgid "Silêncio"
+msgstr "Silence"

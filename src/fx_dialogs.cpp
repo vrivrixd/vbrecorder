@@ -32,6 +32,9 @@ using ui::S;
 
 namespace {
 
+/* The roles in the side chain's list: taking no part, the default, first. */
+const int ROLE_ORDER[] = {SC_NONE, SC_REDUCED, SC_REDUCES};
+
 const DWORD BUTTON = WS_TABSTOP | BS_PUSHBUTTON;
 const DWORD CHECK = WS_TABSTOP | BS_AUTOCHECKBOX;
 const DWORD COMBO = WS_TABSTOP | WS_VSCROLL | CBS_DROPDOWNLIST;
@@ -43,6 +46,7 @@ enum {
     IDC_FX_CONFIG,
     IDC_FX_FILE,
     IDC_FX_BROWSE,
+    IDC_FX_ROLE,
     IDC_FX_TRACK = 600,  // + slider index
     IDC_FX_CHECK = 700,  // + parameter index
 };
@@ -92,6 +96,7 @@ int SliderDialog::AddSlider(ui::Box* row, const std::wstring& label, int pos, Va
     int index = (int)sliders_.size();
     HWND lbl = Add(WC_STATICW, label, 0);
     Slider s;
+    s.label = lbl;
     s.text = text;
     s.max = max;
     s.page = page;
@@ -558,6 +563,74 @@ bool NoiseDialog::OnCommand(int id, int code, HWND control) {
 }
 
 void NoiseDialog::OnOk() {
+    result = fx_;
+    EndModal(IDOK);
+}
+
+/* ---- Side chain ---- */
+
+SidechainDialog::SidechainDialog(const FxSettings& fx)
+    : SliderDialog(tr("Cadeia Lateral")), result(fx), fx_(fx) {}
+
+void SidechainDialog::OnInit() {
+    auto vbox = VBox();
+    auto top = HBox();
+    HWND lbl = Add(WC_STATICW, tr("&Papel desta fonte:"), 0);
+    // In the order of ROLE_ORDER.
+    cmb_role_ = Add(WC_COMBOBOXW, L"", COMBO, IDC_FX_ROLE);
+    ui::ComboSetItems(cmb_role_, {tr("Não participa"), tr("É reduzida pelas outras fontes"),
+                                  tr("Reduz o volume das outras fontes")});
+    for (int i = 0; i < 3; ++i)
+        if (ROLE_ORDER[i] == fx_.sidechain.role) SendMessageW(cmb_role_, CB_SETCURSEL, i, 0);
+    top->Add(lbl, 0, ui::CENTER_V | ui::RIGHT, S(5));
+    top->Add(cmb_role_, 1, ui::EXPAND, 0);
+    vbox->Add(std::move(top), 0, ui::ALL | ui::EXPAND, S(10));
+
+    const auto& params = SidechainParams();
+    for (int i = 0; i < SC_PARAMS; ++i) {
+        const FxParam& p = params[i];
+        auto row = HBox();
+        AddSlider(row.get(), tr(p.label), ParamPos(p, fx_.sidechain.values[i]),
+                  [p, i](int pos) {
+                      if (i == SC_REDUCTION && pos == ParamSteps(p)) return tr("Silêncio");
+                      return FormatParam(p, ParamValue(p, pos));
+                  },
+                  ParamSteps(p), ParamPage(p), true, (int)std::lround(p.min / p.step));
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    }
+    AddOkCancel(vbox.get());
+    root_ = std::move(vbox);
+    ShowRole();
+}
+
+/* Only the controls of the role chosen are shown. */
+void SidechainDialog::ShowRole() {
+    for (int i = 0; i < SC_PARAMS; ++i) {
+        bool show = fx_.sidechain.role == SC_REDUCES   ? i <= SC_HOLD
+                    : fx_.sidechain.role == SC_REDUCED ? i >= SC_REDUCTION
+                                                       : false;
+        ui::Show(sliders_[i].label, show);
+        ui::Show(sliders_[i].track, show);
+        ui::Show(sliders_[i].value, show);
+    }
+    Fit();
+}
+
+void SidechainDialog::OnSliderChanged(int i) {
+    fx_.sidechain.values[i] = ParamValue(SidechainParams()[i], SliderPos(i));
+}
+
+bool SidechainDialog::OnCommand(int id, int code, HWND control) {
+    if (id == IDC_FX_ROLE && code == CBN_SELCHANGE) {
+        int sel = (int)SendMessageW(cmb_role_, CB_GETCURSEL, 0, 0);
+        if (sel >= 0 && sel < 3) fx_.sidechain.role = ROLE_ORDER[sel];
+        ShowRole();
+        return true;
+    }
+    return SliderDialog::OnCommand(id, code, control);
+}
+
+void SidechainDialog::OnOk() {
     result = fx_;
     EndModal(IDOK);
 }

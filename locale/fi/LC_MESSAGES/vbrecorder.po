@@ -837,8 +837,8 @@ msgstr "Poista valmis&tuttua"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Virheellinen päivämäärä. Kirjoita se muodossa {exemplo} tai jätä se tyhjäksi, niin tallennus tehdään joka päivä."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Virheellinen kellonaika. Kirjoita tunnit ja minuutit, esimerkiksi 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Virheellinen kellonaika. Kirjoita tunnit ja minuutit, halutessasi myös sekunnit, esimerkiksi 14:30 tai 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Tämä päivämäärä ja kellonaika ovat jo menneet."
@@ -930,3 +930,29 @@ msgstr "Impulssitiedosto"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Impulssitiedostoa ei löytynyt:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "Si&vuketju"
+
+msgid "Cadeia Lateral"
+msgstr "Sivuketju"
+
+msgid "&Papel desta fonte:"
+msgstr "&Tämän lähteen rooli:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Muut lähteet hiljentävät tämän"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Hiljentää muut lähteet"
+
+msgid "Não participa"
+msgstr "Ei osallistu"
+
+msgid "Retenção:"
+msgstr "Pitoaika:"
+
+msgid "Redução:"
+msgstr "Vaimennus:"
+
+msgid "Silêncio"
+msgstr "Hiljaisuus"

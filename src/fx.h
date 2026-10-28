@@ -16,8 +16,9 @@
 
 /*
  * What can be done to the sound of each source: the equalizer, the effects,
- * with their presets, the noise remover, and mono. Only the settings live
- * here; the processing is in fx_chain.cpp.
+ * with their presets, the noise remover, mono, and the side chain. Only the
+ * settings live here; the processing is in fx_chain.cpp, and the side
+ * chain's in audio_engine.cpp.
  */
 #pragma once
 
@@ -66,10 +67,27 @@ struct NoiseSettings {
     float amount = 100.0f;  // percent of the cleaned sound in the result
 };
 
+/* The side chain, in the recording only: while a source that reduces the
+   others has sound above its threshold, the sources that are reduced go
+   down, and come back once it has been quiet for the hold time. A source
+   takes no part until it is set to, and is then never reduced. The numbers
+   are kept in the .ini. */
+enum SidechainRole { SC_REDUCED = 0, SC_REDUCES = 1, SC_NONE = 2 };
+enum SidechainParam { SC_THRESHOLD, SC_HOLD, SC_REDUCTION, SC_ATTACK, SC_RELEASE, SC_PARAMS };
+
+struct SidechainSettings {
+    int role = SC_NONE;
+    float values[SC_PARAMS];  // in the units of SidechainParams()
+
+    SidechainSettings();  // the starting value of each parameter
+    bool IsDefault() const;
+};
+
 struct FxSettings {
     EqSettings eq;
     EffectSettings effects[FX_COUNT];
     NoiseSettings noise;
+    SidechainSettings sidechain;
     bool stereo = true;  // false: the source's channels are mixed into one
 
     FxSettings();  // every effect off, with the values of its first preset
@@ -124,3 +142,9 @@ float ParamValue(const FxParam& p, int pos);
 int ParamPos(const FxParam& p, float value);
 /* The value with its unit, as the dialog shows it. */
 std::wstring FormatParam(const FxParam& p, float value);
+
+/* The side chain's controls, in the order of SidechainParam: the threshold
+   and hold time of a source that reduces the others, then how much and how
+   fast a reduced source goes down and comes back. The highest reduction is
+   silence. */
+const std::vector<FxParam>& SidechainParams();

@@ -68,6 +68,13 @@ history.
   arrows move one step, Page Up and Page Down a larger one.
 - **Noise remover** for audio devices, with RNNoise: it cleans up fans, hiss
   and background noise from a microphone, with an adjustable intensity.
+- **Side chain ducking.** A source can turn the others down while it has
+  sound: with the microphone and Discord set to reduce the others, the music
+  and the game go down while someone speaks, and come back after. A source
+  takes no part until it is set to. Each source that reduces the others has
+  its threshold and hold time; each one that is reduced has how much it goes
+  down (down to silence) and how fast it goes down and comes back. It applies
+  to the recording only, separate files included, not to what is heard.
 - **Separate files.** With two or more sources, each one can go to its own
   file, named after the source: `recording (Microphone).wav`,
   `recording (chrome.exe).wav`.
@@ -90,7 +97,8 @@ history.
   moves, it points Windows to the new place the next time it opens.
 - **Scheduled recordings.** Recording Schedule, in the main window, keeps a
   list of times to start recording by itself, as if Record were pressed:
-  on a given date, or every day when the date is left empty. Each one may
+  on a given date, or every day when the date is left empty. The time is
+  typed as `14:30`, or with seconds, as `14:30:15`. Each one may
   have its own recording duration; without one, the duration field of the
   main window counts. "Remove When Done" takes a schedule out of the list
   once its recording starts. The program does this itself, without the
@@ -251,7 +259,7 @@ Structure:
 - `src/hotkeys.cpp` — hotkeys written as text.
 - `src/startup.cpp` — starting with Windows.
 - `src/install.cpp` — what changes in the installed copy.
-- `src/fx.cpp` — equalizer, effects and noise remover settings, and their presets.
+- `src/fx.cpp` — equalizer, effects, noise remover and side chain settings, and their presets.
 - `src/fx_chain.cpp` — the processing of each source (BASS_FX, RNNoise and the delay).
 - `src/convolver.cpp` — the convolution reverb.
 - `src/background.cpp` — background audio: the files of a source, played in turn.

@@ -345,6 +345,7 @@ enum {
     IDC_AS_FOLDER_BROWSE,
     IDC_AS_LOOP,
     IDC_AS_SHUFFLE,
+    IDC_AS_SIDECHAIN,
 };
 
 AddSourceDialog::AddSourceDialog(AudioEngine& audio, const std::vector<Source>& existing,
@@ -458,6 +459,8 @@ void AddSourceDialog::OnInit() {
     btn_fx_ = Add(WC_BUTTONW, tr("E&feitos"), BUTTON, IDC_AS_FX);
     // Only audio devices: a program's sound is already clean.
     btn_noise_ = Add(WC_BUTTONW, tr("Removedor de &Ruído"), BUTTON, IDC_AS_NOISE);
+    // How this source and the others turn each other down, in the recording.
+    btn_sidechain_ = Add(WC_BUTTONW, tr("Ca&deia Lateral"), BUTTON, IDC_AS_SIDECHAIN);
     // Last: it plays what the controls above set.
     btn_test_ = Add(WC_BUTTONW, tr("&Testar"), BUTTON, IDC_AS_TEST);
     ui::SetToolTip(hwnd_, btn_test_, tr("Ouvir o dispositivo selecionado com o volume ajustado"));
@@ -465,6 +468,7 @@ void AddSourceDialog::OnInit() {
     tools->Add(btn_eq_, 0, ui::RIGHT, S(5));
     tools->Add(btn_fx_, 0, ui::RIGHT, S(5));
     tools->Add(btn_noise_, 0, ui::RIGHT, S(5));
+    tools->Add(btn_sidechain_, 0, ui::RIGHT, S(5));
     tools->Add(btn_test_, 0, 0, 0);
     vbox->Add(std::move(tools), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
@@ -521,7 +525,7 @@ void AddSourceDialog::OnInit() {
 bool AddSourceDialog::OnCharHook(const MSG& msg) {
     HWND focus = GetFocus();
     if (IsEnter(msg) && focus != btn_test_ && focus != btn_refresh_ && focus != btn_eq_ && focus != btn_fx_ &&
-        focus != btn_noise_ && focus != btn_exe_browse_ && focus != btn_file_browse_ &&
+        focus != btn_noise_ && focus != btn_sidechain_ && focus != btn_exe_browse_ && focus != btn_file_browse_ &&
         focus != btn_folder_browse_ && focus != btn_cancel_) {
         OnOk();
         return true;
@@ -597,6 +601,9 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
             return true;
         case IDC_AS_NOISE:
             if (code == BN_CLICKED) OnNoise();
+            return true;
+        case IDC_AS_SIDECHAIN:
+            if (code == BN_CLICKED) OnSidechain();
             return true;
         case IDOK:
             OnOk();
@@ -768,6 +775,11 @@ void AddSourceDialog::OnNoise() {
     NoiseDialog dlg(fx_, [this](const FxSettings& fx) { Preview(fx); });
     if (dlg.ShowModal(hwnd_) == IDOK) fx_ = dlg.result;
     Preview(fx_);
+}
+
+void AddSourceDialog::OnSidechain() {
+    SidechainDialog dlg(fx_);
+    if (dlg.ShowModal(hwnd_) == IDOK) fx_ = dlg.result;
 }
 
 void AddSourceDialog::StopTest() {
@@ -1058,8 +1070,8 @@ void ScheduleDialog::OnOk() {
         SetFocus(txt_date_);
         return;
     }
-    if (!ParseScheduleTime(ui::GetText(txt_time_), &s.hour, &s.minute)) {
-        ui::MsgBox(hwnd_, tr("Horário inválido. Digite as horas e os minutos, por exemplo 14:30."),
+    if (!ParseScheduleTime(ui::GetText(txt_time_), &s.hour, &s.minute, &s.second)) {
+        ui::MsgBox(hwnd_, tr("Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."),
                    tr("Aviso"), MB_ICONWARNING | MB_OK);
         SetFocus(txt_time_);
         return;

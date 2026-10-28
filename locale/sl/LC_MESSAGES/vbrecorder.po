@@ -847,8 +847,8 @@ msgstr "&Odstrani po koncu"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Neveljaven datum. Vnesite ga kot {exemplo} ali ga pustite praznega za snemanje vsak dan."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Neveljavna ura. Vnesite ure in minute, na primer 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Neveljavna ura. Vnesite ure in minute, po želji tudi sekunde, na primer 14:30 ali 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Ta datum in ura sta že minila."
@@ -940,3 +940,29 @@ msgstr "Datoteka impulza"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Datoteke impulza ni bilo mogoče najti:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "S&transka veriga"
+
+msgid "Cadeia Lateral"
+msgstr "Stranska veriga"
+
+msgid "&Papel desta fonte:"
+msgstr "V&loga tega vira:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Utišajo ga drugi viri"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Utiša druge vire"
+
+msgid "Não participa"
+msgstr "Ne sodeluje"
+
+msgid "Retenção:"
+msgstr "Zadržanje:"
+
+msgid "Redução:"
+msgstr "Utišanje:"
+
+msgid "Silêncio"
+msgstr "Tišina"

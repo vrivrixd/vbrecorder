@@ -385,7 +385,7 @@ std::vector<Schedule> ConfigManager::GetSchedules() const {
         s.date = Trim(v.substr(0, a));
         s.remove_after = Trim(v.substr(b + 1, c == std::wstring::npos ? c : c - b - 1)) == L"1";
         if (c != std::wstring::npos) ParseDuration(v.substr(c + 1), &s.duration);
-        if (!ParseScheduleTime(v.substr(a + 1, b - a - 1), &s.hour, &s.minute)) continue;
+        if (!ParseScheduleTime(v.substr(a + 1, b - a - 1), &s.hour, &s.minute, &s.second)) continue;
         int y = 0, m = 0, d = 0;
         if (!s.date.empty() && swscanf(s.date.c_str(), L"%d-%d-%d", &y, &m, &d) != 3) continue;
         result.push_back(s);

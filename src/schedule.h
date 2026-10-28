@@ -28,7 +28,7 @@
 
 struct Schedule {
     std::wstring date;  // "2026-12-31"; empty is every day
-    int hour = 0, minute = 0;
+    int hour = 0, minute = 0, second = 0;
     int duration = 0;           // seconds; 0 follows the main window's duration
     bool remove_after = false;  // leaves the list when its recording starts
     int id = 0;                 // while the program runs, to tell them apart
@@ -40,12 +40,14 @@ bool ParseDuration(const std::wstring& text, int* seconds);
 /* 5400 as 1:30:00. */
 std::wstring FormatDuration(int seconds);
 
-/* "14:30" or "9:05"; false if it is not a time of day. */
-bool ParseScheduleTime(const std::wstring& text, int* hour, int* minute);
+/* "14:30", "9:05" or "14:30:15"; the seconds are optional. False if it is
+   not a time of day. */
+bool ParseScheduleTime(const std::wstring& text, int* hour, int* minute, int* second);
 /* A date as the program's language writes it (31/12/2026), into 2026-12-31. */
 bool ParseScheduleDate(const std::wstring& text, std::wstring* iso);
 /* 2026-12-31 as it is typed: 31/12/2026. */
 std::wstring ScheduleDateForEdit(const std::wstring& iso);
+/* 14:30, or 14:30:15 when it has seconds. */
 std::wstring ScheduleTimeForEdit(const Schedule& s);
 /* Today as the date field expects it, to show how to type one. */
 std::wstring ScheduleDateExample();
@@ -55,7 +57,7 @@ std::wstring ScheduleText(const Schedule& s);
 
 /* A schedule with a date whose time has already gone by. */
 bool SchedulePassed(const Schedule& s);
-/* When its recording is due: the day and minute (2026-12-31 14:30), if now is
+/* When its recording is due: the day and time (2026-12-31 14:30), if now is
    within the minute after its time; empty otherwise. The minute of leeway
    covers a timer that came late, or the program opened just after. */
 std::wstring ScheduleDueKey(const Schedule& s, const SYSTEMTIME& now);

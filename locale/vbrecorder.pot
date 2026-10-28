@@ -809,7 +809,7 @@ msgstr ""
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr ""
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
 msgstr ""
 
 msgid "Essa data e esse horário já passaram."
@@ -902,3 +902,29 @@ msgstr ""
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr ""
 
+msgid "Ca&deia Lateral"
+msgstr ""
+
+msgid "Cadeia Lateral"
+msgstr ""
+
+msgid "&Papel desta fonte:"
+msgstr ""
+
+msgid "É reduzida pelas outras fontes"
+msgstr ""
+
+msgid "Reduz o volume das outras fontes"
+msgstr ""
+
+msgid "Não participa"
+msgstr ""
+
+msgid "Retenção:"
+msgstr ""
+
+msgid "Redução:"
+msgstr ""
+
+msgid "Silêncio"
+msgstr ""

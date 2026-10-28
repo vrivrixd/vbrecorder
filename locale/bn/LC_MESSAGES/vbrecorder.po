@@ -840,8 +840,8 @@ msgstr "শেষ হলে সরান(&R)"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "তারিখ সঠিক নয়। {exemplo} এর মতো লিখুন, অথবা প্রতিদিন রেকর্ড করতে ফাঁকা রাখুন।"
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "সময় সঠিক নয়। ঘণ্টা ও মিনিট লিখুন, যেমন 14:30।"
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "সময় সঠিক নয়। ঘণ্টা ও মিনিট লিখুন, চাইলে সেকেন্ডও, যেমন 14:30 বা 14:30:15।"
 
 msgid "Essa data e esse horário já passaram."
 msgstr "এই তারিখ ও সময় পেরিয়ে গেছে।"
@@ -933,3 +933,29 @@ msgstr "ইমপালস ফাইল"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "ইমপালস ফাইল পাওয়া যায়নি:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "সাইড চেইন(&L)"
+
+msgid "Cadeia Lateral"
+msgstr "সাইড চেইন"
+
+msgid "&Papel desta fonte:"
+msgstr "এই উৎসের ভূমিকা(&P):"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "অন্য উৎসগুলো এর ভলিউম কমায়"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "অন্য উৎসগুলোর ভলিউম কমায়"
+
+msgid "Não participa"
+msgstr "অংশ নেয় না"
+
+msgid "Retenção:"
+msgstr "ধরে রাখা:"
+
+msgid "Redução:"
+msgstr "হ্রাস:"
+
+msgid "Silêncio"
+msgstr "নীরবতা"

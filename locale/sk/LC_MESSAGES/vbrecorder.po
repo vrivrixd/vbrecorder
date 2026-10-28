@@ -841,8 +841,8 @@ msgstr "Odob&rať po dokončení"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Neplatný dátum. Zadajte ho ako {exemplo}, alebo ho nechajte prázdny na nahrávanie každý deň."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Neplatný čas. Zadajte hodiny a minúty, napríklad 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Neplatný čas. Zadajte hodiny a minúty, prípadne aj sekundy, napríklad 14:30 alebo 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Tento dátum a čas už uplynuli."
@@ -934,3 +934,29 @@ msgstr "Súbor impulzu"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Súbor impulzu sa nenašiel:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "Bočný &reťazec"
+
+msgid "Cadeia Lateral"
+msgstr "Bočný reťazec"
+
+msgid "&Papel desta fonte:"
+msgstr "Ú&loha tohto zdroja:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Stlmený ostatnými zdrojmi"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Stlmí ostatné zdroje"
+
+msgid "Não participa"
+msgstr "Nezúčastňuje sa"
+
+msgid "Retenção:"
+msgstr "Výdrž:"
+
+msgid "Redução:"
+msgstr "Stlmenie:"
+
+msgid "Silêncio"
+msgstr "Ticho"

@@ -839,8 +839,8 @@ msgstr "&Eliminar al terminar"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Fecha no válida. Escríbela como {exemplo}, o déjala en blanco para grabar todos los días."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Hora no válida. Escribe las horas y los minutos, por ejemplo 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Hora no válida. Escribe las horas y los minutos, y los segundos si quieres, por ejemplo 14:30 o 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Esa fecha y esa hora ya pasaron."
@@ -932,3 +932,29 @@ msgstr "Archivo de impulso"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "No se encontró el archivo de impulso:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "Ca&dena lateral"
+
+msgid "Cadeia Lateral"
+msgstr "Cadena lateral"
+
+msgid "&Papel desta fonte:"
+msgstr "&Función de esta fuente:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Reducida por las otras fuentes"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Reduce el volumen de las otras fuentes"
+
+msgid "Não participa"
+msgstr "No participa"
+
+msgid "Retenção:"
+msgstr "Retención:"
+
+msgid "Redução:"
+msgstr "Reducción:"
+
+msgid "Silêncio"
+msgstr "Silencio"

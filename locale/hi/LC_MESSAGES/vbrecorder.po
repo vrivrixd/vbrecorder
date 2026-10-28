@@ -840,8 +840,8 @@ msgstr "पूरा होने पर हटाएँ(&R)"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "तारीख़ ग़लत है। {exemplo} की तरह लिखें, या हर दिन रिकॉर्ड करने के लिए ख़ाली छोड़ें।"
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "समय ग़लत है। घंटे और मिनट लिखें, जैसे 14:30।"
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "समय ग़लत है। घंटे और मिनट लिखें, चाहें तो सेकंड भी, जैसे 14:30 या 14:30:15।"
 
 msgid "Essa data e esse horário já passaram."
 msgstr "यह तारीख़ और समय बीत चुके हैं।"
@@ -933,3 +933,29 @@ msgstr "इंपल्स फ़ाइल"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "इंपल्स फ़ाइल नहीं मिली:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "साइड चेन(&L)"
+
+msgid "Cadeia Lateral"
+msgstr "साइड चेन"
+
+msgid "&Papel desta fonte:"
+msgstr "इस स्रोत की भूमिका(&P):"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "दूसरे स्रोत इसकी आवाज़ कम करते हैं"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "दूसरे स्रोतों की आवाज़ कम करता है"
+
+msgid "Não participa"
+msgstr "भाग नहीं लेता"
+
+msgid "Retenção:"
+msgstr "होल्ड:"
+
+msgid "Redução:"
+msgstr "कमी:"
+
+msgid "Silêncio"
+msgstr "मौन"

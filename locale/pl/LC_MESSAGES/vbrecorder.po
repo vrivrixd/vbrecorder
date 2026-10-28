@@ -842,8 +842,8 @@ msgstr "&Usuń po zakończeniu"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Nieprawidłowa data. Wpisz ją jak {exemplo} albo zostaw puste, aby nagrywać codziennie."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Nieprawidłowa godzina. Wpisz godziny i minuty, na przykład 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Nieprawidłowa godzina. Wpisz godziny i minuty, a jeśli chcesz, także sekundy, na przykład 14:30 lub 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Ta data i godzina już minęły."
@@ -935,3 +935,29 @@ msgstr "Plik impulsu"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Nie znaleziono pliku impulsu:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "Łańcuch &boczny"
+
+msgid "Cadeia Lateral"
+msgstr "Łańcuch boczny"
+
+msgid "&Papel desta fonte:"
+msgstr "&Rola tego źródła:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Ściszane przez inne źródła"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Ścisza inne źródła"
+
+msgid "Não participa"
+msgstr "Nie bierze udziału"
+
+msgid "Retenção:"
+msgstr "Przytrzymanie:"
+
+msgid "Redução:"
+msgstr "Ściszenie:"
+
+msgid "Silêncio"
+msgstr "Cisza"

@@ -228,6 +228,27 @@ FxSettings::FxSettings() {
     }
 }
 
+const std::vector<FxParam>& SidechainParams() {
+    static const std::vector<FxParam> params = {
+        {"Limiar:", -60, 0, 0, L" dB", false, 1, 5},
+        {"Retenção:", 0, 3000, 0, L" ms", false, 10, 100},
+        {"Redução:", 1, 60, 0, L" dB", false, 1, 5},
+        {"Ataque:", 1, 1000, 0, L" ms", false, 1, 10},
+        {"Liberação:", 10, 5000, 0, L" ms", false, 10, 100},
+    };
+    return params;
+}
+
+SidechainSettings::SidechainSettings() : values{-40, 500, 15, 50, 500} {}
+
+bool SidechainSettings::IsDefault() const {
+    const SidechainSettings defaults;
+    if (role != defaults.role) return false;
+    for (int i = 0; i < SC_PARAMS; ++i)
+        if (values[i] != defaults.values[i]) return false;
+    return true;
+}
+
 /* The classic Winamp presets (as VLC ships them), moved to these bands, plus
    curves for voice and everyday use. */
 const std::vector<EqPreset>& EqPresets() {
@@ -304,8 +325,8 @@ std::wstring Unescape(const std::wstring& text) {
 
 }  // namespace
 
-/* eq=preset|preamp|gain/gain/...;delay=1|preset|v/v/...;ruido=1|amount;estereo=0
-   Only what differs from the defaults is written. */
+/* eq=preset|preamp|gain/gain/...;delay=1|preset|v/v/...;ruido=1|amount;estereo=0;
+   cadeia=role|v/v/... Only what differs from the defaults is written. */
 std::wstring FxSettings::Serialize() const {
     const FxSettings defaults;
     std::vector<std::wstring> parts;
@@ -328,6 +349,11 @@ std::wstring FxSettings::Serialize() const {
     if (noise.on || noise.amount != defaults.noise.amount)
         parts.push_back(std::wstring(L"ruido=") + (noise.on ? L"1" : L"0") + L"|" + Num(noise.amount));
     if (!stereo) parts.push_back(L"estereo=0");
+    if (!sidechain.IsDefault()) {
+        std::wstring s = L"cadeia=" + std::to_wstring(sidechain.role) + L"|";
+        for (int i = 0; i < SC_PARAMS; ++i) s += (i ? L"/" : L"") + Num(sidechain.values[i]);
+        parts.push_back(s);
+    }
     std::wstring out;
     for (size_t i = 0; i < parts.size(); ++i) out += (i ? L";" : L"") + parts[i];
     return out;
@@ -354,6 +380,14 @@ FxSettings FxSettings::Parse(const std::wstring& text) {
             fx.noise.amount = Clamp(ToFloat(fields[1], 100), 0, 100);
         } else if (name == L"estereo") {
             fx.stereo = fields[0] != L"0";
+        } else if (name == L"cadeia" && fields.size() >= 2) {
+            int role = _wtoi(fields[0].c_str());
+            fx.sidechain.role = role >= SC_REDUCED && role <= SC_NONE ? role : SC_NONE;
+            std::vector<std::wstring> values = Split(fields[1], L'/');
+            const auto& params = SidechainParams();
+            for (int i = 0; i < SC_PARAMS && i < (int)values.size(); ++i)
+                fx.sidechain.values[i] = Clamp(ToFloat(values[i], fx.sidechain.values[i]),
+                                               params[i].min, params[i].max);
         } else {
             for (int k = 0; k < FX_COUNT; ++k) {
                 const EffectDef& def = GetEffectDef(k);

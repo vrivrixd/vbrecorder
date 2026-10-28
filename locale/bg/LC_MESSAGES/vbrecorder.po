@@ -840,8 +840,8 @@ msgstr "&Премахване след приключване"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Невалидна дата. Въведете я като {exemplo} или я оставете празна, за да се записва всеки ден."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Невалиден час. Въведете часовете и минутите, например 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Невалиден час. Въведете часовете и минутите, и секундите, ако желаете, например 14:30 или 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Тази дата и час вече са минали."
@@ -933,3 +933,29 @@ msgstr "Файл с импулс"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Файлът с импулс не е намерен:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "&Странична верига"
+
+msgid "Cadeia Lateral"
+msgstr "Странична верига"
+
+msgid "&Papel desta fonte:"
+msgstr "&Роля на този източник:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Намалява се от другите източници"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Намалява силата на звука на другите източници"
+
+msgid "Não participa"
+msgstr "Не участва"
+
+msgid "Retenção:"
+msgstr "Задържане:"
+
+msgid "Redução:"
+msgstr "Намаляване:"
+
+msgid "Silêncio"
+msgstr "Тишина"

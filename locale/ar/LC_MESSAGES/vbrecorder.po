@@ -854,8 +854,8 @@ msgstr "الإزالة بعد الاكتمال(&R)"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "تاريخ غير صالح. اكتبه مثل {exemplo}، أو اتركه فارغًا للتسجيل كل يوم."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "وقت غير صالح. اكتب الساعات والدقائق، مثلًا 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "وقت غير صالح. اكتب الساعات والدقائق، والثواني إن أردت، مثلًا 14:30 أو 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "هذا التاريخ والوقت قد مضيا."
@@ -947,3 +947,29 @@ msgstr "ملف الاستجابة النبضية"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "لم يُعثر على ملف الاستجابة النبضية:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "السلسلة الجانبية(&L)"
+
+msgid "Cadeia Lateral"
+msgstr "السلسلة الجانبية"
+
+msgid "&Papel desta fonte:"
+msgstr "دور هذا المصدر(&P):"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "تخفضه المصادر الأخرى"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "يخفض صوت المصادر الأخرى"
+
+msgid "Não participa"
+msgstr "لا يشارك"
+
+msgid "Retenção:"
+msgstr "الإمساك:"
+
+msgid "Redução:"
+msgstr "الخفض:"
+
+msgid "Silêncio"
+msgstr "صمت"

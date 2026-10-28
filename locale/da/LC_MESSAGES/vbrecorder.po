@@ -838,8 +838,8 @@ msgstr "&Fjern efter afslutning"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Ugyldig dato. Skriv den som {exemplo}, eller lad den være tom for at optage hver dag."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Ugyldigt klokkeslæt. Skriv timer og minutter, for eksempel 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Ugyldigt klokkeslæt. Skriv timer og minutter, og sekunder hvis du vil, for eksempel 14:30 eller 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Den dato og det klokkeslæt er allerede gået."
@@ -931,3 +931,29 @@ msgstr "Impulsfil"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Impulsfilen blev ikke fundet:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "&Sidechain"
+
+msgid "Cadeia Lateral"
+msgstr "Sidechain"
+
+msgid "&Papel desta fonte:"
+msgstr "&Rolle for denne kilde:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Dæmpes af de andre kilder"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Dæmper de andre kilder"
+
+msgid "Não participa"
+msgstr "Deltager ikke"
+
+msgid "Retenção:"
+msgstr "Holdetid:"
+
+msgid "Redução:"
+msgstr "Dæmpning:"
+
+msgid "Silêncio"
+msgstr "Stilhed"

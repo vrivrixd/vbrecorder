@@ -831,8 +831,8 @@ msgstr "完了後に削除(&R)"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "日付が正しくありません。{exemplo} のように入力するか、毎日録音する場合は空欄にしてください。"
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "時刻が正しくありません。時と分を入力してください (例: 14:30)。"
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "時刻が正しくありません。時と分を入力してください。秒も入力できます (例: 14:30、14:30:15)。"
 
 msgid "Essa data e esse horário já passaram."
 msgstr "その日時はすでに過ぎています。"
@@ -924,3 +924,29 @@ msgstr "インパルス ファイル"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "インパルス ファイルが見つかりません:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "サイドチェーン(&L)"
+
+msgid "Cadeia Lateral"
+msgstr "サイドチェーン"
+
+msgid "&Papel desta fonte:"
+msgstr "このソースの役割(&P):"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "ほかのソースによって下げられる"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "ほかのソースの音量を下げる"
+
+msgid "Não participa"
+msgstr "参加しない"
+
+msgid "Retenção:"
+msgstr "ホールド:"
+
+msgid "Redução:"
+msgstr "減衰量:"
+
+msgid "Silêncio"
+msgstr "無音"

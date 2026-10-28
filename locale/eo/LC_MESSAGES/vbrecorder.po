@@ -838,8 +838,8 @@ msgstr "&Forigi post fino"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Nevalida dato. Tajpu ĝin kiel {exemplo}, aŭ lasu ĝin malplena por registri ĉiutage."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Nevalida horo. Tajpu la horojn kaj minutojn, ekzemple 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Nevalida horo. Tajpu la horojn kaj minutojn, kaj laŭvole la sekundojn, ekzemple 14:30 aŭ 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Tiu dato kaj horo jam pasis."
@@ -931,3 +931,29 @@ msgstr "Impulsa dosiero"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "La impulsa dosiero ne troviĝis:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "F&lanka ĉeno"
+
+msgid "Cadeia Lateral"
+msgstr "Flanka ĉeno"
+
+msgid "&Papel desta fonte:"
+msgstr "&Rolo de ĉi tiu fonto:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Mallaŭtigata de la aliaj fontoj"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Mallaŭtigas la aliajn fontojn"
+
+msgid "Não participa"
+msgstr "Ne partoprenas"
+
+msgid "Retenção:"
+msgstr "Tenado:"
+
+msgid "Redução:"
+msgstr "Malpliigo:"
+
+msgid "Silêncio"
+msgstr "Silento"

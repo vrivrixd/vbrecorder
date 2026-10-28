@@ -839,8 +839,8 @@ msgstr "Tamamlanınca &kaldır"
 msgid "Data inválida. Digite como {exemplo}, ou deixe em branco para gravar todos os dias."
 msgstr "Geçersiz tarih. {exemplo} gibi yazın ya da her gün kaydetmek için boş bırakın."
 
-msgid "Horário inválido. Digite as horas e os minutos, por exemplo 14:30."
-msgstr "Geçersiz saat. Saati ve dakikayı yazın, örneğin 14:30."
+msgid "Horário inválido. Digite as horas e os minutos, e os segundos se quiser, por exemplo 14:30 ou 14:30:15."
+msgstr "Geçersiz saat. Saati ve dakikayı, isterseniz saniyeyi de yazın, örneğin 14:30 veya 14:30:15."
 
 msgid "Essa data e esse horário já passaram."
 msgstr "Bu tarih ve saat çoktan geçti."
@@ -932,3 +932,29 @@ msgstr "Dürtü Dosyası"
 msgid "O arquivo de impulso não foi encontrado:\n{arquivo}"
 msgstr "Dürtü dosyası bulunamadı:\n{arquivo}"
 
+msgid "Ca&deia Lateral"
+msgstr "Yan &Zincir"
+
+msgid "Cadeia Lateral"
+msgstr "Yan Zincir"
+
+msgid "&Papel desta fonte:"
+msgstr "Bu kaynağın &rolü:"
+
+msgid "É reduzida pelas outras fontes"
+msgstr "Diğer kaynaklar tarafından kısılır"
+
+msgid "Reduz o volume das outras fontes"
+msgstr "Diğer kaynakların sesini kısar"
+
+msgid "Não participa"
+msgstr "Katılmaz"
+
+msgid "Retenção:"
+msgstr "Bekletme:"
+
+msgid "Redução:"
+msgstr "Azaltma:"
+
+msgid "Silêncio"
+msgstr "Sessizlik"
