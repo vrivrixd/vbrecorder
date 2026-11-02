@@ -51,3 +51,7 @@ std::wstring WinErrorText(DWORD code);
    it from starving for CPU when the computer is busy or idle. */
 HANDLE EnterAudioThread();
 void LeaveAudioThread(HANDLE task);
+/* The same, for a thread the program does not create (the BASS capture), from
+   inside its callback: only the first call on each thread does anything.
+   Windows takes the thread out of the scheduler when it ends. */
+void EnterCallbackAudioThread();

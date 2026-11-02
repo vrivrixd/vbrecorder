@@ -177,8 +177,8 @@ msgstr "Filtrer kilder efter:"
 msgid "Selecionar Fonte:"
 msgstr "Vælg kilde:"
 
-msgid "Volume:"
-msgstr "Lydstyrke:"
+msgid "&Volume:"
+msgstr "L&ydstyrke:"
 
 msgid "Erro"
 msgstr "Fejl"
@@ -957,3 +957,129 @@ msgstr "Dæmpning:"
 
 msgid "Silêncio"
 msgstr "Stilhed"
+
+msgid "Incluir Su&bpastas"
+msgstr "Medtag &undermapper"
+
+msgid "Bala&nço:"
+msgstr "&Balance:"
+
+msgid "Centro"
+msgstr "Midte"
+
+msgid "Esquerda {n}%"
+msgstr "Venstre {n} %"
+
+msgid "Direita {n}%"
+msgstr "Højre {n} %"
+
+msgid "Configurar &Tags..."
+msgstr "Re&diger tags..."
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "&Título:"
+msgstr "&Titel:"
+
+msgid "&Artistas Participantes:"
+msgstr "Medvirkende &kunstnere:"
+
+msgid "Á&lbum:"
+msgstr "A&lbum:"
+
+msgid "A&no:"
+msgstr "Å&r:"
+
+msgid "&Gênero:"
+msgstr "&Genre:"
+
+msgid "&Faixa:"
+msgstr "&Nummer:"
+
+msgid "Co&mentário:"
+msgstr "Ko&mmentar:"
+
+msgid "&Variáveis..."
+msgstr "&Variabler..."
+
+msgid "Nome do Arquivo"
+msgstr "Filnavn"
+
+msgid "Formato"
+msgstr "Format"
+
+msgid "Número da Parte"
+msgstr "Delnummer"
+
+msgid "Data"
+msgstr "Dato"
+
+msgid "Ano"
+msgstr "År"
+
+msgid "Mês"
+msgstr "Måned"
+
+msgid "Dia"
+msgstr "Dag"
+
+msgid "Hora"
+msgstr "Klokkeslæt"
+
+msgid "Nome do Usuário"
+msgstr "Brugernavn"
+
+msgid "Nome do Computador"
+msgstr "Computernavn"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "Opdel optagelsen &hver:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "Med jævne mellemrum fortsætter optagelsen i en ny, nummereret fil: navn 001, navn 002... 30:00 er 30 minutter, 1:00:00 er en time. Tom opdeler ikke."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Ugyldig opdelingstid. Brug timer, minutter og sekunder, som 30:00 eller 1:00:00, eller lad feltet være tomt for ikke at opdele."
+
+msgid "URL de Stream"
+msgstr "Stream-URL"
+
+msgid "&Link do Stream:"
+msgstr "Strea&m-link:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "Adressen på en internetradio eller en M3U-, PLS- eller M3U8-afspilningsliste, på internettet eller på computeren."
+
+msgid "Lista de Reprodução"
+msgstr "Afspilningsliste"
+
+msgid "Listas de Reprodução"
+msgstr "Afspilningslister"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "Kunne ikke oprette forbindelse til dette link (BASS-fejl {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Skriv linket til en stream (der starter med http:// eller https://) eller stien til en M3U-, PLS- eller M3U8-afspilningsliste på computeren."
+
+msgid "URL de Stream: {endereco}"
+msgstr "Stream-URL: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "&Kanaler, der optages:"
+
+msgid "Ambos"
+msgstr "Begge"
+
+msgid "Somente o Esquerdo"
+msgstr "Kun venstre"
+
+msgid "Somente o Direito"
+msgstr "Kun højre"
+
+msgid "Artista &do Álbum:"
+msgstr "Al&bumkunstner:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Åbn optagelsesmappe:"

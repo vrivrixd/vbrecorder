@@ -177,7 +177,7 @@ msgstr ""
 msgid "Selecionar Fonte:"
 msgstr ""
 
-msgid "Volume:"
+msgid "&Volume:"
 msgstr ""
 
 msgid "Erro"
@@ -927,4 +927,130 @@ msgid "Redução:"
 msgstr ""
 
 msgid "Silêncio"
+msgstr ""
+
+msgid "Incluir Su&bpastas"
+msgstr ""
+
+msgid "Bala&nço:"
+msgstr ""
+
+msgid "Centro"
+msgstr ""
+
+msgid "Esquerda {n}%"
+msgstr ""
+
+msgid "Direita {n}%"
+msgstr ""
+
+msgid "Configurar &Tags..."
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "&Título:"
+msgstr ""
+
+msgid "&Artistas Participantes:"
+msgstr ""
+
+msgid "Á&lbum:"
+msgstr ""
+
+msgid "A&no:"
+msgstr ""
+
+msgid "&Gênero:"
+msgstr ""
+
+msgid "&Faixa:"
+msgstr ""
+
+msgid "Co&mentário:"
+msgstr ""
+
+msgid "&Variáveis..."
+msgstr ""
+
+msgid "Nome do Arquivo"
+msgstr ""
+
+msgid "Formato"
+msgstr ""
+
+msgid "Número da Parte"
+msgstr ""
+
+msgid "Data"
+msgstr ""
+
+msgid "Ano"
+msgstr ""
+
+msgid "Mês"
+msgstr ""
+
+msgid "Dia"
+msgstr ""
+
+msgid "Hora"
+msgstr ""
+
+msgid "Nome do Usuário"
+msgstr ""
+
+msgid "Nome do Computador"
+msgstr ""
+
+msgid "Dividir &Gravação a Cada:"
+msgstr ""
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr ""
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr ""
+
+msgid "URL de Stream"
+msgstr ""
+
+msgid "&Link do Stream:"
+msgstr ""
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr ""
+
+msgid "Lista de Reprodução"
+msgstr ""
+
+msgid "Listas de Reprodução"
+msgstr ""
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr ""
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr ""
+
+msgid "URL de Stream: {endereco}"
+msgstr ""
+
+msgid "Canais a &Gravar:"
+msgstr ""
+
+msgid "Ambos"
+msgstr ""
+
+msgid "Somente o Esquerdo"
+msgstr ""
+
+msgid "Somente o Direito"
+msgstr ""
+
+msgid "Artista &do Álbum:"
+msgstr ""
+
+msgid "Abrir Pasta de Gravações:"
 msgstr ""

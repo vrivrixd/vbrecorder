@@ -177,8 +177,8 @@ msgstr "Filtrer les sources par :"
 msgid "Selecionar Fonte:"
 msgstr "Sélectionner la source :"
 
-msgid "Volume:"
-msgstr "Volume :"
+msgid "&Volume:"
+msgstr "&Volume :"
 
 msgid "Erro"
 msgstr "Erreur"
@@ -959,3 +959,129 @@ msgstr "Réduction :"
 
 msgid "Silêncio"
 msgstr "Silence"
+
+msgid "Incluir Su&bpastas"
+msgstr "&Inclure les sous-dossiers"
+
+msgid "Bala&nço:"
+msgstr "&Balance :"
+
+msgid "Centro"
+msgstr "Centre"
+
+msgid "Esquerda {n}%"
+msgstr "Gauche {n} %"
+
+msgid "Direita {n}%"
+msgstr "Droite {n} %"
+
+msgid "Configurar &Tags..."
+msgstr "Co&nfigurer les tags..."
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "&Título:"
+msgstr "&Titre :"
+
+msgid "&Artistas Participantes:"
+msgstr "&Artistes ayant participé :"
+
+msgid "Á&lbum:"
+msgstr "A&lbum :"
+
+msgid "A&no:"
+msgstr "Anné&e :"
+
+msgid "&Gênero:"
+msgstr "&Genre :"
+
+msgid "&Faixa:"
+msgstr "&Piste :"
+
+msgid "Co&mentário:"
+msgstr "&Commentaire :"
+
+msgid "&Variáveis..."
+msgstr "&Variables..."
+
+msgid "Nome do Arquivo"
+msgstr "Nom du fichier"
+
+msgid "Formato"
+msgstr "Format"
+
+msgid "Número da Parte"
+msgstr "Numéro de la partie"
+
+msgid "Data"
+msgstr "Date"
+
+msgid "Ano"
+msgstr "Année"
+
+msgid "Mês"
+msgstr "Mois"
+
+msgid "Dia"
+msgstr "Jour"
+
+msgid "Hora"
+msgstr "Heure"
+
+msgid "Nome do Usuário"
+msgstr "Nom d'utilisateur"
+
+msgid "Nome do Computador"
+msgstr "Nom de l'ordinateur"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "Diviser l'&enregistrement toutes les :"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "À intervalles réguliers, l'enregistrement continue dans un nouveau fichier, numéroté : nom 001, nom 002... 30:00 correspond à 30 minutes, 1:00:00 à une heure. Vide, ne divise pas."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Durée de division non valide. Utilisez des heures, minutes et secondes, comme 30:00 ou 1:00:00, ou laissez vide pour ne pas diviser."
+
+msgid "URL de Stream"
+msgstr "URL de flux"
+
+msgid "&Link do Stream:"
+msgstr "&Lien du flux :"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "L'adresse d'une radio Internet, ou d'une liste M3U, PLS ou M3U8, sur Internet ou sur l'ordinateur."
+
+msgid "Lista de Reprodução"
+msgstr "Liste de lecture"
+
+msgid "Listas de Reprodução"
+msgstr "Listes de lecture"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "Impossible de se connecter à ce lien (erreur BASS {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Saisissez le lien d'un flux (commençant par http:// ou https://) ou le chemin d'une liste M3U, PLS ou M3U8 de l'ordinateur."
+
+msgid "URL de Stream: {endereco}"
+msgstr "URL de flux : {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "Cana&ux à enregistrer :"
+
+msgid "Ambos"
+msgstr "Les deux"
+
+msgid "Somente o Esquerdo"
+msgstr "Gauche uniquement"
+
+msgid "Somente o Direito"
+msgstr "Droite uniquement"
+
+msgid "Artista &do Álbum:"
+msgstr "Artiste &de l'album :"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Ouvrir le dossier des enregistrements :"

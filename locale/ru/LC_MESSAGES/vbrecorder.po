@@ -177,8 +177,8 @@ msgstr "Фильтровать источники по:"
 msgid "Selecionar Fonte:"
 msgstr "Выберите источник:"
 
-msgid "Volume:"
-msgstr "Громкость:"
+msgid "&Volume:"
+msgstr "&Громкость:"
 
 msgid "Erro"
 msgstr "Ошибка"
@@ -960,3 +960,129 @@ msgstr "Приглушение:"
 
 msgid "Silêncio"
 msgstr "Тишина"
+
+msgid "Incluir Su&bpastas"
+msgstr "Вкл&ючая вложенные папки"
+
+msgid "Bala&nço:"
+msgstr "Бала&нс:"
+
+msgid "Centro"
+msgstr "Центр"
+
+msgid "Esquerda {n}%"
+msgstr "Влево {n}%"
+
+msgid "Direita {n}%"
+msgstr "Вправо {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "Настроить те&ги..."
+
+msgid "Tags"
+msgstr "Теги"
+
+msgid "&Título:"
+msgstr "&Название:"
+
+msgid "&Artistas Participantes:"
+msgstr "&Исполнители:"
+
+msgid "Á&lbum:"
+msgstr "&Альбом:"
+
+msgid "A&no:"
+msgstr "&Год:"
+
+msgid "&Gênero:"
+msgstr "&Жанр:"
+
+msgid "&Faixa:"
+msgstr "Т&рек:"
+
+msgid "Co&mentário:"
+msgstr "&Комментарий:"
+
+msgid "&Variáveis..."
+msgstr "&Переменные..."
+
+msgid "Nome do Arquivo"
+msgstr "Имя файла"
+
+msgid "Formato"
+msgstr "Формат"
+
+msgid "Número da Parte"
+msgstr "Номер части"
+
+msgid "Data"
+msgstr "Дата"
+
+msgid "Ano"
+msgstr "Год"
+
+msgid "Mês"
+msgstr "Месяц"
+
+msgid "Dia"
+msgstr "День"
+
+msgid "Hora"
+msgstr "Время"
+
+msgid "Nome do Usuário"
+msgstr "Имя пользователя"
+
+msgid "Nome do Computador"
+msgstr "Имя компьютера"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "&Делить запись каждые:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "Через заданное время запись продолжается в новом пронумерованном файле: имя 001, имя 002... 30:00 — это 30 минут, 1:00:00 — один час. Пусто — не делить."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Неверное время деления. Используйте часы, минуты и секунды, например 30:00 или 1:00:00, или оставьте пустым, чтобы не делить."
+
+msgid "URL de Stream"
+msgstr "URL потока"
+
+msgid "&Link do Stream:"
+msgstr "Сс&ылка на поток:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "Адрес интернет-радио или списка M3U, PLS или M3U8 в интернете или на компьютере."
+
+msgid "Lista de Reprodução"
+msgstr "Плейлист"
+
+msgid "Listas de Reprodução"
+msgstr "Плейлисты"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "Не удалось подключиться по этой ссылке (ошибка BASS {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Введите ссылку на поток (начинается с http:// или https://) или путь к списку M3U, PLS или M3U8 на компьютере."
+
+msgid "URL de Stream: {endereco}"
+msgstr "URL потока: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "&Записываемые каналы:"
+
+msgid "Ambos"
+msgstr "Оба"
+
+msgid "Somente o Esquerdo"
+msgstr "Только левый"
+
+msgid "Somente o Direito"
+msgstr "Только правый"
+
+msgid "Artista &do Álbum:"
+msgstr "И&сполнитель альбома:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Открыть папку с записями:"

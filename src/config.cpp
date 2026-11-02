@@ -19,6 +19,7 @@
 #include <windows.h>
 
 #include <algorithm>
+#include <cmath>
 #include <cstdio>
 #include <cwchar>
 #include <initializer_list>
@@ -147,7 +148,8 @@ void ConfigManager::Load() {
                    {L"verificar_atualizacoes", L"True"},
                    {L"bits", L"16"},
                    {L"iniciar_com_windows", L"False"},
-                   {L"contagem_regressiva", L"False"}};
+                   {L"contagem_regressiva", L"False"},
+                   {L"dividir", L""}};
     } else {
         if (!Lookup(cfg->items, L"fontes")) {
             const std::wstring* d1 = Lookup(cfg->items, L"dispositivo1");
@@ -164,7 +166,8 @@ void ConfigManager::Load() {
             {L"verificar_atualizacoes", L"True"},
             {L"bits", L"16"},
             {L"iniciar_com_windows", L"False"},
-            {L"contagem_regressiva", L"False"}};
+            {L"contagem_regressiva", L"False"},
+            {L"dividir", L""}};
         for (auto& p : defaults)
             if (!Lookup(cfg->items, p.first)) Put(cfg->items, p.first, p.second);
     }
@@ -172,8 +175,8 @@ void ConfigManager::Load() {
     if (!Find(L"KEYS")) {
         Section& s = Ensure(L"KEYS");
         s.items = {{L"gravar", L""},     {L"pausar", L""},  {L"parar", L""},
-                   {L"reproduzir", L""}, {L"excluir", L""}, {L"mostrar", L""},
-                   {L"fechar", L""}};
+                   {L"reproduzir", L""}, {L"excluir", L""}, {L"abrir_pasta", L""},
+                   {L"mostrar", L""}, {L"fechar", L""}};
     }
 }
 
@@ -192,9 +195,10 @@ void ConfigManager::Save() {
                {L"formato", L"bitrate", L"flac_nivel", L"taxa", L"bits", L"canais", L"fontes",
                 L"reproduzir_tons", L"arquivos_separados", L"duracao", L"arquivo", L"diretorio",
                 L"idioma", L"iniciar_minimizado", L"minimizar_bandeja", L"sempre_no_topo", L"buffer",
-                L"verificar_atualizacoes", L"iniciar_com_windows", L"contagem_regressiva"});
+                L"verificar_atualizacoes", L"iniciar_com_windows", L"contagem_regressiva",
+                L"dividir"});
     sort_items(Ensure(L"KEYS").items, {L"gravar", L"pausar", L"parar", L"reproduzir", L"excluir",
-                                       L"mostrar", L"fechar"});
+                                       L"abrir_pasta", L"mostrar", L"fechar"});
 
     std::wstring text;
     for (auto& s : sections_) {
@@ -249,6 +253,23 @@ bool ConfigManager::GetBoolean(const std::wstring& key, bool fallback) const {
     return fallback;
 }
 
+TagValues ConfigManager::GetTags() const {
+    TagValues tags;
+    const Section* s = Find(L"TAGS");
+    for (int f = 0; f < TAG_COUNT; ++f) {
+        const std::wstring* v = s ? Lookup(s->items, TagKey(f)) : nullptr;
+        tags.value[f] = v ? *v : TagDefault(f);
+    }
+    return tags;
+}
+
+void ConfigManager::SetTags(const TagValues& tags) {
+    Section& s = Ensure(L"TAGS");
+    for (int f = 0; f < TAG_COUNT; ++f) Put(s.items, TagKey(f), tags.value[f]);
+}
+
+int ConfigManager::GetSplitSeconds() const { return std::max(0, SplitSeconds(Get(L"dividir"))); }
+
 int ConfigManager::GetBuffer() const {
     std::wstring raw = Trim(Get(L"buffer"));
     wchar_t* end = nullptr;
@@ -266,6 +287,8 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
     // And the path of each background audio, which may have any character:
     // [ARQUIVOS] 2 = C:\Música\fundo.mp3
     const Section* file_section = Find(L"ARQUIVOS");
+    // And the address of each stream URL, likewise: [URLS] 3 = https://...
+    const Section* url_section = Find(L"URLS");
     int index = 0;
     auto fx_of = [&](int i) {
         const std::wstring* v = fx_section ? Lookup(fx_section->items, std::to_wstring(i)) : nullptr;
@@ -288,8 +311,18 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
             t = c + 1;
         }
         if (tokens.size() < 2) continue;
+        // The balance, the last number when there is one (older versions
+        // wrote none): -1 left, 0 center, +1 right.
+        auto pan_at = [&](size_t i) {
+            if (tokens.size() <= i) return 0.0;
+            wchar_t* pend = nullptr;
+            double p = wcstod(tokens[i].c_str(), &pend);
+            if (!pend || pend == tokens[i].c_str() || !std::isfinite(p)) return 0.0;
+            return std::max(-1.0, std::min(1.0, p));
+        };
         if (tokens[0] == L"exe") {
-            // A source by executable name: "exe:jogo.exe:1.0000".
+            // A source by executable name: "exe:jogo.exe:1.0000:0.0000", with
+            // its volume and balance.
             SourceEntry e;
             e.type = tokens[0];
             e.exe = Trim(tokens[1]);
@@ -298,17 +331,39 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
                 double v = wcstod(tokens[2].c_str(), &vend);
                 if (vend && vend != tokens[2].c_str()) e.volume = v;
             }
+            e.pan = pan_at(3);
             e.fx = fx_of(index);
             if (!e.exe.empty()) result.push_back(e);
             continue;
         }
+        if (tokens[0] == L"url") {
+            // A stream URL: "url:0:1.0000:0.0000", its volume and balance.
+            SourceEntry e;
+            e.type = tokens[0];
+            if (tokens.size() >= 3) {
+                wchar_t* vend = nullptr;
+                double v = wcstod(tokens[2].c_str(), &vend);
+                if (vend && vend != tokens[2].c_str()) e.volume = v;
+            }
+            e.pan = pan_at(3);
+            e.fx = fx_of(index);
+            const std::wstring* url = url_section ? Lookup(url_section->items, std::to_wstring(index)) : nullptr;
+            if (url && !Trim(*url).empty()) {
+                e.path = Trim(*url);
+                result.push_back(e);
+            }
+            continue;
+        }
         if (tokens[0] == L"file") {
-            // Background audio: "file:1:1.0000:0", 1 when it repeats, then 1
-            // when it shuffles.
+            // Background audio: "file:1:1.0000:0:0:0.0000", 1 when it repeats,
+            // the volume, 1 when it shuffles, 1 when it includes the
+            // subfolders, and the balance.
             SourceEntry e;
             e.type = tokens[0];
             e.loop = Trim(tokens[1]) != L"0";
             e.shuffle = tokens.size() >= 4 && Trim(tokens[3]) == L"1";
+            e.subfolders = tokens.size() >= 5 && Trim(tokens[4]) == L"1";
+            e.pan = pan_at(5);
             if (tokens.size() >= 3) {
                 wchar_t* vend = nullptr;
                 double v = wcstod(tokens[2].c_str(), &vend);
@@ -332,6 +387,7 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
         SourceEntry e;
         e.type = tokens[0];
         e.id = (int)wcstol(id_str.c_str(), nullptr, 10);
+        e.pan = pan_at(3);
         if (tokens.size() >= 3) {
             wchar_t* vend = nullptr;
             double v = wcstod(tokens[2].c_str(), &vend);
@@ -355,7 +411,13 @@ void ConfigManager::SetSources(const std::vector<Source>& sources) {
                             : s.type == L"file" ? std::wstring(s.loop ? L"1" : L"0")
                                                 : std::to_wstring(s.id);
         value += s.type + L":" + what + L":" + vol;
-        if (s.type == L"file") value += s.shuffle ? L":1" : L":0";
+        if (s.type == L"file") {
+            value += s.shuffle ? L":1" : L":0";
+            value += s.subfolders ? L":1" : L":0";
+        }
+        wchar_t pan[64];
+        swprintf(pan, 64, L":%.4f", s.pan);
+        value += pan;
     }
     SetConfig(L"fontes", value);
     Section& file_section = Ensure(L"ARQUIVOS");
@@ -363,6 +425,10 @@ void ConfigManager::SetSources(const std::vector<Source>& sources) {
     for (size_t i = 0; i < sources.size(); ++i)
         if (sources[i].type == L"file")
             file_section.items.emplace_back(std::to_wstring(i + 1), sources[i].name);
+    Section& url_section = Ensure(L"URLS");
+    url_section.items.clear();
+    for (size_t i = 0; i < sources.size(); ++i)
+        if (sources[i].type == L"url") url_section.items.emplace_back(std::to_wstring(i + 1), sources[i].name);
     Section& fx_section = Ensure(L"EFEITOS");
     fx_section.items.clear();
     for (size_t i = 0; i < sources.size(); ++i) {
@@ -407,6 +473,6 @@ void ConfigManager::SetSchedules(const std::vector<Schedule>& schedules) {
 
 bool SameSource(const Source& a, const Source& b) {
     if (a.type != b.type) return false;
-    if (a.type == L"exe" || a.type == L"file") return ToLower(a.name) == ToLower(b.name);
+    if (a.type == L"exe" || a.type == L"file" || a.type == L"url") return ToLower(a.name) == ToLower(b.name);
     return a.id == b.id;
 }

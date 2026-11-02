@@ -116,6 +116,7 @@ void HotkeysDialog::OnInit() {
         {L"parar", tr("Parar Gravação:")},
         {L"reproduzir", tr("Reproduzir / Parar Reprodução:")},
         {L"excluir", tr("Excluir Gravação:")},
+        {L"abrir_pasta", tr("Abrir Pasta de Gravações:")},
         {L"mostrar", tr("Mostrar Janela Principal:")},
         {L"fechar", tr("Fechar Programa:")},
     };
@@ -168,6 +169,7 @@ enum {
     IDC_ST_CHECK,
     IDC_ST_STARTUP,
     IDC_ST_COUNTDOWN,
+    IDC_ST_SPLIT,
 };
 
 SettingsDialog::SettingsDialog(ConfigManager& config, std::function<void()> on_keys_saved,
@@ -227,6 +229,17 @@ void SettingsDialog::OnInit() {
     Button_SetCheck(chk_countdown_, config_.GetBoolean(L"contagem_regressiva"));
     vbox->Add(chk_countdown_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
+    auto hb_split = HBox();
+    // As the recording duration: 30:00 is half an hour, a single number is seconds.
+    HWND lbl_split = Add(WC_STATICW, tr("Dividir &Gravação a Cada:"), 0);
+    txt_split_ = Add(WC_EDITW, config_.Get(L"dividir"), EDIT, IDC_ST_SPLIT, WS_EX_CLIENTEDGE);
+    ui::SetToolTip(hwnd_, txt_split_,
+                   tr("A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... "
+                      "30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."));
+    hb_split->Add(lbl_split, 0, ui::CENTER_V | ui::RIGHT, S(5));
+    hb_split->Add(txt_split_, 0, ui::CENTER_V, 0, SIZE{S(80), 0});
+    vbox->Add(std::move(hb_split), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+
     auto hb_buf = HBox();
     HWND lbl_buf = Add(WC_STATICW, tr("Tamanho do &Buffer (ms):"), 0);
     txt_buffer_ = Add(WC_EDITW, std::to_wstring(config_.GetBuffer()), EDIT, IDC_ST_BUFFER,
@@ -242,6 +255,7 @@ void SettingsDialog::OnInit() {
     hb_buf->Add(lbl_buf, 0, ui::CENTER_V | ui::RIGHT, S(5));
     hb_buf->Add(txt_buffer_, 0, ui::CENTER_V, 0, SIZE{S(80), 0});
     vbox->Add(std::move(hb_buf), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+
 
     btn_keys_ = Add(WC_BUTTONW, tr("Configurar Teclas &de Atalho..."), BUTTON, IDC_ST_KEYS);
     vbox->Add(btn_keys_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
@@ -311,6 +325,18 @@ void SettingsDialog::OnOk() {
         SendMessageW(txt_buffer_, EM_SETSEL, 0, -1);
         return;
     }
+    {
+        split_text = Trim(ui::GetText(txt_split_));
+        if (SplitSeconds(split_text) < 0) {
+            ui::MsgBox(hwnd_,
+                       tr("Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou "
+                          "deixe em branco para não dividir."),
+                       tr("Aviso"), MB_ICONWARNING | MB_OK);
+            SetFocus(txt_split_);
+            SendMessageW(txt_split_, EM_SETSEL, 0, -1);
+            return;
+        }
+    }
     int sel = (int)SendMessageW(cmb_lang_, CB_GETCURSEL, 0, 0);
     language_ = (sel >= 0 && sel < (int)codes_.size()) ? codes_[sel] : L"";
     start_minimized = Button_GetCheck(chk_start_min_) == BST_CHECKED;
@@ -320,6 +346,88 @@ void SettingsDialog::OnOk() {
     tray = Button_GetCheck(chk_tray_) == BST_CHECKED;
     on_top = Button_GetCheck(chk_on_top_) == BST_CHECKED;
     EndModal(IDOK);
+}
+
+/* ---- Tags ---- */
+
+namespace {
+enum { IDC_TAG_EDIT = 1101, IDC_TAG_VARS = 1201, IDC_TAG_MENU = 1301 };  // + field, + variable
+}  // namespace
+
+TagsDialog::TagsDialog(const TagValues& tags) : ui::Dialog(tr("Tags")), result(tags), tags_(tags) {}
+
+void TagsDialog::OnInit() {
+    // In the order of TagField; the comment last.
+    const char* labels[TAG_COUNT] = {"&Título:", "&Artistas Participantes:", "Artista &do Álbum:", "Á&lbum:",
+                                     "A&no:",    "&Gênero:",                "&Faixa:",           "Co&mentário:"};
+    auto vbox = VBox();
+    for (int f = 0; f < TAG_COUNT; ++f) {
+        HWND label = Add(WC_STATICW, tr(labels[f]), 0);
+        edit_[f] = Add(WC_EDITW, tags_.value[f], EDIT, IDC_TAG_EDIT + f, WS_EX_CLIENTEDGE);
+        // The same letter for all of them: it goes from one to the next.
+        vars_[f] = Add(WC_BUTTONW, tr("&Variáveis..."), BUTTON, IDC_TAG_VARS + f);
+        auto row = HBox();
+        row->Add(label, 0, ui::CENTER_V | ui::RIGHT, S(5), SIZE{S(110), 0});
+        row->Add(edit_[f], 1, ui::EXPAND | ui::RIGHT, S(5), SIZE{S(280), 0});
+        row->Add(vars_[f], 0, 0, 0);
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::TOP | ui::EXPAND, S(10));
+    }
+    auto hb = HBox();
+    btn_ok_ = Add(WC_BUTTONW, tr("&Ok"), BUTTON | BS_DEFPUSHBUTTON, IDOK);
+    btn_cancel_ = Add(WC_BUTTONW, tr("&Cancelar"), BUTTON, IDCANCEL);
+    hb->Add(btn_ok_, 0, ui::RIGHT, S(10));
+    hb->Add(btn_cancel_, 0, 0, 0);
+    vbox->Add(std::move(hb), 0, ui::CENTER | ui::ALL, S(15));
+    root_ = std::move(vbox);
+    Fit();
+}
+
+/* A menu of the variables, below the button; the one chosen goes into the
+   field, where its cursor was, and the focus goes back there. */
+void TagsDialog::ShowVariables(int field) {
+    HWND edit = edit_[field];
+    DWORD start = 0, end = 0;
+    SendMessageW(edit, EM_GETSEL, (WPARAM)&start, (LPARAM)&end);
+    HMENU menu = CreatePopupMenu();
+    const auto& vars = TagVariables();
+    for (size_t i = 0; i < vars.size(); ++i) {
+        std::wstring item = tr(vars[i].label) + L" (" + vars[i].code + L")";
+        AppendMenuW(menu, MF_STRING, IDC_TAG_MENU + i, item.c_str());
+    }
+    RECT r;
+    GetWindowRect(vars_[field], &r);
+    int cmd = (int)TrackPopupMenu(menu, TPM_RETURNCMD | TPM_LEFTALIGN | TPM_TOPALIGN | TPM_NONOTIFY, r.left,
+                                  r.bottom, 0, hwnd_, nullptr);
+    DestroyMenu(menu);
+    SetFocus(edit);
+    SendMessageW(edit, EM_SETSEL, start, end);
+    int i = cmd - IDC_TAG_MENU;
+    if (i >= 0 && i < (int)vars.size()) SendMessageW(edit, EM_REPLACESEL, TRUE, (LPARAM)vars[i].code);
+}
+
+bool TagsDialog::OnCommand(int id, int code, HWND) {
+    int f = id - IDC_TAG_VARS;
+    if (f >= 0 && f < TAG_COUNT && code == BN_CLICKED) {
+        ShowVariables(f);
+        return true;
+    }
+    if (id == IDOK) {
+        for (int i = 0; i < TAG_COUNT; ++i) result.value[i] = Trim(ui::GetText(edit_[i]));
+        EndModal(IDOK);
+        return true;
+    }
+    return false;
+}
+
+bool TagsDialog::OnCharHook(const MSG& msg) {
+    // Enter in a field confirms; on a button it does what the button does.
+    HWND focus = GetFocus();
+    for (int f = 0; f < TAG_COUNT; ++f)
+        if (IsEnter(msg) && focus == edit_[f]) {
+            OnCommand(IDOK, BN_CLICKED, nullptr);
+            return true;
+        }
+    return false;
 }
 
 /* ---- Add or edit source ---- */
@@ -345,8 +453,17 @@ enum {
     IDC_AS_FOLDER_BROWSE,
     IDC_AS_LOOP,
     IDC_AS_SHUFFLE,
+    IDC_AS_SUBFOLDERS,
     IDC_AS_SIDECHAIN,
+    IDC_AS_PAN,
+    IDC_AS_URL,
+    IDC_AS_URL_TEXT,
+    IDC_AS_URL_BROWSE,
+    IDC_AS_PICK,
 };
+
+/* The test of a stream URL connected (wParam 0) or failed (the BASS error). */
+const UINT WM_URL_TEST = WM_APP + 20;
 
 AddSourceDialog::AddSourceDialog(AudioEngine& audio, const std::vector<Source>& existing,
                                  const Source* edit_source,
@@ -380,13 +497,14 @@ void AddSourceDialog::OnInit() {
                         IDC_AS_PROCESSES);
     rb_exe_ = Add(WC_BUTTONW, tr("Arquivo Executável"), BS_AUTORADIOBUTTON, IDC_AS_EXE);
     rb_file_ = Add(WC_BUTTONW, tr("Áudio de Fundo"), BS_AUTORADIOBUTTON, IDC_AS_FILE);
+    rb_url_ = Add(WC_BUTTONW, tr("URL de Stream"), BS_AUTORADIOBUTTON, IDC_AS_URL);
     Button_SetCheck(rb_devices_, BST_CHECKED);
     if (!available) {
         EnableWindow(rb_processes_, FALSE);
         EnableWindow(rb_exe_, FALSE);
     }
     vbox->Add(std::unique_ptr<ui::Item>(
-                  new RadioBoxItem(grp_, {rb_devices_, rb_processes_, rb_exe_, rb_file_})),
+                  new RadioBoxItem(grp_, {rb_devices_, rb_processes_, rb_exe_, rb_file_, rb_url_})),
               0, ui::ALL | ui::EXPAND, S(10));
 
     lbl_src_ = Add(WC_STATICW, tr("Selecionar Fonte:"), WS_GROUP);
@@ -430,6 +548,35 @@ void AddSourceDialog::OnInit() {
     chk_shuffle_ = ui::Create(hwnd_, WC_BUTTONW, tr("A&leatório"), CHECK, IDC_AS_SHUFFLE);
     Button_SetCheck(chk_shuffle_, editing_ && edit_source_.shuffle ? BST_CHECKED : BST_UNCHECKED);
     vbox->Add(chk_shuffle_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    // The audio of the folders inside the folder, and of the ones inside those.
+    chk_subfolders_ = ui::Create(hwnd_, WC_BUTTONW, tr("Incluir Su&bpastas"), CHECK, IDC_AS_SUBFOLDERS);
+    Button_SetCheck(chk_subfolders_, editing_ && edit_source_.subfolders ? BST_CHECKED : BST_UNCHECKED);
+    vbox->Add(chk_subfolders_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    // A stream URL: an internet radio, or a playlist on the computer.
+    lbl_url_ = ui::Create(hwnd_, WC_STATICW, tr("&Link do Stream:"), 0, 0);
+    txt_url_ = ui::Create(hwnd_, WC_EDITW, L"", WS_TABSTOP | ES_AUTOHSCROLL, IDC_AS_URL_TEXT, WS_EX_CLIENTEDGE);
+    ui::SetToolTip(hwnd_, txt_url_, tr("O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na "
+                                       "internet ou no computador."));
+    btn_url_browse_ = ui::Create(hwnd_, WC_BUTTONW, tr("Procurar Arq&uivo..."), BUTTON, IDC_AS_URL_BROWSE);
+    vbox->Add(lbl_url_, 0, ui::LEFT | ui::RIGHT, S(10));
+    {
+        auto row = HBox();
+        row->Add(txt_url_, 1, ui::EXPAND | ui::RIGHT, S(5));
+        row->Add(btn_url_browse_, 0, 0, 0);
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    }
+    // Which channels of the source are recorded, before Stereo, which
+    // still decides whether they stay on their side or go to both.
+    lbl_pick_ = Add(WC_STATICW, tr("Canais a &Gravar:"), 0);
+    cmb_pick_ = Add(WC_COMBOBOXW, L"", COMBO, IDC_AS_PICK);
+    ui::ComboSetItems(cmb_pick_, {tr("Ambos"), tr("Somente o Esquerdo"), tr("Somente o Direito")});
+    SendMessageW(cmb_pick_, CB_SETCURSEL, fx_.channel, 0);
+    {
+        auto row = HBox();
+        row->Add(lbl_pick_, 0, ui::CENTER_V | ui::RIGHT, S(5));
+        row->Add(cmb_pick_, 1, ui::EXPAND, 0);
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    }
     // Unchecked, this source is recorded in mono, whatever the recording is.
     chk_stereo_ = Add(WC_BUTTONW, tr("E&stéreo"), CHECK, IDC_AS_STEREO);
     Button_SetCheck(chk_stereo_, fx_.stereo ? BST_CHECKED : BST_UNCHECKED);
@@ -443,7 +590,7 @@ void AddSourceDialog::OnInit() {
     vbox->Add(btn_refresh_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     auto vol_box = HBox();
-    HWND lbl_vol = Add(WC_STATICW, tr("Volume:"), 0);
+    HWND lbl_vol = Add(WC_STATICW, tr("&Volume:"), 0);
     sld_ = Add(TRACKBAR_CLASSW, L"", WS_TABSTOP | TBS_HORZ | TBS_NOTICKS, IDC_AS_VOLUME);
     SendMessageW(sld_, TBM_SETRANGE, TRUE, MAKELPARAM(0, 100));
     SendMessageW(sld_, TBM_SETPAGESIZE, 0, 10);
@@ -454,6 +601,20 @@ void AddSourceDialog::OnInit() {
     vol_box->Add(sld_, 1, ui::EXPAND | ui::RIGHT, S(5));
     vol_box->Add(lbl_db_, 0, ui::CENTER_V, 0, SIZE{S(70), 0});
     vbox->Add(std::move(vol_box), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+
+    // The balance: 50 is the center, 0 all to the left, 100 all to the right.
+    auto pan_box = HBox();
+    HWND lbl_pan = Add(WC_STATICW, tr("Bala&nço:"), 0);
+    sld_pan_ = Add(TRACKBAR_CLASSW, L"", WS_TABSTOP | TBS_HORZ | TBS_NOTICKS, IDC_AS_PAN);
+    SendMessageW(sld_pan_, TBM_SETRANGE, TRUE, MAKELPARAM(0, 100));
+    SendMessageW(sld_pan_, TBM_SETPAGESIZE, 0, 10);
+    SendMessageW(sld_pan_, TBM_SETPOS, TRUE, 50);
+    SetWindowSubclass(sld_pan_, SliderProc, 1, (DWORD_PTR)this);
+    lbl_pan_ = Add(WC_STATICW, L"", SS_NOPREFIX);
+    pan_box->Add(lbl_pan, 0, ui::CENTER_V | ui::RIGHT, S(5));
+    pan_box->Add(sld_pan_, 1, ui::EXPAND | ui::RIGHT, S(5));
+    pan_box->Add(lbl_pan_, 0, ui::CENTER_V, 0, SIZE{S(110), 0});
+    vbox->Add(std::move(pan_box), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
 
     btn_eq_ = Add(WC_BUTTONW, tr("&Equalizador"), BUTTON, IDC_AS_EQ);
     btn_fx_ = Add(WC_BUTTONW, tr("E&feitos"), BUTTON, IDC_AS_FX);
@@ -496,6 +657,11 @@ void AddSourceDialog::OnInit() {
         PopulateFilter(2);
         // Only now: typing in the field updates the dialog, which must be ready.
         SetWindowTextW(txt_exe_, edit_source_.name.c_str());
+    } else if (editing_ && edit_source_.type == L"url") {
+        Button_SetCheck(rb_devices_, BST_UNCHECKED);
+        Button_SetCheck(rb_url_, BST_CHECKED);
+        PopulateFilter(4);
+        SetWindowTextW(txt_url_, edit_source_.name.c_str());
     } else if (editing_ && edit_source_.type == L"file") {
         Button_SetCheck(rb_devices_, BST_UNCHECKED);
         Button_SetCheck(rb_file_, BST_CHECKED);
@@ -517,8 +683,11 @@ void AddSourceDialog::OnInit() {
         double db = vol > 0 ? 20 * std::log10(vol) : -VOLUME_DB;
         int slider_val = std::min(100, std::max(0, (int)std::nearbyint(db / VOLUME_STEP + 50)));
         SendMessageW(sld_, TBM_SETPOS, TRUE, slider_val);
+        int pan_val = (int)std::lround(std::max(-1.0, std::min(1.0, edit_source_.pan)) * 50 + 50);
+        SendMessageW(sld_pan_, TBM_SETPOS, TRUE, pan_val);
     }
     UpdateDbLabel();
+    UpdatePanLabel();
     Fit();
 }
 
@@ -526,7 +695,7 @@ bool AddSourceDialog::OnCharHook(const MSG& msg) {
     HWND focus = GetFocus();
     if (IsEnter(msg) && focus != btn_test_ && focus != btn_refresh_ && focus != btn_eq_ && focus != btn_fx_ &&
         focus != btn_noise_ && focus != btn_sidechain_ && focus != btn_exe_browse_ && focus != btn_file_browse_ &&
-        focus != btn_folder_browse_ && focus != btn_cancel_) {
+        focus != btn_folder_browse_ && focus != btn_url_browse_ && focus != btn_cancel_) {
         OnOk();
         return true;
     }
@@ -537,6 +706,15 @@ INT_PTR AddSourceDialog::OnMessage(UINT msg, WPARAM wp, LPARAM lp, bool* handled
     *handled = false;
     if (msg == WM_HSCROLL && (HWND)lp == sld_) {
         UpdateDbLabel();
+        *handled = true;
+        return 0;
+    }
+    if (msg == WM_URL_TEST) {
+        *handled = true;
+        return OnUrlTestDone((int)wp);
+    }
+    if (msg == WM_HSCROLL && (HWND)lp == sld_pan_) {
+        UpdatePanLabel();
         *handled = true;
         return 0;
     }
@@ -556,12 +734,13 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
         case IDC_AS_PROCESSES:
         case IDC_AS_EXE:
         case IDC_AS_FILE:
+        case IDC_AS_URL:
             if (code == BN_CLICKED && CheckedFilter() != filter_) OnFilterChange();
             return true;
         case IDC_AS_FILE_PATH:
             if (code == EN_CHANGE) {
                 UpdateOkState();
-                UpdateShuffleState();
+                UpdateFolderOptions();
             }
             return true;
         case IDC_AS_FILE_BROWSE:
@@ -570,6 +749,23 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
             return true;
         case IDC_AS_EXE_NAME:
             if (code == EN_CHANGE) UpdateOkState();
+            return true;
+        case IDC_AS_URL_TEXT:
+            if (code == EN_CHANGE) {
+                StopTest();
+                UpdateOkState();
+                UpdateTestState();
+            }
+            return true;
+        case IDC_AS_URL_BROWSE:
+            if (code == BN_CLICKED) OnBrowsePlaylist();
+            return true;
+        case IDC_AS_PICK:
+            if (code == CBN_SELCHANGE) {
+                int sel = (int)SendMessageW(cmb_pick_, CB_GETCURSEL, 0, 0);
+                fx_.channel = sel >= 0 && sel <= CHANNEL_RIGHT ? sel : CHANNEL_BOTH;
+                Preview(fx_);
+            }
             return true;
         case IDC_AS_EXE_BROWSE:
             if (code == BN_CLICKED) OnBrowseExe();
@@ -613,6 +809,7 @@ bool AddSourceDialog::OnCommand(int id, int code, HWND) {
 }
 
 int AddSourceDialog::CheckedFilter() const {
+    if (Button_GetCheck(rb_url_) == BST_CHECKED) return 4;
     if (Button_GetCheck(rb_file_) == BST_CHECKED) return 3;
     if (Button_GetCheck(rb_exe_) == BST_CHECKED) return 2;
     return Button_GetCheck(rb_processes_) == BST_CHECKED ? 1 : 0;
@@ -622,15 +819,16 @@ void AddSourceDialog::UpdateOkState() {
     if (!current_items_) return;  // the dialog is still being built
     bool ok = filter_ == 2   ? !Trim(ui::GetText(txt_exe_)).empty()
               : filter_ == 3 ? !BackgroundPath().empty()
+              : filter_ == 4 ? !StreamUrl().empty()
                              : !current_items_->empty();
     EnableWindow(btn_ok_, ok);
 }
 
 void AddSourceDialog::PopulateFilter(int sel) {
     filter_ = sel;
-    bool exe = sel == 2, file = sel == 3;
-    ui::Show(lbl_src_, !exe && !file);
-    ui::Show(cmb_, !exe && !file);
+    bool exe = sel == 2, file = sel == 3, url = sel == 4;
+    ui::Show(lbl_src_, !exe && !file && !url);
+    ui::Show(cmb_, !exe && !file && !url);
     ui::Show(chk_all_, sel == 1);
     ui::Show(btn_refresh_, sel == 1);
     ui::Show(btn_noise_, sel == 0);
@@ -645,7 +843,11 @@ void AddSourceDialog::PopulateFilter(int sel) {
     ui::Show(btn_folder_browse_, file);
     ui::Show(chk_loop_, file);
     ui::Show(chk_shuffle_, file);
-    UpdateShuffleState();
+    ui::Show(chk_subfolders_, file);
+    ui::Show(lbl_url_, url);
+    ui::Show(txt_url_, url);
+    ui::Show(btn_url_browse_, url);
+    UpdateFolderOptions();
     Relayout();
     current_items_ = sel == 0 ? &device_items_ : sel == 1 ? &process_items_ : &exe_items_;
     std::vector<std::wstring> choices;
@@ -691,10 +893,13 @@ std::wstring AddSourceDialog::BackgroundPath() const {
     return path;
 }
 
-/* Shuffle is for folders only: with a file, it is there but disabled. */
-void AddSourceDialog::UpdateShuffleState() {
+/* Shuffle and subfolders are for folders only: with a file, they are there
+   but disabled. */
+void AddSourceDialog::UpdateFolderOptions() {
     DWORD attr = GetFileAttributesW(BackgroundPath().c_str());
-    EnableWindow(chk_shuffle_, attr != INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY));
+    bool folder = attr != INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY);
+    EnableWindow(chk_shuffle_, folder);
+    EnableWindow(chk_subfolders_, folder);
 }
 
 void AddSourceDialog::OnBrowseBackground(bool folder) {
@@ -705,6 +910,20 @@ void AddSourceDialog::OnBrowseBackground(bool folder) {
     if (!picked) return;
     SetWindowTextW(txt_file_, path.c_str());
     SetFocus(txt_file_);
+}
+
+std::wstring AddSourceDialog::StreamUrl() const {
+    std::wstring url = Trim(ui::GetText(txt_url_));
+    if (url.size() >= 2 && url.front() == L'"' && url.back() == L'"') url = Trim(url.substr(1, url.size() - 2));
+    return url;
+}
+
+void AddSourceDialog::OnBrowsePlaylist() {
+    std::wstring path;
+    if (!PickFile(hwnd_, tr("Lista de Reprodução"), tr("Listas de Reprodução"), L"*.m3u;*.m3u8;*.pls", &path))
+        return;
+    SetWindowTextW(txt_url_, path.c_str());
+    SetFocus(txt_url_);
 }
 
 void AddSourceDialog::OnRefresh() {
@@ -730,7 +949,8 @@ int AddSourceDialog::SelectedDevice() const {
 
 void AddSourceDialog::UpdateTestState() {
     // While recording, the test would compete with the recording for the device.
-    EnableWindow(btn_test_, SelectedDevice() >= 0 && !audio_.is_recording());
+    bool can = SelectedDevice() >= 0 || (filter_ == 4 && !StreamUrl().empty());
+    EnableWindow(btn_test_, can && !audio_.is_recording());
 }
 
 void AddSourceDialog::OnTest() {
@@ -738,10 +958,24 @@ void AddSourceDialog::OnTest() {
         StopTest();
         return;
     }
+    std::pair<int, int> fmt = output_format_ ? output_format_() : std::make_pair(44100, 2);
+    if (filter_ == 4) {
+        // It connects in the background; until then the button already
+        // stops it, and a failure is told when it comes.
+        std::wstring url = StreamUrl();
+        if (url.empty()) return;
+        HWND self = hwnd_;
+        audio_.SetMonitorPan(Pan());
+        audio_.StartUrlTest(url, Volume(), fmt.second, fx_,
+                            [self](int err) { PostMessageW(self, WM_URL_TEST, (WPARAM)err, 0); });
+        testing_ = true;
+        ui::SetText(btn_test_, tr("&Parar"));
+        return;
+    }
     int dev_idx = SelectedDevice();
     if (dev_idx < 0) return;
-    std::pair<int, int> fmt = output_format_ ? output_format_() : std::make_pair(44100, 2);
     int err = 0;
+    audio_.SetMonitorPan(Pan());
     if (!audio_.StartMonitor(dev_idx, Volume(), fmt.first, fmt.second, fx_, &err)) {
         ui::MsgBox(hwnd_,
                        Format(tr("Não foi possível testar este dispositivo (erro BASS {erro})."),
@@ -789,6 +1023,15 @@ void AddSourceDialog::StopTest() {
     ui::SetText(btn_test_, tr("&Testar"));
 }
 
+INT_PTR AddSourceDialog::OnUrlTestDone(int error) {
+    if (!testing_ || !error) return 0;
+    StopTest();
+    ui::MsgBox(hwnd_,
+               Format(tr("Não foi possível conectar a este link (erro BASS {erro})."), {{L"erro", std::to_wstring(error)}}),
+               tr("Erro"), MB_ICONERROR | MB_OK);
+    return 0;
+}
+
 double AddSourceDialog::Volume() const {
     int pos = (int)SendMessageW(sld_, TBM_GETPOS, 0, 0);
     return std::pow(10.0, ((pos - 50) * VOLUME_STEP) / 20.0);
@@ -801,6 +1044,23 @@ void AddSourceDialog::UpdateDbLabel() {
     swprintf(text, 32, L"  %+.1f dB", db);
     ui::SetText(lbl_db_, text);
     if (testing_) audio_.SetMonitorVolume(Volume());
+}
+
+double AddSourceDialog::Pan() const {
+    int pos = (int)SendMessageW(sld_pan_, TBM_GETPOS, 0, 0);
+    return (pos - 50) / 50.0;
+}
+
+/* Next to the slider: the side and how far, as the slider says its
+   position. */
+void AddSourceDialog::UpdatePanLabel() {
+    int pos = (int)SendMessageW(sld_pan_, TBM_GETPOS, 0, 0);
+    int amount = std::abs(pos - 50) * 2;
+    std::wstring text = pos == 50  ? tr("Centro")
+                        : pos < 50 ? Format(tr("Esquerda {n}%"), {{L"n", std::to_wstring(amount)}})
+                                   : Format(tr("Direita {n}%"), {{L"n", std::to_wstring(amount)}});
+    ui::SetText(lbl_pan_, L"  " + text);
+    if (testing_) audio_.SetMonitorPan(Pan());
 }
 
 LRESULT CALLBACK AddSourceDialog::SliderProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp, UINT_PTR,
@@ -821,7 +1081,8 @@ LRESULT CALLBACK AddSourceDialog::SliderProc(HWND hwnd, UINT msg, WPARAM wp, LPA
         }
         if (new_val >= 0) {
             SendMessageW(hwnd, TBM_SETPOS, TRUE, new_val);
-            self->UpdateDbLabel();
+            if (hwnd == self->sld_pan_) self->UpdatePanLabel();
+            else self->UpdateDbLabel();
             // Tell the screen reader about the new position, as the trackbar does on its own.
             NotifyWinEvent(EVENT_OBJECT_VALUECHANGE, hwnd, OBJID_CLIENT, CHILDID_SELF);
             return 0;
@@ -838,7 +1099,8 @@ void AddSourceDialog::OnOk() {
         wchar_t full[MAX_PATH * 4];
         DWORD n = GetFullPathNameW(path.c_str(), MAX_PATH * 4, full, nullptr);
         if (n > 0 && n < MAX_PATH * 4) path = full;
-        if (BackgroundFiles(path).empty()) {
+        bool subfolders = Button_GetCheck(chk_subfolders_) == BST_CHECKED;
+        if (BackgroundFiles(path, subfolders).empty()) {
             ui::MsgBox(hwnd_,
                        Format(tr("Nenhum arquivo de áudio foi encontrado em:\n{caminho}"),
                               {{L"caminho", path}}),
@@ -850,11 +1112,38 @@ void AddSourceDialog::OnOk() {
         selected.id = 0;
         selected.name = path;
         selected.volume = Volume();
+        selected.pan = Pan();
         selected.fx = fx_;
         // A recorded file needs no cleaning: no noise remover.
         selected.fx.noise.on = false;
         selected.loop = Button_GetCheck(chk_loop_) == BST_CHECKED;
         selected.shuffle = Button_GetCheck(chk_shuffle_) == BST_CHECKED;
+        selected.subfolders = subfolders;
+        has_selected = true;
+        EndModal(IDOK);
+        return;
+    }
+    if (filter_ == 4) {
+        std::wstring url = StreamUrl();
+        if (url.empty()) return;
+        std::wstring low = ToLower(url);
+        bool web = low.compare(0, 7, L"http://") == 0 || low.compare(0, 8, L"https://") == 0 ||
+                   low.compare(0, 6, L"ftp://") == 0;
+        if (!web && !FileExists(url)) {
+            ui::MsgBox(hwnd_,
+                       tr("Digite o link de um stream (começando com http:// ou https://) ou o caminho de "
+                          "uma lista M3U, PLS ou M3U8 do computador."),
+                       tr("Aviso"), MB_ICONWARNING | MB_OK);
+            SetFocus(txt_url_);
+            return;
+        }
+        selected.type = L"url";
+        selected.id = 0;
+        selected.name = url;
+        selected.volume = Volume();
+        selected.pan = Pan();
+        selected.fx = fx_;
+        selected.fx.noise.on = false;  // only for audio devices
         has_selected = true;
         EndModal(IDOK);
         return;
@@ -868,6 +1157,7 @@ void AddSourceDialog::OnOk() {
         selected.id = 0;
         selected.name = name;
         selected.volume = Volume();
+        selected.pan = Pan();
         selected.fx = fx_;
         selected.fx.noise.on = false;  // only for audio devices
         has_selected = true;
@@ -884,6 +1174,7 @@ void AddSourceDialog::OnOk() {
     selected.id = std::get<1>(item);
     selected.name = std::get<2>(item);
     selected.volume = Volume();
+    selected.pan = Pan();
     selected.fx = fx_;
     if (selected.type != L"device") selected.fx.noise.on = false;
     has_selected = true;

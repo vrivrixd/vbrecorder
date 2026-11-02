@@ -326,7 +326,7 @@ std::wstring Unescape(const std::wstring& text) {
 }  // namespace
 
 /* eq=preset|preamp|gain/gain/...;delay=1|preset|v/v/...;ruido=1|amount;estereo=0;
-   cadeia=role|v/v/... Only what differs from the defaults is written. */
+   canal=1;cadeia=role|v/v/... Only what differs from the defaults is written. */
 std::wstring FxSettings::Serialize() const {
     const FxSettings defaults;
     std::vector<std::wstring> parts;
@@ -349,6 +349,7 @@ std::wstring FxSettings::Serialize() const {
     if (noise.on || noise.amount != defaults.noise.amount)
         parts.push_back(std::wstring(L"ruido=") + (noise.on ? L"1" : L"0") + L"|" + Num(noise.amount));
     if (!stereo) parts.push_back(L"estereo=0");
+    if (channel != CHANNEL_BOTH) parts.push_back(L"canal=" + std::to_wstring(channel));
     if (!sidechain.IsDefault()) {
         std::wstring s = L"cadeia=" + std::to_wstring(sidechain.role) + L"|";
         for (int i = 0; i < SC_PARAMS; ++i) s += (i ? L"/" : L"") + Num(sidechain.values[i]);
@@ -380,6 +381,9 @@ FxSettings FxSettings::Parse(const std::wstring& text) {
             fx.noise.amount = Clamp(ToFloat(fields[1], 100), 0, 100);
         } else if (name == L"estereo") {
             fx.stereo = fields[0] != L"0";
+        } else if (name == L"canal") {
+            int c = _wtoi(fields[0].c_str());
+            fx.channel = c == CHANNEL_LEFT || c == CHANNEL_RIGHT ? c : CHANNEL_BOTH;
         } else if (name == L"cadeia" && fields.size() >= 2) {
             int role = _wtoi(fields[0].c_str());
             fx.sidechain.role = role >= SC_REDUCED && role <= SC_NONE ? role : SC_NONE;

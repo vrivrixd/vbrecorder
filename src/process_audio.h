@@ -43,11 +43,13 @@ std::wstring GetProcessName(DWORD pid);
    process already includes its children, so they would be heard twice. */
 std::vector<DWORD> FindMainProcesses(const std::wstring& exe_name);
 
-/* Receives the captured audio, always as interleaved 32-bit float. */
+/* Receives the captured audio, always as interleaved 32-bit float, with the
+   moment its first frame was captured (QueryPerformanceCounter), or 0 when
+   Windows does not tell. */
 class CaptureSink {
 public:
     virtual ~CaptureSink() {}
-    virtual void OnAudio(const float* data, DWORD samples, bool silent) = 0;
+    virtual void OnAudio(const float* data, DWORD samples, bool silent, LONGLONG captured) = 0;
 };
 
 class ProcessLoopbackCapture {

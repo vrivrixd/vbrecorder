@@ -26,18 +26,22 @@
 
 #include "fx.h"
 #include "schedule.h"
+#include "tags.h"
 
 #define CONFIG_FILE L"VBRecorder.ini"
 
 /* Program version, in a single place. It stays out of the translatable texts on
    purpose: bumping the version does not invalidate any translation. */
-#define VB_VERSION L"1.4.9"
+#define VB_VERSION L"1.5"
 
-/* Recording buffer, in milliseconds. People with a busy computer can raise it
-   so the audio does not crackle. */
-const int BUFFER_DEFAULT = 500;
+/* Recording buffer, in milliseconds: how long a capture may be held up without
+   losing audio. The default is the one BASS itself uses for recording. */
+const int BUFFER_DEFAULT = 2000;
 const int BUFFER_MIN = 100;
 const int BUFFER_MAX = 5000;
+
+/* Bit depth value for 32-bit floating point, in wav and aiff. */
+const int BITS_FLOAT = 0;
 
 struct SourceEntry {
     std::wstring type;  // "device", "process", "exe" or "file"
@@ -48,13 +52,16 @@ struct SourceEntry {
     std::wstring path;  // file or folder, for "file"
     bool loop = true;
     bool shuffle = false;
+    bool subfolders = false;
+    double pan = 0.0;  // -1 left, 0 center, +1 right
 };
 
 /* A recording source. An "exe" source is every process with that executable
    name, whenever it runs; its name is the executable name (jogo.exe). A
    "file" source is background audio: its name is the file or folder played,
-   loop says whether it starts over when it ends, and shuffle whether a
-   folder plays in a random order. */
+   loop says whether it starts over when it ends, shuffle whether a folder
+   plays in a random order, and subfolders whether the audio of the folders
+   inside it plays too. pan is the balance between left and right. */
 struct Source {
     std::wstring type;
     int id = 0;
@@ -63,6 +70,8 @@ struct Source {
     FxSettings fx;  // equalizer, effects, noise remover and stereo
     bool loop = true;
     bool shuffle = false;
+    bool subfolders = false;
+    double pan = 0.0;  // -1 left, 0 center, +1 right
 };
 
 
@@ -90,6 +99,12 @@ public:
     int GetBuffer() const;
 
     std::vector<SourceEntry> GetSources() const;
+    /* The tags, in [TAGS]: a key that is not there has its default (title
+       $name, artist VB Recorder); one that is there but empty writes no tag. */
+    TagValues GetTags() const;
+    void SetTags(const TagValues& tags);
+    /* How often a recording is split into files, in seconds; 0 is never. */
+    int GetSplitSeconds() const;
     void SetSources(const std::vector<Source>& sources);
 
     /* The scheduled recordings, in their own section:

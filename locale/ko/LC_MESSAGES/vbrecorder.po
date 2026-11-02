@@ -177,8 +177,8 @@ msgstr "소스 필터링 기준:"
 msgid "Selecionar Fonte:"
 msgstr "소스 선택:"
 
-msgid "Volume:"
-msgstr "볼륨:"
+msgid "&Volume:"
+msgstr "볼륨(&V):"
 
 msgid "Erro"
 msgstr "오류"
@@ -949,3 +949,129 @@ msgstr "감소량:"
 
 msgid "Silêncio"
 msgstr "무음"
+
+msgid "Incluir Su&bpastas"
+msgstr "하위 폴더 포함(&U)"
+
+msgid "Bala&nço:"
+msgstr "밸런스(&P):"
+
+msgid "Centro"
+msgstr "가운데"
+
+msgid "Esquerda {n}%"
+msgstr "왼쪽 {n}%"
+
+msgid "Direita {n}%"
+msgstr "오른쪽 {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "태그 설정(&K)..."
+
+msgid "Tags"
+msgstr "태그"
+
+msgid "&Título:"
+msgstr "제목(&T):"
+
+msgid "&Artistas Participantes:"
+msgstr "참여 음악가(&A):"
+
+msgid "Á&lbum:"
+msgstr "앨범(&L):"
+
+msgid "A&no:"
+msgstr "연도(&Y):"
+
+msgid "&Gênero:"
+msgstr "장르(&G):"
+
+msgid "&Faixa:"
+msgstr "트랙(&R):"
+
+msgid "Co&mentário:"
+msgstr "설명(&M):"
+
+msgid "&Variáveis..."
+msgstr "변수(&V)..."
+
+msgid "Nome do Arquivo"
+msgstr "파일 이름"
+
+msgid "Formato"
+msgstr "형식"
+
+msgid "Número da Parte"
+msgstr "파트 번호"
+
+msgid "Data"
+msgstr "날짜"
+
+msgid "Ano"
+msgstr "연도"
+
+msgid "Mês"
+msgstr "월"
+
+msgid "Dia"
+msgstr "일"
+
+msgid "Hora"
+msgstr "시간"
+
+msgid "Nome do Usuário"
+msgstr "사용자 이름"
+
+msgid "Nome do Computador"
+msgstr "컴퓨터 이름"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "녹음 분할 간격(&G):"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "지정한 간격마다 녹음이 번호가 붙은 새 파일에서 계속됩니다: 이름 001, 이름 002... 30:00은 30분, 1:00:00은 1시간입니다. 비워 두면 분할하지 않습니다."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "분할 간격이 올바르지 않습니다. 30:00이나 1:00:00처럼 시, 분, 초로 입력하거나, 분할하지 않으려면 비워 두세요."
+
+msgid "URL de Stream"
+msgstr "스트림 URL"
+
+msgid "&Link do Stream:"
+msgstr "스트림 링크(&H):"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "인터넷 라디오, 또는 인터넷이나 컴퓨터에 있는 M3U, PLS, M3U8 재생 목록의 주소입니다."
+
+msgid "Lista de Reprodução"
+msgstr "재생 목록"
+
+msgid "Listas de Reprodução"
+msgstr "재생 목록들"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "이 링크에 연결할 수 없습니다(BASS 오류 {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "스트림 링크(http:// 또는 https://로 시작) 또는 컴퓨터에 있는 M3U, PLS, M3U8 재생 목록의 경로를 입력하세요."
+
+msgid "URL de Stream: {endereco}"
+msgstr "스트림 URL: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "녹음할 채널(&G):"
+
+msgid "Ambos"
+msgstr "둘 다"
+
+msgid "Somente o Esquerdo"
+msgstr "왼쪽만"
+
+msgid "Somente o Direito"
+msgstr "오른쪽만"
+
+msgid "Artista &do Álbum:"
+msgstr "앨범 음악가(&D):"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "녹음 폴더 열기:"

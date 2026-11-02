@@ -15,7 +15,8 @@
  */
 
 /*
- * The processing of one source, in this order: the noise remover (RNNoise),
+ * The processing of one source, in this order: the channel picked (both, or
+ * the left or right one alone), the noise remover (RNNoise),
  * the equalizer, compressor, pitch shift, chorus and flanger (BASS_FX), the
  * delay (our own), the reverb (BASS_FX, with our own pre-delay), the
  * convolution reverb (our own), then mono, if the source is not stereo. The source's volume comes after.
@@ -48,6 +49,9 @@ public:
     FxChain& operator=(const FxChain&) = delete;
 
     void Apply(const FxSettings& fx);
+    /* The recording is mono: a channel picked goes to both sides at its
+       own level, so the mixer joining them does not halve it. */
+    void SetMonoOutput(bool mono) { mono_output_ = mono; }
     /* frames of interleaved float, changed in place. */
     void Process(float* data, DWORD frames);
 
@@ -76,6 +80,8 @@ private:
     DWORD eq_ = 0, compressor_ = 0, pitch_ = 0, chorus_ = 0, flanger_ = 0, reverb_ = 0;
     float preamp_ = 1.0f;
     bool stereo_ = true;
+    int channel_ = CHANNEL_BOTH;
+    bool mono_output_ = false;
 
     // Noise remover: one RNNoise per channel, in frames of 480 samples. The
     // sound comes out one frame later (10 ms), the cleaned and the original

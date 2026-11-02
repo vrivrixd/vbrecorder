@@ -37,6 +37,7 @@
 #include "startup.h"
 #include "i18n.h"
 #include "install.h"
+#include "m4a_writer.h"
 #include "process_audio.h"
 #include "ui.h"
 #include "updater.h"
@@ -74,9 +75,10 @@ enum {
     IDC_ABOUT,
     IDC_MIN,
     IDC_CLOSE,
+    IDC_TAGS,
 };
 
-enum { HK_REC = 1, HK_PAUSE, HK_STOP, HK_PLAY, HK_DELETE, HK_SHOW, HK_EXIT };
+enum { HK_REC = 1, HK_PAUSE, HK_STOP, HK_PLAY, HK_DELETE, HK_OPEN_DIR, HK_SHOW, HK_EXIT };
 
 enum {
     MENU_RECORD = 2001,
@@ -107,22 +109,76 @@ const UINT_PTR TIMER_PLAY = 1;
 const UINT_PTR TIMER_COUNTDOWN = 2;
 const UINT_PTR TIMER_DURATION = 3;
 const UINT_PTR TIMER_SCHEDULE = 4;  // every second: is a scheduled recording due?
+const UINT_PTR TIMER_FILES = 5;     // every second: were the last recording's files deleted?
 /* Low beeps before the recording starts, one per second, like the start of a race. */
 const int COUNTDOWN_BEEPS = 3;
 
 /* Sample rates. Above 48000 only for the formats without loss: MP3 does not go
-   beyond it, and OGG and OPUS would only spend more space. */
+   beyond it, and OGG and OPUS would only spend more space. WMA has the ones
+   Windows offers. */
 const std::vector<std::wstring> SAMPLE_RATES = {
-    L"8000",  L"11025", L"16000", L"22050",  L"24000",  L"32000",  L"44100",
-    L"48000", L"88200", L"96000", L"176400", L"192000", L"352800", L"384000"};
+    L"8000",  L"11025", L"12000", L"16000",  L"22050",  L"24000",  L"32000",  L"44100",
+    L"48000", L"64000", L"88200", L"96000", L"176400", L"192000", L"352800", L"384000"};
 const int LOSSY_MAX_RATE = 48000;
 
-/* Bit depth of wav, aiff and flac; flac goes up to 24. */
-const std::vector<std::wstring> BIT_DEPTHS = {L"8", L"16", L"24", L"32"};
+/* Bit depth of wav, aiff and flac; wav and aiff also in floating point. In
+   wma, 16 is WMA and 24 is WMA Pro. */
+const wchar_t* const BITS_FLOAT_TEXT = L"32 float";
 
-const std::vector<std::wstring> BITRATES = {L"8 KBPS",   L"16 KBPS",  L"32 KBPS",  L"64 KBPS",
-                                            L"96 KBPS",  L"128 KBPS", L"160 KBPS", L"192 KBPS",
-                                            L"256 KBPS", L"320 KBPS"};
+const wchar_t* const KBPS = L" KBPS";
+
+/* The bitrates of each format, in kbps, at the recording's sample rate and
+   channels: only those its encoder takes. */
+std::vector<int> Mp3Bitrates(int rate) {
+    // By the MPEG version the rate belongs to. Outside these, LAME would
+    // quietly lower the sample rate of the file.
+    if (rate >= 32000) return {32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320};
+    if (rate >= 16000) return {8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160};
+    return {8, 16, 24, 32, 40, 48, 56, 64};
+}
+
+std::vector<int> OggBitrates(int rate, int chans) {
+    // Vorbis takes a range of bitrates for each rate and channel count;
+    // outside it, the recording does not start. Measured with BASSenc_OGG.
+    struct Range {
+        int rate, mono_min, mono_max, stereo_min, stereo_max;
+    };
+    static const Range ranges[] = {
+        {8000, 8, 32, 16, 80},     {11025, 16, 48, 16, 96},   {12000, 16, 48, 16, 96},
+        {16000, 16, 96, 24, 192},  {22050, 16, 80, 32, 160},  {24000, 16, 80, 32, 160},
+        {32000, 32, 160, 48, 320}, {44100, 32, 224, 48, 500}, {48000, 32, 224, 48, 500}};
+    static const int values[] = {8,   16,  24,  32,  48,  64,  80,  96,  112,
+                                 128, 160, 192, 224, 256, 320, 384, 448, 500};
+    std::vector<int> result;
+    for (const Range& r : ranges) {
+        if (r.rate != rate) continue;
+        int lo = chans == 1 ? r.mono_min : r.stereo_min, hi = chans == 1 ? r.mono_max : r.stereo_max;
+        for (int v : values)
+            if (v >= lo && v <= hi) result.push_back(v);
+    }
+    return result;
+}
+
+std::vector<int> OpusBitrates(int chans) {
+    // Up to 256 per channel.
+    std::vector<int> all = {6,   8,   12,  16,  24,  32,  48,  64,  80,  96,
+                            112, 128, 160, 192, 224, 256, 320, 384, 448, 510};
+    if (chans == 1) all.erase(std::upper_bound(all.begin(), all.end(), 256), all.end());
+    return all;
+}
+
+/* The entry of the list closest in number to the one given, so a value that
+   is no longer offered becomes the nearest one instead of a far one. */
+std::wstring Nearest(const std::vector<std::wstring>& items, const std::wstring& value) {
+    if (items.empty()) return std::wstring();
+    if (std::find(items.begin(), items.end(), value) != items.end()) return value;
+    if (value.empty()) return std::wstring();
+    int want = _wtoi(value.c_str());
+    std::wstring best = items.front();
+    for (auto& item : items)
+        if (std::abs(_wtoi(item.c_str()) - want) < std::abs(_wtoi(best.c_str()) - want)) best = item;
+    return best;
+}
 
 std::unique_ptr<ui::Box> HBox() { return std::unique_ptr<ui::Box>(new ui::Box(false)); }
 
@@ -161,12 +217,14 @@ private:
     void OnEditSource();
     void OnRemoveSource();
     void OnSettings();
+    void OnTags();
     void OnSchedule();
     void OnScheduleTick();
     bool OfferUpdate(const UpdateInfo& info, HWND parent);
     bool CheckUpdateNow(HWND parent);
     static DWORD WINAPI UpdateCheckThread(void* window);
     void OnFormatChange();
+    int BitsValue();
     void LoadSettings();
     void SaveSettings();
     void OnRecordToggle();
@@ -190,6 +248,7 @@ private:
     HWND DialogParent();
     void Warn(const std::wstring& message, const std::wstring& title, UINT icon);
     void UpdateRecordingButtons();
+    void OnFilesTick();
     void UpdatePlayButton();
     void OnPlayToggle();
     void OnDeleteRecording();
@@ -213,6 +272,9 @@ private:
     bool play_timer_ = false;
     int countdown_ = 0;  // beeps played so far; 0 when there is no countdown
     bool confirming_delete_ = false;
+    // What the play, delete and continue buttons last showed, so the check
+    // of the files touches them only when that changes.
+    int files_state_ = -1;
     bool tray_added_ = false;
     UINT taskbar_created_ = 0;
     HICON tray_icon_ = nullptr;
@@ -221,6 +283,7 @@ private:
     HWND btn_record_, btn_pause_, btn_continue_, btn_play_, btn_delete_;
     HWND lbl_format_, cmb_format_, lbl_bitrate_, cmb_bitrate_, lbl_flac_level_, cmb_flac_level_;
     HWND lbl_rate_, cmb_rate_, lbl_bits_, cmb_bits_, lbl_channels_, cmb_channels_;
+    HWND btn_tags_;
     HWND lbl_sources_, lst_fontes_, btn_add_, btn_edit_, btn_rem_;
     HWND chk_separate_, chk_tones_;
     HWND lbl_duration_, txt_duration_;
@@ -316,12 +379,15 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
                     case IDC_OPEN_DIR: OnOpenDir(); return TRUE;
                     case IDC_SCHEDULE: OnSchedule(); return TRUE;
                     case IDC_SETTINGS: OnSettings(); return TRUE;
+                    case IDC_TAGS: OnTags(); return TRUE;
                     case IDC_ABOUT: OnAbout(); return TRUE;
                     case IDC_MIN: Iconize(); return TRUE;
                     case IDC_CLOSE: OnClose(); return TRUE;
                 }
             }
-            if (id == IDC_FORMAT && code == CBN_SELCHANGE) OnFormatChange();
+            if ((id == IDC_FORMAT || id == IDC_RATE || id == IDC_CHANNELS || id == IDC_BITS) &&
+                code == CBN_SELCHANGE)
+                OnFormatChange();
             return TRUE;  // IDOK and IDCANCEL (Enter and Esc) do not close the window
         }
         case WM_ACTIVATE:
@@ -351,6 +417,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
             if (wp == TIMER_COUNTDOWN) OnCountdownTick();
             if (wp == TIMER_DURATION) OnDurationTick();
             if (wp == TIMER_SCHEDULE) OnScheduleTick();
+            if (wp == TIMER_FILES) OnFilesTick();
             return TRUE;
         case WM_TRAY:
             if (LOWORD(lp) == WM_LBUTTONDBLCLK) ShowMain();
@@ -429,15 +496,24 @@ void MainFrame::SetupUi() {
         hb->Add(*cmb, 1, ui::EXPAND, 0);
         vbox->Add(std::move(hb), 0, ui::ALL | ui::EXPAND, S(5));
     };
-    labeled_combo(&lbl_format_, &cmb_format_, IDC_FORMAT,
-                  {L"mp3", L"wav", L"aiff", L"ogg", L"opus", L"flac"});
-    labeled_combo(&lbl_bitrate_, &cmb_bitrate_, IDC_BITRATE, BITRATES);
+    std::vector<std::wstring> formats = {L"mp3", L"wav", L"aiff", L"ogg", L"opus", L"flac"};
+    // WMA only where Windows has its codec (not in the N editions without the
+    // Media Feature Pack).
+    if (!audio.WmaBitrates(44100, 2, 16).empty()) formats.push_back(L"wma");
+    // AAC with the encoder of Windows, likewise.
+    if (M4aWriter::Available()) formats.push_back(L"m4a");
+    labeled_combo(&lbl_format_, &cmb_format_, IDC_FORMAT, formats);
+    labeled_combo(&lbl_bitrate_, &cmb_bitrate_, IDC_BITRATE, {});
     labeled_combo(&lbl_flac_level_, &cmb_flac_level_, IDC_FLAC,
                   {L"0", L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8"});
     labeled_combo(&lbl_rate_, &cmb_rate_, IDC_RATE, SAMPLE_RATES);
-    labeled_combo(&lbl_bits_, &cmb_bits_, IDC_BITS, BIT_DEPTHS);
+    labeled_combo(&lbl_bits_, &cmb_bits_, IDC_BITS, {});
     // The channel names are translated: Retranslate fills them in.
     labeled_combo(&lbl_channels_, &cmb_channels_, IDC_CHANNELS, {});
+
+    // The tags of the files, after everything about their format.
+    btn_tags_ = Add(WC_BUTTONW, BUTTON, IDC_TAGS);
+    vbox->Add(btn_tags_, 0, ui::ALL, S(5));
 
     lbl_sources_ = Add(WC_STATICW, 0, 0);
     vbox->Add(lbl_sources_, 0, ui::LEFT | ui::TOP, S(10));
@@ -524,6 +600,7 @@ void MainFrame::Retranslate() {
     int channels = (int)SendMessageW(cmb_channels_, CB_GETCURSEL, 0, 0);
     ui::ComboSetItems(cmb_channels_, {tr("mono"), tr("estéreo")});
     SendMessageW(cmb_channels_, CB_SETCURSEL, channels == 0 ? 0 : 1, 0);
+    ui::SetText(btn_tags_, tr("Configurar &Tags..."));
     ui::SetText(lbl_sources_, tr("Fontes de &Gravação:"));
     ui::SetText(lbl_duration_, tr("Duração da Gravação (Opcio&nal):"));
     ui::SetToolTip(hwnd_, txt_duration_,
@@ -584,9 +661,9 @@ void MainFrame::RefreshList() {
     ListView_DeleteAllItems(lst_fontes_);
     for (auto& s : sources_) {
         // Background audio shows the name of its file or folder.
-        std::wstring label = s.type == L"file"
-                                 ? Format(tr("Áudio de Fundo: {nome}"), {{L"nome", BaseName(s.name)}})
-                                 : s.name;
+        std::wstring label = s.type == L"file"  ? Format(tr("Áudio de Fundo: {nome}"), {{L"nome", BaseName(s.name)}})
+                             : s.type == L"url" ? Format(tr("URL de Stream: {endereco}"), {{L"endereco", s.name}})
+                                                : s.name;
         LVITEMW item = {};
         item.mask = LVIF_TEXT;
         item.iItem = ListView_GetItemCount(lst_fontes_);
@@ -651,8 +728,8 @@ void MainFrame::RegisterAllHotkeys() {
     for (int id = HK_REC; id <= HK_EXIT; ++id) UnregisterHotKey(hwnd_, id);
     const std::pair<int, const wchar_t*> keys_map[] = {
         {HK_REC, L"gravar"}, {HK_PAUSE, L"pausar"}, {HK_STOP, L"parar"},
-        {HK_PLAY, L"reproduzir"}, {HK_DELETE, L"excluir"}, {HK_SHOW, L"mostrar"},
-        {HK_EXIT, L"fechar"}};
+        {HK_PLAY, L"reproduzir"}, {HK_DELETE, L"excluir"}, {HK_OPEN_DIR, L"abrir_pasta"},
+        {HK_SHOW, L"mostrar"}, {HK_EXIT, L"fechar"}};
     for (auto& k : keys_map) {
         UINT mods = 0, vk = 0;
         ParseHotkey(config.GetKey(k.second), &mods, &vk);
@@ -665,6 +742,7 @@ void MainFrame::OnHotkey(int id) {
     if (countdown_) {
         if (id == HK_STOP) CancelCountdown();
         else if (id == HK_SHOW) ShowMain();
+        else if (id == HK_OPEN_DIR) OnOpenDir();
         else if (id == HK_EXIT) OnClose();
         return;
     }
@@ -676,6 +754,7 @@ void MainFrame::OnHotkey(int id) {
     else if (id == HK_PLAY && (audio.IsPlaying() || HasRecording())) OnPlayToggle();
     // Not while a dialog of the program is open, where it would pile up.
     else if (id == HK_DELETE && HasRecording() && IsWindowEnabled(hwnd_)) OnDeleteRecording();
+    else if (id == HK_OPEN_DIR) OnOpenDir();
     else if (id == HK_SHOW) ShowMain();
     else if (id == HK_EXIT) OnClose();
 }
@@ -731,8 +810,10 @@ void MainFrame::OnEditSource() {
         if (now.type == L"device") audio.InitDevice(now.id);
         if (audio.is_recording()) {
             if (SameSource(now, src)) {
-                // Same source: the volume, equalizer and noise remover change right away.
+                // Same source: the volume, balance, equalizer and noise remover
+                // change right away.
                 audio.SetSourceVolume(now, now.volume);
+                audio.SetSourcePan(now, now.pan);
                 audio.SetSourceFx(now);
             } else {
                 if (!AddToRecording(now)) return;
@@ -880,6 +961,15 @@ void MainFrame::OnScheduleTick() {
     }
 }
 
+/* The tags are kept as typed, with their variables; they apply from the
+   next recording on. */
+void MainFrame::OnTags() {
+    TagsDialog dlg(config.GetTags());
+    if (dlg.ShowModal(hwnd_) != IDOK) return;
+    config.SetTags(dlg.result);
+    config.Save();
+}
+
 void MainFrame::OnSettings() {
     SettingsDialog dlg(config, [this] { RegisterAllHotkeys(); },
                        [this](HWND parent) { return CheckUpdateNow(parent); });
@@ -902,6 +992,7 @@ void MainFrame::OnSettings() {
     config.SetConfig(L"iniciar_com_windows", dlg.start_with_windows);
     config.SetConfig(L"contagem_regressiva", dlg.countdown);
     config.SetConfig(L"buffer", dlg.BufferValue());
+    config.SetConfig(L"dividir", dlg.split_text);
     config.Save();
 
     audio.SetBuffer(dlg.BufferValue());
@@ -912,43 +1003,82 @@ void MainFrame::OnSettings() {
     }
 }
 
+/* Each list offers only what the format takes with the other choices: the
+   bit depths go by the format (and the channels, in wma), the sample rates by
+   the format and bits, and the bitrates by all of them. A choice that is no
+   longer offered becomes the nearest one. */
 void MainFrame::OnFormatChange() {
     std::wstring fmt = ui::ComboValue(cmb_format_);
-    bool needs_br = fmt == L"mp3" || fmt == L"ogg" || fmt == L"opus";
+    int chans = ChannelsValue() == L"mono" ? 1 : 2;
+    bool needs_br = fmt == L"mp3" || fmt == L"ogg" || fmt == L"opus" || fmt == L"wma" || fmt == L"m4a";
     ui::Show(lbl_bitrate_, needs_br);
     ui::Show(cmb_bitrate_, needs_br);
     ui::Show(lbl_flac_level_, fmt == L"flac");
     ui::Show(cmb_flac_level_, fmt == L"flac");
-    {
-        std::wstring cur = ui::ComboValue(cmb_rate_);
-        std::vector<std::wstring> rates;
-        for (auto& r : SAMPLE_RATES)
-            if (!needs_br || _wtoi(r.c_str()) <= LOSSY_MAX_RATE) rates.push_back(r);
-        ui::ComboSetItems(cmb_rate_, rates);
-        bool found = std::find(rates.begin(), rates.end(), cur) != rates.end();
-        ui::ComboSetValue(cmb_rate_, found ? cur : cur.empty() ? L"44100" : rates.back());
-    }
-    // Bit depth only matters to the formats without loss.
-    bool needs_bits = fmt == L"wav" || fmt == L"aiff" || fmt == L"flac";
+
+    bool needs_bits = fmt == L"wav" || fmt == L"aiff" || fmt == L"flac" || fmt == L"wma";
     ui::Show(lbl_bits_, needs_bits);
     ui::Show(cmb_bits_, needs_bits);
     {
+        std::vector<std::wstring> depths;
+        if (fmt == L"wma") depths = {L"16"};
+        else depths = {L"8", L"16", L"24", L"32"};
+        if (fmt == L"wav" || fmt == L"aiff") depths.push_back(BITS_FLOAT_TEXT);
+        // WMA Pro, at 24 bits, is stereo only.
+        if (fmt == L"wma" && !audio.WmaBitrates(44100, chans, 24).empty()) depths.push_back(L"24");
         std::wstring cur = ui::ComboValue(cmb_bits_);
-        std::vector<std::wstring> depths = BIT_DEPTHS;
-        if (fmt == L"flac") depths.pop_back();
         ui::ComboSetItems(cmb_bits_, depths);
-        bool found = std::find(depths.begin(), depths.end(), cur) != depths.end();
-        ui::ComboSetValue(cmb_bits_, found ? cur : cur.empty() ? L"16" : depths.back());
+        ui::ComboSetValue(cmb_bits_, cur.empty() ? L"16" : Nearest(depths, cur));
+    }
+    int bits = BitsValue();
+    {
+        std::vector<std::wstring> rates;
+        for (auto& r : SAMPLE_RATES) {
+            int rate = _wtoi(r.c_str());
+            const auto& aac = M4aWriter::Rates();
+            bool ok = fmt == L"wma"    ? !audio.WmaBitrates(rate, chans, bits).empty()
+                      : fmt == L"m4a"  ? std::find(aac.begin(), aac.end(), rate) != aac.end()
+                      : fmt == L"ogg"  ? !OggBitrates(rate, chans).empty()
+                      : needs_br       ? rate <= LOSSY_MAX_RATE
+                                       : true;
+            if (ok) rates.push_back(r);
+        }
+        std::wstring cur = ui::ComboValue(cmb_rate_);
+        ui::ComboSetItems(cmb_rate_, rates);
+        ui::ComboSetValue(cmb_rate_, cur.empty() ? L"44100" : Nearest(rates, cur));
     }
     if (needs_br) {
+        int rate = _wtoi(ui::ComboValue(cmb_rate_).c_str());
+        std::vector<int> kbps;
+        if (fmt == L"mp3") kbps = Mp3Bitrates(rate);
+        else if (fmt == L"ogg") kbps = OggBitrates(rate, chans);
+        else if (fmt == L"opus") kbps = OpusBitrates(chans);
+        else if (fmt == L"m4a") kbps = M4aWriter::Bitrates();
+        else {
+            // Windows also has some a single kbps below another (191 next to
+            // 192): only the round one is offered.
+            for (DWORD b : audio.WmaBitrates(rate, chans, bits)) {
+                int k = (int)(b / 1000);
+                if (kbps.empty() || kbps.back() != k) kbps.push_back(k);
+            }
+            std::vector<int> round;
+            for (size_t i = 0; i < kbps.size(); ++i)
+                if (i + 1 == kbps.size() || kbps[i + 1] != kbps[i] + 1) round.push_back(kbps[i]);
+            kbps = round;
+        }
+        std::vector<std::wstring> items;
+        for (int k : kbps) items.push_back(std::to_wstring(k) + KBPS);
         std::wstring cur = ui::ComboValue(cmb_bitrate_);
-        std::vector<std::wstring> base = BITRATES;
-        if (fmt == L"ogg" || fmt == L"opus") base.push_back(L"500 KBPS");
-        ui::ComboSetItems(cmb_bitrate_, base);
-        bool found = std::find(base.begin(), base.end(), cur) != base.end();
-        ui::ComboSetValue(cmb_bitrate_, found ? cur : L"320 KBPS");
+        ui::ComboSetItems(cmb_bitrate_, items);
+        ui::ComboSetValue(cmb_bitrate_, Nearest(items, cur.empty() ? L"128" + std::wstring(KBPS) : cur));
     }
     Layout();
+}
+
+/* The bit depth chosen, or BITS_FLOAT. */
+int MainFrame::BitsValue() {
+    std::wstring bits = ui::ComboValue(cmb_bits_);
+    return bits == BITS_FLOAT_TEXT ? BITS_FLOAT : _wtoi(bits.c_str());
 }
 
 void MainFrame::LoadSettings() {
@@ -957,14 +1087,19 @@ void MainFrame::LoadSettings() {
         return v.empty() ? std::wstring(fallback) : v;
     };
     ui::ComboSetValue(cmb_format_, or_default(L"formato", L"mp3"));
-    // Before the format, which takes 32 bits down to 24 in flac, and high
-    // sample rates down to 48000 in the compressed formats.
+    // A format this computer cannot record (wma without its codec) gives way to mp3.
+    if (ui::ComboValue(cmb_format_).empty()) ui::ComboSetValue(cmb_format_, L"mp3");
+    // The saved choices first, alone in their lists: the format then offers
+    // what it takes, keeping each one or the nearest to it.
+    ui::ComboSetItems(cmb_bits_, {or_default(L"bits", L"16")});
     ui::ComboSetValue(cmb_bits_, or_default(L"bits", L"16"));
+    ui::ComboSetItems(cmb_rate_, {or_default(L"taxa", L"44100")});
     ui::ComboSetValue(cmb_rate_, or_default(L"taxa", L"44100"));
-    OnFormatChange();
+    ui::ComboSetItems(cmb_bitrate_, {or_default(L"bitrate", L"128 KBPS")});
     ui::ComboSetValue(cmb_bitrate_, or_default(L"bitrate", L"128 KBPS"));
-    ui::ComboSetValue(cmb_flac_level_, or_default(L"flac_nivel", L"8"));
     SendMessageW(cmb_channels_, CB_SETCURSEL, config.Get(L"canais") == L"mono" ? 0 : 1, 0);
+    OnFormatChange();
+    ui::ComboSetValue(cmb_flac_level_, or_default(L"flac_nivel", L"8"));
     SetChecked(chk_tones_, config.GetBoolean(L"reproduzir_tons"));
     SetChecked(chk_separate_, config.GetBoolean(L"arquivos_separados"));
     SetWindowTextW(txt_filename_, config.Get(L"arquivo").c_str());
@@ -974,6 +1109,7 @@ void MainFrame::LoadSettings() {
     auto all_devices = audio.GetInputDevices();
     sources_.clear();
     for (auto& entry : config.GetSources()) {
+        size_t before = sources_.size();
         if (entry.type == L"device") {
             for (auto& d : all_devices) {
                 if (d.first != entry.id) continue;
@@ -984,10 +1120,14 @@ void MainFrame::LoadSettings() {
         } else if (entry.type == L"exe") {
             // Kept even with the program closed: it is recorded whenever it runs.
             sources_.push_back(Source{L"exe", 0, entry.exe, entry.volume, entry.fx});
+        } else if (entry.type == L"url") {
+            // Kept even offline: it connects when recording.
+            sources_.push_back(Source{L"url", 0, entry.path, entry.volume, entry.fx});
         } else if (entry.type == L"file") {
             // Kept even if the file is gone for now: recording says so.
             sources_.push_back(
-                Source{L"file", 0, entry.path, entry.volume, entry.fx, entry.loop, entry.shuffle});
+                Source{L"file", 0, entry.path, entry.volume, entry.fx, entry.loop, entry.shuffle,
+                       entry.subfolders});
         } else {
             std::wstring resolved = GetProcessName((DWORD)entry.id);
             if (!resolved.empty()) {
@@ -996,10 +1136,12 @@ void MainFrame::LoadSettings() {
                                           entry.volume, entry.fx});
             }
         }
+        if (sources_.size() > before) sources_.back().pan = entry.pan;
     }
     schedules_ = config.GetSchedules();
     for (auto& s : schedules_) s.id = next_schedule_id_++;
     SetTimer(hwnd_, TIMER_SCHEDULE, 1000, nullptr);
+    SetTimer(hwnd_, TIMER_FILES, 1000, nullptr);
     if (sources_.empty() && !all_devices.empty()) {
         sources_.push_back(
             Source{L"device", all_devices[0].first, all_devices[0].second, 1.0, FxSettings()});
@@ -1081,18 +1223,25 @@ bool MainFrame::StartRecordingNow(bool tone) {
                  st.wHour, st.wMinute, st.wSecond);
         filename = stamp;
     }
+    // Split, the first file is "name 001": that is the one that must not exist yet.
+    const int split = config.GetSplitSeconds();
+    auto taken = [&](const std::wstring& path) {
+        return FileExists(path) || (split > 0 && FileExists(AudioEngine::PartPath(path, 1)));
+    };
     std::wstring full_path = JoinPath(out_dir, filename + L"." + ext);
     std::wstring base = filename;
-    for (int counter = 1; FileExists(full_path); ++counter) {
+    for (int counter = 1; taken(full_path); ++counter) {
         filename = base + L" " + std::to_wstring(counter);
         full_path = JoinPath(out_dir, filename + L"." + ext);
     }
     std::wstring bitrate_val = ui::ComboValue(cmb_bitrate_);
     bitrate_val = bitrate_val.substr(0, bitrate_val.find(L' '));
     int err = 0;
+    audio.SetTags(config.GetTags());
+    audio.SetSplitSeconds(split);
     bool ok = audio.StartRecording(full_path, ext, bitrate_val,
                                    _wtoi(ui::ComboValue(cmb_rate_).c_str()),
-                                   _wtoi(ui::ComboValue(cmb_bits_).c_str()), ChannelsValue(),
+                                   BitsValue(), ChannelsValue(),
                                    sources_, Checked(chk_separate_),
                                    _wtoi(ui::ComboValue(cmb_flac_level_).c_str()), &err);
     if (ok) {
@@ -1155,7 +1304,7 @@ void MainFrame::RecordingStarted() {
    not is reported, and false stops the recording from starting. */
 bool MainFrame::BackgroundReady() {
     for (auto& s : sources_) {
-        if (s.type != L"file" || !BackgroundFiles(s.name).empty()) continue;
+        if (s.type != L"file" || !BackgroundFiles(s.name, s.subfolders).empty()) continue;
         ui::MsgBox(DialogParent(),
                    Format(tr("Nenhum arquivo de áudio foi encontrado em:\n{caminho}"),
                           {{L"caminho", s.name}}),
@@ -1220,6 +1369,7 @@ void MainFrame::OnContinueLast() {
     if (Checked(chk_tones_)) audio.PlayTone(880, 150);
     int err = 0;
     std::wstring failed;
+    audio.SetTags(config.GetTags());
     if (audio.ContinueRecording(sources_, &err, &failed)) {
         RecordingStarted();
         return;
@@ -1293,8 +1443,17 @@ void MainFrame::Warn(const std::wstring& message, const std::wstring& title, UIN
     ui::MsgBox(DialogParent(), message, title, icon | MB_OK);
 }
 
+/* The last recording's files deleted or moved by another program: its
+   buttons, here and in the tray, follow at once. */
+void MainFrame::OnFilesTick() {
+    if (audio.is_recording() || confirming_delete_) return;
+    int state = (HasRecording() ? 1 : 0) | (CanContinue() ? 2 : 0);
+    if (state != files_state_) UpdateRecordingButtons();
+}
+
 void MainFrame::UpdateRecordingButtons() {
     bool available = HasRecording();
+    files_state_ = (available ? 1 : 0) | (CanContinue() ? 2 : 0);
     EnableControl(btn_play_, available);
     EnableControl(btn_delete_, available);
     EnableControl(btn_continue_, CanContinue());
@@ -1401,7 +1560,7 @@ void MainFrame::ToggleUi(bool enable) {
     // recording.
     for (HWND ctrl : {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_bits_, cmb_channels_,
                       chk_separate_, txt_duration_, txt_dir_, btn_browse_, txt_filename_,
-                      btn_settings_})
+                      btn_settings_, btn_tags_})
         EnableControl(ctrl, enable);
 }
 
@@ -1497,11 +1656,11 @@ void MainFrame::ShowTrayMenu() {
         AppendMenuW(menu, MF_SEPARATOR, 0, nullptr);
         AddSubmenu(menu, tr("Formato de Saída"), 0, cmb_format_);
         std::wstring fmt = ui::ComboValue(cmb_format_);
-        if (fmt == L"mp3" || fmt == L"ogg" || fmt == L"opus")
+        if (fmt == L"mp3" || fmt == L"ogg" || fmt == L"opus" || fmt == L"wma" || fmt == L"m4a")
             AddSubmenu(menu, tr("Bitrate"), 1, cmb_bitrate_);
         if (fmt == L"flac") AddSubmenu(menu, tr("Compressão FLAC"), 2, cmb_flac_level_);
         AddSubmenu(menu, tr("Taxa de Amostragem"), 3, cmb_rate_);
-        if (fmt == L"wav" || fmt == L"aiff" || fmt == L"flac")
+        if (fmt == L"wav" || fmt == L"aiff" || fmt == L"flac" || fmt == L"wma")
             AddSubmenu(menu, tr("Profundidade de Bits"), 5, cmb_bits_);
         AddSubmenu(menu, tr("Canais"), 4, cmb_channels_);
         if (sources_.size() >= 2) {
@@ -1555,8 +1714,8 @@ void MainFrame::OnTrayCommand(UINT cmd) {
         std::vector<std::wstring> items = ui::ComboItems(combo);
         if (item >= (int)items.size()) return;
         SendMessageW(combo, CB_SETCURSEL, item, 0);
-        // The format decides which bit depths exist, before saving.
-        if (combo == cmb_format_) OnFormatChange();
+        // The other lists follow, before saving.
+        if (combo != cmb_bitrate_ && combo != cmb_flac_level_) OnFormatChange();
         SaveSettings();
     }
 }

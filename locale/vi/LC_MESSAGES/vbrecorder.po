@@ -109,8 +109,8 @@ msgstr "Lọc nguồn theo:"
 msgid "Selecionar Fonte:"
 msgstr "Chọn nguồn:"
 
-msgid "Volume:"
-msgstr "Âm lượng:"
+msgid "&Volume:"
+msgstr "Âm lượng(&V):"
 
 msgid "Erro"
 msgstr "Lỗi"
@@ -957,3 +957,129 @@ msgstr "Mức giảm:"
 
 msgid "Silêncio"
 msgstr "Im lặng"
+
+msgid "Incluir Su&bpastas"
+msgstr "B&ao gồm thư mục con"
+
+msgid "Bala&nço:"
+msgstr "Cân bằng trái &phải:"
+
+msgid "Centro"
+msgstr "Giữa"
+
+msgid "Esquerda {n}%"
+msgstr "Trái {n}%"
+
+msgid "Direita {n}%"
+msgstr "Phải {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "Cấu hì&nh thẻ..."
+
+msgid "Tags"
+msgstr "Thẻ"
+
+msgid "&Título:"
+msgstr "&Tiêu đề:"
+
+msgid "&Artistas Participantes:"
+msgstr "&Nghệ sĩ đóng góp:"
+
+msgid "Á&lbum:"
+msgstr "&Album:"
+
+msgid "A&no:"
+msgstr "Nă&m:"
+
+msgid "&Gênero:"
+msgstr "Thể &loại:"
+
+msgid "&Faixa:"
+msgstr "&Bản nhạc số:"
+
+msgid "Co&mentário:"
+msgstr "&Ghi chú:"
+
+msgid "&Variáveis..."
+msgstr "B&iến..."
+
+msgid "Nome do Arquivo"
+msgstr "Tên tệp"
+
+msgid "Formato"
+msgstr "Định dạng"
+
+msgid "Número da Parte"
+msgstr "Số phần"
+
+msgid "Data"
+msgstr "Ngày tháng"
+
+msgid "Ano"
+msgstr "Năm"
+
+msgid "Mês"
+msgstr "Tháng"
+
+msgid "Dia"
+msgstr "Ngày"
+
+msgid "Hora"
+msgstr "Giờ"
+
+msgid "Nome do Usuário"
+msgstr "Tên người dùng"
+
+msgid "Nome do Computador"
+msgstr "Tên máy tính"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "Chia bản ghi &mỗi:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "Cứ sau một khoảng thời gian, bản ghi tiếp tục trong một tệp mới, được đánh số: tên 001, tên 002... 30:00 là 30 phút, 1:00:00 là một giờ. Để trống là không chia."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Thời gian chia không hợp lệ. Hãy dùng giờ, phút và giây, như 30:00 hoặc 1:00:00, hoặc để trống để không chia."
+
+msgid "URL de Stream"
+msgstr "URL luồng"
+
+msgid "&Link do Stream:"
+msgstr "&Liên kết luồng:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "Địa chỉ của một đài phát thanh internet, hoặc của danh sách M3U, PLS hay M3U8, trên internet hoặc trên máy tính."
+
+msgid "Lista de Reprodução"
+msgstr "Danh sách phát"
+
+msgid "Listas de Reprodução"
+msgstr "Danh sách phát"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "Không thể kết nối tới liên kết này (lỗi BASS {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Hãy nhập liên kết của một luồng (bắt đầu bằng http:// hoặc https://) hoặc đường dẫn của danh sách M3U, PLS hay M3U8 trên máy tính."
+
+msgid "URL de Stream: {endereco}"
+msgstr "URL luồng: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "Kênh cần ghi(&J):"
+
+msgid "Ambos"
+msgstr "Cả hai"
+
+msgid "Somente o Esquerdo"
+msgstr "Chỉ bên trái"
+
+msgid "Somente o Direito"
+msgstr "Chỉ bên phải"
+
+msgid "Artista &do Álbum:"
+msgstr "Nghệ &sĩ album:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Mở thư mục bản ghi âm:"

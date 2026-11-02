@@ -177,8 +177,8 @@ msgstr "Filtrovať zdroje podľa:"
 msgid "Selecionar Fonte:"
 msgstr "Vybrať zdroj:"
 
-msgid "Volume:"
-msgstr "Hlasitosť:"
+msgid "&Volume:"
+msgstr "&Hlasitosť:"
 
 msgid "Erro"
 msgstr "Chyba"
@@ -960,3 +960,129 @@ msgstr "Stlmenie:"
 
 msgid "Silêncio"
 msgstr "Ticho"
+
+msgid "Incluir Su&bpastas"
+msgstr "Z&ahrnúť podpriečinky"
+
+msgid "Bala&nço:"
+msgstr "V&yváženie:"
+
+msgid "Centro"
+msgstr "Stred"
+
+msgid "Esquerda {n}%"
+msgstr "Vľavo {n} %"
+
+msgid "Direita {n}%"
+msgstr "Vpravo {n} %"
+
+msgid "Configurar &Tags..."
+msgstr "Upraviť značk&y..."
+
+msgid "Tags"
+msgstr "Značky"
+
+msgid "&Título:"
+msgstr "&Názov:"
+
+msgid "&Artistas Participantes:"
+msgstr "Prispievajúci &interpreti:"
+
+msgid "Á&lbum:"
+msgstr "&Album:"
+
+msgid "A&no:"
+msgstr "&Rok:"
+
+msgid "&Gênero:"
+msgstr "Žán&er:"
+
+msgid "&Faixa:"
+msgstr "&Stopa:"
+
+msgid "Co&mentário:"
+msgstr "&Komentár:"
+
+msgid "&Variáveis..."
+msgstr "&Premenné..."
+
+msgid "Nome do Arquivo"
+msgstr "Názov súboru"
+
+msgid "Formato"
+msgstr "Formát"
+
+msgid "Número da Parte"
+msgstr "Číslo časti"
+
+msgid "Data"
+msgstr "Dátum"
+
+msgid "Ano"
+msgstr "Rok"
+
+msgid "Mês"
+msgstr "Mesiac"
+
+msgid "Dia"
+msgstr "Deň"
+
+msgid "Hora"
+msgstr "Čas"
+
+msgid "Nome do Usuário"
+msgstr "Meno používateľa"
+
+msgid "Nome do Computador"
+msgstr "Názov počítača"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "&Rozdeliť nahrávku každých:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "V pravidelných intervaloch nahrávka pokračuje v novom, očíslovanom súbore: názov 001, názov 002... 30:00 je 30 minút, 1:00:00 je hodina. Prázdne nerozdeľuje."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Neplatný čas rozdelenia. Použite hodiny, minúty a sekundy, napríklad 30:00 alebo 1:00:00, alebo pole nechajte prázdne, ak nechcete deliť."
+
+msgid "URL de Stream"
+msgstr "URL streamu"
+
+msgid "&Link do Stream:"
+msgstr "Odkaz &na stream:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "Adresa internetového rádia alebo zoznamu M3U, PLS či M3U8, na internete alebo v počítači."
+
+msgid "Lista de Reprodução"
+msgstr "Zoznam skladieb"
+
+msgid "Listas de Reprodução"
+msgstr "Zoznamy skladieb"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "K tomuto odkazu sa nedá pripojiť (chyba BASS {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Zadajte odkaz na stream (začínajúci http:// alebo https://) alebo cestu k zoznamu M3U, PLS či M3U8 v počítači."
+
+msgid "URL de Stream: {endereco}"
+msgstr "URL streamu: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "Nahrávané &kanály:"
+
+msgid "Ambos"
+msgstr "Oba"
+
+msgid "Somente o Esquerdo"
+msgstr "Iba ľavý"
+
+msgid "Somente o Direito"
+msgstr "Iba pravý"
+
+msgid "Artista &do Álbum:"
+msgstr "In&terpret albumu:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Otvoriť priečinok záznamov:"

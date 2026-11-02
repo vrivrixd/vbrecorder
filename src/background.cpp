@@ -40,9 +40,41 @@ bool IsAudioFile(const std::wstring& name) {
     return false;
 }
 
+/* "Faixa 2" before "Faixa 10", as in Explorer. */
+void SortAsExplorer(std::vector<std::wstring>& names) {
+    std::sort(names.begin(), names.end(), [](const std::wstring& a, const std::wstring& b) {
+        return CompareStringEx(LOCALE_NAME_USER_DEFAULT, LINGUISTIC_IGNORECASE | SORT_DIGITSASNUMBERS,
+                               a.c_str(), (int)a.size(), b.c_str(), (int)b.size(), nullptr,
+                               nullptr, 0) == CSTR_LESS_THAN;
+    });
+}
+
+void AddFolder(const std::wstring& folder, bool subfolders, std::vector<std::wstring>& files) {
+    std::vector<std::wstring> names, folders;
+    WIN32_FIND_DATAW fd;
+    HANDLE h = FindFirstFileW(JoinPath(folder, L"*").c_str(), &fd);
+    if (h == INVALID_HANDLE_VALUE) return;
+    do {
+        if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+            if (IsAudioFile(fd.cFileName)) names.push_back(fd.cFileName);
+        } else if (subfolders && wcscmp(fd.cFileName, L".") != 0 && wcscmp(fd.cFileName, L"..") != 0 &&
+                   // A link to another folder could lead back to this one,
+                   // and hidden folders are not the user's.
+                   !(fd.dwFileAttributes & (FILE_ATTRIBUTE_REPARSE_POINT | FILE_ATTRIBUTE_HIDDEN |
+                                            FILE_ATTRIBUTE_SYSTEM))) {
+            folders.push_back(fd.cFileName);
+        }
+    } while (FindNextFileW(h, &fd));
+    FindClose(h);
+    SortAsExplorer(names);
+    for (auto& n : names) files.push_back(JoinPath(folder, n));
+    SortAsExplorer(folders);
+    for (auto& f : folders) AddFolder(JoinPath(folder, f), true, files);
+}
+
 }  // namespace
 
-std::vector<std::wstring> BackgroundFiles(const std::wstring& path) {
+std::vector<std::wstring> BackgroundFiles(const std::wstring& path, bool subfolders) {
     std::vector<std::wstring> files;
     DWORD attr = GetFileAttributesW(path.c_str());
     if (attr == INVALID_FILE_ATTRIBUTES) return files;
@@ -50,22 +82,7 @@ std::vector<std::wstring> BackgroundFiles(const std::wstring& path) {
         files.push_back(path);
         return files;
     }
-    std::vector<std::wstring> names;
-    WIN32_FIND_DATAW fd;
-    HANDLE h = FindFirstFileW(JoinPath(path, L"*").c_str(), &fd);
-    if (h == INVALID_HANDLE_VALUE) return files;
-    do {
-        if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && IsAudioFile(fd.cFileName))
-            names.push_back(fd.cFileName);
-    } while (FindNextFileW(h, &fd));
-    FindClose(h);
-    // "Faixa 2" before "Faixa 10", as in Explorer.
-    std::sort(names.begin(), names.end(), [](const std::wstring& a, const std::wstring& b) {
-        return CompareStringEx(LOCALE_NAME_USER_DEFAULT, LINGUISTIC_IGNORECASE | SORT_DIGITSASNUMBERS,
-                               a.c_str(), (int)a.size(), b.c_str(), (int)b.size(), nullptr,
-                               nullptr, 0) == CSTR_LESS_THAN;
-    });
-    for (auto& n : names) files.push_back(JoinPath(path, n));
+    AddFolder(path, subfolders, files);
     return files;
 }
 
@@ -76,14 +93,37 @@ std::wstring BackgroundPattern() {
 }
 
 BackgroundPlayer::BackgroundPlayer(const BassApi& bass, const std::wstring& path, bool loop,
-                                   bool shuffle, int rate, int chans)
-    : b_(bass), files_(BackgroundFiles(path)), loop_(loop), shuffle_(shuffle), rate_(rate),
-      chans_(chans) {
+                                   bool shuffle, bool subfolders, int rate, int chans)
+    : b_(bass), path_(path), files_(BackgroundFiles(path, subfolders)), loop_(loop),
+      shuffle_(shuffle), subfolders_(subfolders), rate_(rate), chans_(chans) {
     NewOrder();
 }
 
+void BackgroundPlayer::SetSubfolders(bool subfolders) {
+    if (subfolders == subfolders_) return;
+    subfolders_ = subfolders;
+    std::wstring playing = stream_ && index_ < order_.size() ? files_[order_[index_]] : std::wstring();
+    files_ = BackgroundFiles(path_, subfolders_);
+    order_.clear();
+    NewOrder();
+    // The file playing keeps its place in the new list: what comes after it
+    // in the name order, or a shuffled round that starts with it.
+    auto found = std::find(files_.begin(), files_.end(), playing);
+    if (found == files_.end()) {
+        // It is no longer in the list: when it ends, the list starts.
+        index_ = (size_t)-1;
+        return;
+    }
+    size_t at = std::find(order_.begin(), order_.end(), (size_t)(found - files_.begin())) - order_.begin();
+    if (shuffle_) {
+        std::swap(order_[0], order_[at]);
+        at = 0;
+    }
+    index_ = at;
+}
+
 void BackgroundPlayer::NewOrder() {
-    size_t last = order_.empty() ? files_.size() : order_[index_];
+    size_t last = index_ < order_.size() ? order_[index_] : files_.size();
     order_.resize(files_.size());
     std::iota(order_.begin(), order_.end(), 0);
     if (!shuffle_ || files_.size() < 2) return;
@@ -192,9 +232,9 @@ void BackgroundPlayer::SetLoop(bool loop) {
 
 BackgroundPlayer::Place BackgroundPlayer::Where() const {
     Place p;
-    p.index = index_;
+    p.index = index_ < order_.size() ? index_ : 0;
     p.order = order_;
-    if (stream_) {
+    if (stream_ && index_ < order_.size()) {
         QWORD pos = b_.ChannelGetPosition(stream_, BASS_POS_BYTE);
         if (pos != (QWORD)-1) p.pos = pos;
     } else if (done_) {

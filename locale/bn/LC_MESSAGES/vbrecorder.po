@@ -177,8 +177,8 @@ msgstr "উৎস ফিল্টার করুন:"
 msgid "Selecionar Fonte:"
 msgstr "উৎস নির্বাচন করুন:"
 
-msgid "Volume:"
-msgstr "ভলিউম:"
+msgid "&Volume:"
+msgstr "ভলিউম(&V):"
 
 msgid "Erro"
 msgstr "ত্রুটি"
@@ -959,3 +959,129 @@ msgstr "হ্রাস:"
 
 msgid "Silêncio"
 msgstr "নীরবতা"
+
+msgid "Incluir Su&bpastas"
+msgstr "সাবফোল্ডার অন্তর্ভুক্ত করুন(&U)"
+
+msgid "Bala&nço:"
+msgstr "ব্যালান্স(&P):"
+
+msgid "Centro"
+msgstr "মাঝখানে"
+
+msgid "Esquerda {n}%"
+msgstr "বাম {n}%"
+
+msgid "Direita {n}%"
+msgstr "ডান {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "ট্যাগ কনফিগার করুন(&K)..."
+
+msgid "Tags"
+msgstr "ট্যাগ"
+
+msgid "&Título:"
+msgstr "শিরোনাম(&T):"
+
+msgid "&Artistas Participantes:"
+msgstr "অবদানকারী শিল্পীরা(&A):"
+
+msgid "Á&lbum:"
+msgstr "অ্যালবাম(&L):"
+
+msgid "A&no:"
+msgstr "বছর(&Y):"
+
+msgid "&Gênero:"
+msgstr "ধরন(&G):"
+
+msgid "&Faixa:"
+msgstr "ট্র্যাক(&R):"
+
+msgid "Co&mentário:"
+msgstr "মন্তব্য(&M):"
+
+msgid "&Variáveis..."
+msgstr "ভেরিয়েবল(&V)..."
+
+msgid "Nome do Arquivo"
+msgstr "ফাইলের নাম"
+
+msgid "Formato"
+msgstr "ফরম্যাট"
+
+msgid "Número da Parte"
+msgstr "অংশের নম্বর"
+
+msgid "Data"
+msgstr "তারিখ"
+
+msgid "Ano"
+msgstr "বছর"
+
+msgid "Mês"
+msgstr "মাস"
+
+msgid "Dia"
+msgstr "দিন"
+
+msgid "Hora"
+msgstr "সময়"
+
+msgid "Nome do Usuário"
+msgstr "ব্যবহারকারীর নাম"
+
+msgid "Nome do Computador"
+msgstr "কম্পিউটারের নাম"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "রেকর্ডিং প্রতি এত সময়ে ভাগ করুন(&G):"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "প্রতি নির্দিষ্ট সময় পরপর রেকর্ডিং একটি নতুন, নম্বরযুক্ত ফাইলে চলতে থাকে: নাম 001, নাম 002... 30:00 মানে 30 মিনিট, 1:00:00 মানে এক ঘণ্টা। ফাঁকা রাখলে ভাগ করে না।"
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "ভাগ করার সময় সঠিক নয়। ঘণ্টা, মিনিট ও সেকেন্ড ব্যবহার করুন, যেমন 30:00 বা 1:00:00, অথবা ভাগ না করতে ফাঁকা রাখুন।"
+
+msgid "URL de Stream"
+msgstr "স্ট্রিম URL"
+
+msgid "&Link do Stream:"
+msgstr "স্ট্রিম লিংক(&H):"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "একটি ইন্টারনেট রেডিওর, বা ইন্টারনেটে বা কম্পিউটারে থাকা একটি M3U, PLS বা M3U8 তালিকার ঠিকানা।"
+
+msgid "Lista de Reprodução"
+msgstr "প্লেলিস্ট"
+
+msgid "Listas de Reprodução"
+msgstr "প্লেলিস্টসমূহ"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "এই লিংকে সংযোগ করা যায়নি (BASS ত্রুটি {erro})।"
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "একটি স্ট্রিমের লিংক (http:// বা https:// দিয়ে শুরু) বা কম্পিউটারে থাকা একটি M3U, PLS বা M3U8 তালিকার পথ লিখুন।"
+
+msgid "URL de Stream: {endereco}"
+msgstr "স্ট্রিম URL: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "রেকর্ড করার চ্যানেল(&G):"
+
+msgid "Ambos"
+msgstr "উভয়"
+
+msgid "Somente o Esquerdo"
+msgstr "শুধু বাম"
+
+msgid "Somente o Direito"
+msgstr "শুধু ডান"
+
+msgid "Artista &do Álbum:"
+msgstr "অ্যালবাম শিল্পী(&D):"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "রেকর্ডিং ফোল্ডার খুলুন:"

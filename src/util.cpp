@@ -155,6 +155,13 @@ HANDLE EnterAudioThread() {
     return task;
 }
 
+void EnterCallbackAudioThread() {
+    thread_local bool entered = false;
+    if (entered) return;
+    entered = true;
+    EnterAudioThread();
+}
+
 void LeaveAudioThread(HANDLE task) {
     if (!task) return;
     HMODULE avrt = GetModuleHandleW(L"avrt.dll");

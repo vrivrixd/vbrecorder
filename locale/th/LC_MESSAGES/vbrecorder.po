@@ -177,8 +177,8 @@ msgstr "กรองแหล่งตาม:"
 msgid "Selecionar Fonte:"
 msgstr "เลือกแหล่ง:"
 
-msgid "Volume:"
-msgstr "ระดับเสียง:"
+msgid "&Volume:"
+msgstr "ระดับเสียง(&V):"
 
 msgid "Erro"
 msgstr "ข้อผิดพลาด"
@@ -952,3 +952,129 @@ msgstr "การลด:"
 
 msgid "Silêncio"
 msgstr "เงียบ"
+
+msgid "Incluir Su&bpastas"
+msgstr "รวมโฟลเดอร์ย่อย(&U)"
+
+msgid "Bala&nço:"
+msgstr "สมดุล(&P):"
+
+msgid "Centro"
+msgstr "กึ่งกลาง"
+
+msgid "Esquerda {n}%"
+msgstr "ซ้าย {n}%"
+
+msgid "Direita {n}%"
+msgstr "ขวา {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "กำหนดค่าแท็ก(&K)..."
+
+msgid "Tags"
+msgstr "แท็ก"
+
+msgid "&Título:"
+msgstr "ชื่อเพลง(&T):"
+
+msgid "&Artistas Participantes:"
+msgstr "ศิลปินที่ร่วมงาน(&A):"
+
+msgid "Á&lbum:"
+msgstr "อัลบั้ม(&L):"
+
+msgid "A&no:"
+msgstr "ปี(&Y):"
+
+msgid "&Gênero:"
+msgstr "แนวเพลง(&G):"
+
+msgid "&Faixa:"
+msgstr "แทร็ก(&R):"
+
+msgid "Co&mentário:"
+msgstr "ความคิดเห็น(&M):"
+
+msgid "&Variáveis..."
+msgstr "ตัวแปร(&V)..."
+
+msgid "Nome do Arquivo"
+msgstr "ชื่อไฟล์"
+
+msgid "Formato"
+msgstr "รูปแบบ"
+
+msgid "Número da Parte"
+msgstr "หมายเลขส่วน"
+
+msgid "Data"
+msgstr "วันที่"
+
+msgid "Ano"
+msgstr "ปี"
+
+msgid "Mês"
+msgstr "เดือน"
+
+msgid "Dia"
+msgstr "วัน"
+
+msgid "Hora"
+msgstr "เวลา"
+
+msgid "Nome do Usuário"
+msgstr "ชื่อผู้ใช้"
+
+msgid "Nome do Computador"
+msgstr "ชื่อคอมพิวเตอร์"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "แบ่งการบันทึกทุก(&G):"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "ทุกช่วงเวลาที่กำหนด การบันทึกจะต่อในไฟล์ใหม่ที่มีหมายเลข: ชื่อ 001, ชื่อ 002... 30:00 คือ 30 นาที, 1:00:00 คือหนึ่งชั่วโมง เว้นว่างไว้คือไม่แบ่ง"
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "เวลาแบ่งไม่ถูกต้อง ใช้ชั่วโมง นาที และวินาที เช่น 30:00 หรือ 1:00:00 หรือเว้นว่างไว้เพื่อไม่แบ่ง"
+
+msgid "URL de Stream"
+msgstr "URL สตรีม"
+
+msgid "&Link do Stream:"
+msgstr "ลิงก์สตรีม(&H):"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "ที่อยู่ของวิทยุอินเทอร์เน็ต หรือของรายการ M3U, PLS หรือ M3U8 บนอินเทอร์เน็ตหรือบนคอมพิวเตอร์"
+
+msgid "Lista de Reprodução"
+msgstr "เพลย์ลิสต์"
+
+msgid "Listas de Reprodução"
+msgstr "รายการเพลย์ลิสต์"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "ไม่สามารถเชื่อมต่อกับลิงก์นี้ (ข้อผิดพลาด BASS {erro})"
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "พิมพ์ลิงก์ของสตรีม (ขึ้นต้นด้วย http:// หรือ https://) หรือพาธของรายการ M3U, PLS หรือ M3U8 บนคอมพิวเตอร์"
+
+msgid "URL de Stream: {endereco}"
+msgstr "URL สตรีม: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "ช่องสัญญาณที่จะบันทึก(&G):"
+
+msgid "Ambos"
+msgstr "ทั้งสองข้าง"
+
+msgid "Somente o Esquerdo"
+msgstr "เฉพาะซ้าย"
+
+msgid "Somente o Direito"
+msgstr "เฉพาะขวา"
+
+msgid "Artista &do Álbum:"
+msgstr "ศิลปินอัลบั้ม(&D):"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "เปิดโฟลเดอร์การบันทึก:"

@@ -30,8 +30,10 @@
 #include "bass_api.h"
 
 /* The files a background source plays: the file itself, or the audio files
-   of the folder, sorted as Explorer sorts them. Empty if there are none. */
-std::vector<std::wstring> BackgroundFiles(const std::wstring& path);
+   of the folder, sorted as Explorer sorts them; with subfolders, each folder
+   inside it comes after the files, in the same order, and so on down. Empty
+   if there are none. */
+std::vector<std::wstring> BackgroundFiles(const std::wstring& path, bool subfolders);
 
 /* The audio file types looked for in a folder, for the open dialog: "*.mp3;*.wav;...". */
 std::wstring BackgroundPattern();
@@ -45,9 +47,10 @@ public:
         std::vector<size_t> order;  // the files, shuffled or not
     };
 
-    /* shuffle: a folder plays in a random order, a new one at each repeat. */
+    /* shuffle: a folder plays in a random order, a new one at each repeat.
+       subfolders: the folders inside it play too. */
     BackgroundPlayer(const BassApi& bass, const std::wstring& path, bool loop, bool shuffle,
-                     int rate, int chans);
+                     bool subfolders, int rate, int chans);
     ~BackgroundPlayer();
     BackgroundPlayer(const BackgroundPlayer&) = delete;
     BackgroundPlayer& operator=(const BackgroundPlayer&) = delete;
@@ -62,6 +65,8 @@ public:
        shuffle counts from the next round on. */
     void SetLoop(bool loop);
     void SetShuffle(bool shuffle) { shuffle_ = shuffle; }
+    /* The file playing goes on to its end; the new list follows it. */
+    void SetSubfolders(bool subfolders);
 
 private:
     bool OpenAt(size_t index, QWORD pos);
@@ -73,9 +78,10 @@ private:
     void NewOrder();
 
     const BassApi& b_;
+    std::wstring path_;
     std::vector<std::wstring> files_;
     std::vector<size_t> order_;
-    bool loop_, shuffle_;
+    bool loop_, shuffle_, subfolders_;
     int rate_, chans_;
     DWORD mixer_ = 0;   // converts each file to the rate and channels wanted
     DWORD stream_ = 0;  // the file being played

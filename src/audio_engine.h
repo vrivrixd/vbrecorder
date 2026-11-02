@@ -20,10 +20,12 @@
 #include <windows.h>
 
 #include <atomic>
+#include <functional>
 #include <map>
 #include <memory>
 #include <mutex>
 #include <string>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -31,6 +33,7 @@
 #include "bass_api.h"
 #include "config.h"
 #include "fx_chain.h"
+#include "tags.h"
 
 class AudioEngine {
 public:
@@ -41,12 +44,17 @@ public:
        cannot work. */
     bool Load();
 
-    /* Buffer size, in milliseconds. It applies to capture and to the live
-       playback of the Test button, from the next recording or test on. It is
-       not a delay: it is the slack that absorbs a hiccup of the computer. */
+    /* Buffer size, in milliseconds. It applies to capture, from the next
+       recording on; the Test button plays with a short buffer of its own,
+       so changes are heard at once. It is not a delay: it is the slack
+       that absorbs a hiccup of the computer. */
     int SetBuffer(int milliseconds);
 
     bool InitDevice(int dev_idx);
+    /* The WMA bitrates Windows has for a sample rate and channel count, in
+       bits per second, from the lowest; 24 bits is WMA Pro. Empty when
+       there is no WMA. */
+    std::vector<DWORD> WmaBitrates(int sample_rate, int chans, int bits);
     std::vector<std::pair<int, std::wstring>> GetInputDevices();
     void PlayTone(DWORD frequency, DWORD duration);
 
@@ -55,6 +63,15 @@ public:
     bool StartMonitor(int dev_idx, double volume, int sample_rate, int channels,
                       const FxSettings& fx, int* error);
     void SetMonitorVolume(double volume);
+    /* The balance of the test, kept for the next one too. */
+    void SetMonitorPan(double pan);
+    /* The test of a stream URL: it plays with the volume, balance and
+       effects given. Connecting takes a moment, so it is done on another
+       thread, which then calls done with 0, or the BASS error; done is not
+       called if the test was stopped meanwhile. channels is the
+       recording's, for the balance. */
+    void StartUrlTest(const std::wstring& url, double volume, int channels, const FxSettings& fx,
+                      std::function<void(int)> done);
     /* The equalizer and noise remover of the test, changed live. */
     void SetMonitorFx(const FxSettings& fx);
     void StopMonitor();
@@ -65,6 +82,14 @@ public:
     bool PlayFile(const std::wstring& file_path, int* error);
     void StopPlayback();
 
+    /* The tags, as typed, with their variables, and in how many minutes the
+       recording is split into files (0: never). For the next recording. */
+    void SetTags(const TagValues& raw) { tags_raw_ = raw; }
+    void SetSplitSeconds(int seconds) { split_seconds_ = seconds > 0 ? seconds : 0; }
+    /* A part of a split recording: "name 001.mp3" for part 1 of name.mp3;
+       part 0 is the path itself. */
+    static std::wstring PartPath(const std::wstring& path, int part);
+
     bool StartRecording(const std::wstring& file_path, const std::wstring& format_type,
                         const std::wstring& bitrate, int sample_rate, int bits,
                         const std::wstring& channels, const std::vector<Source>& sources,
@@ -74,7 +99,9 @@ public:
        reopened (in use by another program, for example), if that was it. */
     bool ContinueRecording(const std::vector<Source>& sources, int* error,
                            std::wstring* failed_file);
-    bool CanContinue() const { return !recording_ && !last_outputs_.empty(); }
+    /* Whether the last recording can go on: its files must all be there
+       still; one deleted meanwhile would come back as silence. */
+    bool CanContinue() const;
     /* The last recording was deleted: there is nothing to continue. */
     void ForgetLastRecording() { last_outputs_.clear(); }
 
@@ -83,8 +110,10 @@ public:
     bool AddLiveSource(const Source& src, int* error);
     void RemoveLiveSource(const Source& src);
     void SetSourceVolume(const Source& src, double volume);
+    /* The balance: -1 left, 0 center, +1 right. */
+    void SetSourcePan(const Source& src, double pan);
     /* New equalizer or noise remover for a source being recorded, and the
-       repeat and shuffle of a background audio. */
+       repeat, shuffle and subfolders of a background audio. */
     void SetSourceFx(const Source& src);
 
     void PauseRecording();
@@ -97,6 +126,8 @@ public:
     const std::vector<std::wstring>& output_files() const { return output_files_; }
     /* Where the recording is on its timeline, in seconds, without the pauses. */
     double RecordingSeconds();
+    /* The same, for a moment given by QueryPerformanceCounter. */
+    double RecordingSecondsAt(LONGLONG qpc);
 
 private:
     struct Input;
@@ -105,7 +136,13 @@ private:
 
     bool LoadDlls();
     void LoadPlaybackPlugins();
-    DWORD ApplyEncoder(DWORD handle, const std::wstring& path);
+    /* Starts the encoder of out's file, at out.path, with its tags. */
+    DWORD ApplyEncoder(Output& out);
+    void StopEncoder(Output& out);
+    /* Reads the mixer into the encoder; a split recording goes on in the
+       next part's file at the exact frame. */
+    void ReadMixer(Output& out, DWORD frames);
+    void NextPart(Output& out);
     void Teardown(bool flush);
     void ResetRecording(int sample_rate, const std::wstring& channels);
     std::unique_ptr<Input> MakeInput(const Source& src, int* error);
@@ -118,7 +155,10 @@ private:
     bool PlaceSource(const Source& src, double now, int* error);
     void DropInput(Input* in);
     void EndInput(Input* in);
-    Output* MakeOutput(const std::wstring& path, const std::wstring& key, bool add_to_files);
+    /* A file, from a frame of the timeline: with the recording split, the
+       part that holds that frame. */
+    Output* MakeOutput(const std::wstring& path, const std::wstring& key, bool add_to_files,
+                       long long start = 0);
     Output* OutputFor(const Source& src, double now);
     bool IsLive(const Output* out) const;
     std::wstring SeparatePath(const std::wstring& key) const;
@@ -149,10 +189,19 @@ private:
     DWORD monitor_rec_ = 0;
     std::atomic<DWORD> monitor_stream_{0};
     std::unique_ptr<FxChain> monitor_chain_;
+    // The test of a stream URL: its effects run on its playback, and each
+    // test started or stopped has a new number, so a connection that
+    // arrives late knows it is no longer wanted.
+    bool monitor_url_ = false;
+    DWORD monitor_url_chans_ = 2;
+    int monitor_gen_ = 0;
+    std::mutex monitor_mutex_;
+    static void CALLBACK MonitorDsp(DWORD handle, DWORD channel, void* buffer, DWORD length, void* user);
     std::vector<float> monitor_buf_;  // used by the capture thread of the test
     int monitor_dev_ = -1, monitor_rate_ = 0, monitor_chans_ = 0;
     int monitor_asked_rate_ = 0, monitor_asked_chans_ = 0;
     double monitor_volume_ = 1.0;
+    double monitor_pan_ = 0.0;
     DWORD play_stream_ = 0;
 
     // Recording in progress.
@@ -162,16 +211,30 @@ private:
     std::vector<std::unique_ptr<Input>> inputs_;
     std::vector<std::unique_ptr<Output>> outputs_;
     std::vector<std::unique_ptr<Watch>> watches_;
-    // The files of the last recording and where it stopped, to continue it.
-    std::vector<std::pair<std::wstring, std::wstring>> last_outputs_;  // (path, key)
+    // The files of the last recording and where it stopped, to continue it:
+    // its last part, when it was split.
+    struct LastOutput {
+        std::wstring path, key, base;
+        int part = 0;
+        bool empty = false;  // a part that starts where it stopped: it has no file yet
+    };
+    std::vector<LastOutput> last_outputs_;
     double last_end_sec_ = 0;
     // Where each background audio was when the last recording stopped, so
     // continuing it goes on from there too; by path, in lower case.
     std::map<std::wstring, BackgroundPlayer::Place> background_places_;
     bool resuming_ = false;  // the sources being placed continue a recording
     std::wstring format_, options_;
-    int bits_ = 16;  // bit depth of wav, aiff and flac
+    int bits_ = 16;  // bit depth of wav, aiff, flac and wma, or BITS_FLOAT
+    DWORD wma_bitrate_ = 0;  // bits per second
+    // The WMA bitrates that open, by (rate, channels, bits); found once.
+    std::map<std::tuple<int, int, int>, std::vector<DWORD>> wma_rates_;
     std::wstring base_path_, ext_;
+    TagValues tags_raw_;
+    SYSTEMTIME rec_start_ = {};  // for the variables of the tags
+    int split_seconds_ = 0;
+    long long split_frames_ = 0;  // of the recording in progress; 0 when not split
+    int m4a_kbps_ = 0;
     int sample_rate_ = 44100;
     int chans_ = 2;
     bool separate_ = false;

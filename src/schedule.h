@@ -39,6 +39,9 @@ struct Schedule {
 bool ParseDuration(const std::wstring& text, int* seconds);
 /* 5400 as 1:30:00. */
 std::wstring FormatDuration(int seconds);
+/* The time a recording is split at, written as a duration (a single number
+   is seconds): 0 when empty or zero, -1 when it is not a time. */
+int SplitSeconds(const std::wstring& text);
 
 /* "14:30", "9:05" or "14:30:15"; the seconds are optional. False if it is
    not a time of day. */

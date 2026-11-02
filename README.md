@@ -40,17 +40,35 @@ history.
   order, goes into the recording as one more source, such as music under a
   voice. "Repeat When Finished" starts it over at the end; unchecked, it plays
   once. With "Shuffle", a folder plays in a random order, a new one each time
-  it repeats. It has its own volume, equalizer, effects and stereo setting,
+  it repeats. With "Include Subfolders", the audio files of the folders inside
+  it play too, each folder after the files of the one above it. It has its own volume, equalizer, effects and stereo setting,
   and it is never played aloud: it is only heard in the recording. Pausing
   pauses it too, and continuing the last recording goes on from where it
   stopped.
+- **Stream URL.** An internet radio goes into the recording as one more
+  source: paste its link, or the path of an M3U, PLS or M3U8 playlist on the
+  computer (Browse File finds it). Links to playlists on the internet work too,
+  HLS (M3U8) included, and radios in MP3, AAC and AAC+. It has its own volume, balance, equalizer, effects,
+  side chain and stereo setting, and Test plays it with all of them. It
+  connects on its own, without holding up the recording: until it does, and
+  whenever the connection drops, it is silent, and it connects again by itself.
+- **Channels to record.** Each source can record both of its channels, or only
+  the left or only the right one: a microphone that an interface puts on the
+  left channel alone, for example. "Stereo" still decides where it goes: with
+  it checked, the channel stays on its side; unchecked, it goes to both, at its
+  own level.
 - **Per-source volume.** Adjust each source from -30 dB to +30 dB, to balance
   weak microphones without affecting the others.
+- **Per-source balance.** Place each source between left and right in a
+  stereo recording: the slider goes from 0, all to the left, to 100, all to
+  the right, with 50 in the center, and the screen reader says the position.
+  A mono source, such as a microphone, is placed too. Editing a source while
+  recording changes its balance right away.
 - **Stereo or mono per source.** A source with "Stereo" unchecked is mixed
   down to mono, while the others stay in stereo.
 - **Test before recording.** The Test button lets you hear the device with the
-  volume already set, and with its equalizer, effects, noise remover and stereo
-  setting.
+  volume and balance already set, and with its equalizer, effects, noise
+  remover and stereo setting.
 - **Equalizer per source.** Ten bands, from 31 Hz to 16 kHz, each with its
   own gain, a preamp, and presets: the classic Winamp ones, plus curves for
   voice, podcast, telephone and more. The sliders say the gain in dB to the
@@ -78,6 +96,23 @@ history.
 - **Separate files.** With two or more sources, each one can go to its own
   file, named after the source: `recording (Microphone).wav`,
   `recording (chrome.exe).wav`.
+- **Tags.** Configure Tags, in the main window, sets the title, contributing
+  artists, album artist, album, year, genre, track and comment written into the
+  recordings, in every format.
+  After each field, Variables opens a menu of what can go into it, put where
+  the cursor is: the file name (`$name`), the format (`$format`), the part
+  number (`$part`), the date (`$date`, `$year`, `$month`, `$day`), the time
+  (`$time`), the user name (`$user`) and the computer name (`$computer`).
+  Until the tags are set, the title is the file name and both artists are VB
+  Recorder; an empty field writes no tag. In MP3, OGG, OPUS and FLAC a double
+  quote in a tag becomes an apostrophe.
+- **Split recording.** In the settings, "Split Recording Every" goes on in a
+  new file every so often, typed as the recording duration is: `30:00` is
+  half an hour, `1:00:00` an hour, and a single number is seconds. No audio
+  is lost or repeated between the files: `recording 001.mp3`, `recording 002.mp3`... Each part
+  has its own tags, with its number in `$part`. Separate files are split at the
+  same moments, and continuing the last recording goes on in its last part.
+  Empty, the default, does not split.
 - **Play and delete.** Listen to the last recording and delete it if it did not
   turn out well, from the program itself or from the tray menu.
 - **Continue the last recording.** After stopping, the files are ready to be
@@ -86,8 +121,8 @@ history.
   Pause / Continue hotkey does the same when nothing is recording. With MP3,
   OGG and OPUS, the part already recorded is encoded again.
 - **Global hotkeys**, configurable, that work with the window minimized or
-  hidden: record, pause and continue, stop, play, delete, show the window and
-  close the program.
+  hidden: record, pause and continue, stop, play, delete, open the recordings
+  folder, show the window and close the program.
 - **Countdown**, optional: three low beeps, one per second, and the recording
   starts on the high one, as at the start of a race. Stop cancels it.
 - **Recording duration**, optional: type how long to record (`1:30:00` is an
@@ -108,8 +143,8 @@ history.
   even with another copy already running, so the program can record itself
   being used. That copy does not look for updates by itself.
 - **Settings window** with language, automatic update checks, start with
-  Windows, start minimized, minimize to tray, window always on top, countdown
-  and buffer size, besides the hotkeys.
+  Windows, start minimized, minimize to tray, window always on top, countdown,
+  buffer size and split recording, besides the hotkeys.
 - **Automatic updates.** When it starts, the program checks GitHub for a new
   version and, if you want, downloads the right one for your Windows (32 or 64
   bits), installs it and opens it again. What is new in the version shows
@@ -118,26 +153,38 @@ history.
 
 ## Formats
 
-| Format | Notes                                          |
-|--------|------------------------------------------------|
-| MP3    | bitrate from 8 to 320 kbps                     |
-| WAV    | uncompressed, 8, 16, 24 or 32-bit              |
-| AIFF   | uncompressed, 8, 16, 24 or 32-bit              |
-| OGG    | adjustable bitrate up to 500 kbps              |
-| OPUS   | modern, highly efficient codec, ideal for voice |
-| FLAC   | lossless, 8, 16 or 24-bit, compression 0 to 8  |
+| Format | Notes                                                        |
+|--------|--------------------------------------------------------------|
+| MP3    | bitrate from 8 to 320 kbps                                   |
+| WAV    | uncompressed, 8, 16, 24 or 32-bit, or 32-bit floating point  |
+| AIFF   | uncompressed, 8, 16, 24 or 32-bit, or 32-bit floating point  |
+| OGG    | bitrate from 8 to 500 kbps                                   |
+| OPUS   | modern, highly efficient codec, ideal for voice; 6 to 510 kbps |
+| FLAC   | lossless, 8, 16, 24 or 32-bit, compression 0 to 8            |
+| WMA    | through the codecs of Windows: WMA, or WMA Pro at 24-bit     |
+| M4A    | AAC through the encoder of Windows; 96 to 192 kbps            |
 
 Sample rate from 8000 Hz to 384000 Hz in WAV, AIFF and FLAC, and up to 48000 Hz
-in MP3, OGG and OPUS; mono or stereo.
+in MP3, OGG and OPUS; mono or stereo. Each list offers only what the format
+takes with the other choices: the bitrates follow the sample rate and the
+channels (OGG and MP3 take fewer at low sample rates, and WMA has the ones
+Windows offers), so a recording never fails to start over a combination its
+encoder refuses. A WAV file goes past 4 GB as RF64. WMA needs the Windows
+Media codecs, which the N editions of Windows only have with the Media Feature
+Pack; without them, it is not offered. M4A likewise: it uses the AAC encoder
+that comes with Windows, whose patents Windows covers, at 44100 or 48000 Hz,
+mono or stereo, at 96, 128, 160 or 192 kbps.
 
 ## Stutter-free audio
 
 Recording goes through a real buffer: each source delivers its audio into a
 queue of its own, and mixing and encoding happen on a separate thread, at the
 pace of the computer clock, with a delay equal to the buffer size chosen in the
-settings. A source that is late by less than the buffer loses nothing, and a
+settings, 2000 ms by default. A source that is late by less than the buffer loses nothing, and a
 source that is later than that is waited for instead of leaving a hole in the
-recording. When a source really stops delivering (a loopback with nothing
+recording. Audio is placed by the moment it was captured, not by when it
+arrived, so a capture that was held up and then hands over what it kept is
+never taken for a gap. When a source really stops delivering (a loopback with nothing
 playing, a sound card that went to sleep, a program that went quiet), the time
 it was gone becomes silence and its audio comes back exactly in time. A device
 or process capture that drops out is opened again by itself. Differences
@@ -145,7 +192,8 @@ between sound card clocks are compensated gradually, without cuts, and encoding
 and disk writes never hold up the capture.
 
 While recording, the program asks Windows not to slow it down (EcoQoS), runs
-its audio threads in the system audio scheduler (MMCSS) and keeps the computer
+its audio threads, the BASS capture of each sound card included, in the system
+audio scheduler (MMCSS) and keeps the computer
 from going to sleep, also on computers with Modern Standby. When you stop, everything that was still in the buffer
 goes to the file.
 
@@ -263,6 +311,9 @@ Structure:
 - `src/fx_chain.cpp` — the processing of each source (BASS_FX, RNNoise and the delay).
 - `src/convolver.cpp` — the convolution reverb.
 - `src/background.cpp` — background audio: the files of a source, played in turn.
+- `src/net_source.cpp` — a stream URL as a source, connected and connected again on its own thread.
+- `src/m4a_writer.cpp` — M4A files, with the AAC encoder of Windows (Media Foundation).
+- `src/tags.cpp` — the tags of the recordings, their variables, and how each format takes them.
 - `src/schedule.cpp` — scheduled recordings: their dates and times.
 - `src/fx_dialogs.cpp` — the equalizer, effects and noise remover dialogs.
 - `src/ui.cpp` — interface foundation: native controls and window layout.
@@ -287,6 +338,10 @@ which make it free for non-commercial use.
 [RNNoise](https://github.com/xiph/rnnoise), in `third_party/rnnoise`, is by
 Jean-Marc Valin and contributors (Xiph.Org, Mozilla, Amazon), under the BSD
 license in `third_party/rnnoise/COPYING`.
+
+`bass_aac.dll`, in the `lib` folder, is BASS_AAC, by Sebastian Andersson,
+with portions by Nero AG (FAAD2), free to use and distribute under the GNU
+GPL. It lets stream URLs in AAC and AAC+, which many radios use, start at once.
 
 ## Author
 

@@ -177,8 +177,8 @@ msgstr "Filtri fontojn laŭ:"
 msgid "Selecionar Fonte:"
 msgstr "Elekti fonton:"
 
-msgid "Volume:"
-msgstr "Laŭteco:"
+msgid "&Volume:"
+msgstr "Laŭte&co:"
 
 msgid "Erro"
 msgstr "Eraro"
@@ -957,3 +957,129 @@ msgstr "Malpliigo:"
 
 msgid "Silêncio"
 msgstr "Silento"
+
+msgid "Incluir Su&bpastas"
+msgstr "&Inkluzivi subdosierujojn"
+
+msgid "Bala&nço:"
+msgstr "E&kvilibro:"
+
+msgid "Centro"
+msgstr "Centro"
+
+msgid "Esquerda {n}%"
+msgstr "Maldekstre {n}%"
+
+msgid "Direita {n}%"
+msgstr "Dekstre {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "A&gordi etikedojn..."
+
+msgid "Tags"
+msgstr "Etikedoj"
+
+msgid "&Título:"
+msgstr "&Titolo:"
+
+msgid "&Artistas Participantes:"
+msgstr "Kontribuantaj &artistoj:"
+
+msgid "Á&lbum:"
+msgstr "A&lbumo:"
+
+msgid "A&no:"
+msgstr "&Jaro:"
+
+msgid "&Gênero:"
+msgstr "Ĝ&enro:"
+
+msgid "&Faixa:"
+msgstr "T&rako:"
+
+msgid "Co&mentário:"
+msgstr "&Komento:"
+
+msgid "&Variáveis..."
+msgstr "&Variabloj..."
+
+msgid "Nome do Arquivo"
+msgstr "Dosiernomo"
+
+msgid "Formato"
+msgstr "Formato"
+
+msgid "Número da Parte"
+msgstr "Numero de parto"
+
+msgid "Data"
+msgstr "Dato"
+
+msgid "Ano"
+msgstr "Jaro"
+
+msgid "Mês"
+msgstr "Monato"
+
+msgid "Dia"
+msgstr "Tago"
+
+msgid "Hora"
+msgstr "Horo"
+
+msgid "Nome do Usuário"
+msgstr "Uzantnomo"
+
+msgid "Nome do Computador"
+msgstr "Komputilnomo"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "&Dividi la registradon ĉiujn:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "Post ĉiu tia tempo, la registrado daŭras en nova, numerita dosiero: nomo 001, nomo 002... 30:00 estas 30 minutoj, 1:00:00 estas unu horo. Malplena ne dividas."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Nevalida divida tempo. Uzu horojn, minutojn kaj sekundojn, kiel 30:00 aŭ 1:00:00, aŭ lasu malplena por ne dividi."
+
+msgid "URL de Stream"
+msgstr "URL de fluo"
+
+msgid "&Link do Stream:"
+msgstr "Ligilo de la &fluo:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "La adreso de interreta radio, aŭ de ludlisto M3U, PLS aŭ M3U8, en la interreto aŭ en la komputilo."
+
+msgid "Lista de Reprodução"
+msgstr "Ludlisto"
+
+msgid "Listas de Reprodução"
+msgstr "Ludlistoj"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "Ne eblis konektiĝi al ĉi tiu ligilo (BASS-eraro {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Tajpu la ligilon de fluo (komenciĝanta per http:// aŭ https://) aŭ la vojon de ludlisto M3U, PLS aŭ M3U8 en la komputilo."
+
+msgid "URL de Stream: {endereco}"
+msgstr "URL de fluo: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "Registrota&j kanaloj:"
+
+msgid "Ambos"
+msgstr "Ambaŭ"
+
+msgid "Somente o Esquerdo"
+msgstr "Nur la maldekstra"
+
+msgid "Somente o Direito"
+msgstr "Nur la dekstra"
+
+msgid "Artista &do Álbum:"
+msgstr "Alb&uma artisto:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Malfermi registraĵan dosierujon:"

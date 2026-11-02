@@ -177,8 +177,8 @@ msgstr "過濾來源按:"
 msgid "Selecionar Fonte:"
 msgstr "選取來源:"
 
-msgid "Volume:"
-msgstr "音量:"
+msgid "&Volume:"
+msgstr "音量(&V):"
 
 msgid "Erro"
 msgstr "錯誤"
@@ -948,3 +948,129 @@ msgstr "衰減量:"
 
 msgid "Silêncio"
 msgstr "靜音"
+
+msgid "Incluir Su&bpastas"
+msgstr "包括子資料夾(&U)"
+
+msgid "Bala&nço:"
+msgstr "平衡(&P):"
+
+msgid "Centro"
+msgstr "置中"
+
+msgid "Esquerda {n}%"
+msgstr "左 {n}%"
+
+msgid "Direita {n}%"
+msgstr "右 {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "設定標籤(&K)..."
+
+msgid "Tags"
+msgstr "標籤"
+
+msgid "&Título:"
+msgstr "標題(&T):"
+
+msgid "&Artistas Participantes:"
+msgstr "參與演出者(&A):"
+
+msgid "Á&lbum:"
+msgstr "專輯(&L):"
+
+msgid "A&no:"
+msgstr "年份(&Y):"
+
+msgid "&Gênero:"
+msgstr "類型(&G):"
+
+msgid "&Faixa:"
+msgstr "曲目(&R):"
+
+msgid "Co&mentário:"
+msgstr "註解(&M):"
+
+msgid "&Variáveis..."
+msgstr "變數(&V)..."
+
+msgid "Nome do Arquivo"
+msgstr "檔案名稱"
+
+msgid "Formato"
+msgstr "格式"
+
+msgid "Número da Parte"
+msgstr "部分編號"
+
+msgid "Data"
+msgstr "日期"
+
+msgid "Ano"
+msgstr "年份"
+
+msgid "Mês"
+msgstr "月"
+
+msgid "Dia"
+msgstr "日"
+
+msgid "Hora"
+msgstr "時間"
+
+msgid "Nome do Usuário"
+msgstr "使用者名稱"
+
+msgid "Nome do Computador"
+msgstr "電腦名稱"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "錄音分割間隔(&G):"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "每隔一段時間，錄音會在一個新的編號檔案中繼續：名稱 001、名稱 002……30:00 表示 30 分鐘，1:00:00 表示 1 小時。留空則不分割。"
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "分割間隔無效。請使用時、分、秒，例如 30:00 或 1:00:00，或留空以不分割。"
+
+msgid "URL de Stream"
+msgstr "串流 URL"
+
+msgid "&Link do Stream:"
+msgstr "串流連結(&H):"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "網路電台的位址，或網路上或電腦上的 M3U、PLS 或 M3U8 播放清單的位址。"
+
+msgid "Lista de Reprodução"
+msgstr "播放清單"
+
+msgid "Listas de Reprodução"
+msgstr "多個播放清單"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "無法連線到此連結（BASS 錯誤 {erro}）。"
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "請輸入串流連結（以 http:// 或 https:// 開頭）或電腦上的 M3U、PLS 或 M3U8 播放清單的路徑。"
+
+msgid "URL de Stream: {endereco}"
+msgstr "串流 URL: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "要錄製的聲道(&G):"
+
+msgid "Ambos"
+msgstr "兩者"
+
+msgid "Somente o Esquerdo"
+msgstr "僅左聲道"
+
+msgid "Somente o Direito"
+msgstr "僅右聲道"
+
+msgid "Artista &do Álbum:"
+msgstr "專輯演出者(&D):"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "開啟錄音資料夾:"

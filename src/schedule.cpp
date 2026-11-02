@@ -93,6 +93,13 @@ bool ParseDuration(const std::wstring& text, int* seconds) {
     return true;
 }
 
+int SplitSeconds(const std::wstring& text) {
+    std::wstring t = Trim(text);
+    if (t.empty() || t.find_first_not_of(L"0:") == std::wstring::npos) return 0;
+    int seconds = 0;
+    return ParseDuration(t, &seconds) ? seconds : -1;
+}
+
 std::wstring FormatDuration(int seconds) {
     wchar_t buf[32];
     swprintf(buf, 32, L"%d:%02d:%02d", seconds / 3600, seconds / 60 % 60, seconds % 60);

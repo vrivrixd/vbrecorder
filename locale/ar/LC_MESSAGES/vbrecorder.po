@@ -177,8 +177,8 @@ msgstr "تصفية المصادر حسب:"
 msgid "Selecionar Fonte:"
 msgstr "تحديد المصدر:"
 
-msgid "Volume:"
-msgstr "مستوى الصوت:"
+msgid "&Volume:"
+msgstr "مستوى الصوت(&V):"
 
 msgid "Erro"
 msgstr "خطأ"
@@ -973,3 +973,129 @@ msgstr "الخفض:"
 
 msgid "Silêncio"
 msgstr "صمت"
+
+msgid "Incluir Su&bpastas"
+msgstr "تضمين المجلدات الفرعية(&U)"
+
+msgid "Bala&nço:"
+msgstr "التوازن(&P):"
+
+msgid "Centro"
+msgstr "الوسط"
+
+msgid "Esquerda {n}%"
+msgstr "يسار {n}%"
+
+msgid "Direita {n}%"
+msgstr "يمين {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "تكوين الوسوم(&K)..."
+
+msgid "Tags"
+msgstr "الوسوم"
+
+msgid "&Título:"
+msgstr "العنوان(&T):"
+
+msgid "&Artistas Participantes:"
+msgstr "الفنانون المساهمون(&A):"
+
+msgid "Á&lbum:"
+msgstr "الألبوم(&L):"
+
+msgid "A&no:"
+msgstr "السنة(&Y):"
+
+msgid "&Gênero:"
+msgstr "النوع(&G):"
+
+msgid "&Faixa:"
+msgstr "المقطع(&R):"
+
+msgid "Co&mentário:"
+msgstr "تعليق(&M):"
+
+msgid "&Variáveis..."
+msgstr "المتغيرات(&V)..."
+
+msgid "Nome do Arquivo"
+msgstr "اسم الملف"
+
+msgid "Formato"
+msgstr "التنسيق"
+
+msgid "Número da Parte"
+msgstr "رقم الجزء"
+
+msgid "Data"
+msgstr "التاريخ"
+
+msgid "Ano"
+msgstr "السنة"
+
+msgid "Mês"
+msgstr "الشهر"
+
+msgid "Dia"
+msgstr "اليوم"
+
+msgid "Hora"
+msgstr "الوقت"
+
+msgid "Nome do Usuário"
+msgstr "اسم المستخدم"
+
+msgid "Nome do Computador"
+msgstr "اسم الكمبيوتر"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "تقسيم التسجيل كل(&G):"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "كل مدة معينة، يستمر التسجيل في ملف جديد مرقم: الاسم 001، الاسم 002... 30:00 تعني 30 دقيقة، و1:00:00 تعني ساعة. الفراغ لا يقسم."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "وقت التقسيم غير صالح. استخدم الساعات والدقائق والثواني، مثل 30:00 أو 1:00:00، أو اتركه فارغًا لعدم التقسيم."
+
+msgid "URL de Stream"
+msgstr "رابط البث"
+
+msgid "&Link do Stream:"
+msgstr "رابط البث(&H):"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "عنوان راديو على الإنترنت، أو قائمة M3U أو PLS أو M3U8، على الإنترنت أو على الكمبيوتر."
+
+msgid "Lista de Reprodução"
+msgstr "قائمة تشغيل"
+
+msgid "Listas de Reprodução"
+msgstr "قوائم التشغيل"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "تعذر الاتصال بهذا الرابط (خطأ BASS {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "اكتب رابط بث (يبدأ بـ http:// أو https://) أو مسار قائمة M3U أو PLS أو M3U8 على الكمبيوتر."
+
+msgid "URL de Stream: {endereco}"
+msgstr "رابط البث: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "القنوات المسجلة(&G):"
+
+msgid "Ambos"
+msgstr "كلاهما"
+
+msgid "Somente o Esquerdo"
+msgstr "اليسرى فقط"
+
+msgid "Somente o Direito"
+msgstr "اليمنى فقط"
+
+msgid "Artista &do Álbum:"
+msgstr "فنان الألبوم(&D):"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "فتح مجلد التسجيلات:"

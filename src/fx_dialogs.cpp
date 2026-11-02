@@ -383,6 +383,7 @@ void EffectsDialog::Configure() {
     if (dlg.ShowModal(hwnd_) == IDOK) {
         fx_.effects[k].preset = dlg.result.effects[k].preset;
         fx_.effects[k].values = dlg.result.effects[k].values;
+        fx_.effects[k].file = dlg.result.effects[k].file;  // the impulse response
     }
     if (preview_) preview_(fx_);
     SetFocus(list_);

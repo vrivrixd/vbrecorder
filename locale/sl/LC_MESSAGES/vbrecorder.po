@@ -177,8 +177,8 @@ msgstr "Filtriraj vire po:"
 msgid "Selecionar Fonte:"
 msgstr "Izberi vir:"
 
-msgid "Volume:"
-msgstr "Glasnost:"
+msgid "&Volume:"
+msgstr "&Glasnost:"
 
 msgid "Erro"
 msgstr "Napaka"
@@ -966,3 +966,129 @@ msgstr "Utišanje:"
 
 msgid "Silêncio"
 msgstr "Tišina"
+
+msgid "Incluir Su&bpastas"
+msgstr "Vk&ljuči podmape"
+
+msgid "Bala&nço:"
+msgstr "&Ravnovesje:"
+
+msgid "Centro"
+msgstr "Sredina"
+
+msgid "Esquerda {n}%"
+msgstr "Levo {n} %"
+
+msgid "Direita {n}%"
+msgstr "Desno {n} %"
+
+msgid "Configurar &Tags..."
+msgstr "U&redi oznake..."
+
+msgid "Tags"
+msgstr "Oznake"
+
+msgid "&Título:"
+msgstr "&Naslov:"
+
+msgid "&Artistas Participantes:"
+msgstr "Sodelujoči &izvajalci:"
+
+msgid "Á&lbum:"
+msgstr "&Album:"
+
+msgid "A&no:"
+msgstr "&Leto:"
+
+msgid "&Gênero:"
+msgstr "&Zvrst:"
+
+msgid "&Faixa:"
+msgstr "&Skladba:"
+
+msgid "Co&mentário:"
+msgstr "&Komentar:"
+
+msgid "&Variáveis..."
+msgstr "Sp&remenljivke..."
+
+msgid "Nome do Arquivo"
+msgstr "Ime datoteke"
+
+msgid "Formato"
+msgstr "Oblika"
+
+msgid "Número da Parte"
+msgstr "Številka dela"
+
+msgid "Data"
+msgstr "Datum"
+
+msgid "Ano"
+msgstr "Leto"
+
+msgid "Mês"
+msgstr "Mesec"
+
+msgid "Dia"
+msgstr "Dan"
+
+msgid "Hora"
+msgstr "Ura"
+
+msgid "Nome do Usuário"
+msgstr "Uporabniško ime"
+
+msgid "Nome do Computador"
+msgstr "Ime računalnika"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "&Razdeli posnetek vsakih:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "Na določen čas se posnetek nadaljuje v novi, oštevilčeni datoteki: ime 001, ime 002... 30:00 je 30 minut, 1:00:00 je ena ura. Prazno ne deli."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Neveljaven čas delitve. Uporabite ure, minute in sekunde, na primer 30:00 ali 1:00:00, ali pustite prazno, če ne želite deliti."
+
+msgid "URL de Stream"
+msgstr "URL toka"
+
+msgid "&Link do Stream:"
+msgstr "P&ovezava toka:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "Naslov internetnega radia ali seznama M3U, PLS ali M3U8, na internetu ali v računalniku."
+
+msgid "Lista de Reprodução"
+msgstr "Seznam predvajanja"
+
+msgid "Listas de Reprodução"
+msgstr "Seznami predvajanja"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "S to povezavo se ni mogoče povezati (napaka BASS {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Vnesite povezavo toka (ki se začne s http:// ali https://) ali pot do seznama M3U, PLS ali M3U8 v računalniku."
+
+msgid "URL de Stream: {endereco}"
+msgstr "URL toka: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "Kanali &za snemanje:"
+
+msgid "Ambos"
+msgstr "Oba"
+
+msgid "Somente o Esquerdo"
+msgstr "Samo levi"
+
+msgid "Somente o Direito"
+msgstr "Samo desni"
+
+msgid "Artista &do Álbum:"
+msgstr "Izva&jalec albuma:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Odpri mapo s posnetki:"

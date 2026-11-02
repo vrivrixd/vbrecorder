@@ -352,6 +352,8 @@ void ProcessLoopbackCapture::Capture() {
     channels_ = fmt.nChannels;
     SetEvent(ready_);
 
+    LARGE_INTEGER qpc_freq;
+    QueryPerformanceFrequency(&qpc_freq);
     HANDLE waits[2] = {stop_, event};
     bool running = true;
     while (running) {
@@ -363,16 +365,22 @@ void ProcessLoopbackCapture::Capture() {
             BYTE* data = nullptr;
             UINT32 frames = 0;
             DWORD flags = 0;
-            if (FAILED(capture->GetBuffer(&data, &frames, &flags, nullptr, nullptr))) {
+            UINT64 position = 0, when = 0;  // when: in units of 100 ns
+            if (FAILED(capture->GetBuffer(&data, &frames, &flags, &position, &when))) {
                 running = false;
                 break;
             }
             CaptureSink* sink = sink_.load();
             if (sink && frames) {
+                // When the audio was captured tells a backlog this thread is
+                // only now catching up on apart from audio that never came.
+                LONGLONG captured = 0;
+                if (when && !(flags & AUDCLNT_BUFFERFLAGS_TIMESTAMP_ERROR))
+                    captured = (LONGLONG)((double)when * qpc_freq.QuadPart / 1e7);
                 // With the silent flag, the buffer contents are meaningless and
                 // must be treated as silence.
                 sink->OnAudio((const float*)data, frames * fmt.nChannels,
-                              (flags & AUDCLNT_BUFFERFLAGS_SILENT) != 0);
+                              (flags & AUDCLNT_BUFFERFLAGS_SILENT) != 0, captured);
             }
             capture->ReleaseBuffer(frames);
             if (FAILED(capture->GetNextPacketSize(&packet))) {

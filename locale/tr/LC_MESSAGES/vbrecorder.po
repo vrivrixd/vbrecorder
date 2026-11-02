@@ -177,8 +177,8 @@ msgstr "Kaynakları Şuna Göre Filtrele:"
 msgid "Selecionar Fonte:"
 msgstr "Kaynak Seç:"
 
-msgid "Volume:"
-msgstr "Ses Düzeyi:"
+msgid "&Volume:"
+msgstr "Ses Se&viyesi:"
 
 msgid "Erro"
 msgstr "Hata"
@@ -958,3 +958,129 @@ msgstr "Azaltma:"
 
 msgid "Silêncio"
 msgstr "Sessizlik"
+
+msgid "Incluir Su&bpastas"
+msgstr "&Alt klasörleri dahil et"
+
+msgid "Bala&nço:"
+msgstr "De&nge:"
+
+msgid "Centro"
+msgstr "Orta"
+
+msgid "Esquerda {n}%"
+msgstr "Sol %{n}"
+
+msgid "Direita {n}%"
+msgstr "Sağ %{n}"
+
+msgid "Configurar &Tags..."
+msgstr "Etiketleri &Yapılandır..."
+
+msgid "Tags"
+msgstr "Etiketler"
+
+msgid "&Título:"
+msgstr "&Başlık:"
+
+msgid "&Artistas Participantes:"
+msgstr "Katkıda bulunan &sanatçılar:"
+
+msgid "Á&lbum:"
+msgstr "&Albüm:"
+
+msgid "A&no:"
+msgstr "&Yıl:"
+
+msgid "&Gênero:"
+msgstr "Tü&r:"
+
+msgid "&Faixa:"
+msgstr "&Parça:"
+
+msgid "Co&mentário:"
+msgstr "Y&orum:"
+
+msgid "&Variáveis..."
+msgstr "&Değişkenler..."
+
+msgid "Nome do Arquivo"
+msgstr "Dosya adı"
+
+msgid "Formato"
+msgstr "Biçim"
+
+msgid "Número da Parte"
+msgstr "Bölüm numarası"
+
+msgid "Data"
+msgstr "Tarih"
+
+msgid "Ano"
+msgstr "Yıl"
+
+msgid "Mês"
+msgstr "Ay"
+
+msgid "Dia"
+msgstr "Gün"
+
+msgid "Hora"
+msgstr "Saat"
+
+msgid "Nome do Usuário"
+msgstr "Kullanıcı adı"
+
+msgid "Nome do Computador"
+msgstr "Bilgisayar adı"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "Kaydı şu &aralıkla böl:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "Belirli aralıklarla kayıt, numaralı yeni bir dosyada devam eder: ad 001, ad 002... 30:00 30 dakikadır, 1:00:00 bir saattir. Boş bırakılırsa bölmez."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Geçersiz bölme süresi. 30:00 veya 1:00:00 gibi saat, dakika ve saniye kullanın ya da bölmemek için boş bırakın."
+
+msgid "URL de Stream"
+msgstr "Akış URL'si"
+
+msgid "&Link do Stream:"
+msgstr "&Akış bağlantısı:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "Bir internet radyosunun ya da internette veya bilgisayarda bulunan bir M3U, PLS veya M3U8 listesinin adresi."
+
+msgid "Lista de Reprodução"
+msgstr "Çalma listesi"
+
+msgid "Listas de Reprodução"
+msgstr "Çalma listeleri"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "Bu bağlantıya bağlanılamadı (BASS hatası {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Bir akışın bağlantısını (http:// veya https:// ile başlayan) ya da bilgisayardaki bir M3U, PLS veya M3U8 listesinin yolunu yazın."
+
+msgid "URL de Stream: {endereco}"
+msgstr "Akış URL'si: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "Kaydedile&cek kanallar:"
+
+msgid "Ambos"
+msgstr "Her ikisi"
+
+msgid "Somente o Esquerdo"
+msgstr "Yalnızca sol"
+
+msgid "Somente o Direito"
+msgstr "Yalnızca sağ"
+
+msgid "Artista &do Álbum:"
+msgstr "A&lbüm sanatçısı:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Kayıtlar Klasörünü Aç:"

@@ -177,8 +177,8 @@ msgstr "ソースのフィルター:"
 msgid "Selecionar Fonte:"
 msgstr "ソースを選択:"
 
-msgid "Volume:"
-msgstr "音量:"
+msgid "&Volume:"
+msgstr "音量(&V):"
 
 msgid "Erro"
 msgstr "エラー"
@@ -950,3 +950,129 @@ msgstr "減衰量:"
 
 msgid "Silêncio"
 msgstr "無音"
+
+msgid "Incluir Su&bpastas"
+msgstr "サブフォルダーを含める(&U)"
+
+msgid "Bala&nço:"
+msgstr "バランス(&P):"
+
+msgid "Centro"
+msgstr "中央"
+
+msgid "Esquerda {n}%"
+msgstr "左 {n}%"
+
+msgid "Direita {n}%"
+msgstr "右 {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "タグの設定(&K)..."
+
+msgid "Tags"
+msgstr "タグ"
+
+msgid "&Título:"
+msgstr "タイトル(&T):"
+
+msgid "&Artistas Participantes:"
+msgstr "参加アーティスト(&A):"
+
+msgid "Á&lbum:"
+msgstr "アルバム(&L):"
+
+msgid "A&no:"
+msgstr "年(&Y):"
+
+msgid "&Gênero:"
+msgstr "ジャンル(&G):"
+
+msgid "&Faixa:"
+msgstr "トラック(&R):"
+
+msgid "Co&mentário:"
+msgstr "コメント(&M):"
+
+msgid "&Variáveis..."
+msgstr "変数(&V)..."
+
+msgid "Nome do Arquivo"
+msgstr "ファイル名"
+
+msgid "Formato"
+msgstr "形式"
+
+msgid "Número da Parte"
+msgstr "パート番号"
+
+msgid "Data"
+msgstr "日付"
+
+msgid "Ano"
+msgstr "年"
+
+msgid "Mês"
+msgstr "月"
+
+msgid "Dia"
+msgstr "日"
+
+msgid "Hora"
+msgstr "時刻"
+
+msgid "Nome do Usuário"
+msgstr "ユーザー名"
+
+msgid "Nome do Computador"
+msgstr "コンピューター名"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "録音を分割する間隔(&G):"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "指定した間隔ごとに、録音は番号付きの新しいファイルで続きます: 名前 001、名前 002... 30:00 は 30 分、1:00:00 は 1 時間です。空欄なら分割しません。"
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "分割の間隔が正しくありません。30:00 や 1:00:00 のように時間、分、秒で入力するか、分割しない場合は空欄にしてください。"
+
+msgid "URL de Stream"
+msgstr "ストリーム URL"
+
+msgid "&Link do Stream:"
+msgstr "ストリームのリンク(&H):"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "インターネット ラジオ、またはインターネット上かコンピューター上の M3U、PLS、M3U8 プレイリストのアドレス。"
+
+msgid "Lista de Reprodução"
+msgstr "プレイリスト"
+
+msgid "Listas de Reprodução"
+msgstr "プレイリスト一覧"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "このリンクに接続できませんでした (BASS エラー {erro})。"
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "ストリームのリンク (http:// または https:// で始まるもの) か、コンピューター上の M3U、PLS、M3U8 プレイリストのパスを入力してください。"
+
+msgid "URL de Stream: {endereco}"
+msgstr "ストリーム URL: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "録音するチャンネル(&G):"
+
+msgid "Ambos"
+msgstr "両方"
+
+msgid "Somente o Esquerdo"
+msgstr "左のみ"
+
+msgid "Somente o Direito"
+msgstr "右のみ"
+
+msgid "Artista &do Álbum:"
+msgstr "アルバム アーティスト(&D):"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "録音フォルダを開く:"

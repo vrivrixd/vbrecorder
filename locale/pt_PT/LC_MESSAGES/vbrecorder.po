@@ -177,8 +177,8 @@ msgstr "Filtrar Fontes Por:"
 msgid "Selecionar Fonte:"
 msgstr "Selecionar Fonte:"
 
-msgid "Volume:"
-msgstr "Volume:"
+msgid "&Volume:"
+msgstr "&Volume:"
 
 msgid "Erro"
 msgstr "Erro"
@@ -958,3 +958,129 @@ msgstr "Redução:"
 
 msgid "Silêncio"
 msgstr "Silêncio"
+
+msgid "Incluir Su&bpastas"
+msgstr "Incluir Su&bpastas"
+
+msgid "Bala&nço:"
+msgstr "Bala&nço:"
+
+msgid "Centro"
+msgstr "Centro"
+
+msgid "Esquerda {n}%"
+msgstr "Esquerda {n}%"
+
+msgid "Direita {n}%"
+msgstr "Direita {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "&Configurar Tags..."
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "&Título:"
+msgstr "&Título:"
+
+msgid "&Artistas Participantes:"
+msgstr "&Artistas Contribuintes:"
+
+msgid "Á&lbum:"
+msgstr "Á&lbum:"
+
+msgid "A&no:"
+msgstr "A&no:"
+
+msgid "&Gênero:"
+msgstr "&Género:"
+
+msgid "&Faixa:"
+msgstr "&Faixa:"
+
+msgid "Co&mentário:"
+msgstr "Co&mentário:"
+
+msgid "&Variáveis..."
+msgstr "&Variáveis..."
+
+msgid "Nome do Arquivo"
+msgstr "Nome do Ficheiro"
+
+msgid "Formato"
+msgstr "Formato"
+
+msgid "Número da Parte"
+msgstr "Número da Parte"
+
+msgid "Data"
+msgstr "Data"
+
+msgid "Ano"
+msgstr "Ano"
+
+msgid "Mês"
+msgstr "Mês"
+
+msgid "Dia"
+msgstr "Dia"
+
+msgid "Hora"
+msgstr "Hora"
+
+msgid "Nome do Usuário"
+msgstr "Nome do Utilizador"
+
+msgid "Nome do Computador"
+msgstr "Nome do Computador"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "Dividir a &Gravação a Cada:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "A cada tanto tempo, a gravação continua num novo ficheiro, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+
+msgid "URL de Stream"
+msgstr "URL de Stream"
+
+msgid "&Link do Stream:"
+msgstr "&Ligação do Stream:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "O endereço de uma rádio da Internet, ou de uma lista M3U, PLS ou M3U8, na Internet ou no computador."
+
+msgid "Lista de Reprodução"
+msgstr "Lista de Reprodução"
+
+msgid "Listas de Reprodução"
+msgstr "Listas de Reprodução"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "Não foi possível estabelecer ligação a este endereço (erro BASS {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Escreva a ligação de um stream (a começar por http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+
+msgid "URL de Stream: {endereco}"
+msgstr "URL de Stream: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "Canais a &Gravar:"
+
+msgid "Ambos"
+msgstr "Ambos"
+
+msgid "Somente o Esquerdo"
+msgstr "Apenas o Esquerdo"
+
+msgid "Somente o Direito"
+msgstr "Apenas o Direito"
+
+msgid "Artista &do Álbum:"
+msgstr "Artista &do Álbum:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Abrir Pasta de Gravações:"

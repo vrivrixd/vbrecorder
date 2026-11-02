@@ -85,6 +85,7 @@ void FxChain::Apply(const FxSettings& fx) {
     noise_on_ = noise;
     noise_amount_ = Clamp(fx.noise.amount, 0, 100) / 100.0f;
     stereo_ = fx.stereo;
+    channel_ = fx.channel;
     preamp_ = (float)std::pow(10.0, fx.eq.preamp / 20.0);
 
     // Equalizer: one peaking filter per band, an octave wide.
@@ -234,6 +235,16 @@ void FxChain::RunStage(Stage& stage, float* data, DWORD frames) {
 
 void FxChain::Process(float* data, DWORD frames) {
     std::lock_guard<std::mutex> lock(mutex_);
+    if (channel_ != CHANNEL_BOTH && chans_ == 2) {
+        // Only that channel is recorded: in stereo it stays on its side and
+        // the other side is silent; in mono it goes to both, at its own level.
+        const int keep = channel_ == CHANNEL_LEFT ? 0 : 1;
+        for (DWORD f = 0; f < frames; ++f) {
+            float* x = data + (size_t)f * 2;
+            if (stereo_ && !mono_output_) x[1 - keep] = 0.0f;
+            else x[1 - keep] = x[keep];
+        }
+    }
     if (noise_on_) Denoise(data, frames);
     if (preamp_ != 1.0f) {
         size_t n = (size_t)frames * chans_;

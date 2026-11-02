@@ -177,8 +177,8 @@ msgstr "Suodata lähteet:"
 msgid "Selecionar Fonte:"
 msgstr "Valitse lähde:"
 
-msgid "Volume:"
-msgstr "Äänenvoimakkuus:"
+msgid "&Volume:"
+msgstr "Äänenvoi&makkuus:"
 
 msgid "Erro"
 msgstr "Virhe"
@@ -956,3 +956,129 @@ msgstr "Vaimennus:"
 
 msgid "Silêncio"
 msgstr "Hiljaisuus"
+
+msgid "Incluir Su&bpastas"
+msgstr "Sisä&llytä alakansiot"
+
+msgid "Bala&nço:"
+msgstr "&Balanssi:"
+
+msgid "Centro"
+msgstr "Keskellä"
+
+msgid "Esquerda {n}%"
+msgstr "Vasen {n} %"
+
+msgid "Direita {n}%"
+msgstr "Oikea {n} %"
+
+msgid "Configurar &Tags..."
+msgstr "Muo&kkaa tunnisteita..."
+
+msgid "Tags"
+msgstr "Tunnisteet"
+
+msgid "&Título:"
+msgstr "&Nimi:"
+
+msgid "&Artistas Participantes:"
+msgstr "Osallistuneet &esittäjät:"
+
+msgid "Á&lbum:"
+msgstr "&Albumi:"
+
+msgid "A&no:"
+msgstr "&Vuosi:"
+
+msgid "&Gênero:"
+msgstr "&Tyylilaji:"
+
+msgid "&Faixa:"
+msgstr "&Raita:"
+
+msgid "Co&mentário:"
+msgstr "&Kommentti:"
+
+msgid "&Variáveis..."
+msgstr "&Muuttujat..."
+
+msgid "Nome do Arquivo"
+msgstr "Tiedoston nimi"
+
+msgid "Formato"
+msgstr "Muoto"
+
+msgid "Número da Parte"
+msgstr "Osan numero"
+
+msgid "Data"
+msgstr "Päivämäärä"
+
+msgid "Ano"
+msgstr "Vuosi"
+
+msgid "Mês"
+msgstr "Kuukausi"
+
+msgid "Dia"
+msgstr "Päivä"
+
+msgid "Hora"
+msgstr "Kellonaika"
+
+msgid "Nome do Usuário"
+msgstr "Käyttäjänimi"
+
+msgid "Nome do Computador"
+msgstr "Tietokoneen nimi"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "&Jaa tallennus välein:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "Tietyin väliajoin tallennus jatkuu uudessa, numeroidussa tiedostossa: nimi 001, nimi 002... 30:00 on 30 minuuttia, 1:00:00 on tunti. Tyhjä ei jaa."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Virheellinen jakoaika. Käytä tunteja, minuutteja ja sekunteja, kuten 30:00 tai 1:00:00, tai jätä tyhjäksi, jos et halua jakaa."
+
+msgid "URL de Stream"
+msgstr "Stream-URL"
+
+msgid "&Link do Stream:"
+msgstr "Streamin &linkki:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "Internetradion tai M3U-, PLS- tai M3U8-soittolistan osoite, internetissä tai tietokoneella."
+
+msgid "Lista de Reprodução"
+msgstr "Soittolista"
+
+msgid "Listas de Reprodução"
+msgstr "Soittolistat"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "Tähän linkkiin ei voitu yhdistää (BASS-virhe {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Kirjoita streamin linkki (alkaa http:// tai https://) tai tietokoneella olevan M3U-, PLS- tai M3U8-soittolistan polku."
+
+msgid "URL de Stream: {endereco}"
+msgstr "Stream-URL: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "Kanavat, &jotka tallennetaan:"
+
+msgid "Ambos"
+msgstr "Molemmat"
+
+msgid "Somente o Esquerdo"
+msgstr "Vain vasen"
+
+msgid "Somente o Direito"
+msgstr "Vain oikea"
+
+msgid "Artista &do Álbum:"
+msgstr "A&lbumin esittäjä:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Avaa tallennuskansio:"

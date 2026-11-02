@@ -83,12 +83,17 @@ struct SidechainSettings {
     bool IsDefault() const;
 };
 
+/* The channels of a source that are recorded: a microphone on the left
+   channel of an interface, for example, is taken from there alone. */
+enum ChannelPick { CHANNEL_BOTH, CHANNEL_LEFT, CHANNEL_RIGHT };
+
 struct FxSettings {
     EqSettings eq;
     EffectSettings effects[FX_COUNT];
     NoiseSettings noise;
     SidechainSettings sidechain;
     bool stereo = true;  // false: the source's channels are mixed into one
+    int channel = CHANNEL_BOTH;  // a ChannelPick
 
     FxSettings();  // every effect off, with the values of its first preset
 

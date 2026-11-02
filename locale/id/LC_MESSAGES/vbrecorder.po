@@ -177,8 +177,8 @@ msgstr "Saring Sumber Berdasarkan:"
 msgid "Selecionar Fonte:"
 msgstr "Pilih Sumber:"
 
-msgid "Volume:"
-msgstr "Volume:"
+msgid "&Volume:"
+msgstr "&Volume:"
 
 msgid "Erro"
 msgstr "Kesalahan"
@@ -954,3 +954,129 @@ msgstr "Pengurangan:"
 
 msgid "Silêncio"
 msgstr "Hening"
+
+msgid "Incluir Su&bpastas"
+msgstr "Serta&kan subfolder"
+
+msgid "Bala&nço:"
+msgstr "Kesei&mbangan:"
+
+msgid "Centro"
+msgstr "Tengah"
+
+msgid "Esquerda {n}%"
+msgstr "Kiri {n}%"
+
+msgid "Direita {n}%"
+msgstr "Kanan {n}%"
+
+msgid "Configurar &Tags..."
+msgstr "Atur Ta&g..."
+
+msgid "Tags"
+msgstr "Tag"
+
+msgid "&Título:"
+msgstr "&Judul:"
+
+msgid "&Artistas Participantes:"
+msgstr "&Artis yang berkontribusi:"
+
+msgid "Á&lbum:"
+msgstr "A&lbum:"
+
+msgid "A&no:"
+msgstr "&Tahun:"
+
+msgid "&Gênero:"
+msgstr "&Genre:"
+
+msgid "&Faixa:"
+msgstr "T&rek:"
+
+msgid "Co&mentário:"
+msgstr "&Komentar:"
+
+msgid "&Variáveis..."
+msgstr "&Variabel..."
+
+msgid "Nome do Arquivo"
+msgstr "Nama berkas"
+
+msgid "Formato"
+msgstr "Format"
+
+msgid "Número da Parte"
+msgstr "Nomor bagian"
+
+msgid "Data"
+msgstr "Tanggal"
+
+msgid "Ano"
+msgstr "Tahun"
+
+msgid "Mês"
+msgstr "Bulan"
+
+msgid "Dia"
+msgstr "Hari"
+
+msgid "Hora"
+msgstr "Jam"
+
+msgid "Nome do Usuário"
+msgstr "Nama pengguna"
+
+msgid "Nome do Computador"
+msgstr "Nama komputer"
+
+msgid "Dividir &Gravação a Cada:"
+msgstr "Bagi &rekaman setiap:"
+
+msgid "A cada tanto tempo, a gravação continua em um novo arquivo, numerado: nome 001, nome 002... 30:00 são 30 minutos, 1:00:00 é uma hora. Em branco, não divide."
+msgstr "Setiap selang waktu tertentu, rekaman berlanjut di berkas baru yang bernomor: nama 001, nama 002... 30:00 adalah 30 menit, 1:00:00 adalah satu jam. Kosong tidak membagi."
+
+msgid "Tempo de divisão inválido. Use horas, minutos e segundos, como 30:00 ou 1:00:00, ou deixe em branco para não dividir."
+msgstr "Waktu pembagian tidak valid. Gunakan jam, menit, dan detik, seperti 30:00 atau 1:00:00, atau biarkan kosong agar tidak dibagi."
+
+msgid "URL de Stream"
+msgstr "URL Stream"
+
+msgid "&Link do Stream:"
+msgstr "&Tautan stream:"
+
+msgid "O endereço de uma rádio da internet, ou de uma lista M3U, PLS ou M3U8, na internet ou no computador."
+msgstr "Alamat radio internet, atau daftar putar M3U, PLS, atau M3U8, di internet atau di komputer."
+
+msgid "Lista de Reprodução"
+msgstr "Daftar putar"
+
+msgid "Listas de Reprodução"
+msgstr "Daftar putar"
+
+msgid "Não foi possível conectar a este link (erro BASS {erro})."
+msgstr "Tidak dapat terhubung ke tautan ini (kesalahan BASS {erro})."
+
+msgid "Digite o link de um stream (começando com http:// ou https://) ou o caminho de uma lista M3U, PLS ou M3U8 do computador."
+msgstr "Ketik tautan stream (diawali http:// atau https://) atau jalur daftar putar M3U, PLS, atau M3U8 di komputer."
+
+msgid "URL de Stream: {endereco}"
+msgstr "URL Stream: {endereco}"
+
+msgid "Canais a &Gravar:"
+msgstr "Saluran &yang direkam:"
+
+msgid "Ambos"
+msgstr "Keduanya"
+
+msgid "Somente o Esquerdo"
+msgstr "Hanya kiri"
+
+msgid "Somente o Direito"
+msgstr "Hanya kanan"
+
+msgid "Artista &do Álbum:"
+msgstr "Art&is album:"
+
+msgid "Abrir Pasta de Gravações:"
+msgstr "Buka Folder Rekaman:"

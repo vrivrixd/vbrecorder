@@ -52,6 +52,8 @@ public:
 
     /* Typed buffer, or -1 if it is not a valid number in range. */
     int BufferValue() const;
+    /* How often recordings are split into files, as typed (30:00); empty is never. */
+    std::wstring split_text;
     std::wstring LanguageCode() const { return language_; }
     bool start_minimized = false;
     bool tray = false;
@@ -78,7 +80,29 @@ private:
     HWND cmb_lang_ = nullptr, chk_start_min_ = nullptr, chk_tray_ = nullptr,
          chk_on_top_ = nullptr, txt_buffer_ = nullptr, btn_keys_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, chk_updates_ = nullptr, btn_check_ = nullptr,
-         chk_startup_ = nullptr, chk_countdown_ = nullptr;
+         chk_startup_ = nullptr, chk_countdown_ = nullptr, txt_split_ = nullptr;
+};
+
+/* The tags of the recordings: a field for each, and after each a Variables
+   button whose menu puts a variable ($name...) where the cursor is in it.
+   Ok keeps them all, empty ones included: an empty field writes no tag. */
+class TagsDialog : public ui::Dialog {
+public:
+    explicit TagsDialog(const TagValues& tags);
+    TagValues result;
+
+protected:
+    void OnInit() override;
+    bool OnCommand(int id, int code, HWND control) override;
+    bool OnCharHook(const MSG& msg) override;
+
+private:
+    void ShowVariables(int field);
+
+    TagValues tags_;
+    HWND edit_[TAG_COUNT] = {};
+    HWND vars_[TAG_COUNT] = {};
+    HWND btn_ok_ = nullptr, btn_cancel_ = nullptr;
 };
 
 /* Offers an update, with what is new in it. The notes come first, where the
@@ -147,7 +171,10 @@ private:
     void OnBrowseExe();
     void OnBrowseBackground(bool folder);
     std::wstring BackgroundPath() const;
-    void UpdateShuffleState();
+    void OnBrowsePlaylist();
+    /* The stream URL typed, or the path of a playlist, without quotes. */
+    std::wstring StreamUrl() const;
+    void UpdateFolderOptions();
     int SelectedDevice() const;  // -1 if the source is not a device
     int CheckedFilter() const;
     void UpdateOkState();
@@ -161,6 +188,9 @@ private:
     void OnSidechain();
     double Volume() const;
     void UpdateDbLabel();
+    INT_PTR OnUrlTestDone(int error);
+    double Pan() const;  // -1 left, 0 center, +1 right
+    void UpdatePanLabel();
     void OnOk();
     static LRESULT CALLBACK SliderProc(HWND, UINT, WPARAM, LPARAM, UINT_PTR, DWORD_PTR);
 
@@ -177,9 +207,12 @@ private:
     const std::vector<SourceItem>* current_items_ = nullptr;
     HWND rb_exe_ = nullptr, lbl_src_ = nullptr, lbl_exe_ = nullptr, txt_exe_ = nullptr;
     HWND rb_file_ = nullptr, lbl_file_ = nullptr, txt_file_ = nullptr, btn_file_browse_ = nullptr,
-         btn_folder_browse_ = nullptr, chk_loop_ = nullptr, chk_shuffle_ = nullptr;
+         btn_folder_browse_ = nullptr, chk_loop_ = nullptr, chk_shuffle_ = nullptr,
+         chk_subfolders_ = nullptr;
+    HWND rb_url_ = nullptr, lbl_url_ = nullptr, txt_url_ = nullptr, btn_url_browse_ = nullptr;
+    HWND lbl_pick_ = nullptr, cmb_pick_ = nullptr;  // the channels recorded
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,
-         sld_ = nullptr, lbl_db_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, btn_fx_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr, btn_exe_browse_ = nullptr,
+         sld_ = nullptr, lbl_db_ = nullptr, sld_pan_ = nullptr, lbl_pan_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, btn_fx_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr, btn_exe_browse_ = nullptr,
          btn_noise_ = nullptr, btn_sidechain_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, note_ = nullptr;
 };
