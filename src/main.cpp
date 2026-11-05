@@ -1842,20 +1842,22 @@ void MainFrame::FromTray(void (MainFrame::*open)()) {
 
 /* While a window opened from the tray is open, the tray and Show bring it
    to the front instead: only one at a time. */
+struct TrayDialogFind {
+    HWND main, found;
+};
+
+/* A window of the program without an owner, other than the main one. */
+BOOL CALLBACK FindTrayDialog(HWND w, LPARAM lp) {
+    TrayDialogFind* f = (TrayDialogFind*)lp;
+    if (w == f->main || !IsWindowVisible(w) || GetWindow(w, GW_OWNER)) return TRUE;
+    f->found = w;
+    return FALSE;
+}
+
 bool MainFrame::FocusTrayDialog() {
     if (!tray_dialog_) return false;
-    struct Find {
-        HWND main, found;
-    } find{hwnd_, nullptr};
-    EnumThreadWindows(
-        GetCurrentThreadId(),
-        [](HWND w, LPARAM lp) -> BOOL {
-            Find* f = (Find*)lp;
-            if (w == f->main || !IsWindowVisible(w) || GetWindow(w, GW_OWNER)) return TRUE;
-            f->found = w;
-            return FALSE;
-        },
-        (LPARAM)&find);
+    TrayDialogFind find{hwnd_, nullptr};
+    EnumThreadWindows(GetCurrentThreadId(), FindTrayDialog, (LPARAM)&find);
     if (find.found) SetForegroundWindow(GetLastActivePopup(find.found));
     return true;
 }
