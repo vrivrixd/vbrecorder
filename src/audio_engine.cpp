@@ -79,6 +79,10 @@ const DWORD RECORD_PERIOD = 20;
    when it arrived: a capture held up delivers what it kept all together, and
    that is not a gap. The margin covers the unevenness of delivery. */
 const double GAP_SECONDS = 0.2;
+// The most two clocks are taken to drift apart: 5 ms per second.
+const double DRIFT_PER_SECOND = 0.005;
+// Audio waiting in an encoder's queue, at most.
+const double ENCODE_QUEUE_SECONDS = 1.0;
 
 /* Maximum adjustment of a source's read speed: 0.2%. */
 const double MAX_DRIFT = 0.002;
@@ -96,6 +100,15 @@ void SetPowerThrottling(bool allow) {
     const ULONG execution_speed = 0x1, ignore_timer_resolution = 0x4;
     ThrottlingState state = {1, allow ? 0 : (execution_speed | ignore_timer_resolution), 0};
     fn(GetCurrentProcess(), 4 /* ProcessPowerThrottling */, &state, sizeof(state));
+}
+
+/* Waiting for a recording, the sources are captured as when recording:
+   Windows does not slow the program down to save power, which could lose
+   audio of the pre-recording. It takes no more processing; the computer can
+   still sleep. */
+void SetWaitingPower(bool on) {
+    SetPriorityClass(GetCurrentProcess(), on ? ABOVE_NORMAL_PRIORITY_CLASS : NORMAL_PRIORITY_CLASS);
+    SetPowerThrottling(!on);
 }
 
 std::wstring SourceSafeName(const std::wstring& original) {
@@ -247,8 +260,30 @@ struct AudioEngine::Input : public CaptureSink {
         if (gap > 0) SilenceLocked((unsigned long long)(gap * rate));
     }
 
-    /* Audio whose last frame was captured at the given recording time. */
-    void Put(const float* data, DWORD samples, bool silent, double end) {
+    /* How much is in the queue, in frames. */
+    unsigned long long QueuedFrames() const {
+        DWORD bytes = engine->b_.StreamPutData(push, nullptr, 0);
+        return bytes == (DWORD)-1 ? 0 : bytes / (chans * sizeof(float));
+    }
+
+    /* Throws away the oldest audio of the queue. */
+    void DiscardLocked(unsigned long long frames) {
+        static thread_local std::vector<float> trash;
+        if (trash.size() < (size_t)4096 * chans) trash.resize((size_t)4096 * chans);
+        while (frames > 0) {
+            DWORD n = (DWORD)std::min<unsigned long long>(frames, trash.size() / chans);
+            DWORD got = engine->b_.ChannelGetData(push, trash.data(), n * chans * sizeof(float));
+            if (got == (DWORD)-1 || got == 0) break;
+            frames -= std::min<unsigned long long>(frames, got / (chans * sizeof(float)));
+        }
+    }
+
+    /* Audio whose last frame was captured at the given moment
+       (QueryPerformanceCounter). The moment becomes recording time only
+       with the queue locked: the timeline can move while a recording starts
+       from what was captured before it, and it moves with every queue
+       locked. */
+    void Put(const float* data, DWORD samples, bool silent, LONGLONG end_qpc) {
         if (engine->paused_ || ending || !push || samples < (DWORD)chans) return;
         DWORD frames = samples / chans;
         samples = frames * chans;
@@ -262,28 +297,42 @@ struct AudioEngine::Input : public CaptureSink {
         if (vol != 1.0f)
             for (DWORD i = 0; i < samples; ++i) scratch[i] *= vol;
         Balance(scratch.data(), frames);
-        Sidechain(scratch.data(), frames, end - (double)frames / rate);
+        engine->CheckSound(scratch.data(), frames, chans, rate, end_qpc);
         data = scratch.data();
         std::lock_guard<std::mutex> lock(queue_mutex);
+        double end = engine->RecordingSecondsAt(end_qpc);
+        Sidechain(scratch.data(), frames, end - (double)frames / rate);
         double lateness = end - (TailSeconds() + (double)frames / rate);
         if (!started) {
             // The first audio takes its place on the timeline: whatever came
             // before it (a capture still starting) is silence.
             if (lateness > 0.03) SilenceLocked((unsigned long long)(lateness * rate));
+            lateness_avg = std::min(lateness, 0.0);
             started = true;
         } else if (lateness - lateness_avg > GAP_SECONDS) {
             // More late than any buffer could hold: that audio does not exist.
             SilenceLocked((unsigned long long)((lateness - lateness_avg) * rate));
         } else {
-            // Follows the slow drift between the device clock and the computer.
-            lateness_avg += 0.005 * (lateness - lateness_avg);
+            // Follows the slow drift between the device clock and the
+            // computer's, never faster than DRIFT_PER_SECOND: a clock drifts
+            // far less. Audio lost a little at a time does not drift, it
+            // adds up, and becomes silence when it reaches GAP_SECONDS, so
+            // what comes after stays in its place.
+            const double step = DRIFT_PER_SECOND * frames / rate;
+            lateness_avg += std::max(-step, std::min(step, lateness - lateness_avg));
         }
         PushLocked(data, frames);
     }
 
     void OnAudio(const float* data, DWORD samples, bool silent, LONGLONG captured) override {
-        double end = captured ? engine->RecordingSecondsAt(captured) + (double)(samples / chans) / rate
-                              : engine->RecordingSeconds();
+        LONGLONG end;
+        if (captured) {
+            end = captured + (LONGLONG)((double)(samples / chans) / rate * (double)engine->qpc_freq_);
+        } else {
+            LARGE_INTEGER now;
+            QueryPerformanceCounter(&now);
+            end = now.QuadPart;
+        }
         Put(data, samples, silent, end);
     }
 
@@ -303,6 +352,13 @@ struct AudioEngine::Input : public CaptureSink {
             if (vol != 1.0f)
                 for (float& v : scratch) v *= vol;
             Balance(scratch.data(), n);
+            // A stream URL is live, so its sound counts as sound; background
+            // audio is not.
+            if (net) {
+                LARGE_INTEGER now;
+                QueryPerformanceCounter(&now);
+                engine->CheckSound(scratch.data(), n, chans, rate, now.QuadPart);
+            }
             Sidechain(scratch.data(), n, TailSeconds());
             PushLocked(scratch.data(), n);
             want -= n;
@@ -838,9 +894,29 @@ void AudioEngine::StopEncoder(Output& out) {
     if (out.encoder && format_ == L"wma") {
         b_.WmaEncodeClose(out.encoder);
     } else if (out.encoder) {
-        // Everything queued is written before the file is closed.
-        if (b_.EncodeStopEx) b_.EncodeStopEx(out.encoder, BASS_ENCODE_STOP_WAIT);
-        else b_.EncodeStop(out.encoder);
+        // Everything queued is written before the file is closed. The queue
+        // is waited on here, not by the encoder: asked to stop while its
+        // thread is still writing, the encoder can lose the request and wait
+        // forever, with the program frozen and the file never closed. Once
+        // the queue is empty, it stops at once, with nothing left to lose.
+        if (b_.EncodeGetCount) {
+            QWORD last = (QWORD)-1;
+            DWORD still = 0;
+            for (;;) {
+                QWORD queued = b_.EncodeGetCount(out.encoder, BASS_ENCODE_COUNT_QUEUE);
+                if (queued == 0 || queued == (QWORD)-1) break;
+                // A queue that does not move for 5 seconds is given up on.
+                if (queued == last) {
+                    if (++still >= 500) break;
+                } else {
+                    still = 0;
+                }
+                last = queued;
+                Sleep(10);
+            }
+            Sleep(20);  // the last piece taken from the queue is written
+        }
+        b_.EncodeStop(out.encoder);
     }
     out.encoder = 0;
     if (out.m4a) {
@@ -886,7 +962,9 @@ BOOL CALLBACK AudioEngine::RecordProc(DWORD handle, const void* buffer, DWORD le
         // audio ends now; whatever it may still hold came later.
         DWORD held = in->engine->b_.ChannelGetData(handle, nullptr, BASS_DATA_AVAILABLE);
         if (held == (DWORD)-1) held = 0;
-        double end = in->engine->RecordingSeconds() - held / in->BytesPerSecond();
+        LARGE_INTEGER now;
+        QueryPerformanceCounter(&now);
+        LONGLONG end = now.QuadPart - (LONGLONG)(held / in->BytesPerSecond() * (double)in->engine->qpc_freq_);
         in->Put(static_cast<const float*>(buffer), length / sizeof(float), false, end);
     }
     return TRUE;
@@ -1199,7 +1277,7 @@ void AudioEngine::ResetRecording(int sample_rate, const std::wstring& channels) 
 bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstring& format_type,
                                  const std::wstring& bitrate, int sample_rate, int bits,
                                  const std::wstring& channels, const std::vector<Source>& sources,
-                                 bool separate_files, int flac_nivel, int* error) {
+                                 bool separate_files, int flac_nivel, int* error, LONGLONG from) {
     *error = 0;
     if (recording_) return false;
     if (sources.empty()) {
@@ -1207,7 +1285,18 @@ bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstri
         return false;
     }
 
-    ResetRecording(sample_rate, channels);
+    // The sources captured while waiting become the recording's, with what
+    // they already have, if they were captured as it records.
+    const bool adopt = standby_ && from && sample_rate == sample_rate_ &&
+                       (channels == L"mono" ? 1 : 2) == chans_ && rec_buffer_ms_ == buffer_ms_;
+    if (adopt) StopPump();
+    else ResetRecording(sample_rate, channels);
+    // A format that cannot be recorded: the waiting goes on.
+    auto refuse = [&](int code) {
+        if (standby_) StartPump();
+        *error = code;
+        return false;
+    };
     output_files_.clear();
     last_outputs_.clear();
     background_places_.clear();
@@ -1230,10 +1319,8 @@ bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstri
         const auto& rates = M4aWriter::Rates();
         const auto& kbps = M4aWriter::Bitrates();
         if (!M4aWriter::Available() || std::find(rates.begin(), rates.end(), sample_rate) == rates.end() ||
-            std::find(kbps.begin(), kbps.end(), m4a_kbps_) == kbps.end()) {
-            *error = BASS_ERROR_NOTAVAIL;
-            return false;
-        }
+            std::find(kbps.begin(), kbps.end(), m4a_kbps_) == kbps.end())
+            return refuse(BASS_ERROR_NOTAVAIL);
     }
     if (format_type == L"wma") {
         // The exact bitrate Windows has for the kbps chosen.
@@ -1241,10 +1328,7 @@ bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstri
         int kbps = _wtoi(bitrate.c_str());
         for (DWORD b : WmaBitrates(sample_rate, channels == L"mono" ? 1 : 2, bits))
             if ((int)(b / 1000) == kbps) wma_bitrate_ = b;
-        if (!wma_bitrate_) {
-            *error = BASS_ERROR_NOTAVAIL;
-            return false;
-        }
+        if (!wma_bitrate_) return refuse(BASS_ERROR_NOTAVAIL);
     }
     // The mode is chosen when recording starts; sources added later follow it.
     separate_ = separate_files && sources.size() > 1;
@@ -1259,31 +1343,57 @@ bool AudioEngine::StartRecording(const std::wstring& file_path, const std::wstri
     };
 
     paused_ = false;
-    LARGE_INTEGER now;
-    QueryPerformanceCounter(&now);
-    start_ticks_ = now.QuadPart;
+    if (adopt) {
+        // The files start at that moment: the timeline moves so it is 0.
+        StartFrom(from, 0.0);
+    } else {
+        LARGE_INTEGER now;
+        QueryPerformanceCounter(&now);
+        start_ticks_ = now.QuadPart;
+        paused_ticks_ = 0;
+    }
     duck_until_ = -1.0;
-    paused_ticks_ = 0;
     if (!separate_ && !MakeOutput(file_path, L"", true)) return fail(b_.ErrorGetCode());
-    for (auto& src : sources) {
+    if (adopt) {
         int code = 0;
-        if (!PlaceSource(src, 0.0, &code)) return fail(code);
+        if (!AdoptStandby(sources, 0.0, &code)) return fail(code);
+        // The others (background audio) start now, after silence.
+        double now = RecordingSeconds();
+        for (auto& src : sources) {
+            if (src.type == L"exe" ? FindWatch(src) != nullptr : FindInput(src) != nullptr) continue;
+            if (!PlaceSource(src, now, &code)) return fail(code);
+        }
+    } else {
+        for (auto& src : sources) {
+            int code = 0;
+            if (!PlaceSource(src, 0.0, &code)) return fail(code);
+        }
     }
 
     recording_ = true;
     SetRecordingPower(true);
-    ResetEvent(pump_stop_);
-    pump_thread_ = CreateThread(nullptr, 0, PumpThread, this, 0, nullptr);
+    StartPump();
     return true;
 }
 
 bool AudioEngine::ContinueRecording(const std::vector<Source>& sources, int* error,
-                                    std::wstring* failed_file) {
+                                    std::wstring* failed_file, LONGLONG from) {
     *error = 0;
     failed_file->clear();
     if (recording_ || last_outputs_.empty()) return false;
     std::vector<LastOutput> prev = last_outputs_;
     const double t0 = last_end_sec_;
+    // What was captured while waiting goes on the files, if it was
+    // captured as the last recording was.
+    const bool adopt = standby_ && from && last_rate_ == sample_rate_ && last_chans_ == chans_ &&
+                       rec_buffer_ms_ == buffer_ms_;
+    if (adopt) {
+        StopPump();
+    } else {
+        StopStandby();
+        sample_rate_ = last_rate_;
+        chans_ = last_chans_;
+    }
     rec_buffer_ms_ = buffer_ms_;
 
     // Each file is set aside while it is rewritten: first with what it already
@@ -1333,25 +1443,36 @@ bool AudioEngine::ContinueRecording(const std::vector<Source>& sources, int* err
 
     // The recording goes on from where it stopped.
     paused_ = false;
-    LARGE_INTEGER now;
-    QueryPerformanceCounter(&now);
-    start_ticks_ = now.QuadPart - (LONGLONG)(t0 * (double)qpc_freq_);
+    if (adopt) {
+        StartFrom(from, t0);
+    } else {
+        LARGE_INTEGER now;
+        QueryPerformanceCounter(&now);
+        start_ticks_ = now.QuadPart - (LONGLONG)(t0 * (double)qpc_freq_);
+        paused_ticks_ = 0;
+    }
     duck_until_ = -1.0;
-    paused_ticks_ = 0;
+    if (adopt) {
+        int code = 0;
+        if (!AdoptStandby(sources, t0, &code)) return fail(code, L"");
+    }
     resuming_ = true;
     for (auto& src : sources) {
+        if (adopt && (src.type == L"exe" ? FindWatch(src) != nullptr : FindInput(src) != nullptr)) continue;
         int code = 0;
         if (!PlaceSource(src, t0, &code)) {
             resuming_ = false;
             return fail(code, L"");
         }
+        // Background audio goes on from now, after what was captured before.
+        if (adopt && src.type == L"file")
+            if (Input* in = FindInput(src)) in->FillUntil(RecordingSeconds());
     }
     resuming_ = false;
 
     recording_ = true;
     SetRecordingPower(true);
-    ResetEvent(pump_stop_);
-    pump_thread_ = CreateThread(nullptr, 0, PumpThread, this, 0, nullptr);
+    StartPump();
     return true;
 }
 
@@ -1454,6 +1575,8 @@ void AudioEngine::SetSourceFx(const Source& src) {
 
 void AudioEngine::PauseRecording() {
     if (!recording_ || paused_) return;
+    // Held, it pauses where it is now, as if it had not been held.
+    if (holding_) Release(0);
     std::lock_guard<std::mutex> lock(clock_mutex_);
     LARGE_INTEGER now;
     QueryPerformanceCounter(&now);
@@ -1468,6 +1591,291 @@ void AudioEngine::ResumeRecording() {
     QueryPerformanceCounter(&now);
     paused_ticks_ += now.QuadPart - pause_began_;
     paused_ = false;
+}
+
+/* ---- Waiting for a recording, and holding one ----
+
+   While waiting (pre-recording, or the silence detection waiting for sound),
+   the sources are captured into their queues as when recording, but the
+   queues keep only their last seconds and go to no file. A held recording
+   does the same after the point where it was held, while its files wait
+   there. When the recording starts or goes on, it does so from a moment
+   just before: what came before that moment is dropped, and the timeline
+   moves so that moment lands where the files are. */
+
+void AudioEngine::StartPump() {
+    ResetEvent(pump_stop_);
+    pump_thread_ = CreateThread(nullptr, 0, PumpThread, this, 0, nullptr);
+}
+
+void AudioEngine::StopPump() {
+    if (!pump_thread_) return;
+    SetEvent(pump_stop_);
+    WaitForSingleObject(pump_thread_, INFINITE);
+    CloseHandle(pump_thread_);
+    pump_thread_ = nullptr;
+}
+
+void AudioEngine::SetStandby(const std::vector<Source>& sources, int sample_rate,
+                             const std::wstring& channels, double seconds) {
+    if (recording_) return;
+    // Background audio starts with the recording: it is not waited on.
+    std::vector<Source> live;
+    for (auto& s : sources)
+        if (s.type != L"file") live.push_back(s);
+    if (seconds <= 0 || live.empty()) {
+        StopStandby();
+        return;
+    }
+    // What the capture depends on; the rest changes on the sources already
+    // being captured.
+    std::wstring key = std::to_wstring(sample_rate) + L"|" + channels + L"|" + std::to_wstring(buffer_ms_);
+    for (auto& s : live)
+        key += L"|" + s.type + L":" + std::to_wstring(s.id) + L":" + s.name +
+               (s.type == L"device" && s.fx.noise.on ? L":n" : L"");
+    const double keep = seconds + 2.0 * buffer_ms_ / 1000.0 + 0.5;
+    if (standby_ && key == standby_key_) {
+        {
+            std::lock_guard<std::mutex> lock(graph_mutex_);
+            standby_keep_ = keep;
+        }
+        for (auto& s : live) {
+            SetSourceVolume(s, s.volume);
+            SetSourcePan(s, s.pan);
+            SetSourceFx(s);
+        }
+        return;
+    }
+    Teardown(false);
+    sample_rate_ = sample_rate;
+    chans_ = channels == L"mono" ? 1 : 2;
+    rec_buffer_ms_ = buffer_ms_;
+    standby_key_ = key;
+    standby_keep_ = keep;
+    paused_ = false;
+    LARGE_INTEGER now;
+    QueryPerformanceCounter(&now);
+    start_ticks_ = now.QuadPart;
+    paused_ticks_ = 0;
+    duck_until_ = -1.0;
+    hold_sec_ = 0;
+    holding_ = true;
+    standby_ = true;
+    for (auto& s : live) {
+        if (s.type == L"exe") {
+            // Its processes are found by the pump, as when recording.
+            auto w = std::make_unique<Watch>();
+            w->src = s;
+            watches_.push_back(std::move(w));
+            continue;
+        }
+        // A source that cannot be captured now is tried again when recording.
+        int code = 0;
+        auto made = MakeInput(s, &code);
+        if (!made) continue;
+        Input* in = made.get();
+        if (in->is_device && !StartDevice(in, true)) {
+            StopCapture(in);
+            b_.StreamFree(in->push);
+            continue;
+        }
+        if (in->cap) in->cap->SetSink(in);
+        inputs_.push_back(std::move(made));
+    }
+    SetWaitingPower(true);
+    StartPump();
+}
+
+void AudioEngine::StopStandby() {
+    if (standby_) Teardown(false);
+}
+
+void AudioEngine::SetSoundThreshold(double db) {
+    sound_level_ = db <= -200 ? 0.0f : (float)std::pow(10.0, db / 20.0);
+}
+
+void AudioEngine::CheckSound(const float* data, DWORD frames, int chans, int rate, LONGLONG end) {
+    const float level = sound_level_.load();
+    if (level <= 0) return;
+    // The first and the last frame with sound, as moments.
+    long long first = -1, last = -1;
+    for (DWORD f = 0; f < frames; ++f)
+        for (int c = 0; c < chans; ++c)
+            if (std::fabs(data[(size_t)f * chans + c]) >= level) {
+                if (first < 0) first = f;
+                last = f;
+                break;
+            }
+    if (first < 0) return;
+    auto at = [&](long long f) { return end - (LONGLONG)((double)(frames - f) / rate * (double)qpc_freq_); };
+    LONGLONG was = last_sound_.load(), when = at(last);
+    while (was < when && !last_sound_.compare_exchange_weak(was, when)) {
+    }
+    // Where the sound began, the first time after the watch started.
+    LONGLONG none = 0;
+    first_sound_.compare_exchange_strong(none, std::max<LONGLONG>(at(first), 1));
+}
+
+void AudioEngine::WatchForSound() { first_sound_ = 0; }
+
+void AudioEngine::Hold(double preroll) {
+    std::lock_guard<std::mutex> lock(graph_mutex_);
+    if (!recording_ || paused_ || holding_) return;
+    standby_keep_ = preroll + 2.0 * rec_buffer_ms_ / 1000.0 + 0.5;
+    hold_sec_ = RecordingSeconds();
+    holding_ = true;
+}
+
+void AudioEngine::Release(LONGLONG from) {
+    std::lock_guard<std::mutex> lock(graph_mutex_);
+    if (!recording_ || !holding_) return;
+    double now = RecordingSeconds();
+    double r = from ? RecordingSecondsAt(from) : now;
+    r = std::min(now, std::max(r, std::max(hold_sec_, HeldStart())));
+    Rebase(hold_sec_, r, hold_sec_);
+    holding_ = false;
+}
+
+double AudioEngine::RecordedSeconds() {
+    if (recording_ && holding_) return hold_sec_;
+    return RecordingSeconds();
+}
+
+void AudioEngine::KeepHeld(double now) {
+    // Until every file has what came before the hold, nothing is dropped.
+    for (auto& out : outputs_)
+        if (out->frames_done < (long long)(hold_sec_ * out->rate)) return;
+    const double delay = rec_buffer_ms_ / 1000.0;
+    const double from = now - standby_keep_;
+    for (auto& ptr : inputs_) {
+        Input* in = ptr.get();
+        if (in->player || !in->push) continue;
+        std::lock_guard<std::mutex> lock(in->queue_mutex);
+        // A source that delivers nothing (a process with nothing playing)
+        // is silence, as a file would have it after waiting for it.
+        if (!in->ending && !in->Clocked()) {
+            double to = now - 2 * delay;
+            if (in->TailSeconds() < to) in->SilenceLocked((unsigned long long)((to - in->TailSeconds()) * in->rate));
+        }
+        unsigned long long avail = in->QueuedFrames();
+        double head = in->TailSeconds() - (double)avail / in->rate;
+        if (head < from)
+            in->DiscardLocked(std::min<unsigned long long>(avail, (unsigned long long)((from - head) * in->rate)));
+    }
+}
+
+double AudioEngine::HeldStart() {
+    // The latest start among the queues: from there on, all of them have audio.
+    double start = 0;
+    for (auto& ptr : inputs_) {
+        Input* in = ptr.get();
+        if (in->player || !in->push) continue;
+        std::lock_guard<std::mutex> lock(in->queue_mutex);
+        unsigned long long avail = in->QueuedFrames();
+        if (avail) start = std::max(start, in->TailSeconds() - (double)avail / in->rate);
+    }
+    return start;
+}
+
+void AudioEngine::Rebase(double keep_until, double from, double target) {
+    const double shift = from - target;
+    std::vector<Input*> live;
+    for (auto& p : inputs_)
+        if (!p->player && p->push) live.push_back(p.get());
+    // Every queue at once, with the clock: audio that arrives meanwhile
+    // finds the new timeline.
+    std::vector<std::unique_lock<std::mutex>> locks;
+    for (Input* in : live) locks.emplace_back(in->queue_mutex);
+    for (Input* in : live) {
+        const long long avail = (long long)in->QueuedFrames();
+        const double tail = in->TailSeconds();
+        const double head = tail - (double)avail / in->rate;
+        // Kept: up to keep_until, and from `from` on; dropped: what is between.
+        long long a = std::max(0LL, std::min(avail, (long long)std::llround((keep_until - head) * in->rate)));
+        long long b = std::max(a, std::min(avail, (long long)std::llround((from - head) * in->rate)));
+        if (b > a) {
+            if (a == 0) {
+                in->DiscardLocked((unsigned long long)b);
+            } else if (!in->ending) {
+                const size_t chans = (size_t)in->chans;
+                std::vector<float> all((size_t)avail * chans);
+                size_t got = 0;
+                while (got < all.size()) {
+                    DWORD n = b_.ChannelGetData(in->push, all.data() + got,
+                                                (DWORD)((all.size() - got) * sizeof(float)));
+                    if (n == (DWORD)-1 || n == 0) break;
+                    got += n / sizeof(float);
+                }
+                size_t frames = got / chans;
+                size_t first = std::min<size_t>(frames, (size_t)a), second = std::min<size_t>(frames, (size_t)b);
+                if (first) b_.StreamPutData(in->push, all.data(), (DWORD)(first * chans * sizeof(float)));
+                if (frames > second)
+                    b_.StreamPutData(in->push, all.data() + second * chans,
+                                     (DWORD)((frames - second) * chans * sizeof(float)));
+            }
+        }
+        in->base_sec = tail >= from ? tail - shift : (a > 0 ? std::min(tail, keep_until) : target);
+        in->pushed = 0;
+    }
+    {
+        std::lock_guard<std::mutex> lock(clock_mutex_);
+        start_ticks_ += (LONGLONG)std::llround(shift * (double)qpc_freq_);
+    }
+    duck_until_ = duck_until_.load() - shift;
+}
+
+void AudioEngine::StartFrom(LONGLONG from, double target) {
+    // Never before what every source has, nor after now.
+    double now = RecordingSeconds();
+    double r = std::min(now, std::max(RecordingSecondsAt(from), HeldStart()));
+    Rebase(-1e9, r, target);
+    holding_ = false;
+    standby_ = false;
+}
+
+void AudioEngine::Adopt(Input* in, Output* out) {
+    // Its queue is already where the file is.
+    in->out = out;
+    if (out->frames_done >= out->join_at) {
+        b_.MixerStreamAddChannel(out->mixer, in->push, BASS_MIXER_CHAN_DOWNMIX | BASS_MIXER_CHAN_NORAMPIN);
+        out->inputs.push_back(in);
+    } else {
+        out->pending.push_back(in);
+    }
+}
+
+bool AudioEngine::AdoptStandby(const std::vector<Source>& sources, double target, int* error) {
+    auto wanted = [&](const Source& src) {
+        return std::any_of(sources.begin(), sources.end(), [&](const Source& s) { return SameSource(s, src); });
+    };
+    for (size_t i = 0; i < inputs_.size();) {
+        Input* in = inputs_[i].get();
+        if (in->watch) {
+            ++i;
+            continue;
+        }
+        if (!wanted(in->src)) {
+            DropInput(in);
+            inputs_.erase(inputs_.begin() + i);
+            continue;
+        }
+        Output* out = OutputFor(in->src, target);
+        if (!out) {
+            *error = b_.ErrorGetCode();
+            return false;
+        }
+        Adopt(in, out);
+        ++i;
+    }
+    for (auto& w : watches_) {
+        w->out = OutputFor(w->src, target);
+        if (!w->out) {
+            *error = b_.ErrorGetCode();
+            return false;
+        }
+        for (auto& inst : w->instances) Adopt(inst.second, w->out);
+    }
+    return true;
 }
 
 void AudioEngine::HoldDuck(double until) {
@@ -1525,8 +1933,10 @@ DWORD WINAPI AudioEngine::PumpThread(void* self) {
 
 void AudioEngine::Pump() {
     HANDLE task = EnterAudioThread();
-    // A recording in progress keeps the computer from going to sleep.
-    SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
+    // A recording in progress keeps the computer from going to sleep; the
+    // waiting for one does not.
+    const bool recording = recording_;
+    if (recording) SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
     const double delay = rec_buffer_ms_ / 1000.0;
     ULONGLONG last_watch = 0, last_scan = 0;
     while (WaitForSingleObject(pump_stop_, 10) == WAIT_TIMEOUT) {
@@ -1543,8 +1953,11 @@ void AudioEngine::Pump() {
         CollectEnded();
         if (paused_) continue;
         double now = RecordingSeconds();
+        const bool held = holding_;
+        // Held, background audio waits where it is, as in a pause.
         for (auto& in : inputs_)
-            if (in->Clocked() && !in->ending) in->FillBackground(now + BACKGROUND_LEAD);
+            if (in->Clocked() && !in->ending && !(held && in->player)) in->FillBackground(now + BACKGROUND_LEAD);
+        if (held) KeepHeld(now);
         double t = now - delay;
         for (auto& out : outputs_) {
             if (out->frames_done < out->join_at) {
@@ -1554,10 +1967,12 @@ void AudioEngine::Pump() {
             if (out->old_stream || !out->pending.empty()) Join(*out);
             if (t <= 0) continue;
             long long due = (long long)(t * out->rate);
+            // Held, the files go up to where it was held, and wait there.
+            if (held) due = std::min(due, (long long)(hold_sec_ * out->rate));
             if (due > out->frames_done) Advance(*out, due, false, now);
         }
     }
-    SetThreadExecutionState(ES_CONTINUOUS);
+    if (recording) SetThreadExecutionState(ES_CONTINUOUS);
     LeaveAudioThread(task);
 }
 
@@ -1608,7 +2023,7 @@ void AudioEngine::ScanWatches() {
     double now = RecordingSeconds();
     for (auto& w : watches_) {
         // Until its file has caught up, the executable waits too.
-        if (w->out->frames_done < w->out->join_at) continue;
+        if (w->out && w->out->frames_done < w->out->join_at) continue;
         std::vector<DWORD> running = FindMainProcesses(w->src.name);
         // Instances that exited leave, after recording what they had.
         std::vector<Input*> gone;
@@ -1626,7 +2041,9 @@ void AudioEngine::ScanWatches() {
             if (!made) continue;
             Input* in = made.get();
             in->watch = w.get();
-            AttachLive(in, w->out, now);
+            // Waiting for a recording, it has no file yet: its queue starts now.
+            if (w->out) AttachLive(in, w->out, now);
+            else in->base_sec = now;
             in->cap->SetSink(in);
             w->instances[pid] = in;
             inputs_.push_back(std::move(made));
@@ -1660,7 +2077,7 @@ void AudioEngine::CatchUp(Output& out) {
     const double bytes_per_sec = (double)out.rate * out.chans * sizeof(float);
     QWORD queued = b_.EncodeGetCount ? b_.EncodeGetCount(out.encoder, BASS_ENCODE_COUNT_QUEUE) : 0;
     if (queued == (QWORD)-1) queued = 0;
-    double room = 4 * bytes_per_sec - (double)queued;
+    double room = ENCODE_QUEUE_SECONDS * bytes_per_sec - (double)queued;
     if (room <= 0) return;
     long long frames = std::min<long long>(out.join_at - out.frames_done, out.rate);
     frames = std::min<long long>(frames, (long long)(room / (out.chans * sizeof(float))));
@@ -1669,9 +2086,32 @@ void AudioEngine::CatchUp(Output& out) {
 
 void AudioEngine::FeedSilent(Output& out, DWORD frames) { ReadMixer(out, frames); }
 
+/* The encoder writes from a queue of its own, and what does not fit in it is
+   lost. Many seconds at once (the pre-recording, as the files start; a
+   recording continued from far back; a stop right after) go in only as fast
+   as it empties. */
+bool AudioEngine::QueueFull(Output& out) {
+    if (!out.encoder) return false;
+    if (format_ == L"wma") return false;  // its queue cannot be measured: Advance paces it
+    if (!b_.EncodeGetCount) return false;
+    QWORD queued = b_.EncodeGetCount(out.encoder, BASS_ENCODE_COUNT_QUEUE);
+    if (queued == (QWORD)-1) return false;
+    return (double)queued >= ENCODE_QUEUE_SECONDS * out.rate * out.chans * sizeof(float);
+}
+
 void AudioEngine::Advance(Output& out, long long due, bool final_flush, double now) {
     const long long chunk = std::max(1, out.rate / 4);
+    // WMA, whose queue is not known, takes at most a tenth of a second per round.
+    if (format_ == L"wma" && !final_flush) due = std::min(due, out.frames_done + out.rate / 10);
+    int waited = 0;
     while (out.frames_done < due) {
+        if (QueueFull(out)) {
+            // The pump comes back to it in a moment; a stop waits for room,
+            // for up to 10 seconds.
+            if (!final_flush || ++waited > 2000) break;
+            Sleep(5);
+            continue;
+        }
         long long n = std::min(due - out.frames_done, chunk);
         // The pump may fall up to one full buffer behind the clock waiting for
         // a late source; only after that does what is missing become silence.
@@ -1750,22 +2190,30 @@ bool AudioEngine::Feed(Output& out, DWORD frames, bool final_flush, bool may_wai
 }
 
 void AudioEngine::Teardown(bool flush) {
-    if (pump_thread_) {
-        SetEvent(pump_stop_);
-        WaitForSingleObject(pump_thread_, INFINITE);
-        CloseHandle(pump_thread_);
-        pump_thread_ = nullptr;
-    }
+    StopPump();
     // Background audio stops after the flush: where it was is kept first.
     for (auto& in : inputs_)
         if (!in->Clocked()) StopCapture(in.get());
+    // Stopped while held, it ends where it was held: what came after is
+    // left out.
+    if (flush && holding_) Rebase(hold_sec_, RecordingSeconds(), hold_sec_);
+    const bool was_waiting = standby_;
+    holding_ = false;
+    standby_ = false;
     if (flush) {
+        last_rate_ = sample_rate_;
+        last_chans_ = chans_;
         double now = RecordingSeconds();
         // Files that join in the middle finish their start, and their sources
         // join.
         for (auto& out : outputs_) {
-            while (out->frames_done < out->join_at)
-                FeedSilent(*out, (DWORD)std::min<long long>(out->join_at - out->frames_done, out->rate));
+            for (int waited = 0; out->frames_done < out->join_at;) {
+                if (QueueFull(*out) && ++waited <= 2000) {
+                    Sleep(5);
+                    continue;
+                }
+                FeedSilent(*out, (DWORD)std::min<long long>(out->join_at - out->frames_done, out->rate / 4));
+            }
             Join(*out);
         }
         // What was still in the slack is recorded too: nothing captured up to
@@ -1817,6 +2265,7 @@ void AudioEngine::Teardown(bool flush) {
     outputs_.clear();
     inputs_.clear();
     if (recording_) SetRecordingPower(false);
+    if (was_waiting) SetWaitingPower(false);
     recording_ = false;
     paused_ = false;
 }

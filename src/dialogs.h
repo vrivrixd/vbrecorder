@@ -58,9 +58,11 @@ public:
     bool start_minimized = false;
     bool tray = false;
     bool on_top = true;
+    bool multiple = false;  // more than one VB Recorder open at once
     bool check_updates = true;
     bool start_with_windows = false;
     bool countdown = false;
+    int preroll = 0;  // seconds of pre-recording
     bool updating = false;  // closed because the update is being installed
 
 protected:
@@ -80,7 +82,8 @@ private:
     HWND cmb_lang_ = nullptr, chk_start_min_ = nullptr, chk_tray_ = nullptr,
          chk_on_top_ = nullptr, txt_buffer_ = nullptr, btn_keys_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, chk_updates_ = nullptr, btn_check_ = nullptr,
-         chk_startup_ = nullptr, chk_countdown_ = nullptr, txt_split_ = nullptr;
+         chk_startup_ = nullptr, chk_countdown_ = nullptr, txt_split_ = nullptr,
+         txt_preroll_ = nullptr, chk_multiple_ = nullptr;
 };
 
 /* The tags of the recordings: a field for each, and after each a Variables

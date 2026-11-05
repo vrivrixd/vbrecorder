@@ -1078,3 +1078,42 @@ msgstr "ศิลปินอัลบั้ม(&D):"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "เปิดโฟลเดอร์การบันทึก:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "บันทึกล่วงหน้า (วินาที)(&P):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "ขณะเปิดโปรแกรม แหล่งเสียงจะถูกจับตลอดเวลาและเก็บไม่กี่วินาทีสุดท้ายไว้: การบันทึกจะเริ่มก่อนที่คุณกด บันทึก เท่านั้น เสียงพื้นหลังเริ่มเมื่อกด 0 คือปิด; สูงสุด {maximo}"
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "การบันทึกล่วงหน้าต้องเป็นตัวเลขตั้งแต่ 0 ถึง {maximo} วินาที"
+
+msgid "Detecção de Silêncio"
+msgstr "การตรวจจับความเงียบ"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "เปิดการตรวจจับความเงียบ(&E)"
+
+msgid "&Sensibilidade:"
+msgstr "ความไว(&S):"
+
+msgid "&Pré-Gravação:"
+msgstr "บันทึกล่วงหน้า(&P):"
+
+msgid "&Tempo de Silêncio:"
+msgstr "ระยะเวลาเงียบ(&T):"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "เมื่อตรวจพบความเงียบ(&W):"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "เล่นเสียงเมื่อการบันทึกหยุดชั่วคราว ทำต่อ หรือหยุดเอง(&I)"
+
+msgid "Detecção de &Silêncio..."
+msgstr "การตรวจจับความเงียบ(&I)..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "การตรวจจับความเงียบต้องมีแหล่งเสียงอย่างน้อยหนึ่งแหล่งที่ไม่ใช่เสียงพื้นหลัง"
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "อนุญาตให้เปิดหลายอินสแตนซ์(&I)"

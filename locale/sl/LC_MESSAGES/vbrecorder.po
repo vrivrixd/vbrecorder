@@ -1092,3 +1092,42 @@ msgstr "Izva&jalec albuma:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Odpri mapo s posnetki:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "Pr&edsnemanje (sekunde):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Ko je program odprt, se viri ves čas zajemajo in zadnje sekunde se hranijo: snemanje se začne toliko prej, preden pritisnete Snemaj. Zvok v ozadju se začne ob pritisku. 0 izklopi; do {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "Predsnemanje mora biti število od 0 do {maximo} sekund."
+
+msgid "Detecção de Silêncio"
+msgstr "Zaznavanje tišine"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "Vklopi &zaznavanje tišine"
+
+msgid "&Sensibilidade:"
+msgstr "&Občutljivost:"
+
+msgid "&Pré-Gravação:"
+msgstr "P&redsnemanje:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "&Trajanje tišine:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "O&b zaznani tišini:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "Predvajaj tone, &ko se snemanje samo ustavi za premor, nadaljuje ali konča"
+
+msgid "Detecção de &Silêncio..."
+msgstr "&Zaznavanje tišine..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Zaznavanje tišine potrebuje vsaj en vir, ki ni zvok v ozadju."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Dovoli &hkrati več primerkov"

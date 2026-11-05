@@ -1084,3 +1084,42 @@ msgstr "A&lbüm sanatçısı:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Kayıtlar Klasörünü Aç:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "Ö&n Kayıt (saniye):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Program açıkken kaynaklar sürekli yakalanır ve son saniyeler saklanır: kayıt, Kaydet düğmesine basmanızdan o kadar önce başlar. Arka plan sesi basınca başlar. 0 kapatır; en fazla {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "Ön kayıt 0 ile {maximo} saniye arasında bir sayı olmalıdır."
+
+msgid "Detecção de Silêncio"
+msgstr "Sessizlik Algılama"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "&Sessizlik Algılamayı Etkinleştir"
+
+msgid "&Sensibilidade:"
+msgstr "&Hassasiyet:"
+
+msgid "&Pré-Gravação:"
+msgstr "&Ön Kayıt:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "S&essizlik Süresi:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "Sessizlik &Algılandığında:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "&Kayıt kendiliğinden duraklatıldığında, devam ettiğinde veya durduğunda ton çal"
+
+msgid "Detecção de &Silêncio..."
+msgstr "Sessizlik &Algılama..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Sessizlik algılama için arka plan sesi olmayan en az bir kaynak gerekir."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "&Çoklu örneğe izin ver"

@@ -69,6 +69,23 @@ private:
     std::vector<HWND> radios_;
 };
 
+/* A spin box: an edit field with its arrows, which change the number by
+   one; it can still be typed. The arrow keys work in the field. */
+class SpinItem : public ui::Item {
+public:
+    SpinItem(HWND edit, HWND arrows) : edit_(edit), arrows_(arrows) {}
+    SIZE Min() override { return SIZE{S(90), ui::BestSize(edit_).cy}; }
+    bool Shown() override { return ui::IsShownStyle(edit_); }
+    void Place(int x, int y, int w, int h) override {
+        int aw = GetSystemMetrics(SM_CXVSCROLL);
+        SetWindowPos(edit_, nullptr, x, y, w - aw, h, SWP_NOZORDER | SWP_NOACTIVATE);
+        SetWindowPos(arrows_, nullptr, x + w - aw, y, aw, h, SWP_NOZORDER | SWP_NOACTIVATE);
+    }
+
+private:
+    HWND edit_, arrows_;
+};
+
 std::unique_ptr<ui::Box> HBox() { return std::unique_ptr<ui::Box>(new ui::Box(false)); }
 std::unique_ptr<ui::Box> VBox() { return std::unique_ptr<ui::Box>(new ui::Box(true)); }
 
@@ -163,6 +180,7 @@ enum {
     IDC_ST_START_MIN,
     IDC_ST_TRAY,
     IDC_ST_ON_TOP,
+    IDC_ST_MULTIPLE,
     IDC_ST_BUFFER,
     IDC_ST_KEYS,
     IDC_ST_UPDATES,
@@ -170,6 +188,7 @@ enum {
     IDC_ST_STARTUP,
     IDC_ST_COUNTDOWN,
     IDC_ST_SPLIT,
+    IDC_ST_PREROLL,
 };
 
 SettingsDialog::SettingsDialog(ConfigManager& config, std::function<void()> on_keys_saved,
@@ -224,10 +243,36 @@ void SettingsDialog::OnInit() {
     Button_SetCheck(chk_on_top_, config_.GetBoolean(L"sempre_no_topo", true));
     vbox->Add(chk_on_top_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
+    chk_multiple_ = Add(WC_BUTTONW, tr("Permitir Múltiplas I&nstâncias"), CHECK, IDC_ST_MULTIPLE);
+    Button_SetCheck(chk_multiple_, config_.GetBoolean(L"multiplas_instancias"));
+    vbox->Add(chk_multiple_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+
     chk_countdown_ = Add(WC_BUTTONW, tr("Contagem &Regressiva Antes de Gravar"), CHECK,
                          IDC_ST_COUNTDOWN);
     Button_SetCheck(chk_countdown_, config_.GetBoolean(L"contagem_regressiva"));
     vbox->Add(chk_countdown_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+
+    // A spin box, as the buffer: an edit field with its arrows.
+    auto spin = [&](ui::Box* row, HWND label, HWND* edit, int id, int value, int min, int max) {
+        *edit = Add(WC_EDITW, std::to_wstring(value), EDIT, id, WS_EX_CLIENTEDGE);
+        HWND arrows = Add(UPDOWN_CLASSW, L"", UDS_SETBUDDYINT | UDS_ARROWKEYS | UDS_NOTHOUSANDS, 0);
+        SendMessageW(arrows, UDM_SETBUDDY, (WPARAM)*edit, 0);
+        SendMessageW(arrows, UDM_SETRANGE32, min, max);
+        SendMessageW(arrows, UDM_SETPOS32, 0, value);
+        row->Add(label, 0, ui::CENTER_V | ui::RIGHT, S(5));
+        row->Add(std::unique_ptr<ui::Item>(new SpinItem(*edit, arrows)), 0, ui::CENTER_V, 0);
+    };
+
+    // The seconds before Record that are recorded too; 0 is off.
+    auto hb_pre = HBox();
+    HWND lbl_pre = Add(WC_STATICW, tr("Pré-Gravação (&segundos):"), 0);
+    spin(hb_pre.get(), lbl_pre, &txt_preroll_, IDC_ST_PREROLL, config_.GetPreroll(), 0, PREROLL_MAX);
+    ui::SetToolTip(hwnd_, txt_preroll_,
+                   Format(tr("Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são "
+                             "guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de "
+                             "fundo começa ao clicar. 0 desativa; até {maximo}."),
+                          {{L"maximo", std::to_wstring(PREROLL_MAX)}}));
+    vbox->Add(std::move(hb_pre), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     auto hb_split = HBox();
     // As the recording duration: 30:00 is half an hour, a single number is seconds.
@@ -242,8 +287,7 @@ void SettingsDialog::OnInit() {
 
     auto hb_buf = HBox();
     HWND lbl_buf = Add(WC_STATICW, tr("Tamanho do &Buffer (ms):"), 0);
-    txt_buffer_ = Add(WC_EDITW, std::to_wstring(config_.GetBuffer()), EDIT, IDC_ST_BUFFER,
-                      WS_EX_CLIENTEDGE);
+    spin(hb_buf.get(), lbl_buf, &txt_buffer_, IDC_ST_BUFFER, config_.GetBuffer(), BUFFER_MIN, BUFFER_MAX);
     // The explanation goes in the field's tooltip, not in loose text in the
     // dialog: screen readers read loose text first, when the dialog opens.
     ui::SetToolTip(hwnd_, txt_buffer_,
@@ -252,8 +296,6 @@ void SettingsDialog::OnInit() {
                           {{L"minimo", std::to_wstring(BUFFER_MIN)},
                            {L"maximo", std::to_wstring(BUFFER_MAX)},
                            {L"padrao", std::to_wstring(BUFFER_DEFAULT)}}));
-    hb_buf->Add(lbl_buf, 0, ui::CENTER_V | ui::RIGHT, S(5));
-    hb_buf->Add(txt_buffer_, 0, ui::CENTER_V, 0, SIZE{S(80), 0});
     vbox->Add(std::move(hb_buf), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
 
@@ -337,6 +379,22 @@ void SettingsDialog::OnOk() {
             return;
         }
     }
+    {
+        std::wstring text = Trim(ui::GetText(txt_preroll_));
+        int value = text.empty() || text.size() > 3 || text.find_first_not_of(L"0123456789") != std::wstring::npos
+                        ? -1
+                        : _wtoi(text.c_str());
+        if (value < 0 || value > PREROLL_MAX) {
+            ui::MsgBox(hwnd_,
+                       Format(tr("A pré-gravação deve ser um número de 0 a {maximo} segundos."),
+                              {{L"maximo", std::to_wstring(PREROLL_MAX)}}),
+                       tr("Aviso"), MB_ICONWARNING | MB_OK);
+            SetFocus(txt_preroll_);
+            SendMessageW(txt_preroll_, EM_SETSEL, 0, -1);
+            return;
+        }
+        preroll = value;
+    }
     int sel = (int)SendMessageW(cmb_lang_, CB_GETCURSEL, 0, 0);
     language_ = (sel >= 0 && sel < (int)codes_.size()) ? codes_[sel] : L"";
     start_minimized = Button_GetCheck(chk_start_min_) == BST_CHECKED;
@@ -345,6 +403,7 @@ void SettingsDialog::OnOk() {
     countdown = Button_GetCheck(chk_countdown_) == BST_CHECKED;
     tray = Button_GetCheck(chk_tray_) == BST_CHECKED;
     on_top = Button_GetCheck(chk_on_top_) == BST_CHECKED;
+    multiple = Button_GetCheck(chk_multiple_) == BST_CHECKED;
     EndModal(IDOK);
 }
 

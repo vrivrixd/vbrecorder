@@ -1087,3 +1087,42 @@ msgstr "W&ykonawca albumu:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Otwórz folder nagrań:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "Na&grywanie wstępne (sekundy):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Gdy program jest otwarty, źródła są przechwytywane cały czas, a ostatnie sekundy zachowywane: nagranie zaczyna się o tyle wcześniej, niż naciśniesz Nagrywaj. Dźwięk w tle zaczyna się po naciśnięciu. 0 wyłącza; do {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "Nagrywanie wstępne musi być liczbą od 0 do {maximo} sekund."
+
+msgid "Detecção de Silêncio"
+msgstr "Wykrywanie ciszy"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "&Włącz wykrywanie ciszy"
+
+msgid "&Sensibilidade:"
+msgstr "&Czułość:"
+
+msgid "&Pré-Gravação:"
+msgstr "&Nagrywanie wstępne:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "C&zas ciszy:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "&Po wykryciu ciszy:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "Odtwarzaj &dźwięki, gdy nagranie samo się wstrzymuje, wznawia lub zatrzymuje"
+
+msgid "Detecção de &Silêncio..."
+msgstr "Wykrywanie &ciszy..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Wykrywanie ciszy wymaga co najmniej jednego źródła, które nie jest dźwiękiem w tle."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Zezwalaj na wiele &instancji"

@@ -1074,3 +1074,42 @@ msgstr "專輯演出者(&D):"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "開啟錄音資料夾:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "預錄(秒)(&P):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "程式開啟期間會持續擷取各音源並保留最後幾秒：錄音會從您按下「錄製」之前這麼長的時間開始。背景音訊在按下時開始。0 為關閉；最多 {maximo}。"
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "預錄必須是 0 到 {maximo} 秒之間的數字。"
+
+msgid "Detecção de Silêncio"
+msgstr "靜音偵測"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "啟用靜音偵測(&E)"
+
+msgid "&Sensibilidade:"
+msgstr "靈敏度(&S):"
+
+msgid "&Pré-Gravação:"
+msgstr "預錄(&P):"
+
+msgid "&Tempo de Silêncio:"
+msgstr "靜音時間(&T):"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "偵測到靜音時(&W):"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "錄音自動暫停、繼續或停止時播放提示音(&I)"
+
+msgid "Detecção de &Silêncio..."
+msgstr "靜音偵測(&I)..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "靜音偵測至少需要一個不是背景音訊的音源。"
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "允許多個執行個體(&I)"

@@ -144,11 +144,13 @@ void ConfigManager::Load() {
                    {L"iniciar_minimizado", L"False"},
                    {L"minimizar_bandeja", L"False"},
                    {L"sempre_no_topo", L"True"},
+                   {L"multiplas_instancias", L"False"},
                    {L"buffer", std::to_wstring(BUFFER_DEFAULT)},
                    {L"verificar_atualizacoes", L"True"},
                    {L"bits", L"16"},
                    {L"iniciar_com_windows", L"False"},
                    {L"contagem_regressiva", L"False"},
+                   {L"pre_gravacao", L"0"},
                    {L"dividir", L""}};
     } else {
         if (!Lookup(cfg->items, L"fontes")) {
@@ -162,11 +164,13 @@ void ConfigManager::Load() {
             {L"iniciar_minimizado", L"False"},
             {L"minimizar_bandeja", L"False"},
             {L"sempre_no_topo", L"True"},
+            {L"multiplas_instancias", L"False"},
             {L"buffer", std::to_wstring(BUFFER_DEFAULT)},
             {L"verificar_atualizacoes", L"True"},
             {L"bits", L"16"},
             {L"iniciar_com_windows", L"False"},
             {L"contagem_regressiva", L"False"},
+            {L"pre_gravacao", L"0"},
             {L"dividir", L""}};
         for (auto& p : defaults)
             if (!Lookup(cfg->items, p.first)) Put(cfg->items, p.first, p.second);
@@ -194,9 +198,10 @@ void ConfigManager::Save() {
     sort_items(Ensure(L"CONFIG").items,
                {L"formato", L"bitrate", L"flac_nivel", L"taxa", L"bits", L"canais", L"fontes",
                 L"reproduzir_tons", L"arquivos_separados", L"duracao", L"arquivo", L"diretorio",
-                L"idioma", L"iniciar_minimizado", L"minimizar_bandeja", L"sempre_no_topo", L"buffer",
+                L"idioma", L"iniciar_minimizado", L"minimizar_bandeja", L"sempre_no_topo",
+                L"multiplas_instancias", L"buffer",
                 L"verificar_atualizacoes", L"iniciar_com_windows", L"contagem_regressiva",
-                L"dividir"});
+                L"pre_gravacao", L"dividir"});
     sort_items(Ensure(L"KEYS").items, {L"gravar", L"pausar", L"parar", L"reproduzir", L"excluir",
                                        L"abrir_pasta", L"mostrar", L"fechar"});
 
@@ -266,6 +271,51 @@ TagValues ConfigManager::GetTags() const {
 void ConfigManager::SetTags(const TagValues& tags) {
     Section& s = Ensure(L"TAGS");
     for (int f = 0; f < TAG_COUNT; ++f) Put(s.items, TagKey(f), tags.value[f]);
+}
+
+namespace {
+/* A whole number from the .ini, kept within its range; fallback if it is not one. */
+int IntValue(const std::wstring* text, int min, int max, int fallback) {
+    if (!text) return fallback;
+    std::wstring raw = Trim(*text);
+    wchar_t* end = nullptr;
+    long value = raw.empty() ? 0 : wcstol(raw.c_str(), &end, 10);
+    if (raw.empty() || !end || *end != L'\0') return fallback;
+    return (int)std::max<long>(min, std::min<long>(max, value));
+}
+}  // namespace
+
+int ConfigManager::GetPreroll() const {
+    std::wstring v = Get(L"pre_gravacao");
+    return IntValue(&v, 0, PREROLL_MAX, 0);
+}
+
+SilenceSettings ConfigManager::GetSilence() const {
+    SilenceSettings d;
+    const Section* s = Find(L"DETECCAO");
+    auto get = [&](const wchar_t* key) { return s ? Lookup(s->items, key) : nullptr; };
+    auto flag = [&](const wchar_t* key) {
+        const std::wstring* v = get(key);
+        return v && (ToLower(*v) == L"true" || *v == L"1");
+    };
+    d.on = flag(L"ativa");
+    d.threshold_db = IntValue(get(L"limiar"), SILENCE_DB_MIN, 0, d.threshold_db);
+    d.preroll_ms = IntValue(get(L"pre_gravacao_ms"), 0, SILENCE_PREROLL_MAX, d.preroll_ms);
+    d.silence_ms = IntValue(get(L"silencio_ms"), SILENCE_MIN_MS, SILENCE_MAX_MS, d.silence_ms);
+    const std::wstring* action = get(L"acao");
+    d.stop = action && *action == L"parar";
+    d.tones = flag(L"tons");
+    return d;
+}
+
+void ConfigManager::SetSilence(const SilenceSettings& d) {
+    Section& s = Ensure(L"DETECCAO");
+    Put(s.items, L"ativa", d.on ? L"True" : L"False");
+    Put(s.items, L"limiar", std::to_wstring(d.threshold_db));
+    Put(s.items, L"pre_gravacao_ms", std::to_wstring(d.preroll_ms));
+    Put(s.items, L"silencio_ms", std::to_wstring(d.silence_ms));
+    Put(s.items, L"acao", d.stop ? L"parar" : L"pausar");
+    Put(s.items, L"tons", d.tones ? L"True" : L"False");
 }
 
 int ConfigManager::GetSplitSeconds() const { return std::max(0, SplitSeconds(Get(L"dividir"))); }

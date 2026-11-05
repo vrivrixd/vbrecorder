@@ -90,15 +90,47 @@ public:
        part 0 is the path itself. */
     static std::wstring PartPath(const std::wstring& path, int part);
 
+    /* Waiting for a recording: the sources, background audio aside, are
+       captured all the time and their last seconds are kept, so that a
+       recording can start from a moment before Record was pressed (the
+       pre-recording, or the silence detection's). Called again whenever
+       they change, it starts over only if the capture itself must change;
+       no sources or 0 seconds stops it. Nothing goes to any file. */
+    void SetStandby(const std::vector<Source>& sources, int sample_rate, const std::wstring& channels,
+                    double seconds);
+    void StopStandby();
+
+    /* Sound for the silence detection: audio at or above this level, in
+       dBFS, after the volume, in any source but background audio. -200 or
+       less: none is looked for. */
+    void SetSoundThreshold(double db);
+    /* When the last sound was captured (QueryPerformanceCounter); 0 if never. */
+    LONGLONG LastSound() const { return last_sound_.load(); }
+    /* When the first sound after WatchForSound began; 0 if none yet. */
+    void WatchForSound();
+    LONGLONG FirstSound() const { return first_sound_.load(); }
+    /* Holds the recording: its files stop where it is now, as in a pause,
+       while the sources go on being captured, keeping the last preroll
+       seconds. Release goes on from the moment given, if it was captured,
+       as if the time between had not happened (0: from now). */
+    void Hold(double preroll);
+    void Release(LONGLONG from);
+    bool is_held() const { return recording_ && holding_; }
+    /* How long the files are, without the pauses and holds. */
+    double RecordedSeconds();
+
+    /* from: the moment (QueryPerformanceCounter) it starts at, captured
+       while waiting; 0 starts now. */
     bool StartRecording(const std::wstring& file_path, const std::wstring& format_type,
                         const std::wstring& bitrate, int sample_rate, int bits,
                         const std::wstring& channels, const std::vector<Source>& sources,
-                        bool separate_files, int flac_nivel, int* error);
+                        bool separate_files, int flac_nivel, int* error, LONGLONG from = 0);
     /* Goes on with the last recording, in the same files, from where it
-       stopped. On failure, failed_file names the file that could not be
-       reopened (in use by another program, for example), if that was it. */
+       stopped, with what was captured since the moment from, as above. On
+       failure, failed_file names the file that could not be reopened (in use
+       by another program, for example), if that was it. */
     bool ContinueRecording(const std::vector<Source>& sources, int* error,
-                           std::wstring* failed_file);
+                           std::wstring* failed_file, LONGLONG from = 0);
     /* Whether the last recording can go on: its files must all be there
        still; one deleted meanwhile would come back as silence. */
     bool CanContinue() const;
@@ -167,6 +199,22 @@ private:
     void SetRecordingPower(bool on);
     /* The side chain: the reduced sources stay down until then, at least. */
     void HoldDuck(double until);
+    void StartPump();
+    void StopPump();
+    void CheckSound(const float* data, DWORD frames, int chans, int rate, LONGLONG end);
+    /* Waiting or held: drops what is older than the seconds kept. */
+    void KeepHeld(double now);
+    /* The earliest recording time every queue has audio from. */
+    double HeldStart();
+    /* Drops what the queues have between keep_until and from, and moves the
+       timeline so that from becomes target. */
+    void Rebase(double keep_until, double from, double target);
+    /* The recording starts at a moment captured while waiting, which
+       becomes target on its timeline. */
+    void StartFrom(LONGLONG from, double target);
+    /* The sources captured while waiting join their files. */
+    bool AdoptStandby(const std::vector<Source>& sources, double target, int* error);
+    void Adopt(Input* in, Output* out);
 
     static BOOL CALLBACK RecordProc(DWORD handle, const void* buffer, DWORD length, void* user);
     static BOOL CALLBACK MonitorProc(DWORD handle, const void* buffer, DWORD length, void* user);
@@ -178,6 +226,7 @@ private:
     void CatchUp(Output& out);
     void FeedSilent(Output& out, DWORD frames);
     void Advance(Output& out, long long due, bool final_flush, double now);
+    bool QueueFull(Output& out);
     bool Feed(Output& out, DWORD frames, bool final_flush, bool may_wait, double now);
 
     BassApi b_ = {};
@@ -253,4 +302,16 @@ private:
     // Recording time until which the side chain keeps the reduced sources down.
     std::atomic<double> duck_until_{-1.0};
     std::vector<float> scratch_;
+
+    // Waiting for a recording, and holding one.
+    bool standby_ = false;
+    std::wstring standby_key_;
+    double standby_keep_ = 0;  // seconds kept in each queue
+    std::atomic<bool> holding_{false};
+    double hold_sec_ = 0;  // where the files wait
+    std::atomic<float> sound_level_{0.0f};  // linear; 0: not looked for
+    std::atomic<LONGLONG> last_sound_{0};
+    std::atomic<LONGLONG> first_sound_{0};
+    // The format of the last recording, to continue it.
+    int last_rate_ = 44100, last_chans_ = 2;
 };

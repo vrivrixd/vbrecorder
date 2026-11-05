@@ -25,6 +25,7 @@
 #include <functional>
 #include <vector>
 
+#include "config.h"
 #include "fx.h"
 #include "ui.h"
 
@@ -155,6 +156,8 @@ protected:
     void OnOk() override;
 
 private:
+    void ShowIntensity();
+
     FxSettings fx_;
     FxPreview preview_;
     HWND chk_on_ = nullptr;
@@ -180,4 +183,25 @@ private:
     // One slider per SidechainParam, in that order.
     FxSettings fx_;
     HWND cmb_role_ = nullptr;
+};
+
+/* The silence detection: with it on, Record waits for sound, and the
+   recording pauses, or stops, after the silence time; the controls are
+   there only while it is on. */
+class SilenceDialog : public SliderDialog {
+public:
+    explicit SilenceDialog(const SilenceSettings& settings);
+    SilenceSettings result;
+
+protected:
+    void OnInit() override;
+    bool OnCommand(int id, int code, HWND control) override;
+    void OnSliderChanged(int i) override;
+    void OnOk() override;
+
+private:
+    void ShowControls();
+
+    SilenceSettings s_;
+    HWND chk_on_ = nullptr, lbl_action_ = nullptr, cmb_action_ = nullptr, chk_tones_ = nullptr;
 };

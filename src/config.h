@@ -32,13 +32,32 @@
 
 /* Program version, in a single place. It stays out of the translatable texts on
    purpose: bumping the version does not invalidate any translation. */
-#define VB_VERSION L"1.5"
+#define VB_VERSION L"1.5.1"
 
 /* Recording buffer, in milliseconds: how long a capture may be held up without
    losing audio. The default is the one BASS itself uses for recording. */
 const int BUFFER_DEFAULT = 2000;
 const int BUFFER_MIN = 100;
 const int BUFFER_MAX = 5000;
+
+/* Pre-recording, in seconds: 0 is off. */
+const int PREROLL_MAX = 60;
+
+/* The silence detection: off unless turned on. Sound is audio at or above
+   threshold_db (dBFS); after silence_ms without it, the recording pauses,
+   or stops; and it starts, or goes on, preroll_ms before the sound that
+   came. tones: a tone on each of those, which happen by themselves. */
+const int SILENCE_DB_MIN = -60;
+const int SILENCE_PREROLL_MAX = 300;
+const int SILENCE_MIN_MS = 500, SILENCE_MAX_MS = 60000;
+struct SilenceSettings {
+    bool on = false;
+    int threshold_db = -20;
+    int preroll_ms = 150;
+    int silence_ms = 2000;
+    bool stop = false;  // false: pauses
+    bool tones = false;
+};
 
 /* Bit depth value for 32-bit floating point, in wav and aiff. */
 const int BITS_FLOAT = 0;
@@ -105,6 +124,11 @@ public:
     void SetTags(const TagValues& tags);
     /* How often a recording is split into files, in seconds; 0 is never. */
     int GetSplitSeconds() const;
+    /* The pre-recording, in seconds; 0 is off. */
+    int GetPreroll() const;
+    /* The silence detection, in [DETECCAO]. */
+    SilenceSettings GetSilence() const;
+    void SetSilence(const SilenceSettings& settings);
     void SetSources(const std::vector<Source>& sources);
 
     /* The scheduled recordings, in their own section:

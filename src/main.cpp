@@ -33,6 +33,7 @@
 #include "background.h"
 #include "config.h"
 #include "dialogs.h"
+#include "fx_dialogs.h"
 #include "hotkeys.h"
 #include "startup.h"
 #include "i18n.h"
@@ -76,6 +77,7 @@ enum {
     IDC_MIN,
     IDC_CLOSE,
     IDC_TAGS,
+    IDC_SILENCE,
 };
 
 enum { HK_REC = 1, HK_PAUSE, HK_STOP, HK_PLAY, HK_DELETE, HK_OPEN_DIR, HK_SHOW, HK_EXIT };
@@ -91,15 +93,16 @@ enum {
     MENU_EXIT,
     MENU_SEPARATE,
     MENU_TONES,
+    MENU_TAGS,
+    MENU_SCHEDULE,
+    MENU_OPEN_DIR,
+    MENU_SETTINGS,
     MENU_COMBO = 3000,  // + 100 * combo box + item
 };
 
-/* Marks the running instance; a second one only warns and quits. */
+/* Marks the running instance; a second one only warns and quits, unless
+   the settings allow more than one. */
 const wchar_t* const INSTANCE_MUTEX = L"VBRecorder_Mutex";
-/* Starts even with another copy running, to record the program with itself.
-   This one does not look for updates by itself: it would replace the files
-   of both. */
-const wchar_t* const MULTIPLE_FLAG = L"--multiple";
 HANDLE g_instance_mutex = nullptr;
 
 const UINT WM_TRAY = WM_APP + 1;
@@ -110,6 +113,7 @@ const UINT_PTR TIMER_COUNTDOWN = 2;
 const UINT_PTR TIMER_DURATION = 3;
 const UINT_PTR TIMER_SCHEDULE = 4;  // every second: is a scheduled recording due?
 const UINT_PTR TIMER_FILES = 5;     // every second: were the last recording's files deleted?
+const UINT_PTR TIMER_DETECT = 6;    // the silence detection: sound, or silence?
 /* Low beeps before the recording starts, one per second, like the start of a race. */
 const int COUNTDOWN_BEEPS = 3;
 
@@ -228,7 +232,21 @@ private:
     void LoadSettings();
     void SaveSettings();
     void OnRecordToggle();
-    bool StartRecordingNow(bool tone);
+    /* from: the moment it starts at (QueryPerformanceCounter), captured
+       before; -1 is the pre-recording of the settings. */
+    bool StartRecordingNow(bool tone, LONGLONG from = -1);
+    void StopNow(bool tone);
+    /* Waiting before a recording: the countdown. */
+    bool Waiting() const { return countdown_ != 0; }
+    /* Sources and format the capture before a recording follows. */
+    void UpdateStandby();
+    LONGLONG PrerollFrom();
+    void OnSilence();
+    /* The silence detection: it acts once the recording has started. */
+    bool DetectionReady();
+    void StartDetection();
+    void OnDetectTick();
+    bool ContinueNow(bool tone, LONGLONG from);
     void StartCountdown();
     void OnCountdownTick();
     void CancelCountdown();
@@ -260,6 +278,11 @@ private:
     void AddTrayIcon();
     void RemoveTrayIcon();
     void ShowTrayMenu();
+    void FromTray(void (MainFrame::*open)());
+    bool FocusTrayDialog();
+    void AddButtonItem(HMENU menu, UINT id, HWND button);
+    bool tray_dialog_ = false;   // a window opened from the tray, with no owner, is open
+    HWND tray_back_ = nullptr;   // what was in front when the tray menu opened
     void AddSubmenu(HMENU parent, const std::wstring& label, int index, HWND combo);
     void OnTrayCommand(UINT cmd);
     std::pair<int, int> OutputFormat();
@@ -271,6 +294,12 @@ private:
     std::vector<std::wstring> last_recording_;
     bool play_timer_ = false;
     int countdown_ = 0;  // beeps played so far; 0 when there is no countdown
+    // The silence detection of the recording: recording, or held in a
+    // silence. since: when it started recording or being held.
+    enum { DETECT_OFF, DETECT_ON, DETECT_HELD };
+    int detect_ = DETECT_OFF;
+    LONGLONG detect_since_ = 0;
+    SilenceSettings silence_;
     bool confirming_delete_ = false;
     // What the play, delete and continue buttons last showed, so the check
     // of the files touches them only when that changes.
@@ -292,7 +321,7 @@ private:
     // pauses.
     double duration_limit_ = 0, duration_start_ = 0;
     HWND lbl_filename_, txt_filename_, lbl_dir_, txt_dir_, btn_browse_, btn_open_dir_;
-    HWND btn_schedule_, btn_settings_, btn_about_, btn_min_, btn_close_;
+    HWND btn_schedule_, btn_silence_, btn_settings_, btn_about_, btn_min_, btn_close_;
 
     // Scheduled recordings. fired_ holds the day and minute each one last
     // started, so it starts only once in that minute; removed_ the ones
@@ -333,6 +362,8 @@ bool MainFrame::Create() {
     AddTrayIcon();
     RegisterAllHotkeys();
     Layout();
+    // The pre-recording starts with the program.
+    UpdateStandby();
     return true;
 }
 
@@ -380,6 +411,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
                     case IDC_SCHEDULE: OnSchedule(); return TRUE;
                     case IDC_SETTINGS: OnSettings(); return TRUE;
                     case IDC_TAGS: OnTags(); return TRUE;
+                    case IDC_SILENCE: OnSilence(); return TRUE;
                     case IDC_ABOUT: OnAbout(); return TRUE;
                     case IDC_MIN: Iconize(); return TRUE;
                     case IDC_CLOSE: OnClose(); return TRUE;
@@ -418,6 +450,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
             if (wp == TIMER_DURATION) OnDurationTick();
             if (wp == TIMER_SCHEDULE) OnScheduleTick();
             if (wp == TIMER_FILES) OnFilesTick();
+            if (wp == TIMER_DETECT) OnDetectTick();
             return TRUE;
         case WM_TRAY:
             if (LOWORD(lp) == WM_LBUTTONDBLCLK) ShowMain();
@@ -433,7 +466,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
         case WM_UPDATE_FOUND: {
             // Found when the program started; the window is already open.
             std::unique_ptr<UpdateInfo> info((UpdateInfo*)lp);
-            if (!audio.is_recording() && !countdown_ && OfferUpdate(*info, DialogParent()))
+            if (!audio.is_recording() && !Waiting() && OfferUpdate(*info, DialogParent()))
                 OnClose();
             return TRUE;
         }
@@ -545,11 +578,13 @@ void MainFrame::SetupUi() {
     txt_duration_ = Add(WC_EDITW, EDIT, IDC_DURATION, WS_EX_CLIENTEDGE);
     // Right after the duration: each schedule has a duration of its own.
     btn_schedule_ = Add(WC_BUTTONW, BUTTON, IDC_SCHEDULE);
+    btn_silence_ = Add(WC_BUTTONW, BUTTON, IDC_SILENCE);
     {
         auto hb = HBox();
         hb->Add(lbl_duration_, 0, ui::CENTER_V | ui::RIGHT, S(5));
         hb->Add(txt_duration_, 0, ui::RIGHT, S(10), SIZE{S(90), 0});
-        hb->Add(btn_schedule_, 0, 0, 0);
+        hb->Add(btn_schedule_, 0, ui::RIGHT, S(5));
+        hb->Add(btn_silence_, 0, 0, 0);
         vbox->Add(std::move(hb), 0, ui::ALL, S(5));
     }
 
@@ -614,6 +649,7 @@ void MainFrame::Retranslate() {
     ui::SetText(btn_browse_, tr("&Procurar..."));
     ui::SetText(btn_open_dir_, tr("Abr&ir Pasta de Gravações"));
     ui::SetText(btn_schedule_, tr("Agenda&mento de Gravações..."));
+    ui::SetText(btn_silence_, tr("Detecção de &Silêncio..."));
     ui::SetText(btn_settings_, tr("Configura&ções..."));
     ui::SetText(btn_about_, tr("S&obre"));
     ui::SetText(btn_min_, tr("&Minimizar"));
@@ -624,7 +660,7 @@ void MainFrame::Retranslate() {
     ui::SetText(chk_separate_, tr("Gravar fontes em ar&quivos separados"));
     ui::SetText(chk_tones_, tr("Reprodu&zir tons ao iniciar ou parar gravação"));
 
-    ui::SetText(btn_record_, audio.is_recording() || countdown_ ? tr("P&arar") : tr("Gr&avar"));
+    ui::SetText(btn_record_, audio.is_recording() || Waiting() ? tr("P&arar") : tr("Gr&avar"));
     ui::SetText(btn_pause_, audio.is_paused() ? tr("Contin&uar") : tr("Pa&usar"));
     UpdatePlayButton();
 
@@ -705,6 +741,7 @@ void MainFrame::ApplyAlwaysOnTop() {
 void MainFrame::Iconize() { ShowWindow(hwnd_, SW_MINIMIZE); }
 
 void MainFrame::ShowMain() {
+    if (FocusTrayDialog()) return;
     ShowWindow(hwnd_, SW_SHOW);
     ShowWindow(hwnd_, SW_RESTORE);
     SetForegroundWindow(hwnd_);
@@ -738,9 +775,10 @@ void MainFrame::RegisterAllHotkeys() {
 }
 
 void MainFrame::OnHotkey(int id) {
-    // During the countdown, only stopping does something: it cancels it.
-    if (countdown_) {
-        if (id == HK_STOP) CancelCountdown();
+    // During the countdown, or waiting for sound, only stopping does
+    // something: it cancels it.
+    if (Waiting()) {
+        if (id == HK_STOP) OnRecordToggle();
         else if (id == HK_SHOW) ShowMain();
         else if (id == HK_OPEN_DIR) OnOpenDir();
         else if (id == HK_EXIT) OnClose();
@@ -785,6 +823,7 @@ void MainFrame::OnAddSource() {
         sources_.push_back(dlg.selected);
         RefreshList();
         SaveSettings();
+        UpdateStandby();
     }
 }
 
@@ -823,6 +862,7 @@ void MainFrame::OnEditSource() {
         sources_[sel] = now;
         RefreshList();
         SaveSettings();
+        UpdateStandby();
     }
 }
 
@@ -843,6 +883,7 @@ void MainFrame::OnRemoveSource() {
     }
     RefreshList();
     SaveSettings();
+    UpdateStandby();
 }
 
 /* ---- Updates ---- */
@@ -925,7 +966,7 @@ bool MainFrame::CheckUpdateNow(HWND parent) {
 void MainFrame::OnSchedule() {
     removed_.clear();
     ScheduleListDialog dlg(schedules_);
-    if (dlg.ShowModal(hwnd_) != IDOK) return;
+    if (dlg.ShowModal(DialogParent()) != IDOK) return;
     std::vector<Schedule> list;
     for (auto& s : dlg.result) {
         if (removed_.count(s.id)) continue;  // started meanwhile, and left the list
@@ -947,11 +988,11 @@ void MainFrame::OnScheduleTick() {
         std::wstring key = ScheduleDueKey(s, now);
         if (key.empty() || fired_[s.id] == key) continue;
         fired_[s.id] = key;
-        if (audio.is_recording() || countdown_) continue;
+        if (audio.is_recording() || Waiting()) continue;
         schedule_duration_ = s.duration;
         OnRecordToggle();
         schedule_duration_ = 0;
-        if (!audio.is_recording() && !countdown_) return;  // it did not start: said why
+        if (!audio.is_recording() && !Waiting()) return;  // it did not start: said why
         if (s.remove_after) {
             schedules_.erase(schedules_.begin() + i);
             removed_.insert(s.id);
@@ -965,7 +1006,7 @@ void MainFrame::OnScheduleTick() {
    next recording on. */
 void MainFrame::OnTags() {
     TagsDialog dlg(config.GetTags());
-    if (dlg.ShowModal(hwnd_) != IDOK) return;
+    if (dlg.ShowModal(DialogParent()) != IDOK) return;
     config.SetTags(dlg.result);
     config.Save();
 }
@@ -973,7 +1014,7 @@ void MainFrame::OnTags() {
 void MainFrame::OnSettings() {
     SettingsDialog dlg(config, [this] { RegisterAllHotkeys(); },
                        [this](HWND parent) { return CheckUpdateNow(parent); });
-    int result = dlg.ShowModal(hwnd_);
+    int result = dlg.ShowModal(DialogParent());
     if (dlg.updating) {
         // The new version is starting: this one closes.
         OnClose();
@@ -986,16 +1027,19 @@ void MainFrame::OnSettings() {
     config.SetConfig(L"iniciar_minimizado", dlg.start_minimized);
     config.SetConfig(L"minimizar_bandeja", dlg.tray);
     config.SetConfig(L"sempre_no_topo", dlg.on_top);
+    config.SetConfig(L"multiplas_instancias", dlg.multiple);
     config.SetConfig(L"verificar_atualizacoes", dlg.check_updates);
     if (dlg.start_with_windows != config.GetBoolean(L"iniciar_com_windows"))
         SetStartWithWindows(dlg.start_with_windows);
     config.SetConfig(L"iniciar_com_windows", dlg.start_with_windows);
     config.SetConfig(L"contagem_regressiva", dlg.countdown);
+    config.SetConfig(L"pre_gravacao", dlg.preroll);
     config.SetConfig(L"buffer", dlg.BufferValue());
     config.SetConfig(L"dividir", dlg.split_text);
     config.Save();
 
     audio.SetBuffer(dlg.BufferValue());
+    UpdateStandby();
     ApplyAlwaysOnTop();
     if (new_language != old_language) {
         i18n::SetLanguage(new_language);
@@ -1073,6 +1117,8 @@ void MainFrame::OnFormatChange() {
         ui::ComboSetValue(cmb_bitrate_, Nearest(items, cur.empty() ? L"128" + std::wstring(KBPS) : cur));
     }
     Layout();
+    // The capture before recording follows the sample rate and channels.
+    UpdateStandby();
 }
 
 /* The bit depth chosen, or BITS_FLOAT. */
@@ -1179,37 +1225,138 @@ void MainFrame::OnRecordToggle() {
                            tr("Aviso"), MB_ICONWARNING | MB_OK);
             return;
         }
-        if (!ReadDuration() || !BackgroundReady()) return;
+        if (!ReadDuration() || !BackgroundReady() || !DetectionReady()) return;
         audio.StopPlayback();
         UpdatePlayButton();
         if (config.GetBoolean(L"contagem_regressiva")) StartCountdown();
         else StartRecordingNow(Checked(chk_tones_));
     } else {
-        KillTimer(hwnd_, TIMER_DURATION);
-        audio.StopRecording();
-        UpdateShutdownBlock();
-        if (Checked(chk_tones_)) audio.PlayTone(440, 150);
-        ui::SetText(btn_record_, tr("Gr&avar"));
-        ui::SetText(btn_pause_, tr("Pa&usar"));
-        EnableControl(btn_pause_, false);
-        ToggleUi(true);
-        last_recording_.clear();
-        for (auto& p : audio.output_files())
-            if (FileExists(p)) last_recording_.push_back(p);
-        UpdateRecordingButtons();
+        StopNow(Checked(chk_tones_));
+    }
+}
+
+void MainFrame::StopNow(bool tone) {
+    KillTimer(hwnd_, TIMER_DURATION);
+    KillTimer(hwnd_, TIMER_DETECT);
+    detect_ = DETECT_OFF;
+    audio.SetSoundThreshold(-1000);
+    audio.StopRecording();
+    UpdateShutdownBlock();
+    if (tone) audio.PlayTone(440, 150);
+    ui::SetText(btn_record_, tr("Gr&avar"));
+    ui::SetText(btn_pause_, tr("Pa&usar"));
+    EnableControl(btn_pause_, false);
+    ToggleUi(true);
+    last_recording_.clear();
+    for (auto& p : audio.output_files())
+        if (FileExists(p)) last_recording_.push_back(p);
+    UpdateRecordingButtons();
+    // Waiting for the next one, with the pre-recording.
+    UpdateStandby();
+}
+
+LONGLONG MainFrame::PrerollFrom() {
+    int seconds = config.GetPreroll();
+    if (seconds <= 0) return 0;
+    LARGE_INTEGER now, freq;
+    QueryPerformanceCounter(&now);
+    QueryPerformanceFrequency(&freq);
+    return now.QuadPart - seconds * freq.QuadPart;
+}
+
+void MainFrame::UpdateStandby() {
+    if (audio.is_recording()) return;
+    double seconds = (double)config.GetPreroll();
+    audio.SetStandby(sources_, OutputFormat().first, ChannelsValue(), seconds);
+}
+
+void MainFrame::OnSilence() {
+    SilenceDialog dlg(config.GetSilence());
+    if (dlg.ShowModal(hwnd_) != IDOK) return;
+    config.SetSilence(dlg.result);
+    config.Save();
+}
+
+/* The detection needs a source of its own to listen to: background audio
+   never counts as sound. */
+bool MainFrame::DetectionReady() {
+    if (!config.GetSilence().on) return true;
+    bool live = std::any_of(sources_.begin(), sources_.end(), [](const Source& s) { return s.type != L"file"; });
+    if (live) return true;
+    ui::MsgBox(DialogParent(),
+               tr("A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."),
+               tr("Aviso"), MB_ICONWARNING | MB_OK);
+    return false;
+}
+
+/* The recording has started, by the user or a schedule: from now on,
+   silence for the time set pauses it, or stops it. */
+void MainFrame::StartDetection() {
+    silence_ = config.GetSilence();
+    if (!silence_.on) return;
+    detect_ = DETECT_ON;
+    LARGE_INTEGER now;
+    QueryPerformanceCounter(&now);
+    detect_since_ = now.QuadPart;
+    audio.SetSoundThreshold(silence_.threshold_db);
+    SetTimer(hwnd_, TIMER_DETECT, 50, nullptr);
+}
+
+/* Silence for the time set pauses the recording, or stops it; sound
+   continues it. */
+void MainFrame::OnDetectTick() {
+    LARGE_INTEGER now_qpc, freq;
+    QueryPerformanceCounter(&now_qpc);
+    QueryPerformanceFrequency(&freq);
+    const LONGLONG now = now_qpc.QuadPart, sound = audio.LastSound();
+    const LONGLONG before = (LONGLONG)silence_.preroll_ms * freq.QuadPart / 1000;
+    const LONGLONG began = audio.FirstSound();
+    if (!audio.is_recording()) {
+        KillTimer(hwnd_, TIMER_DETECT);
+        detect_ = DETECT_OFF;
+        return;
+    }
+    if (detect_ == DETECT_ON) {
+        // Paused by the user, it waits: the silence counts from when it goes on.
+        if (audio.is_paused()) {
+            detect_since_ = now;
+            return;
+        }
+        if (now - std::max(sound, detect_since_) < (LONGLONG)silence_.silence_ms * freq.QuadPart / 1000) return;
+        if (silence_.stop) {
+            StopNow(silence_.tones);
+            return;
+        }
+        audio.Hold(silence_.preroll_ms / 1000.0);
+        audio.WatchForSound();
+        detect_ = DETECT_HELD;
+        detect_since_ = now;
+        if (silence_.tones) audio.PlayTone(659, 150);
+        return;
+    }
+    if (detect_ == DETECT_HELD) {
+        if (!began) return;
+        audio.Release(began - before);
+        detect_ = DETECT_ON;
+        detect_since_ = now;
+        if (silence_.tones) audio.PlayTone(880, 150);
     }
 }
 
 /* Starts a new recording right away, with the start tone if asked. */
-bool MainFrame::StartRecordingNow(bool tone) {
+bool MainFrame::StartRecordingNow(bool tone, LONGLONG from) {
     if (sources_.empty()) {
         // All sources were removed during the countdown.
+        detect_ = DETECT_OFF;
+        KillTimer(hwnd_, TIMER_DETECT);
         ui::SetText(btn_record_, tr("Gr&avar"));
         ToggleUi(true);
+        UpdateStandby();
         ui::MsgBox(DialogParent(), tr("Adicione ao menos uma fonte de gravação antes de iniciar."),
                    tr("Aviso"), MB_ICONWARNING | MB_OK);
         return false;
     }
+    if (from < 0) from = PrerollFrom();
     if (tone) audio.PlayTone(880, 150);
     std::wstring out_dir = CurrentOutputDir();
     if (!DirExists(out_dir)) MakeDirs(out_dir);
@@ -1243,13 +1390,16 @@ bool MainFrame::StartRecordingNow(bool tone) {
                                    _wtoi(ui::ComboValue(cmb_rate_).c_str()),
                                    BitsValue(), ChannelsValue(),
                                    sources_, Checked(chk_separate_),
-                                   _wtoi(ui::ComboValue(cmb_flac_level_).c_str()), &err);
+                                   _wtoi(ui::ComboValue(cmb_flac_level_).c_str()), &err, from);
     if (ok) {
         RecordingStarted();
         return true;
     }
+    detect_ = DETECT_OFF;
+    KillTimer(hwnd_, TIMER_DETECT);
     ui::SetText(btn_record_, tr("Gr&avar"));
     ToggleUi(true);
+    UpdateStandby();
     ui::MsgBox(DialogParent(),
                Format(tr("Erro BASS {erro} ao iniciar a gravação."),
                       {{L"erro", std::to_wstring(err)}}),
@@ -1294,8 +1444,9 @@ void MainFrame::RecordingStarted() {
     ToggleUi(false);
     UpdateRecordingButtons();
     UpdateShutdownBlock();
+    StartDetection();
     if (duration_limit_ > 0) {
-        duration_start_ = audio.RecordingSeconds();
+        duration_start_ = audio.RecordedSeconds();
         SetTimer(hwnd_, TIMER_DURATION, 100, nullptr);
     }
 }
@@ -1344,7 +1495,8 @@ void MainFrame::OnDurationTick() {
         KillTimer(hwnd_, TIMER_DURATION);
         return;
     }
-    if (audio.RecordingSeconds() - duration_start_ >= duration_limit_) OnRecordToggle();
+    // Held by the silence detection, the time does not run either.
+    if (audio.RecordedSeconds() - duration_start_ >= duration_limit_) OnRecordToggle();
 }
 
 /* While recording, paused or not, Windows asks before shutting down and shows
@@ -1361,19 +1513,29 @@ bool MainFrame::CanContinue() { return HasRecording() && audio.CanContinue(); }
 /* Goes on with the last recording, in the same files, as if it had only been
    paused. */
 void MainFrame::OnContinueLast() {
-    if (audio.is_recording() || countdown_ || !CanContinue()) return;
-    if (!ReadDuration() || !BackgroundReady()) return;
+    if (audio.is_recording() || Waiting() || !CanContinue()) return;
+    if (!ReadDuration() || !BackgroundReady() || !DetectionReady()) return;
     audio.StopMonitor();
     audio.StopPlayback();  // the file being played is the one to continue
     UpdatePlayButton();
-    if (Checked(chk_tones_)) audio.PlayTone(880, 150);
+    ContinueNow(Checked(chk_tones_), PrerollFrom());
+}
+
+bool MainFrame::ContinueNow(bool tone, LONGLONG from) {
+    if (tone) audio.PlayTone(880, 150);
     int err = 0;
     std::wstring failed;
     audio.SetTags(config.GetTags());
-    if (audio.ContinueRecording(sources_, &err, &failed)) {
+    if (audio.ContinueRecording(sources_, &err, &failed, from)) {
         RecordingStarted();
-        return;
+        return true;
     }
+    detect_ = DETECT_OFF;
+    KillTimer(hwnd_, TIMER_DETECT);
+    ui::SetText(btn_record_, tr("Gr&avar"));
+    ToggleUi(true);
+    UpdateRecordingButtons();
+    UpdateStandby();
     if (!failed.empty()) {
         ui::MsgBox(DialogParent(),
                    Format(tr("Não foi possível continuar a gravação. Verifique se o arquivo não "
@@ -1385,10 +1547,13 @@ void MainFrame::OnContinueLast() {
                    Format(tr("Erro BASS {erro} ao iniciar a gravação."), {{L"erro", std::to_wstring(err)}}),
                    tr("Erro"), MB_ICONERROR | MB_OK);
     }
+    return false;
 }
 
 void MainFrame::OnPauseToggle() {
     if (!audio.is_paused()) {
+        // Held by the silence detection, it pauses for good, until Continue.
+        if (detect_ == DETECT_HELD) detect_ = DETECT_ON;
         audio.PauseRecording();
         if (Checked(chk_tones_)) audio.PlayTone(659, 150);
         ui::SetText(btn_pause_, tr("Contin&uar"));
@@ -1437,7 +1602,7 @@ std::vector<std::wstring> MainFrame::ExistingRecordingFiles() {
 bool MainFrame::HasRecording() { return !ExistingRecordingFiles().empty() && !audio.is_recording(); }
 
 /* No owner while the window is in the tray, so the dialog comes to the front. */
-HWND MainFrame::DialogParent() { return IsWindowVisible(hwnd_) ? hwnd_ : nullptr; }
+HWND MainFrame::DialogParent() { return IsWindowVisible(hwnd_) && !IsIconic(hwnd_) ? hwnd_ : nullptr; }
 
 void MainFrame::Warn(const std::wstring& message, const std::wstring& title, UINT icon) {
     ui::MsgBox(DialogParent(), message, title, icon | MB_OK);
@@ -1560,7 +1725,7 @@ void MainFrame::ToggleUi(bool enable) {
     // recording.
     for (HWND ctrl : {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_bits_, cmb_channels_,
                       chk_separate_, txt_duration_, txt_dir_, btn_browse_, txt_filename_,
-                      btn_settings_, btn_tags_})
+                      btn_settings_, btn_tags_, btn_silence_})
         EnableControl(ctrl, enable);
 }
 
@@ -1585,6 +1750,8 @@ bool MainFrame::OnClose() {
     if (play_timer_) KillTimer(hwnd_, TIMER_PLAY);
     play_timer_ = false;
     CancelCountdown();
+    KillTimer(hwnd_, TIMER_DETECT);
+    detect_ = DETECT_OFF;
     audio.StopRecording();
     UpdateShutdownBlock();
     SaveSettings();
@@ -1639,10 +1806,72 @@ void MainFrame::AddSubmenu(HMENU parent, const std::wstring& label, int index, H
     AppendMenuW(parent, MF_POPUP, (UINT_PTR)sub, label.c_str());
 }
 
+/* A button of the window as a menu item: its text, without the accelerator. */
+void MainFrame::AddButtonItem(HMENU menu, UINT id, HWND button) {
+    std::wstring text = ui::GetText(button);
+    // "(&T)", as some languages have it, goes whole; otherwise only the "&".
+    size_t at = text.find(L"(&");
+    if (at != std::wstring::npos && at + 3 < text.size() && text[at + 3] == L')') {
+        text.erase(at, 4);
+        while (at > 0 && at <= text.size() && text[at - 1] == L' ') text.erase(--at, 1);
+    }
+    text.erase(std::remove(text.begin(), text.end(), L'&'), text.end());
+    AppendMenuW(menu, MF_STRING, id, text.c_str());
+}
+
+/* Opened from the tray with the window hidden or minimized, the window has
+   no owner and comes to the front; once it is closed, the main window stays
+   as it was, and what was in front before gets the focus back. With the
+   main window open, it opens over it and goes back to it, as from its
+   button. */
+void MainFrame::FromTray(void (MainFrame::*open)()) {
+    const HWND back = tray_back_;
+    const bool hidden = DialogParent() == nullptr;
+    tray_dialog_ = hidden;
+    (this->*open)();
+    tray_dialog_ = false;
+    if (!hidden || !back || back == hwnd_ || !IsWindow(back) || !IsWindowVisible(back)) return;
+    // The menu was opened from the taskbar itself: nothing to go back to.
+    wchar_t cls[64] = {};
+    GetClassNameW(back, cls, 64);
+    for (const wchar_t* shell : {L"Shell_TrayWnd", L"Shell_SecondaryTrayWnd", L"NotifyIconOverflowWindow",
+                                 L"TopLevelWindowForOverflowXamlIsland"})
+        if (wcscmp(cls, shell) == 0) return;
+    SetForegroundWindow(back);
+}
+
+/* While a window opened from the tray is open, the tray and Show bring it
+   to the front instead: only one at a time. */
+bool MainFrame::FocusTrayDialog() {
+    if (!tray_dialog_) return false;
+    struct Find {
+        HWND main, found;
+    } find{hwnd_, nullptr};
+    EnumThreadWindows(
+        GetCurrentThreadId(),
+        [](HWND w, LPARAM lp) -> BOOL {
+            Find* f = (Find*)lp;
+            if (w == f->main || !IsWindowVisible(w) || GetWindow(w, GW_OWNER)) return TRUE;
+            f->found = w;
+            return FALSE;
+        },
+        (LPARAM)&find);
+    if (find.found) SetForegroundWindow(GetLastActivePopup(find.found));
+    return true;
+}
+
 void MainFrame::ShowTrayMenu() {
+    // A window opened from the tray, or over the main window, is still
+    // open: it comes to the front.
+    if (FocusTrayDialog()) return;
+    if (!IsWindowEnabled(hwnd_)) {
+        SetForegroundWindow(GetLastActivePopup(hwnd_));
+        return;
+    }
+    tray_back_ = GetForegroundWindow();
     HMENU menu = CreatePopupMenu();
     menu_combos_ = {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_channels_, cmb_bits_};
-    if (countdown_) {
+    if (Waiting()) {
         AppendMenuW(menu, MF_STRING, MENU_STOP, tr("Parar").c_str());
     } else if (!audio.is_recording()) {
         AppendMenuW(menu, MF_STRING, MENU_RECORD, tr("Gravar").c_str());
@@ -1663,16 +1892,24 @@ void MainFrame::ShowTrayMenu() {
         if (fmt == L"wav" || fmt == L"aiff" || fmt == L"flac" || fmt == L"wma")
             AddSubmenu(menu, tr("Profundidade de Bits"), 5, cmb_bits_);
         AddSubmenu(menu, tr("Canais"), 4, cmb_channels_);
+        AddButtonItem(menu, MENU_TAGS, btn_tags_);
         if (sources_.size() >= 2) {
             AppendMenuW(menu, MF_STRING | (Checked(chk_separate_) ? MF_CHECKED : 0), MENU_SEPARATE,
                         tr("Gravar fontes em arquivos separados").c_str());
         }
         AppendMenuW(menu, MF_STRING | (Checked(chk_tones_) ? MF_CHECKED : 0), MENU_TONES,
                     tr("Reproduzir tons ao iniciar ou parar gravação").c_str());
+        AddButtonItem(menu, MENU_SCHEDULE, btn_schedule_);
+        AddButtonItem(menu, MENU_OPEN_DIR, btn_open_dir_);
+        AddButtonItem(menu, MENU_SETTINGS, btn_settings_);
     } else {
         std::wstring label_pause = audio.is_paused() ? tr("Continuar") : tr("Pausar");
         AppendMenuW(menu, MF_STRING, MENU_PAUSE, label_pause.c_str());
         AppendMenuW(menu, MF_STRING, MENU_STOP, tr("Parar").c_str());
+        // As in the window: while recording, the schedules and the folder stay available.
+        AppendMenuW(menu, MF_SEPARATOR, 0, nullptr);
+        AddButtonItem(menu, MENU_SCHEDULE, btn_schedule_);
+        AddButtonItem(menu, MENU_OPEN_DIR, btn_open_dir_);
     }
     AppendMenuW(menu, MF_SEPARATOR, 0, nullptr);
     AppendMenuW(menu, MF_STRING, MENU_SHOW, tr("Mostrar janela principal").c_str());
@@ -1698,6 +1935,10 @@ void MainFrame::OnTrayCommand(UINT cmd) {
         case MENU_PAUSE: OnPauseToggle(); return;
         case MENU_SHOW: ShowMain(); return;
         case MENU_EXIT: OnClose(); return;
+        case MENU_TAGS: FromTray(&MainFrame::OnTags); return;
+        case MENU_SCHEDULE: FromTray(&MainFrame::OnSchedule); return;
+        case MENU_OPEN_DIR: OnOpenDir(); return;
+        case MENU_SETTINGS: FromTray(&MainFrame::OnSettings); return;
         case MENU_SEPARATE:
             SetChecked(chk_separate_, !Checked(chk_separate_));
             SaveSettings();
@@ -1744,9 +1985,11 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
     std::unique_ptr<MainFrame> frame(new MainFrame());
     i18n::SetLanguage(frame->config.Get(L"idioma"));
 
-    const bool multiple = wcsstr(GetCommandLineW(), MULTIPLE_FLAG) != nullptr;
     g_instance_mutex = CreateMutexW(nullptr, FALSE, INSTANCE_MUTEX);
-    if (GetLastError() == ERROR_ALREADY_EXISTS && !multiple) {
+    // Another one is already open: this one does not look for updates by
+    // itself, as the first one does, or both would replace the same files.
+    const bool another = GetLastError() == ERROR_ALREADY_EXISTS;
+    if (another && !frame->config.GetBoolean(L"multiplas_instancias")) {
         ui::MsgBox(nullptr, tr("O VB Recorder já está em execução."), tr("Aviso"),
                        MB_ICONWARNING | MB_OK);
         return 0;
@@ -1758,7 +2001,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {
     // A portable program: if its folder moved, Windows must start it from the new one.
     if (frame->config.GetBoolean(L"iniciar_com_windows")) RefreshStartWithWindows();
     frame->ShowAtStart();
-    if (!multiple && frame->config.GetBoolean(L"verificar_atualizacoes", true)) frame->StartUpdateCheck();
+    if (!another && frame->config.GetBoolean(L"verificar_atualizacoes", true)) frame->StartUpdateCheck();
 
     MSG msg;
     while (GetMessageW(&msg, nullptr, 0, 0) > 0) {

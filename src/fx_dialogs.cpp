@@ -47,6 +47,9 @@ enum {
     IDC_FX_FILE,
     IDC_FX_BROWSE,
     IDC_FX_ROLE,
+    IDC_FX_SILENCE_ON,
+    IDC_FX_ACTION,
+    IDC_FX_SILENCE_TONES,
     IDC_FX_TRACK = 600,  // + slider index
     IDC_FX_CHECK = 700,  // + parameter index
 };
@@ -546,6 +549,12 @@ void NoiseDialog::OnInit() {
     vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
     AddOkCancel(vbox.get());
     root_ = std::move(vbox);
+    ShowIntensity();
+}
+
+/* The intensity only while the remover is on. */
+void NoiseDialog::ShowIntensity() {
+    for (HWND h : {sliders_[0].label, sliders_[0].track, sliders_[0].value}) ui::Show(h, fx_.noise.on);
     Fit();
 }
 
@@ -557,6 +566,7 @@ void NoiseDialog::OnSliderChanged(int i) {
 bool NoiseDialog::OnCommand(int id, int code, HWND control) {
     if (id == IDC_FX_NOISE_ON && code == BN_CLICKED) {
         fx_.noise.on = Button_GetCheck(chk_on_) == BST_CHECKED;
+        ShowIntensity();
         if (preview_) preview_(fx_);
         return true;
     }
@@ -633,5 +643,83 @@ bool SidechainDialog::OnCommand(int id, int code, HWND control) {
 
 void SidechainDialog::OnOk() {
     result = fx_;
+    EndModal(IDOK);
+}
+
+/* ---- Silence detection ---- */
+
+namespace {
+// The sliders say their value: dB, ms and seconds.
+const FxParam SILENCE_THRESHOLD = {"", (float)SILENCE_DB_MIN, 0, 0, L" dB", false, 1, 5};
+const FxParam SILENCE_PREROLL = {"", 0, (float)SILENCE_PREROLL_MAX, 0, L" ms", false, 10, 50};
+const FxParam SILENCE_TIME = {"", SILENCE_MIN_MS / 1000.0f, SILENCE_MAX_MS / 1000.0f, 1, L" s", false, 0.5f, 5};
+}  // namespace
+
+SilenceDialog::SilenceDialog(const SilenceSettings& settings)
+    : SliderDialog(tr("Detecção de Silêncio")), result(settings), s_(settings) {}
+
+void SilenceDialog::OnInit() {
+    auto vbox = VBox();
+    chk_on_ = Add(WC_BUTTONW, tr("&Ativar Detecção de Silêncio"), CHECK, IDC_FX_SILENCE_ON);
+    Button_SetCheck(chk_on_, s_.on ? BST_CHECKED : BST_UNCHECKED);
+    vbox->Add(chk_on_, 0, ui::ALL, S(10));
+
+    auto slider = [&](const std::wstring& label, const FxParam& p, float value) {
+        auto row = HBox();
+        AddSlider(row.get(), label, ParamPos(p, value), [p](int pos) { return FormatParam(p, ParamValue(p, pos)); },
+                  ParamSteps(p), ParamPage(p), true, (int)std::lround(p.min / p.step));
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    };
+    // In the order of the indexes used below.
+    slider(tr("&Sensibilidade:"), SILENCE_THRESHOLD, (float)s_.threshold_db);
+    slider(tr("&Pré-Gravação:"), SILENCE_PREROLL, (float)s_.preroll_ms);
+    slider(tr("&Tempo de Silêncio:"), SILENCE_TIME, s_.silence_ms / 1000.0f);
+
+    auto row = HBox();
+    lbl_action_ = Add(WC_STATICW, tr("Ao &Detectar Silêncio:"), 0);
+    cmb_action_ = Add(WC_COMBOBOXW, L"", COMBO, IDC_FX_ACTION);
+    ui::ComboSetItems(cmb_action_, {tr("Pausar"), tr("Parar")});
+    SendMessageW(cmb_action_, CB_SETCURSEL, s_.stop ? 1 : 0, 0);
+    row->Add(lbl_action_, 0, ui::CENTER_V | ui::RIGHT, S(5));
+    row->Add(cmb_action_, 1, ui::EXPAND, 0);
+    vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+
+    chk_tones_ = Add(WC_BUTTONW, tr("&Reproduzir tons ao pausar, continuar ou parar sozinha"), CHECK,
+                     IDC_FX_SILENCE_TONES);
+    Button_SetCheck(chk_tones_, s_.tones ? BST_CHECKED : BST_UNCHECKED);
+    vbox->Add(chk_tones_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+
+    AddOkCancel(vbox.get());
+    root_ = std::move(vbox);
+    ShowControls();
+}
+
+/* Turned off, only the check box is there. */
+void SilenceDialog::ShowControls() {
+    for (auto& sl : sliders_)
+        for (HWND h : {sl.label, sl.track, sl.value}) ui::Show(h, s_.on);
+    for (HWND h : {lbl_action_, cmb_action_, chk_tones_}) ui::Show(h, s_.on);
+    Fit();
+}
+
+void SilenceDialog::OnSliderChanged(int i) {
+    if (i == 0) s_.threshold_db = (int)std::lround(ParamValue(SILENCE_THRESHOLD, SliderPos(i)));
+    if (i == 1) s_.preroll_ms = (int)std::lround(ParamValue(SILENCE_PREROLL, SliderPos(i)));
+    if (i == 2) s_.silence_ms = (int)std::lround(ParamValue(SILENCE_TIME, SliderPos(i)) * 1000);
+}
+
+bool SilenceDialog::OnCommand(int id, int code, HWND control) {
+    if (id == IDC_FX_SILENCE_ON && code == BN_CLICKED) {
+        s_.on = Button_GetCheck(chk_on_) == BST_CHECKED;
+        ShowControls();
+        return true;
+    }
+    return SliderDialog::OnCommand(id, code, control);
+}
+
+void SilenceDialog::OnOk() {
+    s_.stop = SendMessageW(cmb_action_, CB_GETCURSEL, 0, 0) == 1;
+    s_.tones = Button_GetCheck(chk_tones_) == BST_CHECKED;
+    result = s_;
     EndModal(IDOK);
 }

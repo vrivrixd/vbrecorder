@@ -1083,3 +1083,42 @@ msgstr "Alb&uma artisto:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Malfermi registraĵan dosierujon:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "An&taŭregistrado (sekundoj):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Dum la programo estas malfermita, la fontoj estas kaptataj senĉese kaj la lastaj sekundoj konserviĝas: la registrado komenciĝas tiom antaŭ ol vi premas Registri. Fona sonaĵo komenciĝas je la premo. 0 malŝaltas; ĝis {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "La antaŭregistrado devas esti nombro de 0 ĝis {maximo} sekundoj."
+
+msgid "Detecção de Silêncio"
+msgstr "Detekto de silento"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "&Ŝalti detekton de silento"
+
+msgid "&Sensibilidade:"
+msgstr "&Sentiveco:"
+
+msgid "&Pré-Gravação:"
+msgstr "&Antaŭregistrado:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "&Daŭro de silento:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "&Ĉe detektita silento:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "&Ludi tonojn kiam la registrado mem paŭzas, daŭrigas aŭ haltas"
+
+msgid "Detecção de &Silêncio..."
+msgstr "Detekto de &silento..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Detekto de silento bezonas almenaŭ unu fonton, kiu ne estas fona sonaĵo."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Permesi plurajn &instancojn"

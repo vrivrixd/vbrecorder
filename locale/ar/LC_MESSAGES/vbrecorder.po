@@ -1099,3 +1099,42 @@ msgstr "فنان الألبوم(&D):"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "فتح مجلد التسجيلات:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "التسجيل المسبق (بالثواني)(&P):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "أثناء فتح البرنامج، تُلتقط المصادر باستمرار وتُحفظ الثواني الأخيرة: يبدأ التسجيل قبل ضغطك على تسجيل بهذا القدر. يبدأ الصوت الخلفي عند الضغط. 0 يعطّله؛ حتى {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "يجب أن يكون التسجيل المسبق رقمًا من 0 إلى {maximo} ثانية."
+
+msgid "Detecção de Silêncio"
+msgstr "اكتشاف الصمت"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "تفعيل اكتشاف الصمت(&E)"
+
+msgid "&Sensibilidade:"
+msgstr "الحساسية(&S):"
+
+msgid "&Pré-Gravação:"
+msgstr "التسجيل المسبق(&P):"
+
+msgid "&Tempo de Silêncio:"
+msgstr "مدة الصمت(&T):"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "عند اكتشاف الصمت(&W):"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "تشغيل نغمات عندما يتوقف التسجيل مؤقتًا أو يستأنف أو يتوقف من تلقاء نفسه(&I)"
+
+msgid "Detecção de &Silêncio..."
+msgstr "اكتشاف الصمت(&I)..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "يحتاج اكتشاف الصمت إلى مصدر واحد على الأقل ليس صوتًا خلفيًا."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "السماح بتشغيل عدة نسخ(&I)"

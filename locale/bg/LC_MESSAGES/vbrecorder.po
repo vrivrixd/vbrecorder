@@ -1085,3 +1085,42 @@ msgstr "Изпълнител &на албума:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Отваряне на папка със записи:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "Пре&дварителен запис (секунди):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Докато програмата е отворена, източниците се улавят непрекъснато и последните секунди се пазят: записът започва толкова по-рано, преди да натиснете Запис. Фоновото аудио започва при натискане. 0 го изключва; до {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "Предварителният запис трябва да е число от 0 до {maximo} секунди."
+
+msgid "Detecção de Silêncio"
+msgstr "Откриване на тишина"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "&Включване на откриването на тишина"
+
+msgid "&Sensibilidade:"
+msgstr "&Чувствителност:"
+
+msgid "&Pré-Gravação:"
+msgstr "&Предварителен запис:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "Продължителност &на тишината:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "При открита &тишина:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "&Звукови сигнали, когато записът сам спира на пауза, продължава или спира"
+
+msgid "Detecção de &Silêncio..."
+msgstr "Откриване на ти&шина..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Откриването на тишина изисква поне един източник, който не е фоново аудио."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Разрешаване на няколко &инстанции"

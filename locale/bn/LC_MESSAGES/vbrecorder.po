@@ -1085,3 +1085,42 @@ msgstr "অ্যালবাম শিল্পী(&D):"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "রেকর্ডিং ফোল্ডার খুলুন:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "প্রি-রেকর্ডিং (সেকেন্ড)(&P):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "প্রোগ্রাম খোলা থাকলে উৎসগুলো সবসময় ক্যাপচার হয় এবং শেষ কয়েক সেকেন্ড রাখা হয়: রেকর্ডিং আপনার রেকর্ড চাপার ততটা আগে শুরু হয়। ব্যাকগ্রাউন্ড অডিও চাপলে শুরু হয়। 0 বন্ধ করে; সর্বোচ্চ {maximo}।"
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "প্রি-রেকর্ডিং 0 থেকে {maximo} সেকেন্ডের মধ্যে একটি সংখ্যা হতে হবে।"
+
+msgid "Detecção de Silêncio"
+msgstr "নীরবতা শনাক্তকরণ"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "নীরবতা শনাক্তকরণ চালু করুন(&E)"
+
+msgid "&Sensibilidade:"
+msgstr "সংবেদনশীলতা(&S):"
+
+msgid "&Pré-Gravação:"
+msgstr "প্রি-রেকর্ডিং(&P):"
+
+msgid "&Tempo de Silêncio:"
+msgstr "নীরবতার সময়(&T):"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "নীরবতা শনাক্ত হলে(&W):"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "রেকর্ডিং নিজে থেকে বিরতি, চালু বা বন্ধ হলে টোন বাজান(&I)"
+
+msgid "Detecção de &Silêncio..."
+msgstr "নীরবতা শনাক্তকরণ(&I)..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "নীরবতা শনাক্তকরণের জন্য অন্তত একটি উৎস দরকার যা ব্যাকগ্রাউন্ড অডিও নয়।"
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "একাধিক ইনস্ট্যান্স চালানোর অনুমতি দিন(&I)"

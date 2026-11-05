@@ -1083,3 +1083,42 @@ msgstr "Al&bumkunstner:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Åbn optagelsesmappe:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "&Forhåndsoptagelse (sekunder):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Mens programmet er åbent, opfanges kilderne hele tiden, og de sidste sekunder gemmes: optagelsen starter så meget før, du trykker på Optag. Baggrundslyd starter, når du trykker. 0 slår den fra; op til {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "Forhåndsoptagelsen skal være et tal fra 0 til {maximo} sekunder."
+
+msgid "Detecção de Silêncio"
+msgstr "Stilhedsregistrering"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "Aktivér &stilhedsregistrering"
+
+msgid "&Sensibilidade:"
+msgstr "&Følsomhed:"
+
+msgid "&Pré-Gravação:"
+msgstr "Fo&rhåndsoptagelse:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "Stilhedens &varighed:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "V&ed stilhed:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "Afspil &toner, når den selv pauser, fortsætter eller stopper"
+
+msgid "Detecção de &Silêncio..."
+msgstr "Stil&hedsregistrering..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Stilhedsregistrering kræver mindst én kilde, der ikke er baggrundslyd."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Tillad flere &instanser"

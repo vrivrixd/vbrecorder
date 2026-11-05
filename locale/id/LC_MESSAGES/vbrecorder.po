@@ -1080,3 +1080,42 @@ msgstr "Art&is album:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Buka Folder Rekaman:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "Pra-Rekam (&detik):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Selama program terbuka, sumber terus ditangkap dan beberapa detik terakhir disimpan: rekaman dimulai sebanyak itu sebelum Anda menekan Rekam. Audio latar mulai saat ditekan. 0 menonaktifkan; hingga {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "Pra-rekam harus berupa angka dari 0 sampai {maximo} detik."
+
+msgid "Detecção de Silêncio"
+msgstr "Deteksi Hening"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "&Aktifkan Deteksi Hening"
+
+msgid "&Sensibilidade:"
+msgstr "&Sensitivitas:"
+
+msgid "&Pré-Gravação:"
+msgstr "&Pra-Rekam:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "&Waktu Hening:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "Saat &Hening Terdeteksi:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "Putar &nada saat rekaman dijeda, dilanjutkan, atau berhenti sendiri"
+
+msgid "Detecção de &Silêncio..."
+msgstr "&Deteksi Hening..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Deteksi hening memerlukan setidaknya satu sumber yang bukan audio latar."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Izinkan beberapa &instans"

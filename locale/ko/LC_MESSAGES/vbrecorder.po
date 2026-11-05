@@ -1075,3 +1075,42 @@ msgstr "앨범 음악가(&D):"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "녹음 폴더 열기:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "사전 녹음(초)(&P):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "프로그램이 열려 있는 동안 소스를 계속 캡처하고 마지막 몇 초를 보관합니다. 녹음은 녹음 버튼을 누르기 그만큼 전부터 시작됩니다. 배경 오디오는 누를 때 시작됩니다. 0은 끄기, 최대 {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "사전 녹음은 0에서 {maximo}초 사이의 숫자여야 합니다."
+
+msgid "Detecção de Silêncio"
+msgstr "무음 감지"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "무음 감지 사용(&E)"
+
+msgid "&Sensibilidade:"
+msgstr "감도(&S):"
+
+msgid "&Pré-Gravação:"
+msgstr "사전 녹음(&P):"
+
+msgid "&Tempo de Silêncio:"
+msgstr "무음 시간(&T):"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "무음 감지 시(&W):"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "녹음이 자동으로 일시 정지, 재개 또는 중지될 때 신호음 재생(&I)"
+
+msgid "Detecção de &Silêncio..."
+msgstr "무음 감지(&I)..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "무음 감지에는 배경 오디오가 아닌 소스가 하나 이상 필요합니다."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "여러 인스턴스 허용(&I)"

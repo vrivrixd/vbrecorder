@@ -1076,3 +1076,42 @@ msgstr "アルバム アーティスト(&D):"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "録音フォルダを開く:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "プリレコーディング(秒)(&P):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "プログラムを開いている間はソースを常にキャプチャし、最後の数秒を保持します。録音は「録音」を押すその分だけ前から始まります。バックグラウンドオーディオは押したときに始まります。0 で無効、最大 {maximo}。"
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "プリレコーディングは 0 から {maximo} 秒までの数値にしてください。"
+
+msgid "Detecção de Silêncio"
+msgstr "無音検出"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "無音検出を有効にする(&E)"
+
+msgid "&Sensibilidade:"
+msgstr "感度(&S):"
+
+msgid "&Pré-Gravação:"
+msgstr "プリレコーディング(&P):"
+
+msgid "&Tempo de Silêncio:"
+msgstr "無音の時間(&T):"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "無音を検出したとき(&W):"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "録音が自動で一時停止、再開、停止したときに音を鳴らす(&I)"
+
+msgid "Detecção de &Silêncio..."
+msgstr "無音検出(&I)..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "無音検出には、バックグラウンドオーディオ以外のソースが少なくとも 1 つ必要です。"
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "複数のインスタンスを許可(&I)"

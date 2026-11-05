@@ -1083,3 +1083,42 @@ msgstr "Nghệ &sĩ album:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Mở thư mục bản ghi âm:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "Gh&i trước (giây):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Khi chương trình đang mở, các nguồn luôn được thu và vài giây cuối được giữ lại: bản ghi bắt đầu sớm hơn chừng ấy trước khi bạn nhấn Ghi âm. Âm thanh nền bắt đầu khi bấm. 0 là tắt; tối đa {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "Ghi trước phải là số từ 0 đến {maximo} giây."
+
+msgid "Detecção de Silêncio"
+msgstr "Phát hiện im lặng"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "&Bật phát hiện im lặng"
+
+msgid "&Sensibilidade:"
+msgstr "&Độ nhạy:"
+
+msgid "&Pré-Gravação:"
+msgstr "&Ghi trước:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "&Thời gian im lặng:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "&Khi phát hiện im lặng:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "&Phát âm báo khi bản ghi tự tạm dừng, tiếp tục hoặc dừng"
+
+msgid "Detecção de &Silêncio..."
+msgstr "Ph&át hiện im lặng..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Phát hiện im lặng cần ít nhất một nguồn không phải âm thanh nền."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Cho phép chạy &đồng thời nhiều phiên bản"

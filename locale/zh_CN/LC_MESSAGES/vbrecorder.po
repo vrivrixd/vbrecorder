@@ -1074,3 +1074,42 @@ msgstr "唱片集艺术家(&D):"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "打开录音文件夹:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "预录(秒)(&P):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "程序打开期间会持续捕获各音源并保留最后几秒：录音会从您按下“录制”之前这么长的时间开始。背景音频在按下时开始。0 为关闭；最多 {maximo}。"
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "预录必须是 0 到 {maximo} 秒之间的数字。"
+
+msgid "Detecção de Silêncio"
+msgstr "静音检测"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "启用静音检测(&E)"
+
+msgid "&Sensibilidade:"
+msgstr "灵敏度(&S):"
+
+msgid "&Pré-Gravação:"
+msgstr "预录(&P):"
+
+msgid "&Tempo de Silêncio:"
+msgstr "静音时间(&T):"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "检测到静音时(&W):"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "录音自动暂停、继续或停止时播放提示音(&I)"
+
+msgid "Detecção de &Silêncio..."
+msgstr "静音检测(&I)..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "静音检测至少需要一个不是背景音频的音源。"
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "允许多个实例(&I)"

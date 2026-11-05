@@ -1084,3 +1084,42 @@ msgstr "Artista &del álbum:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Abrir carpeta de grabaciones:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "&Pregrabación (segundos):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Con el programa abierto, las fuentes se capturan todo el tiempo y se guardan los últimos segundos: la grabación empieza ese tiempo antes de que pulses Grabar. El audio de fondo empieza al pulsar. 0 la desactiva; hasta {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "La pregrabación debe ser un número de 0 a {maximo} segundos."
+
+msgid "Detecção de Silêncio"
+msgstr "Detección de Silencio"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "Activar &Detección de Silencio"
+
+msgid "&Sensibilidade:"
+msgstr "&Sensibilidad:"
+
+msgid "&Pré-Gravação:"
+msgstr "&Pregrabación:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "&Tiempo de Silencio:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "A&l Detectar Silencio:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "&Reproducir tonos al pausar, continuar o detenerse sola"
+
+msgid "Detecção de &Silêncio..."
+msgstr "Detecci&ón de Silencio..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "La detección de silencio necesita al menos una fuente que no sea audio de fondo."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Permitir varias i&nstancias"

@@ -1084,3 +1084,42 @@ msgstr "Al&buminterpret:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Aufnahmeordner öffnen:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "Vo&rab-Aufnahme (Sekunden):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Bei geöffnetem Programm werden die Quellen ständig erfasst und die letzten Sekunden behalten: Die Aufnahme beginnt so viel früher, als Sie Aufnehmen drücken. Hintergrundaudio beginnt beim Drücken. 0 schaltet sie aus; bis {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "Die Vorab-Aufnahme muss eine Zahl von 0 bis {maximo} Sekunden sein."
+
+msgid "Detecção de Silêncio"
+msgstr "Stilleerkennung"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "&Stilleerkennung aktivieren"
+
+msgid "&Sensibilidade:"
+msgstr "&Empfindlichkeit:"
+
+msgid "&Pré-Gravação:"
+msgstr "&Vorab-Aufnahme:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "S&tilledauer:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "&Bei erkannter Stille:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "Töne abspielen, &wenn sie von selbst pausiert, fortfährt oder stoppt"
+
+msgid "Detecção de &Silêncio..."
+msgstr "Stillee&rkennung..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Die Stilleerkennung braucht mindestens eine Quelle, die kein Hintergrundaudio ist."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Mehrere Instanzen &zulassen"

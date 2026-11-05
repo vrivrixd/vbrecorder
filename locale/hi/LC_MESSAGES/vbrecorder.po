@@ -1085,3 +1085,42 @@ msgstr "एल्बम कलाकार(&D):"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "रिकॉर्डिंग फ़ोल्डर खोलें:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "पूर्व-रिकॉर्डिंग (सेकंड)(&P):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "प्रोग्राम खुला रहने पर स्रोत लगातार कैप्चर होते हैं और आख़िरी सेकंड रखे जाते हैं: रिकॉर्डिंग आपके रिकॉर्ड दबाने से उतना पहले शुरू होती है। बैकग्राउंड ऑडियो दबाने पर शुरू होता है। 0 बंद करता है; अधिकतम {maximo}।"
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "पूर्व-रिकॉर्डिंग 0 से {maximo} सेकंड के बीच की संख्या होनी चाहिए।"
+
+msgid "Detecção de Silêncio"
+msgstr "मौन पहचान"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "मौन पहचान चालू करें(&E)"
+
+msgid "&Sensibilidade:"
+msgstr "संवेदनशीलता(&S):"
+
+msgid "&Pré-Gravação:"
+msgstr "पूर्व-रिकॉर्डिंग(&P):"
+
+msgid "&Tempo de Silêncio:"
+msgstr "मौन का समय(&T):"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "मौन मिलने पर(&W):"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "रिकॉर्डिंग के अपने आप रुकने, जारी होने या बंद होने पर टोन बजाएँ(&I)"
+
+msgid "Detecção de &Silêncio..."
+msgstr "मौन पहचान(&I)..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "मौन पहचान के लिए कम से कम एक ऐसा स्रोत चाहिए जो बैकग्राउंड ऑडियो न हो।"
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "एक से अधिक इंस्टेंस की अनुमति दें(&I)"

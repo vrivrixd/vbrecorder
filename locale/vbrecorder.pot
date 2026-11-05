@@ -1054,3 +1054,42 @@ msgstr ""
 
 msgid "Abrir Pasta de Gravações:"
 msgstr ""
+
+msgid "Pré-Gravação (&segundos):"
+msgstr ""
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr ""
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr ""
+
+msgid "Detecção de Silêncio"
+msgstr ""
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr ""
+
+msgid "&Sensibilidade:"
+msgstr ""
+
+msgid "&Pré-Gravação:"
+msgstr ""
+
+msgid "&Tempo de Silêncio:"
+msgstr ""
+
+msgid "Ao &Detectar Silêncio:"
+msgstr ""
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr ""
+
+msgid "Detecção de &Silêncio..."
+msgstr ""
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr ""
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr ""

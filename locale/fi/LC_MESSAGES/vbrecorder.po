@@ -1082,3 +1082,42 @@ msgstr "A&lbumin esittäjä:"
 
 msgid "Abrir Pasta de Gravações:"
 msgstr "Avaa tallennuskansio:"
+
+msgid "Pré-Gravação (&segundos):"
+msgstr "Esitalle&nnus (sekuntia):"
+
+msgid "Com o programa aberto, as fontes ficam sendo captadas e os últimos segundos são guardados: a gravação começa esse tanto antes de você clicar em Gravar. O áudio de fundo começa ao clicar. 0 desativa; até {maximo}."
+msgstr "Ohjelman ollessa auki lähteitä kaapataan koko ajan ja viimeiset sekunnit säilytetään: tallennus alkaa sen verran ennen kuin painat Tallenna. Taustaääni alkaa painettaessa. 0 poistaa käytöstä; enintään {maximo}."
+
+msgid "A pré-gravação deve ser um número de 0 a {maximo} segundos."
+msgstr "Esitallennuksen on oltava luku väliltä 0–{maximo} sekuntia."
+
+msgid "Detecção de Silêncio"
+msgstr "Hiljaisuuden tunnistus"
+
+msgid "&Ativar Detecção de Silêncio"
+msgstr "Ota &hiljaisuuden tunnistus käyttöön"
+
+msgid "&Sensibilidade:"
+msgstr "H&erkkyys:"
+
+msgid "&Pré-Gravação:"
+msgstr "E&sitallennus:"
+
+msgid "&Tempo de Silêncio:"
+msgstr "Hiljaisuuden &kesto:"
+
+msgid "Ao &Detectar Silêncio:"
+msgstr "K&un hiljaisuus havaitaan:"
+
+msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
+msgstr "&Toista äänimerkit, kun tallennus keskeytyy, jatkuu tai pysähtyy itsestään"
+
+msgid "Detecção de &Silêncio..."
+msgstr "Hiljaisuuden tunnistus(&C)..."
+
+msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
+msgstr "Hiljaisuuden tunnistus tarvitsee vähintään yhden lähteen, joka ei ole taustaääni."
+
+msgid "Permitir Múltiplas I&nstâncias"
+msgstr "Salli useita &rinnakkaisia kopioita"

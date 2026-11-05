@@ -85,7 +85,8 @@ history.
   nothing, and its sliders say the value itself (ms, dB, semitones): the
   arrows move one step, Page Up and Page Down a larger one.
 - **Noise remover** for audio devices, with RNNoise: it cleans up fans, hiss
-  and background noise from a microphone, with an adjustable intensity.
+  and background noise from a microphone, with an adjustable intensity, shown
+  only while the remover is on.
 - **Side chain ducking.** A source can turn the others down while it has
   sound: with the microphone and Discord set to reduce the others, the music
   and the game go down while someone speaks, and come back after. A source
@@ -123,8 +124,30 @@ history.
 - **Global hotkeys**, configurable, that work with the window minimized or
   hidden: record, pause and continue, stop, play, delete, open the recordings
   folder, show the window and close the program.
+- **Tray menu.** With the window minimized or hidden, the tray icon's menu
+  records, pauses, stops, continues the last recording, plays and deletes it,
+  changes the format, and opens Configure Tags, Recording Schedule, the
+  recordings folder and Settings. A window opened from there closes back to
+  where you were, and the main window stays minimized.
 - **Countdown**, optional: three low beeps, one per second, and the recording
   starts on the high one, as at the start of a race. Stop cancels it.
+- **Pre-recording.** In the settings, "Pre-Recording (seconds)", up to 60,
+  records what happened before Record was pressed: with the program open, the
+  sources are captured all the time and their last seconds are kept, so the
+  recording starts that much earlier. It also applies to scheduled recordings
+  and to Continue Last Recording, which then goes on with what was said while
+  you were getting to the button. Background audio starts when Record is
+  pressed. 0, the default, turns it off, and then nothing is captured until
+  you record.
+- **Silence detection.** Silence Detection, in the main window, acts once
+  the recording has started, by Record, a schedule or Continue Last
+  Recording: after the silence time with every source quiet (background audio
+  aside), it pauses until any source reaches the sensitivity, in dB, again, or
+  stops for good, as chosen. Each return keeps a little of what came just
+  before the sound (the detection's own pre-recording, 150 ms by default), so
+  the first syllable is never cut; the silence before a pause stays in the
+  file, and nothing of the time paused. Separate files pause together, so they
+  stay in sync. Tones for what it does by itself are optional.
 - **Recording duration**, optional: type how long to record (`1:30:00` is an
   hour and a half), and the recording stops by itself when it gets there.
   Pausing also pauses the count.
@@ -139,12 +162,14 @@ history.
   once its recording starts. The program does this itself, without the
   Windows Task Scheduler, so it must be open (in the tray is enough) and the
   computer awake.
-- **A second copy, for demonstrations.** `VBRecorder.exe --multiple` opens
-  even with another copy already running, so the program can record itself
-  being used. That copy does not look for updates by itself.
+- **More than one instance.** With "Allow Multiple Instances", in the
+  settings, VB Recorder can be opened more than once at the same time. Off by
+  default. Only the first one open looks for updates by itself.
 - **Settings window** with language, automatic update checks, start with
-  Windows, start minimized, minimize to tray, window always on top, countdown,
-  buffer size and split recording, besides the hotkeys.
+  Windows, start minimized, minimize to tray, window always on top, multiple
+  instances, countdown, pre-recording, split recording and buffer size,
+  besides the hotkeys. The pre-recording and the buffer are spin boxes: the
+  arrows change them by one, and they can still be typed.
 - **Automatic updates.** When it starts, the program checks GitHub for a new
   version and, if you want, downloads the right one for your Windows (32 or 64
   bits), installs it and opens it again. What is new in the version shows
