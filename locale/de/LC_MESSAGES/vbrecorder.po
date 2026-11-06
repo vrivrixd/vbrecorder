@@ -36,22 +36,22 @@ msgstr "Hauptfenster anzeigen"
 msgid "Sair"
 msgstr "Beenden"
 
-msgid "Formato de &Saída:"
-msgstr "Ausgabef&ormat:"
+msgid "&Formato de Saída:"
+msgstr "Ausgabefo&rmat:"
 
 msgid "&Bitrate:"
-msgstr "&Bitrate:"
+msgstr "Bit&rate:"
 
 msgid "Compressão &FLAC:"
-msgstr "FLAC-&Kompression:"
+msgstr "FLAC-Komp&ression:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "Abtast&rate:"
 
 msgid "Profundidade de &Bits:"
 msgstr "&Bittiefe:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "Kan&äle:"
 
 msgid "mono"
@@ -60,7 +60,7 @@ msgstr "Mono"
 msgid "estéreo"
 msgstr "Stereo"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "Aufnahme&quellen:"
 
 msgid "&Nome do Arquivo:"
@@ -582,7 +582,7 @@ msgid "E&stéreo"
 msgstr "&Stereo"
 
 msgid "Duração da Gravação (Opcio&nal):"
-msgstr "Aufna&hmedauer (optional):"
+msgstr "Aufnahme&dauer (optional):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Leer: Aufnahme ohne Begrenzung. 1:30:00 sind anderthalb Stunden, 45:00 sind 45 Minuten."
@@ -1115,11 +1115,65 @@ msgstr "&Bei erkannter Stille:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Töne abspielen, &wenn sie von selbst pausiert, fortfährt oder stoppt"
 
-msgid "Detecção de &Silêncio..."
-msgstr "Stillee&rkennung..."
+msgid "Dete&cção de Silêncio..."
+msgstr "Stilleer&kennung..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
 msgstr "Die Stilleerkennung braucht mindestens eine Quelle, die kein Hintergrundaudio ist."
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Mehrere Instanzen &zulassen"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "In einem Unter&ordner aufnehmen"
+
+msgid "Renomear &Gravação..."
+msgstr "Aufna&hme umbenennen..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Am Ende &der Aufnahme:"
+
+msgid "Não fazer nada"
+msgstr "Nichts tun"
+
+msgid "Fechar o programa"
+msgstr "Programm schließen"
+
+msgid "Hibernar"
+msgstr "Ruhezustand"
+
+msgid "Suspender"
+msgstr "Energie sparen"
+
+msgid "Desligar"
+msgstr "Herunterfahren"
+
+msgid "Reiniciar"
+msgstr "Neu starten"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Die gewählte Aktion am Ende der Aufnahme konnte nicht ausgeführt werden:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Aufnahme umbenennen"
+
+msgid "&Pasta:"
+msgstr "O&rdner:"
+
+msgid "&Arquivo {n}:"
+msgstr "&Datei {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Der Name darf nicht leer sein, nicht mit Punkt oder Leerzeichen enden und keines der Zeichen \\ / : * ? \" < > | enthalten"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Es gibt bereits eine Datei oder einen Ordner mit diesem Namen:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Umbenennen nicht möglich:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Aufnahme umbenennen:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Während der Aufnah&me wiedergeben"

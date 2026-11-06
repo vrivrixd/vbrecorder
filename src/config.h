@@ -32,7 +32,7 @@
 
 /* Program version, in a single place. It stays out of the translatable texts on
    purpose: bumping the version does not invalidate any translation. */
-#define VB_VERSION L"1.5.1"
+#define VB_VERSION L"1.5.2"
 
 /* Recording buffer, in milliseconds: how long a capture may be held up without
    losing audio. The default is the one BASS itself uses for recording. */
@@ -73,6 +73,7 @@ struct SourceEntry {
     bool shuffle = false;
     bool subfolders = false;
     double pan = 0.0;  // -1 left, 0 center, +1 right
+    bool listen = false;  // background audio or stream URL: also played while recording
 };
 
 /* A recording source. An "exe" source is every process with that executable
@@ -80,7 +81,9 @@ struct SourceEntry {
    "file" source is background audio: its name is the file or folder played,
    loop says whether it starts over when it ends, shuffle whether a folder
    plays in a random order, and subfolders whether the audio of the folders
-   inside it plays too. pan is the balance between left and right. */
+   inside it plays too. pan is the balance between left and right. listen:
+   background audio or a stream URL is also played, to be heard, while it
+   is recorded. */
 struct Source {
     std::wstring type;
     int id = 0;
@@ -91,6 +94,7 @@ struct Source {
     bool shuffle = false;
     bool subfolders = false;
     double pan = 0.0;  // -1 left, 0 center, +1 right
+    bool listen = false;
 };
 
 

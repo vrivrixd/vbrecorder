@@ -78,9 +78,12 @@ enum {
     IDC_CLOSE,
     IDC_TAGS,
     IDC_SILENCE,
+    IDC_RENAME,
+    IDC_SUBFOLDER,
+    IDC_AFTER,
 };
 
-enum { HK_REC = 1, HK_PAUSE, HK_STOP, HK_PLAY, HK_DELETE, HK_OPEN_DIR, HK_SHOW, HK_EXIT };
+enum { HK_REC = 1, HK_PAUSE, HK_STOP, HK_PLAY, HK_RENAME, HK_DELETE, HK_OPEN_DIR, HK_SHOW, HK_EXIT };
 
 enum {
     MENU_RECORD = 2001,
@@ -97,6 +100,8 @@ enum {
     MENU_SCHEDULE,
     MENU_OPEN_DIR,
     MENU_SETTINGS,
+    MENU_RENAME,
+    MENU_AFTER = 2900,  // + action
     MENU_COMBO = 3000,  // + 100 * combo box + item
 };
 
@@ -108,6 +113,12 @@ HANDLE g_instance_mutex = nullptr;
 const UINT WM_TRAY = WM_APP + 1;
 const UINT WM_UPDATE_FOUND = WM_APP + 3;  // lParam: an UpdateInfo to delete
 const UINT WM_CHECK_FOCUS = WM_APP + 4;
+const UINT WM_AFTER_RECORDING = WM_APP + 5;  // wParam: the AfterAction to do
+
+/* What the program does once a recording ends. In the order of the list;
+   the ones the computer cannot do are left out of it. */
+enum AfterAction { AFTER_NOTHING, AFTER_CLOSE, AFTER_HIBERNATE, AFTER_SLEEP, AFTER_SHUTDOWN, AFTER_RESTART };
+const wchar_t* const AFTER_KEYS[] = {L"nada", L"fechar", L"hibernar", L"suspender", L"desligar", L"reiniciar"};
 const UINT_PTR TIMER_PLAY = 1;
 const UINT_PTR TIMER_COUNTDOWN = 2;
 const UINT_PTR TIMER_DURATION = 3;
@@ -278,6 +289,12 @@ private:
     void AddTrayIcon();
     void RemoveTrayIcon();
     void ShowTrayMenu();
+    void OnRenameRecording();
+    void UpdateSubfolderOption();
+    void FillAfterList();
+    int AfterAction();
+    void SetAfterAction(int action);
+    void DoAfterRecording(int action);
     void FromTray(void (MainFrame::*open)());
     bool FocusTrayDialog();
     void AddButtonItem(HMENU menu, UINT id, HWND button);
@@ -309,12 +326,18 @@ private:
     HICON tray_icon_ = nullptr;
     std::vector<HWND> menu_combos_;
 
-    HWND btn_record_, btn_pause_, btn_continue_, btn_play_, btn_delete_;
+    HWND btn_record_, btn_pause_, btn_continue_, btn_play_, btn_rename_, btn_delete_;
     HWND lbl_format_, cmb_format_, lbl_bitrate_, cmb_bitrate_, lbl_flac_level_, cmb_flac_level_;
     HWND lbl_rate_, cmb_rate_, lbl_bits_, cmb_bits_, lbl_channels_, cmb_channels_;
     HWND btn_tags_;
     HWND lbl_sources_, lst_fontes_, btn_add_, btn_edit_, btn_rem_;
-    HWND chk_separate_, chk_tones_;
+    HWND chk_separate_, chk_subfolder_, chk_tones_;
+    HWND lbl_after_, cmb_after_;
+    std::vector<int> after_actions_;  // the AfterAction of each item of the list
+    // The folder of its own the recording goes into, with "Record in a
+    // Subfolder"; empty when it has none. last_folder_ is the one of the
+    // last recording, deleted with it once empty, and renamed with it.
+    std::wstring recording_folder_, last_folder_;
     HWND lbl_duration_, txt_duration_;
     // The recording stops by itself when it reaches this many seconds; 0 is
     // no limit. Counted from where it started, or was continued, without the
@@ -402,6 +425,12 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
                     case IDC_PAUSE: OnPauseToggle(); return TRUE;
                     case IDC_PLAY: OnPlayToggle(); return TRUE;
                     case IDC_DELETE: OnDeleteRecording(); return TRUE;
+                    case IDC_RENAME: OnRenameRecording(); return TRUE;
+                    case IDC_SEPARATE:
+                        UpdateSubfolderOption();
+                        Layout();
+                        SaveSettings();
+                        return TRUE;
                     case IDC_CONTINUE: OnContinueLast(); return TRUE;
                     case IDC_ADD: OnAddSource(); return TRUE;
                     case IDC_EDIT: OnEditSource(); return TRUE;
@@ -420,6 +449,7 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
             if ((id == IDC_FORMAT || id == IDC_RATE || id == IDC_CHANNELS || id == IDC_BITS) &&
                 code == CBN_SELCHANGE)
                 OnFormatChange();
+            if (id == IDC_AFTER && code == CBN_SELCHANGE) SaveSettings();
             return TRUE;  // IDOK and IDCANCEL (Enter and Esc) do not close the window
         }
         case WM_ACTIVATE:
@@ -451,6 +481,9 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
             if (wp == TIMER_SCHEDULE) OnScheduleTick();
             if (wp == TIMER_FILES) OnFilesTick();
             if (wp == TIMER_DETECT) OnDetectTick();
+            return TRUE;
+        case WM_AFTER_RECORDING:
+            DoAfterRecording((int)wp);
             return TRUE;
         case WM_TRAY:
             if (LOWORD(lp) == WM_LBUTTONDBLCLK) ShowMain();
@@ -510,13 +543,15 @@ void MainFrame::SetupUi() {
     EnableWindow(btn_pause_, FALSE);
     btn_play_ = Add(WC_BUTTONW, BUTTON, IDC_PLAY);
     EnableWindow(btn_play_, FALSE);
+    btn_rename_ = Add(WC_BUTTONW, BUTTON, IDC_RENAME);
+    EnableWindow(btn_rename_, FALSE);
     btn_delete_ = Add(WC_BUTTONW, BUTTON, IDC_DELETE);
     EnableWindow(btn_delete_, FALSE);
     btn_continue_ = Add(WC_BUTTONW, BUTTON, IDC_CONTINUE);
     EnableWindow(btn_continue_, FALSE);
     // The continue button sits next to Pause, which is what it resembles.
     SetWindowPos(btn_continue_, btn_pause_, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
-    for (HWND b : {btn_record_, btn_pause_, btn_continue_, btn_play_, btn_delete_})
+    for (HWND b : {btn_record_, btn_pause_, btn_continue_, btn_play_, btn_rename_, btn_delete_})
         hbox_ctrl->Add(b, 0, ui::ALL, S(5));
     vbox->Add(std::move(hbox_ctrl), 0, ui::CENTER | ui::ALL, S(10));
 
@@ -571,6 +606,9 @@ void MainFrame::SetupUi() {
 
     chk_separate_ = Add(WC_BUTTONW, CHECK, IDC_SEPARATE);
     vbox->Add(chk_separate_, 0, ui::ALL, S(10));
+    // Only with separate files: each recording in a folder of its own.
+    chk_subfolder_ = Add(WC_BUTTONW, CHECK, IDC_SUBFOLDER);
+    vbox->Add(chk_subfolder_, 0, ui::ALL, S(10));
     chk_tones_ = Add(WC_BUTTONW, CHECK, IDC_TONES);
     vbox->Add(chk_tones_, 0, ui::ALL, S(10));
 
@@ -586,6 +624,15 @@ void MainFrame::SetupUi() {
         hb->Add(btn_schedule_, 0, ui::RIGHT, S(5));
         hb->Add(btn_silence_, 0, 0, 0);
         vbox->Add(std::move(hb), 0, ui::ALL, S(5));
+    }
+    // What the program does when a recording ends: close, shut down...
+    lbl_after_ = Add(WC_STATICW, 0, 0);
+    cmb_after_ = Add(WC_COMBOBOXW, COMBO, IDC_AFTER);
+    {
+        auto hb = HBox();
+        hb->Add(lbl_after_, 0, ui::CENTER_V | ui::RIGHT, S(5));
+        hb->Add(cmb_after_, 1, ui::EXPAND, 0);
+        vbox->Add(std::move(hb), 0, ui::ALL | ui::EXPAND, S(5));
     }
 
     lbl_filename_ = Add(WC_STATICW, 0, 0);
@@ -625,18 +672,18 @@ void MainFrame::SetupUi() {
 /* Writes every text of the window in the current language. It is the only
    place they appear, so switching languages leaves nothing behind. */
 void MainFrame::Retranslate() {
-    ui::SetText(lbl_format_, tr("Formato de &Saída:"));
+    ui::SetText(lbl_format_, tr("&Formato de Saída:"));
     ui::SetText(lbl_bitrate_, tr("&Bitrate:"));
     ui::SetText(lbl_flac_level_, tr("Compressão &FLAC:"));
-    ui::SetText(lbl_rate_, tr("&Taxa de Amostragem:"));
+    ui::SetText(lbl_rate_, tr("Taxa &de Amostragem:"));
     ui::SetText(lbl_bits_, tr("Profundidade de &Bits:"));
-    ui::SetText(lbl_channels_, tr("&Canais:"));
+    ui::SetText(lbl_channels_, tr("Ca&nais:"));
     // Same order as the values in the .ini: mono, stereo.
     int channels = (int)SendMessageW(cmb_channels_, CB_GETCURSEL, 0, 0);
     ui::ComboSetItems(cmb_channels_, {tr("mono"), tr("estéreo")});
     SendMessageW(cmb_channels_, CB_SETCURSEL, channels == 0 ? 0 : 1, 0);
     ui::SetText(btn_tags_, tr("Configurar &Tags..."));
-    ui::SetText(lbl_sources_, tr("Fontes de &Gravação:"));
+    ui::SetText(lbl_sources_, tr("&Fontes de Gravação:"));
     ui::SetText(lbl_duration_, tr("Duração da Gravação (Opcio&nal):"));
     ui::SetToolTip(hwnd_, txt_duration_,
                    tr("Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."));
@@ -649,7 +696,7 @@ void MainFrame::Retranslate() {
     ui::SetText(btn_browse_, tr("&Procurar..."));
     ui::SetText(btn_open_dir_, tr("Abr&ir Pasta de Gravações"));
     ui::SetText(btn_schedule_, tr("Agenda&mento de Gravações..."));
-    ui::SetText(btn_silence_, tr("Detecção de &Silêncio..."));
+    ui::SetText(btn_silence_, tr("Dete&cção de Silêncio..."));
     ui::SetText(btn_settings_, tr("Configura&ções..."));
     ui::SetText(btn_about_, tr("S&obre"));
     ui::SetText(btn_min_, tr("&Minimizar"));
@@ -658,6 +705,10 @@ void MainFrame::Retranslate() {
     ui::SetText(btn_continue_, tr("Continuar Ú&ltima Gravação"));
 
     ui::SetText(chk_separate_, tr("Gravar fontes em ar&quivos separados"));
+    ui::SetText(chk_subfolder_, tr("Gravar em uma &Subpasta"));
+    ui::SetText(btn_rename_, tr("Renomear &Gravação..."));
+    ui::SetText(lbl_after_, tr("Ao Termi&nar a Gravação:"));
+    FillAfterList();
     ui::SetText(chk_tones_, tr("Reprodu&zir tons ao iniciar ou parar gravação"));
 
     ui::SetText(btn_record_, audio.is_recording() || Waiting() ? tr("P&arar") : tr("Gr&avar"));
@@ -715,6 +766,7 @@ void MainFrame::RefreshList() {
     EnableWindow(btn_edit_, any);
     EnableWindow(btn_rem_, any);
     ui::Show(chk_separate_, sources_.size() >= 2);
+    UpdateSubfolderOption();
     Layout();
 }
 
@@ -765,7 +817,7 @@ void MainFrame::RegisterAllHotkeys() {
     for (int id = HK_REC; id <= HK_EXIT; ++id) UnregisterHotKey(hwnd_, id);
     const std::pair<int, const wchar_t*> keys_map[] = {
         {HK_REC, L"gravar"}, {HK_PAUSE, L"pausar"}, {HK_STOP, L"parar"},
-        {HK_PLAY, L"reproduzir"}, {HK_DELETE, L"excluir"}, {HK_OPEN_DIR, L"abrir_pasta"},
+        {HK_PLAY, L"reproduzir"}, {HK_RENAME, L"renomear"}, {HK_DELETE, L"excluir"}, {HK_OPEN_DIR, L"abrir_pasta"},
         {HK_SHOW, L"mostrar"}, {HK_EXIT, L"fechar"}};
     for (auto& k : keys_map) {
         UINT mods = 0, vk = 0;
@@ -792,6 +844,12 @@ void MainFrame::OnHotkey(int id) {
     else if (id == HK_PLAY && (audio.IsPlaying() || HasRecording())) OnPlayToggle();
     // Not while a dialog of the program is open, where it would pile up.
     else if (id == HK_DELETE && HasRecording() && IsWindowEnabled(hwnd_)) OnDeleteRecording();
+    else if (id == HK_RENAME && HasRecording() && IsWindowEnabled(hwnd_) && !tray_dialog_) {
+        // As from the tray: with the window hidden, the focus goes back
+        // where it was.
+        tray_back_ = GetForegroundWindow();
+        FromTray(&MainFrame::OnRenameRecording);
+    }
     else if (id == HK_OPEN_DIR) OnOpenDir();
     else if (id == HK_SHOW) ShowMain();
     else if (id == HK_EXIT) OnClose();
@@ -1148,6 +1206,13 @@ void MainFrame::LoadSettings() {
     ui::ComboSetValue(cmb_flac_level_, or_default(L"flac_nivel", L"8"));
     SetChecked(chk_tones_, config.GetBoolean(L"reproduzir_tons"));
     SetChecked(chk_separate_, config.GetBoolean(L"arquivos_separados"));
+    SetChecked(chk_subfolder_, config.GetBoolean(L"subpasta"));
+    {
+        int action = AFTER_NOTHING;
+        for (int a = 0; a <= AFTER_RESTART; ++a)
+            if (config.Get(L"ao_terminar") == AFTER_KEYS[a]) action = a;
+        SetAfterAction(action);
+    }
     SetWindowTextW(txt_filename_, config.Get(L"arquivo").c_str());
     SetWindowTextW(txt_duration_, config.Get(L"duracao").c_str());
     SetWindowTextW(txt_dir_, config.Get(L"diretorio").c_str());
@@ -1182,7 +1247,10 @@ void MainFrame::LoadSettings() {
                                           entry.volume, entry.fx});
             }
         }
-        if (sources_.size() > before) sources_.back().pan = entry.pan;
+        if (sources_.size() > before) {
+            sources_.back().pan = entry.pan;
+            sources_.back().listen = entry.listen;
+        }
     }
     schedules_ = config.GetSchedules();
     for (auto& s : schedules_) s.id = next_schedule_id_++;
@@ -1205,6 +1273,8 @@ void MainFrame::SaveSettings() {
     config.SetConfig(L"canais", ChannelsValue());
     config.SetConfig(L"reproduzir_tons", Checked(chk_tones_));
     config.SetConfig(L"arquivos_separados", Checked(chk_separate_));
+    config.SetConfig(L"subpasta", Checked(chk_subfolder_));
+    config.SetConfig(L"ao_terminar", AFTER_KEYS[AfterAction()]);
     config.SetConfig(L"arquivo", ui::GetText(txt_filename_));
     config.SetConfig(L"duracao", Trim(ui::GetText(txt_duration_)));
     config.SetConfig(L"diretorio", ui::GetText(txt_dir_));
@@ -1250,9 +1320,12 @@ void MainFrame::StopNow(bool tone) {
     last_recording_.clear();
     for (auto& p : audio.output_files())
         if (FileExists(p)) last_recording_.push_back(p);
+    if (!recording_folder_.empty()) last_folder_ = recording_folder_;
     UpdateRecordingButtons();
     // Waiting for the next one, with the pre-recording.
     UpdateStandby();
+    // Close, shut down...: once all of this is done.
+    if (AfterAction() != AFTER_NOTHING) PostMessageW(hwnd_, WM_AFTER_RECORDING, AfterAction(), 0);
 }
 
 LONGLONG MainFrame::PrerollFrom() {
@@ -1375,12 +1448,20 @@ bool MainFrame::StartRecordingNow(bool tone, LONGLONG from) {
     auto taken = [&](const std::wstring& path) {
         return FileExists(path) || (split > 0 && FileExists(AudioEngine::PartPath(path, 1)));
     };
-    std::wstring full_path = JoinPath(out_dir, filename + L"." + ext);
+    // Separate files in a subfolder: a folder named as the file, which must
+    // not exist yet either, holds them.
+    const bool subfolder = Checked(chk_separate_) && Checked(chk_subfolder_) && sources_.size() >= 2;
+    auto place = [&](const std::wstring& name) {
+        return subfolder ? JoinPath(JoinPath(out_dir, name), name + L"." + ext) : JoinPath(out_dir, name + L"." + ext);
+    };
+    std::wstring full_path = place(filename);
     std::wstring base = filename;
-    for (int counter = 1; taken(full_path); ++counter) {
+    for (int counter = 1; taken(full_path) || (subfolder && DirExists(JoinPath(out_dir, filename))); ++counter) {
         filename = base + L" " + std::to_wstring(counter);
-        full_path = JoinPath(out_dir, filename + L"." + ext);
+        full_path = place(filename);
     }
+    recording_folder_ = subfolder ? JoinPath(out_dir, filename) : L"";
+    if (subfolder) MakeDirs(recording_folder_);
     std::wstring bitrate_val = ui::ComboValue(cmb_bitrate_);
     bitrate_val = bitrate_val.substr(0, bitrate_val.find(L' '));
     int err = 0;
@@ -1395,6 +1476,9 @@ bool MainFrame::StartRecordingNow(bool tone, LONGLONG from) {
         RecordingStarted();
         return true;
     }
+    // The folder made for it stays only with files in it.
+    if (!recording_folder_.empty()) RemoveDirectoryW(recording_folder_.c_str());
+    recording_folder_.clear();
     detect_ = DETECT_OFF;
     KillTimer(hwnd_, TIMER_DETECT);
     ui::SetText(btn_record_, tr("Gr&avar"));
@@ -1620,6 +1704,7 @@ void MainFrame::UpdateRecordingButtons() {
     bool available = HasRecording();
     files_state_ = (available ? 1 : 0) | (CanContinue() ? 2 : 0);
     EnableControl(btn_play_, available);
+    EnableControl(btn_rename_, available);
     EnableControl(btn_delete_, available);
     EnableControl(btn_continue_, CanContinue());
     UpdatePlayButton();
@@ -1705,6 +1790,9 @@ void MainFrame::OnDeleteRecording() {
             failures.push_back(BaseName(path) + L": " + WinErrorText(GetLastError()) + L": '" +
                              path + L"'");
     }
+    // Its folder goes with it, once empty.
+    if (!last_folder_.empty()) RemoveDirectoryW(last_folder_.c_str());
+    last_folder_.clear();
     last_recording_.clear();
     UpdateRecordingButtons();
     if (!failures.empty()) {
@@ -1724,7 +1812,7 @@ void MainFrame::ToggleUi(bool enable) {
     // The sources stay available: they can be added, edited and removed while
     // recording.
     for (HWND ctrl : {cmb_format_, cmb_bitrate_, cmb_flac_level_, cmb_rate_, cmb_bits_, cmb_channels_,
-                      chk_separate_, txt_duration_, txt_dir_, btn_browse_, txt_filename_,
+                      chk_separate_, chk_subfolder_, txt_duration_, txt_dir_, btn_browse_, txt_filename_,
                       btn_settings_, btn_tags_, btn_silence_})
         EnableControl(ctrl, enable);
 }
@@ -1806,6 +1894,196 @@ void MainFrame::AddSubmenu(HMENU parent, const std::wstring& label, int index, H
     AppendMenuW(parent, MF_POPUP, (UINT_PTR)sub, label.c_str());
 }
 
+/* "Record in a Subfolder" is there only with separate files checked. */
+void MainFrame::UpdateSubfolderOption() {
+    ui::Show(chk_subfolder_, sources_.size() >= 2 && Checked(chk_separate_));
+}
+
+/* The list of what to do when a recording ends, in the current language;
+   the choice stays. Hibernate and sleep only where the computer has them. */
+void MainFrame::FillAfterList() {
+    const int current = after_actions_.empty() ? (int)AFTER_NOTHING : AfterAction();
+    SYSTEM_POWER_CAPABILITIES caps = {};
+    typedef BOOLEAN(WINAPI * CapsFn)(PSYSTEM_POWER_CAPABILITIES);
+    HMODULE powrprof = LoadLibraryW(L"powrprof.dll");
+    CapsFn get_caps = powrprof ? (CapsFn)(void*)GetProcAddress(powrprof, "GetPwrCapabilities") : nullptr;
+    const bool known = get_caps && get_caps(&caps);
+    // spare2[2] is AoAc (Modern Standby) in the newer headers of Windows.
+    const bool hibernate = !known || (caps.SystemS4 && caps.HiberFilePresent);
+    const bool sleep = !known || caps.SystemS1 || caps.SystemS2 || caps.SystemS3 || caps.spare2[2];
+    after_actions_.clear();
+    std::vector<std::wstring> items;
+    auto add = [&](int action, const std::wstring& text) {
+        after_actions_.push_back(action);
+        items.push_back(text);
+    };
+    add(AFTER_NOTHING, tr("Não fazer nada"));
+    add(AFTER_CLOSE, tr("Fechar o programa"));
+    if (hibernate) add(AFTER_HIBERNATE, tr("Hibernar"));
+    if (sleep) add(AFTER_SLEEP, tr("Suspender"));
+    add(AFTER_SHUTDOWN, tr("Desligar"));
+    add(AFTER_RESTART, tr("Reiniciar"));
+    ui::ComboSetItems(cmb_after_, items);
+    SetAfterAction(current);
+}
+
+int MainFrame::AfterAction() {
+    int sel = (int)SendMessageW(cmb_after_, CB_GETCURSEL, 0, 0);
+    return sel >= 0 && sel < (int)after_actions_.size() ? after_actions_[sel] : (int)AFTER_NOTHING;
+}
+
+void MainFrame::SetAfterAction(int action) {
+    int sel = 0;
+    for (size_t i = 0; i < after_actions_.size(); ++i)
+        if (after_actions_[i] == action) sel = (int)i;
+    SendMessageW(cmb_after_, CB_SETCURSEL, sel, 0);
+}
+
+/* The recording ended: the program closes, or the computer hibernates,
+   sleeps, shuts down or restarts, at once. The list goes back to doing
+   nothing first, so a later recording does not do it again by surprise. */
+void MainFrame::DoAfterRecording(int action) {
+    if (audio.is_recording() || action == AFTER_NOTHING) return;
+    SetAfterAction(AFTER_NOTHING);
+    SaveSettings();
+    if (action == AFTER_CLOSE) {
+        OnClose();
+        return;
+    }
+    // Shutting down, restarting and sleeping need this right of the user.
+    HANDLE token = nullptr;
+    if (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &token)) {
+        TOKEN_PRIVILEGES tp = {};
+        tp.PrivilegeCount = 1;
+        tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+        if (LookupPrivilegeValueW(nullptr, SE_SHUTDOWN_NAME, &tp.Privileges[0].Luid))
+            AdjustTokenPrivileges(token, FALSE, &tp, 0, nullptr, nullptr);
+        CloseHandle(token);
+    }
+    bool done = false;
+    DWORD error = 0;
+    if (action == AFTER_HIBERNATE || action == AFTER_SLEEP) {
+        typedef BOOLEAN(WINAPI * SuspendFn)(BOOLEAN, BOOLEAN, BOOLEAN);
+        typedef BOOLEAN(WINAPI * CapsFn)(PSYSTEM_POWER_CAPABILITIES);
+        HMODULE powrprof = LoadLibraryW(L"powrprof.dll");
+        SuspendFn suspend = powrprof ? (SuspendFn)(void*)GetProcAddress(powrprof, "SetSuspendState") : nullptr;
+        CapsFn get_caps = powrprof ? (CapsFn)(void*)GetProcAddress(powrprof, "GetPwrCapabilities") : nullptr;
+        SYSTEM_POWER_CAPABILITIES caps = {};
+        const bool classic = get_caps && get_caps(&caps) && (caps.SystemS1 || caps.SystemS2 || caps.SystemS3);
+        if (action == AFTER_SLEEP && !classic) {
+            // Modern Standby has no sleep to ask for: with the screen off,
+            // the computer goes into it by itself.
+            DefWindowProcW(hwnd_, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
+            done = true;
+        } else if (suspend) {
+            done = suspend(action == AFTER_HIBERNATE, FALSE, FALSE) != 0;
+        }
+        if (!done) error = GetLastError();
+    } else {
+        const UINT how = action == AFTER_RESTART ? EWX_REBOOT : EWX_POWEROFF;
+        done = ExitWindowsEx(how, SHTDN_REASON_MAJOR_APPLICATION | SHTDN_REASON_FLAG_PLANNED) != 0;
+        if (!done) error = GetLastError();
+    }
+    if (!done)
+        Warn(Format(tr("Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"),
+                    {{L"erro", WinErrorText(error)}}),
+             tr("Erro"), MB_ICONERROR);
+}
+
+/* Renames the files of the last recording, and its folder, from a window
+   with a field for each. Continue Last Recording goes on in them. */
+void MainFrame::OnRenameRecording() {
+    std::vector<std::wstring> files = ExistingRecordingFiles();
+    if (files.empty()) {
+        last_recording_.clear();
+        UpdateRecordingButtons();
+        return;
+    }
+    auto parent_of = [](const std::wstring& path) {
+        size_t slash = path.find_last_of(L"\\/");
+        return slash == std::wstring::npos ? std::wstring() : path.substr(0, slash);
+    };
+    // The folder counts only while every file is still in it.
+    std::wstring folder = last_folder_;
+    if (!folder.empty() && !DirExists(folder)) folder.clear();
+    for (auto& f : files)
+        if (!folder.empty() && ToLower(parent_of(f)) != ToLower(folder)) folder.clear();
+    std::vector<std::wstring> names, exts;
+    for (auto& f : files) {
+        std::wstring stem, ext;
+        SplitExt(BaseName(f), &stem, &ext);
+        names.push_back(stem);
+        exts.push_back(ext);
+    }
+    std::wstring folder_name = folder.empty() ? L"" : BaseName(folder);
+    for (;;) {
+        RenameDialog dlg(folder_name, names);
+        if (dlg.ShowModal(DialogParent()) != IDOK) return;
+        folder_name = dlg.folder_result;
+        names = dlg.result;
+        const std::wstring new_folder = folder.empty() ? L"" : JoinPath(parent_of(folder), folder_name);
+        std::vector<std::wstring> targets;
+        for (size_t i = 0; i < files.size(); ++i)
+            targets.push_back(JoinPath(folder.empty() ? parent_of(files[i]) : new_folder, names[i] + exts[i]));
+        // No two files with the same name, and none over another file or folder.
+        std::wstring problem;
+        if (!folder.empty() && ToLower(new_folder) != ToLower(folder) &&
+            (DirExists(new_folder) || FileExists(new_folder)))
+            problem = new_folder;
+        for (size_t i = 0; i < targets.size() && problem.empty(); ++i) {
+            for (size_t j = 0; j < i; ++j)
+                if (ToLower(targets[j]) == ToLower(targets[i])) problem = targets[i];
+            // Where the file is once its folder is renamed.
+            const std::wstring here = folder.empty() ? files[i] : JoinPath(new_folder, BaseName(files[i]));
+            if (problem.empty() && ToLower(targets[i]) != ToLower(here) && ToLower(targets[i]) != ToLower(files[i]) &&
+                (FileExists(targets[i]) || DirExists(targets[i])))
+                problem = targets[i];
+        }
+        if (!problem.empty()) {
+            Warn(Format(tr("Já existe um arquivo ou pasta com esse nome:\n{caminho}"), {{L"caminho", problem}}),
+                 tr("Aviso"), MB_ICONWARNING);
+            continue;
+        }
+        audio.StopPlayback();
+        UpdatePlayButton();
+        std::vector<std::wstring> failures;
+        std::vector<std::wstring> current = files;
+        std::wstring renamed_folder;
+        if (!folder.empty() && new_folder != folder) {
+            if (MoveFileW(folder.c_str(), new_folder.c_str())) {
+                renamed_folder = new_folder;
+                for (auto& c : current) c = JoinPath(new_folder, BaseName(c));
+            } else {
+                failures.push_back(BaseName(folder) + L": " + WinErrorText(GetLastError()));
+                // The files are renamed where they are.
+                for (auto& t : targets) t = JoinPath(folder, BaseName(t));
+            }
+        }
+        std::vector<std::pair<std::wstring, std::wstring>> moved;
+        for (size_t i = 0; i < current.size(); ++i) {
+            if (current[i] == targets[i]) {
+                moved.emplace_back(files[i], current[i]);
+            } else if (MoveFileW(current[i].c_str(), targets[i].c_str())) {
+                moved.emplace_back(files[i], targets[i]);
+            } else {
+                failures.push_back(BaseName(current[i]) + L": " + WinErrorText(GetLastError()));
+                moved.emplace_back(files[i], current[i]);
+            }
+        }
+        audio.RenameLastRecording(moved, renamed_folder.empty() ? L"" : folder, renamed_folder);
+        last_recording_.clear();
+        for (auto& m : moved) last_recording_.push_back(m.second);
+        if (!renamed_folder.empty()) last_folder_ = renamed_folder;
+        UpdateRecordingButtons();
+        if (!failures.empty()) {
+            std::wstring text = tr("Não foi possível renomear:\n");
+            for (size_t i = 0; i < failures.size(); ++i) text += (i ? L"\n" : L"") + failures[i];
+            Warn(text, tr("Erro"), MB_ICONERROR);
+        }
+        return;
+    }
+}
+
 /* A button of the window as a menu item: its text, without the accelerator. */
 void MainFrame::AddButtonItem(HMENU menu, UINT id, HWND button) {
     std::wstring text = ui::GetText(button);
@@ -1882,6 +2160,7 @@ void MainFrame::ShowTrayMenu() {
         if (HasRecording()) {
             std::wstring label_play = audio.IsPlaying() ? tr("Parar Reprodução") : tr("Reproduzir Gravação");
             AppendMenuW(menu, MF_STRING, MENU_PLAY, label_play.c_str());
+            AddButtonItem(menu, MENU_RENAME, btn_rename_);
             AppendMenuW(menu, MF_STRING, MENU_DELETE, tr("Excluir Gravação").c_str());
         }
         AppendMenuW(menu, MF_SEPARATOR, 0, nullptr);
@@ -1902,6 +2181,19 @@ void MainFrame::ShowTrayMenu() {
         AppendMenuW(menu, MF_STRING | (Checked(chk_tones_) ? MF_CHECKED : 0), MENU_TONES,
                     tr("Reproduzir tons ao iniciar ou parar gravação").c_str());
         AddButtonItem(menu, MENU_SCHEDULE, btn_schedule_);
+        {
+            // The list of the window, as a submenu with the choice marked.
+            HMENU sub = CreatePopupMenu();
+            int current = AfterAction();
+            std::vector<std::wstring> items = ui::ComboItems(cmb_after_);
+            for (size_t i = 0; i < after_actions_.size() && i < items.size(); ++i)
+                AppendMenuW(sub, MF_STRING | (after_actions_[i] == current ? MF_CHECKED : 0),
+                            MENU_AFTER + after_actions_[i], items[i].c_str());
+            std::wstring label = ui::GetText(lbl_after_);
+            label.erase(std::remove(label.begin(), label.end(), L'&'), label.end());
+            if (!label.empty() && label.back() == L':') label.pop_back();
+            AppendMenuW(menu, MF_POPUP, (UINT_PTR)sub, label.c_str());
+        }
         AddButtonItem(menu, MENU_OPEN_DIR, btn_open_dir_);
         AddButtonItem(menu, MENU_SETTINGS, btn_settings_);
     } else {
@@ -1911,6 +2203,19 @@ void MainFrame::ShowTrayMenu() {
         // As in the window: while recording, the schedules and the folder stay available.
         AppendMenuW(menu, MF_SEPARATOR, 0, nullptr);
         AddButtonItem(menu, MENU_SCHEDULE, btn_schedule_);
+        {
+            // The list of the window, as a submenu with the choice marked.
+            HMENU sub = CreatePopupMenu();
+            int current = AfterAction();
+            std::vector<std::wstring> items = ui::ComboItems(cmb_after_);
+            for (size_t i = 0; i < after_actions_.size() && i < items.size(); ++i)
+                AppendMenuW(sub, MF_STRING | (after_actions_[i] == current ? MF_CHECKED : 0),
+                            MENU_AFTER + after_actions_[i], items[i].c_str());
+            std::wstring label = ui::GetText(lbl_after_);
+            label.erase(std::remove(label.begin(), label.end(), L'&'), label.end());
+            if (!label.empty() && label.back() == L':') label.pop_back();
+            AppendMenuW(menu, MF_POPUP, (UINT_PTR)sub, label.c_str());
+        }
         AddButtonItem(menu, MENU_OPEN_DIR, btn_open_dir_);
     }
     AppendMenuW(menu, MF_SEPARATOR, 0, nullptr);
@@ -1941,6 +2246,7 @@ void MainFrame::OnTrayCommand(UINT cmd) {
         case MENU_SCHEDULE: FromTray(&MainFrame::OnSchedule); return;
         case MENU_OPEN_DIR: OnOpenDir(); return;
         case MENU_SETTINGS: FromTray(&MainFrame::OnSettings); return;
+        case MENU_RENAME: FromTray(&MainFrame::OnRenameRecording); return;
         case MENU_SEPARATE:
             SetChecked(chk_separate_, !Checked(chk_separate_));
             SaveSettings();
@@ -1949,6 +2255,11 @@ void MainFrame::OnTrayCommand(UINT cmd) {
             SetChecked(chk_tones_, !Checked(chk_tones_));
             SaveSettings();
             return;
+    }
+    if (cmd >= MENU_AFTER && cmd <= MENU_AFTER + AFTER_RESTART) {
+        SetAfterAction((int)cmd - MENU_AFTER);
+        SaveSettings();
+        return;
     }
     if (cmd >= MENU_COMBO) {
         int index = (cmd - MENU_COMBO) / 100, item = (cmd - MENU_COMBO) % 100;

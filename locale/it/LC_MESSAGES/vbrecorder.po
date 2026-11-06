@@ -36,22 +36,22 @@ msgstr "Mostra finestra principale"
 msgid "Sair"
 msgstr "Esci"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "Formato &di uscita:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
 
 msgid "Compressão &FLAC:"
-msgstr "Compressione &FLAC:"
+msgstr "Compre&ssione FLAC:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "Fre&quenza di campionamento:"
 
 msgid "Profundidade de &Bits:"
 msgstr "Profondità di &bit:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "&Canali:"
 
 msgid "mono"
@@ -60,14 +60,14 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "&Sorgenti di registrazione:"
 
 msgid "&Nome do Arquivo:"
-msgstr "&Nome del file:"
+msgstr "Nome &del file:"
 
 msgid "&Diretório de Saída:"
-msgstr "Cartella di &uscita:"
+msgstr "Cartella &di uscita:"
 
 msgid "Adici&onar"
 msgstr "&Aggiungi"
@@ -82,7 +82,7 @@ msgid "&Procurar..."
 msgstr "Sfo&glia..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Apri cartella delle registrazioni"
+msgstr "Apri &cartella delle registrazioni"
 
 msgid "Configura&ções..."
 msgstr "Imposta&zioni..."
@@ -1116,7 +1116,7 @@ msgstr "&Quando rileva silenzio:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Riproduci &toni quando si mette in pausa, riprende o si ferma da sola"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "Rilevamento &del silenzio..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1124,3 +1124,57 @@ msgstr "Il rilevamento del silenzio richiede almeno una sorgente che non sia aud
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Consenti più istan&ze"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Registra in &una sottocartella"
+
+msgid "Renomear &Gravação..."
+msgstr "Rinomina regi&strazione..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Al termine della regi&strazione:"
+
+msgid "Não fazer nada"
+msgstr "Non fare nulla"
+
+msgid "Fechar o programa"
+msgstr "Chiudi il programma"
+
+msgid "Hibernar"
+msgstr "Iberna"
+
+msgid "Suspender"
+msgstr "Sospendi"
+
+msgid "Desligar"
+msgstr "Arresta il sistema"
+
+msgid "Reiniciar"
+msgstr "Riavvia"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Impossibile fare quanto scelto al termine della registrazione:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Rinomina registrazione"
+
+msgid "&Pasta:"
+msgstr "&Cartella:"
+
+msgid "&Arquivo {n}:"
+msgstr "&File {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Il nome non può essere vuoto, finire con un punto o uno spazio, né contenere i caratteri \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Esiste già un file o una cartella con questo nome:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Impossibile rinominare:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Rinomina registrazione:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Riprod&uci durante la registrazione"

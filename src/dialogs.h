@@ -108,6 +108,27 @@ private:
     HWND btn_ok_ = nullptr, btn_cancel_ = nullptr;
 };
 
+/* Renames the last recording: a field for each file, with its name without
+   the extension, and one for its folder when it was recorded in a folder of
+   its own (folder empty when not). The names are checked for what Windows
+   does not accept in a file name. */
+class RenameDialog : public ui::Dialog {
+public:
+    RenameDialog(const std::wstring& folder, const std::vector<std::wstring>& names);
+    std::wstring folder_result;
+    std::vector<std::wstring> result;
+
+protected:
+    void OnInit() override;
+    bool OnCommand(int id, int code, HWND control) override;
+
+private:
+    std::wstring folder_;
+    std::vector<std::wstring> names_;
+    HWND folder_edit_ = nullptr;
+    std::vector<HWND> edits_;
+};
+
 /* Offers an update, with what is new in it. The notes come first, where the
    focus starts, and Enter does nothing in them, so reading them never says
    yes by accident; Esc says no. ShowModal gives IDOK for yes. */
@@ -211,11 +232,11 @@ private:
     HWND rb_exe_ = nullptr, lbl_src_ = nullptr, lbl_exe_ = nullptr, txt_exe_ = nullptr;
     HWND rb_file_ = nullptr, lbl_file_ = nullptr, txt_file_ = nullptr, btn_file_browse_ = nullptr,
          btn_folder_browse_ = nullptr, chk_loop_ = nullptr, chk_shuffle_ = nullptr,
-         chk_subfolders_ = nullptr;
+         chk_subfolders_ = nullptr, chk_listen_ = nullptr;
     HWND rb_url_ = nullptr, lbl_url_ = nullptr, txt_url_ = nullptr, btn_url_browse_ = nullptr;
     HWND lbl_pick_ = nullptr, cmb_pick_ = nullptr;  // the channels recorded
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,
-         sld_ = nullptr, lbl_db_ = nullptr, sld_pan_ = nullptr, lbl_pan_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, btn_fx_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr, btn_exe_browse_ = nullptr,
+         sld_ = nullptr, sld_pan_ = nullptr, btn_test_ = nullptr, btn_refresh_ = nullptr, btn_eq_ = nullptr, btn_fx_ = nullptr, chk_all_ = nullptr, chk_stereo_ = nullptr, btn_exe_browse_ = nullptr,
          btn_noise_ = nullptr, btn_sidechain_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, note_ = nullptr;
 };

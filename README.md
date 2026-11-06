@@ -41,8 +41,9 @@ history.
   voice. "Repeat When Finished" starts it over at the end; unchecked, it plays
   once. With "Shuffle", a folder plays in a random order, a new one each time
   it repeats. With "Include Subfolders", the audio files of the folders inside
-  it play too, each folder after the files of the one above it. It has its own volume, equalizer, effects and stereo setting,
-  and it is never played aloud: it is only heard in the recording. Pausing
+  it play too, each folder after the files of the one above it. It has its own volume, equalizer, effects and stereo setting.
+  It is only heard in the recording, unless "Play While Recording" is checked:
+  then it is also played, as it is recorded. Pausing
   pauses it too, and continuing the last recording goes on from where it
   stopped.
 - **Stream URL.** An internet radio goes into the recording as one more
@@ -52,6 +53,7 @@ history.
   side chain and stereo setting, and Test plays it with all of them. It
   connects on its own, without holding up the recording: until it does, and
   whenever the connection drops, it is silent, and it connects again by itself.
+  With "Play While Recording", it is also heard while it is recorded.
 - **Channels to record.** Each source can record both of its channels, or only
   the left or only the right one: a microphone that an interface puts on the
   left channel alone, for example. "Stereo" still decides where it goes: with
@@ -96,7 +98,10 @@ history.
   to the recording only, separate files included, not to what is heard.
 - **Separate files.** With two or more sources, each one can go to its own
   file, named after the source: `recording (Microphone).wav`,
-  `recording (chrome.exe).wav`.
+  `recording (chrome.exe).wav`. With "Record in a Subfolder", checked by
+  default, each recording goes into a folder of its own, named after the
+  file, so the files of different recordings do not mix; deleting the
+  recording removes the folder too, and renaming it can rename the folder.
 - **Tags.** Configure Tags, in the main window, sets the title, contributing
   artists, album artist, album, year, genre, track and comment written into the
   recordings, in every format.
@@ -114,20 +119,23 @@ history.
   has its own tags, with its number in `$part`. Separate files are split at the
   same moments, and continuing the last recording goes on in its last part.
   Empty, the default, does not split.
-- **Play and delete.** Listen to the last recording and delete it if it did not
-  turn out well, from the program itself or from the tray menu.
+- **Play, rename and delete.** Listen to the last recording, rename it, and
+  delete it if it did not turn out well, from the program itself or from the
+  tray menu. Rename Recording opens a field for each file (and one for its
+  folder), with the name without the extension; Continue Last Recording goes
+  on in the renamed files.
 - **Continue the last recording.** After stopping, the files are ready to be
   played or opened in any editor, and Continue Last Recording goes on
   recording in the same files, as if the recording had only been paused. The
   Pause / Continue hotkey does the same when nothing is recording. With MP3,
   OGG and OPUS, the part already recorded is encoded again.
 - **Global hotkeys**, configurable, that work with the window minimized or
-  hidden: record, pause and continue, stop, play, delete, open the recordings
-  folder, show the window and close the program.
+  hidden: record, pause and continue, stop, play, rename, delete, open the
+  recordings folder, show the window and close the program.
 - **Tray menu.** With the window minimized or hidden, the tray icon's menu
-  records, pauses, stops, continues the last recording, plays and deletes it,
-  changes the format, and opens Configure Tags, Recording Schedule, the
-  recordings folder and Settings. A window opened from there closes back to
+  records, pauses, stops, continues the last recording, plays, renames and
+  deletes it, changes the format and what to do when the recording ends, and
+  opens Configure Tags, Recording Schedule, the recordings folder and Settings. A window opened from there closes back to
   where you were, and the main window stays minimized.
 - **Countdown**, optional: three low beeps, one per second, and the recording
   starts on the high one, as at the start of a race. Stop cancels it.
@@ -151,6 +159,12 @@ history.
 - **Recording duration**, optional: type how long to record (`1:30:00` is an
   hour and a half), and the recording stops by itself when it gets there.
   Pausing also pauses the count.
+- **When the recording ends**, in the main window: do nothing (the default),
+  close the program, hibernate, sleep, shut down or restart the computer, as
+  soon as the recording stops, by Stop or by itself. After doing it, the
+  choice goes back to doing nothing. Hibernate and sleep are listed only where
+  the computer has them; with Modern Standby, sleep turns the screen off, which
+  is how those computers go to sleep.
 - **Start with Windows**, optional. The program stays portable: if its folder
   moves, it points Windows to the new place the next time it opens.
 - **Scheduled recordings.** Recording Schedule, in the main window, keeps a

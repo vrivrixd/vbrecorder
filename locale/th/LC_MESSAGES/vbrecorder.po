@@ -36,7 +36,7 @@ msgstr "แสดงหน้าต่างหลัก"
 msgid "Sair"
 msgstr "ออก"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "รูปแบบผลลัพธ์(&F):"
 
 msgid "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "บิตเรต(&B):"
 msgid "Compressão &FLAC:"
 msgstr "การบีบอัด FLAC(&M):"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "อัตราสุ่มตัวอย่าง(&T):"
 
 msgid "Profundidade de &Bits:"
 msgstr "ความลึกบิต(&B):"
 
-msgid "&Canais:"
-msgstr "ช่อง(&C):"
+msgid "Ca&nais:"
+msgstr "ช่อง(&H):"
 
 msgid "mono"
 msgstr "โมโน"
@@ -60,8 +60,8 @@ msgstr "โมโน"
 msgid "estéreo"
 msgstr "สเตอริโอ"
 
-msgid "Fontes de &Gravação:"
-msgstr "แหล่งการบันทึก(&I):"
+msgid "&Fontes de Gravação:"
+msgstr "แหล่งการบันทึก(&O):"
 
 msgid "&Nome do Arquivo:"
 msgstr "ชื่อไฟล์(&N):"
@@ -1109,7 +1109,7 @@ msgstr "เมื่อตรวจพบความเงียบ(&W):"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "เล่นเสียงเมื่อการบันทึกหยุดชั่วคราว ทำต่อ หรือหยุดเอง(&I)"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "การตรวจจับความเงียบ(&I)..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1117,3 +1117,57 @@ msgstr "การตรวจจับความเงียบต้องม
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "อนุญาตให้เปิดหลายอินสแตนซ์(&I)"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "บันทึกลงในโฟลเดอร์ย่อย(&C)"
+
+msgid "Renomear &Gravação..."
+msgstr "เปลี่ยนชื่อการบันทึก(&Z)..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "เมื่อการบันทึกสิ้นสุด(&T):"
+
+msgid "Não fazer nada"
+msgstr "ไม่ต้องทำอะไร"
+
+msgid "Fechar o programa"
+msgstr "ปิดโปรแกรม"
+
+msgid "Hibernar"
+msgstr "ไฮเบอร์เนต"
+
+msgid "Suspender"
+msgstr "สลีป"
+
+msgid "Desligar"
+msgstr "ปิดเครื่อง"
+
+msgid "Reiniciar"
+msgstr "รีสตาร์ท"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "ไม่สามารถทำสิ่งที่เลือกไว้เมื่อการบันทึกสิ้นสุด:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "เปลี่ยนชื่อการบันทึก"
+
+msgid "&Pasta:"
+msgstr "โฟลเดอร์(&P):"
+
+msgid "&Arquivo {n}:"
+msgstr "ไฟล์ {n}(&A):"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "ชื่อต้องไม่ว่าง ไม่ลงท้ายด้วยจุดหรือช่องว่าง และไม่มีอักขระ \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "มีไฟล์หรือโฟลเดอร์ชื่อนี้อยู่แล้ว:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "ไม่สามารถเปลี่ยนชื่อ:\n"
+
+msgid "Renomear Gravação:"
+msgstr "เปลี่ยนชื่อการบันทึก:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "เล่นขณะบันทึก(&A)"

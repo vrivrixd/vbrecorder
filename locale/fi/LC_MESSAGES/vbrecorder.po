@@ -36,7 +36,7 @@ msgstr "Näytä pääikkuna"
 msgid "Sair"
 msgstr "Poistu"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "T&ulostusmuoto:"
 
 msgid "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "&Bittinopeus:"
 msgid "Compressão &FLAC:"
 msgstr "&FLAC-pakkaus:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "&Näytetaajuus:"
 
 msgid "Profundidade de &Bits:"
 msgstr "&Bittisyvyys:"
 
-msgid "&Canais:"
-msgstr "Kana&vat:"
+msgid "Ca&nais:"
+msgstr "Ka&navat:"
 
 msgid "mono"
 msgstr "mono"
@@ -60,11 +60,11 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "Tallennusl&ähteet:"
 
 msgid "&Nome do Arquivo:"
-msgstr "Tie&doston nimi:"
+msgstr "Tiedoston &nimi:"
 
 msgid "&Diretório de Saída:"
 msgstr "Tulostus&hakemisto:"
@@ -82,7 +82,7 @@ msgid "&Procurar..."
 msgstr "&Selaa..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Avaa tallennuskansio"
+msgstr "A&vaa tallennuskansio"
 
 msgid "Configura&ções..."
 msgstr "As&etukset..."
@@ -580,7 +580,7 @@ msgid "E&stéreo"
 msgstr "&Stereo"
 
 msgid "Duração da Gravação (Opcio&nal):"
-msgstr "Tallennuksen &kesto (valinnainen):"
+msgstr "Talle&nnuksen kesto (valinnainen):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Tyhjä: tallennetaan ilman rajaa. 1:30:00 on puolitoista tuntia, 45:00 on 45 minuuttia."
@@ -1113,7 +1113,7 @@ msgstr "K&un hiljaisuus havaitaan:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "&Toista äänimerkit, kun tallennus keskeytyy, jatkuu tai pysähtyy itsestään"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "Hiljaisuuden tunnistus(&C)..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1121,3 +1121,57 @@ msgstr "Hiljaisuuden tunnistus tarvitsee vähintään yhden lähteen, joka ei ol
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Salli useita &rinnakkaisia kopioita"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Tallen&na alikansioon"
+
+msgid "Renomear &Gravação..."
+msgstr "Nimeä tallenne uu&delleen..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Ku&n tallennus päättyy:"
+
+msgid "Não fazer nada"
+msgstr "Älä tee mitään"
+
+msgid "Fechar o programa"
+msgstr "Sulje ohjelma"
+
+msgid "Hibernar"
+msgstr "Horrostila"
+
+msgid "Suspender"
+msgstr "Lepotila"
+
+msgid "Desligar"
+msgstr "Sammuta"
+
+msgid "Reiniciar"
+msgstr "Käynnistä uudelleen"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Valittua toimintoa ei voitu tehdä tallennuksen päättyessä:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Nimeä tallenne uudelleen"
+
+msgid "&Pasta:"
+msgstr "&Kansio:"
+
+msgid "&Arquivo {n}:"
+msgstr "&Tiedosto {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Nimi ei voi olla tyhjä, päättyä pisteeseen tai välilyöntiin eikä sisältää merkkejä \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Samanniminen tiedosto tai kansio on jo olemassa:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Uudelleennimeäminen epäonnistui:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Nimeä tallenne uudelleen:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Toista tall&ennuksen aikana"

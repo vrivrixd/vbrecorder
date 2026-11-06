@@ -37,16 +37,16 @@ msgstr "Hiển thị cửa sổ chính"
 msgid "Sair"
 msgstr "Thoát"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "Định dạng đầu &ra:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "Tần số lấ&y mẫu:"
 
 msgid "Profundidade de &Bits:"
 msgstr "Độ sâu &bit:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "&Kênh:"
 
 msgid "mono"
@@ -182,7 +182,7 @@ msgid "Reprodu&zir tons ao iniciar ou parar gravação"
 msgstr "Phát âm bá&o khi bắt đầu hoặc dừng ghi âm"
 
 msgid "&Diretório de Saída:"
-msgstr "Thư &mục lưu bản ghi âm:"
+msgstr "Thư mục &lưu bản ghi âm:"
 
 msgid "&Procurar..."
 msgstr "&Duyệt..."
@@ -253,7 +253,7 @@ msgstr "Mức nén FLAC"
 msgid "Gravar fontes em arquivos separados"
 msgstr "Ghi mỗi nguồn vào một tệp riêng"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "Ng&uồn ghi âm:"
 
 msgid "Adicione ao menos uma fonte de gravação antes de iniciar."
@@ -1114,7 +1114,7 @@ msgstr "&Khi phát hiện im lặng:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "&Phát âm báo khi bản ghi tự tạm dừng, tiếp tục hoặc dừng"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "Ph&át hiện im lặng..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1122,3 +1122,57 @@ msgstr "Phát hiện im lặng cần ít nhất một nguồn không phải âm 
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Cho phép chạy &đồng thời nhiều phiên bản"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "&Lưu vào thư mục con"
+
+msgid "Renomear &Gravação..."
+msgstr "Đổi tên &bản ghi âm..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Khi &kết thúc ghi âm:"
+
+msgid "Não fazer nada"
+msgstr "Không làm gì"
+
+msgid "Fechar o programa"
+msgstr "Đóng chương trình"
+
+msgid "Hibernar"
+msgstr "Ngủ đông"
+
+msgid "Suspender"
+msgstr "Ngủ"
+
+msgid "Desligar"
+msgstr "Tắt máy"
+
+msgid "Reiniciar"
+msgstr "Khởi động lại"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Không thể thực hiện điều đã chọn khi kết thúc ghi âm:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Đổi tên bản ghi âm"
+
+msgid "&Pasta:"
+msgstr "&Thư mục:"
+
+msgid "&Arquivo {n}:"
+msgstr "Tệ&p {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Tên không được để trống, kết thúc bằng dấu chấm hoặc khoảng trắng, hay chứa các ký tự \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Đã có tệp hoặc thư mục mang tên này:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Không thể đổi tên:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Đổi tên bản ghi âm:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Phát trong &khi ghi"

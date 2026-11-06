@@ -36,7 +36,7 @@ msgstr "Zobrazit hlavní okno"
 msgid "Sair"
 msgstr "Ukončit"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "&Formát výstupu:"
 
 msgid "&Bitrate:"
@@ -45,13 +45,13 @@ msgstr "&Bitrate:"
 msgid "Compressão &FLAC:"
 msgstr "Komprese F&LAC:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "&Vzorkovací frekvence:"
 
 msgid "Profundidade de &Bits:"
 msgstr "&Bitová hloubka:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "&Kanály:"
 
 msgid "mono"
@@ -60,11 +60,11 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "Zdro&je záznamu:"
 
 msgid "&Nome do Arquivo:"
-msgstr "&Název souboru:"
+msgstr "Náze&v souboru:"
 
 msgid "&Diretório de Saída:"
 msgstr "Výstupní &adresář:"
@@ -1117,7 +1117,7 @@ msgstr "P&ři zjištění ticha:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Přehrávat tóny, &když se nahrávání samo pozastaví, pokračuje nebo zastaví"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "Detek&ce ticha..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1125,3 +1125,57 @@ msgstr "Detekce ticha potřebuje alespoň jeden zdroj, který není zvukem na po
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Povolit více &instancí"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Nahrávat do podsložk&y"
+
+msgid "Renomear &Gravação..."
+msgstr "Přej&menovat záznam..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Po &dokončení nahrávání:"
+
+msgid "Não fazer nada"
+msgstr "Nedělat nic"
+
+msgid "Fechar o programa"
+msgstr "Zavřít program"
+
+msgid "Hibernar"
+msgstr "Hibernovat"
+
+msgid "Suspender"
+msgstr "Uspat"
+
+msgid "Desligar"
+msgstr "Vypnout"
+
+msgid "Reiniciar"
+msgstr "Restartovat"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Nepodařilo se provést, co bylo zvoleno po dokončení nahrávání:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Přejmenovat záznam"
+
+msgid "&Pasta:"
+msgstr "&Složka:"
+
+msgid "&Arquivo {n}:"
+msgstr "Soubor &{n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Název nesmí být prázdný, končit tečkou ani mezerou a nesmí obsahovat znaky \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Soubor nebo složka s tímto názvem už existuje:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Nepodařilo se přejmenovat:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Přejmenovat záznam:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Přehrá&vat během nahrávání"

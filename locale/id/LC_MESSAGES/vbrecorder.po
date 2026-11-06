@@ -36,7 +36,7 @@ msgstr "Tampilkan jendela utama"
 msgid "Sair"
 msgstr "Keluar"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "&Format Output:"
 
 msgid "&Bitrate:"
@@ -45,13 +45,13 @@ msgstr "&Bitrate:"
 msgid "Compressão &FLAC:"
 msgstr "Kompresi FLA&C:"
 
-msgid "&Taxa de Amostragem:"
-msgstr "Tin&gkat Sampel:"
+msgid "Taxa &de Amostragem:"
+msgstr "Ting&kat Sampel:"
 
 msgid "Profundidade de &Bits:"
-msgstr "Kedalaman &bit:"
+msgstr "&Kedalaman bit:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "&Kanal:"
 
 msgid "mono"
@@ -60,11 +60,11 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
-msgstr "&Sumber Rekaman:"
+msgid "&Fontes de Gravação:"
+msgstr "Sumber Re&kaman:"
 
 msgid "&Nome do Arquivo:"
-msgstr "&Nama File:"
+msgstr "Nama &File:"
 
 msgid "&Diretório de Saída:"
 msgstr "Direktori &Output:"
@@ -82,7 +82,7 @@ msgid "&Procurar..."
 msgstr "Telusur&i..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Buka Folder Rekaman"
+msgstr "&Buka Folder Rekaman"
 
 msgid "Configura&ções..."
 msgstr "Pengat&uran..."
@@ -97,7 +97,7 @@ msgid "E&xcluir Gravação"
 msgstr "&Hapus Rekaman"
 
 msgid "Gravar fontes em ar&quivos separados"
-msgstr "Rekam sumber ke file terpisah"
+msgstr "Rekam &sumber ke file terpisah"
 
 msgid "Reprodu&zir tons ao iniciar ou parar gravação"
 msgstr "Putarkan nada saat &memulai atau menghentikan rekaman"
@@ -578,7 +578,7 @@ msgid "E&stéreo"
 msgstr "&Stereo"
 
 msgid "Duração da Gravação (Opcio&nal):"
-msgstr "&Durasi Rekaman (Opsional):"
+msgstr "Durasi Rekaman (&Opsional):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Kosongkan untuk merekam tanpa batas. 1:30:00 adalah satu setengah jam, 45:00 adalah 45 menit."
@@ -1111,7 +1111,7 @@ msgstr "Saat &Hening Terdeteksi:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Putar &nada saat rekaman dijeda, dilanjutkan, atau berhenti sendiri"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "&Deteksi Hening..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1119,3 +1119,57 @@ msgstr "Deteksi hening memerlukan setidaknya satu sumber yang bukan audio latar.
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Izinkan beberapa &instans"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Rekam di Sub&folder"
+
+msgid "Renomear &Gravação..."
+msgstr "Ganti &Nama Rekaman..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Saat Re&kaman Selesai:"
+
+msgid "Não fazer nada"
+msgstr "Tidak melakukan apa pun"
+
+msgid "Fechar o programa"
+msgstr "Tutup program"
+
+msgid "Hibernar"
+msgstr "Hibernasi"
+
+msgid "Suspender"
+msgstr "Tidur"
+
+msgid "Desligar"
+msgstr "Matikan"
+
+msgid "Reiniciar"
+msgstr "Mulai ulang"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Tidak dapat melakukan pilihan saat rekaman selesai:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Ganti Nama Rekaman"
+
+msgid "&Pasta:"
+msgstr "&Folder:"
+
+msgid "&Arquivo {n}:"
+msgstr "Ber&kas {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Nama tidak boleh kosong, diakhiri titik atau spasi, atau berisi karakter \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Sudah ada berkas atau folder dengan nama itu:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Tidak dapat mengganti nama:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Ganti Nama Rekaman:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "&Putar Selama Merekam"

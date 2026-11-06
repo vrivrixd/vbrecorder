@@ -36,7 +36,7 @@ msgstr "Montri ĉefan fenestron"
 msgid "Sair"
 msgstr "Eliri"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "&Eliga formato:"
 
 msgid "&Bitrate:"
@@ -45,13 +45,13 @@ msgstr "&Bitrapido:"
 msgid "Compressão &FLAC:"
 msgstr "FLA&C-densigo:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "&Specimena rapido:"
 
 msgid "Profundidade de &Bits:"
 msgstr "&Bitprofundo:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "&Kanaloj:"
 
 msgid "mono"
@@ -60,14 +60,14 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
-msgstr "Re&gistraj fontoj:"
+msgid "&Fontes de Gravação:"
+msgstr "Regi&straj fontoj:"
 
 msgid "&Nome do Arquivo:"
-msgstr "Dosierno&mo:"
+msgstr "Do&siernomo:"
 
 msgid "&Diretório de Saída:"
-msgstr "Eliga dosier&ujo:"
+msgstr "Eliga do&sierujo:"
 
 msgid "Adici&onar"
 msgstr "&Aldoni"
@@ -79,10 +79,10 @@ msgid "Remo&ver"
 msgstr "F&origi"
 
 msgid "&Procurar..."
-msgstr "Foliumi..."
+msgstr "Foli&umi..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Malfermi registraĵan dosierujon"
+msgstr "&Malfermi registraĵan dosierujon"
 
 msgid "Configura&ções..."
 msgstr "Agordo&j..."
@@ -581,7 +581,7 @@ msgid "E&stéreo"
 msgstr "&Stereo"
 
 msgid "Duração da Gravação (Opcio&nal):"
-msgstr "Daŭro de la registrado (nedeviga):"
+msgstr "Daŭro de la regi&strado (nedeviga):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Malplena: registri sen limo. 1:30:00 estas horo kaj duono, 45:00 estas 45 minutoj."
@@ -1114,11 +1114,65 @@ msgstr "&Ĉe detektita silento:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "&Ludi tonojn kiam la registrado mem paŭzas, daŭrigas aŭ haltas"
 
-msgid "Detecção de &Silêncio..."
-msgstr "Detekto de &silento..."
+msgid "Dete&cção de Silêncio..."
+msgstr "Dete&kto de silento..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
 msgstr "Detekto de silento bezonas almenaŭ unu fonton, kiu ne estas fona sonaĵo."
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Permesi plurajn &instancojn"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Registri en su&bdosierujo"
+
+msgid "Renomear &Gravação..."
+msgstr "Alinomi la regi&straĵon..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "&Kiam la registrado finiĝas:"
+
+msgid "Não fazer nada"
+msgstr "Fari nenion"
+
+msgid "Fechar o programa"
+msgstr "Fermi la programon"
+
+msgid "Hibernar"
+msgstr "Pasivumigi"
+
+msgid "Suspender"
+msgstr "Dormigi"
+
+msgid "Desligar"
+msgstr "Malŝalti"
+
+msgid "Reiniciar"
+msgstr "Restartigi"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Ne eblis fari tion, kio estis elektita por la fino de la registrado:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Alinomi la registraĵon"
+
+msgid "&Pasta:"
+msgstr "&Dosierujo:"
+
+msgid "&Arquivo {n}:"
+msgstr "Dos&iero {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "La nomo ne povas esti malplena, fini per punkto aŭ spaco, nek enhavi la signojn \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Jam ekzistas dosiero aŭ dosierujo kun tiu nomo:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Ne eblis alinomi:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Alinomi la registraĵon:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Ludi du&m registrado"

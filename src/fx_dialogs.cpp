@@ -104,17 +104,17 @@ int SliderDialog::AddSlider(ui::Box* row, const std::wstring& label, int pos, Va
     s.max = max;
     s.page = page;
     s.origin = origin;
-    s.says_value = says_value;
+    (void)says_value;  // every slider says its value now
     s.track = Add(TRACKBAR_CLASSW, L"", WS_TABSTOP | TBS_HORZ | TBS_NOTICKS, IDC_FX_TRACK + index);
     SendMessageW(s.track, TBM_SETRANGEMIN, FALSE, 0);
     SendMessageW(s.track, TBM_SETRANGEMAX, TRUE, max);
     SendMessageW(s.track, TBM_SETPAGESIZE, 0, page);
     SetWindowSubclass(s.track, TrackProc, 2, (DWORD_PTR)this);
-    s.value = Add(WC_STATICW, L"", SS_NOPREFIX);
+    // The value is not written next to it: the slider says it, and a screen
+    // reader would read every one of them as the window opens.
     sliders_.push_back(s);
     row->Add(lbl, 0, ui::CENTER_V | ui::RIGHT, S(5), SIZE{S(170), 0});
-    row->Add(s.track, 1, ui::EXPAND | ui::RIGHT, S(5), SIZE{S(200), 0});
-    row->Add(s.value, 0, ui::CENTER_V, 0, SIZE{S(70), 0});
+    row->Add(s.track, 1, ui::EXPAND, 0, SIZE{S(270), 0});
     SetSliderPos(index, pos);
     return index;
 }
@@ -129,9 +129,7 @@ void SliderDialog::SetSliderPos(int i, int pos) {
 }
 
 void SliderDialog::ShowValue(int i) {
-    std::wstring text = sliders_[i].text(SliderPos(i));
-    ui::SetText(sliders_[i].value, text);
-    if (sliders_[i].says_value) ui::SetAccessibleValue(sliders_[i].track, text);
+    ui::SetAccessibleValue(sliders_[i].track, sliders_[i].text(SliderPos(i)));
 }
 
 int SliderDialog::FindSlider(HWND track) const {
@@ -554,7 +552,7 @@ void NoiseDialog::OnInit() {
 
 /* The intensity only while the remover is on. */
 void NoiseDialog::ShowIntensity() {
-    for (HWND h : {sliders_[0].label, sliders_[0].track, sliders_[0].value}) ui::Show(h, fx_.noise.on);
+    for (HWND h : {sliders_[0].label, sliders_[0].track}) ui::Show(h, fx_.noise.on);
     Fit();
 }
 
@@ -622,7 +620,6 @@ void SidechainDialog::ShowRole() {
                                                        : false;
         ui::Show(sliders_[i].label, show);
         ui::Show(sliders_[i].track, show);
-        ui::Show(sliders_[i].value, show);
     }
     Fit();
 }
@@ -697,7 +694,7 @@ void SilenceDialog::OnInit() {
 /* Turned off, only the check box is there. */
 void SilenceDialog::ShowControls() {
     for (auto& sl : sliders_)
-        for (HWND h : {sl.label, sl.track, sl.value}) ui::Show(h, s_.on);
+        for (HWND h : {sl.label, sl.track}) ui::Show(h, s_.on);
     for (HWND h : {lbl_action_, cmb_action_, chk_tones_}) ui::Show(h, s_.on);
     Fit();
 }

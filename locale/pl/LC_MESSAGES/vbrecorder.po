@@ -36,22 +36,22 @@ msgstr "Pokaż główne okno"
 msgid "Sair"
 msgstr "Zakończ"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "&Format wyjściowy:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
 
 msgid "Compressão &FLAC:"
-msgstr "Ko&mpresja FLAC:"
+msgstr "Kompresja &FLAC:"
 
-msgid "&Taxa de Amostragem:"
-msgstr "&Częstotliwość próbkowania:"
+msgid "Taxa &de Amostragem:"
+msgstr "Częstotliwość pró&bkowania:"
 
 msgid "Profundidade de &Bits:"
 msgstr "Głębia &bitowa:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "K&anały:"
 
 msgid "mono"
@@ -60,14 +60,14 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "Źródła na&grywania:"
 
 msgid "&Nome do Arquivo:"
-msgstr "Nazwa &pliku:"
+msgstr "N&azwa pliku:"
 
 msgid "&Diretório de Saída:"
-msgstr "Katalog w&yjściowy:"
+msgstr "K&atalog wyjściowy:"
 
 msgid "Adici&onar"
 msgstr "&Dodaj"
@@ -585,7 +585,7 @@ msgid "E&stéreo"
 msgstr "&Stereo"
 
 msgid "Duração da Gravação (Opcio&nal):"
-msgstr "&Czas nagrywania (opcjonalnie):"
+msgstr "Cz&as nagrywania (opcjonalnie):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Puste: nagrywanie bez limitu. 1:30:00 to półtorej godziny, 45:00 to 45 minut."
@@ -1118,7 +1118,7 @@ msgstr "&Po wykryciu ciszy:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Odtwarzaj &dźwięki, gdy nagranie samo się wstrzymuje, wznawia lub zatrzymuje"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "Wykrywanie &ciszy..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1126,3 +1126,57 @@ msgstr "Wykrywanie ciszy wymaga co najmniej jednego źródła, które nie jest d
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Zezwalaj na wiele &instancji"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Nagrywaj do &podfolderu"
+
+msgid "Renomear &Gravação..."
+msgstr "Z&mień nazwę nagrania..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Po z&akończeniu nagrywania:"
+
+msgid "Não fazer nada"
+msgstr "Nic nie rób"
+
+msgid "Fechar o programa"
+msgstr "Zamknij program"
+
+msgid "Hibernar"
+msgstr "Hibernacja"
+
+msgid "Suspender"
+msgstr "Uśpienie"
+
+msgid "Desligar"
+msgstr "Zamknij system"
+
+msgid "Reiniciar"
+msgstr "Uruchom ponownie"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Nie udało się wykonać wybranej czynności po zakończeniu nagrywania:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Zmień nazwę nagrania"
+
+msgid "&Pasta:"
+msgstr "&Folder:"
+
+msgid "&Arquivo {n}:"
+msgstr "P&lik {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Nazwa nie może być pusta, kończyć się kropką ani spacją, ani zawierać znaków \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Plik lub folder o tej nazwie już istnieje:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Nie udało się zmienić nazwy:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Zmień nazwę nagrania:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Odtwarzaj podc&zas nagrywania"

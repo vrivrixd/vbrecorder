@@ -36,7 +36,7 @@ msgstr "Zobraziť hlavné okno"
 msgid "Sair"
 msgstr "Ukončiť"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "&Formát výstupu:"
 
 msgid "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "&Bitrate:"
 msgid "Compressão &FLAC:"
 msgstr "Kompresia F&LAC:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "Vzorkova&cia frekvencia:"
 
 msgid "Profundidade de &Bits:"
 msgstr "&Bitová hĺbka:"
 
-msgid "&Canais:"
-msgstr "&Kanály:"
+msgid "Ca&nais:"
+msgstr "Kaná&ly:"
 
 msgid "mono"
 msgstr "mono"
@@ -60,7 +60,7 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "Zdro&je záznamu:"
 
 msgid "&Nome do Arquivo:"
@@ -1117,11 +1117,65 @@ msgstr "P&ri zistení ticha:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Prehrávať tóny, &keď sa nahrávanie samo pozastaví, pokračuje alebo zastaví"
 
-msgid "Detecção de &Silêncio..."
-msgstr "Detekcia tic&ha..."
+msgid "Dete&cção de Silêncio..."
+msgstr "Dete&kcia ticha..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
 msgstr "Detekcia ticha potrebuje aspoň jeden zdroj, ktorý nie je zvukom na pozadí."
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Povoliť viac &inštancií"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Na&hrávať do podpriečinka"
+
+msgid "Renomear &Gravação..."
+msgstr "Pre&menovať záznam..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Po &skončení nahrávania:"
+
+msgid "Não fazer nada"
+msgstr "Nerobiť nič"
+
+msgid "Fechar o programa"
+msgstr "Zatvoriť program"
+
+msgid "Hibernar"
+msgstr "Hibernovať"
+
+msgid "Suspender"
+msgstr "Uspať"
+
+msgid "Desligar"
+msgstr "Vypnúť"
+
+msgid "Reiniciar"
+msgstr "Reštartovať"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Nepodarilo sa vykonať, čo bolo zvolené po skončení nahrávania:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Premenovať záznam"
+
+msgid "&Pasta:"
+msgstr "P&riečinok:"
+
+msgid "&Arquivo {n}:"
+msgstr "Súbor &{n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Názov nesmie byť prázdny, končiť bodkou ani medzerou a nesmie obsahovať znaky \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Súbor alebo priečinok s týmto názvom už existuje:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Nepodarilo sa premenovať:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Premenovať záznam:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Prehrá&vať počas nahrávania"

@@ -36,7 +36,7 @@ msgstr "Показать главное окно"
 msgid "Sair"
 msgstr "Выход"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "&Формат вывода:"
 
 msgid "&Bitrate:"
@@ -45,13 +45,13 @@ msgstr "&Битрейт:"
 msgid "Compressão &FLAC:"
 msgstr "Сжатие &FLAC:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "&Частота дискретизации:"
 
 msgid "Profundidade de &Bits:"
 msgstr "&Разрядность:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "&Каналы:"
 
 msgid "mono"
@@ -60,8 +60,8 @@ msgstr "моно"
 msgid "estéreo"
 msgstr "стерео"
 
-msgid "Fontes de &Gravação:"
-msgstr "&Источники записи:"
+msgid "&Fontes de Gravação:"
+msgstr "Исто&чники записи:"
 
 msgid "&Nome do Arquivo:"
 msgstr "И&мя файла:"
@@ -584,7 +584,7 @@ msgid "E&stéreo"
 msgstr "Ст&ерео"
 
 msgid "Duração da Gravação (Opcio&nal):"
-msgstr "Дл&ительность записи (необязательно):"
+msgstr "Длительность записи (нео&бязательно):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Пусто — запись без ограничения. 1:30:00 — полтора часа, 45:00 — 45 минут."
@@ -1117,7 +1117,7 @@ msgstr "П&ри обнаружении тишины:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Воспроизводить &сигналы, когда запись сама приостанавливается, продолжается или останавливается"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "Обнару&жение тишины..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1125,3 +1125,57 @@ msgstr "Для обнаружения тишины нужен хотя бы од
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Разрешить несколько &копий"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Зап&исывать в подпапку"
+
+msgid "Renomear &Gravação..."
+msgstr "П&ереименовать запись..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "По о&кончании записи:"
+
+msgid "Não fazer nada"
+msgstr "Ничего не делать"
+
+msgid "Fechar o programa"
+msgstr "Закрыть программу"
+
+msgid "Hibernar"
+msgstr "Гибернация"
+
+msgid "Suspender"
+msgstr "Спящий режим"
+
+msgid "Desligar"
+msgstr "Завершение работы"
+
+msgid "Reiniciar"
+msgstr "Перезагрузка"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Не удалось выполнить выбранное действие по окончании записи:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Переименовать запись"
+
+msgid "&Pasta:"
+msgstr "П&апка:"
+
+msgid "&Arquivo {n}:"
+msgstr "&Файл {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Имя не может быть пустым, оканчиваться точкой или пробелом и содержать символы \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Файл или папка с таким именем уже существует:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Не удалось переименовать:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Переименовать запись:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Воспро&изводить во время записи"

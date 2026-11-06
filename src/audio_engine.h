@@ -136,6 +136,11 @@ public:
     bool CanContinue() const;
     /* The last recording was deleted: there is nothing to continue. */
     void ForgetLastRecording() { last_outputs_.clear(); }
+    /* The files of the last recording were renamed (old path, new path), or
+       their folder was (old folder, new folder; empty when it was not):
+       Continue Last Recording goes on in them, under the new names. */
+    void RenameLastRecording(const std::vector<std::pair<std::wstring, std::wstring>>& files,
+                             const std::wstring& old_folder, const std::wstring& new_folder);
 
     /* Sources added, removed or changed while recording. A new source joins
        in sync; a removed one first records what is already in its queue. */

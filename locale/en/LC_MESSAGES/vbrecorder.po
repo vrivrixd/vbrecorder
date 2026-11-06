@@ -36,23 +36,23 @@ msgstr "Show main window"
 msgid "Sair"
 msgstr "Exit"
 
-msgid "Formato de &Saída:"
-msgstr "Output &Format:"
+msgid "&Formato de Saída:"
+msgstr "Output For&mat:"
 
 msgid "&Bitrate:"
-msgstr "&Bitrate:"
+msgstr "B&itrate:"
 
 msgid "Compressão &FLAC:"
 msgstr "FLAC Co&mpression:"
 
-msgid "&Taxa de Amostragem:"
-msgstr "Sample Ra&te:"
+msgid "Taxa &de Amostragem:"
+msgstr "Sa&mple Rate:"
 
 msgid "Profundidade de &Bits:"
-msgstr "&Bit Depth:"
+msgstr "B&it Depth:"
 
-msgid "&Canais:"
-msgstr "&Channels:"
+msgid "Ca&nais:"
+msgstr "Cha&nnels:"
 
 msgid "mono"
 msgstr "mono"
@@ -60,14 +60,14 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "Record&ing Sources:"
 
 msgid "&Nome do Arquivo:"
-msgstr "File &Name:"
+msgstr "File Na&me:"
 
 msgid "&Diretório de Saída:"
-msgstr "&Output Directory:"
+msgstr "Output D&irectory:"
 
 msgid "Adici&onar"
 msgstr "&Add"
@@ -82,7 +82,7 @@ msgid "&Procurar..."
 msgstr "Bro&wse..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Open Recordings Folder"
+msgstr "&Open Recordings Folder"
 
 msgid "Configura&ções..."
 msgstr "Settin&gs..."
@@ -97,7 +97,7 @@ msgid "E&xcluir Gravação"
 msgstr "&Delete Recording"
 
 msgid "Gravar fontes em ar&quivos separados"
-msgstr "Record sources to separate files"
+msgstr "Record sources to separate &files"
 
 msgid "Reprodu&zir tons ao iniciar ou parar gravação"
 msgstr "Pla&y tones when starting or stopping recording"
@@ -581,7 +581,7 @@ msgid "E&stéreo"
 msgstr "&Stereo"
 
 msgid "Duração da Gravação (Opcio&nal):"
-msgstr "Re&cording Duration (Optional):"
+msgstr "Record&ing Duration (Optional):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Leave empty to record with no limit. 1:30:00 is an hour and a half, 45:00 is 45 minutes."
@@ -1114,11 +1114,65 @@ msgstr "&When Silence Is Detected:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Play tones when &it pauses, resumes or stops by itself"
 
-msgid "Detecção de &Silêncio..."
-msgstr "S&ilence Detection..."
+msgid "Dete&cção de Silêncio..."
+msgstr "Silence De&tection..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
 msgstr "Silence detection needs at least one source that is not background audio."
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Allow multiple &instances"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Record in a Su&bfolder"
+
+msgid "Renomear &Gravação..."
+msgstr "Re&name Recording..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "When the Record&ing Ends:"
+
+msgid "Não fazer nada"
+msgstr "Do nothing"
+
+msgid "Fechar o programa"
+msgstr "Close the program"
+
+msgid "Hibernar"
+msgstr "Hibernate"
+
+msgid "Suspender"
+msgstr "Sleep"
+
+msgid "Desligar"
+msgstr "Shut down"
+
+msgid "Reiniciar"
+msgstr "Restart"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Could not do what was chosen for when the recording ends:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Rename Recording"
+
+msgid "&Pasta:"
+msgstr "&Folder:"
+
+msgid "&Arquivo {n}:"
+msgstr "File &{n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "The name cannot be empty, end in a dot or a space, or contain the characters \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "A file or folder with that name already exists:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Could not rename:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Rename Recording:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Pl&ay While Recording"

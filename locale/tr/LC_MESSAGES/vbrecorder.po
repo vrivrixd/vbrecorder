@@ -36,7 +36,7 @@ msgstr "Ana pencereyi göster"
 msgid "Sair"
 msgstr "Çıkış"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "Çıktı &Formatı:"
 
 msgid "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "&Bit Hızı:"
 msgid "Compressão &FLAC:"
 msgstr "FLA&C Sıkıştırma:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "&Örnekleme Hızı:"
 
 msgid "Profundidade de &Bits:"
 msgstr "&Bit Derinliği:"
 
-msgid "&Canais:"
-msgstr "Ka&nallar:"
+msgid "Ca&nais:"
+msgstr "K&anallar:"
 
 msgid "mono"
 msgstr "mono"
@@ -60,8 +60,8 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
-msgstr "Kayıt Ka&ynakları:"
+msgid "&Fontes de Gravação:"
+msgstr "K&ayıt Kaynakları:"
 
 msgid "&Nome do Arquivo:"
 msgstr "Dosya &Adı:"
@@ -1115,7 +1115,7 @@ msgstr "Sessizlik &Algılandığında:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "&Kayıt kendiliğinden duraklatıldığında, devam ettiğinde veya durduğunda ton çal"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "Sessizlik &Algılama..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1123,3 +1123,57 @@ msgstr "Sessizlik algılama için arka plan sesi olmayan en az bir kaynak gereki
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "&Çoklu örneğe izin ver"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "&Bir Alt Klasöre Kaydet"
+
+msgid "Renomear &Gravação..."
+msgstr "Kaydı Ye&niden Adlandır..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Kayıt &Bittiğinde:"
+
+msgid "Não fazer nada"
+msgstr "Hiçbir şey yapma"
+
+msgid "Fechar o programa"
+msgstr "Programı kapat"
+
+msgid "Hibernar"
+msgstr "Hazırda beklet"
+
+msgid "Suspender"
+msgstr "Uyku"
+
+msgid "Desligar"
+msgstr "Bilgisayarı kapat"
+
+msgid "Reiniciar"
+msgstr "Yeniden başlat"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Kayıt bittiğinde seçilen işlem yapılamadı:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Kaydı Yeniden Adlandır"
+
+msgid "&Pasta:"
+msgstr "&Klasör:"
+
+msgid "&Arquivo {n}:"
+msgstr "&Dosya {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Ad boş olamaz, nokta veya boşlukla bitemez ve \\ / : * ? \" < > | karakterlerini içeremez"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Bu adda bir dosya veya klasör zaten var:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Yeniden adlandırılamadı:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Kaydı Yeniden Adlandır:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Kaydederken &Çal"

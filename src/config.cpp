@@ -137,6 +137,8 @@ void ConfigManager::Load() {
                    {L"fontes", L"device:0:1.0"},
                    {L"reproduzir_tons", L"False"},
                    {L"arquivos_separados", L"False"},
+                   {L"subpasta", L"True"},
+                   {L"ao_terminar", L"nada"},
                    {L"duracao", L""},
                    {L"arquivo", L""},
                    {L"diretorio", L""},
@@ -171,7 +173,9 @@ void ConfigManager::Load() {
             {L"iniciar_com_windows", L"False"},
             {L"contagem_regressiva", L"False"},
             {L"pre_gravacao", L"0"},
-            {L"dividir", L""}};
+            {L"dividir", L""},
+            {L"subpasta", L"True"},
+            {L"ao_terminar", L"nada"}};
         for (auto& p : defaults)
             if (!Lookup(cfg->items, p.first)) Put(cfg->items, p.first, p.second);
     }
@@ -179,7 +183,7 @@ void ConfigManager::Load() {
     if (!Find(L"KEYS")) {
         Section& s = Ensure(L"KEYS");
         s.items = {{L"gravar", L""},     {L"pausar", L""},  {L"parar", L""},
-                   {L"reproduzir", L""}, {L"excluir", L""}, {L"abrir_pasta", L""},
+                   {L"reproduzir", L""}, {L"renomear", L""}, {L"excluir", L""}, {L"abrir_pasta", L""},
                    {L"mostrar", L""}, {L"fechar", L""}};
     }
 }
@@ -197,12 +201,12 @@ void ConfigManager::Save() {
     };
     sort_items(Ensure(L"CONFIG").items,
                {L"formato", L"bitrate", L"flac_nivel", L"taxa", L"bits", L"canais", L"fontes",
-                L"reproduzir_tons", L"arquivos_separados", L"duracao", L"arquivo", L"diretorio",
+                L"reproduzir_tons", L"arquivos_separados", L"subpasta", L"ao_terminar", L"duracao", L"arquivo", L"diretorio",
                 L"idioma", L"iniciar_minimizado", L"minimizar_bandeja", L"sempre_no_topo",
                 L"multiplas_instancias", L"buffer",
                 L"verificar_atualizacoes", L"iniciar_com_windows", L"contagem_regressiva",
                 L"pre_gravacao", L"dividir"});
-    sort_items(Ensure(L"KEYS").items, {L"gravar", L"pausar", L"parar", L"reproduzir", L"excluir",
+    sort_items(Ensure(L"KEYS").items, {L"gravar", L"pausar", L"parar", L"reproduzir", L"renomear", L"excluir",
                                        L"abrir_pasta", L"mostrar", L"fechar"});
 
     std::wstring text;
@@ -387,7 +391,8 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
             continue;
         }
         if (tokens[0] == L"url") {
-            // A stream URL: "url:0:1.0000:0.0000", its volume and balance.
+            // A stream URL: "url:0:1.0000:0.0000:0", its volume, balance and 1
+            // when it is played while recording.
             SourceEntry e;
             e.type = tokens[0];
             if (tokens.size() >= 3) {
@@ -396,6 +401,7 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
                 if (vend && vend != tokens[2].c_str()) e.volume = v;
             }
             e.pan = pan_at(3);
+            e.listen = tokens.size() >= 5 && Trim(tokens[4]) == L"1";
             e.fx = fx_of(index);
             const std::wstring* url = url_section ? Lookup(url_section->items, std::to_wstring(index)) : nullptr;
             if (url && !Trim(*url).empty()) {
@@ -405,15 +411,16 @@ std::vector<SourceEntry> ConfigManager::GetSources() const {
             continue;
         }
         if (tokens[0] == L"file") {
-            // Background audio: "file:1:1.0000:0:0:0.0000", 1 when it repeats,
+            // Background audio: "file:1:1.0000:0:0:0.0000:0", 1 when it repeats,
             // the volume, 1 when it shuffles, 1 when it includes the
-            // subfolders, and the balance.
+            // subfolders, the balance, and 1 when it is played while recording.
             SourceEntry e;
             e.type = tokens[0];
             e.loop = Trim(tokens[1]) != L"0";
             e.shuffle = tokens.size() >= 4 && Trim(tokens[3]) == L"1";
             e.subfolders = tokens.size() >= 5 && Trim(tokens[4]) == L"1";
             e.pan = pan_at(5);
+            e.listen = tokens.size() >= 7 && Trim(tokens[6]) == L"1";
             if (tokens.size() >= 3) {
                 wchar_t* vend = nullptr;
                 double v = wcstod(tokens[2].c_str(), &vend);
@@ -468,6 +475,7 @@ void ConfigManager::SetSources(const std::vector<Source>& sources) {
         wchar_t pan[64];
         swprintf(pan, 64, L":%.4f", s.pan);
         value += pan;
+        if (s.type == L"file" || s.type == L"url") value += s.listen ? L":1" : L":0";
     }
     SetConfig(L"fontes", value);
     Section& file_section = Ensure(L"ARQUIVOS");

@@ -186,6 +186,29 @@ struct AudioEngine::Input : public CaptureSink {
 
     double TailSeconds() const { return base_sec + (double)pushed / rate; }
 
+    // Background audio or a stream URL played while it is recorded, so it is
+    // heard too: what goes into the recording, as it goes in.
+    DWORD listen = 0;
+
+    void Listen(const float* data, DWORD frames) {
+        if (!src.listen) {
+            StopListening();
+            return;
+        }
+        if (!listen) {
+            listen = engine->b_.StreamCreate(rate, chans, BASS_SAMPLE_FLOAT, STREAMPROC_PUSH, nullptr);
+            if (!listen) return;
+            engine->b_.ChannelPlay(listen, FALSE);
+        }
+        engine->b_.StreamPutData(listen, data, frames * chans * sizeof(float));
+    }
+
+    void StopListening() {
+        if (!listen) return;
+        engine->b_.StreamFree(listen);
+        listen = 0;
+    }
+
     void SetSidechain(const SidechainSettings& sc) {
         std::lock_guard<std::mutex> lock(sidechain_mutex);
         sidechain = sc;
@@ -361,6 +384,7 @@ struct AudioEngine::Input : public CaptureSink {
             }
             Sidechain(scratch.data(), n, TailSeconds());
             PushLocked(scratch.data(), n);
+            Listen(scratch.data(), n);
             want -= n;
         }
     }
@@ -1066,6 +1090,10 @@ void AudioEngine::StopCapture(Input* in) {
         in->cap->SetSink(nullptr);
         in->cap->Stop();
     }
+    {
+        std::lock_guard<std::mutex> lock(in->queue_mutex);
+        in->StopListening();
+    }
     in->player.reset();
     in->net.reset();
 }
@@ -1554,6 +1582,7 @@ void AudioEngine::SetSourceFx(const Source& src) {
             in->chain->SetMonoOutput(chans_ == 1);
         in->chain->Apply(src.fx);
             in->SetSidechain(src.fx.sidechain);
+            in->src.listen = src.listen;  // FillBackground starts or stops playing it
             if (in->player) {
                 in->src.loop = src.loop;
                 in->src.shuffle = src.shuffle;
@@ -2271,6 +2300,47 @@ void AudioEngine::Teardown(bool flush) {
 }
 
 void AudioEngine::StopRecording() { Teardown(recording_); }
+
+void AudioEngine::RenameLastRecording(const std::vector<std::pair<std::wstring, std::wstring>>& files,
+                                      const std::wstring& old_folder, const std::wstring& new_folder) {
+    auto moved = [&](const std::wstring& path) {
+        // Inside the folder that was renamed: the same name, in the new one.
+        if (old_folder.empty() || new_folder.empty()) return path;
+        const std::wstring prefix = ToLower(old_folder) + L"\\";
+        if (ToLower(path).compare(0, prefix.size(), prefix) != 0) return path;
+        return new_folder + path.substr(old_folder.size());
+    };
+    for (auto& o : last_outputs_) {
+        std::wstring path = moved(o.path), base = moved(o.base);
+        bool renamed = false;
+        for (auto& f : files)
+            if (ToLower(f.first) == ToLower(o.path) || ToLower(f.first) == ToLower(path)) {
+                path = f.second;
+                renamed = true;
+            }
+        if (renamed) {
+            // A split recording goes on with the new name and the part
+            // number, when the name still ends with it ("new 002").
+            base = path;
+            std::wstring stem, ext;
+            SplitExt(path, &stem, &ext);
+            wchar_t suffix[16];
+            swprintf(suffix, 16, L" %03d", o.part);
+            const size_t n = wcslen(suffix);
+            if (o.part > 0 && stem.size() > n && stem.compare(stem.size() - n, n, suffix) == 0)
+                base = stem.substr(0, stem.size() - n) + ext;
+        }
+        o.path = path;
+        o.base = base;
+    }
+    // The files of the recording, as the window lists them after Continue.
+    for (auto& f : output_files_) {
+        std::wstring path = moved(f);
+        for (auto& r : files)
+            if (ToLower(r.first) == ToLower(f) || ToLower(r.first) == ToLower(path)) path = r.second;
+        f = path;
+    }
+}
 
 bool AudioEngine::CanContinue() const {
     if (recording_ || last_outputs_.empty()) return false;

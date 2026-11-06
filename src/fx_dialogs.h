@@ -43,11 +43,10 @@ protected:
     typedef std::function<std::wstring(int)> ValueText;
 
     struct Slider {
-        HWND label = nullptr, track = nullptr, value = nullptr;
-        ValueText text;
+        HWND label = nullptr, track = nullptr;
+        ValueText text;  // what the slider says: every slider says its value as text
         int max = 100, page = 5;
         int origin = 0;  // the value of position 0, in steps: Page Up lands on round values
-        bool says_value = false;  // the screen reader says the text, not the position
     };
 
     /* Adds "label  slider  value" to the row; returns the slider's index. The

@@ -36,7 +36,7 @@ msgstr "메인 창 표시"
 msgid "Sair"
 msgstr "종료"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "출력 형식(&F):"
 
 msgid "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "비트레이트(&B):"
 msgid "Compressão &FLAC:"
 msgstr "FLAC 압축(&M):"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "샘플링 속도(&T):"
 
 msgid "Profundidade de &Bits:"
 msgstr "비트 심도(&B):"
 
-msgid "&Canais:"
-msgstr "채널(&C):"
+msgid "Ca&nais:"
+msgstr "채널(&H):"
 
 msgid "mono"
 msgstr "모노"
@@ -60,8 +60,8 @@ msgstr "모노"
 msgid "estéreo"
 msgstr "스테레오"
 
-msgid "Fontes de &Gravação:"
-msgstr "녹음 소스(&I):"
+msgid "&Fontes de Gravação:"
+msgstr "녹음 소스(&O):"
 
 msgid "&Nome do Arquivo:"
 msgstr "파일 이름(&N):"
@@ -1106,7 +1106,7 @@ msgstr "무음 감지 시(&W):"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "녹음이 자동으로 일시 정지, 재개 또는 중지될 때 신호음 재생(&I)"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "무음 감지(&I)..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1114,3 +1114,57 @@ msgstr "무음 감지에는 배경 오디오가 아닌 소스가 하나 이상 �
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "여러 인스턴스 허용(&I)"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "하위 폴더에 녹음(&C)"
+
+msgid "Renomear &Gravação..."
+msgstr "녹음 이름 바꾸기(&Z)..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "녹음이 끝나면(&T):"
+
+msgid "Não fazer nada"
+msgstr "아무것도 하지 않음"
+
+msgid "Fechar o programa"
+msgstr "프로그램 닫기"
+
+msgid "Hibernar"
+msgstr "최대 절전 모드"
+
+msgid "Suspender"
+msgstr "절전"
+
+msgid "Desligar"
+msgstr "시스템 종료"
+
+msgid "Reiniciar"
+msgstr "다시 시작"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "녹음이 끝날 때 선택한 작업을 할 수 없습니다:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "녹음 이름 바꾸기"
+
+msgid "&Pasta:"
+msgstr "폴더(&P):"
+
+msgid "&Arquivo {n}:"
+msgstr "파일 {n}(&A):"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "이름은 비워 둘 수 없고, 마침표나 공백으로 끝날 수 없으며, \\ / : * ? \" < > | 문자를 포함할 수 없습니다"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "같은 이름의 파일이나 폴더가 이미 있습니다:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "이름을 바꿀 수 없습니다:\n"
+
+msgid "Renomear Gravação:"
+msgstr "녹음 이름 바꾸기:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "녹음하는 동안 재생(&A)"

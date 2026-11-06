@@ -36,7 +36,7 @@ msgstr "প্রধান উইন্ডো দেখান"
 msgid "Sair"
 msgstr "প্রস্থান করুন"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "আউটপুট ফরম্যাট(&F):"
 
 msgid "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "বিটরেট(&B):"
 msgid "Compressão &FLAC:"
 msgstr "FLAC কম্প্রেশন(&M):"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "নমুনা হার(&T):"
 
 msgid "Profundidade de &Bits:"
 msgstr "বিট ডেপথ(&B):"
 
-msgid "&Canais:"
-msgstr "চ্যানেল(&C):"
+msgid "Ca&nais:"
+msgstr "চ্যানেল(&H):"
 
 msgid "mono"
 msgstr "মোনো"
@@ -60,8 +60,8 @@ msgstr "মোনো"
 msgid "estéreo"
 msgstr "স্টেরিও"
 
-msgid "Fontes de &Gravação:"
-msgstr "রেকর্ডিং উৎস(&I):"
+msgid "&Fontes de Gravação:"
+msgstr "রেকর্ডিং উৎস(&O):"
 
 msgid "&Nome do Arquivo:"
 msgstr "ফাইলের নাম(&N):"
@@ -1116,7 +1116,7 @@ msgstr "নীরবতা শনাক্ত হলে(&W):"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "রেকর্ডিং নিজে থেকে বিরতি, চালু বা বন্ধ হলে টোন বাজান(&I)"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "নীরবতা শনাক্তকরণ(&I)..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1124,3 +1124,57 @@ msgstr "নীরবতা শনাক্তকরণের জন্য অন
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "একাধিক ইনস্ট্যান্স চালানোর অনুমতি দিন(&I)"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "সাবফোল্ডারে রেকর্ড করুন(&C)"
+
+msgid "Renomear &Gravação..."
+msgstr "রেকর্ডিংয়ের নাম বদলান(&Z)..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "রেকর্ডিং শেষ হলে(&T):"
+
+msgid "Não fazer nada"
+msgstr "কিছু করবেন না"
+
+msgid "Fechar o programa"
+msgstr "প্রোগ্রাম বন্ধ করুন"
+
+msgid "Hibernar"
+msgstr "হাইবারনেট"
+
+msgid "Suspender"
+msgstr "স্লিপ"
+
+msgid "Desligar"
+msgstr "শাট ডাউন"
+
+msgid "Reiniciar"
+msgstr "রিস্টার্ট"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "রেকর্ডিং শেষে বেছে নেওয়া কাজটি করা যায়নি:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "রেকর্ডিংয়ের নাম বদলান"
+
+msgid "&Pasta:"
+msgstr "ফোল্ডার(&P):"
+
+msgid "&Arquivo {n}:"
+msgstr "ফাইল {n}(&A):"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "নাম খালি রাখা যাবে না, বিন্দু বা স্পেস দিয়ে শেষ হতে পারবে না, এবং \\ / : * ? \" < > | অক্ষর থাকতে পারবে না"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "এই নামে একটি ফাইল বা ফোল্ডার আগে থেকেই আছে:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "নাম বদলানো যায়নি:\n"
+
+msgid "Renomear Gravação:"
+msgstr "রেকর্ডিংয়ের নাম বদলান:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "রেকর্ড করার সময় বাজান(&A)"

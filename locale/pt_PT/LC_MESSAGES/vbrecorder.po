@@ -36,8 +36,8 @@ msgstr "Mostrar janela principal"
 msgid "Sair"
 msgstr "Sair"
 
-msgid "Formato de &Saída:"
-msgstr "Formato de &Saída:"
+msgid "&Formato de Saída:"
+msgstr "&Formato de Saída:"
 
 msgid "&Bitrate:"
 msgstr "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "&Bitrate:"
 msgid "Compressão &FLAC:"
 msgstr "Compressão F&LAC:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "Ta&xa de Amostragem:"
 
 msgid "Profundidade de &Bits:"
 msgstr "Profundidade de &Bits:"
 
-msgid "&Canais:"
-msgstr "&Canais:"
+msgid "Ca&nais:"
+msgstr "Ca&nais:"
 
 msgid "mono"
 msgstr "mono"
@@ -60,14 +60,14 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "estéreo"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "&Fontes de Gravação:"
 
 msgid "&Nome do Arquivo:"
 msgstr "&Nome do Ficheiro:"
 
 msgid "&Diretório de Saída:"
-msgstr "Pasta &de Destino:"
+msgstr "Pasta de Desti&no:"
 
 msgid "Adici&onar"
 msgstr "&Adicionar"
@@ -82,7 +82,7 @@ msgid "&Procurar..."
 msgstr "Pr&ocurar..."
 
 msgid "Abr&ir Pasta de Gravações"
-msgstr "Abrir Pasta de Gravações"
+msgstr "Abrir Pasta &de Gravações"
 
 msgid "Configura&ções..."
 msgstr "Def&inições..."
@@ -1115,7 +1115,7 @@ msgstr "Ao &Detetar Silêncio:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "Deteç&ão de Silêncio..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1123,3 +1123,57 @@ msgstr "A deteção de silêncio precisa de pelo menos uma fonte que não seja �
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Permitir Múltiplas I&nstâncias"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Gravar numa Su&bpasta"
+
+msgid "Renomear &Gravação..."
+msgstr "Mudar o &Nome da Gravação..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Ao Termi&nar a Gravação:"
+
+msgid "Não fazer nada"
+msgstr "Não fazer nada"
+
+msgid "Fechar o programa"
+msgstr "Fechar o programa"
+
+msgid "Hibernar"
+msgstr "Hibernar"
+
+msgid "Suspender"
+msgstr "Suspender"
+
+msgid "Desligar"
+msgstr "Encerrar"
+
+msgid "Reiniciar"
+msgstr "Reiniciar"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Mudar o Nome da Gravação"
+
+msgid "&Pasta:"
+msgstr "&Pasta:"
+
+msgid "&Arquivo {n}:"
+msgstr "&Ficheiro {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Já existe um ficheiro ou pasta com esse nome:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Não foi possível mudar o nome:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Mudar o Nome da Gravação:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Re&produzir Enquanto Grava"

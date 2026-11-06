@@ -36,7 +36,7 @@ msgstr "Vis hovedvindue"
 msgid "Sair"
 msgstr "Afslut"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "Output for&mat:"
 
 msgid "&Bitrate:"
@@ -45,13 +45,13 @@ msgstr "&Bitrate:"
 msgid "Compressão &FLAC:"
 msgstr "FLA&C-komprimering:"
 
-msgid "&Taxa de Amostragem:"
-msgstr "Samp&le rate:"
+msgid "Taxa &de Amostragem:"
+msgstr "Sa&mple rate:"
 
 msgid "Profundidade de &Bits:"
 msgstr "&Bitdybde:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "&Kanaler:"
 
 msgid "mono"
@@ -60,8 +60,8 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
-msgstr "Optagelseskil&der:"
+msgid "&Fontes de Gravação:"
+msgstr "Optagelses&kilder:"
 
 msgid "&Nome do Arquivo:"
 msgstr "Fil&navn:"
@@ -581,7 +581,7 @@ msgid "E&stéreo"
 msgstr "Ste&reo"
 
 msgid "Duração da Gravação (Opcio&nal):"
-msgstr "Optagelsens varig&hed (valgfri):"
+msgstr "Optagelse&ns varighed (valgfri):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Tom: optager uden grænse. 1:30:00 er halvanden time, 45:00 er 45 minutter."
@@ -1114,7 +1114,7 @@ msgstr "V&ed stilhed:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Afspil &toner, når den selv pauser, fortsætter eller stopper"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "Stil&hedsregistrering..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1122,3 +1122,57 @@ msgstr "Stilhedsregistrering kræver mindst én kilde, der ikke er baggrundslyd.
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Tillad flere &instanser"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Optag i en &undermappe"
+
+msgid "Renomear &Gravação..."
+msgstr "O&mdøb optagelse..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "&Når optagelsen slutter:"
+
+msgid "Não fazer nada"
+msgstr "Gør intet"
+
+msgid "Fechar o programa"
+msgstr "Luk programmet"
+
+msgid "Hibernar"
+msgstr "Dvale"
+
+msgid "Suspender"
+msgstr "Slumre"
+
+msgid "Desligar"
+msgstr "Luk computeren"
+
+msgid "Reiniciar"
+msgstr "Genstart"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Det valgte, når optagelsen slutter, kunne ikke udføres:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Omdøb optagelse"
+
+msgid "&Pasta:"
+msgstr "&Mappe:"
+
+msgid "&Arquivo {n}:"
+msgstr "&Fil {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Navnet må ikke være tomt, slutte med punktum eller mellemrum eller indeholde tegnene \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Der findes allerede en fil eller mappe med det navn:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Kunne ikke omdøbe:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Omdøb optagelse:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Afs&pil under optagelse"

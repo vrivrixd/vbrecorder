@@ -39,7 +39,7 @@ msgstr ""
 msgid "Sair"
 msgstr ""
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr ""
 
 msgid "&Bitrate:"
@@ -48,13 +48,13 @@ msgstr ""
 msgid "Compressão &FLAC:"
 msgstr ""
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr ""
 
 msgid "Profundidade de &Bits:"
 msgstr ""
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr ""
 
 msgid "mono"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "estéreo"
 msgstr ""
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr ""
 
 msgid "&Nome do Arquivo:"
@@ -1085,11 +1085,65 @@ msgstr ""
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr ""
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr ""
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
 msgstr ""
 
 msgid "Permitir Múltiplas I&nstâncias"
+msgstr ""
+
+msgid "Gravar em uma &Subpasta"
+msgstr ""
+
+msgid "Renomear &Gravação..."
+msgstr ""
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr ""
+
+msgid "Não fazer nada"
+msgstr ""
+
+msgid "Fechar o programa"
+msgstr ""
+
+msgid "Hibernar"
+msgstr ""
+
+msgid "Suspender"
+msgstr ""
+
+msgid "Desligar"
+msgstr ""
+
+msgid "Reiniciar"
+msgstr ""
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr ""
+
+msgid "Renomear Gravação"
+msgstr ""
+
+msgid "&Pasta:"
+msgstr ""
+
+msgid "&Arquivo {n}:"
+msgstr ""
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr ""
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr ""
+
+msgid "Não foi possível renomear:\n"
+msgstr ""
+
+msgid "Renomear Gravação:"
+msgstr ""
+
+msgid "Re&produzir Enquanto Grava"
 msgstr ""

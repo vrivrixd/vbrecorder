@@ -36,22 +36,22 @@ msgstr "Prikaži glavno okno"
 msgid "Sair"
 msgstr "Izhod"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "Izhodni &format:"
 
 msgid "&Bitrate:"
-msgstr "Bitna hit&rost:"
+msgstr "Bitna &hitrost:"
 
 msgid "Compressão &FLAC:"
-msgstr "Komp&resija FLAC:"
+msgstr "&Kompresija FLAC:"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "&Hitrost vzorčenja:"
 
 msgid "Profundidade de &Bits:"
 msgstr "Bitna &globina:"
 
-msgid "&Canais:"
+msgid "Ca&nais:"
 msgstr "&Kanali:"
 
 msgid "mono"
@@ -60,14 +60,14 @@ msgstr "mono"
 msgid "estéreo"
 msgstr "stereo"
 
-msgid "Fontes de &Gravação:"
+msgid "&Fontes de Gravação:"
 msgstr "&Viri snemanja:"
 
 msgid "&Nome do Arquivo:"
-msgstr "&Ime datoteke:"
+msgstr "Ime datote&ke:"
 
 msgid "&Diretório de Saída:"
-msgstr "I&zhodni imenik:"
+msgstr "Iz&hodni imenik:"
 
 msgid "Adici&onar"
 msgstr "&Dodaj"
@@ -590,7 +590,7 @@ msgid "E&stéreo"
 msgstr "&Stereo"
 
 msgid "Duração da Gravação (Opcio&nal):"
-msgstr "T&rajanje snemanja (neobvezno):"
+msgstr "Trajanje snemanja (neob&vezno):"
 
 msgid "Em branco, grava sem limite. 1:30:00 é uma hora e meia, 45:00 são 45 minutos."
 msgstr "Prazno: snemanje brez omejitve. 1:30:00 je ura in pol, 45:00 je 45 minut."
@@ -1123,7 +1123,7 @@ msgstr "O&b zaznani tišini:"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "Predvajaj tone, &ko se snemanje samo ustavi za premor, nadaljuje ali konča"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "&Zaznavanje tišine..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1131,3 +1131,57 @@ msgstr "Zaznavanje tišine potrebuje vsaj en vir, ki ni zvok v ozadju."
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "Dovoli &hkrati več primerkov"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "Snemaj &v podmapo"
+
+msgid "Renomear &Gravação..."
+msgstr "Pre&imenuj posnetek..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "Ko se snemanje &konča:"
+
+msgid "Não fazer nada"
+msgstr "Ne naredi nič"
+
+msgid "Fechar o programa"
+msgstr "Zapri program"
+
+msgid "Hibernar"
+msgstr "Mirovanje"
+
+msgid "Suspender"
+msgstr "Spanje"
+
+msgid "Desligar"
+msgstr "Zaustavitev sistema"
+
+msgid "Reiniciar"
+msgstr "Znova zaženi"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "Izbranega ob koncu snemanja ni bilo mogoče narediti:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "Preimenuj posnetek"
+
+msgid "&Pasta:"
+msgstr "&Mapa:"
+
+msgid "&Arquivo {n}:"
+msgstr "&Datoteka {n}:"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "Ime ne sme biti prazno, se končati s piko ali presledkom ali vsebovati znakov \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "Datoteka ali mapa s tem imenom že obstaja:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "Preimenovanje ni uspelo:\n"
+
+msgid "Renomear Gravação:"
+msgstr "Preimenuj posnetek:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "Predvajaj med snem&anjem"

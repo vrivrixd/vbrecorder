@@ -36,7 +36,7 @@ msgstr "मुख्य विंडो दिखाएं"
 msgid "Sair"
 msgstr "बाहर निकलें"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "आउटपुट स्वरूप(&F):"
 
 msgid "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "बिटरेट(&B):"
 msgid "Compressão &FLAC:"
 msgstr "FLAC संपीड़न(&M):"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "नमूना दर(&T):"
 
 msgid "Profundidade de &Bits:"
 msgstr "बिट डेप्थ(&B):"
 
-msgid "&Canais:"
-msgstr "चैनल(&C):"
+msgid "Ca&nais:"
+msgstr "चैनल(&H):"
 
 msgid "mono"
 msgstr "मोनो"
@@ -60,8 +60,8 @@ msgstr "मोनो"
 msgid "estéreo"
 msgstr "स्टीरियो"
 
-msgid "Fontes de &Gravação:"
-msgstr "रिकॉर्डिंग स्रोत(&I):"
+msgid "&Fontes de Gravação:"
+msgstr "रिकॉर्डिंग स्रोत(&O):"
 
 msgid "&Nome do Arquivo:"
 msgstr "फ़ाइल का नाम(&N):"
@@ -1116,7 +1116,7 @@ msgstr "मौन मिलने पर(&W):"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "रिकॉर्डिंग के अपने आप रुकने, जारी होने या बंद होने पर टोन बजाएँ(&I)"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "मौन पहचान(&I)..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1124,3 +1124,57 @@ msgstr "मौन पहचान के लिए कम से कम एक �
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "एक से अधिक इंस्टेंस की अनुमति दें(&I)"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "सबफ़ोल्डर में रिकॉर्ड करें(&C)"
+
+msgid "Renomear &Gravação..."
+msgstr "रिकॉर्डिंग का नाम बदलें(&Z)..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "रिकॉर्डिंग समाप्त होने पर(&T):"
+
+msgid "Não fazer nada"
+msgstr "कुछ न करें"
+
+msgid "Fechar o programa"
+msgstr "प्रोग्राम बंद करें"
+
+msgid "Hibernar"
+msgstr "हाइबरनेट"
+
+msgid "Suspender"
+msgstr "स्लीप"
+
+msgid "Desligar"
+msgstr "शट डाउन"
+
+msgid "Reiniciar"
+msgstr "रीस्टार्ट"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "रिकॉर्डिंग समाप्त होने पर चुना गया काम नहीं हो सका:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "रिकॉर्डिंग का नाम बदलें"
+
+msgid "&Pasta:"
+msgstr "फ़ोल्डर(&P):"
+
+msgid "&Arquivo {n}:"
+msgstr "फ़ाइल {n}(&A):"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "नाम खाली नहीं हो सकता, बिंदु या स्पेस पर खत्म नहीं हो सकता, और इसमें \\ / : * ? \" < > | वर्ण नहीं हो सकते"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "इस नाम की फ़ाइल या फ़ोल्डर पहले से मौजूद है:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "नाम नहीं बदला जा सका:\n"
+
+msgid "Renomear Gravação:"
+msgstr "रिकॉर्डिंग का नाम बदलें:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "रिकॉर्ड करते समय चलाएँ(&A)"

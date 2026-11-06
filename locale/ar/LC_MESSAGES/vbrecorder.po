@@ -36,7 +36,7 @@ msgstr "إظهار النافذة الرئيسية"
 msgid "Sair"
 msgstr "خروج"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "تنسيق الإخراج(&F):"
 
 msgid "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "معدل البت(&B):"
 msgid "Compressão &FLAC:"
 msgstr "ضغط FLAC(&M):"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "معدل العينة(&T):"
 
 msgid "Profundidade de &Bits:"
 msgstr "عمق البت(&B):"
 
-msgid "&Canais:"
-msgstr "القنوات(&C):"
+msgid "Ca&nais:"
+msgstr "القنوات(&H):"
 
 msgid "mono"
 msgstr "أحادي"
@@ -60,8 +60,8 @@ msgstr "أحادي"
 msgid "estéreo"
 msgstr "ستيريو"
 
-msgid "Fontes de &Gravação:"
-msgstr "مصادر التسجيل(&I):"
+msgid "&Fontes de Gravação:"
+msgstr "مصادر التسجيل(&O):"
 
 msgid "&Nome do Arquivo:"
 msgstr "اسم الملف(&N):"
@@ -1130,7 +1130,7 @@ msgstr "عند اكتشاف الصمت(&W):"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "تشغيل نغمات عندما يتوقف التسجيل مؤقتًا أو يستأنف أو يتوقف من تلقاء نفسه(&I)"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "اكتشاف الصمت(&I)..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1138,3 +1138,57 @@ msgstr "يحتاج اكتشاف الصمت إلى مصدر واحد على ال�
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "السماح بتشغيل عدة نسخ(&I)"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "التسجيل في مجلد فرعي(&C)"
+
+msgid "Renomear &Gravação..."
+msgstr "إعادة تسمية التسجيل(&Z)..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "عند انتهاء التسجيل(&T):"
+
+msgid "Não fazer nada"
+msgstr "لا تفعل شيئًا"
+
+msgid "Fechar o programa"
+msgstr "إغلاق البرنامج"
+
+msgid "Hibernar"
+msgstr "إسبات"
+
+msgid "Suspender"
+msgstr "سكون"
+
+msgid "Desligar"
+msgstr "إيقاف التشغيل"
+
+msgid "Reiniciar"
+msgstr "إعادة التشغيل"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "تعذّر تنفيذ ما اختير عند انتهاء التسجيل:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "إعادة تسمية التسجيل"
+
+msgid "&Pasta:"
+msgstr "المجلد(&P):"
+
+msgid "&Arquivo {n}:"
+msgstr "الملف {n}(&A):"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "لا يمكن أن يكون الاسم فارغًا أو منتهيًا بنقطة أو مسافة، ولا أن يحتوي على المحارف \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "يوجد ملف أو مجلد بهذا الاسم بالفعل:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "تعذّرت إعادة التسمية:\n"
+
+msgid "Renomear Gravação:"
+msgstr "إعادة تسمية التسجيل:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "التشغيل أثناء التسجيل(&A)"

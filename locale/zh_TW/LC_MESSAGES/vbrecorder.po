@@ -36,7 +36,7 @@ msgstr "顯示主視窗"
 msgid "Sair"
 msgstr "退出"
 
-msgid "Formato de &Saída:"
+msgid "&Formato de Saída:"
 msgstr "輸出格式(&F):"
 
 msgid "&Bitrate:"
@@ -45,14 +45,14 @@ msgstr "位元率(&B):"
 msgid "Compressão &FLAC:"
 msgstr "FLAC 壓縮(&M):"
 
-msgid "&Taxa de Amostragem:"
+msgid "Taxa &de Amostragem:"
 msgstr "取樣率(&T):"
 
 msgid "Profundidade de &Bits:"
 msgstr "位元深度(&B):"
 
-msgid "&Canais:"
-msgstr "聲道(&C):"
+msgid "Ca&nais:"
+msgstr "聲道(&H):"
 
 msgid "mono"
 msgstr "單聲道"
@@ -60,8 +60,8 @@ msgstr "單聲道"
 msgid "estéreo"
 msgstr "立體聲"
 
-msgid "Fontes de &Gravação:"
-msgstr "錄製來源(&I):"
+msgid "&Fontes de Gravação:"
+msgstr "錄製來源(&O):"
 
 msgid "&Nome do Arquivo:"
 msgstr "檔案名稱(&N):"
@@ -1105,7 +1105,7 @@ msgstr "偵測到靜音時(&W):"
 msgid "&Reproduzir tons ao pausar, continuar ou parar sozinha"
 msgstr "錄音自動暫停、繼續或停止時播放提示音(&I)"
 
-msgid "Detecção de &Silêncio..."
+msgid "Dete&cção de Silêncio..."
 msgstr "靜音偵測(&I)..."
 
 msgid "A detecção de silêncio precisa de ao menos uma fonte que não seja áudio de fundo."
@@ -1113,3 +1113,57 @@ msgstr "靜音偵測至少需要一個不是背景音訊的音源。"
 
 msgid "Permitir Múltiplas I&nstâncias"
 msgstr "允許多個執行個體(&I)"
+
+msgid "Gravar em uma &Subpasta"
+msgstr "錄製到子資料夾(&C)"
+
+msgid "Renomear &Gravação..."
+msgstr "重新命名錄音(&Z)..."
+
+msgid "Ao Termi&nar a Gravação:"
+msgstr "錄製結束時(&T):"
+
+msgid "Não fazer nada"
+msgstr "不執行任何動作"
+
+msgid "Fechar o programa"
+msgstr "關閉程式"
+
+msgid "Hibernar"
+msgstr "休眠"
+
+msgid "Suspender"
+msgstr "睡眠"
+
+msgid "Desligar"
+msgstr "關機"
+
+msgid "Reiniciar"
+msgstr "重新啟動"
+
+msgid "Não foi possível fazer o que foi escolhido ao terminar a gravação:\n{erro}"
+msgstr "無法執行錄製結束時所選的動作:\n{erro}"
+
+msgid "Renomear Gravação"
+msgstr "重新命名錄音"
+
+msgid "&Pasta:"
+msgstr "資料夾(&P):"
+
+msgid "&Arquivo {n}:"
+msgstr "檔案 {n}(&A):"
+
+msgid "O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres \\ / : * ? \" < > |"
+msgstr "名稱不能空白，不能以句點或空格結尾，也不能包含字元 \\ / : * ? \" < > |"
+
+msgid "Já existe um arquivo ou pasta com esse nome:\n{caminho}"
+msgstr "已有同名的檔案或資料夾:\n{caminho}"
+
+msgid "Não foi possível renomear:\n"
+msgstr "無法重新命名:\n"
+
+msgid "Renomear Gravação:"
+msgstr "重新命名錄音:"
+
+msgid "Re&produzir Enquanto Grava"
+msgstr "錄製時播放(&A)"

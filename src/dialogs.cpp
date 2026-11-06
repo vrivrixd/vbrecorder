@@ -98,8 +98,16 @@ const DWORD EDIT = WS_TABSTOP | ES_AUTOHSCROLL;
 
 /* The volume slider: 50 is 0 dB, from -30 dB (0) to +30 dB (100).
    The screen reader says the position. */
+// The volume slider goes from -30 to +30 dB in steps of 0.5 dB, as the
+// gains of the equalizer: the arrows move 0.5 dB, Page Up and Down 3 dB.
 const double VOLUME_DB = 30.0;
-const double VOLUME_STEP = VOLUME_DB / 50;
+const double VOLUME_STEP = 0.5;
+const int VOLUME_CENTER = (int)(VOLUME_DB / VOLUME_STEP);  // 0 dB
+const int VOLUME_MAX = 2 * VOLUME_CENTER;
+const int VOLUME_PAGE = 6;
+// The balance: 0 to 100, 50 in the center; Page Up and Down move 5.
+const int PAN_MAX = 100;
+const int PAN_PAGE = 5;
 
 }  // namespace
 
@@ -132,6 +140,7 @@ void HotkeysDialog::OnInit() {
         {L"pausar", tr("Pausar / Continuar:")},
         {L"parar", tr("Parar Gravação:")},
         {L"reproduzir", tr("Reproduzir / Parar Reprodução:")},
+        {L"renomear", tr("Renomear Gravação:")},
         {L"excluir", tr("Excluir Gravação:")},
         {L"abrir_pasta", tr("Abrir Pasta de Gravações:")},
         {L"mostrar", tr("Mostrar Janela Principal:")},
@@ -407,6 +416,75 @@ void SettingsDialog::OnOk() {
     EndModal(IDOK);
 }
 
+/* ---- Renaming the last recording ---- */
+
+enum { IDC_RN_FOLDER = 1401, IDC_RN_FILE = 1402 };  // + file
+
+RenameDialog::RenameDialog(const std::wstring& folder, const std::vector<std::wstring>& names)
+    : ui::Dialog(tr("Renomear Gravação")), folder_(folder), names_(names) {}
+
+void RenameDialog::OnInit() {
+    auto vbox = VBox();
+    auto field = [&](const std::wstring& label, const std::wstring& value, int id) {
+        HWND lbl = Add(WC_STATICW, label, 0);
+        HWND edit = Add(WC_EDITW, value, EDIT, id, WS_EX_CLIENTEDGE);
+        auto row = HBox();
+        row->Add(lbl, 0, ui::CENTER_V | ui::RIGHT, S(5), SIZE{S(110), 0});
+        row->Add(edit, 1, ui::EXPAND, 0, SIZE{S(320), 0});
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::TOP | ui::EXPAND, S(10));
+        return edit;
+    };
+    if (!folder_.empty()) folder_edit_ = field(tr("&Pasta:"), folder_, IDC_RN_FOLDER);
+    for (size_t i = 0; i < names_.size(); ++i) {
+        // The same letter for all the files: it goes from one to the next.
+        std::wstring label = names_.size() == 1
+                                 ? tr("&Nome do Arquivo:")
+                                 : Format(tr("&Arquivo {n}:"), {{L"n", std::to_wstring(i + 1)}});
+        edits_.push_back(field(label, names_[i], IDC_RN_FILE + (int)i));
+    }
+    auto hb = HBox();
+    HWND ok = Add(WC_BUTTONW, tr("&Ok"), BUTTON | BS_DEFPUSHBUTTON, IDOK);
+    HWND cancel = Add(WC_BUTTONW, tr("&Cancelar"), BUTTON, IDCANCEL);
+    hb->Add(ok, 0, ui::RIGHT, S(10));
+    hb->Add(cancel, 0, 0, 0);
+    vbox->Add(std::move(hb), 0, ui::CENTER | ui::ALL, S(15));
+    root_ = std::move(vbox);
+    Fit();
+    // The name selected, ready to be typed over.
+    HWND first = folder_edit_ ? folder_edit_ : (edits_.empty() ? nullptr : edits_[0]);
+    if (first) {
+        SetFocus(first);
+        SendMessageW(first, EM_SETSEL, 0, -1);
+    }
+}
+
+bool RenameDialog::OnCommand(int id, int, HWND) {
+    if (id != IDOK) return false;
+    // A name Windows accepts: not empty, without \ / : * ? " < > |, and not
+    // ending in a dot or a space, which Windows would drop.
+    auto valid = [](const std::wstring& name) {
+        if (name.empty() || name.find_first_of(L"\\/:*?\"<>|") != std::wstring::npos) return false;
+        return name.back() != L'.' && name.back() != L' ';
+    };
+    std::vector<HWND> all = edits_;
+    if (folder_edit_) all.insert(all.begin(), folder_edit_);
+    for (HWND edit : all) {
+        if (valid(Trim(ui::GetText(edit)))) continue;
+        ui::MsgBox(hwnd_,
+                   tr("O nome não pode ficar vazio, terminar em ponto ou espaço, nem ter os caracteres "
+                      "\\ / : * ? \" < > |"),
+                   tr("Aviso"), MB_ICONWARNING | MB_OK);
+        SetFocus(edit);
+        SendMessageW(edit, EM_SETSEL, 0, -1);
+        return true;
+    }
+    folder_result = folder_edit_ ? Trim(ui::GetText(folder_edit_)) : L"";
+    result.clear();
+    for (HWND edit : edits_) result.push_back(Trim(ui::GetText(edit)));
+    EndModal(IDOK);
+    return true;
+}
+
 /* ---- Tags ---- */
 
 namespace {
@@ -513,6 +591,7 @@ enum {
     IDC_AS_LOOP,
     IDC_AS_SHUFFLE,
     IDC_AS_SUBFOLDERS,
+    IDC_AS_LISTEN,
     IDC_AS_SIDECHAIN,
     IDC_AS_PAN,
     IDC_AS_URL,
@@ -570,6 +649,13 @@ void AddSourceDialog::OnInit() {
     cmb_ = Add(WC_COMBOBOXW, L"", COMBO, IDC_AS_SOURCE);
     vbox->Add(lbl_src_, 0, ui::LEFT | ui::RIGHT, S(10));
     vbox->Add(cmb_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    // Right after the list of processes, which they change: the controls
+    // after them belong to every kind of source.
+    chk_all_ = Add(WC_BUTTONW, tr("&Mostrar Todos os Processos"), CHECK, IDC_AS_ALL_PROCESSES);
+    vbox->Add(chk_all_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    // Reads the processes again, for programs opened after the dialog.
+    btn_refresh_ = Add(WC_BUTTONW, tr("&Atualizar"), BUTTON, IDC_AS_REFRESH);
+    vbox->Add(btn_refresh_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
     // An executable is typed by name: it does not need to be running.
     lbl_exe_ = ui::Create(hwnd_, WC_STATICW, tr("Nome do Executável:"), 0, 0);
     txt_exe_ = ui::Create(hwnd_, WC_EDITW, L"", WS_TABSTOP | ES_AUTOHSCROLL, IDC_AS_EXE_NAME,
@@ -624,6 +710,11 @@ void AddSourceDialog::OnInit() {
         row->Add(btn_url_browse_, 0, 0, 0);
         vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
     }
+    // Background audio and stream URLs: also heard while recording, not only
+    // in the file. Off by default.
+    chk_listen_ = ui::Create(hwnd_, WC_BUTTONW, tr("Re&produzir Enquanto Grava"), CHECK, IDC_AS_LISTEN);
+    Button_SetCheck(chk_listen_, editing_ && edit_source_.listen ? BST_CHECKED : BST_UNCHECKED);
+    vbox->Add(chk_listen_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
     // Which channels of the source are recorded, before Stereo, which
     // still decides whether they stay on their side or go to both.
     lbl_pick_ = Add(WC_STATICW, tr("Canais a &Gravar:"), 0);
@@ -640,25 +731,18 @@ void AddSourceDialog::OnInit() {
     chk_stereo_ = Add(WC_BUTTONW, tr("E&stéreo"), CHECK, IDC_AS_STEREO);
     Button_SetCheck(chk_stereo_, fx_.stereo ? BST_CHECKED : BST_UNCHECKED);
     vbox->Add(chk_stereo_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
-    // Also the processes not playing sound right now, which a program that
-    // only plays now and then needs.
-    chk_all_ = Add(WC_BUTTONW, tr("&Mostrar Todos os Processos"), CHECK, IDC_AS_ALL_PROCESSES);
-    vbox->Add(chk_all_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
-    // Reads the processes again, for programs opened after the dialog.
-    btn_refresh_ = Add(WC_BUTTONW, tr("&Atualizar"), BUTTON, IDC_AS_REFRESH);
-    vbox->Add(btn_refresh_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     auto vol_box = HBox();
     HWND lbl_vol = Add(WC_STATICW, tr("&Volume:"), 0);
     sld_ = Add(TRACKBAR_CLASSW, L"", WS_TABSTOP | TBS_HORZ | TBS_NOTICKS, IDC_AS_VOLUME);
-    SendMessageW(sld_, TBM_SETRANGE, TRUE, MAKELPARAM(0, 100));
-    SendMessageW(sld_, TBM_SETPAGESIZE, 0, 10);
-    SendMessageW(sld_, TBM_SETPOS, TRUE, 50);
+    SendMessageW(sld_, TBM_SETRANGE, TRUE, MAKELPARAM(0, VOLUME_MAX));
+    SendMessageW(sld_, TBM_SETPAGESIZE, 0, VOLUME_PAGE);
+    SendMessageW(sld_, TBM_SETPOS, TRUE, VOLUME_CENTER);
     SetWindowSubclass(sld_, SliderProc, 1, (DWORD_PTR)this);
-    lbl_db_ = Add(WC_STATICW, L"  0.0 dB", 0);
+    // The sliders say their values; written next to them, a screen reader
+    // would read them all as the window opens.
     vol_box->Add(lbl_vol, 0, ui::CENTER_V | ui::RIGHT, S(5));
-    vol_box->Add(sld_, 1, ui::EXPAND | ui::RIGHT, S(5));
-    vol_box->Add(lbl_db_, 0, ui::CENTER_V, 0, SIZE{S(70), 0});
+    vol_box->Add(sld_, 1, ui::EXPAND, 0);
     vbox->Add(std::move(vol_box), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
 
     // The balance: 50 is the center, 0 all to the left, 100 all to the right.
@@ -669,10 +753,8 @@ void AddSourceDialog::OnInit() {
     SendMessageW(sld_pan_, TBM_SETPAGESIZE, 0, 10);
     SendMessageW(sld_pan_, TBM_SETPOS, TRUE, 50);
     SetWindowSubclass(sld_pan_, SliderProc, 1, (DWORD_PTR)this);
-    lbl_pan_ = Add(WC_STATICW, L"", SS_NOPREFIX);
     pan_box->Add(lbl_pan, 0, ui::CENTER_V | ui::RIGHT, S(5));
-    pan_box->Add(sld_pan_, 1, ui::EXPAND | ui::RIGHT, S(5));
-    pan_box->Add(lbl_pan_, 0, ui::CENTER_V, 0, SIZE{S(110), 0});
+    pan_box->Add(sld_pan_, 1, ui::EXPAND, 0);
     vbox->Add(std::move(pan_box), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
 
     btn_eq_ = Add(WC_BUTTONW, tr("&Equalizador"), BUTTON, IDC_AS_EQ);
@@ -740,7 +822,7 @@ void AddSourceDialog::OnInit() {
         }
         double vol = edit_source_.volume;
         double db = vol > 0 ? 20 * std::log10(vol) : -VOLUME_DB;
-        int slider_val = std::min(100, std::max(0, (int)std::nearbyint(db / VOLUME_STEP + 50)));
+        int slider_val = std::min(VOLUME_MAX, std::max(0, (int)std::nearbyint(db / VOLUME_STEP + VOLUME_CENTER)));
         SendMessageW(sld_, TBM_SETPOS, TRUE, slider_val);
         int pan_val = (int)std::lround(std::max(-1.0, std::min(1.0, edit_source_.pan)) * 50 + 50);
         SendMessageW(sld_pan_, TBM_SETPOS, TRUE, pan_val);
@@ -906,6 +988,7 @@ void AddSourceDialog::PopulateFilter(int sel) {
     ui::Show(lbl_url_, url);
     ui::Show(txt_url_, url);
     ui::Show(btn_url_browse_, url);
+    ui::Show(chk_listen_, file || url);
     UpdateFolderOptions();
     Relayout();
     current_items_ = sel == 0 ? &device_items_ : sel == 1 ? &process_items_ : &exe_items_;
@@ -1093,15 +1176,15 @@ INT_PTR AddSourceDialog::OnUrlTestDone(int error) {
 
 double AddSourceDialog::Volume() const {
     int pos = (int)SendMessageW(sld_, TBM_GETPOS, 0, 0);
-    return std::pow(10.0, ((pos - 50) * VOLUME_STEP) / 20.0);
+    return std::pow(10.0, ((pos - VOLUME_CENTER) * VOLUME_STEP) / 20.0);
 }
 
 void AddSourceDialog::UpdateDbLabel() {
     int pos = (int)SendMessageW(sld_, TBM_GETPOS, 0, 0);
-    double db = (pos - 50) * VOLUME_STEP;
+    double db = (pos - VOLUME_CENTER) * VOLUME_STEP;
     wchar_t text[32];
-    swprintf(text, 32, L"  %+.1f dB", db);
-    ui::SetText(lbl_db_, text);
+    swprintf(text, 32, L"%+.1f dB", db);
+    ui::SetAccessibleValue(sld_, text);
     if (testing_) audio_.SetMonitorVolume(Volume());
 }
 
@@ -1110,15 +1193,10 @@ double AddSourceDialog::Pan() const {
     return (pos - 50) / 50.0;
 }
 
-/* Next to the slider: the side and how far, as the slider says its
-   position. */
+/* The balance slider says its position, 0 to 100. */
 void AddSourceDialog::UpdatePanLabel() {
     int pos = (int)SendMessageW(sld_pan_, TBM_GETPOS, 0, 0);
-    int amount = std::abs(pos - 50) * 2;
-    std::wstring text = pos == 50  ? tr("Centro")
-                        : pos < 50 ? Format(tr("Esquerda {n}%"), {{L"n", std::to_wstring(amount)}})
-                                   : Format(tr("Direita {n}%"), {{L"n", std::to_wstring(amount)}});
-    ui::SetText(lbl_pan_, L"  " + text);
+    ui::SetAccessibleValue(sld_pan_, std::to_wstring(pos));
     if (testing_) audio_.SetMonitorPan(Pan());
 }
 
@@ -1126,24 +1204,25 @@ LRESULT CALLBACK AddSourceDialog::SliderProc(HWND hwnd, UINT msg, WPARAM wp, LPA
                                              DWORD_PTR ref) {
     if (msg == WM_KEYDOWN) {
         AddSourceDialog* self = (AddSourceDialog*)ref;
+        const bool pan = hwnd == self->sld_pan_;
+        const int max = pan ? PAN_MAX : VOLUME_MAX, page = pan ? PAN_PAGE : VOLUME_PAGE;
         int val = (int)SendMessageW(hwnd, TBM_GETPOS, 0, 0);
         int new_val = -1;
         switch (wp) {
             case VK_HOME: new_val = 0; break;
-            case VK_END: new_val = 100; break;
+            case VK_END: new_val = max; break;
             case VK_UP:
-            case VK_RIGHT: new_val = std::min(100, val + 1); break;
+            case VK_RIGHT: new_val = std::min(max, val + 1); break;
             case VK_DOWN:
             case VK_LEFT: new_val = std::max(0, val - 1); break;
-            case VK_PRIOR: new_val = std::min(100, (val / 5 + 1) * 5); break;
-            case VK_NEXT: new_val = std::max(0, (int)std::floor((val - 1) / 5.0) * 5); break;
+            // To the next multiple of the page: round values (3 dB, 6 dB...).
+            case VK_PRIOR: new_val = std::min(max, (val / page + 1) * page); break;
+            case VK_NEXT: new_val = std::max(0, (int)std::floor((val - 1) / (double)page) * page); break;
         }
         if (new_val >= 0) {
             SendMessageW(hwnd, TBM_SETPOS, TRUE, new_val);
             if (hwnd == self->sld_pan_) self->UpdatePanLabel();
             else self->UpdateDbLabel();
-            // Tell the screen reader about the new position, as the trackbar does on its own.
-            NotifyWinEvent(EVENT_OBJECT_VALUECHANGE, hwnd, OBJID_CLIENT, CHILDID_SELF);
             return 0;
         }
     }
@@ -1178,6 +1257,7 @@ void AddSourceDialog::OnOk() {
         selected.loop = Button_GetCheck(chk_loop_) == BST_CHECKED;
         selected.shuffle = Button_GetCheck(chk_shuffle_) == BST_CHECKED;
         selected.subfolders = subfolders;
+        selected.listen = Button_GetCheck(chk_listen_) == BST_CHECKED;
         has_selected = true;
         EndModal(IDOK);
         return;
@@ -1203,6 +1283,7 @@ void AddSourceDialog::OnOk() {
         selected.pan = Pan();
         selected.fx = fx_;
         selected.fx.noise.on = false;  // only for audio devices
+        selected.listen = Button_GetCheck(chk_listen_) == BST_CHECKED;
         has_selected = true;
         EndModal(IDOK);
         return;
