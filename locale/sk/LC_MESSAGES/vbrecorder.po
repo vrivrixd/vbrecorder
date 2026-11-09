@@ -1129,8 +1129,8 @@ msgstr "Povoliť viac &inštancií"
 msgid "Gravar em uma &Subpasta"
 msgstr "Na&hrávať do podpriečinka"
 
-msgid "Renomear &Gravação..."
-msgstr "Pre&menovať záznam..."
+msgid "Renomear &Gravação"
+msgstr "Pre&menovať záznam"
 
 msgid "Ao Termi&nar a Gravação:"
 msgstr "Po &skončení nahrávania:"
@@ -1179,3 +1179,21 @@ msgstr "Premenovať záznam:"
 
 msgid "Re&produzir Enquanto Grava"
 msgstr "Prehrá&vať počas nahrávania"
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr "Oneskoren&ie zdroja (ms):"
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr "Prázdne znamená bez oneskorenia. Až {maximo} ms, na zarovnanie zdroja, ktorý v nahrávke prichádza skôr ako ostatné."
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr "Oneskorenie musí byť číslo od 0 do {maximo} ms, alebo zostať prázdne."
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr "Sp&ustiť ďalší súbor skôr:"
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr "S&tlmenie na konci súboru:"
+
+msgid "Fade ao Co&meçar o Arquivo:"
+msgstr "Zosi&lnenie na začiatku súboru:"

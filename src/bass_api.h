@@ -147,6 +147,8 @@ struct BassApi {
     BOOL(WINAPI* ChannelSetAttribute)(DWORD, DWORD, float);
     DWORD(WINAPI* ChannelIsActive)(DWORD);
     QWORD(WINAPI* ChannelGetPosition)(DWORD, DWORD);
+    QWORD(WINAPI* ChannelGetLength)(DWORD, DWORD);
+    double(WINAPI* ChannelBytes2Seconds)(DWORD, QWORD);
     BOOL(WINAPI* ChannelSetPosition)(DWORD, QWORD, DWORD);
     DWORD(WINAPI* PluginLoad)(const void*, DWORD);
     DWORD(WINAPI* ChannelSetFX)(DWORD, DWORD, int);

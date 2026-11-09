@@ -67,12 +67,30 @@ public:
     void SetShuffle(bool shuffle) { shuffle_ = shuffle; }
     /* The file playing goes on to its end; the new list follows it. */
     void SetSubfolders(bool subfolders);
+    /* The crossfade, in seconds, each 0 to leave it out: the next file starts
+       `ahead` before the end of the one playing, which goes down over its
+       last `fade_out`, while the next one comes up over its first
+       `fade_in`. Each works on its own. */
+    void SetCrossfade(double ahead, double fade_out, double fade_in);
 
 private:
-    bool OpenAt(size_t index, QWORD pos);
-    void Close();
-    /* The next file that plays; false when the list is over. */
-    bool Next();
+    /* A file being played, through a mixer of its own that converts it to
+       the rate and channels wanted. pos and length are in frames of that
+       rate; length is -1 when the file does not say it. */
+    struct Voice {
+        DWORD mixer = 0, stream = 0;
+        size_t index = 0;  // in order_
+        long long pos = 0, length = -1;
+        bool fade_in = false;  // it came in after another file: it comes up
+    };
+
+    bool OpenAt(Voice& v, size_t index, QWORD pos, bool fade_in);
+    void CloseVoice(Voice& v);
+    /* Reads up to `frames` of the voice, with its fades, adding them to
+       out; the frames it had. */
+    DWORD ReadVoice(Voice& v, float* out, DWORD frames);
+    /* The next file that plays, into v; false when the list is over. */
+    bool Next(Voice& v);
     /* A new order for a round: shuffled, without repeating the file just
        played; or the name order. */
     void NewOrder();
@@ -83,8 +101,11 @@ private:
     std::vector<size_t> order_;
     bool loop_, shuffle_, subfolders_;
     int rate_, chans_;
-    DWORD mixer_ = 0;   // converts each file to the rate and channels wanted
-    DWORD stream_ = 0;  // the file being played
-    size_t index_ = 0;  // in order_
+    Voice cur_;   // the file playing
+    Voice next_;  // the next one, while the two overlap in a crossfade
+    bool last_ = false;  // the file playing has none after it
+    size_t index_ = 0;   // in order_: of the newest file playing
     bool done_ = false;
+    double ahead_ = 0, fade_out_ = 0, fade_in_ = 0;  // seconds
+    std::vector<float> scratch_;
 };

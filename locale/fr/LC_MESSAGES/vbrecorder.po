@@ -1128,8 +1128,8 @@ msgstr "Autoriser plusieurs &instances"
 msgid "Gravar em uma &Subpasta"
 msgstr "Enregistrer dans un sous-&dossier"
 
-msgid "Renomear &Gravação..."
-msgstr "Renommer l'enregi&strement..."
+msgid "Renomear &Gravação"
+msgstr "Renommer l'enregi&strement"
 
 msgid "Ao Termi&nar a Gravação:"
 msgstr "À la &fin de l'enregistrement :"
@@ -1178,3 +1178,21 @@ msgstr "Renommer l'enregistrement :"
 
 msgid "Re&produzir Enquanto Grava"
 msgstr "Lire &pendant l'enregistrement"
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr "Retard de la source (&ms) :"
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr "Vide signifie aucun retard. Jusqu'à {maximo} ms, pour caler une source qui arrive avant les autres dans l'enregistrement."
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr "Le retard doit être un nombre de 0 à {maximo} ms, ou rester vide."
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr "Démarrer le fi&chier suivant en avance :"
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr "Fondu à la fin du fic&hier :"
+
+msgid "Fade ao Co&meçar o Arquivo:"
+msgstr "Fondu au débu&t du fichier :"

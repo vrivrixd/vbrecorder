@@ -326,7 +326,8 @@ std::wstring Unescape(const std::wstring& text) {
 }  // namespace
 
 /* eq=preset|preamp|gain/gain/...;delay=1|preset|v/v/...;ruido=1|amount;estereo=0;
-   canal=1;cadeia=role|v/v/... Only what differs from the defaults is written. */
+   canal=1;cadeia=role|v/v/...;atraso=ms;crossfade=ahead|out|in. Only what
+   differs from the defaults is written. */
 std::wstring FxSettings::Serialize() const {
     const FxSettings defaults;
     std::vector<std::wstring> parts;
@@ -350,6 +351,9 @@ std::wstring FxSettings::Serialize() const {
         parts.push_back(std::wstring(L"ruido=") + (noise.on ? L"1" : L"0") + L"|" + Num(noise.amount));
     if (!stereo) parts.push_back(L"estereo=0");
     if (channel != CHANNEL_BOTH) parts.push_back(L"canal=" + std::to_wstring(channel));
+    if (delay_ms > 0) parts.push_back(L"atraso=" + std::to_wstring(delay_ms));
+    if (xfade_ahead > 0 || xfade_out > 0 || xfade_in > 0)
+        parts.push_back(L"crossfade=" + Num(xfade_ahead) + L"|" + Num(xfade_out) + L"|" + Num(xfade_in));
     if (!sidechain.IsDefault()) {
         std::wstring s = L"cadeia=" + std::to_wstring(sidechain.role) + L"|";
         for (int i = 0; i < SC_PARAMS; ++i) s += (i ? L"/" : L"") + Num(sidechain.values[i]);
@@ -381,6 +385,12 @@ FxSettings FxSettings::Parse(const std::wstring& text) {
             fx.noise.amount = Clamp(ToFloat(fields[1], 100), 0, 100);
         } else if (name == L"estereo") {
             fx.stereo = fields[0] != L"0";
+        } else if (name == L"atraso") {
+            fx.delay_ms = std::max(0, std::min(SOURCE_DELAY_MAX_MS, _wtoi(fields[0].c_str())));
+        } else if (name == L"crossfade" && fields.size() >= 3) {
+            fx.xfade_ahead = Clamp(ToFloat(fields[0], 0), 0, XFADE_MAX);
+            fx.xfade_out = Clamp(ToFloat(fields[1], 0), 0, XFADE_MAX);
+            fx.xfade_in = Clamp(ToFloat(fields[2], 0), 0, XFADE_MAX);
         } else if (name == L"canal") {
             int c = _wtoi(fields[0].c_str());
             fx.channel = c == CHANNEL_LEFT || c == CHANNEL_RIGHT ? c : CHANNEL_BOTH;

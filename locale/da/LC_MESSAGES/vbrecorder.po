@@ -1126,8 +1126,8 @@ msgstr "Tillad flere &instanser"
 msgid "Gravar em uma &Subpasta"
 msgstr "Optag i en &undermappe"
 
-msgid "Renomear &Gravação..."
-msgstr "O&mdøb optagelse..."
+msgid "Renomear &Gravação"
+msgstr "O&mdøb optagelse"
 
 msgid "Ao Termi&nar a Gravação:"
 msgstr "&Når optagelsen slutter:"
@@ -1176,3 +1176,21 @@ msgstr "Omdøb optagelse:"
 
 msgid "Re&produzir Enquanto Grava"
 msgstr "Afs&pil under optagelse"
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr "Kilde&ns forsinkelse (ms):"
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr "Tom betyder ingen forsinkelse. Op til {maximo} ms, for at tilpasse en kilde, der kommer før de andre i optagelsen."
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr "Forsinkelsen skal være et tal fra 0 til {maximo} ms eller være tom."
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr "Start &den næste fil før:"
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr "Udtoning &ved filens slutning:"
+
+msgid "Fade ao Co&meçar o Arquivo:"
+msgstr "Ind&toning ved filens start:"

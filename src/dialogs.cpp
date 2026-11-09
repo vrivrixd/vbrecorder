@@ -96,8 +96,6 @@ const DWORD CHECK = WS_TABSTOP | BS_AUTOCHECKBOX;
 const DWORD COMBO = WS_TABSTOP | WS_VSCROLL | CBS_DROPDOWNLIST;
 const DWORD EDIT = WS_TABSTOP | ES_AUTOHSCROLL;
 
-/* The volume slider: 50 is 0 dB, from -30 dB (0) to +30 dB (100).
-   The screen reader says the position. */
 // The volume slider goes from -30 to +30 dB in steps of 0.5 dB, as the
 // gains of the equalizer: the arrows move 0.5 dB, Page Up and Down 3 dB.
 const double VOLUME_DB = 30.0;
@@ -108,6 +106,10 @@ const int VOLUME_PAGE = 6;
 // The balance: 0 to 100, 50 in the center; Page Up and Down move 5.
 const int PAN_MAX = 100;
 const int PAN_PAGE = 5;
+// The crossfade sliders: 0 to 20 s in steps of half a second; Page Up and
+// Down move a second.
+const int XFADE_POSITIONS = (int)(XFADE_MAX / XFADE_STEP);
+const int XFADE_PAGE = 2;
 
 }  // namespace
 
@@ -592,6 +594,8 @@ enum {
     IDC_AS_SHUFFLE,
     IDC_AS_SUBFOLDERS,
     IDC_AS_LISTEN,
+    IDC_AS_DELAY,
+    IDC_AS_XFADE,  // + slider
     IDC_AS_SIDECHAIN,
     IDC_AS_PAN,
     IDC_AS_URL,
@@ -715,6 +719,26 @@ void AddSourceDialog::OnInit() {
     chk_listen_ = ui::Create(hwnd_, WC_BUTTONW, tr("Re&produzir Enquanto Grava"), CHECK, IDC_AS_LISTEN);
     Button_SetCheck(chk_listen_, editing_ && edit_source_.listen ? BST_CHECKED : BST_UNCHECKED);
     vbox->Add(chk_listen_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    // The crossfade of a background audio: each slider works on its own, and
+    // all of them at 0 leave it out.
+    {
+        const char* labels[3] = {"Antecipar o Pró&ximo Arquivo:", "Fade ao Te&rminar o Arquivo:", "Fade ao Co&meçar o Arquivo:"};
+        const float values[3] = {fx_.xfade_ahead, fx_.xfade_out, fx_.xfade_in};
+        for (int i = 0; i < 3; ++i) {
+            lbl_xfade_[i] = ui::Create(hwnd_, WC_STATICW, tr(labels[i]), 0, 0);
+            sld_xfade_[i] = ui::Create(hwnd_, TRACKBAR_CLASSW, L"", WS_TABSTOP | TBS_HORZ | TBS_NOTICKS,
+                                       IDC_AS_XFADE + i);
+            SendMessageW(sld_xfade_[i], TBM_SETRANGE, TRUE, MAKELPARAM(0, XFADE_POSITIONS));
+            SendMessageW(sld_xfade_[i], TBM_SETPAGESIZE, 0, XFADE_PAGE);
+            SendMessageW(sld_xfade_[i], TBM_SETPOS, TRUE, (int)std::lround(values[i] / XFADE_STEP));
+            SetWindowSubclass(sld_xfade_[i], SliderProc, 1, (DWORD_PTR)this);
+            auto row = HBox();
+            row->Add(lbl_xfade_[i], 0, ui::CENTER_V | ui::RIGHT, S(5));
+            row->Add(sld_xfade_[i], 1, ui::EXPAND, 0);
+            vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+            UpdateXfadeValue(i);
+        }
+    }
     // Which channels of the source are recorded, before Stereo, which
     // still decides whether they stay on their side or go to both.
     lbl_pick_ = Add(WC_STATICW, tr("Canais a &Gravar:"), 0);
@@ -731,6 +755,29 @@ void AddSourceDialog::OnInit() {
     chk_stereo_ = Add(WC_BUTTONW, tr("E&stéreo"), CHECK, IDC_AS_STEREO);
     Button_SetCheck(chk_stereo_, fx_.stereo ? BST_CHECKED : BST_UNCHECKED);
     vbox->Add(chk_stereo_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    // How late this source goes into the recording, in ms, to line it up with
+    // the others; empty, as 0, is no delay. The arrows move 10 ms.
+    {
+        lbl_delay_ = Add(WC_STATICW, tr("Atraso da Fo&nte (ms):"), 0);
+        txt_delay_ = Add(WC_EDITW, fx_.delay_ms > 0 ? std::to_wstring(fx_.delay_ms) : L"", EDIT | ES_NUMBER,
+                         IDC_AS_DELAY, WS_EX_CLIENTEDGE);
+        spin_delay_ = Add(UPDOWN_CLASSW, L"", UDS_SETBUDDYINT | UDS_ARROWKEYS | UDS_NOTHOUSANDS, 0);
+        SendMessageW(spin_delay_, UDM_SETBUDDY, (WPARAM)txt_delay_, 0);
+        SendMessageW(spin_delay_, UDM_SETRANGE32, 0, SOURCE_DELAY_MAX_MS);
+        SendMessageW(spin_delay_, UDM_SETPOS32, 0, fx_.delay_ms);
+        UDACCEL step = {0, 10};
+        SendMessageW(spin_delay_, UDM_SETACCEL, 1, (LPARAM)&step);
+        // Created with the number: empty when there is no delay.
+        if (fx_.delay_ms <= 0) SetWindowTextW(txt_delay_, L"");
+        ui::SetToolTip(hwnd_, txt_delay_,
+                       Format(tr("Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega "
+                                 "antes das outras na gravação."),
+                              {{L"maximo", std::to_wstring(SOURCE_DELAY_MAX_MS)}}));
+        auto row = HBox();
+        row->Add(lbl_delay_, 0, ui::CENTER_V | ui::RIGHT, S(5));
+        row->Add(std::unique_ptr<ui::Item>(new SpinItem(txt_delay_, spin_delay_)), 0, ui::CENTER_V, 0);
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    }
 
     auto vol_box = HBox();
     HWND lbl_vol = Add(WC_STATICW, tr("&Volume:"), 0);
@@ -858,6 +905,13 @@ INT_PTR AddSourceDialog::OnMessage(UINT msg, WPARAM wp, LPARAM lp, bool* handled
         UpdatePanLabel();
         *handled = true;
         return 0;
+    }
+    for (int i = 0; i < 3; ++i) {
+        if (msg == WM_HSCROLL && (HWND)lp == sld_xfade_[i]) {
+            UpdateXfadeValue(i);
+            *handled = true;
+            return 0;
+        }
     }
     if (msg == WM_CTLCOLORSTATIC && note_ && (HWND)lp == note_) {
         HDC dc = (HDC)wp;
@@ -989,6 +1043,10 @@ void AddSourceDialog::PopulateFilter(int sel) {
     ui::Show(txt_url_, url);
     ui::Show(btn_url_browse_, url);
     ui::Show(chk_listen_, file || url);
+    for (int i = 0; i < 3; ++i) {
+        ui::Show(lbl_xfade_[i], file);
+        ui::Show(sld_xfade_[i], file);
+    }
     UpdateFolderOptions();
     Relayout();
     current_items_ = sel == 0 ? &device_items_ : sel == 1 ? &process_items_ : &exe_items_;
@@ -1193,6 +1251,14 @@ double AddSourceDialog::Pan() const {
     return (pos - 50) / 50.0;
 }
 
+/* A crossfade slider says its seconds. */
+void AddSourceDialog::UpdateXfadeValue(int i) {
+    int pos = (int)SendMessageW(sld_xfade_[i], TBM_GETPOS, 0, 0);
+    wchar_t text[32];
+    swprintf(text, 32, L"%.1f s", pos * XFADE_STEP);
+    ui::SetAccessibleValue(sld_xfade_[i], text);
+}
+
 /* The balance slider says its position, 0 to 100. */
 void AddSourceDialog::UpdatePanLabel() {
     int pos = (int)SendMessageW(sld_pan_, TBM_GETPOS, 0, 0);
@@ -1205,7 +1271,11 @@ LRESULT CALLBACK AddSourceDialog::SliderProc(HWND hwnd, UINT msg, WPARAM wp, LPA
     if (msg == WM_KEYDOWN) {
         AddSourceDialog* self = (AddSourceDialog*)ref;
         const bool pan = hwnd == self->sld_pan_;
-        const int max = pan ? PAN_MAX : VOLUME_MAX, page = pan ? PAN_PAGE : VOLUME_PAGE;
+        int xfade = -1;
+        for (int i = 0; i < 3; ++i)
+            if (hwnd == self->sld_xfade_[i]) xfade = i;
+        const int max = xfade >= 0 ? XFADE_POSITIONS : pan ? PAN_MAX : VOLUME_MAX;
+        const int page = xfade >= 0 ? XFADE_PAGE : pan ? PAN_PAGE : VOLUME_PAGE;
         int val = (int)SendMessageW(hwnd, TBM_GETPOS, 0, 0);
         int new_val = -1;
         switch (wp) {
@@ -1221,7 +1291,8 @@ LRESULT CALLBACK AddSourceDialog::SliderProc(HWND hwnd, UINT msg, WPARAM wp, LPA
         }
         if (new_val >= 0) {
             SendMessageW(hwnd, TBM_SETPOS, TRUE, new_val);
-            if (hwnd == self->sld_pan_) self->UpdatePanLabel();
+            if (xfade >= 0) self->UpdateXfadeValue(xfade);
+            else if (hwnd == self->sld_pan_) self->UpdatePanLabel();
             else self->UpdateDbLabel();
             return 0;
         }
@@ -1231,6 +1302,27 @@ LRESULT CALLBACK AddSourceDialog::SliderProc(HWND hwnd, UINT msg, WPARAM wp, LPA
 
 void AddSourceDialog::OnOk() {
     StopTest();
+    {
+        // Empty is no delay; otherwise a whole number of ms, up to the most.
+        std::wstring text = Trim(ui::GetText(txt_delay_));
+        bool digits = !text.empty() && text.size() <= 5 && text.find_first_not_of(L"0123456789") == std::wstring::npos;
+        int ms = digits ? _wtoi(text.c_str()) : 0;
+        if ((!text.empty() && !digits) || ms > SOURCE_DELAY_MAX_MS) {
+            ui::MsgBox(hwnd_,
+                       Format(tr("O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."),
+                              {{L"maximo", std::to_wstring(SOURCE_DELAY_MAX_MS)}}),
+                       tr("Aviso"), MB_ICONWARNING | MB_OK);
+            SetFocus(txt_delay_);
+            SendMessageW(txt_delay_, EM_SETSEL, 0, -1);
+            return;
+        }
+        fx_.delay_ms = ms;
+        // The crossfade belongs to background audio only.
+        const bool file = filter_ == 3;
+        float* xfade[3] = {&fx_.xfade_ahead, &fx_.xfade_out, &fx_.xfade_in};
+        for (int i = 0; i < 3; ++i)
+            *xfade[i] = file ? (int)SendMessageW(sld_xfade_[i], TBM_GETPOS, 0, 0) * XFADE_STEP : 0.0f;
+    }
     if (filter_ == 3) {
         std::wstring path = BackgroundPath();
         if (path.empty()) return;

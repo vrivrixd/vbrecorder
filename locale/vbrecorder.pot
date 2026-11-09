@@ -1097,7 +1097,7 @@ msgstr ""
 msgid "Gravar em uma &Subpasta"
 msgstr ""
 
-msgid "Renomear &Gravação..."
+msgid "Renomear &Gravação"
 msgstr ""
 
 msgid "Ao Termi&nar a Gravação:"
@@ -1146,4 +1146,22 @@ msgid "Renomear Gravação:"
 msgstr ""
 
 msgid "Re&produzir Enquanto Grava"
+msgstr ""
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr ""
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr ""
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr ""
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr ""
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr ""
+
+msgid "Fade ao Co&meçar o Arquivo:"
 msgstr ""

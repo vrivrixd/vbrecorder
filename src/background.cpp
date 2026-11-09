@@ -17,6 +17,7 @@
 #include "background.h"
 
 #include <algorithm>
+#include <cmath>
 #include <cstring>
 #include <numeric>
 #include <random>
@@ -102,7 +103,8 @@ BackgroundPlayer::BackgroundPlayer(const BassApi& bass, const std::wstring& path
 void BackgroundPlayer::SetSubfolders(bool subfolders) {
     if (subfolders == subfolders_) return;
     subfolders_ = subfolders;
-    std::wstring playing = stream_ && index_ < order_.size() ? files_[order_[index_]] : std::wstring();
+    const bool playing_any = cur_.stream || next_.stream;
+    std::wstring playing = playing_any && index_ < order_.size() ? files_[order_[index_]] : std::wstring();
     files_ = BackgroundFiles(path_, subfolders_);
     order_.clear();
     NewOrder();
@@ -134,20 +136,19 @@ void BackgroundPlayer::NewOrder() {
 }
 
 BackgroundPlayer::~BackgroundPlayer() {
-    Close();
-    if (mixer_) b_.StreamFree(mixer_);
+    CloseVoice(next_);
+    CloseVoice(cur_);
+}
+
+void BackgroundPlayer::SetCrossfade(double ahead, double fade_out, double fade_in) {
+    ahead_ = std::max(0.0, ahead);
+    fade_out_ = std::max(0.0, fade_out);
+    fade_in_ = std::max(0.0, fade_in);
 }
 
 bool BackgroundPlayer::Open(const Place* from, int* error) {
     *error = BASS_ERROR_FILEOPEN;
     if (files_.empty()) return false;
-    // Without BASS_MIXER_NONSTOP, a read stops short where the file ends:
-    // that is where the next one comes in.
-    mixer_ = b_.MixerStreamCreate(rate_, chans_, BASS_SAMPLE_FLOAT | BASS_STREAM_DECODE);
-    if (!mixer_) {
-        *error = b_.ErrorGetCode();
-        return false;
-    }
     if (from && from->index >= files_.size()) {
         // It had ended, without repeat: it stays silent.
         done_ = true;
@@ -155,37 +156,63 @@ bool BackgroundPlayer::Open(const Place* from, int* error) {
     }
     // The same order as before, unless the folder changed meanwhile.
     if (from && from->order.size() == files_.size()) order_ = from->order;
-    if (from && OpenAt(from->index, from->pos)) return true;
+    if (from && OpenAt(cur_, from->index, from->pos, false)) return true;
     for (size_t i = 0; i < files_.size(); ++i) {
-        if (OpenAt(i, 0)) return true;
+        if (OpenAt(cur_, i, 0, false)) return true;
         *error = b_.ErrorGetCode();
     }
     return false;
 }
 
-bool BackgroundPlayer::OpenAt(size_t index, QWORD pos) {
-    Close();
+bool BackgroundPlayer::OpenAt(Voice& v, size_t index, QWORD pos, bool fade_in) {
+    CloseVoice(v);
+    // Without BASS_MIXER_NONSTOP, a read stops short where the file ends:
+    // that is where the next one comes in.
+    DWORD mixer = b_.MixerStreamCreate(rate_, chans_, BASS_SAMPLE_FLOAT | BASS_STREAM_DECODE);
+    if (!mixer) return false;
     DWORD s = b_.StreamCreateFile(FALSE, files_[order_[index]].c_str(), 0, 0,
                                   BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT | BASS_UNICODE);
-    if (!s) return false;
-    if (pos) b_.ChannelSetPosition(s, pos, BASS_POS_BYTE);
-    if (!b_.MixerStreamAddChannel(mixer_, s, BASS_MIXER_CHAN_DOWNMIX | BASS_MIXER_CHAN_NORAMPIN)) {
-        b_.StreamFree(s);
+    if (!s) {
+        b_.StreamFree(mixer);
         return false;
     }
-    stream_ = s;
+    if (pos) b_.ChannelSetPosition(s, pos, BASS_POS_BYTE);
+    if (!b_.MixerStreamAddChannel(mixer, s, BASS_MIXER_CHAN_DOWNMIX | BASS_MIXER_CHAN_NORAMPIN)) {
+        b_.StreamFree(s);
+        b_.StreamFree(mixer);
+        return false;
+    }
+    v.mixer = mixer;
+    v.stream = s;
+    v.index = index;
+    v.fade_in = fade_in;
+    // Where it is and how long it is, in frames of the rate wanted: the
+    // crossfade counts from its end.
+    v.length = -1;
+    v.pos = 0;
+    if (b_.ChannelGetLength && b_.ChannelBytes2Seconds) {
+        QWORD bytes = b_.ChannelGetLength(s, BASS_POS_BYTE);
+        double seconds = bytes == (QWORD)-1 ? -1 : b_.ChannelBytes2Seconds(s, bytes);
+        if (seconds > 0) v.length = (long long)(seconds * rate_);
+        if (pos) {
+            double at = b_.ChannelBytes2Seconds(s, pos);
+            if (at > 0) v.pos = (long long)(at * rate_);
+        }
+    }
     index_ = index;
     return true;
 }
 
-void BackgroundPlayer::Close() {
-    if (!stream_) return;
-    b_.MixerChannelRemove(stream_);
-    b_.StreamFree(stream_);
-    stream_ = 0;
+void BackgroundPlayer::CloseVoice(Voice& v) {
+    if (v.stream) {
+        b_.MixerChannelRemove(v.stream);
+        b_.StreamFree(v.stream);
+    }
+    if (v.mixer) b_.StreamFree(v.mixer);
+    v = Voice();
 }
 
-bool BackgroundPlayer::Next() {
+bool BackgroundPlayer::Next(Voice& v) {
     // Files that do not play are skipped; one round through the list at most.
     for (size_t tries = 0; tries < files_.size(); ++tries) {
         size_t next = index_ + 1;
@@ -195,38 +222,83 @@ bool BackgroundPlayer::Next() {
             next = 0;
         }
         index_ = next;
-        if (OpenAt(next, 0)) return true;
+        if (OpenAt(v, next, 0, true)) return true;
     }
     return false;
 }
 
-void BackgroundPlayer::Read(float* out, DWORD frames) {
+DWORD BackgroundPlayer::ReadVoice(Voice& v, float* out, DWORD frames) {
+    if (!v.stream || !frames) return 0;
     const DWORD frame_bytes = chans_ * sizeof(float);
+    if (scratch_.size() < (size_t)frames * chans_) scratch_.resize((size_t)frames * chans_);
+    DWORD got = b_.ChannelGetData(v.mixer, scratch_.data(), frames * frame_bytes);
+    got = got == (DWORD)-1 ? 0 : got / frame_bytes;
+    const double half_pi = 1.5707963267948966;
+    const long long fade_in = (long long)(fade_in_ * rate_), fade_out = (long long)(fade_out_ * rate_);
+    for (DWORD f = 0; f < got; ++f) {
+        const long long p = v.pos + f;
+        // A quarter of a sine: what goes down and what comes up keep the
+        // loudness steady where they overlap.
+        double gain = 1.0;
+        if (v.fade_in && fade_in > 0 && p < fade_in) gain *= std::sin(half_pi * (double)p / fade_in);
+        if (fade_out > 0 && v.length > 0) {
+            const long long left = v.length - p;
+            if (left < fade_out) gain *= std::sin(half_pi * (double)std::max(0LL, left) / fade_out);
+        }
+        float* src = scratch_.data() + (size_t)f * chans_;
+        float* dst = out + (size_t)f * chans_;
+        for (int c = 0; c < chans_; ++c) dst[c] += (float)(src[c] * gain);
+    }
+    v.pos += got;
+    return got;
+}
+
+void BackgroundPlayer::Read(float* out, DWORD frames) {
+    std::memset(out, 0, (size_t)frames * chans_ * sizeof(float));
     DWORD filled = 0;
     // A file with nothing in it must not keep this loop going: as many empty
     // files in a row as there are files means the list has nothing to play.
     size_t empty = 0;
-    while (!done_ && stream_ && filled < frames && empty <= files_.size()) {
-        DWORD got = b_.ChannelGetData(mixer_, out + (size_t)filled * chans_, (frames - filled) * frame_bytes);
-        if (got == (DWORD)-1) got = 0;
-        filled += got / frame_bytes;
-        if (filled >= frames) break;
-        // The file is over.
+    const long long ahead = (long long)(ahead_ * rate_);
+    while (!done_ && cur_.stream && filled < frames && empty <= files_.size()) {
+        DWORD n = frames - filled;
+        if (!next_.stream && !last_ && ahead > 0 && cur_.length > 0) {
+            // The next file starts this long before the end of this one; a
+            // short file overlaps by half its length at most.
+            const long long start = cur_.length - std::min(ahead, cur_.length / 2);
+            if (cur_.pos >= start) {
+                if (!Next(next_)) last_ = true;
+            } else {
+                n = (DWORD)std::min<long long>(n, start - cur_.pos);
+            }
+        }
+        DWORD got = ReadVoice(cur_, out + (size_t)filled * chans_, n);
+        if (next_.stream && ReadVoice(next_, out + (size_t)filled * chans_, got) < got) {
+            // The next one was shorter than the overlap: it is over already.
+            CloseVoice(next_);
+        }
+        filled += got;
+        if (got == n) continue;
+        // The file is over: the next one goes on, or starts now.
         empty = got ? 0 : empty + 1;
-        if (!Next()) {
-            Close();
+        CloseVoice(cur_);
+        last_ = false;
+        if (next_.stream) {
+            cur_ = next_;
+            next_ = Voice();
+        } else if (!Next(cur_)) {
             done_ = true;
         }
     }
-    if (filled < frames) std::memset(out + (size_t)filled * chans_, 0, (size_t)(frames - filled) * frame_bytes);
 }
 
 void BackgroundPlayer::SetLoop(bool loop) {
     loop_ = loop;
-    if (loop_ && done_ && mixer_ && !files_.empty()) {
+    last_ = false;  // with repeat on, there is a next file again
+    if (loop_ && done_ && !files_.empty()) {
         done_ = false;
         index_ = files_.size() - 1;  // Next() goes round to the first
-        if (!Next()) done_ = true;
+        if (!Next(cur_)) done_ = true;
     }
 }
 
@@ -234,8 +306,10 @@ BackgroundPlayer::Place BackgroundPlayer::Where() const {
     Place p;
     p.index = index_ < order_.size() ? index_ : 0;
     p.order = order_;
-    if (stream_ && index_ < order_.size()) {
-        QWORD pos = b_.ChannelGetPosition(stream_, BASS_POS_BYTE);
+    // The newest file playing: in a crossfade, the one coming in.
+    const Voice& v = next_.stream ? next_ : cur_;
+    if (v.stream && index_ < order_.size()) {
+        QWORD pos = b_.ChannelGetPosition(v.stream, BASS_POS_BYTE);
         if (pos != (QWORD)-1) p.pos = pos;
     } else if (done_) {
         // It had ended: it stays ended.

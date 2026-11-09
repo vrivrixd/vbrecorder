@@ -43,9 +43,14 @@ history.
   it repeats. With "Include Subfolders", the audio files of the folders inside
   it play too, each folder after the files of the one above it. It has its own volume, equalizer, effects and stereo setting.
   It is only heard in the recording, unless "Play While Recording" is checked:
-  then it is also played, as it is recorded. Pausing
-  pauses it too, and continuing the last recording goes on from where it
-  stopped.
+  then it is also played, as it is recorded. A crossfade between the files is
+  set with three sliders, from 0 to 20 seconds, each working on its own: "Start
+  the Next File Early" starts the next file before the end of the one playing,
+  "Fade Out at the End of the File" takes the one playing down over its last
+  seconds, and "Fade In at the Start of the File" brings the next one up over
+  its first seconds; all at 0, the default, leave it out. A single file that
+  repeats crossfades into its own start. Pausing pauses it too, and continuing
+  the last recording goes on from where it stopped.
 - **Stream URL.** An internet radio goes into the recording as one more
   source: paste its link, or the path of an M3U, PLS or M3U8 playlist on the
   computer (Browse File finds it). Links to playlists on the internet work too,
@@ -66,6 +71,11 @@ history.
   the right, with 50 in the center, and the screen reader says the position.
   A mono source, such as a microphone, is placed too. Editing a source while
   recording changes its balance right away.
+- **Delay per source.** "Source Delay (ms)", right after Stereo, puts a source
+  that many milliseconds later in the recording, up to 5000, to line it up
+  with the others: a microphone, for example, comes in a little late compared
+  with background audio, which has no delay at all; delaying the background
+  audio puts them together. Empty or 0, the default, is no delay.
 - **Stereo or mono per source.** A source with "Stereo" unchecked is mixed
   down to mono, while the others stay in stereo.
 - **Test before recording.** The Test button lets you hear the device with the

@@ -32,7 +32,7 @@
 
 /* Program version, in a single place. It stays out of the translatable texts on
    purpose: bumping the version does not invalidate any translation. */
-#define VB_VERSION L"1.5.2"
+#define VB_VERSION L"1.5.3"
 
 /* Recording buffer, in milliseconds: how long a capture may be held up without
    losing audio. The default is the one BASS itself uses for recording. */

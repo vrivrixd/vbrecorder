@@ -1128,8 +1128,8 @@ msgstr "एक से अधिक इंस्टेंस की अनुम�
 msgid "Gravar em uma &Subpasta"
 msgstr "सबफ़ोल्डर में रिकॉर्ड करें(&C)"
 
-msgid "Renomear &Gravação..."
-msgstr "रिकॉर्डिंग का नाम बदलें(&Z)..."
+msgid "Renomear &Gravação"
+msgstr "रिकॉर्डिंग का नाम बदलें(&Z)"
 
 msgid "Ao Termi&nar a Gravação:"
 msgstr "रिकॉर्डिंग समाप्त होने पर(&T):"
@@ -1178,3 +1178,21 @@ msgstr "रिकॉर्डिंग का नाम बदलें:"
 
 msgid "Re&produzir Enquanto Grava"
 msgstr "रिकॉर्ड करते समय चलाएँ(&A)"
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr "स्रोत की देरी (ms)(&Y):"
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr "खाली का मतलब कोई देरी नहीं। {maximo} ms तक, ताकि रिकॉर्डिंग में दूसरों से पहले आने वाले स्रोत को मिलाया जा सके।"
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr "देरी 0 से {maximo} ms तक की संख्या होनी चाहिए, या खाली छोड़ें।"
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr "अगली फ़ाइल पहले शुरू करें(&N):"
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr "फ़ाइल के अंत में फ़ेड(&T):"
+
+msgid "Fade ao Co&meçar o Arquivo:"
+msgstr "फ़ाइल की शुरुआत में फ़ेड(&B):"

@@ -215,6 +215,7 @@ private:
     INT_PTR OnUrlTestDone(int error);
     double Pan() const;  // -1 left, 0 center, +1 right
     void UpdatePanLabel();
+    void UpdateXfadeValue(int i);
     void OnOk();
     static LRESULT CALLBACK SliderProc(HWND, UINT, WPARAM, LPARAM, UINT_PTR, DWORD_PTR);
 
@@ -233,6 +234,9 @@ private:
     HWND rb_file_ = nullptr, lbl_file_ = nullptr, txt_file_ = nullptr, btn_file_browse_ = nullptr,
          btn_folder_browse_ = nullptr, chk_loop_ = nullptr, chk_shuffle_ = nullptr,
          chk_subfolders_ = nullptr, chk_listen_ = nullptr;
+    // The delay of the source, and the crossfade of a background audio.
+    HWND lbl_delay_ = nullptr, txt_delay_ = nullptr, spin_delay_ = nullptr;
+    HWND lbl_xfade_[3] = {}, sld_xfade_[3] = {};
     HWND rb_url_ = nullptr, lbl_url_ = nullptr, txt_url_ = nullptr, btn_url_browse_ = nullptr;
     HWND lbl_pick_ = nullptr, cmb_pick_ = nullptr;  // the channels recorded
     HWND grp_ = nullptr, rb_devices_ = nullptr, rb_processes_ = nullptr, cmb_ = nullptr,

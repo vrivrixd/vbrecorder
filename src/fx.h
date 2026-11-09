@@ -87,6 +87,13 @@ struct SidechainSettings {
    channel of an interface, for example, is taken from there alone. */
 enum ChannelPick { CHANNEL_BOTH, CHANNEL_LEFT, CHANNEL_RIGHT };
 
+/* How late a source goes into the recording, to line it up with the others
+   (a device that delivers its sound late, for example). */
+const int SOURCE_DELAY_MAX_MS = 5000;
+/* The crossfade of a background audio, in seconds, in steps of half a second. */
+const float XFADE_MAX = 20.0f;
+const float XFADE_STEP = 0.5f;
+
 struct FxSettings {
     EqSettings eq;
     EffectSettings effects[FX_COUNT];
@@ -94,6 +101,11 @@ struct FxSettings {
     SidechainSettings sidechain;
     bool stereo = true;  // false: the source's channels are mixed into one
     int channel = CHANNEL_BOTH;  // a ChannelPick
+    int delay_ms = 0;            // 0 to SOURCE_DELAY_MAX_MS
+    // Background audio: the next file starts this long before the end of the
+    // one playing, which goes down over its last fade_out seconds, while the
+    // next comes up over its first fade_in seconds; 0 leaves each out.
+    float xfade_ahead = 0, xfade_out = 0, xfade_in = 0;
 
     FxSettings();  // every effect off, with the values of its first preset
 

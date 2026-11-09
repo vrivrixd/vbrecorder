@@ -1123,8 +1123,8 @@ msgstr "Izinkan beberapa &instans"
 msgid "Gravar em uma &Subpasta"
 msgstr "Rekam di Sub&folder"
 
-msgid "Renomear &Gravação..."
-msgstr "Ganti &Nama Rekaman..."
+msgid "Renomear &Gravação"
+msgstr "Ganti &Nama Rekaman"
 
 msgid "Ao Termi&nar a Gravação:"
 msgstr "Saat Re&kaman Selesai:"
@@ -1173,3 +1173,21 @@ msgstr "Ganti Nama Rekaman:"
 
 msgid "Re&produzir Enquanto Grava"
 msgstr "&Putar Selama Merekam"
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr "Tu&nda Sumber (ms):"
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr "Kosong berarti tanpa tunda. Hingga {maximo} ms, untuk menyelaraskan sumber yang datang lebih dulu dari yang lain dalam rekaman."
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr "Tunda harus berupa angka 0 sampai {maximo} ms, atau dibiarkan kosong."
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr "M&ulai Berkas Berikutnya Lebih Awal:"
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr "Pudar di Ak&hir Berkas:"
+
+msgid "Fade ao Co&meçar o Arquivo:"
+msgstr "Mun&cul di Awal Berkas:"

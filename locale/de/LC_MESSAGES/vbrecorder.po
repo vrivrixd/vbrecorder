@@ -1127,8 +1127,8 @@ msgstr "Mehrere Instanzen &zulassen"
 msgid "Gravar em uma &Subpasta"
 msgstr "In einem Unter&ordner aufnehmen"
 
-msgid "Renomear &Gravação..."
-msgstr "Aufna&hme umbenennen..."
+msgid "Renomear &Gravação"
+msgstr "Aufna&hme umbenennen"
 
 msgid "Ao Termi&nar a Gravação:"
 msgstr "Am Ende &der Aufnahme:"
@@ -1177,3 +1177,21 @@ msgstr "Aufnahme umbenennen:"
 
 msgid "Re&produzir Enquanto Grava"
 msgstr "Während der Aufnah&me wiedergeben"
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr "&Verzögerung der Quelle (ms):"
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr "Leer heißt keine Verzögerung. Bis {maximo} ms, um eine Quelle anzugleichen, die in der Aufnahme vor den anderen kommt."
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr "Die Verzögerung muss eine Zahl von 0 bis {maximo} ms sein oder leer bleiben."
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr "Nä&chste Datei früher starten:"
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr "Ausblenden am Ende de&r Datei:"
+
+msgid "Fade ao Co&meçar o Arquivo:"
+msgstr "Einblenden am Anfan&g der Datei:"

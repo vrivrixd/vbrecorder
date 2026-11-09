@@ -1128,8 +1128,8 @@ msgstr "Разрешаване на няколко &инстанции"
 msgid "Gravar em uma &Subpasta"
 msgstr "Зап&ис в подпапка"
 
-msgid "Renomear &Gravação..."
-msgstr "Преи&менуване на записа..."
+msgid "Renomear &Gravação"
+msgstr "Преи&менуване на записа"
 
 msgid "Ao Termi&nar a Gravação:"
 msgstr "При &край на записа:"
@@ -1178,3 +1178,21 @@ msgstr "Преименуване на записа:"
 
 msgid "Re&produzir Enquanto Grava"
 msgstr "В&ъзпроизвеждане по време на запис"
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr "Закъснение на изто&чника (ms):"
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr "Празно – без закъснение. До {maximo} ms, за да се изравни източник, който пристига преди другите в записа."
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr "Закъснението трябва да е число от 0 до {maximo} ms или да остане празно."
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr "Изпреварване на сле&дващия файл:"
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr "За&глъхване в края на файла:"
+
+msgid "Fade ao Co&meçar o Arquivo:"
+msgstr "&Усилване в началото на файла:"

@@ -1127,8 +1127,8 @@ msgstr "&Çoklu örneğe izin ver"
 msgid "Gravar em uma &Subpasta"
 msgstr "&Bir Alt Klasöre Kaydet"
 
-msgid "Renomear &Gravação..."
-msgstr "Kaydı Ye&niden Adlandır..."
+msgid "Renomear &Gravação"
+msgstr "Kaydı Ye&niden Adlandır"
 
 msgid "Ao Termi&nar a Gravação:"
 msgstr "Kayıt &Bittiğinde:"
@@ -1177,3 +1177,21 @@ msgstr "Kaydı Yeniden Adlandır:"
 
 msgid "Re&produzir Enquanto Grava"
 msgstr "Kaydederken &Çal"
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr "Kaynak Gecik&mesi (ms):"
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr "Boş, gecikme yok demektir. Kayıtta diğerlerinden önce gelen bir kaynağı hizalamak için en fazla {maximo} ms."
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr "Gecikme 0 ile {maximo} ms arasında bir sayı olmalı ya da boş kalmalıdır."
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr "Sonraki &Dosyayı Erken Başlat:"
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr "D&osya Sonunda Azalma:"
+
+msgid "Fade ao Co&meçar o Arquivo:"
+msgstr "Dosya &Başında Yükselme:"

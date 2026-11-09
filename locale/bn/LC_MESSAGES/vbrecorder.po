@@ -1128,8 +1128,8 @@ msgstr "একাধিক ইনস্ট্যান্স চালানো�
 msgid "Gravar em uma &Subpasta"
 msgstr "সাবফোল্ডারে রেকর্ড করুন(&C)"
 
-msgid "Renomear &Gravação..."
-msgstr "রেকর্ডিংয়ের নাম বদলান(&Z)..."
+msgid "Renomear &Gravação"
+msgstr "রেকর্ডিংয়ের নাম বদলান(&Z)"
 
 msgid "Ao Termi&nar a Gravação:"
 msgstr "রেকর্ডিং শেষ হলে(&T):"
@@ -1178,3 +1178,21 @@ msgstr "রেকর্ডিংয়ের নাম বদলান:"
 
 msgid "Re&produzir Enquanto Grava"
 msgstr "রেকর্ড করার সময় বাজান(&A)"
+
+msgid "Atraso da Fo&nte (ms):"
+msgstr "উৎসের বিলম্ব (ms)(&Y):"
+
+msgid "Em branco, sem atraso. Até {maximo} ms, para alinhar uma fonte que chega antes das outras na gravação."
+msgstr "খালি মানে কোনো বিলম্ব নেই। {maximo} ms পর্যন্ত, যাতে রেকর্ডিংয়ে অন্যদের আগে আসা কোনো উৎস মিলিয়ে নেওয়া যায়।"
+
+msgid "O atraso deve ser um número de 0 a {maximo} ms, ou ficar em branco."
+msgstr "বিলম্ব 0 থেকে {maximo} ms-এর মধ্যে একটি সংখ্যা হতে হবে, অথবা খালি রাখতে হবে।"
+
+msgid "Antecipar o Pró&ximo Arquivo:"
+msgstr "পরের ফাইল আগে শুরু(&N):"
+
+msgid "Fade ao Te&rminar o Arquivo:"
+msgstr "ফাইল শেষে ফেড(&T):"
+
+msgid "Fade ao Co&meçar o Arquivo:"
+msgstr "ফাইল শুরুতে ফেড(&B):"

@@ -150,6 +150,11 @@ struct AudioEngine::Input : public CaptureSink {
     DWORD rec = 0;
     std::unique_ptr<ProcessLoopbackCapture> cap;
     std::unique_ptr<BackgroundPlayer> player;  // background audio
+    // How late it goes into the recording, from the delay of the source,
+    // as it was when the source was opened; background audio starts with
+    // that much silence instead.
+    double delay_sec = 0;
+    bool delay_placed = false;
     std::unique_ptr<NetSource> net;            // a stream URL
     std::unique_ptr<FxChain> chain;
     int rate = 0;
@@ -323,7 +328,8 @@ struct AudioEngine::Input : public CaptureSink {
         engine->CheckSound(scratch.data(), frames, chans, rate, end_qpc);
         data = scratch.data();
         std::lock_guard<std::mutex> lock(queue_mutex);
-        double end = engine->RecordingSecondsAt(end_qpc);
+        // A source delayed lands that much later on the timeline.
+        double end = engine->RecordingSecondsAt(end_qpc) + delay_sec;
         Sidechain(scratch.data(), frames, end - (double)frames / rate);
         double lateness = end - (TailSeconds() + (double)frames / rate);
         if (!started) {
@@ -363,6 +369,11 @@ struct AudioEngine::Input : public CaptureSink {
        the recording's own clock: it is never late, and never drifts. */
     void FillBackground(double seconds) {
         std::lock_guard<std::mutex> lock(queue_mutex);
+        if (!delay_placed) {
+            // Delayed, it starts after that much silence.
+            delay_placed = true;
+            if (delay_sec > 0) SilenceLocked((unsigned long long)(delay_sec * rate));
+        }
         long long want = (long long)((seconds - TailSeconds()) * rate);
         const DWORD chunk = 4096;
         while (want > 0) {
@@ -495,6 +506,8 @@ bool AudioEngine::LoadDlls() {
     get(bass, "BASS_ChannelSetAttribute", b_.ChannelSetAttribute);
     get(bass, "BASS_ChannelIsActive", b_.ChannelIsActive);
     get(bass, "BASS_ChannelGetPosition", b_.ChannelGetPosition);
+    get(bass, "BASS_ChannelGetLength", b_.ChannelGetLength);
+    get(bass, "BASS_ChannelBytes2Seconds", b_.ChannelBytes2Seconds);
     get(bass, "BASS_ChannelSetPosition", b_.ChannelSetPosition);
     get(bass, "BASS_PluginLoad", b_.PluginLoad);
     get(bass, "BASS_ChannelSetFX", b_.ChannelSetFX);
@@ -1002,6 +1015,7 @@ std::unique_ptr<AudioEngine::Input> AudioEngine::MakeInput(const Source& src, in
     in->volume = (float)src.volume;
     in->pan = (float)src.pan;
     in->sidechain = src.fx.sidechain;
+    in->delay_sec = std::max(0, std::min(SOURCE_DELAY_MAX_MS, src.fx.delay_ms)) / 1000.0;
     if (src.type == L"url") {
         // It connects on its own thread; meanwhile, and whenever the
         // connection drops, the source is silent.
@@ -1030,6 +1044,7 @@ std::unique_ptr<AudioEngine::Input> AudioEngine::MakeInput(const Source& src, in
         const BackgroundPlayer::Place* from =
             resuming_ && place != background_places_.end() ? &place->second : nullptr;
         if (!in->player->Open(from, error)) return nullptr;
+        in->player->SetCrossfade(src.fx.xfade_ahead, src.fx.xfade_out, src.fx.xfade_in);
         in->push = b_.StreamCreate(in->rate, in->chans, BASS_STREAM_DECODE | BASS_SAMPLE_FLOAT,
                                    STREAMPROC_PUSH, nullptr);
         if (!in->push) {
@@ -1590,6 +1605,7 @@ void AudioEngine::SetSourceFx(const Source& src) {
                 in->player->SetShuffle(src.shuffle);
                 in->player->SetSubfolders(src.subfolders);
                 in->player->SetLoop(src.loop);
+                in->player->SetCrossfade(src.fx.xfade_ahead, src.fx.xfade_out, src.fx.xfade_in);
             }
         }
     }
@@ -2188,7 +2204,8 @@ bool AudioEngine::Feed(Output& out, DWORD frames, bool final_flush, bool may_wai
         // Background audio follows the recording's clock already.
         if (final_flush || in->Clocked()) continue;
 
-        double excess = avail / in->BytesPerSecond() - expected;
+        // A delayed source holds its delay on top, on purpose.
+        double excess = avail / in->BytesPerSecond() - expected - in->delay_sec;
         if (excess > target * 3 + 1.0) {
             // Queue far above where the timeline is: drop the excess at once.
             DWORD drop = (DWORD)(excess * in->rate) * frame_bytes;

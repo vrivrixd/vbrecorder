@@ -706,7 +706,7 @@ void MainFrame::Retranslate() {
 
     ui::SetText(chk_separate_, tr("Gravar fontes em ar&quivos separados"));
     ui::SetText(chk_subfolder_, tr("Gravar em uma &Subpasta"));
-    ui::SetText(btn_rename_, tr("Renomear &Gravação..."));
+    ui::SetText(btn_rename_, tr("Renomear &Gravação"));
     ui::SetText(lbl_after_, tr("Ao Termi&nar a Gravação:"));
     FillAfterList();
     ui::SetText(chk_tones_, tr("Reprodu&zir tons ao iniciar ou parar gravação"));
