@@ -63,6 +63,7 @@ public:
     bool start_with_windows = false;
     bool countdown = false;
     int preroll = 0;  // seconds of pre-recording
+    bool preroll_file = false;  // the pre-recording goes into a file of its own
     bool updating = false;  // closed because the update is being installed
 
 protected:
@@ -83,7 +84,7 @@ private:
          chk_on_top_ = nullptr, txt_buffer_ = nullptr, btn_keys_ = nullptr, btn_ok_ = nullptr,
          btn_cancel_ = nullptr, chk_updates_ = nullptr, btn_check_ = nullptr,
          chk_startup_ = nullptr, chk_countdown_ = nullptr, txt_split_ = nullptr,
-         txt_preroll_ = nullptr, chk_multiple_ = nullptr;
+         txt_preroll_ = nullptr, chk_multiple_ = nullptr, chk_preroll_file_ = nullptr;
 };
 
 /* The tags of the recordings: a field for each, and after each a Variables
@@ -127,6 +128,22 @@ private:
     std::vector<std::wstring> names_;
     HWND folder_edit_ = nullptr;
     std::vector<HWND> edits_;
+};
+
+/* Removes a source, from the tray: a plain list of the sources, without
+   check boxes; ShowModal gives IDOK with `result` the one chosen. */
+class RemoveSourceDialog : public ui::Dialog {
+public:
+    explicit RemoveSourceDialog(const std::vector<std::wstring>& names);
+    std::vector<int> result;  // the sources selected, in order
+
+protected:
+    void OnInit() override;
+    bool OnCommand(int id, int code, HWND control) override;
+
+private:
+    std::vector<std::wstring> names_;
+    HWND list_ = nullptr;
 };
 
 /* Offers an update, with what is new in it. The notes come first, where the

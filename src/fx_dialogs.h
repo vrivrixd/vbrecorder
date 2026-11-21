@@ -203,4 +203,5 @@ private:
 
     SilenceSettings s_;
     HWND chk_on_ = nullptr, lbl_action_ = nullptr, cmb_action_ = nullptr, chk_tones_ = nullptr;
+    HWND lbl_mode_ = nullptr, cmb_mode_ = nullptr;
 };

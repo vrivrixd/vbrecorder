@@ -20,7 +20,12 @@ history.
 ## Features
 
 - **Multiple simultaneous sources.** Add as many sources as you like to the
-  recording list, mixing audio devices and processes.
+  recording list, mixing audio devices and processes. Each source in the list
+  is a check box, checked when it is added: unchecked, the source is silent in
+  the recording (and in its separate file), even while recording, and comes
+  back in sync when checked again. Selecting does not check, so several
+  sources can be selected and removed at once. In the list, Enter edits the
+  source selected and Delete removes it.
 - **Change sources while recording.** Add, edit or remove sources without
   stopping: a new source joins in sync, a removed one first records what it
   already had, and editing a source changes its volume right away. With
@@ -144,9 +149,19 @@ history.
   recordings folder, show the window and close the program.
 - **Tray menu.** With the window minimized or hidden, the tray icon's menu
   records, pauses, stops, continues the last recording, plays, renames and
-  deletes it, changes the format and what to do when the recording ends, and
-  opens Configure Tags, Recording Schedule, the recordings folder and Settings. A window opened from there closes back to
-  where you were, and the main window stays minimized.
+  deletes it, changes the format and what to do when the recording ends, turns
+  monitoring on and off, and opens Configure Tags, Recording Schedule, the
+  recordings folder and Settings. Its Recording Sources submenu lists the
+  sources, checked when on, to turn each one on or off, then Add, which opens
+  the source dialog, and Remove, which opens a list where one or more sources
+  can be selected and removed at once. A window opened from there closes back to where you were, and the
+  main window stays minimized.
+- **Monitor recording.** "Monitor Recording", in the main window and in the
+  tray, off by default, plays the checked sources live as they go into the
+  recording, with their effects, volume and balance, also before recording.
+  "Monitoring Device", shown while it is on, picks the output, the default
+  one first; the tray has it too, as a submenu, while monitoring is on. Background audio and stream URLs are monitored once the
+  recording starts.
 - **Countdown**, optional: three low beeps, one per second, and the recording
   starts on the high one, as at the start of a race. Stop cancels it.
 - **Pre-recording.** In the settings, "Pre-Recording (seconds)", up to 60,
@@ -156,7 +171,9 @@ history.
   and to Continue Last Recording, which then goes on with what was said while
   you were getting to the button. Background audio starts when Record is
   pressed. 0, the default, turns it off, and then nothing is captured until
-  you record.
+  you record. With "Save Pre-Recording to a Separate File", off by default, the
+  seconds before the click go to `name (pre-recording).wav` (one per source
+  with separate files), and the recording itself starts exactly at the click.
 - **Silence detection.** Silence Detection, in the main window, acts once
   the recording has started, by Record, a schedule or Continue Last
   Recording: after the silence time with every source quiet (background audio
@@ -165,14 +182,22 @@ history.
   before the sound (the detection's own pre-recording, 150 ms by default), so
   the first syllable is never cut; the silence before a pause stays in the
   file, and nothing of the time paused. Separate files pause together, so they
-  stay in sync. Tones for what it does by itself are optional.
+  stay in sync. Tones for what it does by itself are optional. "Detection
+  Mode" chooses how silence counts: "Detect in the Mix", the default, as
+  above; or "Detect per Source", where each source that stays quiet for the
+  silence time goes silent in the recording (and in its separate file), and
+  comes back with its sound, the detection's pre-recording included, while the
+  recording still pauses or stops when every source is quiet. The tones, when
+  chosen, are for the whole recording pausing, going on or stopping, not for
+  each source.
 - **Recording duration**, optional: type how long to record (`1:30:00` is an
   hour and a half), and the recording stops by itself when it gets there.
   Pausing also pauses the count.
 - **When the recording ends**, in the main window: do nothing (the default),
   close the program, hibernate, sleep, shut down or restart the computer, as
-  soon as the recording stops, by Stop or by itself. After doing it, the
-  choice goes back to doing nothing. Hibernate and sleep are listed only where
+  soon as the recording stops, by Stop or by itself. Closing the program stays
+  chosen; after hibernating, sleeping, shutting down or restarting, the choice
+  goes back to doing nothing. Hibernate and sleep are listed only where
   the computer has them; with Modern Standby, sleep turns the screen off, which
   is how those computers go to sleep.
 - **Start with Windows**, optional. The program stays portable: if its folder
@@ -183,7 +208,9 @@ history.
   typed as `14:30`, or with seconds, as `14:30:15`. Each one may
   have its own recording duration; without one, the duration field of the
   main window counts. "Remove When Done" takes a schedule out of the list
-  once its recording starts. The program does this itself, without the
+  once its recording starts. Several schedules can be selected (Shift with
+  the arrows, Ctrl+Space) and removed at once, with Remove or Delete. The
+  program does this itself, without the
   Windows Task Scheduler, so it must be open (in the tray is enough) and the
   computer awake.
 - **More than one instance.** With "Allow Multiple Instances", in the

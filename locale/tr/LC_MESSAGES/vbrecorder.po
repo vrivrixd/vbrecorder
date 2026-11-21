@@ -1195,3 +1195,33 @@ msgstr "D&osya Sonunda Azalma:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Dosya &Başında Yükselme:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Kaydı İzle (&H)"
+
+msgid "Monitorar Gravação"
+msgstr "Kaydı İzle"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "İzleme Aygıtı (&C):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Varsayılan Çıkış Aygıtı"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Ön Ka&ydı Ayrı Dosyaya Kaydet"
+
+msgid "pré-gravação"
+msgstr "ön kayıt"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Kayıt Kaynağını Kaldır"
+
+msgid "&Modo de Detecção:"
+msgstr "Algılama &Modu:"
+
+msgid "Detectar na Mixagem"
+msgstr "Miksajda Algıla"
+
+msgid "Detectar por Fonte"
+msgstr "Kaynak Başına Algıla"

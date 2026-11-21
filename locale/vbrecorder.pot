@@ -1165,3 +1165,33 @@ msgstr ""
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr ""
+
+msgid "Mo&nitorar Gravação"
+msgstr ""
+
+msgid "Monitorar Gravação"
+msgstr ""
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr ""
+
+msgid "Dispositivo de Saída Padrão"
+msgstr ""
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr ""
+
+msgid "pré-gravação"
+msgstr ""
+
+msgid "Remover Fonte de Gravação"
+msgstr ""
+
+msgid "&Modo de Detecção:"
+msgstr ""
+
+msgid "Detectar na Mixagem"
+msgstr ""
+
+msgid "Detectar por Fonte"
+msgstr ""

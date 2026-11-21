@@ -1194,3 +1194,33 @@ msgstr "Fade Out at the E&nd of the File:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Fade In at &the Start of the File:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "&Monitor Recording"
+
+msgid "Monitorar Gravação"
+msgstr "Monitor Recording"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Mon&itoring Device:"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Default Output Device"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Sa&ve Pre-Recording to a Separate File"
+
+msgid "pré-gravação"
+msgstr "pre-recording"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Remove Recording Source"
+
+msgid "&Modo de Detecção:"
+msgstr "&Detection Mode:"
+
+msgid "Detectar na Mixagem"
+msgstr "Detect in the Mix"
+
+msgid "Detectar por Fonte"
+msgstr "Detect per Source"

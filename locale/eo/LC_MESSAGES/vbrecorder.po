@@ -1194,3 +1194,33 @@ msgstr "M&alfortiĝo ĉe la fino de la dosiero:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Plifor&tiĝo ĉe la komenco de la dosiero:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Aŭskulti la registradon (&Q)"
+
+msgid "Monitorar Gravação"
+msgstr "Aŭskulti la registradon"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Aparato por aŭskulti (&V):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Defaŭlta eliga aparato"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Konservi la antaŭregistradon &en aparta dosiero"
+
+msgid "pré-gravação"
+msgstr "antaŭregistrado"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Forigi registran fonton"
+
+msgid "&Modo de Detecção:"
+msgstr "Detekta &reĝimo:"
+
+msgid "Detectar na Mixagem"
+msgstr "Detekti en la miksaĵo"
+
+msgid "Detectar por Fonte"
+msgstr "Detekti po fonto"

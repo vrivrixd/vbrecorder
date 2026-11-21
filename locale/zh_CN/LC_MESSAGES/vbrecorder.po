@@ -1185,3 +1185,33 @@ msgstr "文件结尾淡出(&T):"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "文件开头淡入(&B):"
+
+msgid "Mo&nitorar Gravação"
+msgstr "监听录制(&M)"
+
+msgid "Monitorar Gravação"
+msgstr "监听录制"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "监听设备(&B):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "默认输出设备"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "将预录保存为单独文件(&V)"
+
+msgid "pré-gravação"
+msgstr "预录"
+
+msgid "Remover Fonte de Gravação"
+msgstr "移除录制源"
+
+msgid "&Modo de Detecção:"
+msgstr "检测模式(&M):"
+
+msgid "Detectar na Mixagem"
+msgstr "在混音中检测"
+
+msgid "Detectar por Fonte"
+msgstr "按音源检测"

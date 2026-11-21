@@ -200,6 +200,7 @@ enum {
     IDC_ST_COUNTDOWN,
     IDC_ST_SPLIT,
     IDC_ST_PREROLL,
+    IDC_ST_PREROLL_FILE,
 };
 
 SettingsDialog::SettingsDialog(ConfigManager& config, std::function<void()> on_keys_saved,
@@ -284,6 +285,11 @@ void SettingsDialog::OnInit() {
                              "fundo começa ao clicar. 0 desativa; até {maximo}."),
                           {{L"maximo", std::to_wstring(PREROLL_MAX)}}));
     vbox->Add(std::move(hb_pre), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
+    // The seconds before the click in a file of their own; the recording
+    // itself starts at the click.
+    chk_preroll_file_ = Add(WC_BUTTONW, tr("Sa&lvar Pré-Gravação em Arquivo Separado"), CHECK, IDC_ST_PREROLL_FILE);
+    Button_SetCheck(chk_preroll_file_, config_.GetBoolean(L"pre_gravacao_separada"));
+    vbox->Add(chk_preroll_file_, 0, ui::LEFT | ui::RIGHT | ui::BOTTOM, S(10));
 
     auto hb_split = HBox();
     // As the recording duration: 30:00 is half an hour, a single number is seconds.
@@ -406,6 +412,7 @@ void SettingsDialog::OnOk() {
         }
         preroll = value;
     }
+    preroll_file = Button_GetCheck(chk_preroll_file_) == BST_CHECKED;
     int sel = (int)SendMessageW(cmb_lang_, CB_GETCURSEL, 0, 0);
     language_ = (sel >= 0 && sel < (int)codes_.size()) ? codes_[sel] : L"";
     start_minimized = Button_GetCheck(chk_start_min_) == BST_CHECKED;
@@ -416,6 +423,60 @@ void SettingsDialog::OnOk() {
     on_top = Button_GetCheck(chk_on_top_) == BST_CHECKED;
     multiple = Button_GetCheck(chk_multiple_) == BST_CHECKED;
     EndModal(IDOK);
+}
+
+/* ---- Removing a source, from the tray ---- */
+
+enum { IDC_RS_LIST = 1501 };
+
+RemoveSourceDialog::RemoveSourceDialog(const std::vector<std::wstring>& names)
+    : ui::Dialog(tr("Remover Fonte de Gravação")), names_(names) {}
+
+void RemoveSourceDialog::OnInit() {
+    auto vbox = VBox();
+    HWND label = Add(WC_STATICW, tr("&Fontes de Gravação:"), 0);
+    // A list like the schedule's, where several sources can be selected
+    // (Shift with the arrows, Ctrl+Space) and removed at once.
+    list_ = Add(WC_LISTVIEWW, L"", WS_TABSTOP | LVS_REPORT | LVS_NOCOLUMNHEADER | LVS_SHOWSELALWAYS,
+                IDC_RS_LIST, WS_EX_CLIENTEDGE);
+    ListView_SetExtendedListViewStyle(list_, LVS_EX_FULLROWSELECT);
+    LVCOLUMNW col = {};
+    col.mask = LVCF_WIDTH;
+    col.cx = S(340);
+    ListView_InsertColumn(list_, 0, &col);
+    for (size_t i = 0; i < names_.size(); ++i) {
+        LVITEMW item = {};
+        item.mask = LVIF_TEXT;
+        item.iItem = (int)i;
+        item.pszText = (LPWSTR)names_[i].c_str();
+        ListView_InsertItem(list_, &item);
+    }
+    ListView_SetItemState(list_, 0, LVIS_SELECTED | LVIS_FOCUSED, LVIS_SELECTED | LVIS_FOCUSED);
+    vbox->Add(label, 0, ui::LEFT | ui::RIGHT | ui::TOP, S(10));
+    vbox->Add(list_, 1, ui::ALL | ui::EXPAND, S(10), SIZE{S(360), S(160)});
+    auto hb = HBox();
+    HWND ok = Add(WC_BUTTONW, tr("&Ok"), BUTTON | BS_DEFPUSHBUTTON, IDOK);
+    HWND cancel = Add(WC_BUTTONW, tr("&Cancelar"), BUTTON, IDCANCEL);
+    hb->Add(ok, 0, ui::RIGHT, S(10));
+    hb->Add(cancel, 0, 0, 0);
+    vbox->Add(std::move(hb), 0, ui::CENTER | ui::ALL, S(15));
+    root_ = std::move(vbox);
+    Fit();
+    SetFocus(list_);
+}
+
+bool RemoveSourceDialog::OnCommand(int id, int code, HWND) {
+    // Ok, or Enter anywhere in the dialog, removes the sources selected.
+    if (id == IDOK) {
+        result.clear();
+        for (int i = ListView_GetNextItem(list_, -1, LVNI_SELECTED); i != -1;
+             i = ListView_GetNextItem(list_, i, LVNI_SELECTED))
+            result.push_back(i);
+        if (result.empty()) return true;
+        EndModal(IDOK);
+        return true;
+    }
+    return false;
 }
 
 /* ---- Renaming the last recording ---- */
@@ -1434,8 +1495,9 @@ ScheduleListDialog::ScheduleListDialog(const std::vector<Schedule>& schedules)
 void ScheduleListDialog::OnInit() {
     auto vbox = VBox();
     HWND label = Add(WC_STATICW, tr("A&gendamentos:"), 0);
-    lst_ = Add(WC_LISTVIEWW, L"", WS_TABSTOP | LVS_REPORT | LVS_NOCOLUMNHEADER | LVS_SINGLESEL |
-                                      LVS_SHOWSELALWAYS,
+    // Several can be selected (Shift with the arrows, Ctrl+Space) and
+    // removed at once.
+    lst_ = Add(WC_LISTVIEWW, L"", WS_TABSTOP | LVS_REPORT | LVS_NOCOLUMNHEADER | LVS_SHOWSELALWAYS,
                IDC_SCH_LIST, WS_EX_CLIENTEDGE);
     ListView_SetExtendedListViewStyle(lst_, LVS_EX_FULLROWSELECT);
     LVCOLUMNW col = {};
@@ -1507,10 +1569,14 @@ void ScheduleListDialog::OnEdit() {
 }
 
 void ScheduleListDialog::OnRemove() {
-    int sel = Selected();
-    if (sel < 0) return;
-    list_.erase(list_.begin() + sel);
-    Refresh(sel);
+    std::vector<int> chosen;
+    for (int i = ListView_GetNextItem(lst_, -1, LVNI_SELECTED); i != -1; i = ListView_GetNextItem(lst_, i, LVNI_SELECTED))
+        chosen.push_back(i);
+    if (chosen.empty()) return;
+    // From the last, so the positions still to remove stay right.
+    for (auto it = chosen.rbegin(); it != chosen.rend(); ++it) list_.erase(list_.begin() + *it);
+    // What comes after the first removed one takes its place.
+    Refresh(chosen.front());
     SetFocus(list_.empty() ? GetDlgItem(hwnd_, IDC_SCH_ADD) : lst_);
 }
 

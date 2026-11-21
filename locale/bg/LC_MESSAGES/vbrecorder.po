@@ -1196,3 +1196,33 @@ msgstr "За&глъхване в края на файла:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "&Усилване в началото на файла:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Набл&юдение на записа"
+
+msgid "Monitorar Gravação"
+msgstr "Наблюдение на записа"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "&Устройство за наблюдение:"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Изходно устройство по подразбиране"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Запазване на предварителния запис в отделен &файл"
+
+msgid "pré-gravação"
+msgstr "предварителен запис"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Премахване на източник на запис"
+
+msgid "&Modo de Detecção:"
+msgstr "&Режим на откриване:"
+
+msgid "Detectar na Mixagem"
+msgstr "Откриване в микса"
+
+msgid "Detectar por Fonte"
+msgstr "Откриване по източник"

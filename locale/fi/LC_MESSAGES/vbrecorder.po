@@ -1193,3 +1193,33 @@ msgstr "Häiv&ytys tiedoston lopussa:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Häivytys tiedosto&n alussa:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Kuuntele tallennusta (&G)"
+
+msgid "Monitorar Gravação"
+msgstr "Kuuntele tallennusta"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Kuuntelulaite (&B):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Oletustoistolaite"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Tallenna esitallennus erilliseen tie&dostoon"
+
+msgid "pré-gravação"
+msgstr "esitallennus"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Poista tallennuslähde"
+
+msgid "&Modo de Detecção:"
+msgstr "Tu&nnistustila:"
+
+msgid "Detectar na Mixagem"
+msgstr "Tunnista miksauksesta"
+
+msgid "Detectar por Fonte"
+msgstr "Tunnista lähteittäin"

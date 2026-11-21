@@ -239,7 +239,7 @@ const std::vector<FxParam>& SidechainParams() {
     return params;
 }
 
-SidechainSettings::SidechainSettings() : values{-40, 500, 15, 50, 500} {}
+SidechainSettings::SidechainSettings() : values{-20, 500, 15, 50, 500} {}
 
 bool SidechainSettings::IsDefault() const {
     const SidechainSettings defaults;
@@ -352,6 +352,7 @@ std::wstring FxSettings::Serialize() const {
     if (!stereo) parts.push_back(L"estereo=0");
     if (channel != CHANNEL_BOTH) parts.push_back(L"canal=" + std::to_wstring(channel));
     if (delay_ms > 0) parts.push_back(L"atraso=" + std::to_wstring(delay_ms));
+    if (!enabled) parts.push_back(L"desativada=1");
     if (xfade_ahead > 0 || xfade_out > 0 || xfade_in > 0)
         parts.push_back(L"crossfade=" + Num(xfade_ahead) + L"|" + Num(xfade_out) + L"|" + Num(xfade_in));
     if (!sidechain.IsDefault()) {
@@ -385,6 +386,8 @@ FxSettings FxSettings::Parse(const std::wstring& text) {
             fx.noise.amount = Clamp(ToFloat(fields[1], 100), 0, 100);
         } else if (name == L"estereo") {
             fx.stereo = fields[0] != L"0";
+        } else if (name == L"desativada") {
+            fx.enabled = fields[0] != L"1";
         } else if (name == L"atraso") {
             fx.delay_ms = std::max(0, std::min(SOURCE_DELAY_MAX_MS, _wtoi(fields[0].c_str())));
         } else if (name == L"crossfade" && fields.size() >= 3) {

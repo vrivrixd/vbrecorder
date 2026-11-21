@@ -1187,3 +1187,33 @@ msgstr "ファイルの終わりのフェード(&T):"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "ファイルの始まりのフェード(&B):"
+
+msgid "Mo&nitorar Gravação"
+msgstr "録音をモニター(&M)"
+
+msgid "Monitorar Gravação"
+msgstr "録音をモニター"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "モニター用デバイス(&B):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "既定の出力デバイス"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "プリレコーディングを別のファイルに保存(&S)"
+
+msgid "pré-gravação"
+msgstr "プリレコーディング"
+
+msgid "Remover Fonte de Gravação"
+msgstr "録音ソースを削除"
+
+msgid "&Modo de Detecção:"
+msgstr "検出モード(&M):"
+
+msgid "Detectar na Mixagem"
+msgstr "ミックスで検出"
+
+msgid "Detectar por Fonte"
+msgstr "ソースごとに検出"

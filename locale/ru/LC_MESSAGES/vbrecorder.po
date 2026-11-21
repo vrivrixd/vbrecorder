@@ -1197,3 +1197,33 @@ msgstr "Зат&ухание в конце файла:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Нарастание в на&чале файла:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Прослу&шивать запись"
+
+msgid "Monitorar Gravação"
+msgstr "Прослушивать запись"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Уст&ройство прослушивания:"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Устройство вывода по умолчанию"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Сохранять предзапись в отдельный &файл"
+
+msgid "pré-gravação"
+msgstr "предзапись"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Удалить источник записи"
+
+msgid "&Modo de Detecção:"
+msgstr "Р&ежим обнаружения:"
+
+msgid "Detectar na Mixagem"
+msgstr "Обнаруживать в миксе"
+
+msgid "Detectar por Fonte"
+msgstr "Обнаруживать по источникам"

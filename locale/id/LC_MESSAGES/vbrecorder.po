@@ -1191,3 +1191,33 @@ msgstr "Pudar di Ak&hir Berkas:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Mun&cul di Awal Berkas:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Pantau Re&kaman"
+
+msgid "Monitorar Gravação"
+msgstr "Pantau Rekaman"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Perang&kat Pemantauan:"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Perangkat Keluaran Bawaan"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Simpan Pra-Rekam ke &File Terpisah"
+
+msgid "pré-gravação"
+msgstr "pra-rekam"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Hapus Sumber Rekaman"
+
+msgid "&Modo de Detecção:"
+msgstr "&Mode Deteksi:"
+
+msgid "Detectar na Mixagem"
+msgstr "Deteksi di Campuran"
+
+msgid "Detectar por Fonte"
+msgstr "Deteksi per Sumber"

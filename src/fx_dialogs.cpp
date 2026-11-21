@@ -50,6 +50,7 @@ enum {
     IDC_FX_SILENCE_ON,
     IDC_FX_ACTION,
     IDC_FX_SILENCE_TONES,
+    IDC_FX_SILENCE_MODE,
     IDC_FX_TRACK = 600,  // + slider index
     IDC_FX_CHECK = 700,  // + parameter index
 };
@@ -660,6 +661,17 @@ void SilenceDialog::OnInit() {
     chk_on_ = Add(WC_BUTTONW, tr("&Ativar Detecção de Silêncio"), CHECK, IDC_FX_SILENCE_ON);
     Button_SetCheck(chk_on_, s_.on ? BST_CHECKED : BST_UNCHECKED);
     vbox->Add(chk_on_, 0, ui::ALL, S(10));
+    // On the mix, as always; or each source on its own.
+    {
+        auto row = HBox();
+        lbl_mode_ = Add(WC_STATICW, tr("&Modo de Detecção:"), 0);
+        cmb_mode_ = Add(WC_COMBOBOXW, L"", COMBO, IDC_FX_SILENCE_MODE);
+        ui::ComboSetItems(cmb_mode_, {tr("Detectar na Mixagem"), tr("Detectar por Fonte")});
+        SendMessageW(cmb_mode_, CB_SETCURSEL, s_.per_source ? 1 : 0, 0);
+        row->Add(lbl_mode_, 0, ui::CENTER_V | ui::RIGHT, S(5));
+        row->Add(cmb_mode_, 1, ui::EXPAND, 0);
+        vbox->Add(std::move(row), 0, ui::LEFT | ui::RIGHT | ui::BOTTOM | ui::EXPAND, S(10));
+    }
 
     auto slider = [&](const std::wstring& label, const FxParam& p, float value) {
         auto row = HBox();
@@ -695,7 +707,9 @@ void SilenceDialog::OnInit() {
 void SilenceDialog::ShowControls() {
     for (auto& sl : sliders_)
         for (HWND h : {sl.label, sl.track}) ui::Show(h, s_.on);
-    for (HWND h : {lbl_action_, cmb_action_, chk_tones_}) ui::Show(h, s_.on);
+    // The tones are for the whole recording pausing, going on or stopping,
+    // in both modes; a single source going quiet has none.
+    for (HWND h : {lbl_mode_, cmb_mode_, lbl_action_, cmb_action_, chk_tones_}) ui::Show(h, s_.on);
     Fit();
 }
 
@@ -711,12 +725,18 @@ bool SilenceDialog::OnCommand(int id, int code, HWND control) {
         ShowControls();
         return true;
     }
+    if (id == IDC_FX_SILENCE_MODE && code == CBN_SELCHANGE) {
+        s_.per_source = SendMessageW(cmb_mode_, CB_GETCURSEL, 0, 0) == 1;
+        ShowControls();
+        return true;
+    }
     return SliderDialog::OnCommand(id, code, control);
 }
 
 void SilenceDialog::OnOk() {
     s_.stop = SendMessageW(cmb_action_, CB_GETCURSEL, 0, 0) == 1;
     s_.tones = Button_GetCheck(chk_tones_) == BST_CHECKED;
+    s_.per_source = SendMessageW(cmb_mode_, CB_GETCURSEL, 0, 0) == 1;
     result = s_;
     EndModal(IDOK);
 }

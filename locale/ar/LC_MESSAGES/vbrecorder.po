@@ -1210,3 +1210,33 @@ msgstr "تلاشي عند انتهاء الملف(&T):"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "تلاشي عند بدء الملف(&B):"
+
+msgid "Mo&nitorar Gravação"
+msgstr "مراقبة التسجيل(&M)"
+
+msgid "Monitorar Gravação"
+msgstr "مراقبة التسجيل"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "جهاز المراقبة(&B):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "جهاز الإخراج الافتراضي"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "حفظ التسجيل المسبق في ملف منفصل(&S)"
+
+msgid "pré-gravação"
+msgstr "تسجيل مسبق"
+
+msgid "Remover Fonte de Gravação"
+msgstr "إزالة مصدر تسجيل"
+
+msgid "&Modo de Detecção:"
+msgstr "وضع الاكتشاف(&M):"
+
+msgid "Detectar na Mixagem"
+msgstr "الاكتشاف في المزيج"
+
+msgid "Detectar por Fonte"
+msgstr "الاكتشاف لكل مصدر"

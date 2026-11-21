@@ -1197,3 +1197,33 @@ msgstr "S&tlmenie na konci súboru:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Zosi&lnenie na začiatku súboru:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "&Sledovať nahrávanie"
+
+msgid "Monitorar Gravação"
+msgstr "Sledovať nahrávanie"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Zariadenie na s&ledovanie:"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Predvolené výstupné zariadenie"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "&Uložiť prednahrávanie do samostatného súboru"
+
+msgid "pré-gravação"
+msgstr "prednahrávanie"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Odstrániť zdroj záznamu"
+
+msgid "&Modo de Detecção:"
+msgstr "R&ežim detekcie:"
+
+msgid "Detectar na Mixagem"
+msgstr "Detegovať v mixe"
+
+msgid "Detectar por Fonte"
+msgstr "Detegovať podľa zdroja"

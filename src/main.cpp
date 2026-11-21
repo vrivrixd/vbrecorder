@@ -81,6 +81,8 @@ enum {
     IDC_RENAME,
     IDC_SUBFOLDER,
     IDC_AFTER,
+    IDC_MONITOR,
+    IDC_MONITOR_DEVICE,
 };
 
 enum { HK_REC = 1, HK_PAUSE, HK_STOP, HK_PLAY, HK_RENAME, HK_DELETE, HK_OPEN_DIR, HK_SHOW, HK_EXIT };
@@ -101,6 +103,11 @@ enum {
     MENU_OPEN_DIR,
     MENU_SETTINGS,
     MENU_RENAME,
+    MENU_SOURCE_ADD,
+    MENU_SOURCE_REMOVE,
+    MENU_MONITOR,
+    MENU_SOURCE = 2500,  // + source
+    MENU_MONITOR_DEVICE = 2800,  // + item of the device list
     MENU_AFTER = 2900,  // + action
     MENU_COMBO = 3000,  // + 100 * combo box + item
 };
@@ -212,6 +219,25 @@ private:
     static INT_PTR CALLBACK Proc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp);
     INT_PTR Handle(UINT msg, WPARAM wp, LPARAM lp);
     static LRESULT CALLBACK ListProc(HWND, UINT, WPARAM, LPARAM, UINT_PTR, DWORD_PTR);
+    /* A source checked or unchecked in the list or the tray: silent in the
+       recording while it is off, also while recording. */
+    void SetSourceEnabled(int index, bool on);
+    void FillMonitorDevices();
+    int MonitorDevice();
+    /* Monitoring turned on or off, or its device changed. */
+    void ApplyMonitoring();
+    /* "Monitor Recording", checked when on, and, while it is, the devices. */
+    void AddMonitorItems(HMENU menu);
+    /* How a source is named in the list and in the tray. */
+    std::wstring SourceLabel(const Source& s);
+    void RemoveSources(std::vector<int> indexes);
+    void OnRemoveSourceFromTray();
+    /* The sources, checked when on, then Add and Remove, as a submenu. */
+    void AddSourcesSubmenu(HMENU menu);
+    bool filling_list_ = false;  // the list is being filled: its check boxes are not the user's
+    // A check box changes only by Space alone or a click on it: selecting
+    // with Ctrl or Shift must not check or uncheck anything.
+    bool user_checking_ = false;
 
     HWND Add(const wchar_t* cls, DWORD style, int id, DWORD ex_style = 0);
     void SetupUi();
@@ -332,6 +358,9 @@ private:
     HWND btn_tags_;
     HWND lbl_sources_, lst_fontes_, btn_add_, btn_edit_, btn_rem_;
     HWND chk_separate_, chk_subfolder_, chk_tones_;
+    // Monitoring, and the device it plays on (only shown with it on).
+    HWND chk_monitor_, lbl_monitor_device_, cmb_monitor_device_;
+    std::vector<int> monitor_devices_;  // the BASS number of each item; -1 the default one
     HWND lbl_after_, cmb_after_;
     std::vector<int> after_actions_;  // the AfterAction of each item of the list
     // The folder of its own the recording goes into, with "Record in a
@@ -384,9 +413,8 @@ bool MainFrame::Create() {
     taskbar_created_ = RegisterWindowMessageW(L"TaskbarCreated");
     AddTrayIcon();
     RegisterAllHotkeys();
-    Layout();
-    // The pre-recording starts with the program.
-    UpdateStandby();
+    // The pre-recording and the monitoring start with the program.
+    ApplyMonitoring();
     return true;
 }
 
@@ -426,6 +454,10 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
                     case IDC_PLAY: OnPlayToggle(); return TRUE;
                     case IDC_DELETE: OnDeleteRecording(); return TRUE;
                     case IDC_RENAME: OnRenameRecording(); return TRUE;
+                    case IDC_MONITOR:
+                        ApplyMonitoring();
+                        SaveSettings();
+                        return TRUE;
                     case IDC_SEPARATE:
                         UpdateSubfolderOption();
                         Layout();
@@ -450,7 +482,40 @@ INT_PTR MainFrame::Handle(UINT msg, WPARAM wp, LPARAM lp) {
                 code == CBN_SELCHANGE)
                 OnFormatChange();
             if (id == IDC_AFTER && code == CBN_SELCHANGE) SaveSettings();
+            if (id == IDC_MONITOR_DEVICE && code == CBN_SELCHANGE) {
+                ApplyMonitoring();
+                SaveSettings();
+            }
+            // Enter on the list of sources edits the one selected.
+            if (id == IDOK && GetFocus() == lst_fontes_) OnEditSource();
             return TRUE;  // IDOK and IDCANCEL (Enter and Esc) do not close the window
+        }
+        case WM_NOTIFY: {
+            NMHDR* hdr = (NMHDR*)lp;
+            if (hdr->hwndFrom != lst_fontes_) return FALSE;
+            if (hdr->code == LVN_ITEMCHANGED && !filling_list_) {
+                // The check box of a source: on, or silent in the recording.
+                NMLISTVIEW* nm = (NMLISTVIEW*)lp;
+                if ((nm->uChanged & LVIF_STATE) && ((nm->uNewState ^ nm->uOldState) & LVIS_STATEIMAGEMASK) &&
+                    nm->iItem >= 0 && nm->iItem < (int)sources_.size()) {
+                    bool on = ListView_GetCheckState(lst_fontes_, nm->iItem) != FALSE;
+                    if (!user_checking_) {
+                        // Changed by selecting: it goes back to what it was.
+                        if (on != sources_[nm->iItem].fx.enabled) {
+                            filling_list_ = true;
+                            ListView_SetCheckState(lst_fontes_, nm->iItem, sources_[nm->iItem].fx.enabled);
+                            filling_list_ = false;
+                        }
+                    } else if (on != sources_[nm->iItem].fx.enabled) {
+                        SetSourceEnabled(nm->iItem, on);
+                    }
+                }
+            } else if (hdr->code == LVN_KEYDOWN) {
+                if (((NMLVKEYDOWN*)lp)->wVKey == VK_DELETE) OnRemoveSource();
+            } else if (hdr->code == NM_DBLCLK) {
+                OnEditSource();
+            }
+            return TRUE;
         }
         case WM_ACTIVATE:
             // Coming back to the window, Windows gives the focus back to the
@@ -587,12 +652,14 @@ void MainFrame::SetupUi() {
     vbox->Add(lbl_sources_, 0, ui::LEFT | ui::TOP, S(10));
     lst_fontes_ = Add(WC_LISTVIEWW, WS_TABSTOP | LVS_REPORT | LVS_NOCOLUMNHEADER, IDC_SOURCES,
                       WS_EX_CLIENTEDGE);
-    ListView_SetExtendedListViewStyle(lst_fontes_, LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
+    // Each source is a check box: unchecked, it is silent in the recording.
+    // Selecting does not check: several can be selected, to remove them.
+    ListView_SetExtendedListViewStyle(lst_fontes_, LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_CHECKBOXES);
     LVCOLUMNW col = {};
     col.mask = LVCF_WIDTH;
     col.cx = S(100);
     ListView_InsertColumn(lst_fontes_, 0, &col);
-    SetWindowSubclass(lst_fontes_, ListProc, 1, 0);
+    SetWindowSubclass(lst_fontes_, ListProc, 1, (DWORD_PTR)this);
     vbox->Add(lst_fontes_, 1, ui::ALL | ui::EXPAND, S(5));
 
     auto hb_src = HBox();
@@ -609,6 +676,18 @@ void MainFrame::SetupUi() {
     // Only with separate files: each recording in a folder of its own.
     chk_subfolder_ = Add(WC_BUTTONW, CHECK, IDC_SUBFOLDER);
     vbox->Add(chk_subfolder_, 0, ui::ALL, S(10));
+    // Hearing the checked sources as they go into the recording; then the
+    // device, while it is on.
+    chk_monitor_ = Add(WC_BUTTONW, CHECK, IDC_MONITOR);
+    vbox->Add(chk_monitor_, 0, ui::ALL, S(10));
+    lbl_monitor_device_ = Add(WC_STATICW, 0, 0);
+    cmb_monitor_device_ = Add(WC_COMBOBOXW, COMBO, IDC_MONITOR_DEVICE);
+    {
+        auto hb = HBox();
+        hb->Add(lbl_monitor_device_, 0, ui::CENTER_V | ui::RIGHT, S(5));
+        hb->Add(cmb_monitor_device_, 1, ui::EXPAND, 0);
+        vbox->Add(std::move(hb), 0, ui::ALL | ui::EXPAND, S(5));
+    }
     chk_tones_ = Add(WC_BUTTONW, CHECK, IDC_TONES);
     vbox->Add(chk_tones_, 0, ui::ALL, S(10));
 
@@ -706,6 +785,9 @@ void MainFrame::Retranslate() {
 
     ui::SetText(chk_separate_, tr("Gravar fontes em ar&quivos separados"));
     ui::SetText(chk_subfolder_, tr("Gravar em uma &Subpasta"));
+    ui::SetText(chk_monitor_, tr("Mo&nitorar Gravação"));
+    ui::SetText(lbl_monitor_device_, tr("&Dispositivo de Monitoramento:"));
+    FillMonitorDevices();
     ui::SetText(btn_rename_, tr("Renomear &Gravação"));
     ui::SetText(lbl_after_, tr("Ao Termi&nar a Gravação:"));
     FillAfterList();
@@ -744,19 +826,26 @@ void MainFrame::Layout() {
     InvalidateRect(hwnd_, nullptr, TRUE);
 }
 
+std::wstring MainFrame::SourceLabel(const Source& s) {
+    // Background audio shows the name of its file or folder.
+    return s.type == L"file"  ? Format(tr("Áudio de Fundo: {nome}"), {{L"nome", BaseName(s.name)}})
+           : s.type == L"url" ? Format(tr("URL de Stream: {endereco}"), {{L"endereco", s.name}})
+                              : s.name;
+}
+
 void MainFrame::RefreshList() {
+    filling_list_ = true;
     ListView_DeleteAllItems(lst_fontes_);
     for (auto& s : sources_) {
-        // Background audio shows the name of its file or folder.
-        std::wstring label = s.type == L"file"  ? Format(tr("Áudio de Fundo: {nome}"), {{L"nome", BaseName(s.name)}})
-                             : s.type == L"url" ? Format(tr("URL de Stream: {endereco}"), {{L"endereco", s.name}})
-                                                : s.name;
+        std::wstring label = SourceLabel(s);
         LVITEMW item = {};
         item.mask = LVIF_TEXT;
         item.iItem = ListView_GetItemCount(lst_fontes_);
         item.pszText = const_cast<wchar_t*>(label.c_str());
-        ListView_InsertItem(lst_fontes_, &item);
+        int at = ListView_InsertItem(lst_fontes_, &item);
+        ListView_SetCheckState(lst_fontes_, at, s.fx.enabled);
     }
+    filling_list_ = false;
     ListView_SetColumnWidth(lst_fontes_, 0, LVSCW_AUTOSIZE);
     // An empty list has nothing to edit or remove; the focus, if it was on
     // one of them, goes to Add instead of nowhere.
@@ -771,7 +860,39 @@ void MainFrame::RefreshList() {
 }
 
 LRESULT CALLBACK MainFrame::ListProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp, UINT_PTR,
-                                     DWORD_PTR) {
+                                     DWORD_PTR ref) {
+    MainFrame* self = (MainFrame*)ref;
+    const bool ctrl = GetKeyState(VK_CONTROL) < 0, shift = GetKeyState(VK_SHIFT) < 0;
+    if ((msg == WM_KEYDOWN || msg == WM_CHAR) && wp == (msg == WM_KEYDOWN ? VK_SPACE : L' ')) {
+        if (ctrl || shift) {
+            // Ctrl+Space selects or unselects the focused source; Shift+Space
+            // selects it. Neither touches its check box.
+            if (msg == WM_KEYDOWN) {
+                int focused = ListView_GetNextItem(hwnd, -1, LVNI_FOCUSED);
+                if (focused != -1) {
+                    UINT state = ListView_GetItemState(hwnd, focused, LVIS_SELECTED);
+                    UINT next = ctrl ? (state & LVIS_SELECTED ? 0 : LVIS_SELECTED) : LVIS_SELECTED;
+                    ListView_SetItemState(hwnd, focused, next, LVIS_SELECTED);
+                }
+            }
+            return 0;
+        }
+        // Space alone checks or unchecks.
+        self->user_checking_ = true;
+        LRESULT r = DefSubclassProc(hwnd, msg, wp, lp);
+        self->user_checking_ = false;
+        return r;
+    }
+    if (msg == WM_LBUTTONDOWN || msg == WM_LBUTTONDBLCLK) {
+        // A click on the check box itself.
+        LVHITTESTINFO hit = {};
+        hit.pt = {(short)LOWORD(lp), (short)HIWORD(lp)};
+        ListView_HitTest(hwnd, &hit);
+        self->user_checking_ = (hit.flags & LVHT_ONITEMSTATEICON) != 0;
+        LRESULT r = DefSubclassProc(hwnd, msg, wp, lp);
+        self->user_checking_ = false;
+        return r;
+    }
     // At the ends of the list, the arrows do nothing.
     if (msg == WM_KEYDOWN && (wp == VK_DOWN || wp == VK_UP)) {
         int count = ListView_GetItemCount(hwnd);
@@ -869,7 +990,7 @@ std::wstring MainFrame::ChannelsValue() {
 
 void MainFrame::OnAddSource() {
     AddSourceDialog dlg(audio, sources_, nullptr, [this] { return OutputFormat(); });
-    int result = dlg.ShowModal(hwnd_);
+    int result = dlg.ShowModal(DialogParent());
     audio.StopMonitor();
     if (result == IDOK && dlg.has_selected) {
         // The same executable twice would be recorded twice.
@@ -924,6 +1045,18 @@ void MainFrame::OnEditSource() {
     }
 }
 
+void MainFrame::SetSourceEnabled(int index, bool on) {
+    if (index < 0 || index >= (int)sources_.size()) return;
+    sources_[index].fx.enabled = on;
+    if (ListView_GetCheckState(lst_fontes_, index) != (BOOL)on) {
+        filling_list_ = true;
+        ListView_SetCheckState(lst_fontes_, index, on);
+        filling_list_ = false;
+    }
+    audio.SetSourceFx(sources_[index]);
+    SaveSettings();
+}
+
 void MainFrame::OnRemoveSource() {
     std::vector<int> to_remove;
     int idx = ListView_GetNextItem(lst_fontes_, -1, LVNI_SELECTED);
@@ -931,6 +1064,40 @@ void MainFrame::OnRemoveSource() {
         to_remove.push_back(idx);
         idx = ListView_GetNextItem(lst_fontes_, idx, LVNI_SELECTED);
     }
+    RemoveSources(to_remove);
+}
+
+/* From the tray: a list of the sources, to choose the one to remove. */
+void MainFrame::OnRemoveSourceFromTray() {
+    if (sources_.empty()) return;
+    std::vector<std::wstring> names;
+    for (auto& s : sources_) names.push_back(SourceLabel(s));
+    RemoveSourceDialog dlg(names);
+    if (dlg.ShowModal(DialogParent()) != IDOK) return;
+    std::vector<int> chosen;
+    for (int i : dlg.result)
+        if (i >= 0 && i < (int)sources_.size()) chosen.push_back(i);
+    if (!chosen.empty()) RemoveSources(chosen);
+}
+
+void MainFrame::AddSourcesSubmenu(HMENU menu) {
+    HMENU sub = CreatePopupMenu();
+    for (size_t i = 0; i < sources_.size(); ++i)
+        AppendMenuW(sub, MF_STRING | (sources_[i].fx.enabled ? MF_CHECKED : 0), MENU_SOURCE + (UINT)i,
+                    SourceLabel(sources_[i]).c_str());
+    if (!sources_.empty()) AppendMenuW(sub, MF_SEPARATOR, 0, nullptr);
+    auto plain = [](std::wstring t) {
+        t.erase(std::remove(t.begin(), t.end(), L'&'), t.end());
+        if (!t.empty() && t.back() == L':') t.pop_back();
+        return t;
+    };
+    AppendMenuW(sub, MF_STRING, MENU_SOURCE_ADD, (plain(ui::GetText(btn_add_)) + L"...").c_str());
+    if (!sources_.empty())
+        AppendMenuW(sub, MF_STRING, MENU_SOURCE_REMOVE, (plain(ui::GetText(btn_rem_)) + L"...").c_str());
+    AppendMenuW(menu, MF_POPUP, (UINT_PTR)sub, plain(ui::GetText(lbl_sources_)).c_str());
+}
+
+void MainFrame::RemoveSources(std::vector<int> to_remove) {
     if (to_remove.empty()) return;
     std::sort(to_remove.rbegin(), to_remove.rend());
     for (int i : to_remove) {
@@ -1092,6 +1259,7 @@ void MainFrame::OnSettings() {
     config.SetConfig(L"iniciar_com_windows", dlg.start_with_windows);
     config.SetConfig(L"contagem_regressiva", dlg.countdown);
     config.SetConfig(L"pre_gravacao", dlg.preroll);
+    config.SetConfig(L"pre_gravacao_separada", dlg.preroll_file);
     config.SetConfig(L"buffer", dlg.BufferValue());
     config.SetConfig(L"dividir", dlg.split_text);
     config.Save();
@@ -1207,6 +1375,16 @@ void MainFrame::LoadSettings() {
     SetChecked(chk_tones_, config.GetBoolean(L"reproduzir_tons"));
     SetChecked(chk_separate_, config.GetBoolean(L"arquivos_separados"));
     SetChecked(chk_subfolder_, config.GetBoolean(L"subpasta"));
+    SetChecked(chk_monitor_, config.GetBoolean(L"monitorar"));
+    {
+        // The device by its name: the numbers change when devices come and go.
+        std::wstring name = config.Get(L"monitor_dispositivo");
+        std::vector<std::wstring> items = ui::ComboItems(cmb_monitor_device_);
+        int sel = 0;
+        for (size_t i = 1; i < items.size(); ++i)
+            if (items[i] == name) sel = (int)i;
+        SendMessageW(cmb_monitor_device_, CB_SETCURSEL, sel, 0);
+    }
     {
         int action = AFTER_NOTHING;
         for (int a = 0; a <= AFTER_RESTART; ++a)
@@ -1274,6 +1452,12 @@ void MainFrame::SaveSettings() {
     config.SetConfig(L"reproduzir_tons", Checked(chk_tones_));
     config.SetConfig(L"arquivos_separados", Checked(chk_separate_));
     config.SetConfig(L"subpasta", Checked(chk_subfolder_));
+    config.SetConfig(L"monitorar", Checked(chk_monitor_));
+    {
+        int sel = (int)SendMessageW(cmb_monitor_device_, CB_GETCURSEL, 0, 0);
+        std::vector<std::wstring> items = ui::ComboItems(cmb_monitor_device_);
+        config.SetConfig(L"monitor_dispositivo", sel > 0 && sel < (int)items.size() ? items[sel] : L"");
+    }
     config.SetConfig(L"ao_terminar", AFTER_KEYS[AfterAction()]);
     config.SetConfig(L"arquivo", ui::GetText(txt_filename_));
     config.SetConfig(L"duracao", Trim(ui::GetText(txt_duration_)));
@@ -1310,6 +1494,7 @@ void MainFrame::StopNow(bool tone) {
     KillTimer(hwnd_, TIMER_DETECT);
     detect_ = DETECT_OFF;
     audio.SetSoundThreshold(-1000);
+    audio.SetSourceGate(false, 0, 0);
     audio.StopRecording();
     UpdateShutdownBlock();
     if (tone) audio.PlayTone(440, 150);
@@ -1340,6 +1525,8 @@ LONGLONG MainFrame::PrerollFrom() {
 void MainFrame::UpdateStandby() {
     if (audio.is_recording()) return;
     double seconds = (double)config.GetPreroll();
+    // Monitoring needs the sources captured even without pre-recording.
+    if (seconds <= 0 && Checked(chk_monitor_)) seconds = 0.5;
     audio.SetStandby(sources_, OutputFormat().first, ChannelsValue(), seconds);
 }
 
@@ -1372,6 +1559,7 @@ void MainFrame::StartDetection() {
     QueryPerformanceCounter(&now);
     detect_since_ = now.QuadPart;
     audio.SetSoundThreshold(silence_.threshold_db);
+    audio.SetSourceGate(silence_.per_source, silence_.preroll_ms / 1000.0, silence_.silence_ms / 1000.0);
     SetTimer(hwnd_, TIMER_DETECT, 50, nullptr);
 }
 
@@ -1467,6 +1655,7 @@ bool MainFrame::StartRecordingNow(bool tone, LONGLONG from) {
     int err = 0;
     audio.SetTags(config.GetTags());
     audio.SetSplitSeconds(split);
+    audio.SetPrerollFile(config.GetBoolean(L"pre_gravacao_separada"));
     bool ok = audio.StartRecording(full_path, ext, bitrate_val,
                                    _wtoi(ui::ComboValue(cmb_rate_).c_str()),
                                    BitsValue(), ChannelsValue(),
@@ -1894,6 +2083,57 @@ void MainFrame::AddSubmenu(HMENU parent, const std::wstring& label, int index, H
     AppendMenuW(parent, MF_POPUP, (UINT_PTR)sub, label.c_str());
 }
 
+/* The output devices for monitoring: the default one first. The choice
+   stays, by name. */
+void MainFrame::FillMonitorDevices() {
+    std::vector<std::wstring> before = ui::ComboItems(cmb_monitor_device_);
+    int sel = (int)SendMessageW(cmb_monitor_device_, CB_GETCURSEL, 0, 0);
+    std::wstring chosen = sel > 0 && sel < (int)before.size() ? before[sel] : L"";
+    monitor_devices_ = {-1};
+    std::vector<std::wstring> items = {tr("Dispositivo de Saída Padrão")};
+    for (auto& d : audio.GetOutputDevices()) {
+        monitor_devices_.push_back(d.first);
+        items.push_back(d.second);
+    }
+    ui::ComboSetItems(cmb_monitor_device_, items);
+    int now = 0;
+    for (size_t i = 1; i < items.size(); ++i)
+        if (items[i] == chosen) now = (int)i;
+    SendMessageW(cmb_monitor_device_, CB_SETCURSEL, now, 0);
+}
+
+int MainFrame::MonitorDevice() {
+    int sel = (int)SendMessageW(cmb_monitor_device_, CB_GETCURSEL, 0, 0);
+    return sel >= 0 && sel < (int)monitor_devices_.size() ? monitor_devices_[sel] : -1;
+}
+
+void MainFrame::AddMonitorItems(HMENU menu) {
+    AppendMenuW(menu, MF_STRING | (Checked(chk_monitor_) ? MF_CHECKED : 0), MENU_MONITOR,
+                tr("Monitorar Gravação").c_str());
+    if (!Checked(chk_monitor_)) return;
+    // The list of the window, the device in use marked.
+    HMENU sub = CreatePopupMenu();
+    int current = (int)SendMessageW(cmb_monitor_device_, CB_GETCURSEL, 0, 0);
+    std::vector<std::wstring> items = ui::ComboItems(cmb_monitor_device_);
+    for (size_t i = 0; i < items.size(); ++i)
+        AppendMenuW(sub, MF_STRING | ((int)i == current ? MF_CHECKED : 0), MENU_MONITOR_DEVICE + (UINT)i,
+                    items[i].c_str());
+    std::wstring label = ui::GetText(lbl_monitor_device_);
+    label.erase(std::remove(label.begin(), label.end(), L'&'), label.end());
+    if (!label.empty() && label.back() == L':') label.pop_back();
+    AppendMenuW(menu, MF_POPUP, (UINT_PTR)sub, label.c_str());
+}
+
+void MainFrame::ApplyMonitoring() {
+    const bool on = Checked(chk_monitor_);
+    audio.SetMonitoring(on, MonitorDevice());
+    ui::Show(lbl_monitor_device_, on);
+    ui::Show(cmb_monitor_device_, on);
+    Layout();
+    // Before recording, the sources are captured for it.
+    UpdateStandby();
+}
+
 /* "Record in a Subfolder" is there only with separate files checked. */
 void MainFrame::UpdateSubfolderOption() {
     ui::Show(chk_subfolder_, sources_.size() >= 2 && Checked(chk_separate_));
@@ -1940,11 +2180,14 @@ void MainFrame::SetAfterAction(int action) {
 }
 
 /* The recording ended: the program closes, or the computer hibernates,
-   sleeps, shuts down or restarts, at once. The list goes back to doing
-   nothing first, so a later recording does not do it again by surprise. */
+   sleeps, shuts down or restarts, at once. Except for closing, the list
+   goes back to doing nothing first, so a later recording does not do it
+   again by surprise. */
 void MainFrame::DoAfterRecording(int action) {
     if (audio.is_recording() || action == AFTER_NOTHING) return;
-    SetAfterAction(AFTER_NOTHING);
+    // Closing the program stays chosen; the computer does not shut down,
+    // sleep or restart again by surprise on a later recording.
+    if (action != AFTER_CLOSE) SetAfterAction(AFTER_NOTHING);
     SaveSettings();
     if (action == AFTER_CLOSE) {
         OnClose();
@@ -2173,11 +2416,13 @@ void MainFrame::ShowTrayMenu() {
         if (fmt == L"wav" || fmt == L"aiff" || fmt == L"flac" || fmt == L"wma")
             AddSubmenu(menu, tr("Profundidade de Bits"), 5, cmb_bits_);
         AddSubmenu(menu, tr("Canais"), 4, cmb_channels_);
+        AddSourcesSubmenu(menu);
         AddButtonItem(menu, MENU_TAGS, btn_tags_);
         if (sources_.size() >= 2) {
             AppendMenuW(menu, MF_STRING | (Checked(chk_separate_) ? MF_CHECKED : 0), MENU_SEPARATE,
                         tr("Gravar fontes em arquivos separados").c_str());
         }
+        AddMonitorItems(menu);
         AppendMenuW(menu, MF_STRING | (Checked(chk_tones_) ? MF_CHECKED : 0), MENU_TONES,
                     tr("Reproduzir tons ao iniciar ou parar gravação").c_str());
         AddButtonItem(menu, MENU_SCHEDULE, btn_schedule_);
@@ -2200,6 +2445,10 @@ void MainFrame::ShowTrayMenu() {
         std::wstring label_pause = audio.is_paused() ? tr("Continuar") : tr("Pausar");
         AppendMenuW(menu, MF_STRING, MENU_PAUSE, label_pause.c_str());
         AppendMenuW(menu, MF_STRING, MENU_STOP, tr("Parar").c_str());
+        // As in the window: the sources can be turned on and off, added and
+        // removed while recording, and monitored.
+        AddSourcesSubmenu(menu);
+        AddMonitorItems(menu);
         // As in the window: while recording, the schedules and the folder stay available.
         AppendMenuW(menu, MF_SEPARATOR, 0, nullptr);
         AddButtonItem(menu, MENU_SCHEDULE, btn_schedule_);
@@ -2247,6 +2496,13 @@ void MainFrame::OnTrayCommand(UINT cmd) {
         case MENU_OPEN_DIR: OnOpenDir(); return;
         case MENU_SETTINGS: FromTray(&MainFrame::OnSettings); return;
         case MENU_RENAME: FromTray(&MainFrame::OnRenameRecording); return;
+        case MENU_SOURCE_ADD: FromTray(&MainFrame::OnAddSource); return;
+        case MENU_MONITOR:
+            SetChecked(chk_monitor_, !Checked(chk_monitor_));
+            ApplyMonitoring();
+            SaveSettings();
+            return;
+        case MENU_SOURCE_REMOVE: FromTray(&MainFrame::OnRemoveSourceFromTray); return;
         case MENU_SEPARATE:
             SetChecked(chk_separate_, !Checked(chk_separate_));
             SaveSettings();
@@ -2255,6 +2511,17 @@ void MainFrame::OnTrayCommand(UINT cmd) {
             SetChecked(chk_tones_, !Checked(chk_tones_));
             SaveSettings();
             return;
+    }
+    if (cmd >= MENU_MONITOR_DEVICE && cmd < MENU_MONITOR_DEVICE + monitor_devices_.size()) {
+        SendMessageW(cmb_monitor_device_, CB_SETCURSEL, cmd - MENU_MONITOR_DEVICE, 0);
+        ApplyMonitoring();
+        SaveSettings();
+        return;
+    }
+    if (cmd >= MENU_SOURCE && cmd < MENU_SOURCE + sources_.size()) {
+        int i = (int)(cmd - MENU_SOURCE);
+        SetSourceEnabled(i, !sources_[i].fx.enabled);
+        return;
     }
     if (cmd >= MENU_AFTER && cmd <= MENU_AFTER + AFTER_RESTART) {
         SetAfterAction((int)cmd - MENU_AFTER);

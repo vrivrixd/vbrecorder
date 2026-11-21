@@ -1195,3 +1195,33 @@ msgstr "Fade ao Te&rminar o Ficheiro:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Fade ao Co&meçar o Ficheiro:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Monitorizar Gravação (&H)"
+
+msgid "Monitorar Gravação"
+msgstr "Monitorizar Gravação"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Dispositivo de Monitorização (&F):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Dispositivo de Saída Predefinido"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Guardar Pré-Gravação num &Ficheiro Separado"
+
+msgid "pré-gravação"
+msgstr "pré-gravação"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Remover Fonte de Gravação"
+
+msgid "&Modo de Detecção:"
+msgstr "&Modo de Deteção:"
+
+msgid "Detectar na Mixagem"
+msgstr "Detetar na Mistura"
+
+msgid "Detectar por Fonte"
+msgstr "Detetar por Fonte"

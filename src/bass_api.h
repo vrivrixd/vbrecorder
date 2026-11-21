@@ -26,6 +26,8 @@
 typedef unsigned long long QWORD;
 
 const DWORD BASS_DEVICE_ENABLED = 1;
+const DWORD BASS_DEVICE_DEFAULT = 2;
+const DWORD BASS_DEVICE_INIT = 4;
 const DWORD BASS_DEVICE_LOOPBACK = 8;
 const DWORD BASS_ENCODE_NOHEAD = 1;
 const DWORD BASS_ENCODE_FP_8BIT = 2;
@@ -131,6 +133,9 @@ struct BassApi {
     DWORD(WINAPI* GetConfig)(DWORD);
     int(WINAPI* ErrorGetCode)();
     BOOL(WINAPI* Init)(int, DWORD, DWORD, HWND, const void*);
+    BOOL(WINAPI* GetDeviceInfo)(DWORD, BASS_DEVICEINFO*);
+    BOOL(WINAPI* SetDevice)(DWORD);
+    DWORD(WINAPI* GetDevice)();
     BOOL(WINAPI* Free)();
     BOOL(WINAPI* RecordInit)(int);
     BOOL(WINAPI* RecordFree)();

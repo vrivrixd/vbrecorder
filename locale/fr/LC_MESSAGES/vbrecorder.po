@@ -1196,3 +1196,33 @@ msgstr "Fondu à la fin du fic&hier :"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Fondu au débu&t du fichier :"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Écouter l'enregistrement (&H)"
+
+msgid "Monitorar Gravação"
+msgstr "Écouter l'enregistrement"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Périphéri&que d'écoute :"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Périphérique de sortie par défaut"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Enregistrer le pré-enregistrement dans un &fichier séparé"
+
+msgid "pré-gravação"
+msgstr "pré-enregistrement"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Supprimer une source d'enregistrement"
+
+msgid "&Modo de Detecção:"
+msgstr "&Mode de détection :"
+
+msgid "Detectar na Mixagem"
+msgstr "Détecter dans le mixage"
+
+msgid "Detectar por Fonte"
+msgstr "Détecter par source"

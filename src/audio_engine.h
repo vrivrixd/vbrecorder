@@ -56,6 +56,19 @@ public:
        there is no WMA. */
     std::vector<DWORD> WmaBitrates(int sample_rate, int chans, int bits);
     std::vector<std::pair<int, std::wstring>> GetInputDevices();
+    /* The output devices, by BASS number; the default one is not in it. */
+    std::vector<std::pair<int, std::wstring>> GetOutputDevices();
+    /* Monitoring: the checked sources are heard, live, as they go into the
+       recording (effects, volume, balance), on an output device (-1 is the
+       default one). Before recording, the sources must be captured: the
+       window keeps them waiting, as for the pre-recording. */
+    void SetMonitoring(bool on, int device);
+    /* Silence detection per source: a source quiet (below the threshold of
+       SetSoundThreshold) for `hold` seconds goes silent in the recording,
+       and comes back `preroll` seconds before its sound does. Background
+       audio is never silenced. */
+    void SetSourceGate(bool on, double preroll, double hold);
+    bool monitoring() const { return monitoring_; }
     void PlayTone(DWORD frequency, DWORD duration);
 
     /* Live test: captures the device and plays it on the default output. */
@@ -86,6 +99,9 @@ public:
        recording is split into files (0: never). For the next recording. */
     void SetTags(const TagValues& raw) { tags_raw_ = raw; }
     void SetSplitSeconds(int seconds) { split_seconds_ = seconds > 0 ? seconds : 0; }
+    /* The pre-recording of a new recording in a file of its own,
+       "name (pré-gravação)", and the recording itself from the click. */
+    void SetPrerollFile(bool on) { preroll_file_ = on; }
     /* A part of a split recording: "name 001.mp3" for part 1 of name.mp3;
        part 0 is the path itself. */
     static std::wstring PartPath(const std::wstring& path, int part);
@@ -287,6 +303,20 @@ private:
     TagValues tags_raw_;
     SYSTEMTIME rec_start_ = {};  // for the variables of the tags
     int split_seconds_ = 0;
+    std::atomic<bool> monitoring_{false};
+    std::atomic<bool> gate_on_{false};
+    double gate_preroll_ = 0, gate_hold_ = 0;  // guarded by graph_mutex_
+    std::atomic<int> monitor_out_{-1};  // the BASS number of the device monitoring plays on
+    bool preroll_file_ = false;
+    // The frames of pre-recording that go to files of their own, while the
+    // files have not passed them yet; 0 when there are none. Once every file
+    // has, the timeline moves so the click is 0, and timeline_shift_ keeps
+    // what it moved, for the time recorded.
+    long long preroll_origin_ = 0;
+    double timeline_shift_ = 0;
+    std::wstring PrerollPath(const std::wstring& path) const;
+    void SwitchToMain(Output& out);
+    void DropPreroll();
     long long split_frames_ = 0;  // of the recording in progress; 0 when not split
     int m4a_kbps_ = 0;
     int sample_rate_ = 44100;

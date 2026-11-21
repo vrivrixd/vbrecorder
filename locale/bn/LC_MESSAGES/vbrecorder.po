@@ -1196,3 +1196,33 @@ msgstr "ফাইল শেষে ফেড(&T):"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "ফাইল শুরুতে ফেড(&B):"
+
+msgid "Mo&nitorar Gravação"
+msgstr "রেকর্ডিং মনিটর করুন(&M)"
+
+msgid "Monitorar Gravação"
+msgstr "রেকর্ডিং মনিটর করুন"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "মনিটরিং ডিভাইস(&B):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "ডিফল্ট আউটপুট ডিভাইস"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "প্রি-রেকর্ডিং আলাদা ফাইলে সংরক্ষণ করুন(&V)"
+
+msgid "pré-gravação"
+msgstr "প্রি-রেকর্ডিং"
+
+msgid "Remover Fonte de Gravação"
+msgstr "রেকর্ডিং উৎস সরান"
+
+msgid "&Modo de Detecção:"
+msgstr "শনাক্তকরণ মোড(&M):"
+
+msgid "Detectar na Mixagem"
+msgstr "মিক্সে শনাক্ত করুন"
+
+msgid "Detectar por Fonte"
+msgstr "উৎস অনুযায়ী শনাক্ত করুন"

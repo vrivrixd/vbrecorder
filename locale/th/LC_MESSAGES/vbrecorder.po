@@ -1189,3 +1189,33 @@ msgstr "เฟดตอนจบไฟล์(&T):"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "เฟดตอนเริ่มไฟล์(&B):"
+
+msgid "Mo&nitorar Gravação"
+msgstr "มอนิเตอร์การบันทึก(&M)"
+
+msgid "Monitorar Gravação"
+msgstr "มอนิเตอร์การบันทึก"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "อุปกรณ์มอนิเตอร์(&B):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "อุปกรณ์เสียงออกเริ่มต้น"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "บันทึกล่วงหน้าเป็นไฟล์แยก(&S)"
+
+msgid "pré-gravação"
+msgstr "บันทึกล่วงหน้า"
+
+msgid "Remover Fonte de Gravação"
+msgstr "ลบแหล่งการบันทึก"
+
+msgid "&Modo de Detecção:"
+msgstr "โหมดการตรวจจับ(&M):"
+
+msgid "Detectar na Mixagem"
+msgstr "ตรวจจับในมิกซ์"
+
+msgid "Detectar por Fonte"
+msgstr "ตรวจจับตามแหล่งเสียง"

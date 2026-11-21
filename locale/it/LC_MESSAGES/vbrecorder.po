@@ -1196,3 +1196,33 @@ msgstr "Dissolven&za alla fine del file:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Dissol&venza all'inizio del file:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Monitora la registrazione (&H)"
+
+msgid "Monitorar Gravação"
+msgstr "Monitora la registrazione"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Dispositivo di monitoraggio (&B):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Dispositivo di uscita predefinito"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Salva la pre-registrazione in &un file separato"
+
+msgid "pré-gravação"
+msgstr "pre-registrazione"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Rimuovi sorgente di registrazione"
+
+msgid "&Modo de Detecção:"
+msgstr "&Modalità di rilevamento:"
+
+msgid "Detectar na Mixagem"
+msgstr "Rileva nel mix"
+
+msgid "Detectar por Fonte"
+msgstr "Rileva per sorgente"

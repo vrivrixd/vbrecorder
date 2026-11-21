@@ -138,6 +138,8 @@ void ConfigManager::Load() {
                    {L"reproduzir_tons", L"False"},
                    {L"arquivos_separados", L"False"},
                    {L"subpasta", L"True"},
+                   {L"monitorar", L"False"},
+                   {L"monitor_dispositivo", L""},
                    {L"ao_terminar", L"nada"},
                    {L"duracao", L""},
                    {L"arquivo", L""},
@@ -153,6 +155,7 @@ void ConfigManager::Load() {
                    {L"iniciar_com_windows", L"False"},
                    {L"contagem_regressiva", L"False"},
                    {L"pre_gravacao", L"0"},
+                   {L"pre_gravacao_separada", L"False"},
                    {L"dividir", L""}};
     } else {
         if (!Lookup(cfg->items, L"fontes")) {
@@ -173,8 +176,11 @@ void ConfigManager::Load() {
             {L"iniciar_com_windows", L"False"},
             {L"contagem_regressiva", L"False"},
             {L"pre_gravacao", L"0"},
+            {L"pre_gravacao_separada", L"False"},
             {L"dividir", L""},
             {L"subpasta", L"True"},
+            {L"monitorar", L"False"},
+            {L"monitor_dispositivo", L""},
             {L"ao_terminar", L"nada"}};
         for (auto& p : defaults)
             if (!Lookup(cfg->items, p.first)) Put(cfg->items, p.first, p.second);
@@ -201,11 +207,11 @@ void ConfigManager::Save() {
     };
     sort_items(Ensure(L"CONFIG").items,
                {L"formato", L"bitrate", L"flac_nivel", L"taxa", L"bits", L"canais", L"fontes",
-                L"reproduzir_tons", L"arquivos_separados", L"subpasta", L"ao_terminar", L"duracao", L"arquivo", L"diretorio",
+                L"reproduzir_tons", L"arquivos_separados", L"subpasta", L"monitorar", L"monitor_dispositivo", L"ao_terminar", L"duracao", L"arquivo", L"diretorio",
                 L"idioma", L"iniciar_minimizado", L"minimizar_bandeja", L"sempre_no_topo",
                 L"multiplas_instancias", L"buffer",
                 L"verificar_atualizacoes", L"iniciar_com_windows", L"contagem_regressiva",
-                L"pre_gravacao", L"dividir"});
+                L"pre_gravacao", L"pre_gravacao_separada", L"dividir"});
     sort_items(Ensure(L"KEYS").items, {L"gravar", L"pausar", L"parar", L"reproduzir", L"renomear", L"excluir",
                                        L"abrir_pasta", L"mostrar", L"fechar"});
 
@@ -309,6 +315,8 @@ SilenceSettings ConfigManager::GetSilence() const {
     const std::wstring* action = get(L"acao");
     d.stop = action && *action == L"parar";
     d.tones = flag(L"tons");
+    const std::wstring* mode = get(L"modo");
+    d.per_source = mode && *mode == L"fonte";
     return d;
 }
 
@@ -320,6 +328,7 @@ void ConfigManager::SetSilence(const SilenceSettings& d) {
     Put(s.items, L"silencio_ms", std::to_wstring(d.silence_ms));
     Put(s.items, L"acao", d.stop ? L"parar" : L"pausar");
     Put(s.items, L"tons", d.tones ? L"True" : L"False");
+    Put(s.items, L"modo", d.per_source ? L"fonte" : L"mixagem");
 }
 
 int ConfigManager::GetSplitSeconds() const { return std::max(0, SplitSeconds(Get(L"dividir"))); }

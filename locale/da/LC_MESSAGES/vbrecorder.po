@@ -1194,3 +1194,33 @@ msgstr "Udtoning &ved filens slutning:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Ind&toning ved filens start:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Overvåg optagelse&n"
+
+msgid "Monitorar Gravação"
+msgstr "Overvåg optagelsen"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Overvåg&ningsenhed:"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Standardoutputenhed"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Gem fo&rhåndsoptagelse i en separat fil"
+
+msgid "pré-gravação"
+msgstr "forhåndsoptagelse"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Fjern optagelseskilde"
+
+msgid "&Modo de Detecção:"
+msgstr "Re&gistreringstilstand:"
+
+msgid "Detectar na Mixagem"
+msgstr "Registrer i mikset"
+
+msgid "Detectar por Fonte"
+msgstr "Registrer pr. kilde"

@@ -1194,3 +1194,33 @@ msgstr "Giảm &dần khi kết thúc tệp:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Tă&ng dần khi bắt đầu tệp:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Giám sát bản ghi (&E)"
+
+msgid "Monitorar Gravação"
+msgstr "Giám sát bản ghi"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Thiết bị giám sát (&F):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Thiết bị đầu ra mặc định"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "&Lưu phần ghi trước vào tệp riêng"
+
+msgid "pré-gravação"
+msgstr "ghi trước"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Xóa nguồn ghi âm"
+
+msgid "&Modo de Detecção:"
+msgstr "&Chế độ phát hiện:"
+
+msgid "Detectar na Mixagem"
+msgstr "Phát hiện trong bản phối"
+
+msgid "Detectar por Fonte"
+msgstr "Phát hiện theo từng nguồn"

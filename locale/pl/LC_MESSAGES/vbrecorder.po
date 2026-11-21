@@ -1198,3 +1198,33 @@ msgstr "Wyciszenie na końc&u pliku:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Naras&tanie na początku pliku:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Odsłuchuj n&agranie"
+
+msgid "Monitorar Gravação"
+msgstr "Odsłuchuj nagranie"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Urządzenie odsłuchu (&V):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Domyślne urządzenie wyjściowe"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Zapis&uj nagrywanie wstępne w osobnym pliku"
+
+msgid "pré-gravação"
+msgstr "nagrywanie wstępne"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Usuń źródło nagrywania"
+
+msgid "&Modo de Detecção:"
+msgstr "&Tryb wykrywania:"
+
+msgid "Detectar na Mixagem"
+msgstr "Wykrywaj w miksie"
+
+msgid "Detectar por Fonte"
+msgstr "Wykrywaj dla każdego źródła"

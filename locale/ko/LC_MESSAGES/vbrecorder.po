@@ -1186,3 +1186,33 @@ msgstr "파일 끝 페이드(&T):"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "파일 시작 페이드(&B):"
+
+msgid "Mo&nitorar Gravação"
+msgstr "녹음 모니터링(&M)"
+
+msgid "Monitorar Gravação"
+msgstr "녹음 모니터링"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "모니터링 장치(&B):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "기본 출력 장치"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "사전 녹음을 별도 파일로 저장(&V)"
+
+msgid "pré-gravação"
+msgstr "사전 녹음"
+
+msgid "Remover Fonte de Gravação"
+msgstr "녹음 소스 제거"
+
+msgid "&Modo de Detecção:"
+msgstr "감지 모드(&M):"
+
+msgid "Detectar na Mixagem"
+msgstr "믹스에서 감지"
+
+msgid "Detectar por Fonte"
+msgstr "소스별로 감지"

@@ -1195,3 +1195,33 @@ msgstr "Esvaecemen&to ao rematar o ficheiro:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Esvaecemento ao come&zar o ficheiro:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Monitori&zar a gravación"
+
+msgid "Monitorar Gravação"
+msgstr "Monitorizar a gravación"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Dispositivo de monitori&zación:"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Dispositivo de saída predeterminado"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Gardar a pregravación nun &ficheiro aparte"
+
+msgid "pré-gravação"
+msgstr "pregravación"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Quitar fonte de gravación"
+
+msgid "&Modo de Detecção:"
+msgstr "&Modo de detección:"
+
+msgid "Detectar na Mixagem"
+msgstr "Detectar na mestura"
+
+msgid "Detectar por Fonte"
+msgstr "Detectar por fonte"

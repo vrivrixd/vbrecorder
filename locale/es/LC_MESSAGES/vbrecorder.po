@@ -1195,3 +1195,33 @@ msgstr "F&undido al terminar el archivo:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Fundido al comen&zar el archivo:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Monitorear la grabación (&J)"
+
+msgid "Monitorar Gravação"
+msgstr "Monitorear la grabación"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Di&spositivo de monitoreo:"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Dispositivo de salida predeterminado"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Guardar la pregrabación &en un archivo aparte"
+
+msgid "pré-gravação"
+msgstr "pregrabación"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Quitar fuente de grabación"
+
+msgid "&Modo de Detecção:"
+msgstr "&Modo de detección:"
+
+msgid "Detectar na Mixagem"
+msgstr "Detectar en la mezcla"
+
+msgid "Detectar por Fonte"
+msgstr "Detectar por fuente"

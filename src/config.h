@@ -32,7 +32,7 @@
 
 /* Program version, in a single place. It stays out of the translatable texts on
    purpose: bumping the version does not invalidate any translation. */
-#define VB_VERSION L"1.5.3"
+#define VB_VERSION L"1.5.4"
 
 /* Recording buffer, in milliseconds: how long a capture may be held up without
    losing audio. The default is the one BASS itself uses for recording. */
@@ -57,6 +57,10 @@ struct SilenceSettings {
     int silence_ms = 2000;
     bool stop = false;  // false: pauses
     bool tones = false;
+    // Per source: a quiet source goes silent in the recording, and comes back
+    // with its sound; when every source is quiet, the recording still pauses
+    // or stops. Otherwise only the mix of them counts.
+    bool per_source = false;
 };
 
 /* Bit depth value for 32-bit floating point, in wav and aiff. */

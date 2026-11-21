@@ -1203,3 +1203,33 @@ msgstr "P&ojemanje na koncu datoteke:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Naraščan&je na začetku datoteke:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Spremljaj snemanje (&Q)"
+
+msgid "Monitorar Gravação"
+msgstr "Spremljaj snemanje"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Naprava za spremljanje (&F):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Privzeta izhodna naprava"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Shrani predsnemanje v &ločeno datoteko"
+
+msgid "pré-gravação"
+msgstr "predsnemanje"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Odstrani vir snemanja"
+
+msgid "&Modo de Detecção:"
+msgstr "&Način zaznavanja:"
+
+msgid "Detectar na Mixagem"
+msgstr "Zaznavaj v mešanici"
+
+msgid "Detectar por Fonte"
+msgstr "Zaznavaj po virih"

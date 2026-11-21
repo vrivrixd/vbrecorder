@@ -1195,3 +1195,33 @@ msgstr "Ausblenden am Ende de&r Datei:"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "Einblenden am Anfan&g der Datei:"
+
+msgid "Mo&nitorar Gravação"
+msgstr "Aufnahme mithö&ren"
+
+msgid "Monitorar Gravação"
+msgstr "Aufnahme mithören"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "Gerät &zum Mithören:"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "Standard-Ausgabegerät"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "Vorab-Aufnahme in &eigener Datei speichern"
+
+msgid "pré-gravação"
+msgstr "Vorab-Aufnahme"
+
+msgid "Remover Fonte de Gravação"
+msgstr "Aufnahmequelle entfernen"
+
+msgid "&Modo de Detecção:"
+msgstr "E&rkennungsmodus:"
+
+msgid "Detectar na Mixagem"
+msgstr "Im Mix erkennen"
+
+msgid "Detectar por Fonte"
+msgstr "Pro Quelle erkennen"

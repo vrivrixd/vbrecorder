@@ -1196,3 +1196,33 @@ msgstr "फ़ाइल के अंत में फ़ेड(&T):"
 
 msgid "Fade ao Co&meçar o Arquivo:"
 msgstr "फ़ाइल की शुरुआत में फ़ेड(&B):"
+
+msgid "Mo&nitorar Gravação"
+msgstr "रिकॉर्डिंग मॉनिटर करें(&M)"
+
+msgid "Monitorar Gravação"
+msgstr "रिकॉर्डिंग मॉनिटर करें"
+
+msgid "&Dispositivo de Monitoramento:"
+msgstr "मॉनिटरिंग डिवाइस(&B):"
+
+msgid "Dispositivo de Saída Padrão"
+msgstr "डिफ़ॉल्ट आउटपुट डिवाइस"
+
+msgid "Sa&lvar Pré-Gravação em Arquivo Separado"
+msgstr "पूर्व-रिकॉर्डिंग को अलग फ़ाइल में सहेजें(&V)"
+
+msgid "pré-gravação"
+msgstr "पूर्व-रिकॉर्डिंग"
+
+msgid "Remover Fonte de Gravação"
+msgstr "रिकॉर्डिंग स्रोत हटाएँ"
+
+msgid "&Modo de Detecção:"
+msgstr "पहचान मोड(&M):"
+
+msgid "Detectar na Mixagem"
+msgstr "मिक्स में पहचानें"
+
+msgid "Detectar por Fonte"
+msgstr "स्रोत के अनुसार पहचानें"

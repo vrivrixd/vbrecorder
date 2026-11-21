@@ -102,6 +102,7 @@ struct FxSettings {
     bool stereo = true;  // false: the source's channels are mixed into one
     int channel = CHANNEL_BOTH;  // a ChannelPick
     int delay_ms = 0;            // 0 to SOURCE_DELAY_MAX_MS
+    bool enabled = true;         // unchecked in the list: silent in the recording
     // Background audio: the next file starts this long before the end of the
     // one playing, which goes down over its last fade_out seconds, while the
     // next comes up over its first fade_in seconds; 0 leaves each out.
